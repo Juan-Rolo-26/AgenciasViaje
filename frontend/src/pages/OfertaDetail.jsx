@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
 import { formatCurrency, formatDate, getPrecioVigente } from "../utils/formatters.js";
+import { getOfferImages } from "../utils/offerImages.js";
 
 export default function OfertaDetail() {
   const { slug } = useParams();
@@ -60,7 +61,8 @@ export default function OfertaDetail() {
     );
   }
 
-  const heroImage = oferta.destino?.imagenPortada || fallbackDeal;
+  const offerImages = getOfferImages(oferta);
+  const heroImage = offerImages[0] || fallbackDeal;
   const destinoPrincipal = oferta.destino?.nombre || "Destino destacado";
 
   return (

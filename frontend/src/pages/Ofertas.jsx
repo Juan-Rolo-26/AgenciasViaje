@@ -8,6 +8,7 @@ import {
   getPrecioVigente,
   parseAmount
 } from "../utils/formatters.js";
+import { getOfferImages } from "../utils/offerImages.js";
 
 export default function Ofertas() {
   const { ofertas, loading, error } = useTravelData();
@@ -276,8 +277,9 @@ export default function Ofertas() {
               );
               const precio = getPrecioVigente(oferta.precios) || preciosOrdenados[0];
               const ofertaSlug = oferta.slug || oferta.id;
-              const offerImage =
-                oferta.destino?.imagenPortada || fallbackDeal;
+              const offerImages = getOfferImages(oferta);
+              const offerImage = offerImages[0] || fallbackDeal;
+              const extraImages = offerImages.slice(1, 3);
               const fechaInicio = precio?.fechaInicio;
               const fechaFin = precio?.fechaFin;
               return (
@@ -287,7 +289,22 @@ export default function Ofertas() {
                   to={`/ofertas/${ofertaSlug}`}
                 >
                   <div className="offer-image">
-                    <img src={offerImage} alt={oferta.titulo} />
+                    <img
+                      className="offer-image-main"
+                      src={offerImage}
+                      alt={oferta.titulo}
+                    />
+                    {extraImages.length ? (
+                      <div className="offer-image-stack">
+                        {extraImages.map((image, imageIndex) => (
+                          <img
+                            key={`${oferta.id}-extra-${imageIndex}`}
+                            src={image}
+                            alt={`${oferta.titulo} destino ${imageIndex + 2}`}
+                          />
+                        ))}
+                      </div>
+                    ) : null}
                     <div className="offer-badge">
                       <span>Desde</span>
                       <strong>

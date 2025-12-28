@@ -9,6 +9,7 @@ import {
   getPrecioVigente,
   parseAmount
 } from "../utils/formatters.js";
+import { getOfferImages } from "../utils/offerImages.js";
 
 export default function Home() {
   const { destinos, ofertas, actividades, loading, error } = useTravelData();
@@ -365,35 +366,58 @@ export default function Home() {
               {loopOfertas.map((oferta, index) => {
                 const precio = getPrecioVigente(oferta.precios);
                 const ofertaSlug = oferta.slug || oferta.id;
+                const offerImages = getOfferImages(oferta);
+                const offerImage = offerImages[0] || fallbackDeal;
+                const extraImages = offerImages.slice(1, 3);
                 return (
                   <Link
-                    className="offer-card offer-link"
+                    className="offer-card offer-card-feature offer-link"
                     key={`${oferta.id}-${index}`}
                     to={`/ofertas/${ofertaSlug}`}
                   >
-                    <div className="offer-header">
-                      <span className="offer-tag">
-                        {oferta.destino?.nombre || "Destino destacado"}
-                      </span>
-                      <h3>{oferta.titulo}</h3>
-                    </div>
-                    <p className="offer-description">
-                      {oferta.condiciones || oferta.noIncluye || "Consultanos"}
-                    </p>
-                    <div className="offer-meta">
-                      {precio ? (
-                        <span className="offer-price">
-                          {formatCurrency(precio.precio, precio.moneda)}
-                        </span>
-                      ) : (
-                        <span className="offer-price">Precio a consultar</span>
-                      )}
-                      {precio ? (
-                        <span className="offer-dates">
-                          {formatDate(precio.fechaInicio)} -{" "}
-                          {formatDate(precio.fechaFin)}
-                        </span>
+                    <div className="offer-image">
+                      <img
+                        className="offer-image-main"
+                        src={offerImage}
+                        alt={oferta.titulo}
+                      />
+                      {extraImages.length ? (
+                        <div className="offer-image-stack">
+                          {extraImages.map((image, imageIndex) => (
+                            <img
+                              key={`${oferta.id}-home-${imageIndex}`}
+                              src={image}
+                              alt={`${oferta.titulo} destino ${imageIndex + 2}`}
+                            />
+                          ))}
+                        </div>
                       ) : null}
+                    </div>
+                    <div className="offer-body">
+                      <div className="offer-header">
+                        <span className="offer-tag">
+                          {oferta.destino?.nombre || "Destino destacado"}
+                        </span>
+                        <h3>{oferta.titulo}</h3>
+                      </div>
+                      <p className="offer-description">
+                        {oferta.condiciones || oferta.noIncluye || "Consultanos"}
+                      </p>
+                      <div className="offer-meta">
+                        {precio ? (
+                          <span className="offer-price">
+                            {formatCurrency(precio.precio, precio.moneda)}
+                          </span>
+                        ) : (
+                          <span className="offer-price">Precio a consultar</span>
+                        )}
+                        {precio ? (
+                          <span className="offer-dates">
+                            {formatDate(precio.fechaInicio)} -{" "}
+                            {formatDate(precio.fechaFin)}
+                          </span>
+                        ) : null}
+                      </div>
                     </div>
                   </Link>
                 );

@@ -839,7 +839,7 @@ section[id] {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(12, 13, 28, 0) 35%,
+    rgba(12, 13, 28, 0) 55%,
     rgba(12, 13, 28, 0.78) 100%
   );
   z-index: 1;
@@ -930,6 +930,10 @@ section[id] {
   flex: 0 0 280px;
 }
 
+.offer-track .offer-card-feature .offer-image {
+  height: 180px;
+}
+
 .excursion-track .tile {
   flex: 0 0 280px;
 }
@@ -966,11 +970,29 @@ section[id] {
   height: 230px;
 }
 
-.offer-card-feature .offer-image img {
+.offer-card-feature .offer-image .offer-image-main {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.offer-image-stack {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.offer-image-stack img {
+  width: 52px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.25);
 }
 
 .offer-badge {
