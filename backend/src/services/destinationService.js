@@ -3,7 +3,10 @@ const prisma = require("../lib/prisma");
 async function listDestinos({ activos = true } = {}) {
   return prisma.destino.findMany({
     where: activos ? { activo: true } : undefined,
-    orderBy: [{ orden: "asc" }, { nombre: "asc" }]
+    orderBy: [{ orden: "asc" }, { nombre: "asc" }],
+    include: {
+      galeria: true
+    }
   });
 }
 

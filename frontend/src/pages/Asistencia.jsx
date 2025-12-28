@@ -1,4 +1,38 @@
+import { CONTACT_EMAIL, getWhatsappLink } from "../utils/contactLinks.js";
+
 export default function Asistencia() {
+  const asistenciaWhatsappLink = getWhatsappLink(
+    "Hola! Necesito asistencia en cada etapa del viaje. Me pueden ayudar?"
+  );
+
+  const handleComplaintSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const name = (formData.get("name") || "").toString().trim();
+    const email = (formData.get("email") || "").toString().trim();
+    const phone = (formData.get("phone") || "").toString().trim();
+    const topic = (formData.get("topic") || "").toString().trim();
+    const message = (formData.get("message") || "").toString().trim();
+
+    const subject = "Queja / Reclamo - Topotours";
+    const bodyLines = [
+      `Nombre: ${name || "-"}`,
+      `Email: ${email || "-"}`,
+      `Telefono: ${phone || "-"}`,
+      `Tema: ${topic || "-"}`,
+      "",
+      "Mensaje:",
+      message || "-"
+    ];
+
+    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+
+    window.location.href = mailtoLink;
+  };
+
   return (
     <main>
       <section className="highlight">
@@ -19,9 +53,14 @@ export default function Asistencia() {
             <h3>Atención personalizada</h3>
             <p>Escribinos y te armamos la mejor propuesta.</p>
           </div>
-          <button className="primary" type="button">
+          <a
+            className="primary"
+            href={asistenciaWhatsappLink}
+            target="_blank"
+            rel="noreferrer"
+          >
             Hablar con un asesor
-          </button>
+          </a>
         </div>
       </section>
 
@@ -36,7 +75,7 @@ export default function Asistencia() {
         <div className="complaint-grid">
           <form
             className="complaint-card complaint-form"
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={handleComplaintSubmit}
           >
             <div className="form-field">
               <label className="form-label" htmlFor="complaint-name">
@@ -45,6 +84,7 @@ export default function Asistencia() {
               <input
                 className="form-input"
                 id="complaint-name"
+                name="name"
                 type="text"
                 placeholder="Ej: Ana Martínez"
               />
@@ -56,6 +96,7 @@ export default function Asistencia() {
               <input
                 className="form-input"
                 id="complaint-email"
+                name="email"
                 type="email"
                 placeholder="ana@email.com"
               />
@@ -67,6 +108,7 @@ export default function Asistencia() {
               <input
                 className="form-input"
                 id="complaint-phone"
+                name="phone"
                 type="tel"
                 placeholder="351 555 1234"
               />
@@ -75,7 +117,7 @@ export default function Asistencia() {
               <label className="form-label" htmlFor="complaint-topic">
                 Tema
               </label>
-              <select className="form-input" id="complaint-topic">
+              <select className="form-input" id="complaint-topic" name="topic">
                 <option value="">Seleccioná una opción</option>
                 <option value="reserva">Reserva / Cupos</option>
                 <option value="pago">Pago / Facturación</option>
@@ -90,6 +132,7 @@ export default function Asistencia() {
               <textarea
                 className="form-input form-textarea"
                 id="complaint-message"
+                name="message"
                 rows="4"
                 placeholder="Contanos el detalle para ayudarte mejor."
               ></textarea>

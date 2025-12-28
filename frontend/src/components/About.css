@@ -1,0 +1,128 @@
+.about-section {
+  padding: 5rem 1.5rem;
+  background: linear-gradient(180deg, #f6f8fc 0%, #ffffff 100%);
+}
+
+.about-header {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  text-align: left;
+}
+
+.about-header h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #0b1c39;
+}
+
+.about-header p {
+  color: #5f6b85;
+  font-size: 1.05rem;
+}
+
+.about-card {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+}
+
+.about-card-secondary {
+  background: #fbfcff;
+}
+
+.about-content h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0b1c39;
+  margin-bottom: 1rem;
+}
+
+.about-description {
+  color: #5f6b85;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.about-list,
+.about-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-list li,
+.about-checklist li {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.badge {
+  background: #e8efff;
+  color: #2f5bff;
+  font-weight: 700;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.check-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e9edff;
+  color: #5b6cff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.about-list strong,
+.about-checklist strong {
+  display: block;
+  font-weight: 600;
+  color: #0b1c39;
+}
+
+.about-list p,
+.about-checklist p {
+  color: #5f6b85;
+  font-size: 0.95rem;
+}
+
+.about-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 12px;
+}
+
+@media (max-width: 900px) {
+  .about-card {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .about-image {
+    order: -1;
+  }
+}

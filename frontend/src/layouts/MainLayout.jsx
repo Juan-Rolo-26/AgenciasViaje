@@ -1,10 +1,15 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { getWhatsappLink } from "../utils/contactLinks.js";
 
 const navLinkClass = ({ isActive }) =>
   `nav-item${isActive ? " active" : ""}`;
 
 export default function MainLayout() {
+  const asesorWhatsappLink = getWhatsappLink(
+    "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
+  );
+
   return (
     <>
       <header className="site-header">
@@ -12,7 +17,7 @@ export default function MainLayout() {
           <Link className="nav-logo" to="/" aria-label="Ir al inicio">
             <img src={logo} alt="Topotours" />
             <div className="brand-text">
-              <span className="brand-name">Topotours</span>
+              <span className="brand-name topotours-word">Topotours</span>
               <span className="brand-sub">Agencia de Viajes</span>
             </div>
           </Link>
@@ -80,9 +85,14 @@ export default function MainLayout() {
           </nav>
 
           <div className="nav-cta">
-            <Link to="/asistencia" className="cta-button">
+            <a
+              className="cta-button"
+              href={asesorWhatsappLink}
+              target="_blank"
+              rel="noreferrer"
+            >
               Hablar con un asesor
-            </Link>
+            </a>
           </div>
         </div>
       </header>
@@ -95,7 +105,7 @@ export default function MainLayout() {
             <div className="footer-logo">
               <img src={logo} alt="Topotours" />
               <div>
-                <strong>Topotours</strong>
+                <strong className="topotours-word">Topotours</strong>
                 <span>Agencia de Viajes</span>
               </div>
             </div>
@@ -127,16 +137,52 @@ export default function MainLayout() {
             <h4>Contacto</h4>
             <ul className="footer-info">
               <li>
-                <span className="label">Mail</span>
-                <span>topotoursviajes@gmail.com</span>
+                <a
+                  className="footer-contact-button"
+                  href="mailto:topotoursviajes@gmail.com"
+                  aria-label="Enviar mail a Topotours"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Zm2 .5 6 4.2 6-4.2H6Zm12 1.8-6 4.2-6-4.2V18h12V8.3Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
               </li>
               <li>
-                <span className="label">Teléfono</span>
-                <span>351 878 5667</span>
+                <a
+                  className="footer-contact-button"
+                  href="tel:3518785667"
+                  aria-label="Llamar a Topotours"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M6.2 2.8c.5-.5 1.2-.7 1.9-.4l2.2.9c.7.3 1.1 1 .9 1.7l-.6 2.4a1.3 1.3 0 0 1-1.3 1c-.4 0-.8-.1-1.1-.3l-.6-.3a14.5 14.5 0 0 0 6.6 6.6l.3-.6c.3-.7 1-1 1.7-.9l2.4.6c.7.2 1.2.9 1 1.6l-.6 2.3c-.2.7-.9 1.2-1.6 1.2C9.8 20.6 3.4 14.2 3.4 6.6c0-.7.5-1.4 1.2-1.6l1.6-.6Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
               </li>
               <li>
-                <span className="label">Instagram</span>
-                <span>@topotoursviajes</span>
+                <a
+                  className="footer-contact-button"
+                  href="https://instagram.com/topotoursviajes"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram de Topotours"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 7.4A4.6 4.6 0 1 0 12 16.6 4.6 4.6 0 0 0 12 7.4Zm0 7.6a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm5.9-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M16.8 3H7.2A4.2 4.2 0 0 0 3 7.2v9.6A4.2 4.2 0 0 0 7.2 21h9.6a4.2 4.2 0 0 0 4.2-4.2V7.2A4.2 4.2 0 0 0 16.8 3Zm2.6 13.8a2.6 2.6 0 0 1-2.6 2.6H7.2a2.6 2.6 0 0 1-2.6-2.6V7.2a2.6 2.6 0 0 1 2.6-2.6h9.6a2.6 2.6 0 0 1 2.6 2.6v9.6Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
               </li>
             </ul>
           </div>
@@ -157,7 +203,8 @@ export default function MainLayout() {
 
         <div className="footer-bottom">
           <span>
-            © {new Date().getFullYear()} <strong>Topotours</strong>. Todos los
+            © {new Date().getFullYear()}{" "}
+            <strong className="topotours-word">Topotours</strong>. Todos los
             derechos reservados.
           </span>
         </div>
