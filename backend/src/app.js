@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
@@ -13,14 +14,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({ status: "ok", message: "API de agencias en línea" });
-});
-
 app.use(`${API_PREFIX}/destinos`, destinationRoutes);
 app.use(`${API_PREFIX}/ofertas`, offerRoutes);
 app.use(`${API_PREFIX}/actividades`, activityRoutes);
 app.use(`${API_PREFIX}/nosotros`, aboutRoutes);
+
+const frontendDist = path.resolve(__dirname, "..", "..", "frontend", "dist");
+app.use(express.static(frontendDist));
+app.get("*", (req, res, next) => {
+  if (req.path.startsWith(API_PREFIX)) {
+    return next();
+  }
+  res.sendFile(path.join(frontendDist, "index.html"));
+});
 
 app.use(errorHandler);
 
