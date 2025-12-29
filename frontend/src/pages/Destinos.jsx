@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
-import worldMap from "../assets/world-map.svg";
 import { useTravelData } from "../hooks/useTravelData.js";
 import {
   formatCurrency,
@@ -79,32 +78,6 @@ export default function Destinos() {
     });
   }, [destinos, filters]);
 
-  const mapPins = useMemo(() => {
-    const config = [
-      { slug: "rio-de-janeiro", left: "24%", top: "60%" },
-      { slug: "lima", left: "25%", top: "48%" },
-      { slug: "ushuaia", left: "30%", top: "78%" },
-      { slug: "camboya", left: "76%", top: "48%" }
-    ];
-
-    return config
-      .map((item) => {
-        const destino = destinos.find((entry) => entry.slug === item.slug);
-        if (!destino) {
-          return null;
-        }
-        const oferta = ofertaPorDestino.get(destino.id);
-        return {
-          ...item,
-          nombre: destino.nombre,
-          precio: oferta
-            ? formatCurrency(oferta.precio.precio, oferta.precio.moneda)
-            : "Precio a consultar"
-        };
-      })
-      .filter(Boolean);
-  }, [destinos, ofertaPorDestino]);
-
   const handleApply = (event) => {
     event.preventDefault();
     setFilters(draftFilters);
@@ -117,51 +90,6 @@ export default function Destinos() {
 
   return (
     <main>
-      <section className="destinations-hero">
-        <div className="destinations-hero-inner">
-          <span className="destinations-kicker">Destinos</span>
-          <h1>Inspirate con nuestros destinos</h1>
-          <p>
-            Explora playas, montanas y ciudades vibrantes con propuestas a tu
-            medida.
-          </p>
-        </div>
-      </section>
-
-      <section className="destinations-map">
-        <div className="destinations-map-card">
-          <span className="destinations-map-kicker">
-            Inspirate con destinos
-          </span>
-          <h2>Un mundo de destinos para vos</h2>
-          <p>
-            Compará valores y encontrá oportunidades únicas para tu próxima
-            aventura.
-          </p>
-          <Link className="primary" to="#destinos">
-            Explorar destinos
-          </Link>
-        </div>
-        <div
-          className="destinations-map-visual"
-          style={{ backgroundImage: `url(${worldMap})` }}
-        >
-          {mapPins.map((pin) => (
-            <div
-              className="destinations-map-pin"
-              key={pin.slug}
-              style={{ left: pin.left, top: pin.top }}
-            >
-              <span className="destinations-map-pin-icon">✈️</span>
-              <div className="destinations-map-pin-label">
-                <strong>{pin.nombre}</strong>
-                <span>{pin.precio}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="destinations-section" id="destinos">
         <form className="destinations-filters" onSubmit={handleApply}>
           <div className="destinations-field">

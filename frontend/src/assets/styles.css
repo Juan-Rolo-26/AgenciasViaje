@@ -591,38 +591,6 @@ section[id] {
   text-decoration: none;
 }
 
-.destinations-hero {
-  margin: -32px -8vw 0;
-  padding: 56px 8vw 64px;
-  background: linear-gradient(180deg, #0b2a57 0%, #0f3a6f 100%);
-  color: #ffffff;
-}
-
-.destinations-hero-inner {
-  max-width: 980px;
-  margin: 0 auto;
-  display: grid;
-  gap: 12px;
-}
-
-.destinations-kicker {
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 0.75rem;
-  color: rgba(219, 234, 254, 0.85);
-  font-weight: 700;
-}
-
-.destinations-hero h1 {
-  font-size: clamp(28px, 3.5vw, 44px);
-  margin: 0;
-}
-
-.destinations-hero p {
-  color: rgba(219, 234, 254, 0.9);
-  max-width: 720px;
-  line-height: 1.6;
-}
 
 .destinations-map {
   margin: -40px 0 0;
@@ -802,8 +770,8 @@ section[id] {
 }
 
 .destinations-section {
-  margin: -36px -8vw 0;
-  padding: 0 8vw 64px;
+  margin: 0 -8vw 0;
+  padding: 32px 8vw 64px;
   background: linear-gradient(180deg, #e7eff7 0%, #f7f9fe 60%, #ffffff 100%);
 }
 
