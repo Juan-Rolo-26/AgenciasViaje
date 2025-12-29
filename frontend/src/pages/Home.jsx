@@ -179,6 +179,21 @@ export default function Home() {
 
   const hasSearchFilters =
     searchDestino.trim() || searchDate || searchText.trim();
+  const searchLabel =
+    searchType === "destino"
+      ? "Destinos"
+      : searchType === "oferta"
+      ? "Ofertas"
+      : "Excursiones";
+  const searchLink =
+    searchType === "destino"
+      ? "/destinos"
+      : searchType === "oferta"
+      ? "/ofertas"
+      : "/excursiones";
+  const searchSubtitle = searchDestino.trim()
+    ? `Mostrando ${searchDestino.trim()}.`
+    : "Resultados según tu búsqueda.";
 
   return (
     <main>
@@ -259,28 +274,152 @@ export default function Home() {
               ) : searchResults.length === 0 ? (
                 <p className="section-state">No encontramos resultados.</p>
               ) : (
-                <div className="search-results-grid">
-                  {searchResults.slice(0, 6).map((item) => (
-                    <article
-                      className="search-result"
-                      key={`${searchType}-${item.id}`}
-                    >
-                      <h4>
-                        {searchType === "destino"
-                          ? item.nombre
-                          : searchType === "oferta"
-                          ? item.titulo
-                          : item.nombre}
-                      </h4>
-                      <p>
-                        {searchType === "oferta"
-                          ? item.destino?.nombre
-                          : searchType === "excursion"
-                          ? item.destino?.nombre
-                          : item.paisRegion}
-                      </p>
-                    </article>
-                  ))}
+                <div className="search-results-panel">
+                  <div className="search-results-header">
+                    <div>
+                      <span className="search-results-kicker">Resultados</span>
+                      <h3>{searchLabel}</h3>
+                      <p>{searchSubtitle}</p>
+                    </div>
+                    <Link className="secondary" to={searchLink}>
+                      Ver todos
+                    </Link>
+                  </div>
+                  <div className="search-results-grid search-results-grid-cards">
+                    {searchResults.slice(0, 6).map((item) => {
+                      if (searchType === "destino") {
+                        const destinoSlug = item.slug || item.id;
+                        const oferta = ofertaPorDestino.get(item.id);
+                        return (
+                          <Link
+                            className="tile destination-card"
+                            key={`${searchType}-${item.id}`}
+                            to={`/destinos/${destinoSlug}`}
+                          >
+                            <div
+                              className="tile-image"
+                              style={{
+                                backgroundImage: item.imagenPortada
+                                  ? `url(${item.imagenPortada})`
+                                  : `url(${fallbackDeal})`
+                              }}
+                            ></div>
+                            <div className="tile-content">
+                              <h4>{item.nombre}</h4>
+                              <p className="destination-price">
+                                {oferta
+                                  ? formatCurrency(
+                                      oferta.precio.precio,
+                                      oferta.precio.moneda
+                                    )
+                                  : "Precio a consultar"}
+                              </p>
+                              <span className="destination-meta">
+                                {oferta?.titulo ||
+                                  item.paisRegion ||
+                                  "Consultanos"}
+                              </span>
+                            </div>
+                          </Link>
+                        );
+                      }
+
+                      if (searchType === "oferta") {
+                        const ofertaSlug = item.slug || item.id;
+                        const precio = getPrecioVigente(item.precios);
+                        const offerImages = getOfferImages(item);
+                        const offerImage = offerImages[0] || fallbackDeal;
+                        const extraImages = offerImages.slice(1, 3);
+                        return (
+                          <Link
+                            className="offer-card offer-link search-offer-card"
+                            key={`${searchType}-${item.id}`}
+                            to={`/ofertas/${ofertaSlug}`}
+                          >
+                            <div className="offer-image">
+                              <img
+                                className="offer-image-main"
+                                src={offerImage}
+                                alt={item.titulo}
+                              />
+                              {extraImages.length ? (
+                                <div className="offer-image-stack">
+                                  {extraImages.map((image, imageIndex) => (
+                                    <img
+                                      key={`${item.id}-search-${imageIndex}`}
+                                      src={image}
+                                      alt={`${item.titulo} destino ${
+                                        imageIndex + 2
+                                      }`}
+                                    />
+                                  ))}
+                                </div>
+                              ) : null}
+                            </div>
+                            <div className="offer-body">
+                              <div className="offer-header">
+                                <span className="offer-tag">
+                                  {item.destino?.nombre ||
+                                    "Destino destacado"}
+                                </span>
+                                <h3>{item.titulo}</h3>
+                              </div>
+                              <p className="offer-description">
+                                {item.condiciones ||
+                                  item.noIncluye ||
+                                  "Consultanos"}
+                              </p>
+                              <div className="offer-meta">
+                                {precio ? (
+                                  <span className="offer-price">
+                                    {formatCurrency(
+                                      precio.precio,
+                                      precio.moneda
+                                    )}
+                                  </span>
+                                ) : (
+                                  <span className="offer-price">
+                                    Precio a consultar
+                                  </span>
+                                )}
+                                {precio ? (
+                                  <span className="offer-dates">
+                                    {formatDate(precio.fechaInicio)} -{" "}
+                                    {formatDate(precio.fechaFin)}
+                                  </span>
+                                ) : null}
+                              </div>
+                            </div>
+                          </Link>
+                        );
+                      }
+
+                      const actividadSlug = item.slug || item.id;
+                      return (
+                        <Link
+                          className="tile excursion-card"
+                          key={`${searchType}-${item.id}`}
+                          to={`/excursiones/${actividadSlug}`}
+                        >
+                          <div
+                            className="tile-image"
+                            style={{
+                              backgroundImage: item.imagenPortada
+                                ? `url(${item.imagenPortada})`
+                                : `url(${fallbackDeal})`
+                            }}
+                          ></div>
+                          <div className="tile-content">
+                            <h4>{item.nombre}</h4>
+                            <p>{item.descripcion}</p>
+                            <span className="tile-meta">
+                              {item.destino?.nombre || "Destino"}
+                            </span>
+                          </div>
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
