@@ -1,13 +1,14 @@
 require("dotenv").config();
 
 const app = require("./app");
-const { PORT } = require("./config/serverConfig");
 const { connectDb } = require("./config/db");
+
+const PORT = process.env.PORT || 3000;
 
 connectDb()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Servidor escuchando en http://localhost:${PORT}`);
+      console.log(`Servidor iniciado correctamente en el puerto ${PORT}`);
     });
   })
   .catch((error) => {
