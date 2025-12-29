@@ -22,7 +22,7 @@ async function main() {
       paisRegion: "Argentina",
       descripcionCorta: "Lagos, montañas y paisajes patagónicos.",
       descripcion:
-        "Bariloche es uno de los destinos más emblemáticos de la Patagonia argentina. Combina lagos cristalinos, montañas nevadas, bosques y una gastronomía reconocida mundialmente.",
+        "Bariloche te recibe con lagos turquesa, cerros nevados y bosques que cambian de color todo el año. Recorre el centro, proba chocolates artesanales y navega el Nahuel Huapi. En invierno hay ski y nieve, en verano senderos, playas de lago y miradores. La gastronomia patagonica suma trucha, cordero y cerveza local. Ideal para escapadas romanticas o viajes en familia con aire puro.",
       imagenPortada: "/assets/destinos/bari1.png",
       imagenes: [
         "/assets/destinos/bari2.jpg",
@@ -38,7 +38,7 @@ async function main() {
       paisRegion: "Argentina",
       descripcionCorta: "Glaciares imponentes y naturaleza extrema.",
       descripcion:
-        "El Calafate es la puerta de entrada al Glaciar Perito Moreno, una de las maravillas naturales más impactantes del mundo.",
+        "El Calafate es la puerta al Parque Nacional Los Glaciares y al imponente Perito Moreno. Pasea por pasarelas y miradores para sentir el crujido del hielo. Las navegaciones te acercan a glaciares menos conocidos y paisajes unicos. La ciudad suma artesanias, cordero patagonico y chocolate caliente. Es un destino perfecto para los amantes de la naturaleza extrema.",
       imagenPortada: "/assets/destinos/calafate1.jpg",
       imagenes: [
         "/assets/destinos/calfat2.jpg",
@@ -54,7 +54,7 @@ async function main() {
       paisRegion: "Argentina",
       descripcionCorta: "Una de las maravillas naturales del mundo.",
       descripcion:
-        "Las Cataratas del Iguazú ofrecen un espectáculo natural único con más de 250 saltos de agua rodeados de selva subtropical.",
+        "Las Cataratas del Iguazu deslumbran con mas de 250 saltos de agua en plena selva subtropical. Los circuitos superior e inferior permiten verlas desde angulos increibles. El paseo a la Garganta del Diablo es una experiencia imperdible. La region ofrece fauna, senderos y cultura guarani. Un destino vibrante para viajar en pareja, con amigos o en familia.",
       imagenPortada: "/assets/destinos/cata1.jpg",
       imagenes: [
         "/assets/destinos/cata2.jpg",
@@ -70,7 +70,7 @@ async function main() {
       paisRegion: "Argentina",
       descripcionCorta: "El fin del mundo y naturaleza fueguina.",
       descripcion:
-        "Ushuaia combina montañas, glaciares y navegación por el Canal Beagle. Un destino único para quienes buscan aventura.",
+        "Ushuaia combina montanas, glaciares y el mitico Canal Beagle en el fin del mundo. Las navegaciones muestran lobos marinos, faros y paisajes fueguinos. Los trekkings del Parque Nacional Tierra del Fuego son inolvidables. La gastronomia local destaca centolla, merluza negra y chocolates. Un viaje ideal para aventureros y amantes del frio.",
       imagenPortada: "/assets/destinos/usuahia.jpg",
       imagenes: [
         "/assets/destinos/usuahia2.jpg",
@@ -86,7 +86,7 @@ async function main() {
       paisRegion: "Argentina",
       descripcionCorta: "Fauna marina y costas patagónicas.",
       descripcion:
-        "Puerto Madryn es reconocido mundialmente por el avistaje de ballenas, pingüinos y lobos marinos.",
+        "Puerto Madryn es el corazon de la Peninsula Valdes y del avistaje de ballenas. Entre junio y diciembre se vive un espectaculo natural unico. Las excursiones incluyen colonias de pinguinos y lobos marinos. Sus playas tranquilas invitan a caminar y descansar frente al mar. Es perfecto para quienes buscan naturaleza y fauna.",
       imagenPortada: "/assets/destinos/puerto1.jpg",
       imagenes: [
         "/assets/destinos/puerto2.jpeg",
@@ -104,7 +104,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Playas icónicas y energía vibrante.",
       descripcion:
-        "Río de Janeiro combina playas famosas, morros, samba y una cultura vibrante que la hace única.",
+        "Rio de Janeiro mezcla playas iconicas, morros verdes y una energia que contagia. Sube al Pan de Azucar y al Cristo Redentor para vistas inolvidables. Copacabana e Ipanema invitan a caminar, tomar sol y sentir el ritmo carioca. La ciudad suma samba, mercados y una gastronomia llena de sabor. Ideal para viajes vibrantes y llenos de vida.",
       imagenPortada: "/assets/destinos/rio1.jpg",
       imagenes: [
         "/assets/destinos/rio2.jpg",
@@ -120,7 +120,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Isla de playas y naturaleza.",
       descripcion:
-        "Florianópolis es famosa por sus playas, dunas, lagunas y excelente infraestructura turística.",
+        "Florianopolis es una isla con playas extensas, dunas y lagunas cristalinas. Combina surf, descanso y una escena gastronomica fresca y marina. El centro historico y los mercados muestran la cultura local. En temporada alta hay fiestas, deportes y paisajes increibles. Un destino completo para todo tipo de viajeros.",
       imagenPortada: "/assets/destinos/florianopolis1.png",
       imagenes: [
         "/assets/destinos/florianopolis2.jpg",
@@ -136,7 +136,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Playa familiar y mar calmo.",
       descripcion:
-        "Canasvieiras es ideal para viajes familiares gracias a su mar tranquilo y paseo costero.",
+        "Canasvieiras es una playa familiar con mar calmo y aguas tibias. Su paseo costero esta lleno de restaurantes y tiendas. Las excursiones cercanas incluyen playas mas tranquilas y miradores. Es ideal para viajar con ninos por su seguridad y servicios. Un rincon perfecto para descansar sin apuros.",
       imagenPortada: "/assets/destinos/canasvieiras.webp",
       imagenes: [
         "/assets/destinos/Canasvieiras 1.jpg",
@@ -152,7 +152,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Ciudad moderna frente al mar.",
       descripcion:
-        "Camboriú combina playas urbanas, rascacielos y una intensa vida nocturna.",
+        "Camboriu combina playas urbanas con rascacielos y un skyline moderno. El teleferico lleva a miradores con vistas panoramicas. Hay vida nocturna, gastronomia variada y centros comerciales. La costanera invita a caminar y disfrutar del atardecer. Un destino dinamico para quienes buscan ciudad y mar.",
       imagenPortada: "/assets/destinos/camboriu1.jpg",
       imagenes: [
         "/assets/destinos/camboriu2.jpg",
@@ -168,7 +168,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Playas cristalinas y tranquilidad.",
       descripcion:
-        "Bombinhas es ideal para snorkel y descanso, con aguas limpias y playas protegidas.",
+        "Bombinhas es famosa por sus aguas cristalinas y su ambiente tranquilo. Es uno de los mejores lugares de Brasil para snorkel y buceo. Las playas estan rodeadas de naturaleza y senderos suaves. La gastronomia destaca frutos de mar frescos y pescados locales. Ideal para desconectar y relajarse en familia.",
       imagenPortada: "/assets/destinos/bombhinas1.webp",
       imagenes: [
         "/assets/destinos/bombinhas2.jpg",
@@ -184,7 +184,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Encanto y vida nocturna.",
       descripcion:
-        "Búzios combina playas paradisíacas con un centro vibrante lleno de bares y restaurantes.",
+        "Buzios tiene playas paradisíacas, calles con encanto y una vida nocturna activa. La peninsula ofrece bahias tranquilas y otras con mas movimiento. Su centro es perfecto para pasear, comer y comprar. Los atardeceres en la costa son un clasico imperdible. Un destino romantico y con mucha personalidad.",
       imagenPortada: "/assets/destinos/Buzios.webp",
       imagenes: [
         "/assets/destinos/buzios2.jpg",
@@ -200,7 +200,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Naturaleza salvaje y surf.",
       descripcion:
-        "Ferrugem es ideal para quienes buscan playas abiertas, surf y un ambiente relajado.",
+        "Ferrugem es una playa amplia con olas ideales para surf y bodyboard. Su entorno natural le da un aire mas salvaje y relajado. Los dias terminan con atardeceres increibles y buena musica. Es perfecto para viajeros jovenes que buscan desconexion. Un rincon simple, autentico y cercano a la naturaleza.",
       imagenPortada: "/assets/destinos/ferregum2.webp",
       imagenes: [
         "/assets/destinos/ferregum3.jpg",
@@ -216,7 +216,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Bahías protegidas y naturaleza.",
       descripcion:
-        "Garopaba ofrece playas extensas, senderos y paisajes naturales únicos.",
+        "Garopaba ofrece bahias protegidas, playas largas y senderos costeros. La aldea mantiene un espiritu tranquilo y acogedor. Hay miradores, lagunas y opciones para deportes acuaticos. La gastronomia local suma pescados frescos y platos caseros. Ideal para escapadas en pareja o en familia.",
       imagenPortada: "/assets/destinos/garapoba1.webp",
       imagenes: [
         "/assets/destinos/garapoba2.webp",
@@ -232,7 +232,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Balneario urbano y playas amplias.",
       descripcion:
-        "Itapema combina una moderna costanera con playas extensas y servicios completos.",
+        "Itapema combina una moderna costanera con playas extensas y tranquilas. Su infraestructura turistica es completa y comoda. Es un excelente punto para recorrer otras playas cercanas. El ambiente es familiar y seguro durante todo el ano. Un destino perfecto para descansar con servicios.",
       imagenPortada: "/assets/destinos/itapema1.jpg",
       imagenes: [
         "/assets/destinos/itapema2.avif",
@@ -248,7 +248,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Acantilados y playas únicas.",
       descripcion:
-        "Torres se destaca por sus acantilados, miradores y playas amplias.",
+        "Torres se destaca por sus acantilados y formaciones rocosas unicas. Las playas son amplias y perfectas para caminatas largas. Hay miradores naturales que regalan vistas memorables. La ciudad suma ferias, gastronomia y paseos costeros. Un destino ideal para amantes de la naturaleza.",
       imagenPortada: "/assets/destinos/torres1.jpg",
       imagenes: [
         "/assets/destinos/torres2.jpg",
@@ -264,7 +264,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Piscinas naturales y mar turquesa.",
       descripcion:
-        "Porto de Galinhas es famoso por sus piscinas naturales y playas paradisíacas.",
+        "Porto de Galinhas es famoso por sus piscinas naturales y mar turquesa. Los paseos en jangada permiten ver arrecifes y peces de colores. Las playas son calidas y agradables durante casi todo el ano. Hay buena hoteleria y restaurantes frente al mar. Un clasico del nordeste brasileno para relajarse.",
       imagenPortada: "/assets/destinos/porto1.webp",
       imagenes: [
         "/assets/destinos/porto2.jpg",
@@ -280,7 +280,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Playas salvajes y paisajes naturales.",
       descripcion:
-        "Cabo de Santo Agostinho ofrece playas menos concurridas, acantilados y naturaleza pura.",
+        "Cabo de Santo Agostinho ofrece playas menos concurridas y paisajes salvajes. Sus acantilados y miradores crean postales unicas. Es ideal para quienes buscan tranquilidad lejos de los grandes centros. La naturaleza se mezcla con historia y cultura local. Un destino diferente y autentico del nordeste.",
       imagenPortada: "/assets/destinos/cabo1.avif",
       imagenes: [
         "/assets/destinos/cabo2.jpg",
@@ -298,7 +298,7 @@ async function main() {
       paisRegion: "Perú",
       descripcionCorta: "Capital gastronómica del Pacífico.",
       descripcion:
-        "Lima combina historia, gastronomía de primer nivel y vistas al océano.",
+        "Lima combina historia, gastronomia y acantilados frente al Pacifico. Sus barrios como Miraflores y Barranco son ideales para pasear. La cocina peruana es una experiencia en si misma. Museos, plazas y mercados completan la propuesta cultural. Perfecta para viajeros que aman comer bien y explorar.",
       imagenPortada: "/assets/destinos/lima1.jpg",
       imagenes: [
         "/assets/destinos/lima2.jpg",
@@ -314,7 +314,7 @@ async function main() {
       paisRegion: "Perú",
       descripcionCorta: "Historia inca y cultura andina.",
       descripcion:
-        "Cusco es el corazón del antiguo Imperio Inca y punto de partida hacia Machu Picchu.",
+        "Cusco es el corazon del legado inca y la puerta a Machu Picchu. Sus calles de piedra y plazas coloniales son un viaje en el tiempo. El Valle Sagrado ofrece paisajes andinos y pueblos tradicionales. La cultura local se siente en cada mercado y festividad. Un destino imprescindible para amantes de la historia.",
       imagenPortada: "/assets/destinos/cusco1.jpg",
       imagenes: [
         "/assets/destinos/cusco2.jpg",
@@ -332,7 +332,7 @@ async function main() {
       paisRegion: "Francia",
       descripcionCorta: "Romance, arte y arquitectura.",
       descripcion:
-        "París es una de las ciudades más icónicas del mundo, ideal para viajes culturales y románticos.",
+        "Paris inspira con arte, arquitectura y rincones romanticos en cada barrio. La Torre Eiffel, el Louvre y Montmartre son clasicos imperdibles. Pasear por el Sena y sus puentes es parte del encanto. La gastronomia francesa suma cafes, panaderias y bistrot. Ideal para viajes culturales y romanticos.",
       imagenPortada: "/assets/destinos/Paris1.webp",
       imagenes: [
         "/assets/destinos/paris2.jpg",
@@ -348,7 +348,7 @@ async function main() {
       paisRegion: "Italia",
       descripcionCorta: "Historia milenaria y gastronomía.",
       descripcion:
-        "Roma es un museo a cielo abierto con monumentos históricos y una gastronomía legendaria.",
+        "Roma es un museo a cielo abierto con historia en cada esquina. El Coliseo, el Foro y el Vaticano sorprenden a cada paso. Sus plazas y fuentes invitan a caminar sin apuro. La cocina italiana brilla con pastas, helados y vinos. Un destino perfecto para amantes de la historia y la comida.",
       imagenPortada: "/assets/destinos/roma.jpg",
       imagenes: [
         "/assets/destinos/roma2.jpg",
@@ -364,7 +364,7 @@ async function main() {
       paisRegion: "España",
       descripcionCorta: "Arte, cultura y vida urbana.",
       descripcion:
-        "Madrid combina museos de clase mundial, gastronomía y una vida nocturna vibrante.",
+        "Madrid combina museos de clase mundial con una vida urbana vibrante. El Prado, el Retiro y la Gran Via son visitas obligadas. Sus barrios tienen personalidad, tapas y mucha energia. La ciudad invita a recorrerla a pie y disfrutar sus plazas. Ideal para viajes culturales y noches animadas.",
       imagenPortada: "/assets/destinos/madrid.jpeg",
       imagenes: [
         "/assets/destinos/mdrid2.jpg",
@@ -382,7 +382,7 @@ async function main() {
       paisRegion: "Estados Unidos",
       descripcionCorta: "Ciudades icónicas y paisajes diversos.",
       descripcion:
-        "Estados Unidos ofrece una enorme variedad de destinos, desde grandes ciudades hasta paisajes naturales impresionantes.",
+        "Estados Unidos ofrece ciudades iconicas y paisajes naturales espectaculares. Nueva York, Miami y Los Angeles son algunos de sus clasicos. Tambien hay parques nacionales que parecen de otro planeta. La oferta cultural y gastronomica es enorme y diversa. Un destino con opciones para todos los gustos.",
       imagenPortada: "/assets/destinos/estados1.jpg",
       imagenes: [
         "/assets/destinos/estados2.jpg",
