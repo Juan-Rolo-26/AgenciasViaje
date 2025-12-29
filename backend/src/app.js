@@ -19,7 +19,7 @@ app.use(`${API_PREFIX}/ofertas`, offerRoutes);
 app.use(`${API_PREFIX}/actividades`, activityRoutes);
 app.use(`${API_PREFIX}/nosotros`, aboutRoutes);
 
-const frontendDist = path.resolve(__dirname, "..", "..", "frontend", "dist");
+const frontendDist = path.resolve(__dirname, "..", "public");
 app.use(express.static(frontendDist));
 app.get("*", (req, res, next) => {
   if (req.path.startsWith(API_PREFIX)) {

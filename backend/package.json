@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "build:frontend": "npm --prefix ../frontend install --include=dev && npm --prefix ../frontend run build",
     "build": "npm run build:frontend",
-    "postinstall": "npm run build:frontend",
+    "postinstall": "prisma generate && npm run build:frontend",
     "migrate": "prisma migrate dev",
     "studio": "prisma studio",
     "seed": "prisma db seed"
