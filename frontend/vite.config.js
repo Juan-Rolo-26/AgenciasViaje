@@ -3,5 +3,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  publicDir: false
+  publicDir: false,
+  build: {
+    outDir: "../backend/public",
+    emptyOutDir: true,
+    assetsDir: "assets"
+  }
 });
