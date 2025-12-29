@@ -2,14 +2,9 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
-import {
-  formatCurrency,
-  getPrecioVigente,
-  parseAmount
-} from "../utils/formatters.js";
 
 export default function Destinos() {
-  const { destinos, ofertas, loading, error } = useTravelData();
+  const { destinos, loading, error } = useTravelData();
   const initialFilters = {
     pais: "",
     query: "",
@@ -17,41 +12,6 @@ export default function Destinos() {
   };
   const [draftFilters, setDraftFilters] = useState(initialFilters);
   const [filters, setFilters] = useState(initialFilters);
-
-  const ofertaPorDestino = useMemo(() => {
-    const map = new Map();
-    ofertas.forEach((oferta) => {
-      const precioVigente = getPrecioVigente(oferta.precios);
-      const amount = parseAmount(precioVigente?.precio);
-      if (!precioVigente || amount === null) {
-        return;
-      }
-
-      const destinosIds = new Set();
-      if (oferta.destino?.id) {
-        destinosIds.add(oferta.destino.id);
-      }
-      (oferta.destinos || []).forEach((item) => {
-        if (item.destino?.id) {
-          destinosIds.add(item.destino.id);
-        } else if (item.destinoId) {
-          destinosIds.add(item.destinoId);
-        }
-      });
-
-      destinosIds.forEach((destinoId) => {
-        const current = map.get(destinoId);
-        if (!current || amount < current.amount) {
-          map.set(destinoId, {
-            precio: precioVigente,
-            amount,
-            titulo: oferta.titulo
-          });
-        }
-      });
-    });
-    return map;
-  }, [ofertas]);
 
   const paises = useMemo(() => {
     return Array.from(
@@ -172,7 +132,6 @@ export default function Destinos() {
         ) : (
           <div className="grid destination-grid grid-3x3">
             {destinosFiltrados.map((destino, index) => {
-              const oferta = ofertaPorDestino.get(destino.id);
               const destinoSlug = destino.slug || destino.id;
               return (
                 <Link
@@ -185,24 +144,14 @@ export default function Destinos() {
                     className="tile-image"
                     style={{
                       backgroundImage: destino.imagenPortada
-                        ? `url(${destino.imagenPortada})`
-                        : `url(${fallbackDeal})`
+                        ? `url("${destino.imagenPortada}")`
+                        : `url("${fallbackDeal}")`
                     }}
                   ></div>
                   <div className="tile-content">
                     <h4>{destino.nombre}</h4>
-                    <p className="destination-price">
-                      {oferta
-                        ? formatCurrency(
-                            oferta.precio.precio,
-                            oferta.precio.moneda
-                          )
-                        : "Precio a consultar"}
-                    </p>
                     <span className="destination-meta">
-                      {oferta?.titulo ||
-                        destino.paisRegion ||
-                        "Consultanos"}
+                      {destino.paisRegion || "Destino"}
                     </span>
                   </div>
                 </Link>

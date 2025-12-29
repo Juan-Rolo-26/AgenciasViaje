@@ -38,8 +38,8 @@ export default function Excursiones() {
                     className="tile-image"
                     style={{
                       backgroundImage: actividad.imagenPortada
-                        ? `url(${actividad.imagenPortada})`
-                        : `url(${fallbackDeal})`
+                        ? `url("${actividad.imagenPortada}")`
+                        : `url("${fallbackDeal}")`
                     }}
                   ></div>
                   <div className="tile-content">

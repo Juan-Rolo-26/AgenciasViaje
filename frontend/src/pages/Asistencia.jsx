@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { apiRequest } from "../api/api.js";
 import { CONTACT_EMAIL, getWhatsappLink } from "../utils/contactLinks.js";
 
 export default function Asistencia() {
@@ -8,8 +10,12 @@ export default function Asistencia() {
   const contactPhoneLink = "tel:+5493518785667";
   const instagramHandle = "@topotoursviajes";
   const instagramLink = "https://instagram.com/topotoursviajes";
+  const [formStatus, setFormStatus] = useState({
+    type: "idle",
+    message: ""
+  });
 
-  const handleComplaintSubmit = (event) => {
+  const handleComplaintSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -19,22 +25,38 @@ export default function Asistencia() {
     const topic = (formData.get("topic") || "").toString().trim();
     const message = (formData.get("message") || "").toString().trim();
 
-    const subject = "Queja / Reclamo - Topotours";
-    const bodyLines = [
-      `Nombre: ${name || "-"}`,
-      `Email: ${email || "-"}`,
-      `Telefono: ${phone || "-"}`,
-      `Tema: ${topic || "-"}`,
-      "",
-      "Mensaje:",
-      message || "-"
-    ];
+    if (!name || !email || !message) {
+      setFormStatus({
+        type: "error",
+        message: "Completá nombre, email y mensaje para enviar."
+      });
+      return;
+    }
 
-    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    setFormStatus({ type: "sending", message: "Enviando reclamo..." });
 
-    window.location.href = mailtoLink;
+    try {
+      await apiRequest("/api/quejas", {
+        method: "POST",
+        body: {
+          name,
+          email,
+          phone,
+          topic,
+          message
+        }
+      });
+      setFormStatus({
+        type: "success",
+        message: "Listo, recibimos tu reclamo. Te respondemos pronto."
+      });
+      event.currentTarget.reset();
+    } catch (err) {
+      setFormStatus({
+        type: "error",
+        message: err?.message || "No pudimos enviar el reclamo."
+      });
+    }
   };
 
   return (
@@ -144,6 +166,11 @@ export default function Asistencia() {
             <button className="form-button" type="submit">
               Enviar reclamo
             </button>
+            {formStatus.type !== "idle" ? (
+              <p className={`form-status ${formStatus.type}`} role="status">
+                {formStatus.message}
+              </p>
+            ) : null}
           </form>
 
           <aside className="complaint-info">

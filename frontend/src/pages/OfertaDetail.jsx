@@ -69,7 +69,7 @@ export default function OfertaDetail() {
     <main className="detail-page">
       <section
         className="detail-hero"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url("${heroImage}")` }}
       >
         <div className="detail-hero-overlay">
           <div className="detail-hero-content">
@@ -182,8 +182,8 @@ export default function OfertaDetail() {
                     className="tile-image"
                     style={{
                       backgroundImage: actividad.imagenPortada
-                        ? `url(${actividad.imagenPortada})`
-                        : `url(${fallbackDeal})`
+                        ? `url("${actividad.imagenPortada}")`
+                        : `url("${fallbackDeal}")`
                     }}
                   ></div>
                   <div className="tile-content">

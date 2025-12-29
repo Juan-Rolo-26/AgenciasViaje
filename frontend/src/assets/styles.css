@@ -959,11 +959,7 @@ section[id] {
 }
 
 .destination-card.search-result-card::after {
-  background: linear-gradient(
-    180deg,
-    rgba(12, 13, 28, 0) 55%,
-    rgba(12, 13, 28, 0.55) 100%
-  );
+  content: none;
 }
 
 .destination-card.search-result-card:hover .tile-image {
@@ -975,15 +971,7 @@ section[id] {
 }
 
 .destination-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(12, 13, 28, 0) 55%,
-    rgba(12, 13, 28, 0.78) 100%
-  );
-  z-index: 1;
+  content: none;
 }
 
 .destination-card .tile-image {
@@ -991,6 +979,7 @@ section[id] {
   inset: 0;
   height: 100%;
   border-radius: 0;
+  background-color: transparent;
   background-size: cover;
   background-position: center;
   transform: scale(1);
@@ -1022,6 +1011,7 @@ section[id] {
 .destination-meta {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
 .destination-card:hover {
@@ -1622,6 +1612,24 @@ section[id] {
 .form-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 30px rgba(112, 0, 235, 0.32);
+}
+
+.form-status {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-status.sending {
+  color: #3b82f6;
+}
+
+.form-status.success {
+  color: #1f9d55;
+}
+
+.form-status.error {
+  color: #d14343;
 }
 
 .complaint-info {

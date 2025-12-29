@@ -5,8 +5,7 @@ import { useTravelData } from "../hooks/useTravelData.js";
 import {
   formatCurrency,
   formatDate,
-  getPrecioVigente,
-  parseAmount
+  getPrecioVigente
 } from "../utils/formatters.js";
 
 export default function DestinoDetail() {
@@ -43,21 +42,6 @@ export default function DestinoDetail() {
       (actividad) => actividad.destino?.id === destino.id
     );
   }, [actividades, destino]);
-
-  const precioDesde = useMemo(() => {
-    let mejor = null;
-    ofertasDestino.forEach((oferta) => {
-      const vigente = getPrecioVigente(oferta.precios);
-      const amount = parseAmount(vigente?.precio);
-      if (!vigente || amount === null) {
-        return;
-      }
-      if (!mejor || amount < mejor.amount) {
-        mejor = { ...vigente, amount };
-      }
-    });
-    return mejor;
-  }, [ofertasDestino]);
 
   const galleryImages = useMemo(() => {
     if (!destino) {
@@ -123,7 +107,7 @@ export default function DestinoDetail() {
     <main className="destination-detail-page">
       <section
         className="destination-hero"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url("${heroImage}")` }}
       >
         <div className="destination-hero-overlay"></div>
         <div className="destination-hero-card">
@@ -135,15 +119,6 @@ export default function DestinoDetail() {
           </span>
           <h1>{destino.nombre}</h1>
           <p>{destino.descripcionCorta || "Conoce sus mejores experiencias."}</p>
-          <div className="destination-hero-meta">
-            {precioDesde ? (
-              <span>
-                Desde {formatCurrency(precioDesde.precio, precioDesde.moneda)}
-              </span>
-            ) : (
-              <span>Precio a consultar</span>
-            )}
-          </div>
         </div>
       </section>
 
@@ -233,8 +208,8 @@ export default function DestinoDetail() {
                     className="tile-image"
                     style={{
                       backgroundImage: actividad.imagenPortada
-                        ? `url(${actividad.imagenPortada})`
-                        : `url(${fallbackDeal})`
+                        ? `url("${actividad.imagenPortada}")`
+                        : `url("${fallbackDeal}")`
                     }}
                   ></div>
                   <div className="tile-content">

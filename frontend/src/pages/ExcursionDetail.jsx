@@ -51,7 +51,7 @@ export default function ExcursionDetail() {
     <main className="detail-page">
       <section
         className="detail-hero"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url("${heroImage}")` }}
       >
         <div className="detail-hero-overlay">
           <div className="detail-hero-content">

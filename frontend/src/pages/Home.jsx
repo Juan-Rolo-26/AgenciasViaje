@@ -6,8 +6,7 @@ import { useTravelData } from "../hooks/useTravelData.js";
 import {
   formatCurrency,
   formatDate,
-  getPrecioVigente,
-  parseAmount
+  getPrecioVigente
 } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
 
@@ -33,41 +32,6 @@ export default function Home() {
     const destacadas = actividades.filter((actividad) => actividad.destacada);
     return (destacadas.length ? destacadas : actividades).slice(0, 6);
   }, [actividades]);
-
-  const ofertaPorDestino = useMemo(() => {
-    const map = new Map();
-    ofertas.forEach((oferta) => {
-      const precioVigente = getPrecioVigente(oferta.precios);
-      const amount = parseAmount(precioVigente?.precio);
-      if (!precioVigente || amount === null) {
-        return;
-      }
-
-      const destinosIds = new Set();
-      if (oferta.destino?.id) {
-        destinosIds.add(oferta.destino.id);
-      }
-      (oferta.destinos || []).forEach((item) => {
-        if (item.destino?.id) {
-          destinosIds.add(item.destino.id);
-        } else if (item.destinoId) {
-          destinosIds.add(item.destinoId);
-        }
-      });
-
-      destinosIds.forEach((destinoId) => {
-        const current = map.get(destinoId);
-        if (!current || amount < current.amount) {
-          map.set(destinoId, {
-            precio: precioVigente,
-            amount,
-            titulo: oferta.titulo
-          });
-        }
-      });
-    });
-    return map;
-  }, [ofertas]);
 
   const searchResults = useMemo(() => {
     const destinoQuery = searchDestino.trim().toLowerCase();
@@ -476,7 +440,6 @@ export default function Home() {
                     {currentResult ? (() => {
                       if (searchType === "destino") {
                         const destinoSlug = currentResult.slug || currentResult.id;
-                        const oferta = ofertaPorDestino.get(currentResult.id);
                         return (
                           <Link
                             className="tile destination-card search-result-card"
@@ -487,24 +450,14 @@ export default function Home() {
                               className="tile-image"
                               style={{
                                 backgroundImage: currentResult.imagenPortada
-                                  ? `url(${currentResult.imagenPortada})`
-                                  : `url(${fallbackDeal})`
+                                  ? `url("${currentResult.imagenPortada}")`
+                                  : `url("${fallbackDeal}")`
                               }}
                             ></div>
                             <div className="tile-content">
                               <h4>{currentResult.nombre}</h4>
-                              <p className="destination-price">
-                                {oferta
-                                  ? formatCurrency(
-                                      oferta.precio.precio,
-                                      oferta.precio.moneda
-                                    )
-                                  : "Precio a consultar"}
-                              </p>
                               <span className="destination-meta">
-                                {oferta?.titulo ||
-                                  currentResult.paisRegion ||
-                                  "Consultanos"}
+                                {currentResult.paisRegion || "Destino"}
                               </span>
                             </div>
                           </Link>
@@ -526,8 +479,8 @@ export default function Home() {
                               className="tile-image"
                               style={{
                                 backgroundImage: offerImage
-                                  ? `url(${offerImage})`
-                                  : `url(${fallbackDeal})`
+                                  ? `url("${offerImage}")`
+                                  : `url("${fallbackDeal}")`
                               }}
                             ></div>
                             <div className="tile-content">
@@ -560,17 +513,12 @@ export default function Home() {
                             className="tile-image"
                             style={{
                               backgroundImage: currentResult.imagenPortada
-                                ? `url(${currentResult.imagenPortada})`
-                                : `url(${fallbackDeal})`
+                                ? `url("${currentResult.imagenPortada}")`
+                                : `url("${fallbackDeal}")`
                             }}
                           ></div>
                           <div className="tile-content">
                             <h4>{currentResult.nombre}</h4>
-                            <p className="destination-price">
-                              {currentResult.precio
-                                ? formatCurrency(currentResult.precio, "ARS")
-                                : "Precio a consultar"}
-                            </p>
                             <span className="destination-meta">
                               {currentResult.destino?.nombre || "Excursión"}
                             </span>
@@ -621,35 +569,29 @@ export default function Home() {
           <div className="destination-carousel">
             <div className="destination-track">
               {loopDestinos.map((destino, index) => {
-                const oferta = ofertaPorDestino.get(destino.id);
+                const destinoSlug = destino.slug || destino.id;
                 return (
-                  <article
+                  <Link
                     className="tile destination-card"
                     key={`${destino.id}-${index}`}
+                    to={`/destinos/${destinoSlug}`}
+                    aria-label={`Ver destino ${destino.nombre}`}
                   >
                     <div
                       className="tile-image"
                       style={{
                         backgroundImage: destino.imagenPortada
-                          ? `url(${destino.imagenPortada})`
-                          : `url(${fallbackDeal})`
+                          ? `url("${destino.imagenPortada}")`
+                          : `url("${fallbackDeal}")`
                       }}
                     ></div>
                     <div className="tile-content">
                       <h4>{destino.nombre}</h4>
-                      <p className="destination-price">
-                        {oferta
-                          ? formatCurrency(
-                              oferta.precio.precio,
-                              oferta.precio.moneda
-                            )
-                          : "Precio a consultar"}
-                      </p>
                       <span className="destination-meta">
-                        {oferta?.titulo || destino.paisRegion || "Consultanos"}
+                        {destino.paisRegion || "Destino"}
                       </span>
                     </div>
-                  </article>
+                  </Link>
                 );
               })}
             </div>
@@ -771,8 +713,8 @@ export default function Home() {
                       className="tile-image"
                       style={{
                         backgroundImage: actividad.imagenPortada
-                          ? `url(${actividad.imagenPortada})`
-                          : `url(${fallbackDeal})`
+                          ? `url("${actividad.imagenPortada}")`
+                          : `url("${fallbackDeal}")`
                       }}
                     ></div>
                     <div className="tile-content">
