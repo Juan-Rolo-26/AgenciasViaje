@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
+import worldMap from "../assets/world-map.svg";
 import About from "../components/About.jsx";
 import { useTravelData } from "../hooks/useTravelData.js";
 import {
@@ -67,6 +68,32 @@ export default function Home() {
     });
     return map;
   }, [ofertas]);
+
+  const mapPins = useMemo(() => {
+    const config = [
+      { slug: "rio-de-janeiro", left: "24%", top: "60%" },
+      { slug: "lima", left: "25%", top: "48%" },
+      { slug: "ushuaia", left: "30%", top: "78%" },
+      { slug: "camboya", left: "76%", top: "48%" }
+    ];
+
+    return config
+      .map((item) => {
+        const destino = destinos.find((entry) => entry.slug === item.slug);
+        if (!destino) {
+          return null;
+        }
+        const oferta = ofertaPorDestino.get(destino.id);
+        return {
+          ...item,
+          nombre: destino.nombre,
+          precio: oferta
+            ? formatCurrency(oferta.precio.precio, oferta.precio.moneda)
+            : "Precio a consultar"
+        };
+      })
+      .filter(Boolean);
+  }, [destinos, ofertaPorDestino]);
 
   const searchResults = useMemo(() => {
     const destinoQuery = searchDestino.trim().toLowerCase();
@@ -197,13 +224,47 @@ export default function Home() {
 
   return (
     <main>
-      <section className="hero hero-search" id="inicio">
-        <div className="hero-content">
+      <section className="hero hero-map" id="inicio">
+        <div className="destinations-map destinations-map-home">
+          <div className="destinations-map-card">
+            <span className="destinations-map-kicker">
+              Inspirate con destinos
+            </span>
+            <h1>Un mundo de destinos para vos</h1>
+            <p>
+              Compará valores y encontrá oportunidades únicas para tu próxima
+              aventura.
+            </p>
+            <Link className="hero-map-cta" to="/destinos">
+              Explorar destinos
+            </Link>
+          </div>
+          <div
+            className="destinations-map-visual"
+            style={{ backgroundImage: `url(${worldMap})` }}
+          >
+            {mapPins.map((pin) => (
+              <div
+                className="destinations-map-pin"
+                key={pin.slug}
+                style={{ left: pin.left, top: pin.top }}
+              >
+                <span className="destinations-map-pin-icon">✈️</span>
+                <div className="destinations-map-pin-label">
+                  <strong>{pin.nombre}</strong>
+                  <span>{pin.precio}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="hero-content home-search-content">
           <p className="eyebrow">Viajes premium, compará y disfrutá</p>
-          <h1>
+          <h2>
             Tu próxima escapada empieza en{" "}
             <span className="brand-word topotours-word">Topotours</span>.
-          </h1>
+          </h2>
           <p className="hero-subtitle">
             Buscá destinos, fechas y servicios con atención personalizada y
             ofertas pensadas para vos.

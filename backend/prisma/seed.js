@@ -14,142 +14,409 @@ async function main() {
   await prisma.valor.deleteMany();
   await prisma.seccionNosotros.deleteMany();
 
-  const destinos = await prisma.destino.createMany({
-    data: [
-      {
-        nombre: "Río de Janeiro",
-        slug: "rio-de-janeiro",
-        paisRegion: "Brasil",
-        descripcionCorta: "Playas icónicas, morros y energía inagotable.",
-        descripcion:
-          "Río combina paisajes naturales con cultura vibrante, samba y miradores inolvidables.",
-        imagenPortada: "/assets/destinos/rio1.jpg",
-        destacado: true,
-        orden: 1
-      },
-      {
-        nombre: "Florianópolis",
-        slug: "florianopolis",
-        paisRegion: "Brasil",
-        descripcionCorta: "Isla con playas tranquilas y naturaleza exuberante.",
-        descripcion:
-          "Una escapada ideal para combinar descanso, gastronomía y deportes acuáticos.",
-        imagenPortada: "/assets/destinos/florianopolis1.png",
-        destacado: true,
-        orden: 2
-      },
-      {
-        nombre: "Canasvieiras",
-        slug: "canasvieiras",
-        paisRegion: "Brasil",
-        descripcionCorta: "Playa familiar con mar calmo y paseo costero.",
-        descripcion:
-          "Arena suave, aguas templadas y servicios completos para un descanso sin apuros.",
-        imagenPortada: "/assets/destinos/inicio.jpg",
-        destacado: true,
-        orden: 3
-      },
-      {
-        nombre: "Ferrugem",
-        slug: "ferrugem",
-        paisRegion: "Brasil",
-        descripcionCorta: "Postales salvajes y ambiente relajado.",
-        descripcion:
-          "Ideal para surf, atardeceres y un ritmo costero más tranquilo.",
-        imagenPortada: "/assets/destinos/ferregum2.webp",
-        destacado: false,
-        orden: 4
-      },
-      {
-        nombre: "Garopaba",
-        slug: "garopaba",
-        paisRegion: "Brasil",
-        descripcionCorta: "Playas extensas y bahías protegidas.",
-        descripcion:
-          "Naturaleza, senderos y un mar cristalino para disfrutar en familia.",
-        imagenPortada: "/assets/destinos/garapoba1.webp",
-        destacado: false,
-        orden: 5
-      },
-      {
-        nombre: "Itapema",
-        slug: "itapema",
-        paisRegion: "Brasil",
-        descripcionCorta: "Balneario con costa urbana y servicios completos.",
-        descripcion:
-          "Avenida costera, gastronomía y playas amplias para disfrutar todo el día.",
-        imagenPortada: "/assets/destinos/itapema1.jpg",
-        destacado: false,
-        orden: 6
-      },
-      {
-        nombre: "Porto Galinhas",
-        slug: "porto-galinhas",
-        paisRegion: "Brasil",
-        descripcionCorta: "Piscinas naturales y aguas turquesa.",
-        descripcion:
-          "Un clásico del nordeste con mar cálido, arrecifes y paisajes paradisíacos.",
-        imagenPortada: "/assets/destinos/porto1.webp",
-        destacado: true,
-        orden: 7
-      },
-      {
-        nombre: "Torres",
-        slug: "torres",
-        paisRegion: "Brasil",
-        descripcionCorta: "Acantilados, miradores y playas amplias.",
-        descripcion:
-          "Escenarios naturales únicos para caminatas, fotografía y deportes al aire libre.",
-        imagenPortada: "/assets/destinos/torres1.jpg",
-        destacado: false,
-        orden: 8
-      },
-      {
-        nombre: "Ushuaia",
-        slug: "ushuaia",
-        paisRegion: "Argentina",
-        descripcionCorta: "Naturaleza patagónica y fin del mundo.",
-        descripcion:
-          "Montañas, glaciares y navegación en el canal Beagle en un destino único.",
-        imagenPortada: "/assets/destinos/usuahia.jpg",
-        destacado: true,
-        orden: 9
-      },
-      {
-        nombre: "Puerto Madryn",
-        slug: "puerto-madryn",
-        paisRegion: "Argentina",
-        descripcionCorta: "Fauna marina y playas tranquilas.",
-        descripcion:
-          "Avistaje de ballenas, pingüinos y paisajes costeros en la Patagonia atlántica.",
-        imagenPortada: "/assets/destinos/puerto1.jpg",
-        destacado: true,
-        orden: 10
-      },
-      {
-        nombre: "Lima",
-        slug: "lima",
-        paisRegion: "Perú",
-        descripcionCorta: "Capital gastronómica con vistas al Pacífico.",
-        descripcion:
-          "Barrancos históricos, acantilados y sabores únicos en cada barrio.",
-        imagenPortada: "/assets/destinos/lima1.jpg",
-        destacado: false,
-        orden: 11
-      },
-      {
-        nombre: "Camboya",
-        slug: "camboya",
-        paisRegion: "Tailandia",
-        descripcionCorta: "Templos, cultura milenaria y paisajes exóticos.",
-        descripcion:
-          "Un viaje entre historia, mercados y experiencias culturales inolvidables.",
-        imagenPortada: "/assets/destinos/tai1.webp",
-        destacado: false,
-        orden: 12
+  const destinosData = [
+    // ================= ARGENTINA =================
+    {
+      nombre: "Bariloche",
+      slug: "bariloche",
+      paisRegion: "Argentina",
+      descripcionCorta: "Lagos, montañas y paisajes patagónicos.",
+      descripcion:
+        "Bariloche es uno de los destinos más emblemáticos de la Patagonia argentina. Combina lagos cristalinos, montañas nevadas, bosques y una gastronomía reconocida mundialmente.",
+      imagenPortada: "/assets/destinos/bari1.png",
+      imagenes: [
+        "/assets/destinos/bari2.jpg",
+        "/assets/destinos/bari3.png",
+        "/assets/destinos/bari4.jpg"
+      ],
+      destacado: true,
+      orden: 1
+    },
+    {
+      nombre: "El Calafate",
+      slug: "el-calafate",
+      paisRegion: "Argentina",
+      descripcionCorta: "Glaciares imponentes y naturaleza extrema.",
+      descripcion:
+        "El Calafate es la puerta de entrada al Glaciar Perito Moreno, una de las maravillas naturales más impactantes del mundo.",
+      imagenPortada: "/assets/destinos/calafate1.jpg",
+      imagenes: [
+        "/assets/destinos/calfat2.jpg",
+        "/assets/destinos/calafate3.jpg",
+        "/assets/destinos/calafate4.jpg"
+      ],
+      destacado: true,
+      orden: 2
+    },
+    {
+      nombre: "Cataratas del Iguazú",
+      slug: "cataratas-del-iguazu",
+      paisRegion: "Argentina",
+      descripcionCorta: "Una de las maravillas naturales del mundo.",
+      descripcion:
+        "Las Cataratas del Iguazú ofrecen un espectáculo natural único con más de 250 saltos de agua rodeados de selva subtropical.",
+      imagenPortada: "/assets/destinos/cata1.jpg",
+      imagenes: [
+        "/assets/destinos/cata2.jpg",
+        "/assets/destinos/cata3.webp",
+        "/assets/destinos/cata4.jpg"
+      ],
+      destacado: true,
+      orden: 3
+    },
+    {
+      nombre: "Ushuaia",
+      slug: "ushuaia",
+      paisRegion: "Argentina",
+      descripcionCorta: "El fin del mundo y naturaleza fueguina.",
+      descripcion:
+        "Ushuaia combina montañas, glaciares y navegación por el Canal Beagle. Un destino único para quienes buscan aventura.",
+      imagenPortada: "/assets/destinos/usuahia.jpg",
+      imagenes: [
+        "/assets/destinos/usuahia2.jpg",
+        "/assets/destinos/usuahia3.webp",
+        "/assets/destinos/usuahia4.jpg"
+      ],
+      destacado: true,
+      orden: 4
+    },
+    {
+      nombre: "Puerto Madryn",
+      slug: "puerto-madryn",
+      paisRegion: "Argentina",
+      descripcionCorta: "Fauna marina y costas patagónicas.",
+      descripcion:
+        "Puerto Madryn es reconocido mundialmente por el avistaje de ballenas, pingüinos y lobos marinos.",
+      imagenPortada: "/assets/destinos/puerto1.jpg",
+      imagenes: [
+        "/assets/destinos/puerto2.jpeg",
+        "/assets/destinos/puerto3.jpg",
+        "/assets/destinos/puerto4.jpg"
+      ],
+      destacado: true,
+      orden: 5
+    },
+
+    // ================= BRASIL =================
+    {
+      nombre: "Río de Janeiro",
+      slug: "rio-de-janeiro",
+      paisRegion: "Brasil",
+      descripcionCorta: "Playas icónicas y energía vibrante.",
+      descripcion:
+        "Río de Janeiro combina playas famosas, morros, samba y una cultura vibrante que la hace única.",
+      imagenPortada: "/assets/destinos/rio1.jpg",
+      imagenes: [
+        "/assets/destinos/rio2.jpg",
+        "/assets/destinos/rio3.jpg",
+        "/assets/destinos/rio4.webp"
+      ],
+      destacado: true,
+      orden: 6
+    },
+    {
+      nombre: "Florianópolis",
+      slug: "florianopolis",
+      paisRegion: "Brasil",
+      descripcionCorta: "Isla de playas y naturaleza.",
+      descripcion:
+        "Florianópolis es famosa por sus playas, dunas, lagunas y excelente infraestructura turística.",
+      imagenPortada: "/assets/destinos/florianopolis1.png",
+      imagenes: [
+        "/assets/destinos/florianopolis2.jpg",
+        "/assets/destinos/florianopolis3.jpg",
+        "/assets/destinos/florianopolis4.JPG"
+      ],
+      destacado: true,
+      orden: 7
+    },
+    {
+      nombre: "Canasvieiras",
+      slug: "canasvieiras",
+      paisRegion: "Brasil",
+      descripcionCorta: "Playa familiar y mar calmo.",
+      descripcion:
+        "Canasvieiras es ideal para viajes familiares gracias a su mar tranquilo y paseo costero.",
+      imagenPortada: "/assets/destinos/canasvieiras.webp",
+      imagenes: [
+        "/assets/destinos/Canasvieiras 1.jpg",
+        "/assets/destinos/Canasvieras 2.jpg",
+        "/assets/destinos/inicio.jpg"
+      ],
+      destacado: true,
+      orden: 8
+    },
+    {
+      nombre: "Camboriú",
+      slug: "camboriu",
+      paisRegion: "Brasil",
+      descripcionCorta: "Ciudad moderna frente al mar.",
+      descripcion:
+        "Camboriú combina playas urbanas, rascacielos y una intensa vida nocturna.",
+      imagenPortada: "/assets/destinos/camboriu1.jpg",
+      imagenes: [
+        "/assets/destinos/camboriu2.jpg",
+        "/assets/destinos/camboriu3.jpg",
+        "/assets/destinos/camboriu4.jpg"
+      ],
+      destacado: true,
+      orden: 9
+    },
+    {
+      nombre: "Bombinhas",
+      slug: "bombinhas",
+      paisRegion: "Brasil",
+      descripcionCorta: "Playas cristalinas y tranquilidad.",
+      descripcion:
+        "Bombinhas es ideal para snorkel y descanso, con aguas limpias y playas protegidas.",
+      imagenPortada: "/assets/destinos/bombhinas1.webp",
+      imagenes: [
+        "/assets/destinos/bombinhas2.jpg",
+        "/assets/destinos/bombhinas3.jpeg",
+        "/assets/destinos/bombhinas4.webp"
+      ],
+      destacado: false,
+      orden: 10
+    },
+    {
+      nombre: "Búzios",
+      slug: "buzios",
+      paisRegion: "Brasil",
+      descripcionCorta: "Encanto y vida nocturna.",
+      descripcion:
+        "Búzios combina playas paradisíacas con un centro vibrante lleno de bares y restaurantes.",
+      imagenPortada: "/assets/destinos/Buzios.webp",
+      imagenes: [
+        "/assets/destinos/buzios2.jpg",
+        "/assets/destinos/buzios3.jpg",
+        "/assets/destinos/buzios4.png"
+      ],
+      destacado: false,
+      orden: 11
+    },
+    {
+      nombre: "Ferrugem",
+      slug: "ferrugem",
+      paisRegion: "Brasil",
+      descripcionCorta: "Naturaleza salvaje y surf.",
+      descripcion:
+        "Ferrugem es ideal para quienes buscan playas abiertas, surf y un ambiente relajado.",
+      imagenPortada: "/assets/destinos/ferregum2.webp",
+      imagenes: [
+        "/assets/destinos/ferregum3.jpg",
+        "/assets/destinos/ferregum4.webp",
+        "/assets/destinos/ferregum5.jpg"
+      ],
+      destacado: false,
+      orden: 12
+    },
+    {
+      nombre: "Garopaba",
+      slug: "garopaba",
+      paisRegion: "Brasil",
+      descripcionCorta: "Bahías protegidas y naturaleza.",
+      descripcion:
+        "Garopaba ofrece playas extensas, senderos y paisajes naturales únicos.",
+      imagenPortada: "/assets/destinos/garapoba1.webp",
+      imagenes: [
+        "/assets/destinos/garapoba2.webp",
+        "/assets/destinos/garapoba3.jpg",
+        "/assets/destinos/garapoba4.webp"
+      ],
+      destacado: false,
+      orden: 13
+    },
+    {
+      nombre: "Itapema",
+      slug: "itapema",
+      paisRegion: "Brasil",
+      descripcionCorta: "Balneario urbano y playas amplias.",
+      descripcion:
+        "Itapema combina una moderna costanera con playas extensas y servicios completos.",
+      imagenPortada: "/assets/destinos/itapema1.jpg",
+      imagenes: [
+        "/assets/destinos/itapema2.avif",
+        "/assets/destinos/itapema3.jpg",
+        "/assets/destinos/itapema4.jpg"
+      ],
+      destacado: false,
+      orden: 14
+    },
+    {
+      nombre: "Torres",
+      slug: "torres",
+      paisRegion: "Brasil",
+      descripcionCorta: "Acantilados y playas únicas.",
+      descripcion:
+        "Torres se destaca por sus acantilados, miradores y playas amplias.",
+      imagenPortada: "/assets/destinos/torres1.jpg",
+      imagenes: [
+        "/assets/destinos/torres2.jpg",
+        "/assets/destinos/torres3.jpg",
+        "/assets/destinos/torres4.jpg"
+      ],
+      destacado: false,
+      orden: 15
+    },
+    {
+      nombre: "Porto Galinhas",
+      slug: "porto-galinhas",
+      paisRegion: "Brasil",
+      descripcionCorta: "Piscinas naturales y mar turquesa.",
+      descripcion:
+        "Porto de Galinhas es famoso por sus piscinas naturales y playas paradisíacas.",
+      imagenPortada: "/assets/destinos/porto1.webp",
+      imagenes: [
+        "/assets/destinos/porto2.jpg",
+        "/assets/destinos/porto3.webp",
+        "/assets/destinos/porto4.webp"
+      ],
+      destacado: true,
+      orden: 16
+    },
+    {
+      nombre: "Cabo de Santo Agostinho",
+      slug: "cabo-de-santo-agostinho",
+      paisRegion: "Brasil",
+      descripcionCorta: "Playas salvajes y paisajes naturales.",
+      descripcion:
+        "Cabo de Santo Agostinho ofrece playas menos concurridas, acantilados y naturaleza pura.",
+      imagenPortada: "/assets/destinos/cabo1.avif",
+      imagenes: [
+        "/assets/destinos/cabo2.jpg",
+        "/assets/destinos/cabo3.jpg",
+        "/assets/destinos/cabo4.webp"
+      ],
+      destacado: false,
+      orden: 17
+    },
+
+    // ================= PERÚ =================
+    {
+      nombre: "Lima",
+      slug: "lima",
+      paisRegion: "Perú",
+      descripcionCorta: "Capital gastronómica del Pacífico.",
+      descripcion:
+        "Lima combina historia, gastronomía de primer nivel y vistas al océano.",
+      imagenPortada: "/assets/destinos/lima1.jpg",
+      imagenes: [
+        "/assets/destinos/lima2.jpg",
+        "/assets/destinos/lima3.png",
+        "/assets/destinos/lima4.jpg"
+      ],
+      destacado: true,
+      orden: 18
+    },
+    {
+      nombre: "Cusco",
+      slug: "cusco",
+      paisRegion: "Perú",
+      descripcionCorta: "Historia inca y cultura andina.",
+      descripcion:
+        "Cusco es el corazón del antiguo Imperio Inca y punto de partida hacia Machu Picchu.",
+      imagenPortada: "/assets/destinos/cusco1.jpg",
+      imagenes: [
+        "/assets/destinos/cusco2.jpg",
+        "/assets/destinos/cusco3.jpg",
+        "/assets/destinos/cusco4.avif"
+      ],
+      destacado: true,
+      orden: 19
+    },
+
+    // ================= EUROPA =================
+    {
+      nombre: "París",
+      slug: "paris",
+      paisRegion: "Francia",
+      descripcionCorta: "Romance, arte y arquitectura.",
+      descripcion:
+        "París es una de las ciudades más icónicas del mundo, ideal para viajes culturales y románticos.",
+      imagenPortada: "/assets/destinos/Paris1.webp",
+      imagenes: [
+        "/assets/destinos/paris2.jpg",
+        "/assets/destinos/paris3.jpg",
+        "/assets/destinos/paris4.jpg"
+      ],
+      destacado: true,
+      orden: 20
+    },
+    {
+      nombre: "Roma",
+      slug: "roma",
+      paisRegion: "Italia",
+      descripcionCorta: "Historia milenaria y gastronomía.",
+      descripcion:
+        "Roma es un museo a cielo abierto con monumentos históricos y una gastronomía legendaria.",
+      imagenPortada: "/assets/destinos/roma.jpg",
+      imagenes: [
+        "/assets/destinos/roma2.jpg",
+        "/assets/destinos/roma3.jpg",
+        "/assets/destinos/roma4.jpg"
+      ],
+      destacado: true,
+      orden: 21
+    },
+    {
+      nombre: "Madrid",
+      slug: "madrid",
+      paisRegion: "España",
+      descripcionCorta: "Arte, cultura y vida urbana.",
+      descripcion:
+        "Madrid combina museos de clase mundial, gastronomía y una vida nocturna vibrante.",
+      imagenPortada: "/assets/destinos/madrid.jpeg",
+      imagenes: [
+        "/assets/destinos/mdrid2.jpg",
+        "/assets/destinos/madrid3.jpg",
+        "/assets/destinos/madrid4.jpeg"
+      ],
+      destacado: true,
+      orden: 22
+    },
+
+    // ================= ESTADOS UNIDOS =================
+    {
+      nombre: "Estados Unidos",
+      slug: "estados-unidos",
+      paisRegion: "Estados Unidos",
+      descripcionCorta: "Ciudades icónicas y paisajes diversos.",
+      descripcion:
+        "Estados Unidos ofrece una enorme variedad de destinos, desde grandes ciudades hasta paisajes naturales impresionantes.",
+      imagenPortada: "/assets/destinos/estados1.jpg",
+      imagenes: [
+        "/assets/destinos/estados2.jpg",
+        "/assets/destinos/estados3.jpg",
+        "/assets/destinos/estados4.webp"
+      ],
+      destacado: true,
+      orden: 23
+    }
+  ];
+
+  for (const destino of destinosData) {
+    const created = await prisma.destino.create({
+      data: {
+        nombre: destino.nombre,
+        slug: destino.slug,
+        paisRegion: destino.paisRegion,
+        descripcionCorta: destino.descripcionCorta,
+        descripcion: destino.descripcion,
+        imagenPortada: destino.imagenPortada,
+        destacado: destino.destacado,
+        orden: destino.orden
       }
-    ]
-  });
+    });
+
+    await prisma.imagenDestino.createMany({
+      data: destino.imagenes.map((img, index) => ({
+        destinoId: created.id,
+        imagen: img,
+        epigrafe: destino.nombre,
+        orden: index + 1
+      }))
+    });
+  }
 
   const destinosList = await prisma.destino.findMany({ orderBy: { orden: "asc" } });
   const rio = destinosList.find((item) => item.slug === "rio-de-janeiro");
@@ -163,234 +430,6 @@ async function main() {
   const ushuaia = destinosList.find((item) => item.slug === "ushuaia");
   const puertoMadryn = destinosList.find((item) => item.slug === "puerto-madryn");
   const lima = destinosList.find((item) => item.slug === "lima");
-  const camboya = destinosList.find((item) => item.slug === "camboya");
-
-  await prisma.imagenDestino.createMany({
-    data: [
-      {
-        destinoId: rio.id,
-        imagen: "/assets/destinos/rio2.jpg",
-        epigrafe: "Vista panorámica de la ciudad",
-        orden: 1
-      },
-      {
-        destinoId: rio.id,
-        imagen: "/assets/destinos/rio3.jpg",
-        epigrafe: "Playas de Río",
-        orden: 2
-      },
-      {
-        destinoId: rio.id,
-        imagen: "/assets/destinos/rio4.webp",
-        epigrafe: "Cristo Redentor",
-        orden: 3
-      },
-      {
-        destinoId: floripa.id,
-        imagen: "/assets/destinos/florianopolis2.jpg",
-        epigrafe: "Costa en Florianópolis",
-        orden: 1
-      },
-      {
-        destinoId: floripa.id,
-        imagen: "/assets/destinos/florianopolis3.jpg",
-        epigrafe: "Playas urbanas",
-        orden: 2
-      },
-      {
-        destinoId: floripa.id,
-        imagen: "/assets/destinos/florianopolis4.JPG",
-        epigrafe: "Atardecer en la costa",
-        orden: 3
-      },
-      {
-        destinoId: canasvieiras.id,
-        imagen: "/assets/destinos/inicio.jpg",
-        epigrafe: "Playa principal",
-        orden: 1
-      },
-      {
-        destinoId: canasvieiras.id,
-        imagen: "/assets/destinos/florianopolis2.jpg",
-        epigrafe: "Costa tranquila",
-        orden: 2
-      },
-      {
-        destinoId: canasvieiras.id,
-        imagen: "/assets/destinos/florianopolis3.jpg",
-        epigrafe: "Paseo costero",
-        orden: 3
-      },
-      {
-        destinoId: canasvieiras.id,
-        imagen: "/assets/destinos/florianopolis4.JPG",
-        epigrafe: "Atmósfera playera",
-        orden: 4
-      },
-      {
-        destinoId: ferrugem.id,
-        imagen: "/assets/destinos/ferregum3.jpg",
-        epigrafe: "Paisajes de Ferrugem",
-        orden: 1
-      },
-      {
-        destinoId: ferrugem.id,
-        imagen: "/assets/destinos/ferregum4.webp",
-        epigrafe: "Playas abiertas",
-        orden: 2
-      },
-      {
-        destinoId: ferrugem.id,
-        imagen: "/assets/destinos/ferregum5.jpg",
-        epigrafe: "Atardecer en Ferrugem",
-        orden: 3
-      },
-      {
-        destinoId: garopaba.id,
-        imagen: "/assets/destinos/garapoba2.webp",
-        epigrafe: "Bahías de Garopaba",
-        orden: 1
-      },
-      {
-        destinoId: garopaba.id,
-        imagen: "/assets/destinos/garapoba3.jpg",
-        epigrafe: "Vista aérea",
-        orden: 2
-      },
-      {
-        destinoId: garopaba.id,
-        imagen: "/assets/destinos/garapoba4.webp",
-        epigrafe: "Costa cristalina",
-        orden: 3
-      },
-      {
-        destinoId: itapema.id,
-        imagen: "/assets/destinos/itapema2.avif",
-        epigrafe: "Costanera de Itapema",
-        orden: 1
-      },
-      {
-        destinoId: itapema.id,
-        imagen: "/assets/destinos/itapema3.jpg",
-        epigrafe: "Playas amplias",
-        orden: 2
-      },
-      {
-        destinoId: itapema.id,
-        imagen: "/assets/destinos/itapema4.jpg",
-        epigrafe: "Vista panorámica",
-        orden: 3
-      },
-      {
-        destinoId: portoGalinhas.id,
-        imagen: "/assets/destinos/porto2.jpg",
-        epigrafe: "Piscinas naturales",
-        orden: 1
-      },
-      {
-        destinoId: portoGalinhas.id,
-        imagen: "/assets/destinos/porto3.webp",
-        epigrafe: "Mar turquesa",
-        orden: 2
-      },
-      {
-        destinoId: portoGalinhas.id,
-        imagen: "/assets/destinos/porto4.webp",
-        epigrafe: "Playas paradisíacas",
-        orden: 3
-      },
-      {
-        destinoId: torres.id,
-        imagen: "/assets/destinos/torres2.jpg",
-        epigrafe: "Acantilados al atardecer",
-        orden: 1
-      },
-      {
-        destinoId: torres.id,
-        imagen: "/assets/destinos/torres3.jpg",
-        epigrafe: "Vista desde los morros",
-        orden: 2
-      },
-      {
-        destinoId: torres.id,
-        imagen: "/assets/destinos/torres4.jpg",
-        epigrafe: "Playas de Torres",
-        orden: 3
-      },
-      {
-        destinoId: ushuaia.id,
-        imagen: "/assets/destinos/usuahia2.jpg",
-        epigrafe: "Canal Beagle",
-        orden: 1
-      },
-      {
-        destinoId: ushuaia.id,
-        imagen: "/assets/destinos/usuahia3.webp",
-        epigrafe: "Montañas nevadas",
-        orden: 2
-      },
-      {
-        destinoId: ushuaia.id,
-        imagen: "/assets/destinos/usuahia4.jpg",
-        epigrafe: "Paisajes australes",
-        orden: 3
-      },
-      {
-        destinoId: puertoMadryn.id,
-        imagen: "/assets/destinos/puerto2.jpeg",
-        epigrafe: "Costa de Puerto Madryn",
-        orden: 1
-      },
-      {
-        destinoId: puertoMadryn.id,
-        imagen: "/assets/destinos/puerto3.jpg",
-        epigrafe: "Avistaje de fauna",
-        orden: 2
-      },
-      {
-        destinoId: puertoMadryn.id,
-        imagen: "/assets/destinos/puerto4.jpg",
-        epigrafe: "Playas patagónicas",
-        orden: 3
-      },
-      {
-        destinoId: lima.id,
-        imagen: "/assets/destinos/lima2.jpg",
-        epigrafe: "Costa limeña",
-        orden: 1
-      },
-      {
-        destinoId: lima.id,
-        imagen: "/assets/destinos/lima3.png",
-        epigrafe: "Acantilados urbanos",
-        orden: 2
-      },
-      {
-        destinoId: lima.id,
-        imagen: "/assets/destinos/lima4.jpg",
-        epigrafe: "Vista de la ciudad",
-        orden: 3
-      },
-      {
-        destinoId: camboya.id,
-        imagen: "/assets/destinos/tai2.avif",
-        epigrafe: "Templos y cultura",
-        orden: 1
-      },
-      {
-        destinoId: camboya.id,
-        imagen: "/assets/destinos/tai3.webp",
-        epigrafe: "Arquitectura histórica",
-        orden: 2
-      },
-      {
-        destinoId: camboya.id,
-        imagen: "/assets/destinos/tai4.webp",
-        epigrafe: "Paisajes exóticos",
-        orden: 3
-      }
-    ]
-  });
 
   const actividades = await prisma.actividad.createMany({
     data: [
