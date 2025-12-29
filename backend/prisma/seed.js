@@ -180,10 +180,28 @@ async function main() {
         orden: 2
       },
       {
+        destinoId: rio.id,
+        imagen: "/assets/destinos/rio4.webp",
+        epigrafe: "Cristo Redentor",
+        orden: 3
+      },
+      {
         destinoId: floripa.id,
         imagen: "/assets/destinos/florianopolis2.jpg",
         epigrafe: "Costa en Florianópolis",
         orden: 1
+      },
+      {
+        destinoId: floripa.id,
+        imagen: "/assets/destinos/florianopolis3.jpg",
+        epigrafe: "Playas urbanas",
+        orden: 2
+      },
+      {
+        destinoId: floripa.id,
+        imagen: "/assets/destinos/florianopolis4.JPG",
+        epigrafe: "Atardecer en la costa",
+        orden: 3
       },
       {
         destinoId: canasvieiras.id,
@@ -192,10 +210,40 @@ async function main() {
         orden: 1
       },
       {
+        destinoId: canasvieiras.id,
+        imagen: "/assets/destinos/florianopolis2.jpg",
+        epigrafe: "Costa tranquila",
+        orden: 2
+      },
+      {
+        destinoId: canasvieiras.id,
+        imagen: "/assets/destinos/florianopolis3.jpg",
+        epigrafe: "Paseo costero",
+        orden: 3
+      },
+      {
+        destinoId: canasvieiras.id,
+        imagen: "/assets/destinos/florianopolis4.JPG",
+        epigrafe: "Atmósfera playera",
+        orden: 4
+      },
+      {
         destinoId: ferrugem.id,
         imagen: "/assets/destinos/ferregum3.jpg",
         epigrafe: "Paisajes de Ferrugem",
         orden: 1
+      },
+      {
+        destinoId: ferrugem.id,
+        imagen: "/assets/destinos/ferregum4.webp",
+        epigrafe: "Playas abiertas",
+        orden: 2
+      },
+      {
+        destinoId: ferrugem.id,
+        imagen: "/assets/destinos/ferregum5.jpg",
+        epigrafe: "Atardecer en Ferrugem",
+        orden: 3
       },
       {
         destinoId: garopaba.id,
@@ -204,10 +252,34 @@ async function main() {
         orden: 1
       },
       {
+        destinoId: garopaba.id,
+        imagen: "/assets/destinos/garapoba3.jpg",
+        epigrafe: "Vista aérea",
+        orden: 2
+      },
+      {
+        destinoId: garopaba.id,
+        imagen: "/assets/destinos/garapoba4.webp",
+        epigrafe: "Costa cristalina",
+        orden: 3
+      },
+      {
         destinoId: itapema.id,
         imagen: "/assets/destinos/itapema2.avif",
         epigrafe: "Costanera de Itapema",
         orden: 1
+      },
+      {
+        destinoId: itapema.id,
+        imagen: "/assets/destinos/itapema3.jpg",
+        epigrafe: "Playas amplias",
+        orden: 2
+      },
+      {
+        destinoId: itapema.id,
+        imagen: "/assets/destinos/itapema4.jpg",
+        epigrafe: "Vista panorámica",
+        orden: 3
       },
       {
         destinoId: portoGalinhas.id,
@@ -216,10 +288,34 @@ async function main() {
         orden: 1
       },
       {
+        destinoId: portoGalinhas.id,
+        imagen: "/assets/destinos/porto3.webp",
+        epigrafe: "Mar turquesa",
+        orden: 2
+      },
+      {
+        destinoId: portoGalinhas.id,
+        imagen: "/assets/destinos/porto4.webp",
+        epigrafe: "Playas paradisíacas",
+        orden: 3
+      },
+      {
         destinoId: torres.id,
         imagen: "/assets/destinos/torres2.jpg",
         epigrafe: "Acantilados al atardecer",
         orden: 1
+      },
+      {
+        destinoId: torres.id,
+        imagen: "/assets/destinos/torres3.jpg",
+        epigrafe: "Vista desde los morros",
+        orden: 2
+      },
+      {
+        destinoId: torres.id,
+        imagen: "/assets/destinos/torres4.jpg",
+        epigrafe: "Playas de Torres",
+        orden: 3
       },
       {
         destinoId: ushuaia.id,
@@ -228,10 +324,34 @@ async function main() {
         orden: 1
       },
       {
+        destinoId: ushuaia.id,
+        imagen: "/assets/destinos/usuahia3.webp",
+        epigrafe: "Montañas nevadas",
+        orden: 2
+      },
+      {
+        destinoId: ushuaia.id,
+        imagen: "/assets/destinos/usuahia4.jpg",
+        epigrafe: "Paisajes australes",
+        orden: 3
+      },
+      {
         destinoId: puertoMadryn.id,
         imagen: "/assets/destinos/puerto2.jpeg",
         epigrafe: "Costa de Puerto Madryn",
         orden: 1
+      },
+      {
+        destinoId: puertoMadryn.id,
+        imagen: "/assets/destinos/puerto3.jpg",
+        epigrafe: "Avistaje de fauna",
+        orden: 2
+      },
+      {
+        destinoId: puertoMadryn.id,
+        imagen: "/assets/destinos/puerto4.jpg",
+        epigrafe: "Playas patagónicas",
+        orden: 3
       },
       {
         destinoId: lima.id,
@@ -240,10 +360,34 @@ async function main() {
         orden: 1
       },
       {
+        destinoId: lima.id,
+        imagen: "/assets/destinos/lima3.png",
+        epigrafe: "Acantilados urbanos",
+        orden: 2
+      },
+      {
+        destinoId: lima.id,
+        imagen: "/assets/destinos/lima4.jpg",
+        epigrafe: "Vista de la ciudad",
+        orden: 3
+      },
+      {
         destinoId: camboya.id,
         imagen: "/assets/destinos/tai2.avif",
         epigrafe: "Templos y cultura",
         orden: 1
+      },
+      {
+        destinoId: camboya.id,
+        imagen: "/assets/destinos/tai3.webp",
+        epigrafe: "Arquitectura histórica",
+        orden: 2
+      },
+      {
+        destinoId: camboya.id,
+        imagen: "/assets/destinos/tai4.webp",
+        epigrafe: "Paisajes exóticos",
+        orden: 3
       }
     ]
   });
