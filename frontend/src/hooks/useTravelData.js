@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiRequest } from "../api/api.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
 
 export function useTravelData() {
   const [destinos, setDestinos] = useState([]);
@@ -25,9 +26,70 @@ export function useTravelData() {
         if (!isMounted) {
           return;
         }
-        setDestinos(destinosData);
-        setOfertas(ofertasData);
-        setActividades(actividadesData);
+
+        const normalizeDestino = (destino) => {
+          if (!destino) {
+            return destino;
+          }
+          return {
+            ...destino,
+            imagenPortada: resolveAssetUrl(destino.imagenPortada),
+            galeria: Array.isArray(destino.galeria)
+              ? destino.galeria.map((item) => ({
+                  ...item,
+                  imagen: resolveAssetUrl(item.imagen)
+                }))
+              : destino.galeria
+          };
+        };
+
+        const normalizeActividad = (actividad) => {
+          if (!actividad) {
+            return actividad;
+          }
+          return {
+            ...actividad,
+            imagenPortada: resolveAssetUrl(actividad.imagenPortada)
+          };
+        };
+
+        const normalizeOferta = (oferta) => {
+          if (!oferta) {
+            return oferta;
+          }
+          return {
+            ...oferta,
+            destino: oferta.destino ? normalizeDestino(oferta.destino) : oferta.destino,
+            destinos: Array.isArray(oferta.destinos)
+              ? oferta.destinos.map((item) => ({
+                  ...item,
+                  destino: item.destino ? normalizeDestino(item.destino) : item.destino
+                }))
+              : oferta.destinos,
+            actividades: Array.isArray(oferta.actividades)
+              ? oferta.actividades.map((item) => ({
+                  ...item,
+                  actividad: item.actividad
+                    ? normalizeActividad(item.actividad)
+                    : item.actividad
+                }))
+              : oferta.actividades
+          };
+        };
+
+        const normalizedDestinos = Array.isArray(destinosData)
+          ? destinosData.map(normalizeDestino)
+          : [];
+        const normalizedOfertas = Array.isArray(ofertasData)
+          ? ofertasData.map(normalizeOferta)
+          : [];
+        const normalizedActividades = Array.isArray(actividadesData)
+          ? actividadesData.map(normalizeActividad)
+          : [];
+
+        setDestinos(normalizedDestinos);
+        setOfertas(normalizedOfertas);
+        setActividades(normalizedActividades);
         setAboutSections(Array.isArray(aboutData) ? aboutData : []);
         setError("");
       } catch (err) {

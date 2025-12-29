@@ -1,7 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
-import worldMap from "../assets/world-map.svg";
 import About from "../components/About.jsx";
 import { useTravelData } from "../hooks/useTravelData.js";
 import {
@@ -18,6 +17,7 @@ export default function Home() {
   const [searchDestino, setSearchDestino] = useState("");
   const [searchDate, setSearchDate] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [searchIndex, setSearchIndex] = useState(0);
 
   const destinosDestacados = useMemo(() => {
     const destacados = destinos.filter((destino) => destino.destacado);
@@ -68,32 +68,6 @@ export default function Home() {
     });
     return map;
   }, [ofertas]);
-
-  const mapPins = useMemo(() => {
-    const config = [
-      { slug: "rio-de-janeiro", left: "24%", top: "60%" },
-      { slug: "lima", left: "25%", top: "48%" },
-      { slug: "ushuaia", left: "30%", top: "78%" },
-      { slug: "camboya", left: "76%", top: "48%" }
-    ];
-
-    return config
-      .map((item) => {
-        const destino = destinos.find((entry) => entry.slug === item.slug);
-        if (!destino) {
-          return null;
-        }
-        const oferta = ofertaPorDestino.get(destino.id);
-        return {
-          ...item,
-          nombre: destino.nombre,
-          precio: oferta
-            ? formatCurrency(oferta.precio.precio, oferta.precio.moneda)
-            : "Precio a consultar"
-        };
-      })
-      .filter(Boolean);
-  }, [destinos, ofertaPorDestino]);
 
   const searchResults = useMemo(() => {
     const destinoQuery = searchDestino.trim().toLowerCase();
@@ -221,106 +195,248 @@ export default function Home() {
   const searchSubtitle = searchDestino.trim()
     ? `Mostrando ${searchDestino.trim()}.`
     : "Resultados según tu búsqueda.";
+  const totalResults = searchResults.length;
+  const currentResult = totalResults
+    ? searchResults[searchIndex % totalResults]
+    : null;
+
+  useEffect(() => {
+    if (searchType === "destino") {
+      setSearchText("");
+      setSearchDate("");
+    } else {
+      setSearchDestino("");
+    }
+  }, [searchType]);
+
+  useEffect(() => {
+    setSearchIndex(0);
+  }, [searchType, searchDestino, searchDate, searchText, totalResults]);
+
+  const goPrevResult = () => {
+    if (!totalResults) {
+      return;
+    }
+    setSearchIndex((prev) => (prev - 1 + totalResults) % totalResults);
+  };
+
+  const goNextResult = () => {
+    if (!totalResults) {
+      return;
+    }
+    setSearchIndex((prev) => (prev + 1) % totalResults);
+  };
 
   return (
     <main>
-      <section className="hero hero-map" id="inicio">
-        <div className="destinations-map destinations-map-home">
-          <div className="destinations-map-card">
-            <span className="destinations-map-kicker">
-              Inspirate con destinos
-            </span>
-            <h1>Un mundo de destinos para vos</h1>
-            <p>
-              Compará valores y encontrá oportunidades únicas para tu próxima
-              aventura.
-            </p>
-            <Link className="hero-map-cta" to="/destinos">
-              Explorar destinos
-            </Link>
-          </div>
-          <div
-            className="destinations-map-visual"
-            style={{ backgroundImage: `url(${worldMap})` }}
-          >
-            {mapPins.map((pin) => (
-              <div
-                className="destinations-map-pin"
-                key={pin.slug}
-                style={{ left: pin.left, top: pin.top }}
-              >
-                <span className="destinations-map-pin-icon">✈️</span>
-                <div className="destinations-map-pin-label">
-                  <strong>{pin.nombre}</strong>
-                  <span>{pin.precio}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero-content home-search-content">
+      <section className="hero hero-search" id="inicio">
+        <div className="hero-content">
           <p className="eyebrow">Viajes premium, compará y disfrutá</p>
-          <h2>
+          <h1>
             Tu próxima escapada empieza en{" "}
             <span className="brand-word topotours-word">Topotours</span>.
-          </h2>
+          </h1>
           <p className="hero-subtitle">
             Buscá destinos, fechas y servicios con atención personalizada y
             ofertas pensadas para vos.
           </p>
           <form
-            className="search-bar premium-filter"
+            className={`search-bar premium-filter premium-filter-${searchType}`}
             onSubmit={(event) => event.preventDefault()}
           >
-            <div className="filter-group">
-              <label className="filter-label">¿Qué querés buscar?</label>
-              <select
-                className="filter-select"
-                value={searchType}
-                onChange={(event) => setSearchType(event.target.value)}
-              >
-                <option value="destino">🌍 Destinos</option>
-                <option value="oferta">🔥 Ofertas</option>
-                <option value="excursion">🧭 Excursiones</option>
-              </select>
-            </div>
-
-            <div className="filter-group">
-              <label className="filter-label">Destino</label>
-              <input
-                className="filter-input"
-                list="destinos-list"
-                placeholder="Ej: Brasil, Bariloche, Europa"
-                value={searchDestino}
-                onChange={(event) => setSearchDestino(event.target.value)}
-              />
-              <datalist id="destinos-list">
-                {destinos.map((destino) => (
-                  <option key={destino.id} value={destino.nombre} />
-                ))}
-              </datalist>
-            </div>
-
-            <div className="filter-group">
-              <label className="filter-label">Fecha</label>
-              <input
-                className="filter-input"
-                type="date"
-                value={searchDate}
-                onChange={(event) => setSearchDate(event.target.value)}
-              />
-            </div>
-
-            <div className="filter-group grow">
-              <label className="filter-label">Búsqueda libre</label>
-              <input
-                className="filter-input"
-                placeholder="Playa, nieve, gastronomía, aventura…"
-                value={searchText}
-                onChange={(event) => setSearchText(event.target.value)}
-              />
-            </div>
+            {searchType === "destino" ? (
+              <>
+                <div className="filter-card">
+                  <span className="filter-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 22s7-7 7-12a7 7 0 0 0-14 0c0 5 7 12 7 12Z"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <circle
+                        cx="12"
+                        cy="10"
+                        r="3"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </span>
+                  <div className="filter-card-body">
+                    <label className="filter-card-label" htmlFor="search-destino">
+                      Destino
+                    </label>
+                    <input
+                      id="search-destino"
+                      className="filter-card-input"
+                      list="destinos-list"
+                      placeholder="Elegí un destino"
+                      value={searchDestino}
+                      onChange={(event) => setSearchDestino(event.target.value)}
+                    />
+                    <datalist id="destinos-list">
+                      {destinos.map((destino) => (
+                        <option key={destino.id} value={destino.nombre} />
+                      ))}
+                    </datalist>
+                  </div>
+                </div>
+                <div className="filter-card filter-card-select">
+                  <span className="filter-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle
+                        cx="11"
+                        cy="11"
+                        r="7"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <path
+                        d="m20 20-3.5-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                  <div className="filter-card-body">
+                    <label className="filter-card-label" htmlFor="search-type">
+                      Filtro de búsqueda
+                    </label>
+                    <select
+                      id="search-type"
+                      className="filter-card-input"
+                      value={searchType}
+                      onChange={(event) => setSearchType(event.target.value)}
+                    >
+                      <option value="destino">Destino (lugares)</option>
+                      <option value="oferta">Oferta (promos y salidas)</option>
+                      <option value="excursion">Excursión (actividades)</option>
+                    </select>
+                    <span className="filter-card-arrow" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="filter-card">
+                  <span className="filter-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle
+                        cx="11"
+                        cy="11"
+                        r="7"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <path
+                        d="m20 20-3.5-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                  <div className="filter-card-body">
+                    <label className="filter-card-label" htmlFor="search-text">
+                      {searchType === "oferta"
+                        ? "Qué querés buscar"
+                        : "Excursión"}
+                    </label>
+                    <input
+                      id="search-text"
+                      className="filter-card-input"
+                      placeholder={
+                        searchType === "oferta"
+                          ? "Ej: Promo a Bariloche, Iguazú"
+                          : "Ej: City tour, Cataratas"
+                      }
+                      value={searchText}
+                      onChange={(event) => setSearchText(event.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="filter-card">
+                  <span className="filter-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect
+                        x="3"
+                        y="5"
+                        width="18"
+                        height="16"
+                        rx="2"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <path
+                        d="M16 3v4M8 3v4M3 11h18"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                  <div className="filter-card-body">
+                    <label className="filter-card-label" htmlFor="search-date">
+                      Fecha (opcional)
+                    </label>
+                    <input
+                      id="search-date"
+                      className="filter-card-input"
+                      type="date"
+                      value={searchDate}
+                      onChange={(event) => setSearchDate(event.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="filter-card filter-card-select">
+                  <span className="filter-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle
+                        cx="11"
+                        cy="11"
+                        r="7"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <path
+                        d="m20 20-3.5-3.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </span>
+                  <div className="filter-card-body">
+                    <label className="filter-card-label" htmlFor="search-type">
+                      Filtro de búsqueda
+                    </label>
+                    <select
+                      id="search-type"
+                      className="filter-card-input"
+                      value={searchType}
+                      onChange={(event) => setSearchType(event.target.value)}
+                    >
+                      <option value="destino">Destino (lugares)</option>
+                      <option value="oferta">Oferta (promos y salidas)</option>
+                      <option value="excursion">Excursión (actividades)</option>
+                    </select>
+                    <span className="filter-card-arrow" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </>
+            )}
 
             <button className="filter-button" type="submit">
               Buscar viajes
@@ -346,27 +462,37 @@ export default function Home() {
                       Ver todos
                     </Link>
                   </div>
-                  <div className="search-results-grid search-results-grid-cards">
-                    {searchResults.slice(0, 6).map((item) => {
+                  <div className="search-results-carousel">
+                    <button
+                      className={`search-results-nav${
+                        totalResults > 1 ? "" : " is-hidden"
+                      }`}
+                      type="button"
+                      onClick={goPrevResult}
+                      aria-label="Resultado anterior"
+                    >
+                      {"<"}
+                    </button>
+                    {currentResult ? (() => {
                       if (searchType === "destino") {
-                        const destinoSlug = item.slug || item.id;
-                        const oferta = ofertaPorDestino.get(item.id);
+                        const destinoSlug = currentResult.slug || currentResult.id;
+                        const oferta = ofertaPorDestino.get(currentResult.id);
                         return (
                           <Link
-                            className="tile destination-card"
-                            key={`${searchType}-${item.id}`}
+                            className="tile destination-card search-result-card"
+                            key={`${searchType}-${currentResult.id}`}
                             to={`/destinos/${destinoSlug}`}
                           >
                             <div
                               className="tile-image"
                               style={{
-                                backgroundImage: item.imagenPortada
-                                  ? `url(${item.imagenPortada})`
+                                backgroundImage: currentResult.imagenPortada
+                                  ? `url(${currentResult.imagenPortada})`
                                   : `url(${fallbackDeal})`
                               }}
                             ></div>
                             <div className="tile-content">
-                              <h4>{item.nombre}</h4>
+                              <h4>{currentResult.nombre}</h4>
                               <p className="destination-price">
                                 {oferta
                                   ? formatCurrency(
@@ -377,7 +503,7 @@ export default function Home() {
                               </p>
                               <span className="destination-meta">
                                 {oferta?.titulo ||
-                                  item.paisRegion ||
+                                  currentResult.paisRegion ||
                                   "Consultanos"}
                               </span>
                             </div>
@@ -386,101 +512,88 @@ export default function Home() {
                       }
 
                       if (searchType === "oferta") {
-                        const ofertaSlug = item.slug || item.id;
-                        const precio = getPrecioVigente(item.precios);
-                        const offerImages = getOfferImages(item);
+                        const ofertaSlug = currentResult.slug || currentResult.id;
+                        const precio = getPrecioVigente(currentResult.precios);
+                        const offerImages = getOfferImages(currentResult);
                         const offerImage = offerImages[0] || fallbackDeal;
-                        const extraImages = offerImages.slice(1, 3);
                         return (
                           <Link
-                            className="offer-card offer-link search-offer-card"
-                            key={`${searchType}-${item.id}`}
+                            className="tile destination-card search-result-card"
+                            key={`${searchType}-${currentResult.id}`}
                             to={`/ofertas/${ofertaSlug}`}
                           >
-                            <div className="offer-image">
-                              <img
-                                className="offer-image-main"
-                                src={offerImage}
-                                alt={item.titulo}
-                              />
-                              {extraImages.length ? (
-                                <div className="offer-image-stack">
-                                  {extraImages.map((image, imageIndex) => (
-                                    <img
-                                      key={`${item.id}-search-${imageIndex}`}
-                                      src={image}
-                                      alt={`${item.titulo} destino ${
-                                        imageIndex + 2
-                                      }`}
-                                    />
-                                  ))}
-                                </div>
-                              ) : null}
-                            </div>
-                            <div className="offer-body">
-                              <div className="offer-header">
-                                <span className="offer-tag">
-                                  {item.destino?.nombre ||
-                                    "Destino destacado"}
-                                </span>
-                                <h3>{item.titulo}</h3>
-                              </div>
-                              <p className="offer-description">
-                                {item.condiciones ||
-                                  item.noIncluye ||
-                                  "Consultanos"}
-                              </p>
-                              <div className="offer-meta">
-                                {precio ? (
-                                  <span className="offer-price">
-                                    {formatCurrency(
+                            <div
+                              className="tile-image"
+                              style={{
+                                backgroundImage: offerImage
+                                  ? `url(${offerImage})`
+                                  : `url(${fallbackDeal})`
+                              }}
+                            ></div>
+                            <div className="tile-content">
+                              <h4>{currentResult.titulo}</h4>
+                              <p className="destination-price">
+                                {precio
+                                  ? formatCurrency(
                                       precio.precio,
                                       precio.moneda
-                                    )}
-                                  </span>
-                                ) : (
-                                  <span className="offer-price">
-                                    Precio a consultar
-                                  </span>
-                                )}
-                                {precio ? (
-                                  <span className="offer-dates">
-                                    {formatDate(precio.fechaInicio)} -{" "}
-                                    {formatDate(precio.fechaFin)}
-                                  </span>
-                                ) : null}
-                              </div>
+                                    )
+                                  : "Precio a consultar"}
+                              </p>
+                              <span className="destination-meta">
+                                {currentResult.destino?.nombre ||
+                                  "Oferta destacada"}
+                              </span>
                             </div>
                           </Link>
                         );
                       }
 
-                      const actividadSlug = item.slug || item.id;
+                      const actividadSlug = currentResult.slug || currentResult.id;
                       return (
                         <Link
-                          className="tile excursion-card"
-                          key={`${searchType}-${item.id}`}
+                          className="tile destination-card search-result-card"
+                          key={`${searchType}-${currentResult.id}`}
                           to={`/excursiones/${actividadSlug}`}
                         >
                           <div
                             className="tile-image"
                             style={{
-                              backgroundImage: item.imagenPortada
-                                ? `url(${item.imagenPortada})`
+                              backgroundImage: currentResult.imagenPortada
+                                ? `url(${currentResult.imagenPortada})`
                                 : `url(${fallbackDeal})`
                             }}
                           ></div>
                           <div className="tile-content">
-                            <h4>{item.nombre}</h4>
-                            <p>{item.descripcion}</p>
-                            <span className="tile-meta">
-                              {item.destino?.nombre || "Destino"}
+                            <h4>{currentResult.nombre}</h4>
+                            <p className="destination-price">
+                              {currentResult.precio
+                                ? formatCurrency(currentResult.precio, "ARS")
+                                : "Precio a consultar"}
+                            </p>
+                            <span className="destination-meta">
+                              {currentResult.destino?.nombre || "Excursión"}
                             </span>
                           </div>
                         </Link>
                       );
-                    })}
+                    })() : null}
+                    <button
+                      className={`search-results-nav${
+                        totalResults > 1 ? "" : " is-hidden"
+                      }`}
+                      type="button"
+                      onClick={goNextResult}
+                      aria-label="Siguiente resultado"
+                    >
+                      {">"}
+                    </button>
                   </div>
+                  {totalResults > 1 ? (
+                    <div className="search-results-count">
+                      {searchIndex + 1} / {totalResults}
+                    </div>
+                  ) : null}
                 </div>
               )}
             </div>
