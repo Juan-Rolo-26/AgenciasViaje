@@ -156,9 +156,7 @@ export default function Home() {
       : searchType === "oferta"
       ? "/ofertas"
       : "/excursiones";
-  const searchSubtitle = searchDestino.trim()
-    ? `Mostrando ${searchDestino.trim()}.`
-    : "Resultados según tu búsqueda.";
+  const searchSubtitle = "Resultados según tu búsqueda.";
   const totalResults = searchResults.length;
   const currentResult = totalResults
     ? searchResults[searchIndex % totalResults]
@@ -435,7 +433,20 @@ export default function Home() {
                       onClick={goPrevResult}
                       aria-label="Resultado anterior"
                     >
-                      {"<"}
+                      <svg
+                        className="search-results-nav-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M15 6l-6 6 6 6"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </button>
                     {currentResult ? (() => {
                       if (searchType === "destino") {
@@ -534,7 +545,20 @@ export default function Home() {
                       onClick={goNextResult}
                       aria-label="Siguiente resultado"
                     >
-                      {">"}
+                      <svg
+                        className="search-results-nav-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M9 6l6 6-6 6"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </button>
                   </div>
                   {totalResults > 1 ? (

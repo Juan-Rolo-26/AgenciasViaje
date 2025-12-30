@@ -15,6 +15,8 @@ export default function Ofertas() {
   const initialFilters = {
     destino: "",
     pais: "",
+    oferta: "",
+    ofertasSeleccionadas: [],
     precioMin: "",
     precioMax: "",
     desde: "",
@@ -41,6 +43,16 @@ export default function Ofertas() {
       });
     });
     return Array.from(names).sort((a, b) => a.localeCompare(b));
+  }, [ofertas]);
+
+  const ofertasDisponibles = useMemo(() => {
+    const titles = new Set();
+    ofertas.forEach((oferta) => {
+      if (oferta.titulo) {
+        titles.add(oferta.titulo);
+      }
+    });
+    return Array.from(titles).sort((a, b) => a.localeCompare(b));
   }, [ofertas]);
 
   const paises = useMemo(() => {
@@ -71,12 +83,19 @@ export default function Ofertas() {
   const ofertasFiltradas = useMemo(() => {
     const destinoQuery = filters.destino.toLowerCase();
     const paisQuery = filters.pais.toLowerCase();
+    const selectedOffers = filters.ofertasSeleccionadas.length
+      ? filters.ofertasSeleccionadas
+      : filters.oferta
+      ? [filters.oferta]
+      : [];
     const minFilter = parseAmount(filters.precioMin);
     const maxFilter = parseAmount(filters.precioMax);
     const desde = filters.desde ? new Date(filters.desde) : null;
     const hasta = filters.hasta ? new Date(filters.hasta) : null;
 
     return ofertasDestacadas.filter((oferta) => {
+      const matchesOferta =
+        !selectedOffers.length || selectedOffers.includes(oferta.titulo);
       const destinosAsociados = [
         oferta.destino,
         ...(oferta.destinos || []).map((item) => item.destino)
@@ -119,7 +138,7 @@ export default function Ofertas() {
         }
       }
 
-      return matchesDestino && matchesPais;
+      return matchesOferta && matchesDestino && matchesPais;
     });
   }, [ofertasDestacadas, filters]);
 
@@ -190,6 +209,26 @@ export default function Ofertas() {
             </select>
           </div>
           <div className="offers-field">
+            <label htmlFor="ofertas-selector">Oferta</label>
+            <select
+              id="ofertas-selector"
+              value={draftFilters.oferta}
+              onChange={(event) =>
+                setDraftFilters((prev) => ({
+                  ...prev,
+                  oferta: event.target.value
+                }))
+              }
+            >
+              <option value="">Todas</option>
+              {ofertasDisponibles.map((oferta) => (
+                <option key={oferta} value={oferta}>
+                  {oferta}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="offers-field">
             <label htmlFor="ofertas-min">Precio min</label>
             <input
               id="ofertas-min"
@@ -248,6 +287,31 @@ export default function Ofertas() {
                 }))
               }
             />
+          </div>
+          <div className="offers-field offers-field-full">
+            <span className="offers-field-title">Checklist de ofertas</span>
+            <div className="offers-checklist">
+              {ofertasDisponibles.map((oferta) => (
+                <label key={oferta} className="offers-check-item">
+                  <input
+                    type="checkbox"
+                    checked={draftFilters.ofertasSeleccionadas.includes(oferta)}
+                    onChange={(event) => {
+                      const { checked } = event.target;
+                      setDraftFilters((prev) => ({
+                        ...prev,
+                        ofertasSeleccionadas: checked
+                          ? [...prev.ofertasSeleccionadas, oferta]
+                          : prev.ofertasSeleccionadas.filter(
+                              (item) => item !== oferta
+                            )
+                      }));
+                    }}
+                  />
+                  <span>{oferta}</span>
+                </label>
+              ))}
+            </div>
           </div>
           <div className="offers-actions">
             <button className="primary" type="submit">
