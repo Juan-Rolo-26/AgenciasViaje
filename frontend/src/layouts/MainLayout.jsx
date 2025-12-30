@@ -21,7 +21,7 @@ export default function MainLayout() {
         id: "intro",
         role: "assistant",
         text:
-          "Hola, soy Topix. Estoy para ayudarte a planear tu proximo viaje con inteligencia artificial."
+          "Hola, soy Topix IA 👋 Trabajo con las ofertas reales de Topotours para ayudarte a elegir destino, fechas y presupuesto."
       }
     ],
     []
@@ -49,6 +49,80 @@ export default function MainLayout() {
   );
 
   const normalizeText = (value) => value.toLowerCase();
+
+  const monthMap = [
+    ["enero", 0],
+    ["febrero", 1],
+    ["marzo", 2],
+    ["abril", 3],
+    ["mayo", 4],
+    ["junio", 5],
+    ["julio", 6],
+    ["agosto", 7],
+    ["septiembre", 8],
+    ["setiembre", 8],
+    ["octubre", 9],
+    ["noviembre", 10],
+    ["diciembre", 11]
+  ];
+
+  const parseMonth = (value) => {
+    const found = monthMap.find(([name]) => value.includes(name));
+    if (!found) {
+      return null;
+    }
+    return { name: found[0], index: found[1] };
+  };
+
+  const parseDuration = (value) => {
+    const match = value.match(/(\d+)\s*(noches|noche|dias|días|dia|día)/);
+    if (match) {
+      return Number(match[1]);
+    }
+    if (value.includes("fin de semana")) {
+      return 2;
+    }
+    return null;
+  };
+
+  const parseTripStyle = (value) => {
+    if (value.includes("pareja") || value.includes("romant")) {
+      return "pareja";
+    }
+    if (value.includes("familia")) {
+      return "familia";
+    }
+    if (value.includes("amigos")) {
+      return "amigos";
+    }
+    if (value.includes("solo") || value.includes("sola")) {
+      return "solo";
+    }
+    return null;
+  };
+
+  const getOfferPriceAmount = (oferta) => {
+    const precio = getPrecioVigente(oferta.precios);
+    return parseAmount(precio?.precio);
+  };
+
+  const isMonthInRange = (startDate, endDate, monthIndex) => {
+    if (!(startDate instanceof Date) || Number.isNaN(startDate.getTime())) {
+      return false;
+    }
+    if (!(endDate instanceof Date) || Number.isNaN(endDate.getTime())) {
+      return false;
+    }
+    const startMonth = startDate.getMonth();
+    const endMonth = endDate.getMonth();
+    if (startMonth === endMonth) {
+      return startMonth === monthIndex;
+    }
+    if (startMonth < endMonth) {
+      return monthIndex >= startMonth && monthIndex <= endMonth;
+    }
+    return monthIndex >= startMonth || monthIndex <= endMonth;
+  };
 
   const parseBudget = (value) => {
     const match = value.match(/(\d[\d.,]*)/);
@@ -87,7 +161,34 @@ export default function MainLayout() {
       text.includes("oferta") ||
       text.includes("escapada") ||
       text.includes("paquete") ||
-      text.includes("viaje");
+      text.includes("viaje") ||
+      text.includes("viajar");
+    const wantsRecommendation =
+      text.includes("recomenda") ||
+      text.includes("suger") ||
+      text.includes("aconseja");
+
+    const budget = parseBudget(text);
+    const budgetTier =
+      text.includes("barato") || text.includes("economico")
+        ? "low"
+        : text.includes("premium") || text.includes("lujo")
+          ? "high"
+          : null;
+    const people = parsePeopleCount(text);
+    const isUSD = text.includes("usd") || text.includes("dolar");
+    const duration = parseDuration(text);
+    const month = parseMonth(text);
+    const tripStyle = parseTripStyle(text);
+
+    const matchedDestinos = destinosNombres.filter((destino) =>
+      text.includes(normalizeText(destino))
+    );
+    const matchedRegiones = destinosRegiones.filter((region) =>
+      text.includes(normalizeText(region))
+    );
+    const hasDestinationIntent =
+      matchedDestinos.length > 0 || matchedRegiones.length > 0;
 
     if (wantsDestinations && wantsAll) {
       if (!destinosNombres.length) {
@@ -113,16 +214,12 @@ export default function MainLayout() {
       return `Excursiones disponibles: ${sample}${extra}.`;
     }
 
-    if (wantsOffers || text.includes("precio")) {
-      const budget = parseBudget(text);
-      const people = parsePeopleCount(text);
-      const isUSD = text.includes("usd") || text.includes("dolar");
-      const matchedDestinos = destinosNombres.filter((destino) =>
-        text.includes(normalizeText(destino))
-      );
-      const matchedRegiones = destinosRegiones.filter((region) =>
-        text.includes(normalizeText(region))
-      );
+    if (
+      wantsOffers ||
+      text.includes("precio") ||
+      wantsRecommendation ||
+      hasDestinationIntent
+    ) {
       const wantsEuropa = text.includes("europa");
 
       let filtered = ofertas.filter((oferta) => oferta.activa !== false);
@@ -144,15 +241,92 @@ export default function MainLayout() {
         return "Por ahora no tengo ofertas para Europa. Queres que busque otra region?";
       }
 
+      if (duration) {
+        filtered = filtered.filter((oferta) => {
+          if (!oferta.noches) {
+            return true;
+          }
+          return Math.abs(oferta.noches - duration) <= 1;
+        });
+      }
+
+      if (month) {
+        filtered = filtered.filter((oferta) => {
+          if (!oferta.precios?.length) {
+            return false;
+          }
+          return oferta.precios.some((precio) => {
+            const startDate = new Date(precio.fechaInicio);
+            const endDate = new Date(precio.fechaFin);
+            return isMonthInRange(startDate, endDate, month.index);
+          });
+        });
+      }
+
       if (budget && !isUSD) {
         filtered = filtered.filter((oferta) => {
-          const precio = getPrecioVigente(oferta.precios);
-          const amount = parseAmount(precio?.precio);
+          const amount = getOfferPriceAmount(oferta);
           return amount !== null ? amount <= budget : true;
         });
       }
 
+      const sorted = [...filtered].sort((a, b) => {
+        const amountA = getOfferPriceAmount(a);
+        const amountB = getOfferPriceAmount(b);
+        if (amountA === null && amountB === null) {
+          return 0;
+        }
+        if (amountA === null) {
+          return 1;
+        }
+        if (amountB === null) {
+          return -1;
+        }
+        return amountA - amountB;
+      });
+
+      if (budgetTier === "low" && sorted.length > 2) {
+        const cutoff = Math.ceil(sorted.length / 3);
+        filtered = sorted.slice(0, cutoff);
+      } else if (budgetTier === "high" && sorted.length > 2) {
+        const cutoff = Math.floor(sorted.length / 3);
+        filtered = sorted.slice(cutoff);
+      } else {
+        filtered = sorted;
+      }
+
       if (!filtered.length) {
+        const fallback = ofertas
+          .filter((oferta) => oferta.activa !== false)
+          .sort((a, b) => {
+            const amountA = getOfferPriceAmount(a);
+            const amountB = getOfferPriceAmount(b);
+            if (amountA === null && amountB === null) {
+              return 0;
+            }
+            if (amountA === null) {
+              return 1;
+            }
+            if (amountB === null) {
+              return -1;
+            }
+            return amountA - amountB;
+          })
+          .slice(0, 3);
+
+        if (month) {
+          const monthLabel = month.name.charAt(0).toUpperCase() + month.name.slice(1);
+          return [
+            `No encontre disponibilidad exacta para ${monthLabel}.`,
+            fallback.length
+              ? `Te propongo alternativas similares: ${fallback
+                  .map((oferta) => oferta.titulo)
+                  .join(" · ")}.`
+              : "Si queres, puedo buscar en otras fechas o destinos.",
+            "Decime si queres ajustar presupuesto o fechas."
+          ].join("\n");
+        }
+
         return "No encontre ofertas con esos criterios. Queres que busque por otro destino o presupuesto?";
       }
 
@@ -161,22 +335,36 @@ export default function MainLayout() {
         const precioLabel = precio
           ? formatCurrency(precio.precio, precio.moneda)
           : "Precio a consultar";
-        return `${oferta.titulo} (${precioLabel})`;
+        const destinoLabels = getOfferDestinations(oferta)
+          .map((destino) => destino.nombre)
+          .filter(Boolean)
+          .join(" / ");
+        const nightsLabel = oferta.noches ? `${oferta.noches} noches` : "";
+        const detailParts = [destinoLabels, nightsLabel].filter(Boolean).join(" · ");
+        return `✈️ ${oferta.titulo}${detailParts ? ` (${detailParts})` : ""} — ${precioLabel}`;
       });
 
       const peopleNote = people ? ` para ${people} personas` : "";
+      const durationNote = duration ? ` de ${duration} dias` : "";
+      const monthNote = month ? ` en ${month.name}` : "";
+      const styleNote = tripStyle ? ` ideal para ${tripStyle}` : "";
+
       if (budget && isUSD) {
-        return `Encontre estas opciones${peopleNote}: ${sample.join(
-          " · "
-        )}. Los precios estan en ARS, si queres filtrar por presupuesto decime el monto en ARS.`;
+        return [
+          `Encontre estas opciones${peopleNote}${durationNote}${monthNote}${styleNote}:`,
+          sample.join("\n"),
+          "Los precios estan en ARS. Si queres, decime tu presupuesto en ARS para filtrar."
+        ].join("\n");
       }
 
-      return `Encontre estas opciones${peopleNote}: ${sample.join(
-        " · "
-      )}. Queres que te muestre mas detalles?`;
+      return [
+        `Encontre estas opciones${peopleNote}${durationNote}${monthNote}${styleNote}:`,
+        sample.join("\n"),
+        "Te paso mas detalles o coordinamos por WhatsApp?"
+      ].join("\n");
     }
 
-    return "Puedo ayudarte con destinos, ofertas o excursiones. Que te gustaria planear?";
+    return "Contame destino, fechas, presupuesto y con quien viajas. Asi puedo recomendarte opciones reales de la agencia.";
   };
 
   const toggleAssistant = () => {
