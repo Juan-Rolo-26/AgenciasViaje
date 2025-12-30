@@ -5,6 +5,62 @@ import { useTravelData } from "../hooks/useTravelData.js";
 import { formatCurrency, formatDate, getPrecioVigente } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
 
+const incluyeIconos = {
+  transporte: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="7" width="18" height="9" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M7 7V5H17V7" fill="none" stroke="currentColor" strokeWidth="2" />
+      <circle cx="7" cy="18" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17" cy="18" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  ),
+  alojamiento: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="11" width="18" height="6" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M7 11V8H11V11" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M3 17V20M21 17V20" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  ),
+  comida: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="12" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  ),
+  servicio: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 12a8 8 0 0 1 16 0" fill="none" stroke="currentColor" strokeWidth="2" />
+      <rect x="3" y="12" width="3" height="6" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
+      <rect x="18" y="12" width="3" height="6" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 18v2" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  ),
+  equipaje: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="6" y="7" width="12" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M9 7V5H15V7" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  ),
+  default: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 8v8M8 12h8" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  )
+};
+
+function getIncluyeIcon(tipo) {
+  const key = String(tipo || "").toLowerCase();
+  return incluyeIconos[key] || incluyeIconos.default;
+}
+
+function formatIncluyeTipo(tipo) {
+  if (!tipo) {
+    return "Incluye";
+  }
+  return tipo.charAt(0).toUpperCase() + tipo.slice(1);
+}
+
 export default function OfertaDetail() {
   const { slug } = useParams();
   const { ofertas, loading, error } = useTravelData();
@@ -88,7 +144,6 @@ export default function OfertaDetail() {
                 <span>Precio a consultar</span>
               )}
               <span>Noches: {oferta.noches}</span>
-              <span>Cupos: {oferta.cupos}</span>
             </div>
           </div>
         </div>
@@ -106,10 +161,14 @@ export default function OfertaDetail() {
           <article className="detail-card">
             <h3>Que incluye</h3>
             {oferta.incluyeItems?.length ? (
-              <ul className="detail-list">
+              <ul className="detail-list detail-list--icons">
                 {oferta.incluyeItems.map((item) => (
                   <li key={item.id}>
-                    {item.tipo}: {item.descripcion}
+                    <span className="detail-icon">{getIncluyeIcon(item.tipo)}</span>
+                    <span className="detail-list-text">
+                      <strong>{formatIncluyeTipo(item.tipo)}:</strong>{" "}
+                      {item.descripcion}
+                    </span>
                   </li>
                 ))}
               </ul>

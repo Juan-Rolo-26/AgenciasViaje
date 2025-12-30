@@ -56,6 +56,15 @@ export default function Destinos() {
 
   return (
     <main>
+      <section className="page-hero destinations-hero">
+        <div className="page-hero-inner">
+          <span className="page-hero-kicker">
+            Destinos <span className="topotours-word">Topotours</span>
+          </span>
+          <h2>Destinos inolvidables</h2>
+          <p>Elegí tu próxima aventura con propuestas a tu medida.</p>
+        </div>
+      </section>
       <section className="destinations-section" id="destinos">
         <form className="destinations-filters" onSubmit={handleApply}>
           <div className="destinations-field">
@@ -130,10 +139,6 @@ export default function Destinos() {
             </button>
           </div>
         </form>
-
-        <div className="section-header section-header-centered">
-          <h2>Destinos inolvidables</h2>
-        </div>
         {loading ? (
           <p className="section-state">Cargando destinos...</p>
         ) : error ? (

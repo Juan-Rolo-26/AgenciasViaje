@@ -16,6 +16,7 @@ export default function Home() {
   const [searchDestino, setSearchDestino] = useState("");
   const [searchDate, setSearchDate] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [searchTransporte, setSearchTransporte] = useState("");
   const [searchIndex, setSearchIndex] = useState(0);
 
   const ofertasDestacadas = useMemo(() => {
@@ -55,10 +56,45 @@ export default function Home() {
     return Array.from(names).sort((a, b) => a.localeCompare(b));
   }, [actividades]);
 
+  const normalizeText = (value) =>
+    (value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+  const getTransportType = (oferta) => {
+    const transporteItem = (oferta.incluyeItems || []).find(
+      (item) => (item.tipo || "").toLowerCase() === "transporte"
+    );
+    const texto = normalizeText(
+      `${transporteItem?.descripcion || ""} ${transporteItem?.tipo || ""} ${
+        oferta.condiciones || ""
+      } ${oferta.titulo || ""}`
+    ).trim();
+    if (
+      texto.includes("aereo") ||
+      texto.includes("avion") ||
+      texto.includes("vuelo") ||
+      texto.includes("flybondi")
+    ) {
+      return "avion";
+    }
+    if (
+      texto.includes("bus") ||
+      texto.includes("colectivo") ||
+      texto.includes("micro") ||
+      texto.includes("semicama")
+    ) {
+      return "colectivo";
+    }
+    return "";
+  };
+
   const searchResults = useMemo(() => {
     const destinoQuery = searchDestino.trim().toLowerCase();
     const textQuery = searchText.trim().toLowerCase();
     const selectedDate = searchDate ? new Date(searchDate) : null;
+    const transporteQuery = searchTransporte;
 
     const matchesDestino = (nombre) =>
       !destinoQuery || nombre.toLowerCase().includes(destinoQuery);
@@ -101,7 +137,10 @@ export default function Home() {
               return selectedDate >= inicio && selectedDate <= fin;
             })
           : true;
-        return matchesName && matchesText && matchesDate;
+        const matchesTransporte = transporteQuery
+          ? getTransportType(oferta) === transporteQuery
+          : true;
+        return matchesName && matchesText && matchesDate && matchesTransporte;
       });
     }
 
@@ -153,7 +192,10 @@ export default function Home() {
   }, [excursionesDestacadas]);
 
   const hasSearchFilters =
-    searchDestino.trim() || searchDate || searchText.trim();
+    searchDestino.trim() ||
+    searchDate ||
+    searchText.trim() ||
+    searchTransporte;
   const searchLabel =
     searchType === "destino"
       ? "Destinos"
@@ -176,14 +218,25 @@ export default function Home() {
     if (searchType === "destino") {
       setSearchText("");
       setSearchDate("");
+      setSearchTransporte("");
     } else {
       setSearchDestino("");
+      if (searchType !== "oferta") {
+        setSearchTransporte("");
+      }
     }
   }, [searchType]);
 
   useEffect(() => {
     setSearchIndex(0);
-  }, [searchType, searchDestino, searchDate, searchText, totalResults]);
+  }, [
+    searchType,
+    searchDestino,
+    searchDate,
+    searchText,
+    searchTransporte,
+    totalResults
+  ]);
 
   const goPrevResult = () => {
     if (!totalResults) {
@@ -202,7 +255,11 @@ export default function Home() {
   return (
     <main>
       <section className="hero hero-search" id="inicio">
-        <div className="hero-content">
+        <div
+          className={`hero-content${
+            searchType === "oferta" ? " hero-content--wide" : ""
+          }`}
+        >
           <p className="eyebrow">Viajes premium, compará y disfrutá</p>
           <h1>
             Tu próxima escapada empieza en{" "}
@@ -381,6 +438,70 @@ export default function Home() {
                     />
                   </div>
                 </div>
+                {searchType === "oferta" ? (
+                  <div className="filter-card filter-card-select">
+                    <span className="filter-card-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect
+                          x="3"
+                          y="7"
+                          width="18"
+                          height="10"
+                          rx="2"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="M7 7V5H17V7"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <circle
+                          cx="7"
+                          cy="18"
+                          r="2"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <circle
+                          cx="17"
+                          cy="18"
+                          r="2"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                      </svg>
+                    </span>
+                    <div className="filter-card-body">
+                      <label
+                        className="filter-card-label"
+                        htmlFor="search-transporte"
+                      >
+                        Transporte
+                      </label>
+                      <select
+                        id="search-transporte"
+                        className="filter-card-input"
+                        value={searchTransporte}
+                        onChange={(event) =>
+                          setSearchTransporte(event.target.value)
+                        }
+                      >
+                        <option value="">Todos</option>
+                        <option value="avion">Avion</option>
+                        <option value="colectivo">Colectivo</option>
+                      </select>
+                      <span
+                        className="filter-card-arrow"
+                        aria-hidden="true"
+                      ></span>
+                    </div>
+                  </div>
+                ) : null}
                 <div className="filter-card filter-card-select">
                   <span className="filter-card-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" aria-hidden="true">

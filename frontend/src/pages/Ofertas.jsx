@@ -16,6 +16,7 @@ export default function Ofertas() {
     destino: "",
     pais: "",
     oferta: "",
+    transporte: "",
     precioMin: "",
     precioMax: "",
     desde: "",
@@ -79,10 +80,45 @@ export default function Ofertas() {
     return Math.min(...amounts);
   };
 
+  const normalizeText = (value) =>
+    (value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+  const getTransportType = (oferta) => {
+    const transporteItem = (oferta.incluyeItems || []).find(
+      (item) => (item.tipo || "").toLowerCase() === "transporte"
+    );
+    const texto = normalizeText(
+      `${transporteItem?.descripcion || ""} ${transporteItem?.tipo || ""} ${
+        oferta.condiciones || ""
+      } ${oferta.titulo || ""}`
+    ).trim();
+    if (
+      texto.includes("aereo") ||
+      texto.includes("avion") ||
+      texto.includes("vuelo") ||
+      texto.includes("flybondi")
+    ) {
+      return "avion";
+    }
+    if (
+      texto.includes("bus") ||
+      texto.includes("colectivo") ||
+      texto.includes("micro") ||
+      texto.includes("semicama")
+    ) {
+      return "colectivo";
+    }
+    return "";
+  };
+
   const ofertasFiltradas = useMemo(() => {
     const destinoQuery = filters.destino.toLowerCase();
     const paisQuery = filters.pais.toLowerCase();
     const selectedOffers = filters.oferta ? [filters.oferta] : [];
+    const transporteQuery = filters.transporte;
     const minFilter = parseAmount(filters.precioMin);
     const maxFilter = parseAmount(filters.precioMax);
     const desde = filters.desde ? new Date(filters.desde) : null;
@@ -106,6 +142,13 @@ export default function Ofertas() {
           (destino) =>
             (destino.paisRegion || "").toLowerCase() === paisQuery
         );
+
+      if (transporteQuery) {
+        const transporte = getTransportType(oferta);
+        if (transporte !== transporteQuery) {
+          return false;
+        }
+      }
 
       const minPrice = getMinPrice(oferta.precios);
       if (minFilter !== null && (minPrice === null || minPrice < minFilter)) {
@@ -149,9 +192,9 @@ export default function Ofertas() {
 
   return (
     <main className="offers-page">
-      <section className="offers-hero">
-        <div className="offers-hero-inner">
-          <span className="offers-kicker">
+      <section className="offers-hero page-hero">
+        <div className="offers-hero-inner page-hero-inner">
+          <span className="offers-kicker page-hero-kicker">
             Ofertas <span className="topotours-word">Topotours</span>
           </span>
           <h1>Encontra tu proximo viaje</h1>
@@ -224,6 +267,23 @@ export default function Ofertas() {
             </select>
           </div>
           <div className="offers-field">
+            <label htmlFor="ofertas-transporte">Transporte</label>
+            <select
+              id="ofertas-transporte"
+              value={draftFilters.transporte}
+              onChange={(event) =>
+                setDraftFilters((prev) => ({
+                  ...prev,
+                  transporte: event.target.value
+                }))
+              }
+            >
+              <option value="">Todos</option>
+              <option value="avion">Avion</option>
+              <option value="colectivo">Colectivo</option>
+            </select>
+          </div>
+          <div className="offers-field">
             <label htmlFor="ofertas-min">Precio min</label>
             <input
               id="ofertas-min"
@@ -293,10 +353,6 @@ export default function Ofertas() {
           </div>
         </form>
 
-        <div className="section-header">
-          <h2>Ofertas disponibles</h2>
-          <p>Promos con fechas flexibles y beneficios exclusivos.</p>
-        </div>
         {loading ? (
           <p className="section-state">Cargando ofertas...</p>
         ) : error ? (

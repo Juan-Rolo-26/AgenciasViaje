@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
-import { formatDate } from "../utils/formatters.js";
+import { formatCurrency, formatDate } from "../utils/formatters.js";
+import { getOfferImages } from "../utils/offerImages.js";
 
 export default function Calendario() {
   const { ofertas, destinos, loading } = useTravelData();
@@ -10,6 +12,7 @@ export default function Calendario() {
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
   const [searchText, setSearchText] = useState("");
+  const [monthOfferIndex, setMonthOfferIndex] = useState(0);
 
   const normalizeDate = (value) => {
     const date = new Date(value);
@@ -22,14 +25,20 @@ export default function Calendario() {
 
   const eventos = useMemo(() => {
     return ofertas.flatMap((oferta) =>
-      (oferta.precios || []).map((precio) => ({
-        id: `${oferta.id}-${precio.id}`,
-        titulo: oferta.titulo,
-        fechaInicio: normalizeDate(precio.fechaInicio),
-        fechaFin: normalizeDate(precio.fechaFin),
-        destino: oferta.destino?.nombre || "",
-        slug: oferta.slug || oferta.id
-      }))
+      (oferta.precios || []).map((precio) => {
+        const images = getOfferImages(oferta);
+        return {
+          id: `${oferta.id}-${precio.id}`,
+          titulo: oferta.titulo,
+          fechaInicio: normalizeDate(precio.fechaInicio),
+          fechaFin: normalizeDate(precio.fechaFin),
+          destino: oferta.destino?.nombre || "",
+          slug: oferta.slug || oferta.id,
+          imagen: images[0] || oferta.destino?.imagenPortada || "",
+          precio: precio.precio,
+          moneda: precio.moneda
+        };
+      })
     );
   }, [ofertas]);
 
@@ -113,10 +122,22 @@ export default function Calendario() {
   }, [eventosFiltrados, gridDays, gridStart, gridEnd]);
 
   const eventosDelMes = useMemo(() => {
-    return eventosFiltrados.filter(
-      (evento) => evento.fechaFin >= monthStart && evento.fechaInicio <= monthEnd
-    );
+    return eventosFiltrados
+      .filter(
+        (evento) =>
+          evento.fechaFin >= monthStart && evento.fechaInicio <= monthEnd
+      )
+      .sort((a, b) => a.fechaInicio - b.fechaInicio);
   }, [eventosFiltrados, monthStart, monthEnd]);
+
+  const totalEventosMes = eventosDelMes.length;
+  const eventoMesActual = totalEventosMes
+    ? eventosDelMes[monthOfferIndex % totalEventosMes]
+    : null;
+
+  useEffect(() => {
+    setMonthOfferIndex(0);
+  }, [currentMonth, totalEventosMes, searchText]);
 
   const handlePrevMonth = () => {
     setCurrentMonth(
@@ -128,6 +149,20 @@ export default function Calendario() {
     setCurrentMonth(
       (prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1)
     );
+  };
+
+  const handlePrevMonthOffer = () => {
+    if (!totalEventosMes) {
+      return;
+    }
+    setMonthOfferIndex((prev) => (prev - 1 + totalEventosMes) % totalEventosMes);
+  };
+
+  const handleNextMonthOffer = () => {
+    if (!totalEventosMes) {
+      return;
+    }
+    setMonthOfferIndex((prev) => (prev + 1) % totalEventosMes);
   };
 
   return (
@@ -231,39 +266,99 @@ export default function Calendario() {
                         key={key}
                       >
                         <span className="calendar-date">{day.getDate()}</span>
-                        {eventosDia.length ? (
-                          <span className="calendar-count">
-                            {eventosDia.length}
-                          </span>
-                        ) : null}
                       </div>
                     );
                   })}
                 </div>
               </div>
               <div className="calendar-month-offers">
-                <h4>Ofertas del mes</h4>
-                {eventosDelMes.length ? (
-                  <div className="calendar-offer-list">
-                    {eventosDelMes.map((evento) => (
-                      <Link
-                        key={evento.id}
-                        className="calendar-offer-item"
-                        to={`/ofertas/${evento.slug}`}
+                <div className="calendar-offer-header">
+                  <h4>Ofertas del mes</h4>
+                </div>
+                {eventoMesActual ? (
+                  <>
+                    <div className="calendar-offer-carousel">
+                      <button
+                        className={`search-results-nav${
+                          totalEventosMes > 1 ? "" : " is-hidden"
+                        }`}
+                        type="button"
+                        onClick={handlePrevMonthOffer}
+                        aria-label="Oferta anterior"
                       >
-                        <span className="calendar-offer-title">
-                          {evento.titulo}
-                        </span>
-                        <span className="calendar-offer-dates">
-                          {formatDate(evento.fechaInicio)} -{" "}
-                          {formatDate(evento.fechaFin)}
-                        </span>
-                        <span className="calendar-offer-destination">
-                          {evento.destino || "Destino confirmado"}
-                        </span>
+                        <svg
+                          className="search-results-nav-icon"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M15 6l-6 6 6 6"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                      <Link
+                        key={eventoMesActual.id}
+                        className="calendar-offer-item calendar-offer-item--media"
+                        to={`/ofertas/${eventoMesActual.slug}`}
+                        style={{
+                          backgroundImage: `url("${
+                            eventoMesActual.imagen || fallbackDeal
+                          }")`
+                        }}
+                      >
+                        <div className="calendar-offer-overlay"></div>
+                        <div className="calendar-offer-content">
+                          <span className="calendar-offer-title">
+                            {eventoMesActual.titulo}
+                          </span>
+                          <span className="calendar-offer-price">
+                            {eventoMesActual.precio
+                              ? formatCurrency(
+                                  eventoMesActual.precio,
+                                  eventoMesActual.moneda
+                                )
+                              : "Precio a consultar"}
+                          </span>
+                          <span className="calendar-offer-destination">
+                            {eventoMesActual.destino || "Destino confirmado"}
+                          </span>
+                        </div>
                       </Link>
-                    ))}
-                  </div>
+                      <button
+                        className={`search-results-nav${
+                          totalEventosMes > 1 ? "" : " is-hidden"
+                        }`}
+                        type="button"
+                        onClick={handleNextMonthOffer}
+                        aria-label="Oferta siguiente"
+                      >
+                        <svg
+                          className="search-results-nav-icon"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M9 6l6 6-6 6"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    {totalEventosMes > 1 ? (
+                      <div className="calendar-offer-count">
+                        {monthOfferIndex + 1} / {totalEventosMes}
+                      </div>
+                    ) : null}
+                  </>
                 ) : (
                   <p>No hay ofertas activas este mes.</p>
                 )}

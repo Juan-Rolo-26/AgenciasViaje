@@ -13,11 +13,16 @@ export default function Excursiones() {
 
   return (
     <main>
-      <section className="grid-section">
-        <div className="section-header">
+      <section className="page-hero excursions-hero">
+        <div className="page-hero-inner">
+          <span className="page-hero-kicker">
+            Excursiones <span className="topotours-word">Topotours</span>
+          </span>
           <h2>Excursiones que suman experiencia</h2>
           <p>Sumá tours, aventura y sabores locales al viaje que elijas.</p>
         </div>
+      </section>
+      <section className="grid-section excursions-section">
         {loading ? (
           <p className="section-state">Cargando excursiones...</p>
         ) : error ? (

@@ -49,23 +49,24 @@ export default function DestinoDetail() {
     }
     const images = [];
     const seen = new Set();
+    const portada = destino.imagenPortada;
     const addImage = (value) => {
-      if (!value || seen.has(value)) {
+      if (!value || value === portada || seen.has(value)) {
         return;
       }
       seen.add(value);
       images.push(value);
     };
 
-    addImage(destino.imagenPortada);
-
     if (Array.isArray(destino.galeria)) {
       destino.galeria.forEach((item) => addImage(item.imagen));
     }
 
-    actividadesDestino.forEach((actividad) => {
-      addImage(actividad.imagenPortada);
-    });
+    if (images.length < 2) {
+      actividadesDestino.forEach((actividad) => {
+        addImage(actividad.imagenPortada);
+      });
+    }
 
     if (!images.length) {
       images.push(fallbackDeal);
@@ -127,7 +128,7 @@ export default function DestinoDetail() {
       </section>
 
       <section className="destination-photos">
-        {galleryImages.slice(0, 2).map((image, index) => (
+        {galleryImages.slice(0, 3).map((image, index) => (
           <div className="destination-photo-card" key={`${image}-${index}`}>
             <img src={image} alt={`${destino.nombre} ${index + 1}`} />
           </div>

@@ -8,6 +8,9 @@ export function parseAmount(value) {
   if (value === null || value === undefined) {
     return null;
   }
+  if (typeof value === "string" && value.trim() === "") {
+    return null;
+  }
   const parsed =
     typeof value === "number" ? value : Number(String(value).replace(",", "."));
   return Number.isFinite(parsed) ? parsed : null;
@@ -28,7 +31,12 @@ export function formatDate(value) {
   if (!value) {
     return "";
   }
-  return new Date(value).toLocaleDateString("es-AR");
+  return new Date(value).toLocaleDateString("es-AR", { timeZone: "UTC" });
+}
+
+function toUtcDateOnly(value) {
+  const date = new Date(value);
+  return Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
 }
 
 export function getPrecioVigente(precios = []) {
@@ -36,10 +44,11 @@ export function getPrecioVigente(precios = []) {
     return null;
   }
   const hoy = new Date();
+  const hoyUtc = Date.UTC(hoy.getUTCFullYear(), hoy.getUTCMonth(), hoy.getUTCDate());
   const vigente = precios.find((precio) => {
-    const inicio = new Date(precio.fechaInicio);
-    const fin = new Date(precio.fechaFin);
-    return hoy >= inicio && hoy <= fin;
+    const inicio = toUtcDateOnly(precio.fechaInicio);
+    const fin = toUtcDateOnly(precio.fechaFin);
+    return hoyUtc >= inicio && hoyUtc <= fin;
   });
   if (vigente) {
     return vigente;
