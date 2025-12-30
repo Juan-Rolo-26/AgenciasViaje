@@ -156,9 +156,7 @@ export default function Home() {
       : searchType === "oferta"
       ? "/ofertas"
       : "/excursiones";
-  const searchSubtitle = searchDestino.trim()
-    ? `Mostrando ${searchDestino.trim()}.`
-    : "Resultados según tu búsqueda.";
+  const searchSubtitle = "Resultados según tu búsqueda.";
   const totalResults = searchResults.length;
   const currentResult = totalResults
     ? searchResults[searchIndex % totalResults]
@@ -435,7 +433,20 @@ export default function Home() {
                       onClick={goPrevResult}
                       aria-label="Resultado anterior"
                     >
-                      {"<"}
+                      <svg
+                        className="search-results-nav-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M15 6l-6 6 6 6"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </button>
                     {currentResult ? (() => {
                       if (searchType === "destino") {
@@ -534,7 +545,20 @@ export default function Home() {
                       onClick={goNextResult}
                       aria-label="Siguiente resultado"
                     >
-                      {">"}
+                      <svg
+                        className="search-results-nav-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M9 6l6 6-6 6"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </button>
                   </div>
                   {totalResults > 1 ? (
@@ -566,35 +590,33 @@ export default function Home() {
         ) : destinos.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
-          <div className="destination-carousel">
-            <div className="destination-track">
-              {loopDestinos.map((destino, index) => {
-                const destinoSlug = destino.slug || destino.id;
-                return (
-                  <Link
-                    className="tile destination-card"
-                    key={`${destino.id}-${index}`}
-                    to={`/destinos/${destinoSlug}`}
-                    aria-label={`Ver destino ${destino.nombre}`}
-                  >
-                    <div
-                      className="tile-image"
-                      style={{
-                        backgroundImage: destino.imagenPortada
-                          ? `url("${destino.imagenPortada}")`
-                          : `url("${fallbackDeal}")`
-                      }}
-                    ></div>
-                    <div className="tile-content">
-                      <h4>{destino.nombre}</h4>
-                      <span className="destination-meta">
-                        {destino.paisRegion || "Destino"}
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+          <div className="destination-grid grid-3x3">
+            {destinos.map((destino) => {
+              const destinoSlug = destino.slug || destino.id;
+              return (
+                <Link
+                  className="tile destination-card"
+                  key={destino.id}
+                  to={`/destinos/${destinoSlug}`}
+                  aria-label={`Ver destino ${destino.nombre}`}
+                >
+                  <div
+                    className="tile-image"
+                    style={{
+                      backgroundImage: destino.imagenPortada
+                        ? `url("${destino.imagenPortada}")`
+                        : `url("${fallbackDeal}")`
+                    }}
+                  ></div>
+                  <div className="tile-content">
+                    <h4>{destino.nombre}</h4>
+                    <span className="destination-meta">
+                      {destino.paisRegion || "Destino"}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </section>
