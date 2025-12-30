@@ -156,9 +156,7 @@ export default function Home() {
       : searchType === "oferta"
       ? "/ofertas"
       : "/excursiones";
-  const searchSubtitle = searchDestino.trim()
-    ? `Mostrando ${searchDestino.trim()}.`
-    : "Resultados según tu búsqueda.";
+  const searchSubtitle = "Resultados según tu búsqueda.";
   const totalResults = searchResults.length;
   const currentResult = totalResults
     ? searchResults[searchIndex % totalResults]
