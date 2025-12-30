@@ -360,6 +360,7 @@ section[id] {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #7a8aa8;
+  text-align: left;
 }
 
 .filter-card-input {
