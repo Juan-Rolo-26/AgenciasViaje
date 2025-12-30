@@ -15,8 +15,8 @@
 }
 
 @font-face {
-  font-family: "Gorge";
-  src: url("./GORGE%20%26%20ASH.ttf") format("truetype");
+  font-family: "GORGE";
+  src: url("./GORGE.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -109,7 +109,7 @@ body {
 }
 
 .brand-name {
-  font-family: "Gorge", "Playfair Display", serif;
+  font-family: "GORGE", "Playfair Display", serif;
   font-weight: 400;
   font-size: 1.28rem;
   color: var(--violet-900);
@@ -122,12 +122,12 @@ body {
 }
 
 .brand-word {
-  font-family: "Gorge", "Playfair Display", serif;
+  font-family: "GORGE", "Playfair Display", serif;
   letter-spacing: 1px;
 }
 
 .topotours-word {
-  font-family: "Gorge", "Playfair Display", serif;
+  font-family: "GORGE", "Playfair Display", serif;
   font-weight: 400;
   letter-spacing: 1px;
 }
@@ -360,6 +360,7 @@ section[id] {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #7a8aa8;
+  text-align: left;
 }
 
 .filter-card-input {
@@ -971,7 +972,16 @@ section[id] {
 }
 
 .destination-card::after {
-  content: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.1) 0%,
+    rgba(15, 23, 42, 0.45) 55%,
+    rgba(15, 23, 42, 0.78) 100%
+  );
+  z-index: 1;
 }
 
 .destination-card .tile-image {
@@ -1009,8 +1019,11 @@ section[id] {
 }
 
 .destination-meta {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
   text-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
 }
 
