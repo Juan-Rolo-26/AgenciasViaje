@@ -19,6 +19,12 @@ export default function Destinos() {
     ).sort((a, b) => a.localeCompare(b));
   }, [destinos]);
 
+  const destinosDisponibles = useMemo(() => {
+    return Array.from(
+      new Set(destinos.map((destino) => destino.nombre).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b));
+  }, [destinos]);
+
   const destinosFiltrados = useMemo(() => {
     const query = filters.query.trim().toLowerCase();
     return destinos.filter((destino) => {
@@ -74,10 +80,9 @@ export default function Destinos() {
           </div>
 
           <div className="destinations-field grow">
-            <label htmlFor="destinos-buscar">Buscar</label>
-            <input
+            <label htmlFor="destinos-buscar">Destino</label>
+            <select
               id="destinos-buscar"
-              placeholder="Patagonia, Caribe, Europa..."
               value={draftFilters.query}
               onChange={(event) =>
                 setDraftFilters((prev) => ({
@@ -85,7 +90,14 @@ export default function Destinos() {
                   query: event.target.value
                 }))
               }
-            />
+            >
+              <option value="">Todos</option>
+              {destinosDisponibles.map((destino) => (
+                <option key={destino} value={destino}>
+                  {destino}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="destinations-field">
@@ -119,9 +131,8 @@ export default function Destinos() {
           </div>
         </form>
 
-        <div className="section-header">
+        <div className="section-header section-header-centered">
           <h2>Destinos inolvidables</h2>
-          <p>Inspiracion para tu proxima aventura con guias y tips locales.</p>
         </div>
         {loading ? (
           <p className="section-state">Cargando destinos...</p>

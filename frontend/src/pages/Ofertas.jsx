@@ -16,7 +16,6 @@ export default function Ofertas() {
     destino: "",
     pais: "",
     oferta: "",
-    ofertasSeleccionadas: [],
     precioMin: "",
     precioMax: "",
     desde: "",
@@ -83,11 +82,7 @@ export default function Ofertas() {
   const ofertasFiltradas = useMemo(() => {
     const destinoQuery = filters.destino.toLowerCase();
     const paisQuery = filters.pais.toLowerCase();
-    const selectedOffers = filters.ofertasSeleccionadas.length
-      ? filters.ofertasSeleccionadas
-      : filters.oferta
-      ? [filters.oferta]
-      : [];
+    const selectedOffers = filters.oferta ? [filters.oferta] : [];
     const minFilter = parseAmount(filters.precioMin);
     const maxFilter = parseAmount(filters.precioMax);
     const desde = filters.desde ? new Date(filters.desde) : null;
@@ -287,31 +282,6 @@ export default function Ofertas() {
                 }))
               }
             />
-          </div>
-          <div className="offers-field offers-field-full">
-            <span className="offers-field-title">Checklist de ofertas</span>
-            <div className="offers-checklist">
-              {ofertasDisponibles.map((oferta) => (
-                <label key={oferta} className="offers-check-item">
-                  <input
-                    type="checkbox"
-                    checked={draftFilters.ofertasSeleccionadas.includes(oferta)}
-                    onChange={(event) => {
-                      const { checked } = event.target;
-                      setDraftFilters((prev) => ({
-                        ...prev,
-                        ofertasSeleccionadas: checked
-                          ? [...prev.ofertasSeleccionadas, oferta]
-                          : prev.ofertasSeleccionadas.filter(
-                              (item) => item !== oferta
-                            )
-                      }));
-                    }}
-                  />
-                  <span>{oferta}</span>
-                </label>
-              ))}
-            </div>
           </div>
           <div className="offers-actions">
             <button className="primary" type="submit">

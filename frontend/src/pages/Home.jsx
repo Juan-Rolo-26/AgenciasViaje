@@ -18,19 +18,41 @@ export default function Home() {
   const [searchText, setSearchText] = useState("");
   const [searchIndex, setSearchIndex] = useState(0);
 
-  const destinosDestacados = useMemo(() => {
-    const destacados = destinos.filter((destino) => destino.destacado);
-    return (destacados.length ? destacados : destinos).slice(0, 6);
-  }, [destinos]);
-
   const ofertasDestacadas = useMemo(() => {
     const destacadas = ofertas.filter((oferta) => oferta.destacada);
     return (destacadas.length ? destacadas : ofertas).slice(0, 6);
   }, [ofertas]);
 
+  const ofertasDisponibles = useMemo(() => {
+    const titles = new Set();
+    ofertas.forEach((oferta) => {
+      if (oferta.titulo) {
+        titles.add(oferta.titulo);
+      }
+    });
+    return Array.from(titles).sort((a, b) => a.localeCompare(b));
+  }, [ofertas]);
+
+  const loopDestinos = useMemo(() => {
+    if (!destinos.length) {
+      return [];
+    }
+    return [...destinos, ...destinos];
+  }, [destinos]);
+
   const excursionesDestacadas = useMemo(() => {
     const destacadas = actividades.filter((actividad) => actividad.destacada);
     return (destacadas.length ? destacadas : actividades).slice(0, 6);
+  }, [actividades]);
+
+  const excursionesDisponibles = useMemo(() => {
+    const names = new Set();
+    actividades.forEach((actividad) => {
+      if (actividad.nombre) {
+        names.add(actividad.nombre);
+      }
+    });
+    return Array.from(names).sort((a, b) => a.localeCompare(b));
   }, [actividades]);
 
   const searchResults = useMemo(() => {
@@ -105,18 +127,6 @@ export default function Home() {
     searchText,
     searchType
   ]);
-
-  const loopDestinos = useMemo(() => {
-    if (!destinosDestacados.length) {
-      return [];
-    }
-    const base = [];
-    while (base.length < 6) {
-      base.push(...destinosDestacados);
-    }
-    const trimmed = base.slice(0, 6);
-    return [...trimmed, ...trimmed];
-  }, [destinosDestacados]);
 
   const loopOfertas = useMemo(() => {
     if (!ofertasDestacadas.length) {
@@ -208,7 +218,7 @@ export default function Home() {
           >
             {searchType === "destino" ? (
               <>
-                <div className="filter-card">
+                <div className="filter-card filter-card-select">
                   <span className="filter-card-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
@@ -231,19 +241,20 @@ export default function Home() {
                     <label className="filter-card-label" htmlFor="search-destino">
                       Destino
                     </label>
-                    <input
+                    <select
                       id="search-destino"
                       className="filter-card-input"
-                      list="destinos-list"
-                      placeholder="Elegí un destino"
                       value={searchDestino}
                       onChange={(event) => setSearchDestino(event.target.value)}
-                    />
-                    <datalist id="destinos-list">
+                    >
+                      <option value="">Todos</option>
                       {destinos.map((destino) => (
-                        <option key={destino.id} value={destino.nombre} />
+                        <option key={destino.id} value={destino.nombre}>
+                          {destino.nombre}
+                        </option>
                       ))}
-                    </datalist>
+                    </select>
+                    <span className="filter-card-arrow" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div className="filter-card filter-card-select">
@@ -286,7 +297,7 @@ export default function Home() {
               </>
             ) : (
               <>
-                <div className="filter-card">
+                <div className="filter-card filter-card-select">
                   <span className="filter-card-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <circle
@@ -312,17 +323,27 @@ export default function Home() {
                         ? "Qué querés buscar"
                         : "Excursión"}
                     </label>
-                    <input
+                    <select
                       id="search-text"
                       className="filter-card-input"
-                      placeholder={
-                        searchType === "oferta"
-                          ? "Ej: Promo a Bariloche, Iguazú"
-                          : "Ej: City tour, Cataratas"
-                      }
                       value={searchText}
                       onChange={(event) => setSearchText(event.target.value)}
-                    />
+                    >
+                      <option value="">
+                        {searchType === "oferta"
+                          ? "Todas las ofertas"
+                          : "Todas las excursiones"}
+                      </option>
+                      {(searchType === "oferta"
+                        ? ofertasDisponibles
+                        : excursionesDisponibles
+                      ).map((item) => (
+                        <option key={item} value={item}>
+                          {item}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="filter-card-arrow" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div className="filter-card">
@@ -590,33 +611,58 @@ export default function Home() {
         ) : destinos.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
-          <div className="destination-grid grid-3x3">
-            {destinos.map((destino) => {
-              const destinoSlug = destino.slug || destino.id;
-              return (
-                <Link
-                  className="tile destination-card"
-                  key={destino.id}
-                  to={`/destinos/${destinoSlug}`}
-                  aria-label={`Ver destino ${destino.nombre}`}
-                >
-                  <div
-                    className="tile-image"
-                    style={{
-                      backgroundImage: destino.imagenPortada
-                        ? `url("${destino.imagenPortada}")`
-                        : `url("${fallbackDeal}")`
-                    }}
-                  ></div>
-                  <div className="tile-content">
-                    <h4>{destino.nombre}</h4>
-                    <span className="destination-meta">
-                      {destino.paisRegion || "Destino"}
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
+          <div className="offer-carousel">
+            <div className="offer-track">
+              {loopDestinos.map((destino, index) => {
+                const destinoSlug = destino.slug || destino.id;
+                const descripcion =
+                  destino.descripcionCorta || "Descubrí este destino.";
+                const galeriaImages = Array.isArray(destino.galeria)
+                  ? destino.galeria
+                      .map((item) =>
+                        typeof item === "string" ? item : item?.imagen
+                      )
+                      .filter(Boolean)
+                      .slice(0, 2)
+                  : [];
+                return (
+                  <Link
+                    className="offer-card offer-card-feature offer-link"
+                    key={`${destino.id}-${index}`}
+                    to={`/destinos/${destinoSlug}`}
+                    aria-label={`Ver destino ${destino.nombre}`}
+                  >
+                    <div className="offer-image">
+                      <img
+                        className="offer-image-main"
+                        src={destino.imagenPortada || fallbackDeal}
+                        alt={destino.nombre}
+                      />
+                      {galeriaImages.length ? (
+                        <div className="offer-image-stack">
+                          {galeriaImages.map((image, imageIndex) => (
+                            <img
+                              key={`${destino.id}-home-${imageIndex}`}
+                              src={image}
+                              alt={`${destino.nombre} ${imageIndex + 2}`}
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="offer-body">
+                      <div className="offer-header">
+                        <span className="offer-tag">
+                          {destino.paisRegion || "Destino"}
+                        </span>
+                        <h3>{destino.nombre}</h3>
+                      </div>
+                      <p className="offer-description">{descripcion}</p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         )}
       </section>

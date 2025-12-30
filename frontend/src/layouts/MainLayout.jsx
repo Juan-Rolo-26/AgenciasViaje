@@ -1,14 +1,219 @@
+import { useMemo, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { useTravelData } from "../hooks/useTravelData.js";
+import { formatCurrency, getPrecioVigente, parseAmount } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 
 const navLinkClass = ({ isActive }) =>
   `nav-item${isActive ? " active" : ""}`;
 
 export default function MainLayout() {
+  const { destinos, ofertas, actividades, loading: travelLoading } =
+    useTravelData();
   const asesorWhatsappLink = getWhatsappLink(
     "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
   );
+  const [assistantOpen, setAssistantOpen] = useState(false);
+  const initialMessages = useMemo(
+    () => [
+      {
+        id: "intro",
+        role: "assistant",
+        text:
+          "Hola, soy Topix. Estoy para ayudarte a planear tu proximo viaje con inteligencia artificial."
+      }
+    ],
+    []
+  );
+  const [assistantMessages, setAssistantMessages] =
+    useState(initialMessages);
+  const [assistantDraft, setAssistantDraft] = useState("");
+  const promptMessage =
+    "Decime destino, fechas y cantidad de pasajeros para empezar.";
+
+  const destinosNombres = useMemo(
+    () => destinos.map((destino) => destino.nombre).filter(Boolean),
+    [destinos]
+  );
+  const destinosRegiones = useMemo(
+    () =>
+      Array.from(
+        new Set(destinos.map((destino) => destino.paisRegion).filter(Boolean))
+      ),
+    [destinos]
+  );
+  const actividadesNombres = useMemo(
+    () => actividades.map((actividad) => actividad.nombre).filter(Boolean),
+    [actividades]
+  );
+
+  const normalizeText = (value) => value.toLowerCase();
+
+  const parseBudget = (value) => {
+    const match = value.match(/(\d[\d.,]*)/);
+    if (!match) {
+      return null;
+    }
+    const cleaned = match[1].replace(/[^\d]/g, "");
+    if (!cleaned) {
+      return null;
+    }
+    return Number(cleaned);
+  };
+
+  const parsePeopleCount = (value) => {
+    const match = value.match(/(\d+)\s*(personas|pasajeros|personas?)/);
+    return match ? Number(match[1]) : null;
+  };
+
+  const getOfferDestinations = (oferta) =>
+    [oferta.destino, ...(oferta.destinos || []).map((item) => item.destino)].filter(
+      Boolean
+    );
+
+  const buildAssistantReply = (message) => {
+    if (travelLoading) {
+      return "Estoy cargando los datos del viaje. Proba de nuevo en unos segundos.";
+    }
+
+    const text = normalizeText(message);
+    const wantsDestinations =
+      text.includes("destinos") || text.includes("lugares");
+    const wantsAll = text.includes("todos") || text.includes("todas");
+    const wantsExcursions =
+      text.includes("excursion") || text.includes("actividad");
+    const wantsOffers =
+      text.includes("oferta") ||
+      text.includes("escapada") ||
+      text.includes("paquete") ||
+      text.includes("viaje");
+
+    if (wantsDestinations && wantsAll) {
+      if (!destinosNombres.length) {
+        return "Todavia no tengo destinos cargados.";
+      }
+      const sample = destinosNombres.slice(0, 12).join(", ");
+      const extra =
+        destinosNombres.length > 12
+          ? ` y ${destinosNombres.length - 12} mas`
+          : "";
+      return `Destinos disponibles: ${sample}${extra}. Podes verlos todos en /destinos.`;
+    }
+
+    if (wantsExcursions) {
+      if (!actividadesNombres.length) {
+        return "Todavia no tengo excursiones cargadas.";
+      }
+      const sample = actividadesNombres.slice(0, 10).join(", ");
+      const extra =
+        actividadesNombres.length > 10
+          ? ` y ${actividadesNombres.length - 10} mas`
+          : "";
+      return `Excursiones disponibles: ${sample}${extra}.`;
+    }
+
+    if (wantsOffers || text.includes("precio")) {
+      const budget = parseBudget(text);
+      const people = parsePeopleCount(text);
+      const isUSD = text.includes("usd") || text.includes("dolar");
+      const matchedDestinos = destinosNombres.filter((destino) =>
+        text.includes(normalizeText(destino))
+      );
+      const matchedRegiones = destinosRegiones.filter((region) =>
+        text.includes(normalizeText(region))
+      );
+      const wantsEuropa = text.includes("europa");
+
+      let filtered = ofertas.filter((oferta) => oferta.activa !== false);
+      if (matchedDestinos.length || matchedRegiones.length) {
+        filtered = filtered.filter((oferta) => {
+          const destinosOferta = getOfferDestinations(oferta);
+          return destinosOferta.some((destino) => {
+            const nombre = normalizeText(destino.nombre || "");
+            const region = normalizeText(destino.paisRegion || "");
+            return (
+              matchedDestinos.some((match) => normalizeText(match) === nombre) ||
+              matchedRegiones.some((match) => normalizeText(match) === region)
+            );
+          });
+        });
+      }
+
+      if (wantsEuropa && !matchedDestinos.length && !matchedRegiones.length) {
+        return "Por ahora no tengo ofertas para Europa. Queres que busque otra region?";
+      }
+
+      if (budget && !isUSD) {
+        filtered = filtered.filter((oferta) => {
+          const precio = getPrecioVigente(oferta.precios);
+          const amount = parseAmount(precio?.precio);
+          return amount !== null ? amount <= budget : true;
+        });
+      }
+
+      if (!filtered.length) {
+        return "No encontre ofertas con esos criterios. Queres que busque por otro destino o presupuesto?";
+      }
+
+      const sample = filtered.slice(0, 3).map((oferta) => {
+        const precio = getPrecioVigente(oferta.precios);
+        const precioLabel = precio
+          ? formatCurrency(precio.precio, precio.moneda)
+          : "Precio a consultar";
+        return `${oferta.titulo} (${precioLabel})`;
+      });
+
+      const peopleNote = people ? ` para ${people} personas` : "";
+      if (budget && isUSD) {
+        return `Encontre estas opciones${peopleNote}: ${sample.join(
+          " · "
+        )}. Los precios estan en ARS, si queres filtrar por presupuesto decime el monto en ARS.`;
+      }
+
+      return `Encontre estas opciones${peopleNote}: ${sample.join(
+        " · "
+      )}. Queres que te muestre mas detalles?`;
+    }
+
+    return "Puedo ayudarte con destinos, ofertas o excursiones. Que te gustaria planear?";
+  };
+
+  const toggleAssistant = () => {
+    setAssistantOpen((prev) => {
+      if (!prev) {
+        setAssistantMessages((messages) =>
+          messages.filter((message) => message.text !== promptMessage)
+        );
+      }
+      return !prev;
+    });
+  };
+
+  const closeAssistant = () => {
+    setAssistantOpen(false);
+  };
+
+  const resetAssistant = () => {
+    setAssistantMessages(initialMessages);
+    setAssistantDraft("");
+  };
+
+  const handleAssistantSubmit = (event) => {
+    event.preventDefault();
+    const message = assistantDraft.trim();
+    if (!message) {
+      return;
+    }
+    const stamp = Date.now();
+    const reply = buildAssistantReply(message);
+    setAssistantMessages((prev) => [
+      ...prev,
+      { id: `${stamp}-user`, role: "user", text: message },
+      { id: `${stamp}-assistant`, role: "assistant", text: reply }
+    ]);
+    setAssistantDraft("");
+  };
 
   return (
     <>
@@ -98,6 +303,84 @@ export default function MainLayout() {
       </header>
 
       <Outlet />
+
+      <div className="assistant-fab">
+        <button
+          className="assistant-fab-button"
+          type="button"
+          onClick={toggleAssistant}
+          aria-label="Abrir asistente Topix"
+          aria-expanded={assistantOpen}
+          aria-controls="assistant-panel"
+        >
+          <img src={logo} alt="Topotours" />
+          <span className="assistant-fab-badge">AI</span>
+        </button>
+        {assistantOpen ? (
+          <div
+            className="assistant-panel"
+            id="assistant-panel"
+            role="dialog"
+            aria-label="Asistente Topix"
+          >
+            <div className="assistant-panel-header">
+              <span className="assistant-panel-title">Topix IA</span>
+              <div className="assistant-panel-actions">
+                <button
+                  className="assistant-panel-reset"
+                  type="button"
+                  onClick={resetAssistant}
+                >
+                  Reiniciar chat
+                </button>
+                <button
+                  className="assistant-panel-close"
+                  type="button"
+                  onClick={closeAssistant}
+                  aria-label="Cerrar asistente"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+            <div className="assistant-panel-body">
+              {assistantMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`assistant-message${
+                    message.role === "user" ? " user" : ""
+                  }`}
+                >
+                  {message.role === "assistant" ? (
+                    <span className="assistant-avatar" aria-hidden="true">
+                      <img src={logo} alt="" />
+                    </span>
+                  ) : null}
+                  <div className="assistant-bubble">{message.text}</div>
+                </div>
+              ))}
+            </div>
+            <form
+              className="assistant-panel-input"
+              onSubmit={handleAssistantSubmit}
+            >
+              <input
+                type="text"
+                value={assistantDraft}
+                onChange={(event) => setAssistantDraft(event.target.value)}
+                placeholder="Escribi aca..."
+                aria-label="Escribir mensaje"
+              />
+              <button className="assistant-panel-send" type="submit">
+                →
+              </button>
+            </form>
+            <p className="assistant-panel-note">
+              La IA puede cometer errores, considera verificar la informacion.
+            </p>
+          </div>
+        ) : null}
+      </div>
 
       <footer className="site-footer">
         <div className="footer-container">

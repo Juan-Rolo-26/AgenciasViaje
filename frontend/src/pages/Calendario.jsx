@@ -4,7 +4,7 @@ import { useTravelData } from "../hooks/useTravelData.js";
 import { formatDate } from "../utils/formatters.js";
 
 export default function Calendario() {
-  const { ofertas, loading } = useTravelData();
+  const { ofertas, destinos, loading } = useTravelData();
   const [currentMonth, setCurrentMonth] = useState(() => {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
@@ -32,6 +32,12 @@ export default function Calendario() {
       }))
     );
   }, [ofertas]);
+
+  const destinosDisponibles = useMemo(() => {
+    return Array.from(
+      new Set(destinos.map((destino) => destino.nombre).filter(Boolean))
+    ).sort((a, b) => a.localeCompare(b));
+  }, [destinos]);
 
   const searchQuery = searchText.trim().toLowerCase();
   const eventosFiltrados = useMemo(() => {
@@ -128,27 +134,29 @@ export default function Calendario() {
     <main>
       <section className="calendar">
         <div className="calendar-hero">
-          <div className="section-header">
-            <span className="calendar-kicker">
-              Calendario <span className="topotours-word">Topotours</span>
-            </span>
-            <h2>Organiza tu viaje por fechas</h2>
-            <p>
-              Mira las ofertas vigentes por mes y encontra la fecha ideal.
-            </p>
-          </div>
+          <span className="calendar-kicker">
+            Calendario <span className="topotours-word">Topotours</span>
+          </span>
+          <h2>Organiza tu viaje por fechas</h2>
+          <p>Mira las ofertas vigentes por mes y encontra la fecha ideal.</p>
         </div>
 
         <div className="calendar-filter-bar">
           <div className="calendar-filter">
             <label htmlFor="calendar-destino">Destino</label>
-            <input
+            <select
               id="calendar-destino"
               className="calendar-input"
-              placeholder="Buscar destino u oferta"
               value={searchText}
               onChange={(event) => setSearchText(event.target.value)}
-            />
+            >
+              <option value="">Todos</option>
+              {destinosDisponibles.map((destino) => (
+                <option key={destino} value={destino}>
+                  {destino}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="calendar-filter">
             <label>Mes</label>
@@ -181,15 +189,17 @@ export default function Calendario() {
                   className="calendar-icon-button"
                   type="button"
                   onClick={handlePrevMonth}
+                  aria-label="Mes anterior"
                 >
-                  {"<"}
+                  &lsaquo;
                 </button>
                 <button
                   className="calendar-icon-button"
                   type="button"
                   onClick={handleNextMonth}
+                  aria-label="Mes siguiente"
                 >
-                  {">"}
+                  &rsaquo;
                 </button>
               </div>
             </div>
@@ -215,7 +225,9 @@ export default function Calendario() {
                       <div
                         className={`calendar-day${
                           isCurrentMonth ? "" : " is-outside"
-                        }${isToday ? " is-today" : ""}`}
+                        }${isToday ? " is-today" : ""}${
+                          eventosDia.length ? " has-events" : ""
+                        }`}
                         key={key}
                       >
                         <span className="calendar-date">{day.getDate()}</span>
