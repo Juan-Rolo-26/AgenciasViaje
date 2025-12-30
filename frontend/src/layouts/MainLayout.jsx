@@ -161,7 +161,8 @@ export default function MainLayout() {
       text.includes("oferta") ||
       text.includes("escapada") ||
       text.includes("paquete") ||
-      text.includes("viaje");
+      text.includes("viaje") ||
+      text.includes("viajar");
     const wantsRecommendation =
       text.includes("recomenda") ||
       text.includes("suger") ||
@@ -179,6 +180,15 @@ export default function MainLayout() {
     const duration = parseDuration(text);
     const month = parseMonth(text);
     const tripStyle = parseTripStyle(text);
+
+    const matchedDestinos = destinosNombres.filter((destino) =>
+      text.includes(normalizeText(destino))
+    );
+    const matchedRegiones = destinosRegiones.filter((region) =>
+      text.includes(normalizeText(region))
+    );
+    const hasDestinationIntent =
+      matchedDestinos.length > 0 || matchedRegiones.length > 0;
 
     if (wantsDestinations && wantsAll) {
       if (!destinosNombres.length) {
@@ -204,13 +214,12 @@ export default function MainLayout() {
       return `Excursiones disponibles: ${sample}${extra}.`;
     }
 
-    if (wantsOffers || text.includes("precio") || wantsRecommendation) {
-      const matchedDestinos = destinosNombres.filter((destino) =>
-        text.includes(normalizeText(destino))
-      );
-      const matchedRegiones = destinosRegiones.filter((region) =>
-        text.includes(normalizeText(region))
-      );
+    if (
+      wantsOffers ||
+      text.includes("precio") ||
+      wantsRecommendation ||
+      hasDestinationIntent
+    ) {
       const wantsEuropa = text.includes("europa");
 
       let filtered = ofertas.filter((oferta) => oferta.activa !== false);
