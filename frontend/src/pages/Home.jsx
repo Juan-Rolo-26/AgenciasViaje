@@ -590,35 +590,33 @@ export default function Home() {
         ) : destinos.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
-          <div className="destination-carousel">
-            <div className="destination-track">
-              {loopDestinos.map((destino, index) => {
-                const destinoSlug = destino.slug || destino.id;
-                return (
-                  <Link
-                    className="tile destination-card"
-                    key={`${destino.id}-${index}`}
-                    to={`/destinos/${destinoSlug}`}
-                    aria-label={`Ver destino ${destino.nombre}`}
-                  >
-                    <div
-                      className="tile-image"
-                      style={{
-                        backgroundImage: destino.imagenPortada
-                          ? `url("${destino.imagenPortada}")`
-                          : `url("${fallbackDeal}")`
-                      }}
-                    ></div>
-                    <div className="tile-content">
-                      <h4>{destino.nombre}</h4>
-                      <span className="destination-meta">
-                        {destino.paisRegion || "Destino"}
-                      </span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+          <div className="destination-grid grid-3x3">
+            {destinos.map((destino) => {
+              const destinoSlug = destino.slug || destino.id;
+              return (
+                <Link
+                  className="tile destination-card"
+                  key={destino.id}
+                  to={`/destinos/${destinoSlug}`}
+                  aria-label={`Ver destino ${destino.nombre}`}
+                >
+                  <div
+                    className="tile-image"
+                    style={{
+                      backgroundImage: destino.imagenPortada
+                        ? `url("${destino.imagenPortada}")`
+                        : `url("${fallbackDeal}")`
+                    }}
+                  ></div>
+                  <div className="tile-content">
+                    <h4>{destino.nombre}</h4>
+                    <span className="destination-meta">
+                      {destino.paisRegion || "Destino"}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         )}
       </section>
