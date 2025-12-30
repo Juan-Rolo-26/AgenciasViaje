@@ -2589,6 +2589,7 @@ section[id] {
   color: #1f2a44;
   font-size: 0.9rem;
   line-height: 1.4;
+  white-space: pre-line;
 }
 
 .assistant-message.user .assistant-bubble {
