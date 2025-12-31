@@ -21,8 +21,9 @@ export function formatCurrency(value, currency) {
   if (amount === null) {
     return "";
   }
-  if (currency && currency !== "ARS") {
-    return `${currency} ${amount.toLocaleString("es-AR")}`;
+  if (currency) {
+    const code = currency.toUpperCase();
+    return `${code} ${amount.toLocaleString("es-AR")}`;
   }
   return currencyFormatter.format(amount);
 }

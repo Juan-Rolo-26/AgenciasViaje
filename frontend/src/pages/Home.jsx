@@ -921,6 +921,23 @@ export default function Home() {
         )}
       </section>
 
+      <section className="grid-section travel-docs-preview">
+        <div className="section-header travel-docs-preview-header">
+          <span className="section-state">
+            Ministerio del Interior - Dirección Nacional de Migraciones
+          </span>
+          <h2>¿Lo que necesito para salir del país?</h2>
+          <p>
+            Accedé a la guía completa con requisitos para viajes internacionales.
+          </p>
+        </div>
+        <div className="travel-docs-preview-action">
+          <Link className="primary" to="/documentacion">
+            Ver documentación
+          </Link>
+        </div>
+      </section>
+
       <About />
     </main>
   );

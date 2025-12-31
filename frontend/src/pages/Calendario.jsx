@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
-import { formatCurrency, formatDate } from "../utils/formatters.js";
+import { formatCurrency } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
 
 export default function Calendario() {
@@ -59,7 +59,7 @@ export default function Calendario() {
     });
   }, [eventos, searchQuery]);
 
-  const { gridDays, gridStart, gridEnd, monthStart, monthEnd } = useMemo(() => {
+  const { gridDays, gridStart, gridEnd } = useMemo(() => {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth();
     const start = new Date(year, month, 1);
@@ -76,9 +76,7 @@ export default function Calendario() {
     return {
       gridDays: days,
       gridStart: normalizeDate(startGrid),
-      gridEnd: normalizeDate(endGrid),
-      monthStart: normalizeDate(start),
-      monthEnd: normalizeDate(end)
+      gridEnd: normalizeDate(endGrid)
     };
   }, [currentMonth]);
 
@@ -89,13 +87,23 @@ export default function Calendario() {
     return `${year}-${month}-${day}`;
   };
 
+  const isSameMonth = (date, reference) =>
+    date.getFullYear() === reference.getFullYear() &&
+    date.getMonth() === reference.getMonth();
+
+  const eventosDelMes = useMemo(() => {
+    return eventosFiltrados
+      .filter((evento) => isSameMonth(evento.fechaInicio, currentMonth))
+      .sort((a, b) => a.fechaInicio - b.fechaInicio);
+  }, [eventosFiltrados, currentMonth]);
+
   const eventosPorDia = useMemo(() => {
     const map = new Map();
     gridDays.forEach((day) => {
       map.set(dayKey(day), []);
     });
 
-    eventosFiltrados.forEach((evento) => {
+    eventosDelMes.forEach((evento) => {
       if (evento.fechaFin < gridStart || evento.fechaInicio > gridEnd) {
         return;
       }
@@ -119,16 +127,7 @@ export default function Calendario() {
     });
 
     return map;
-  }, [eventosFiltrados, gridDays, gridStart, gridEnd]);
-
-  const eventosDelMes = useMemo(() => {
-    return eventosFiltrados
-      .filter(
-        (evento) =>
-          evento.fechaFin >= monthStart && evento.fechaInicio <= monthEnd
-      )
-      .sort((a, b) => a.fechaInicio - b.fechaInicio);
-  }, [eventosFiltrados, monthStart, monthEnd]);
+  }, [eventosDelMes, gridDays, gridStart, gridEnd]);
 
   const totalEventosMes = eventosDelMes.length;
   const eventoMesActual = totalEventosMes

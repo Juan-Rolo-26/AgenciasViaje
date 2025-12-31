@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
 import {
@@ -9,14 +9,57 @@ import {
   parseAmount
 } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
+
+const OFFER_SECTIONS = [
+  {
+    id: "salidas-grupales",
+    label: "Salidas grupales",
+    image: "/assets/destinos/salidas-grupales.jpg"
+  },
+  {
+    id: "eventos",
+    label: "Eventos",
+    image: "/assets/destinos/paris2.jpg"
+  },
+  {
+    id: "eventos-deportivos",
+    label: "Eventos deportivos",
+    image: "/assets/destinos/eventos%20deportivos.jpg"
+  },
+  {
+    id: "paquetes-nacionales",
+    label: "Paquetes nacionales",
+    image: "/assets/destinos/bari1.png"
+  }
+];
+
+const OFFER_SECTION_SET = new Set(OFFER_SECTIONS.map((section) => section.id));
 
 export default function Ofertas() {
   const { ofertas, loading, error } = useTravelData();
+  const [searchParams] = useSearchParams();
+  const selectedSection = (() => {
+    const value = (searchParams.get("seccion") || "").toLowerCase();
+    return OFFER_SECTION_SET.has(value) ? value : "";
+  })();
+  const sectionCards = useMemo(
+    () =>
+      OFFER_SECTIONS.map((section) => ({
+        ...section,
+        imageUrl: resolveAssetUrl(section.image)
+      })),
+    []
+  );
+  const activeSection = OFFER_SECTIONS.find(
+    (section) => section.id === selectedSection
+  );
   const initialFilters = {
     destino: "",
     pais: "",
     oferta: "",
     transporte: "",
+    moneda: "",
     precioMin: "",
     precioMax: "",
     desde: "",
@@ -70,14 +113,29 @@ export default function Ofertas() {
     return Array.from(regions).sort((a, b) => a.localeCompare(b));
   }, [ofertas]);
 
-  const getMinPrice = (precios) => {
+  const getMinPrice = (precios, currency) => {
+    const currencyCode = (currency || "").toUpperCase();
     const amounts = (precios || [])
+      .filter(
+        (precio) =>
+          !currencyCode ||
+          (precio.moneda || "").toUpperCase() === currencyCode
+      )
       .map((precio) => parseAmount(precio.precio))
       .filter((value) => value !== null);
     if (!amounts.length) {
       return null;
     }
     return Math.min(...amounts);
+  };
+
+  const getPrecioVigenteByCurrency = (precios, currency) => {
+    const currencyCode = (currency || "").toUpperCase();
+    return getPrecioVigente(
+      (precios || []).filter(
+        (precio) => (precio.moneda || "").toUpperCase() === currencyCode
+      )
+    );
   };
 
   const normalizeText = (value) =>
@@ -119,10 +177,12 @@ export default function Ofertas() {
     const paisQuery = filters.pais.toLowerCase();
     const selectedOffers = filters.oferta ? [filters.oferta] : [];
     const transporteQuery = filters.transporte;
+    const currencyFilter = (filters.moneda || "").toUpperCase();
     const minFilter = parseAmount(filters.precioMin);
     const maxFilter = parseAmount(filters.precioMax);
     const desde = filters.desde ? new Date(filters.desde) : null;
     const hasta = filters.hasta ? new Date(filters.hasta) : null;
+    const sectionFilter = selectedSection;
 
     return ofertasDestacadas.filter((oferta) => {
       const matchesOferta =
@@ -143,6 +203,49 @@ export default function Ofertas() {
             (destino.paisRegion || "").toLowerCase() === paisQuery
         );
 
+      if (sectionFilter) {
+        const isNational = destinosAsociados.some(
+          (destino) => destino.paisRegion === "Argentina"
+        );
+        const textBlock = normalizeText(
+          `${oferta.titulo || ""} ${oferta.condiciones || ""} ${
+            oferta.noIncluye || ""
+          } ${oferta.descripcion || ""}`
+        );
+        if (sectionFilter === "paquetes-nacionales" && !isNational) {
+          return false;
+        }
+        if (sectionFilter === "salidas-grupales") {
+          if (
+            !textBlock.includes("salida grupal") &&
+            !textBlock.includes("salidas grupales") &&
+            !textBlock.includes("grupal")
+          ) {
+            return false;
+          }
+        }
+        if (sectionFilter === "eventos-deportivos") {
+          if (
+            !textBlock.includes("evento deportivo") &&
+            !textBlock.includes("deportivo") &&
+            !textBlock.includes("copa") &&
+            !textBlock.includes("maraton") &&
+            !textBlock.includes("torneo")
+          ) {
+            return false;
+          }
+        }
+        if (sectionFilter === "eventos") {
+          if (
+            !textBlock.includes("evento") &&
+            !textBlock.includes("festival") &&
+            !textBlock.includes("concierto")
+          ) {
+            return false;
+          }
+        }
+      }
+
       if (transporteQuery) {
         const transporte = getTransportType(oferta);
         if (transporte !== transporteQuery) {
@@ -150,7 +253,17 @@ export default function Ofertas() {
         }
       }
 
-      const minPrice = getMinPrice(oferta.precios);
+      const hasCurrencyPrice = !currencyFilter
+        ? true
+        : (oferta.precios || []).some(
+            (precio) =>
+              (precio.moneda || "").toUpperCase() === currencyFilter
+          );
+      if (!hasCurrencyPrice) {
+        return false;
+      }
+
+      const minPrice = getMinPrice(oferta.precios, currencyFilter);
       if (minFilter !== null && (minPrice === null || minPrice < minFilter)) {
         return false;
       }
@@ -178,7 +291,7 @@ export default function Ofertas() {
 
       return matchesOferta && matchesDestino && matchesPais;
     });
-  }, [ofertasDestacadas, filters]);
+  }, [ofertasDestacadas, filters, selectedSection]);
 
   const handleApply = (event) => {
     event.preventDefault();
@@ -192,19 +305,43 @@ export default function Ofertas() {
 
   return (
     <main className="offers-page">
-      <section className="offers-hero page-hero">
-        <div className="offers-hero-inner page-hero-inner">
-          <span className="offers-kicker page-hero-kicker">
-            Ofertas <span className="topotours-word">Topotours</span>
-          </span>
-          <h1>Encontra tu proximo viaje</h1>
-          <p>
-            Experiencias seleccionadas, salidas confirmadas y cupos limitados.
-          </p>
-        </div>
-      </section>
+      {!selectedSection ? (
+        <section className="section-landing">
+          <div className="section-grid">
+            {sectionCards.map((section) => (
+              <Link
+                key={section.id}
+                className="section-tile"
+                to={`/ofertas?seccion=${section.id}`}
+                style={{ backgroundImage: `url("${section.imageUrl}")` }}
+              >
+                <div className="section-tile-overlay"></div>
+                <div className="section-tile-content">
+                  <span className="section-tile-title">{section.label}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <>
+          <section className="offers-hero page-hero">
+            <div className="offers-hero-inner page-hero-inner">
+              <span className="offers-kicker page-hero-kicker">
+                Ofertas <span className="topotours-word">Topotours</span>
+              </span>
+              <h1>
+                {activeSection
+                  ? activeSection.label
+                  : "Encontra tu proximo viaje"}
+              </h1>
+              <p>
+                Experiencias seleccionadas, salidas confirmadas y cupos limitados.
+              </p>
+            </div>
+          </section>
 
-      <section className="offers-section">
+          <section className="offers-section">
         <form className="offers-filters" onSubmit={handleApply}>
           <div className="offers-field">
             <label htmlFor="ofertas-destino">Destino</label>
@@ -284,6 +421,23 @@ export default function Ofertas() {
             </select>
           </div>
           <div className="offers-field">
+            <label htmlFor="ofertas-moneda">Moneda</label>
+            <select
+              id="ofertas-moneda"
+              value={draftFilters.moneda}
+              onChange={(event) =>
+                setDraftFilters((prev) => ({
+                  ...prev,
+                  moneda: event.target.value
+                }))
+              }
+            >
+              <option value="">Todas</option>
+              <option value="USD">USD</option>
+              <option value="ARS">ARS</option>
+            </select>
+          </div>
+          <div className="offers-field">
             <label htmlFor="ofertas-min">Precio min</label>
             <input
               id="ofertas-min"
@@ -353,79 +507,109 @@ export default function Ofertas() {
           </div>
         </form>
 
-        {loading ? (
-          <p className="section-state">Cargando ofertas...</p>
-        ) : error ? (
-          <p className="section-state error">{error}</p>
-        ) : ofertasFiltradas.length === 0 ? (
-          <p className="section-state">No hay ofertas disponibles.</p>
-        ) : (
-          <div className="offer-grid grid-3x3">
-            {ofertasFiltradas.map((oferta) => {
-              const preciosOrdenados = [...(oferta.precios || [])].sort(
-                (a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio)
-              );
-              const precio = getPrecioVigente(oferta.precios) || preciosOrdenados[0];
-              const ofertaSlug = oferta.slug || oferta.id;
-              const offerImages = getOfferImages(oferta);
-              const offerImage = offerImages[0] || fallbackDeal;
-              const extraImages = offerImages.slice(1, 3);
-              const fechaInicio = precio?.fechaInicio;
-              const fechaFin = precio?.fechaFin;
-              return (
-                <Link
-                  className="offer-card offer-card-feature offer-link"
-                  key={oferta.id}
-                  to={`/ofertas/${ofertaSlug}`}
-                >
-                  <div className="offer-image">
-                    <img
-                      className="offer-image-main"
-                      src={offerImage}
-                      alt={oferta.titulo}
-                    />
-                    {extraImages.length ? (
-                      <div className="offer-image-stack">
-                        {extraImages.map((image, imageIndex) => (
-                          <img
-                            key={`${oferta.id}-extra-${imageIndex}`}
-                            src={image}
-                            alt={`${oferta.titulo} destino ${imageIndex + 2}`}
-                          />
-                        ))}
+          {loading ? (
+            <p className="section-state">Cargando ofertas...</p>
+          ) : error ? (
+            <p className="section-state error">{error}</p>
+          ) : ofertasFiltradas.length === 0 ? (
+            <p className="section-state">No hay ofertas disponibles.</p>
+          ) : (
+            <div className="offer-grid grid-3x3">
+              {ofertasFiltradas.map((oferta) => {
+                const preciosOrdenados = [...(oferta.precios || [])].sort(
+                  (a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio)
+                );
+                const precio =
+                  getPrecioVigente(oferta.precios) || preciosOrdenados[0];
+                const precioUsd = getPrecioVigenteByCurrency(
+                  oferta.precios,
+                  "USD"
+                );
+                const precioArs = getPrecioVigenteByCurrency(
+                  oferta.precios,
+                  "ARS"
+                );
+                const ofertaSlug = oferta.slug || oferta.id;
+                const offerImages = getOfferImages(oferta);
+                const offerImage = offerImages[0] || fallbackDeal;
+                const extraImages = offerImages.slice(1, 3);
+                const fechaInicio = precio?.fechaInicio;
+                const fechaFin = precio?.fechaFin;
+                return (
+                  <Link
+                    className="offer-card offer-card-feature offer-link"
+                    key={oferta.id}
+                    to={`/ofertas/${ofertaSlug}`}
+                  >
+                    <div className="offer-image">
+                      <img
+                        className="offer-image-main"
+                        src={offerImage}
+                        alt={oferta.titulo}
+                      />
+                      {extraImages.length ? (
+                        <div className="offer-image-stack">
+                          {extraImages.map((image, imageIndex) => (
+                            <img
+                              key={`${oferta.id}-extra-${imageIndex}`}
+                              src={image}
+                              alt={`${oferta.titulo} destino ${imageIndex + 2}`}
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                      <div className="offer-badge">
+                        <span>Desde</span>
+                        {precioUsd || precioArs ? (
+                          <>
+                            {precioUsd ? (
+                              <strong className="offer-price-row">
+                                {formatCurrency(
+                                  precioUsd.precio,
+                                  precioUsd.moneda
+                                )}
+                              </strong>
+                            ) : null}
+                            {precioArs ? (
+                              <span className="offer-price-secondary">
+                                {formatCurrency(
+                                  precioArs.precio,
+                                  precioArs.moneda
+                                )}
+                              </span>
+                            ) : null}
+                          </>
+                        ) : (
+                          <strong>A consultar</strong>
+                        )}
                       </div>
-                    ) : null}
-                    <div className="offer-badge">
-                      <span>Desde</span>
-                      <strong>
-                        {precio
-                          ? formatCurrency(precio.precio, precio.moneda)
-                          : "A consultar"}
-                      </strong>
                     </div>
-                  </div>
-                  <div className="offer-body">
-                    <span className="offer-tag">
-                      {(oferta.destino?.nombre || "Destino destacado").toUpperCase()}
-                    </span>
-                    <h3>{oferta.titulo}</h3>
-                    <p className="offer-description">
-                      {oferta.condiciones || oferta.noIncluye || "Consultanos"}
-                    </p>
-                    {fechaInicio && fechaFin ? (
-                      <span className="offer-valid">
-                        Valido del {formatDate(fechaInicio)} al{" "}
-                        {formatDate(fechaFin)}
+                    <div className="offer-body">
+                      <span className="offer-tag">
+                        {(
+                          oferta.destino?.nombre || "Destino destacado"
+                        ).toUpperCase()}
                       </span>
-                    ) : null}
-                    <span className="offer-cta">Ver oferta</span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        )}
-      </section>
+                      <h3>{oferta.titulo}</h3>
+                      <p className="offer-description">
+                        {oferta.condiciones || oferta.noIncluye || "Consultanos"}
+                      </p>
+                      {fechaInicio && fechaFin ? (
+                        <span className="offer-valid">
+                          Valido del {formatDate(fechaInicio)} al{" "}
+                          {formatDate(fechaFin)}
+                        </span>
+                      ) : null}
+                      <span className="offer-cta">Ver oferta</span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </section>
+        </>
+      )}
     </main>
   );
 }

@@ -7,6 +7,7 @@ const offerRoutes = require("./api/offers/offerRoutes");
 const activityRoutes = require("./api/activities/activityRoutes");
 const aboutRoutes = require("./api/about/aboutRoutes");
 const complaintRoutes = require("./api/complaints/complaintRoutes");
+const assistantRoutes = require("./api/assistant/assistantRoutes");
 const { API_PREFIX } = require("./config/serverConfig");
 const errorHandler = require("./middleware/errorHandler");
 
@@ -20,6 +21,7 @@ app.use(`${API_PREFIX}/ofertas`, offerRoutes);
 app.use(`${API_PREFIX}/actividades`, activityRoutes);
 app.use(`${API_PREFIX}/nosotros`, aboutRoutes);
 app.use(`${API_PREFIX}/quejas`, complaintRoutes);
+app.use(`${API_PREFIX}/assistant`, assistantRoutes);
 
 const frontendDist = path.resolve(__dirname, "..", "public");
 app.use(express.static(frontendDist));

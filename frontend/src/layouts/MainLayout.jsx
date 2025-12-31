@@ -1,16 +1,32 @@
 import { useMemo, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { useTravelData } from "../hooks/useTravelData.js";
-import { formatCurrency, getPrecioVigente, parseAmount } from "../utils/formatters.js";
+import { apiRequest } from "../api/api.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 
 const navLinkClass = ({ isActive }) =>
   `nav-item${isActive ? " active" : ""}`;
 
+const continentLinks = [
+  { id: "america", label: "America" },
+  { id: "europa", label: "Europa" },
+  { id: "asia", label: "Asia" },
+  { id: "africa", label: "Africa" }
+];
+
+const offerLinks = [
+  { id: "salidas-grupales", label: "Salidas grupales" },
+  { id: "eventos", label: "Eventos" },
+  { id: "eventos-deportivos", label: "Eventos deportivos" },
+  { id: "paquetes-nacionales", label: "Paquetes nacionales" }
+];
+
+const excursionLinks = [
+  { id: "nacionales", label: "Excursiones nacionales" },
+  { id: "internacionales", label: "Excursiones internacionales" }
+];
+
 export default function MainLayout() {
-  const { destinos, ofertas, actividades, loading: travelLoading } =
-    useTravelData();
   const asesorWhatsappLink = getWhatsappLink(
     "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
   );
@@ -21,7 +37,7 @@ export default function MainLayout() {
         id: "intro",
         role: "assistant",
         text:
-          "Hola, soy Topix IA 👋 Trabajo con las ofertas reales de Topotours para ayudarte a elegir destino, fechas y presupuesto."
+          "Hola, soy Topix IA 👋 Trabajo con la info real de Topotours para ayudarte a elegir destino, fechas y presupuesto."
       }
     ],
     []
@@ -29,353 +45,19 @@ export default function MainLayout() {
   const [assistantMessages, setAssistantMessages] =
     useState(initialMessages);
   const [assistantDraft, setAssistantDraft] = useState("");
-  const promptMessage =
-    "Decime destino, fechas y cantidad de pasajeros para empezar.";
+  const [assistantBusy, setAssistantBusy] = useState(false);
+  const [assistantError, setAssistantError] = useState("");
 
-  const destinosNombres = useMemo(
-    () => destinos.map((destino) => destino.nombre).filter(Boolean),
-    [destinos]
-  );
-  const destinosRegiones = useMemo(
-    () =>
-      Array.from(
-        new Set(destinos.map((destino) => destino.paisRegion).filter(Boolean))
-      ),
-    [destinos]
-  );
-  const actividadesNombres = useMemo(
-    () => actividades.map((actividad) => actividad.nombre).filter(Boolean),
-    [actividades]
-  );
-
-  const normalizeText = (value) => value.toLowerCase();
-
-  const monthMap = [
-    ["enero", 0],
-    ["febrero", 1],
-    ["marzo", 2],
-    ["abril", 3],
-    ["mayo", 4],
-    ["junio", 5],
-    ["julio", 6],
-    ["agosto", 7],
-    ["septiembre", 8],
-    ["setiembre", 8],
-    ["octubre", 9],
-    ["noviembre", 10],
-    ["diciembre", 11]
-  ];
-
-  const parseMonth = (value) => {
-    const found = monthMap.find(([name]) => value.includes(name));
-    if (!found) {
-      return null;
-    }
-    return { name: found[0], index: found[1] };
-  };
-
-  const parseDuration = (value) => {
-    const match = value.match(/(\d+)\s*(noches|noche|dias|días|dia|día)/);
-    if (match) {
-      return Number(match[1]);
-    }
-    if (value.includes("fin de semana")) {
-      return 2;
-    }
-    return null;
-  };
-
-  const parseTripStyle = (value) => {
-    if (value.includes("pareja") || value.includes("romant")) {
-      return "pareja";
-    }
-    if (value.includes("familia")) {
-      return "familia";
-    }
-    if (value.includes("amigos")) {
-      return "amigos";
-    }
-    if (value.includes("solo") || value.includes("sola")) {
-      return "solo";
-    }
-    return null;
-  };
-
-  const getOfferPriceAmount = (oferta) => {
-    const precio = getPrecioVigente(oferta.precios);
-    return parseAmount(precio?.precio);
-  };
-
-  const isMonthInRange = (startDate, endDate, monthIndex) => {
-    if (!(startDate instanceof Date) || Number.isNaN(startDate.getTime())) {
-      return false;
-    }
-    if (!(endDate instanceof Date) || Number.isNaN(endDate.getTime())) {
-      return false;
-    }
-    const startMonth = startDate.getMonth();
-    const endMonth = endDate.getMonth();
-    if (startMonth === endMonth) {
-      return startMonth === monthIndex;
-    }
-    if (startMonth < endMonth) {
-      return monthIndex >= startMonth && monthIndex <= endMonth;
-    }
-    return monthIndex >= startMonth || monthIndex <= endMonth;
-  };
-
-  const parseBudget = (value) => {
-    const match = value.match(/(\d[\d.,]*)/);
-    if (!match) {
-      return null;
-    }
-    const cleaned = match[1].replace(/[^\d]/g, "");
-    if (!cleaned) {
-      return null;
-    }
-    return Number(cleaned);
-  };
-
-  const parsePeopleCount = (value) => {
-    const match = value.match(/(\d+)\s*(personas|pasajeros|personas?)/);
-    return match ? Number(match[1]) : null;
-  };
-
-  const getOfferDestinations = (oferta) =>
-    [oferta.destino, ...(oferta.destinos || []).map((item) => item.destino)].filter(
-      Boolean
-    );
-
-  const buildAssistantReply = (message) => {
-    if (travelLoading) {
-      return "Estoy cargando los datos del viaje. Proba de nuevo en unos segundos.";
-    }
-
-    const text = normalizeText(message);
-    const wantsDestinations =
-      text.includes("destinos") || text.includes("lugares");
-    const wantsAll = text.includes("todos") || text.includes("todas");
-    const wantsExcursions =
-      text.includes("excursion") || text.includes("actividad");
-    const wantsOffers =
-      text.includes("oferta") ||
-      text.includes("escapada") ||
-      text.includes("paquete") ||
-      text.includes("viaje") ||
-      text.includes("viajar");
-    const wantsRecommendation =
-      text.includes("recomenda") ||
-      text.includes("suger") ||
-      text.includes("aconseja");
-
-    const budget = parseBudget(text);
-    const budgetTier =
-      text.includes("barato") || text.includes("economico")
-        ? "low"
-        : text.includes("premium") || text.includes("lujo")
-          ? "high"
-          : null;
-    const people = parsePeopleCount(text);
-    const isUSD = text.includes("usd") || text.includes("dolar");
-    const duration = parseDuration(text);
-    const month = parseMonth(text);
-    const tripStyle = parseTripStyle(text);
-
-    const matchedDestinos = destinosNombres.filter((destino) =>
-      text.includes(normalizeText(destino))
-    );
-    const matchedRegiones = destinosRegiones.filter((region) =>
-      text.includes(normalizeText(region))
-    );
-    const hasDestinationIntent =
-      matchedDestinos.length > 0 || matchedRegiones.length > 0;
-
-    if (wantsDestinations && wantsAll) {
-      if (!destinosNombres.length) {
-        return "Todavia no tengo destinos cargados.";
-      }
-      const sample = destinosNombres.slice(0, 12).join(", ");
-      const extra =
-        destinosNombres.length > 12
-          ? ` y ${destinosNombres.length - 12} mas`
-          : "";
-      return `Destinos disponibles: ${sample}${extra}. Podes verlos todos en /destinos.`;
-    }
-
-    if (wantsExcursions) {
-      if (!actividadesNombres.length) {
-        return "Todavia no tengo excursiones cargadas.";
-      }
-      const sample = actividadesNombres.slice(0, 10).join(", ");
-      const extra =
-        actividadesNombres.length > 10
-          ? ` y ${actividadesNombres.length - 10} mas`
-          : "";
-      return `Excursiones disponibles: ${sample}${extra}.`;
-    }
-
-    if (
-      wantsOffers ||
-      text.includes("precio") ||
-      wantsRecommendation ||
-      hasDestinationIntent
-    ) {
-      const wantsEuropa = text.includes("europa");
-
-      let filtered = ofertas.filter((oferta) => oferta.activa !== false);
-      if (matchedDestinos.length || matchedRegiones.length) {
-        filtered = filtered.filter((oferta) => {
-          const destinosOferta = getOfferDestinations(oferta);
-          return destinosOferta.some((destino) => {
-            const nombre = normalizeText(destino.nombre || "");
-            const region = normalizeText(destino.paisRegion || "");
-            return (
-              matchedDestinos.some((match) => normalizeText(match) === nombre) ||
-              matchedRegiones.some((match) => normalizeText(match) === region)
-            );
-          });
-        });
-      }
-
-      if (wantsEuropa && !matchedDestinos.length && !matchedRegiones.length) {
-        return "Por ahora no tengo ofertas para Europa. Queres que busque otra region?";
-      }
-
-      if (duration) {
-        filtered = filtered.filter((oferta) => {
-          if (!oferta.noches) {
-            return true;
-          }
-          return Math.abs(oferta.noches - duration) <= 1;
-        });
-      }
-
-      if (month) {
-        filtered = filtered.filter((oferta) => {
-          if (!oferta.precios?.length) {
-            return false;
-          }
-          return oferta.precios.some((precio) => {
-            const startDate = new Date(precio.fechaInicio);
-            const endDate = new Date(precio.fechaFin);
-            return isMonthInRange(startDate, endDate, month.index);
-          });
-        });
-      }
-
-      if (budget && !isUSD) {
-        filtered = filtered.filter((oferta) => {
-          const amount = getOfferPriceAmount(oferta);
-          return amount !== null ? amount <= budget : true;
-        });
-      }
-
-      const sorted = [...filtered].sort((a, b) => {
-        const amountA = getOfferPriceAmount(a);
-        const amountB = getOfferPriceAmount(b);
-        if (amountA === null && amountB === null) {
-          return 0;
-        }
-        if (amountA === null) {
-          return 1;
-        }
-        if (amountB === null) {
-          return -1;
-        }
-        return amountA - amountB;
-      });
-
-      if (budgetTier === "low" && sorted.length > 2) {
-        const cutoff = Math.ceil(sorted.length / 3);
-        filtered = sorted.slice(0, cutoff);
-      } else if (budgetTier === "high" && sorted.length > 2) {
-        const cutoff = Math.floor(sorted.length / 3);
-        filtered = sorted.slice(cutoff);
-      } else {
-        filtered = sorted;
-      }
-
-      if (!filtered.length) {
-        const fallback = ofertas
-          .filter((oferta) => oferta.activa !== false)
-          .sort((a, b) => {
-            const amountA = getOfferPriceAmount(a);
-            const amountB = getOfferPriceAmount(b);
-            if (amountA === null && amountB === null) {
-              return 0;
-            }
-            if (amountA === null) {
-              return 1;
-            }
-            if (amountB === null) {
-              return -1;
-            }
-            return amountA - amountB;
-          })
-          .slice(0, 3);
-
-        if (month) {
-          const monthLabel = month.name.charAt(0).toUpperCase() + month.name.slice(1);
-          return [
-            `No encontre disponibilidad exacta para ${monthLabel}.`,
-            fallback.length
-              ? `Te propongo alternativas similares: ${fallback
-                  .map((oferta) => oferta.titulo)
-                  .join(" · ")}.`
-              : "Si queres, puedo buscar en otras fechas o destinos.",
-            "Decime si queres ajustar presupuesto o fechas."
-          ].join("\n");
-        }
-
-        return "No encontre ofertas con esos criterios. Queres que busque por otro destino o presupuesto?";
-      }
-
-      const sample = filtered.slice(0, 3).map((oferta) => {
-        const precio = getPrecioVigente(oferta.precios);
-        const precioLabel = precio
-          ? formatCurrency(precio.precio, precio.moneda)
-          : "Precio a consultar";
-        const destinoLabels = getOfferDestinations(oferta)
-          .map((destino) => destino.nombre)
-          .filter(Boolean)
-          .join(" / ");
-        const nightsLabel = oferta.noches ? `${oferta.noches} noches` : "";
-        const detailParts = [destinoLabels, nightsLabel].filter(Boolean).join(" · ");
-        return `✈️ ${oferta.titulo}${detailParts ? ` (${detailParts})` : ""} — ${precioLabel}`;
-      });
-
-      const peopleNote = people ? ` para ${people} personas` : "";
-      const durationNote = duration ? ` de ${duration} dias` : "";
-      const monthNote = month ? ` en ${month.name}` : "";
-      const styleNote = tripStyle ? ` ideal para ${tripStyle}` : "";
-
-      if (budget && isUSD) {
-        return [
-          `Encontre estas opciones${peopleNote}${durationNote}${monthNote}${styleNote}:`,
-          sample.join("\n"),
-          "Los precios estan en ARS. Si queres, decime tu presupuesto en ARS para filtrar."
-        ].join("\n");
-      }
-
-      return [
-        `Encontre estas opciones${peopleNote}${durationNote}${monthNote}${styleNote}:`,
-        sample.join("\n"),
-        "Te paso mas detalles o coordinamos por WhatsApp?"
-      ].join("\n");
-    }
-
-    return "Contame destino, fechas, presupuesto y con quien viajas. Asi puedo recomendarte opciones reales de la agencia.";
-  };
+  const buildHistoryPayload = (messages) =>
+    messages
+      .filter(
+        (message) => message.role === "user" || message.role === "assistant"
+      )
+      .slice(-6)
+      .map((message) => ({ role: message.role, content: message.text }));
 
   const toggleAssistant = () => {
-    setAssistantOpen((prev) => {
-      if (!prev) {
-        setAssistantMessages((messages) =>
-          messages.filter((message) => message.text !== promptMessage)
-        );
-      }
-      return !prev;
-    });
+    setAssistantOpen((prev) => !prev);
   };
 
   const closeAssistant = () => {
@@ -385,22 +67,76 @@ export default function MainLayout() {
   const resetAssistant = () => {
     setAssistantMessages(initialMessages);
     setAssistantDraft("");
+    setAssistantError("");
+    setAssistantBusy(false);
   };
 
-  const handleAssistantSubmit = (event) => {
+  const handleAssistantSubmit = async (event) => {
     event.preventDefault();
+    if (assistantBusy) {
+      return;
+    }
     const message = assistantDraft.trim();
     if (!message) {
       return;
     }
     const stamp = Date.now();
-    const reply = buildAssistantReply(message);
+    const pendingId = `${stamp}-assistant`;
+    const history = buildHistoryPayload(assistantMessages);
     setAssistantMessages((prev) => [
       ...prev,
       { id: `${stamp}-user`, role: "user", text: message },
-      { id: `${stamp}-assistant`, role: "assistant", text: reply }
+      {
+        id: pendingId,
+        role: "assistant",
+        text: "Estoy pensando en respuestas... puede demorar unos minutos."
+      }
     ]);
     setAssistantDraft("");
+    setAssistantBusy(true);
+    setAssistantError("");
+
+    try {
+      const response = await apiRequest("/api/assistant", {
+        method: "POST",
+        body: {
+          message,
+          history
+        }
+      });
+      const replyText =
+        response?.reply ||
+        "No pude generar una respuesta en este momento. Queres intentar otra vez?";
+      setAssistantMessages((prev) =>
+        prev.map((item) =>
+          item.id === pendingId ? { ...item, text: replyText } : item
+        )
+      );
+    } catch (error) {
+      const rawMessage =
+        typeof error?.message === "string" ? error.message.trim() : "";
+      let parsedMessage = "";
+      if (rawMessage.startsWith("{") && rawMessage.endsWith("}")) {
+        try {
+          const parsed = JSON.parse(rawMessage);
+          parsedMessage =
+            typeof parsed?.error === "string" ? parsed.error : "";
+        } catch (parseError) {
+          parsedMessage = "";
+        }
+      }
+      const errorMessage = parsedMessage || rawMessage || "Error de conexion.";
+      const fallback =
+        "Ahora mismo no puedo conectarme con Topix IA. Podes intentar mas tarde o hablar con un asesor.";
+      setAssistantMessages((prev) =>
+        prev.map((item) =>
+          item.id === pendingId ? { ...item, text: fallback } : item
+        )
+      );
+      setAssistantError(errorMessage);
+    } finally {
+      setAssistantBusy(false);
+    }
   };
 
   return (
@@ -416,41 +152,116 @@ export default function MainLayout() {
           </Link>
 
           <nav className="nav-main" aria-label="Navegación principal">
-            <NavLink className={navLinkClass} to="/destinos">
-              <span className="nav-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 2C8 2 5 5.1 5 9.2c0 4.9 6 12.6 6.3 13 .4.5 1 .5 1.4 0 .3-.4 6.3-8.1 6.3-13C19 5.1 16 2 12 2Zm0 9.7a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              Destinos
-            </NavLink>
+            <div className="nav-item-group">
+              <NavLink className={navLinkClass} to="/destinos">
+                <span className="nav-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C8 2 5 5.1 5 9.2c0 4.9 6 12.6 6.3 13 .4.5 1 .5 1.4 0 .3-.4 6.3-8.1 6.3-13C19 5.1 16 2 12 2Zm0 9.7a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                Destinos
+                <span className="nav-caret" aria-hidden="true">
+                  <svg viewBox="0 0 12 12">
+                    <path
+                      d="M2 4.5l4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </NavLink>
+              <div className="nav-dropdown" role="menu" aria-label="Continentes">
+                {continentLinks.map((continent) => (
+                  <Link
+                    key={continent.id}
+                    className="nav-dropdown-item"
+                    to={`/destinos?continente=${continent.id}`}
+                  >
+                    {continent.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
 
-            <NavLink className={navLinkClass} to="/ofertas">
-              <span className="nav-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 2c1.9 2.1 2.8 4.1 2.8 6.1 0 1.1-.3 2.1-.9 3 .9-.3 2-.9 2.8-2.1 1.8 2.1 2.3 4 2.3 5.6 0 3.6-2.9 6.4-7 6.4s-7-2.8-7-6.4c0-2.6 1.4-4.7 3.6-6.6.3 1.7 1.1 2.8 2.2 3.6-.1-.4-.2-.9-.2-1.4 0-2 1.1-4.5 4.4-8.2Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              Ofertas
-            </NavLink>
+            <div className="nav-item-group">
+              <NavLink className={navLinkClass} to="/ofertas">
+                <span className="nav-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 2c1.9 2.1 2.8 4.1 2.8 6.1 0 1.1-.3 2.1-.9 3 .9-.3 2-.9 2.8-2.1 1.8 2.1 2.3 4 2.3 5.6 0 3.6-2.9 6.4-7 6.4s-7-2.8-7-6.4c0-2.6 1.4-4.7 3.6-6.6.3 1.7 1.1 2.8 2.2 3.6-.1-.4-.2-.9-.2-1.4 0-2 1.1-4.5 4.4-8.2Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                Ofertas
+                <span className="nav-caret" aria-hidden="true">
+                  <svg viewBox="0 0 12 12">
+                    <path
+                      d="M2 4.5l4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </NavLink>
+              <div className="nav-dropdown" role="menu" aria-label="Secciones de ofertas">
+                {offerLinks.map((section) => (
+                  <Link
+                    key={section.id}
+                    className="nav-dropdown-item"
+                    to={`/ofertas?seccion=${section.id}`}
+                  >
+                    {section.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
 
-            <NavLink className={navLinkClass} to="/excursiones">
-              <span className="nav-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M12 4a6 6 0 0 0-6 6c0 4.2 4.7 8.7 5.4 9.3a1 1 0 0 0 1.2 0c.7-.6 5.4-5.1 5.4-9.3a6 6 0 0 0-6-6Zm0 7.8A1.8 1.8 0 1 1 12 8a1.8 1.8 0 0 1 0 3.6ZM19.5 18.5a1 1 0 0 1-1.4 1.4l-1.7-1.7a1 1 0 1 1 1.4-1.4l1.7 1.7Zm-13.9 0 1.7-1.7a1 1 0 1 1 1.4 1.4l-1.7 1.7a1 1 0 0 1-1.4-1.4Z"
-                    fill="currentColor"
-                  />
-                </svg>
-              </span>
-              Excursiones
-            </NavLink>
+            <div className="nav-item-group">
+              <NavLink className={navLinkClass} to="/excursiones">
+                <span className="nav-ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 4a6 6 0 0 0-6 6c0 4.2 4.7 8.7 5.4 9.3a1 1 0 0 0 1.2 0c.7-.6 5.4-5.1 5.4-9.3a6 6 0 0 0-6-6Zm0 7.8A1.8 1.8 0 1 1 12 8a1.8 1.8 0 0 1 0 3.6ZM19.5 18.5a1 1 0 0 1-1.4 1.4l-1.7-1.7a1 1 0 1 1 1.4-1.4l1.7 1.7Zm-13.9 0 1.7-1.7a1 1 0 1 1 1.4 1.4l-1.7 1.7a1 1 0 0 1-1.4-1.4Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                Excursiones
+                <span className="nav-caret" aria-hidden="true">
+                  <svg viewBox="0 0 12 12">
+                    <path
+                      d="M2 4.5l4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </NavLink>
+              <div className="nav-dropdown" role="menu" aria-label="Secciones de excursiones">
+                {excursionLinks.map((section) => (
+                  <Link
+                    key={section.id}
+                    className="nav-dropdown-item"
+                    to={`/excursiones?seccion=${section.id}`}
+                  >
+                    {section.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
 
             <NavLink className={navLinkClass} to="/calendario">
               <span className="nav-ico" aria-hidden="true">
@@ -558,14 +369,23 @@ export default function MainLayout() {
                 onChange={(event) => setAssistantDraft(event.target.value)}
                 placeholder="Escribi aca..."
                 aria-label="Escribir mensaje"
+                disabled={assistantBusy}
               />
-              <button className="assistant-panel-send" type="submit">
+              <button
+                className="assistant-panel-send"
+                type="submit"
+                disabled={assistantBusy || !assistantDraft.trim()}
+              >
                 →
               </button>
             </form>
             <p className="assistant-panel-note">
-              La IA puede cometer errores, considera verificar la informacion.
+              La IA responde solo con datos de la base de Topotours. Puede
+              cometer errores, considera verificar la informacion.
             </p>
+            {assistantError ? (
+              <p className="assistant-panel-error">{assistantError}</p>
+            ) : null}
           </div>
         ) : null}
       </div>
@@ -600,6 +420,9 @@ export default function MainLayout() {
               </li>
               <li>
                 <Link to="/calendario">Calendario</Link>
+              </li>
+              <li>
+                <Link to="/politicas">Privacidad y cookies</Link>
               </li>
             </ul>
           </div>

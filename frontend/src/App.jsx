@@ -9,6 +9,8 @@ import ExcursionDetail from "./pages/ExcursionDetail.jsx";
 import Home from "./pages/Home.jsx";
 import Ofertas from "./pages/Ofertas.jsx";
 import OfertaDetail from "./pages/OfertaDetail.jsx";
+import Politicas from "./pages/Politicas.jsx";
+import Documentacion from "./pages/Documentacion.jsx";
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
         <Route path="excursiones/:slug" element={<ExcursionDetail />} />
         <Route path="calendario" element={<Calendario />} />
         <Route path="asistencia" element={<Asistencia />} />
+        <Route path="politicas" element={<Politicas />} />
+        <Route path="documentacion" element={<Documentacion />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

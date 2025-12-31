@@ -407,6 +407,332 @@ async function main() {
       ],
       destacado: true,
       orden: 23
+    },
+
+    // ================= AFRICA =================
+    {
+      nombre: "Ciudad del Cabo",
+      slug: "ciudad-del-cabo",
+      paisRegion: "Sudáfrica",
+      descripcionCorta: "Montaña, oceano y viñedos de clase mundial.",
+      descripcion:
+        "Vive la energía de Ciudad del Cabo: donde la majestuosa Table Mountain se encuentra con el océano. Disfruta de sus viñedos de clase mundial, visita la colonia de pingüinos en Boulders Beach y recorre la espectacular Península del Cabo. Un destino que combina sofisticación urbana, una historia profunda y paisajes naturales que quitan el aliento.",
+      imagenPortada: "/assets/destinos/sudafrica1.jpg",
+      imagenes: [
+        "/assets/destinos/sudafrica2.jpg",
+        "/assets/destinos/sudafrica3.png",
+        "/assets/destinos/sudafrica4.jpg"
+      ],
+      destacado: true,
+      orden: 25
+    },
+    {
+      nombre: "Masái Mara",
+      slug: "masai-mara",
+      paisRegion: "Kenia",
+      descripcionCorta: "Safari legendario y vida salvaje única.",
+      descripcion:
+        "Vive la energía de Kenia: el escenario de la Gran Migración y el corazón de la vida salvaje africana. Vive la emoción de un safari en el Masái Mara, descubre la cultura de las tribus locales y maravíllate con los amaneceres sobre la sabana rodeado de leones, elefantes y leopardos. La experiencia definitiva para los amantes de la naturaleza indómita.",
+      imagenPortada: "/assets/destinos/kenia.jpg",
+      imagenes: [
+        "/assets/destinos/kenia.webp",
+        "/assets/destinos/kenia3.webp",
+        "/assets/destinos/kenia4.jpg"
+      ],
+      destacado: true,
+      orden: 26
+    },
+    {
+      nombre: "El Cairo",
+      slug: "el-cairo",
+      paisRegion: "Egipto",
+      descripcionCorta: "Pirámides, historia milenaria y el Nilo.",
+      descripcion:
+        "Vive la energía de Egipto: un viaje en el tiempo a la cuna de las civilizaciones. Asómbrate ante la grandeza de las Pirámides de Giza y la Esfinge, navega por el legendario río Nilo y piérdete en los vibrantes mercados de El Cairo. Un destino místico donde los tesoros de los faraones y los templos milenarios cuentan la historia de la humanidad.",
+      imagenPortada: "/assets/destinos/egipto.jpg",
+      imagenes: [
+        "/assets/destinos/egipto2.jpg",
+        "/assets/destinos/egipto3.webp",
+        "/assets/destinos/egipto4.jpg"
+      ],
+      destacado: true,
+      orden: 27
+    },
+    {
+      nombre: "Marrakech",
+      slug: "marrakech",
+      paisRegion: "Marruecos",
+      descripcionCorta: "Zocos, palacios y magia del Sahara.",
+      descripcion:
+        "Vive la energía de Marrakech: la ciudad roja que despierta todos los sentidos. Déjate llevar por el caos fascinante de los zocos en la Medina, admira la arquitectura de sus palacios y vive la magia nocturna de la plaza Jemaa el-Fna. Un destino exótico que combina jardines secretos, especias aromáticas y la puerta de entrada a las dunas del desierto del Sahara.",
+      imagenPortada: "/assets/destinos/marruecos.jpg",
+      imagenes: [
+        "/assets/destinos/marruecos2.jpg",
+        "/assets/destinos/marruecos3.webp",
+        "/assets/destinos/marruecos4.jpg"
+      ],
+      destacado: true,
+      orden: 28
+    },
+    {
+      nombre: "Zanzíbar",
+      slug: "zanzibar",
+      paisRegion: "Tanzania",
+      descripcionCorta: "Playas turquesas y cultura suajili.",
+      descripcion:
+        "Vive la energía de Zanzíbar: el paraíso de las especias y las aguas turquesas del Océano Índico. Recorre las calles laberínticas de Stone Town, disfruta de playas de arena blanca infinita y sumérgete en arrecifes de coral llenos de vida. Un destino exótico y relajante que combina la cultura suajili con paisajes tropicales de ensueño.",
+      imagenPortada: "/assets/destinos/tanzamia.webp",
+      imagenes: [
+        "/assets/destinos/tanzamia2.jpg",
+        "/assets/destinos/tanzamia3.webp",
+        "/assets/destinos/tanzamia4.jpg"
+      ],
+      destacado: true,
+      orden: 29
+    },
+
+    // ================= ASIA =================
+    {
+      nombre: "Tokio",
+      slug: "tokio",
+      paisRegion: "Japón",
+      descripcionCorta: "Futuro hipertecnológico y tradición urbana.",
+      descripcion:
+        "Vive la energía de Tokio: el equilibrio entre el futuro hipertecnológico y la tradición urbana. Explora el cruce de Shibuya, los templos de Asakusa y los barrios creativos de Harajuku, todo con una gastronomía de precisión y una cultura del respeto que sorprende en cada detalle. Un destino vibrante que combina innovación, orden y experiencias sensoriales inolvidables.",
+      imagenPortada: "/assets/destinos/japon.webp",
+      imagenes: [
+        "/assets/destinos/japon2.webp",
+        "/assets/destinos/japon3.webp",
+        "/assets/destinos/japon4.jpeg"
+      ],
+      destacado: true,
+      orden: 31
+    },
+    {
+      nombre: "Dubái",
+      slug: "dubai",
+      paisRegion: "Emiratos Árabes",
+      descripcionCorta: "Lujo futurista en medio del desierto.",
+      descripcion:
+        "Vive la energía de Dubái: la ciudad de los récords y el lujo sin límites en medio del desierto. Sorpréndete con la altura del Burj Khalifa, recorre islas artificiales con forma de palmera y disfruta de compras exclusivas en los centros comerciales más grandes del mundo. Un destino futurista que combina arquitectura de vanguardia con la mística de los safaris por las dunas doradas.",
+      imagenPortada: "/assets/destinos/dubai.jpg",
+      imagenes: [
+        "/assets/destinos/dubai.webp",
+        "/assets/destinos/dubai3.webp",
+        "/assets/destinos/dubai4.jpg"
+      ],
+      destacado: true,
+      orden: 32
+    },
+    {
+      nombre: "Bali",
+      slug: "bali",
+      paisRegion: "Indonesia",
+      descripcionCorta: "Espiritualidad, arrozales y playas soñadas.",
+      descripcion:
+        "Vive la energía de Bali: la isla de los dioses donde la espiritualidad y la naturaleza se fusionan. Explora los campos de arroz verdes de Ubud, purifícate en templos sagrados frente al mar y relájate en playas paradisíacas buscadas por surfistas de todo el mundo. Un destino místico que ofrece el refugio perfecto para el bienestar, el yoga y la aventura tropical.",
+      imagenPortada: "/assets/destinos/bali1.jpg",
+      imagenes: [
+        "/assets/destinos/bali2.jpg",
+        "/assets/destinos/bali3.webp",
+        "/assets/destinos/bali4.webp"
+      ],
+      destacado: true,
+      orden: 33
+    },
+    {
+      nombre: "Beijing",
+      slug: "beijing",
+      paisRegion: "China",
+      descripcionCorta: "Gran Muralla y herencia imperial.",
+      descripcion:
+        "Vive la energía de Beijing: la capital donde la historia imperial se encuentra con una modernidad vibrante. Camina sobre la legendaria Gran Muralla, descubre los secretos de la Ciudad Prohibida y explora los hutongs tradicionales. Un destino monumental que ofrece un viaje profundo por una de las civilizaciones más influyentes de la humanidad.",
+      imagenPortada: "/assets/destinos/china2.jpg",
+      imagenes: [
+        "/assets/destinos/china3.jpg",
+        "/assets/destinos/china4.jpg",
+        "/assets/destinos/china2.jpg"
+      ],
+      destacado: true,
+      orden: 34
+    },
+    {
+      nombre: "Vietnam",
+      slug: "vietnam",
+      paisRegion: "Vietnam",
+      descripcionCorta: "Bahías, historia y cultura vibrante.",
+      descripcion:
+        "Vive la energía de Vietnam: un destino de paisajes cinematográficos y una resiliencia inspiradora. Navega entre los gigantes de piedra de la Bahía de Ha Long, recorre las linternas mágicas de Hoi An y descubre el bullicio histórico de Ciudad Ho Chi Minh. Un viaje que cautiva por su naturaleza desbordante, su historia conmovedora y su exquisita cultura gastronómica.",
+      imagenPortada: "/assets/destinos/vietnam.webp",
+      imagenes: [
+        "/assets/destinos/vietnam2.jpg",
+        "/assets/destinos/vietnam3.jpg",
+        "/assets/destinos/vietnam4.jpg"
+      ],
+      destacado: true,
+      orden: 35
+    },
+    {
+      nombre: "Maldivas",
+      slug: "maldivas",
+      paisRegion: "Maldivas",
+      descripcionCorta: "Aguas turquesas y villas sobre el mar.",
+      descripcion:
+        "Vive la energía de Maldivas: el paraíso absoluto de aguas cristalinas y villas sobre el mar. Sumérgete en arrecifes de coral repletos de vida, disfruta de la privacidad total en islas de arena blanca y déjate llevar por el lujo de la desconexión total. El destino definitivo para quienes buscan el descanso más exclusivo en el corazón del Océano Índico.",
+      imagenPortada: "/assets/destinos/maldivas1.webp",
+      imagenes: [
+        "/assets/destinos/maldivas2.jpg",
+        "/assets/destinos/maldivas3.jpg",
+        "/assets/destinos/maldivas4.jpg"
+      ],
+      destacado: true,
+      orden: 36
+    },
+    {
+      nombre: "India",
+      slug: "india",
+      paisRegion: "India",
+      descripcionCorta: "Espiritualidad, palacios y colores vibrantes.",
+      descripcion:
+        "Vive la energía de India: una explosión de colores, aromas y espiritualidad que transforma a cada viajero. Desde la simetría perfecta del Taj Mahal y los palacios de los Maharajás en el Rajastán, hasta el misticismo del río Ganges en Benarés. Un destino intenso y fascinante que ofrece una conexión profunda con lo sagrado y lo humano.",
+      imagenPortada: "/assets/destinos/india.webp",
+      imagenes: [
+        "/assets/destinos/india2.webp",
+        "/assets/destinos/india3.webp",
+        "/assets/destinos/india4.webp"
+      ],
+      destacado: true,
+      orden: 37
+    },
+
+    // ================= EUROPA EXTRA =================
+    {
+      nombre: "Londres",
+      slug: "londres",
+      paisRegion: "Inglaterra",
+      descripcionCorta: "Tradición monárquica y vanguardia global.",
+      descripcion:
+        "Vive la energía de Londres: la metrópoli donde la tradición monárquica se encuentra con la vanguardia global. Desde el icónico Big Ben y el Palacio de Buckingham hasta los mercados alternativos de Camden Town y los museos de clase mundial. Un destino cosmopolita y vibrante que marca tendencia en moda, arte y cultura en cada esquina de sus históricos barrios.",
+      imagenPortada: "/assets/destinos/londres.jpg",
+      imagenes: [
+        "/assets/destinos/londres2.jpg",
+        "/assets/destinos/londres3.jpeg",
+        "/assets/destinos/londres4.jpg"
+      ],
+      destacado: true,
+      orden: 38
+    },
+    {
+      nombre: "Barcelona",
+      slug: "barcelona",
+      paisRegion: "España",
+      descripcionCorta: "Gaudí, Mediterráneo y vida vibrante.",
+      descripcion:
+        "Vive la energía de Barcelona: la joya del Mediterráneo que deslumbra con el genio de Gaudí. Déjate sorprender por las formas imposibles de la Sagrada Familia, recorre las coloridas Ramblas y disfruta de la brisa marina en la Barceloneta. Un destino que combina playa, arquitectura modernista y una de las mejores escenas gastronómicas de Europa bajo el sol catalán.",
+      imagenPortada: "/assets/destinos/barcelona.jpg",
+      imagenes: [
+        "/assets/destinos/barcelona2.webp",
+        "/assets/destinos/barcelona3.webp",
+        "/assets/destinos/barcelona4.webp"
+      ],
+      destacado: true,
+      orden: 39
+    },
+    {
+      nombre: "Praga",
+      slug: "praga",
+      paisRegion: "República Checa",
+      descripcionCorta: "Historia bohemia y arquitectura medieval.",
+      descripcion:
+        "Vive la energía de Praga: la ciudad de las cien torres que parece salida de un cuento de hadas. Cruza el histórico Puente de Carlos al amanecer, explora el majestuoso Castillo de Praga y piérdete en las callejuelas medievales de su Ciudad Vieja. Un destino cargado de mística, historia bohemia y una arquitectura gótica y barroca que cautiva a cada paso.",
+      imagenPortada: "/assets/destinos/praga.webp",
+      imagenes: [
+        "/assets/destinos/praga2.jpg",
+        "/assets/destinos/praga3.jpg",
+        "/assets/destinos/praga.webp"
+      ],
+      destacado: true,
+      orden: 40
+    },
+    {
+      nombre: "Atenas",
+      slug: "atenas",
+      paisRegion: "Grecia",
+      descripcionCorta: "Acrópolis, historia antigua y vida mediterránea.",
+      descripcion:
+        "Vive la energía de Atenas: la cuna de la democracia y el pensamiento occidental. Contempla la majestuosidad del Partenón en la Acrópolis, recorre el pintoresco barrio de Plaka y descubre cómo la historia antigua convive con una vida urbana moderna y llena de sabor mediterráneo. El punto de partida ideal para una travesía inolvidable por las islas griegas.",
+      imagenPortada: "/assets/destinos/atenas.jpg",
+      imagenes: [
+        "/assets/destinos/atenas2.webp",
+        "/assets/destinos/atenas3.jpg",
+        "/assets/destinos/atenas4.webp"
+      ],
+      destacado: true,
+      orden: 41
+    },
+    {
+      nombre: "Ámsterdam",
+      slug: "amsterdam",
+      paisRegion: "Países Bajos",
+      descripcionCorta: "Canales, bicicletas y arte europeo.",
+      descripcion:
+        "Vive la energía de Ámsterdam: la ciudad de los canales, las bicicletas y la libertad. Disfruta de un paseo en barco por su red fluvial declarada Patrimonio de la Humanidad, visita la casa de Ana Frank y maravíllate con el arte de Van Gogh. Un destino acogedor y pintoresco que combina una rica historia comercial con un espíritu moderno y multicultural.",
+      imagenPortada: "/assets/destinos/amsterdam.jpg",
+      imagenes: [
+        "/assets/destinos/amsterdam2.jpg",
+        "/assets/destinos/amsterdam3.webp",
+        "/assets/destinos/amsterdam4.jpg"
+      ],
+      destacado: true,
+      orden: 42
+    },
+    {
+      nombre: "Berlín",
+      slug: "berlin",
+      paisRegion: "Alemania",
+      descripcionCorta: "Historia viva y creatividad urbana.",
+      descripcion:
+        "Vive la energía de Berlín: una capital que respira historia contemporánea y creatividad sin límites. Desde los restos del Muro de Berlín y la Puerta de Brandeburgo hasta su vibrante escena de arte urbano y música electrónica. Una ciudad resiliente y vanguardista que invita a explorar el pasado mientras se vive el futuro de Europa.",
+      imagenPortada: "/assets/destinos/berlin1.jpg",
+      imagenes: [
+        "/assets/destinos/berlin2.jpg",
+        "/assets/destinos/berlin3.jpg",
+        "/assets/destinos/berlin4.jpeg"
+      ],
+      destacado: true,
+      orden: 43
+    },
+    {
+      nombre: "Florencia",
+      slug: "florencia",
+      paisRegion: "Italia",
+      descripcionCorta: "Renacimiento, arte y Toscana.",
+      descripcion:
+        "Vive la energía de Florencia: la cuna del Renacimiento y un verdadero museo al aire libre. Admira el David de Miguel Ángel, contempla la cúpula de Brunelleschi y cruza el romántico Ponte Vecchio. Un destino que celebra la belleza y el arte en su máxima expresión, rodeado por los paisajes idílicos y los viñedos de la Toscana.",
+      imagenPortada: "/assets/destinos/florencia.jpg",
+      imagenes: [
+        "/assets/destinos/florencia2.jpg",
+        "/assets/destinos/florencia3.jpg",
+        "/assets/destinos/florencia4.jpg"
+      ],
+      destacado: true,
+      orden: 44
+    },
+    {
+      nombre: "Lisboa",
+      slug: "lisboa",
+      paisRegion: "Portugal",
+      descripcionCorta: "Fado, colinas y luz atlántica.",
+      descripcion:
+        "Vive la energía de Lisboa: la ciudad de las siete colinas bañada por la luz dorada del Tajo. Déjate llevar por el sonido melancólico del Fado en Alfama, recorre sus calles empinadas en los icónicos tranvías amarillos y disfruta de los famosos pasteles de Belém. Un destino auténtico y luminoso que mezcla tradición marinera con un estilo de vida relajado y moderno.",
+      imagenPortada: "/assets/destinos/lisboa1.webp",
+      imagenes: [
+        "/assets/destinos/lisboa2.jpg",
+        "/assets/destinos/lisboa3.webp",
+        "/assets/destinos/lisboa4.webp"
+      ],
+      destacado: true,
+      orden: 45
     }
   ];
 
@@ -1316,8 +1642,8 @@ async function main() {
 
   await prisma.oferta.create({
     data: {
-      titulo: "Charter Porto de Galinhas y Maragogi 2026",
-      slug: "charter-porto-galinhas-maragogi-2026",
+      titulo: "Charter Porto de Galinhas 2026",
+      slug: "charter-porto-galinhas-2026",
       destinoId: portoGalinhas.id,
       noches: 7,
       cupos: 20,
