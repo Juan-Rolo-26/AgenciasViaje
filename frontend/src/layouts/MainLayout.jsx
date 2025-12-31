@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { apiRequest } from "../api/api.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
@@ -27,9 +27,11 @@ const excursionLinks = [
 ];
 
 export default function MainLayout() {
+  const location = useLocation();
   const asesorWhatsappLink = getWhatsappLink(
     "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
   );
+  const [navOpen, setNavOpen] = useState(false);
   const [assistantOpen, setAssistantOpen] = useState(false);
   const initialMessages = useMemo(
     () => [
@@ -58,6 +60,18 @@ export default function MainLayout() {
 
   const toggleAssistant = () => {
     setAssistantOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    setNavOpen(false);
+  }, [location.pathname]);
+
+  const toggleNav = () => {
+    setNavOpen((prev) => !prev);
+  };
+
+  const closeNav = () => {
+    setNavOpen(false);
   };
 
   const closeAssistant = () => {
@@ -151,9 +165,32 @@ export default function MainLayout() {
             </div>
           </Link>
 
-          <nav className="nav-main" aria-label="Navegación principal">
+          <button
+            className={`nav-toggle${navOpen ? " is-open" : ""}`}
+            type="button"
+            onClick={toggleNav}
+            aria-label={navOpen ? "Cerrar menu" : "Abrir menu"}
+            aria-expanded={navOpen}
+            aria-controls="primary-navigation"
+          >
+            <span className="nav-toggle-bars" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
+
+          <nav
+            className={`nav-main${navOpen ? " is-open" : ""}`}
+            id="primary-navigation"
+            aria-label="Navegación principal"
+          >
             <div className="nav-item-group">
-              <NavLink className={navLinkClass} to="/destinos">
+              <NavLink
+                className={navLinkClass}
+                to="/destinos"
+                onClick={closeNav}
+              >
                 <span className="nav-ico" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
                     <path
@@ -182,6 +219,7 @@ export default function MainLayout() {
                     key={continent.id}
                     className="nav-dropdown-item"
                     to={`/destinos?continente=${continent.id}`}
+                    onClick={closeNav}
                   >
                     {continent.label}
                   </Link>
@@ -190,7 +228,11 @@ export default function MainLayout() {
             </div>
 
             <div className="nav-item-group">
-              <NavLink className={navLinkClass} to="/ofertas">
+              <NavLink
+                className={navLinkClass}
+                to="/ofertas"
+                onClick={closeNav}
+              >
                 <span className="nav-ico" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
                     <path
@@ -219,6 +261,7 @@ export default function MainLayout() {
                     key={section.id}
                     className="nav-dropdown-item"
                     to={`/ofertas?seccion=${section.id}`}
+                    onClick={closeNav}
                   >
                     {section.label}
                   </Link>
@@ -227,7 +270,11 @@ export default function MainLayout() {
             </div>
 
             <div className="nav-item-group">
-              <NavLink className={navLinkClass} to="/excursiones">
+              <NavLink
+                className={navLinkClass}
+                to="/excursiones"
+                onClick={closeNav}
+              >
                 <span className="nav-ico" aria-hidden="true">
                   <svg viewBox="0 0 24 24">
                     <path
@@ -256,6 +303,7 @@ export default function MainLayout() {
                     key={section.id}
                     className="nav-dropdown-item"
                     to={`/excursiones?seccion=${section.id}`}
+                    onClick={closeNav}
                   >
                     {section.label}
                   </Link>
@@ -263,7 +311,11 @@ export default function MainLayout() {
               </div>
             </div>
 
-            <NavLink className={navLinkClass} to="/calendario">
+            <NavLink
+              className={navLinkClass}
+              to="/calendario"
+              onClick={closeNav}
+            >
               <span className="nav-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path
@@ -275,7 +327,11 @@ export default function MainLayout() {
               Calendario
             </NavLink>
 
-            <NavLink className={navLinkClass} to="/asistencia">
+            <NavLink
+              className={navLinkClass}
+              to="/asistencia"
+              onClick={closeNav}
+            >
               <span className="nav-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path
@@ -288,7 +344,7 @@ export default function MainLayout() {
             </NavLink>
           </nav>
 
-          <div className="nav-cta">
+          <div className={`nav-cta${navOpen ? " is-open" : ""}`}>
             <a
               className="cta-button"
               href={asesorWhatsappLink}

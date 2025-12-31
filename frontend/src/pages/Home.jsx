@@ -164,6 +164,7 @@ export default function Home() {
     searchDate,
     searchDestino,
     searchText,
+    searchTransporte,
     searchType
   ]);
 
@@ -732,7 +733,7 @@ export default function Home() {
         ) : destinos.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
-          <div className="offer-carousel">
+          <div className="offer-carousel destination-carousel">
             <div className="offer-track">
               {loopDestinos.map((destino, index) => {
                 const destinoSlug = destino.slug || destino.id;
