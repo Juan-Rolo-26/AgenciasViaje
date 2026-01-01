@@ -32,6 +32,11 @@ export default function MainLayout() {
     "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
   );
   const [navOpen, setNavOpen] = useState(false);
+  const [navSectionsOpen, setNavSectionsOpen] = useState({
+    destinos: false,
+    ofertas: false,
+    excursiones: false
+  });
   const [assistantOpen, setAssistantOpen] = useState(false);
   const initialMessages = useMemo(
     () => [
@@ -74,9 +79,31 @@ export default function MainLayout() {
     setNavOpen(false);
   };
 
+  const toggleNavSection = (sectionKey) => {
+    setNavSectionsOpen((prev) => {
+      const shouldOpen = !prev[sectionKey];
+      return {
+        destinos: false,
+        ofertas: false,
+        excursiones: false,
+        [sectionKey]: shouldOpen
+      };
+    });
+  };
+
   const closeAssistant = () => {
     setAssistantOpen(false);
   };
+
+  useEffect(() => {
+    if (!navOpen) {
+      setNavSectionsOpen({
+        destinos: false,
+        ofertas: false,
+        excursiones: false
+      });
+    }
+  }, [navOpen]);
 
   const resetAssistant = () => {
     setAssistantMessages(initialMessages);
@@ -185,35 +212,67 @@ export default function MainLayout() {
             id="primary-navigation"
             aria-label="Navegación principal"
           >
-            <div className="nav-item-group">
-              <NavLink
-                className={navLinkClass}
-                to="/destinos"
-                onClick={closeNav}
+            <div
+              className={`nav-item-group${
+                navSectionsOpen.destinos ? " is-expanded" : ""
+              }`}
+            >
+              <div className="nav-item-row">
+                <NavLink
+                  className={navLinkClass}
+                  to="/destinos"
+                  onClick={closeNav}
+                >
+                  <span className="nav-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 2C8 2 5 5.1 5 9.2c0 4.9 6 12.6 6.3 13 .4.5 1 .5 1.4 0 .3-.4 6.3-8.1 6.3-13C19 5.1 16 2 12 2Zm0 9.7a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  Destinos
+                  <span className="nav-caret" aria-hidden="true">
+                    <svg viewBox="0 0 12 12">
+                      <path
+                        d="M2 4.5l4 4 4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </NavLink>
+                <button
+                  className="nav-group-toggle"
+                  type="button"
+                  aria-label="Mostrar secciones de destinos"
+                  aria-expanded={navSectionsOpen.destinos}
+                  aria-controls="nav-dropdown-destinos"
+                  onClick={() => toggleNavSection("destinos")}
+                >
+                  <span className="nav-caret-icon" aria-hidden="true">
+                    <svg viewBox="0 0 12 12">
+                      <path
+                        d="M2 4.5l4 4 4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div
+                className="nav-dropdown"
+                role="menu"
+                aria-label="Continentes"
+                id="nav-dropdown-destinos"
               >
-                <span className="nav-ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M12 2C8 2 5 5.1 5 9.2c0 4.9 6 12.6 6.3 13 .4.5 1 .5 1.4 0 .3-.4 6.3-8.1 6.3-13C19 5.1 16 2 12 2Zm0 9.7a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                Destinos
-                <span className="nav-caret" aria-hidden="true">
-                  <svg viewBox="0 0 12 12">
-                    <path
-                      d="M2 4.5l4 4 4-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </NavLink>
-              <div className="nav-dropdown" role="menu" aria-label="Continentes">
                 {continentLinks.map((continent) => (
                   <Link
                     key={continent.id}
@@ -227,35 +286,67 @@ export default function MainLayout() {
               </div>
             </div>
 
-            <div className="nav-item-group">
-              <NavLink
-                className={navLinkClass}
-                to="/ofertas"
-                onClick={closeNav}
+            <div
+              className={`nav-item-group${
+                navSectionsOpen.ofertas ? " is-expanded" : ""
+              }`}
+            >
+              <div className="nav-item-row">
+                <NavLink
+                  className={navLinkClass}
+                  to="/ofertas"
+                  onClick={closeNav}
+                >
+                  <span className="nav-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 2c1.9 2.1 2.8 4.1 2.8 6.1 0 1.1-.3 2.1-.9 3 .9-.3 2-.9 2.8-2.1 1.8 2.1 2.3 4 2.3 5.6 0 3.6-2.9 6.4-7 6.4s-7-2.8-7-6.4c0-2.6 1.4-4.7 3.6-6.6.3 1.7 1.1 2.8 2.2 3.6-.1-.4-.2-.9-.2-1.4 0-2 1.1-4.5 4.4-8.2Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  Ofertas
+                  <span className="nav-caret" aria-hidden="true">
+                    <svg viewBox="0 0 12 12">
+                      <path
+                        d="M2 4.5l4 4 4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </NavLink>
+                <button
+                  className="nav-group-toggle"
+                  type="button"
+                  aria-label="Mostrar secciones de ofertas"
+                  aria-expanded={navSectionsOpen.ofertas}
+                  aria-controls="nav-dropdown-ofertas"
+                  onClick={() => toggleNavSection("ofertas")}
+                >
+                  <span className="nav-caret-icon" aria-hidden="true">
+                    <svg viewBox="0 0 12 12">
+                      <path
+                        d="M2 4.5l4 4 4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div
+                className="nav-dropdown"
+                role="menu"
+                aria-label="Secciones de ofertas"
+                id="nav-dropdown-ofertas"
               >
-                <span className="nav-ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M12 2c1.9 2.1 2.8 4.1 2.8 6.1 0 1.1-.3 2.1-.9 3 .9-.3 2-.9 2.8-2.1 1.8 2.1 2.3 4 2.3 5.6 0 3.6-2.9 6.4-7 6.4s-7-2.8-7-6.4c0-2.6 1.4-4.7 3.6-6.6.3 1.7 1.1 2.8 2.2 3.6-.1-.4-.2-.9-.2-1.4 0-2 1.1-4.5 4.4-8.2Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                Ofertas
-                <span className="nav-caret" aria-hidden="true">
-                  <svg viewBox="0 0 12 12">
-                    <path
-                      d="M2 4.5l4 4 4-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </NavLink>
-              <div className="nav-dropdown" role="menu" aria-label="Secciones de ofertas">
                 {offerLinks.map((section) => (
                   <Link
                     key={section.id}
@@ -269,35 +360,67 @@ export default function MainLayout() {
               </div>
             </div>
 
-            <div className="nav-item-group">
-              <NavLink
-                className={navLinkClass}
-                to="/excursiones"
-                onClick={closeNav}
+            <div
+              className={`nav-item-group${
+                navSectionsOpen.excursiones ? " is-expanded" : ""
+              }`}
+            >
+              <div className="nav-item-row">
+                <NavLink
+                  className={navLinkClass}
+                  to="/excursiones"
+                  onClick={closeNav}
+                >
+                  <span className="nav-ico" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M12 4a6 6 0 0 0-6 6c0 4.2 4.7 8.7 5.4 9.3a1 1 0 0 0 1.2 0c.7-.6 5.4-5.1 5.4-9.3a6 6 0 0 0-6-6Zm0 7.8A1.8 1.8 0 1 1 12 8a1.8 1.8 0 0 1 0 3.6ZM19.5 18.5a1 1 0 0 1-1.4 1.4l-1.7-1.7a1 1 0 1 1 1.4-1.4l1.7 1.7Zm-13.9 0 1.7-1.7a1 1 0 1 1 1.4 1.4l-1.7 1.7a1 1 0 0 1-1.4-1.4Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  Excursiones
+                  <span className="nav-caret" aria-hidden="true">
+                    <svg viewBox="0 0 12 12">
+                      <path
+                        d="M2 4.5l4 4 4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </NavLink>
+                <button
+                  className="nav-group-toggle"
+                  type="button"
+                  aria-label="Mostrar secciones de excursiones"
+                  aria-expanded={navSectionsOpen.excursiones}
+                  aria-controls="nav-dropdown-excursiones"
+                  onClick={() => toggleNavSection("excursiones")}
+                >
+                  <span className="nav-caret-icon" aria-hidden="true">
+                    <svg viewBox="0 0 12 12">
+                      <path
+                        d="M2 4.5l4 4 4-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              <div
+                className="nav-dropdown"
+                role="menu"
+                aria-label="Secciones de excursiones"
+                id="nav-dropdown-excursiones"
               >
-                <span className="nav-ico" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M12 4a6 6 0 0 0-6 6c0 4.2 4.7 8.7 5.4 9.3a1 1 0 0 0 1.2 0c.7-.6 5.4-5.1 5.4-9.3a6 6 0 0 0-6-6Zm0 7.8A1.8 1.8 0 1 1 12 8a1.8 1.8 0 0 1 0 3.6ZM19.5 18.5a1 1 0 0 1-1.4 1.4l-1.7-1.7a1 1 0 1 1 1.4-1.4l1.7 1.7Zm-13.9 0 1.7-1.7a1 1 0 1 1 1.4 1.4l-1.7 1.7a1 1 0 0 1-1.4-1.4Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                Excursiones
-                <span className="nav-caret" aria-hidden="true">
-                  <svg viewBox="0 0 12 12">
-                    <path
-                      d="M2 4.5l4 4 4-4"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </NavLink>
-              <div className="nav-dropdown" role="menu" aria-label="Secciones de excursiones">
                 {excursionLinks.map((section) => (
                   <Link
                     key={section.id}
