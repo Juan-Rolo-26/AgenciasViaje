@@ -562,7 +562,7 @@ export default function MainLayout() {
               La IA responde solo con datos de la base de Topotours. Puede
               cometer errores, considera verificar la informacion.
             </p>
-            {assistantError ? (
+            {assistantError && import.meta.env.DEV ? (
               <p className="assistant-panel-error">{assistantError}</p>
             ) : null}
           </div>
