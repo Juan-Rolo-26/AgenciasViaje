@@ -1,12 +1,14 @@
 const prisma = require("../lib/prisma");
 
-const OPENAI_URL =
-  process.env.OPENAI_URL || "https://api.openai.com/v1/chat/completions";
-const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4o-mini";
-const OLLAMA_URL =
-  process.env.OLLAMA_URL || "http://localhost:11434/api/chat";
-const OLLAMA_MODEL = process.env.OLLAMA_MODEL || "llama3.1:8b";
-const LLM_PROVIDER = (process.env.LLM_PROVIDER || "").toLowerCase();
+const GROQ_URL =
+  process.env.GROQ_URL || "https://api.groq.com/openai/v1/chat/completions";
+const GROQ_FALLBACK_MODELS = [
+  "llama-3.1-8b-instant",
+  "llama-3.1-70b-versatile",
+  "llama3-8b-8192",
+  "llama3-70b-8192",
+  "gemma-7b-it"
+];
 const MAX_HISTORY = 6;
 const MAX_ITEMS = 40;
 const MAX_TEXT = 180;
@@ -349,89 +351,80 @@ function buildSystemPrompt() {
   ].join("\n");
 }
 
-async function callOpenAI(messages) {
-  if (!process.env.OPENAI_API_KEY) {
-    const error = new Error("Falta configurar OPENAI_API_KEY para OpenAI.");
-    error.status = 501;
-    throw error;
-  }
+function getGroqModelCandidates() {
+  const configured = process.env.GROQ_MODEL;
+  const models = [
+    configured,
+    ...GROQ_FALLBACK_MODELS
+  ].filter(Boolean);
+  return Array.from(new Set(models));
+}
 
-  const response = await fetch(OPENAI_URL, {
+async function requestGroq(messages, model) {
+  const response = await fetch(GROQ_URL, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+      Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: OPENAI_MODEL,
+      model,
       messages,
       temperature: 0.2,
       max_tokens: 350
     })
   });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    const error = new Error(
-      `OpenAI error (${response.status}): ${errorText || "sin detalle"}`
-    );
-    error.status = 502;
-    throw error;
+  const rawBody = await response.text();
+  let payload = null;
+  if (rawBody) {
+    try {
+      payload = JSON.parse(rawBody);
+    } catch (error) {
+      payload = null;
+    }
   }
 
-  const data = await response.json();
-  const content = data?.choices?.[0]?.message?.content;
+  if (!response.ok) {
+    const code = payload?.error?.code;
+    const message =
+      payload?.error?.message || rawBody || "sin detalle";
+    const error = new Error(
+      `Groq error (${response.status}): ${message}`
+    );
+    error.status = 502;
+    return { ok: false, error, decommissioned: code === "model_decommissioned" };
+  }
+
+  const content = payload?.choices?.[0]?.message?.content;
   if (!content) {
     const error = new Error("La respuesta del asistente esta vacia.");
     error.status = 502;
-    throw error;
+    return { ok: false, error, decommissioned: false };
   }
-  return content.trim();
+  return { ok: true, content: content.trim() };
 }
 
-async function callOllama(messages) {
-  const response = await fetch(OLLAMA_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: OLLAMA_MODEL,
-      messages,
-      stream: false
-    })
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    const error = new Error(
-      `Ollama error (${response.status}): ${errorText || "sin detalle"}`
-    );
-    error.status = 502;
+async function callGroq(messages) {
+  if (!process.env.GROQ_API_KEY) {
+    const error = new Error("Falta configurar GROQ_API_KEY para Groq.");
+    error.status = 501;
     throw error;
   }
 
-  const data = await response.json();
-  const content = data?.message?.content;
-  if (!content) {
-    const error = new Error("La respuesta de Ollama esta vacia.");
-    error.status = 502;
-    throw error;
+  const candidates = getGroqModelCandidates();
+  let lastError = null;
+  for (const model of candidates) {
+    const result = await requestGroq(messages, model);
+    if (result.ok) {
+      return result.content;
+    }
+    lastError = result.error;
+    if (!result.decommissioned) {
+      throw result.error;
+    }
   }
-  return content.trim();
-}
-
-async function callLLM(messages) {
-  if (LLM_PROVIDER === "ollama") {
-    return callOllama(messages);
-  }
-  if (LLM_PROVIDER === "openai") {
-    return callOpenAI(messages);
-  }
-  if (process.env.OPENAI_API_KEY) {
-    return callOpenAI(messages);
-  }
-  return callOllama(messages);
+  throw lastError || new Error("Error al conectar con Groq.");
 }
 
 async function createAssistantReply({ message, history }) {
@@ -456,7 +449,7 @@ async function createAssistantReply({ message, history }) {
     { role: "user", content: truncateText(text, MAX_HISTORY_CHARS) }
   ];
 
-  return callLLM(messages);
+  return callGroq(messages);
 }
 
 module.exports = {

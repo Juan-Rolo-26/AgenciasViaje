@@ -1,4 +1,5 @@
 const express = require("express");
+const { createResponseCache } = require("../../middleware/responseCache");
 const {
   listActividades,
   getActividadById,
@@ -9,10 +10,11 @@ const {
 } = require("./activityController");
 
 const router = express.Router();
+const cache = createResponseCache();
 
-router.get("/", listActividades);
-router.get("/slug/:slug", getActividadBySlug);
-router.get("/:id", getActividadById);
+router.get("/", cache, listActividades);
+router.get("/slug/:slug", cache, getActividadBySlug);
+router.get("/:id", cache, getActividadById);
 router.post("/", createActividad);
 router.put("/:id", updateActividad);
 router.delete("/:id", deleteActividad);

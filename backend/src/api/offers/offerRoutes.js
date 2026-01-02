@@ -1,4 +1,5 @@
 const express = require("express");
+const { createResponseCache } = require("../../middleware/responseCache");
 const {
   listOfertas,
   getOfertaById,
@@ -9,10 +10,11 @@ const {
 } = require("./offerController");
 
 const router = express.Router();
+const cache = createResponseCache();
 
-router.get("/", listOfertas);
-router.get("/slug/:slug", getOfertaBySlug);
-router.get("/:id", getOfertaById);
+router.get("/", cache, listOfertas);
+router.get("/slug/:slug", cache, getOfertaBySlug);
+router.get("/:id", cache, getOfertaById);
 router.post("/", createOferta);
 router.put("/:id", updateOferta);
 router.delete("/:id", deleteOferta);
