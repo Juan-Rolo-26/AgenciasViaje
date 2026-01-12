@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import logo from "../assets/logo.png";
@@ -14,6 +14,23 @@ const CONTINENTS = [
   { id: "asia", label: "Asia" },
   { id: "africa", label: "Africa" }
 ];
+
+const HERO_IMAGES = [
+  "/assets/destinos/punta2.webp",
+  "/assets/destinos/barcelona2.webp",
+  "/assets/destinos/madrid3.jpg",
+  "/assets/destinos/mexico2.jpg",
+  "/assets/destinos/maldivas2.jpg",
+  "/assets/destinos/dubai4.jpg",
+  "/assets/destinos/paris3.jpg",
+  "/assets/destinos/roma2.jpg",
+  "/assets/destinos/londres2.jpg",
+  "/assets/destinos/singapur2.webp"
+];
+
+const HERO_ROTATION_MS = 11000;
+const HERO_FADE_MS = 3000;
+const CAROUSEL_PX_PER_SECOND = 24;
 
 const CONTINENT_BY_COUNTRY = {
   Argentina: "america",
@@ -52,7 +69,22 @@ const CONTINENT_BY_COUNTRY = {
 
 export default function Home() {
   const { destinos, ofertas, actividades, loading, error } = useTravelData();
-  const heroImage = resolveAssetUrl("/assets/destinos/mexico1.webp");
+  const heroImages = useMemo(
+    () => HERO_IMAGES.map((image) => resolveAssetUrl(image)),
+    []
+  );
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [heroPrevIndex, setHeroPrevIndex] = useState(0);
+  const [heroIsFading, setHeroIsFading] = useState(false);
+  const heroFadeTimeout = useRef(null);
+  const heroImage = heroImages[heroIndex] || fallbackDeal;
+  const heroPrevImage = heroImages[heroPrevIndex] || heroImage;
+  const destinosCarouselRef = useRef(null);
+  const destinosTrackRef = useRef(null);
+  const salidasCarouselRef = useRef(null);
+  const salidasTrackRef = useRef(null);
+  const excursionesCarouselRef = useRef(null);
+  const excursionesTrackRef = useRef(null);
   const [searchType, setSearchType] = useState("destino");
   const [searchDestino, setSearchDestino] = useState("");
   const [searchRegion, setSearchRegion] = useState("");
@@ -61,6 +93,43 @@ export default function Home() {
   const [searchText, setSearchText] = useState("");
   const [searchTransporte, setSearchTransporte] = useState("");
   const [searchIndex, setSearchIndex] = useState(0);
+
+  useEffect(() => {
+    if (!heroImages.length) {
+      return;
+    }
+    heroImages.forEach((image) => {
+      const preload = new Image();
+      preload.src = image;
+    });
+  }, [heroImages]);
+
+  useEffect(() => {
+    if (heroImages.length < 2) {
+      return;
+    }
+    const intervalId = setInterval(() => {
+      setHeroIndex((current) => {
+        const next = (current + 1) % heroImages.length;
+        setHeroPrevIndex(current);
+        setHeroIsFading(true);
+        if (heroFadeTimeout.current) {
+          clearTimeout(heroFadeTimeout.current);
+        }
+        heroFadeTimeout.current = setTimeout(() => {
+          setHeroPrevIndex(next);
+          setHeroIsFading(false);
+        }, HERO_FADE_MS);
+        return next;
+      });
+    }, HERO_ROTATION_MS);
+    return () => {
+      clearInterval(intervalId);
+      if (heroFadeTimeout.current) {
+        clearTimeout(heroFadeTimeout.current);
+      }
+    };
+  }, [heroImages.length]);
 
   const salidasDisponibles = useMemo(() => ofertas, [ofertas]);
 
@@ -275,10 +344,7 @@ export default function Home() {
         !textQuery ||
         actividad.nombre.toLowerCase().includes(textQuery) ||
         destinoNombre.toLowerCase().includes(textQuery);
-      const matchesDate = selectedDate
-        ? new Date(actividad.fecha).toDateString() ===
-          selectedDate.toDateString()
-        : true;
+      const matchesDate = true;
       return matchesCordoba && matchesName && matchesText && matchesDate;
     });
   }, [
@@ -317,6 +383,51 @@ export default function Home() {
     const trimmed = base.slice(0, 6);
     return [...trimmed, ...trimmed];
   }, [excursionesDestacadas]);
+
+  useEffect(() => {
+    const pairs = [
+      { container: destinosCarouselRef.current, track: destinosTrackRef.current },
+      { container: salidasCarouselRef.current, track: salidasTrackRef.current },
+      {
+        container: excursionesCarouselRef.current,
+        track: excursionesTrackRef.current
+      }
+    ];
+
+    const updateSpeed = (container, track) => {
+      if (!container || !track) {
+        return;
+      }
+      const baseWidth = track.scrollWidth / 2;
+      const seconds = Math.max(baseWidth / CAROUSEL_PX_PER_SECOND, 1);
+      container.style.setProperty("--carousel-speed", `${seconds}s`);
+    };
+
+    const updateAll = () => {
+      pairs.forEach(({ container, track }) => updateSpeed(container, track));
+    };
+
+    updateAll();
+
+    let resizeObserver;
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObserver = new ResizeObserver(updateAll);
+      pairs.forEach(({ track }) => {
+        if (track) {
+          resizeObserver.observe(track);
+        }
+      });
+    }
+
+    window.addEventListener("resize", updateAll);
+
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+      window.removeEventListener("resize", updateAll);
+    };
+  }, [loopDestinos.length, loopOfertas.length, loopExcursiones.length]);
 
   const hasSearchFilters =
     searchDestino.trim() ||
@@ -400,10 +511,19 @@ export default function Home() {
   return (
     <main>
       <section
-        className="hero hero-search"
+        className={`hero hero-search${heroIsFading ? " hero-search-fade" : ""}`}
         id="inicio"
-        style={{ backgroundImage: `url("${heroImage}")` }}
       >
+        <div
+          className="hero-background hero-background-prev"
+          style={{ backgroundImage: `url("${heroPrevImage}")` }}
+          aria-hidden="true"
+        ></div>
+        <div
+          className="hero-background hero-background-current"
+          style={{ backgroundImage: `url("${heroImage}")` }}
+          aria-hidden="true"
+        ></div>
         <div
           className={`hero-content${
             searchType === "oferta" ? " hero-content--wide" : ""
@@ -951,7 +1071,7 @@ export default function Home() {
       <section className="grid-section">
         <div className="section-header section-header-row">
           <div>
-            <h2>Destinos destacados</h2>
+            <h2>Destinos</h2>
             <p>Elegí tu próxima aventura con propuestas a tu medida.</p>
           </div>
           <Link className="secondary" to="/destinos">
@@ -965,8 +1085,11 @@ export default function Home() {
         ) : destinos.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
-          <div className="offer-carousel destination-carousel destination-carousel--slow">
-            <div className="offer-track">
+          <div
+            className="offer-carousel destination-carousel"
+            ref={destinosCarouselRef}
+          >
+            <div className="offer-track" ref={destinosTrackRef}>
               {loopDestinos.map((destino, index) => {
                 const destinoSlug = destino.slug || destino.id;
                 const descripcion =
@@ -1038,8 +1161,11 @@ export default function Home() {
         ) : loopOfertas.length === 0 ? (
           <p className="section-state">No hay salidas disponibles.</p>
         ) : (
-          <div className="offer-carousel destination-carousel">
-            <div className="offer-track">
+          <div
+            className="offer-carousel destination-carousel"
+            ref={salidasCarouselRef}
+          >
+            <div className="offer-track" ref={salidasTrackRef}>
               {loopOfertas.map((oferta, index) => {
                 const ofertaSlug = oferta.slug || oferta.id;
                 const offerImages = getOfferImages(oferta);
@@ -1105,8 +1231,11 @@ export default function Home() {
         ) : loopExcursiones.length === 0 ? (
           <p className="section-state">No hay excursiones disponibles.</p>
         ) : (
-          <div className="offer-carousel destination-carousel">
-            <div className="offer-track">
+          <div
+            className="offer-carousel destination-carousel"
+            ref={excursionesCarouselRef}
+          >
+            <div className="offer-track" ref={excursionesTrackRef}>
               {loopExcursiones.map((actividad, index) => {
                 const actividadSlug = actividad.slug || actividad.id;
                 const galleryImages = getExcursionGallery(actividad.slug);
@@ -1176,14 +1305,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about-topotours">
+      <section className="about-topotours" id="nosotros">
         <div className="about-topotours-card">
           <div className="about-topotours-brand">
-            <img
-              className="about-topotours-logo"
-              src={logo}
-              alt="Topotours"
-            />
+            <img className="about-topotours-logo" src={logo} alt="Topotours" />
             <div className="about-topotours-brand-text">
               <strong>Topotours</strong>
               <span>Agencia de viajes</span>

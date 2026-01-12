@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useOfertas } from "../hooks/useTravelData.js";
-import { formatDate } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
 
@@ -491,8 +490,6 @@ export default function Ofertas() {
                 const ofertaSlug = oferta.slug || oferta.id;
                 const offerImages = getOfferImages(oferta);
                 const offerImage = offerImages[0] || fallbackDeal;
-                const fechaInicio = fechaReferencia?.fechaInicio;
-                const fechaFin = fechaReferencia?.fechaFin;
                 return (
                   <Link
                     className="offer-card"
@@ -501,23 +498,10 @@ export default function Ofertas() {
                   >
                     <div className="offer-card-image">
                       <img src={offerImage} alt={oferta.titulo} />
-                      <span className="offer-card-badge">
-                        {(oferta.destino?.nombre || "Destino").toUpperCase()}
-                      </span>
                     </div>
 
                     <div className="offer-card-body">
                       <h3 className="offer-card-title">{oferta.titulo}</h3>
-                      <p className="offer-card-description">
-                        {oferta.condiciones ||
-                          "Consultanos para más información"}
-                      </p>
-                      {fechaInicio && fechaFin ? (
-                        <div className="offer-card-dates">
-                          Válido del {formatDate(fechaInicio)} al{" "}
-                          {formatDate(fechaFin)}
-                        </div>
-                      ) : null}
                     </div>
 
                     <div className="offer-card-footer">
