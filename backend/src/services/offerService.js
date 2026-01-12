@@ -7,10 +7,82 @@ function normalizeArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-async function listOfertas({ activas = true } = {}) {
-  return prisma.oferta.findMany({
+async function listOfertas({ activas = true, lite = false } = {}) {
+  const baseQuery = {
     where: activas ? { activa: true } : undefined,
-    orderBy: [{ orden: "asc" }, { creadaEn: "desc" }],
+    orderBy: [{ orden: "asc" }, { creadaEn: "desc" }]
+  };
+
+  if (lite) {
+    return prisma.oferta.findMany({
+      ...baseQuery,
+      select: {
+        id: true,
+        titulo: true,
+        slug: true,
+        destinoId: true,
+        noches: true,
+        cupos: true,
+        noIncluye: true,
+        condiciones: true,
+        destacada: true,
+        activa: true,
+        orden: true,
+        destino: {
+          select: {
+            id: true,
+            nombre: true,
+            slug: true,
+            paisRegion: true,
+            imagenPortada: true
+          }
+        },
+        destinos: {
+          select: {
+            destinoId: true,
+            destino: {
+              select: {
+                id: true,
+                nombre: true,
+                slug: true,
+                paisRegion: true,
+                imagenPortada: true
+              }
+            }
+          }
+        },
+        actividades: {
+          select: {
+            actividadId: true,
+            actividad: {
+              select: {
+                id: true,
+                nombre: true,
+                slug: true
+              }
+            }
+          }
+        },
+        precios: {
+          select: {
+            id: true,
+            fechaInicio: true,
+            fechaFin: true
+          }
+        },
+        incluyeItems: {
+          select: {
+            id: true,
+            tipo: true,
+            descripcion: true
+          }
+        }
+      }
+    });
+  }
+
+  return prisma.oferta.findMany({
+    ...baseQuery,
     include: {
       destino: true,
       destinos: { include: { destino: true } },

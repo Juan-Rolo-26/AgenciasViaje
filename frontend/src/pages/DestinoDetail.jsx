@@ -2,11 +2,7 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
-import {
-  formatCurrency,
-  formatDate,
-  getPrecioVigente
-} from "../utils/formatters.js";
+import { formatDate, getPrecioVigente } from "../utils/formatters.js";
 
 export default function DestinoDetail() {
   const { slug } = useParams();
@@ -116,7 +112,7 @@ export default function DestinoDetail() {
             Anterior
           </Link>
           <span className="destination-hero-country">
-            {(destino.paisRegion || "Destino destacado").toUpperCase()}
+            {(destino.paisRegion || "Destino").toUpperCase()}
           </span>
           <h1>{destino.nombre}</h1>
           <p>{destino.descripcionCorta || "Conoce sus mejores experiencias."}</p>
@@ -137,12 +133,12 @@ export default function DestinoDetail() {
 
       <section className="grid-section">
         <div className="section-header">
-          <h2>Ofertas para {destino.nombre}</h2>
-          <p>Promos y paquetes pensados para este destino.</p>
+          <h2>Salidas para {destino.nombre}</h2>
+          <p>Salidas grupales y propuestas pensadas para este destino.</p>
         </div>
         {ofertasDestino.length === 0 ? (
           <p className="section-state">
-            No hay ofertas disponibles para este destino.
+            No hay salidas disponibles para este destino.
           </p>
         ) : (
           <div className="offer-grid">
@@ -166,21 +162,14 @@ export default function DestinoDetail() {
                       oferta.noIncluye ||
                       "Consultanos"}
                   </p>
-                  <div className="offer-meta">
-                    {precio ? (
-                      <span className="offer-price">
-                        {formatCurrency(precio.precio, precio.moneda)}
-                      </span>
-                    ) : (
-                      <span className="offer-price">Precio a consultar</span>
-                    )}
-                    {precio ? (
+                  {precio ? (
+                    <div className="offer-meta">
                       <span className="offer-dates">
                         {formatDate(precio.fechaInicio)} -{" "}
                         {formatDate(precio.fechaFin)}
                       </span>
-                    ) : null}
-                  </div>
+                    </div>
+                  ) : null}
                 </Link>
               );
             })}
@@ -188,44 +177,45 @@ export default function DestinoDetail() {
         )}
       </section>
 
-      <section className="grid-section">
-        <div className="section-header">
-          <h2>Excursiones en {destino.nombre}</h2>
-          <p>Sumale experiencias y recorridos locales al viaje.</p>
-        </div>
-        {actividadesDestino.length === 0 ? (
-          <p className="section-state">No hay excursiones disponibles.</p>
-        ) : (
-          <div className="grid">
-            {actividadesDestino.map((actividad) => {
-              const actividadSlug = actividad.slug || actividad.id;
-              return (
-                <Link
-                  className="tile excursion-card"
-                  key={actividad.id}
-                  to={`/excursiones/${actividadSlug}`}
-                >
-                  <div
-                    className="tile-image"
-                    style={{
-                      backgroundImage: actividad.imagenPortada
-                        ? `url("${actividad.imagenPortada}")`
-                        : `url("${fallbackDeal}")`
-                    }}
-                  ></div>
-                  <div className="tile-content">
-                    <h4>{actividad.nombre}</h4>
-                    <p>{actividad.descripcion}</p>
-                    <span className="tile-meta">
-                      {actividad.tipoActividad || "Experiencia"}
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
+      {destino.slug === "cordoba" ? (
+        <section className="grid-section">
+          <div className="section-header">
+            <h2>Excursiones en {destino.nombre}</h2>
+            <p>Sumale experiencias y recorridos locales al viaje.</p>
           </div>
-        )}
-      </section>
+          {actividadesDestino.length === 0 ? (
+            <p className="section-state">No hay excursiones disponibles.</p>
+          ) : (
+            <div className="grid">
+              {actividadesDestino.map((actividad) => {
+                const actividadSlug = actividad.slug || actividad.id;
+                return (
+                  <Link
+                    className="tile excursion-card"
+                    key={actividad.id}
+                    to={`/excursiones/${actividadSlug}`}
+                  >
+                    <div
+                      className="tile-image"
+                      style={{
+                        backgroundImage: actividad.imagenPortada
+                          ? `url("${actividad.imagenPortada}")`
+                          : `url("${fallbackDeal}")`
+                      }}
+                    ></div>
+                    <div className="tile-content">
+                      <h4>{actividad.nombre}</h4>
+                      <span className="tile-meta">
+                        {actividad.tipoActividad || "Experiencia"}
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      ) : null}
     </main>
   );
 }

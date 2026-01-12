@@ -17,6 +17,17 @@ async function chatAssistant(req, res, next) {
   }
 }
 
+async function getAssistantOverview(req, res, next) {
+  try {
+    const data = await assistantService.fetchAssistantData();
+    const reply = assistantService.buildOverviewReply(data);
+    res.json({ reply });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
-  chatAssistant
+  chatAssistant,
+  getAssistantOverview
 };

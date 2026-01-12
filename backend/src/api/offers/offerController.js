@@ -11,7 +11,8 @@ function normalizeIds(value) {
 async function listOfertas(req, res, next) {
   try {
     const activas = req.query.activas !== "false";
-    const ofertas = await offerService.listOfertas({ activas });
+    const lite = req.query.lite === "1";
+    const ofertas = await offerService.listOfertas({ activas, lite });
     res.json(ofertas);
   } catch (error) {
     next(error);

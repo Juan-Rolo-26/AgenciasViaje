@@ -1,9 +1,39 @@
 const prisma = require("../lib/prisma");
 
-async function listDestinos({ activos = true } = {}) {
-  return prisma.destino.findMany({
+async function listDestinos({ activos = true, lite = false } = {}) {
+  const baseQuery = {
     where: activos ? { activo: true } : undefined,
-    orderBy: [{ orden: "asc" }, { nombre: "asc" }],
+    orderBy: [{ orden: "asc" }, { nombre: "asc" }]
+  };
+
+  if (lite) {
+    return prisma.destino.findMany({
+      ...baseQuery,
+      select: {
+        id: true,
+        nombre: true,
+        slug: true,
+        paisRegion: true,
+        descripcionCorta: true,
+        descripcion: true,
+        imagenPortada: true,
+        destacado: true,
+        orden: true,
+        galeria: {
+          select: {
+            id: true,
+            imagen: true,
+            orden: true
+          },
+          orderBy: { orden: "asc" },
+          take: 3
+        }
+      }
+    });
+  }
+
+  return prisma.destino.findMany({
+    ...baseQuery,
     include: {
       galeria: true
     }

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
-import { useTravelData } from "../hooks/useTravelData.js";
+import { useDestinos } from "../hooks/useTravelData.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
 
 const CONTINENTS = [
@@ -30,6 +30,12 @@ const CONTINENTS = [
 const CONTINENT_BY_COUNTRY = {
   Argentina: "america",
   Brasil: "america",
+  Chile: "america",
+  Colombia: "america",
+  "Costa Rica": "america",
+  Cuba: "america",
+  México: "america",
+  "República Dominicana": "america",
   Perú: "america",
   "Estados Unidos": "america",
   "Emiratos Árabes": "asia",
@@ -39,6 +45,7 @@ const CONTINENT_BY_COUNTRY = {
   Vietnam: "asia",
   Maldivas: "asia",
   India: "asia",
+  Singapur: "asia",
   "Sudáfrica": "africa",
   Kenia: "africa",
   Egipto: "africa",
@@ -57,8 +64,9 @@ const CONTINENT_BY_COUNTRY = {
 
 const CONTINENT_SET = new Set(CONTINENTS.map((item) => item.id));
 
-export default function Destinos() {
-  const { destinos, loading, error } = useTravelData();
+export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
+  const { destinos, loading, error } = useDestinos();
+  const lockedPaisValue = (lockedPais || "").trim();
   const continentCards = useMemo(
     () =>
       CONTINENTS.map((item) => ({
@@ -68,62 +76,94 @@ export default function Destinos() {
     []
   );
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const selectedContinent = (() => {
     const value = (searchParams.get("continente") || "").toLowerCase();
     return CONTINENT_SET.has(value) ? value : "";
   })();
+  const selectedPais =
+    lockedPaisValue || (searchParams.get("pais") || "").trim();
+  useEffect(() => {
+    if (!lockedPaisValue && selectedPais.toLowerCase() === "argentina") {
+      navigate("/argentina", { replace: true });
+    }
+  }, [lockedPaisValue, navigate, selectedPais]);
   const activeContinent = CONTINENTS.find(
     (item) => item.id === selectedContinent
   );
+  const heroKicker =
+    heroOverrides.kicker ?? (
+      <>
+        Destinos <span className="topotours-word">Topotours</span>
+      </>
+    );
+  const heroTitle =
+    heroOverrides.title ||
+    (activeContinent
+      ? `Destinos en ${activeContinent.label}`
+      : selectedPais
+      ? `Destinos en ${selectedPais}`
+      : "Destinos inolvidables");
+  const heroSubtitle =
+    heroOverrides.subtitle ||
+    "Elegí tu próxima aventura con propuestas a tu medida.";
   const baseFilters = {
-    pais: "",
+    pais: lockedPaisValue,
     query: "",
-    destacados: "todos",
     continente: ""
   };
   const initialFilters = {
     ...baseFilters,
-    continente: selectedContinent
+    continente: selectedContinent,
+    pais: selectedPais
   };
   const [draftFilters, setDraftFilters] = useState(initialFilters);
   const [filters, setFilters] = useState(initialFilters);
 
   useEffect(() => {
     const nextFilters = {
-      pais: "",
+      pais: selectedPais,
       query: "",
-      destacados: "todos",
       continente: selectedContinent
     };
     setDraftFilters(nextFilters);
     setFilters(nextFilters);
-  }, [selectedContinent]);
+  }, [selectedContinent, selectedPais]);
 
-  const destinosPorContinente = useMemo(() => {
-    if (!selectedContinent) {
-      return destinos;
-    }
-    return destinos.filter(
-      (destino) =>
-        (CONTINENT_BY_COUNTRY[destino.paisRegion] || "") === selectedContinent
-    );
-  }, [destinos, selectedContinent]);
+  const destinosParaOpciones = useMemo(() => {
+    return destinos.filter((destino) => {
+      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion] || "";
+      if (draftFilters.continente && continent !== draftFilters.continente) {
+        return false;
+      }
+      if (draftFilters.pais && destino.paisRegion !== draftFilters.pais) {
+        return false;
+      }
+      return true;
+    });
+  }, [destinos, draftFilters.continente, draftFilters.pais]);
 
   const paises = useMemo(() => {
     return Array.from(
-      new Set(
-        destinosPorContinente.map((destino) => destino.paisRegion).filter(Boolean)
-      )
+      new Set(destinosParaOpciones.map((destino) => destino.paisRegion).filter(Boolean))
     ).sort((a, b) => a.localeCompare(b));
-  }, [destinosPorContinente]);
+  }, [destinosParaOpciones]);
 
   const destinosDisponibles = useMemo(() => {
     return Array.from(
-      new Set(
-        destinosPorContinente.map((destino) => destino.nombre).filter(Boolean)
-      )
+      new Set(destinosParaOpciones.map((destino) => destino.nombre).filter(Boolean))
     ).sort((a, b) => a.localeCompare(b));
-  }, [destinosPorContinente]);
+  }, [destinosParaOpciones]);
+
+  useEffect(() => {
+    if (
+      draftFilters.pais &&
+      !paises.includes(draftFilters.pais) &&
+      !lockedPaisValue
+    ) {
+      setDraftFilters((prev) => ({ ...prev, pais: "" }));
+    }
+  }, [draftFilters.pais, lockedPaisValue, paises]);
 
   const destinosFiltrados = useMemo(() => {
     const query = filters.query.trim().toLowerCase();
@@ -133,8 +173,6 @@ export default function Destinos() {
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion] || "";
       const matchesContinent =
         !filters.continente || continent === filters.continente;
-      const matchesDestacado =
-        filters.destacados !== "destacados" || destino.destacado;
       const matchesQuery =
         !query ||
         destino.nombre.toLowerCase().includes(query) ||
@@ -146,7 +184,6 @@ export default function Destinos() {
       return (
         matchesPais &&
         matchesContinent &&
-        matchesDestacado &&
         matchesQuery
       );
     });
@@ -168,7 +205,7 @@ export default function Destinos() {
 
   return (
     <main>
-      {!selectedContinent ? (
+      {!selectedContinent && !selectedPais ? (
         <section className="continent-landing">
           <div className="continent-grid">
             {continentCards.map((continent) => (
@@ -192,15 +229,9 @@ export default function Destinos() {
         <>
           <section className="page-hero destinations-hero">
             <div className="page-hero-inner">
-              <span className="page-hero-kicker">
-                Destinos <span className="topotours-word">Topotours</span>
-              </span>
-              <h2>
-                {activeContinent
-                  ? `Destinos en ${activeContinent.label}`
-                  : "Destinos inolvidables"}
-              </h2>
-              <p>Elegí tu próxima aventura con propuestas a tu medida.</p>
+              <span className="page-hero-kicker">{heroKicker}</span>
+              <h2>{heroTitle}</h2>
+              <p>{heroSubtitle}</p>
             </div>
           </section>
           <section className="destinations-section" id="destinos">
@@ -210,6 +241,7 @@ export default function Destinos() {
                 <select
                   id="destinos-pais"
                   value={draftFilters.pais}
+                  disabled={Boolean(lockedPaisValue)}
                   onChange={(event) =>
                     setDraftFilters((prev) => ({
                       ...prev,
@@ -247,26 +279,9 @@ export default function Destinos() {
                 </select>
               </div>
 
-              <div className="destinations-field">
-                <label htmlFor="destinos-destacados">Destacados</label>
-                <select
-                  id="destinos-destacados"
-                  value={draftFilters.destacados}
-                  onChange={(event) =>
-                    setDraftFilters((prev) => ({
-                      ...prev,
-                      destacados: event.target.value
-                    }))
-                  }
-                >
-                  <option value="todos">Todos</option>
-                  <option value="destacados">Destacados</option>
-                </select>
-              </div>
-
               <div className="destinations-actions">
                 <button className="primary" type="submit">
-                  Aplicar
+                  Buscar destinos
                 </button>
                 <button
                   className="secondary"

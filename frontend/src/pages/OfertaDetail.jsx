@@ -1,8 +1,8 @@
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
-import { useTravelData } from "../hooks/useTravelData.js";
-import { formatCurrency, formatDate, getPrecioVigente } from "../utils/formatters.js";
+import { useOfertas } from "../hooks/useTravelData.js";
+import { formatDate } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
 
 const incluyeIconos = {
@@ -63,7 +63,7 @@ function formatIncluyeTipo(tipo) {
 
 export default function OfertaDetail() {
   const { slug } = useParams();
-  const { ofertas, loading, error } = useTravelData();
+  const { ofertas, loading, error } = useOfertas();
 
   const oferta = useMemo(
     () =>
@@ -71,7 +71,6 @@ export default function OfertaDetail() {
     [ofertas, slug]
   );
 
-  const precioVigente = getPrecioVigente(oferta?.precios || []);
   const preciosOrdenados = useMemo(() => {
     return [...(oferta?.precios || [])].sort(
       (a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio)
@@ -119,7 +118,7 @@ export default function OfertaDetail() {
 
   const offerImages = getOfferImages(oferta);
   const heroImage = offerImages[0] || fallbackDeal;
-  const destinoPrincipal = oferta.destino?.nombre || "Destino destacado";
+  const destinoPrincipal = oferta.destino?.nombre || "Destino";
 
   return (
     <main className="detail-page">
@@ -136,13 +135,6 @@ export default function OfertaDetail() {
             <h1>{oferta.titulo}</h1>
             <p>{destinoPrincipal}</p>
             <div className="detail-hero-meta">
-              {precioVigente ? (
-                <span>
-                  {formatCurrency(precioVigente.precio, precioVigente.moneda)}
-                </span>
-              ) : (
-                <span>Precio a consultar</span>
-              )}
               <span>Noches: {oferta.noches}</span>
             </div>
           </div>
@@ -181,7 +173,7 @@ export default function OfertaDetail() {
 
       <section className="detail-section">
         <article className="detail-card">
-          <h3>Fechas y precios</h3>
+          <h3>Fechas disponibles</h3>
           {preciosOrdenados.length ? (
             <div className="detail-table">
               {preciosOrdenados.map((precio) => (
@@ -190,14 +182,11 @@ export default function OfertaDetail() {
                     {formatDate(precio.fechaInicio)} -{" "}
                     {formatDate(precio.fechaFin)}
                   </span>
-                  <strong>
-                    {formatCurrency(precio.precio, precio.moneda)}
-                  </strong>
                 </div>
               ))}
             </div>
           ) : (
-            <p>Precio a consultar. Te asesoramos por WhatsApp.</p>
+            <p>Fechas a confirmar. Te asesoramos por WhatsApp.</p>
           )}
         </article>
       </section>

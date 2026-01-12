@@ -1,5 +1,4 @@
 import "./About.css";
-import logo from "../assets/logo.png";
 
 export default function About() {
   return (
@@ -57,9 +56,6 @@ export default function About() {
           </ul>
         </div>
 
-        <div className="about-image">
-          <img src={logo} alt="Topotours" />
-        </div>
       </div>
 
       <div className="about-card about-card-secondary">
@@ -94,9 +90,6 @@ export default function About() {
           </ul>
         </div>
 
-        <div className="about-image">
-          <img src={logo} alt="Topotours" />
-        </div>
       </div>
     </section>
   );

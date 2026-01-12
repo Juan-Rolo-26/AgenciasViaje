@@ -10,9 +10,11 @@ const GROQ_FALLBACK_MODELS = [
   "gemma-7b-it"
 ];
 const MAX_HISTORY = 6;
-const MAX_ITEMS = 40;
-const MAX_TEXT = 180;
-const MAX_HISTORY_CHARS = 800;
+const MAX_ITEMS = 25;
+const MAX_TEXT = 140;
+const MAX_HISTORY_CHARS = 500;
+const ASSISTANT_CACHE_TTL_MS =
+  Number(process.env.ASSISTANT_CACHE_TTL_MS) || 60 * 1000;
 const OUT_OF_SCOPE_REPLY =
   "Soy una IA de agencia de viajes, no puedo responderte eso.";
 const BASE_RELEVANT_KEYWORDS = [
@@ -56,6 +58,29 @@ const BASE_RELEVANT_KEYWORDS = [
   "promocion",
   "promociones",
   "consulta",
+  "resumen",
+  "pantallazo",
+  "destacado",
+  "destacados",
+  "destacadas",
+  "persona",
+  "personas",
+  "pasajero",
+  "pasajeros",
+  "adulto",
+  "adultos",
+  "nino",
+  "ninos",
+  "niño",
+  "niños",
+  "presupuesto",
+  "fecha",
+  "fechas",
+  "mes",
+  "meses",
+  "semana",
+  "semanas",
+  "temporada",
   "hola",
   "buenas",
   "buen dia",
@@ -64,6 +89,14 @@ const BASE_RELEVANT_KEYWORDS = [
   "buenas noches",
   "que tal"
 ];
+
+const assistantCache = {
+  data: null,
+  dataContext: "",
+  keywords: [],
+  expiresAt: 0,
+  promise: null
+};
 
 function toSafeString(value) {
   if (value === null || value === undefined) {
@@ -148,32 +181,28 @@ function getOfferDestinations(oferta) {
   return Array.from(new Set(names));
 }
 
-function formatPriceItem(precio) {
+function formatDateRange(precio) {
   if (!precio) {
     return "";
   }
-  const amount = formatDecimal(precio.precio);
-  const currency = precio.moneda ? `${precio.moneda} ` : "";
   const start = formatDate(precio.fechaInicio);
   const end = formatDate(precio.fechaFin);
-  const dateRange =
-    start && end ? ` (${start} a ${end})` : start ? ` (desde ${start})` : "";
-  if (!amount) {
-    return "";
+  if (start && end) {
+    return `${start} a ${end}`;
   }
-  return `${currency}${amount}${dateRange}`.trim();
+  return start ? `desde ${start}` : "";
 }
 
 function buildOfertasSection(ofertas) {
   if (!ofertas.length) {
-    return "Ofertas: (sin datos)";
+    return "Salidas: (sin datos)";
   }
   const items = limitArray(ofertas, MAX_ITEMS).map((oferta) => {
     const destinos = getOfferDestinations(oferta);
     const destinoLabel = destinos.length ? destinos.join(" / ") : "sin destino";
-    const precios = Array.isArray(oferta.precios)
+    const fechas = Array.isArray(oferta.precios)
       ? oferta.precios
-          .map(formatPriceItem)
+          .map(formatDateRange)
           .filter(Boolean)
           .slice(0, 4)
           .join("; ")
@@ -196,7 +225,7 @@ function buildOfertasSection(ofertas) {
       `destinos: ${destinoLabel}`,
       oferta.noches ? `noches: ${oferta.noches}` : null,
       oferta.cupos ? `cupos: ${oferta.cupos}` : null,
-      precios ? `precios: ${precios}` : "precios: a consultar",
+      fechas ? `fechas: ${fechas}` : "fechas: a confirmar",
       actividades ? `actividades: ${actividades}` : null,
       incluyeItems ? `incluye: ${incluyeItems}` : null,
       oferta.noIncluye ? `no incluye: ${truncateText(oferta.noIncluye, 120)}` : null,
@@ -209,7 +238,7 @@ function buildOfertasSection(ofertas) {
   if (ofertas.length > items.length) {
     items.push(`- ... ${ofertas.length - items.length} ofertas adicionales`);
   }
-  return ["Ofertas:", ...items].join("\n");
+  return ["Salidas:", ...items].join("\n");
 }
 
 function buildActividadesSection(actividades) {
@@ -222,7 +251,6 @@ function buildActividadesSection(actividades) {
       actividad.tipoActividad ? `tipo: ${actividad.tipoActividad}` : null,
       actividad.fecha ? `fecha: ${formatDate(actividad.fecha)}` : null,
       actividad.hora ? `hora: ${actividad.hora}` : null,
-      actividad.precio ? `precio: ${formatDecimal(actividad.precio)}` : null,
       actividad.cupos ? `cupos: ${actividad.cupos}` : null,
       actividad.puntoEncuentro
         ? `punto: ${truncateText(actividad.puntoEncuentro, 80)}`
@@ -279,13 +307,26 @@ function collectRelevantKeywords(data) {
   return Array.from(keywords);
 }
 
-function isRelevantAssistantQuery(message, data) {
+function isRelevantAssistantQuery(message, dataOrKeywords, history = []) {
   const normalized = normalizeMatch(message);
   if (!normalized) {
     return false;
   }
-  const keywords = collectRelevantKeywords(data);
-  return keywords.some((keyword) => normalized.includes(keyword));
+  const keywords = Array.isArray(dataOrKeywords)
+    ? dataOrKeywords
+    : collectRelevantKeywords(dataOrKeywords);
+  const matchesKeywords = (value) =>
+    keywords.some((keyword) => value.includes(keyword));
+  if (matchesKeywords(normalized)) {
+    return true;
+  }
+  if (!Array.isArray(history)) {
+    return false;
+  }
+  return history.some((item) => {
+    const content = normalizeMatch(item?.content);
+    return content ? matchesKeywords(content) : false;
+  });
 }
 
 function normalizeHistory(history) {
@@ -306,7 +347,7 @@ function normalizeHistory(history) {
     }));
 }
 
-async function fetchAssistantData() {
+async function fetchAssistantDataFromDb() {
   const [destinos, ofertas, actividades] = await Promise.all([
     prisma.destino.findMany({
       where: { activo: true },
@@ -338,16 +379,72 @@ async function fetchAssistantData() {
   return { destinos, ofertas, actividades };
 }
 
+async function getAssistantCachePayload() {
+  const now = Date.now();
+  if (assistantCache.data && assistantCache.expiresAt > now) {
+    return assistantCache;
+  }
+  if (assistantCache.promise) {
+    return assistantCache.promise;
+  }
+
+  assistantCache.promise = fetchAssistantDataFromDb()
+    .then((data) => {
+      assistantCache.data = data;
+      assistantCache.dataContext = buildDataContext(data);
+      assistantCache.keywords = collectRelevantKeywords(data);
+      assistantCache.expiresAt = Date.now() + ASSISTANT_CACHE_TTL_MS;
+      return assistantCache;
+    })
+    .finally(() => {
+      assistantCache.promise = null;
+    });
+
+  return assistantCache.promise;
+}
+
+async function fetchAssistantData() {
+  const payload = await getAssistantCachePayload();
+  return payload.data || { destinos: [], ofertas: [], actividades: [] };
+}
+
 function buildSystemPrompt() {
   return [
     "Sos Topix IA, el asistente de Topotours (agencia de viajes).",
     "Responde solo con informacion que aparezca en los datos disponibles.",
-    "No inventes precios, fechas, cupos, condiciones ni destinos.",
+    "No inventes fechas, cupos, condiciones ni destinos.",
+    "No menciones precios ni valores monetarios.",
     "Si algo no esta en los datos, deci que no esta disponible y ofrece alternativas.",
     `Si el usuario pregunta algo fuera de viajes, responde: "${OUT_OF_SCOPE_REPLY}"`,
     "Mantene un tono cordial y directo, estilo chat.",
     "Si faltan datos (destino, fechas, presupuesto, pasajeros), pedilos con una pregunta concreta.",
+    "Si el usuario menciona un destino o una salida, pregunta siempre: cuantas personas viajan, fechas estimadas, presupuesto y si prefieren avion o colectivo.",
+    "Si el usuario quiere reservar, deriva a WhatsApp con un asesor sin pedir mas datos.",
+    "Si el usuario saluda o pide un resumen, mostra primero un pantallazo con salidas destacadas y destinos destacados.",
     "Si ves listados con '... adicionales', pedi mas detalles para acotar."
+  ].join("\n");
+}
+
+function buildOverviewReply(data) {
+  const destinos = limitArray(data.destinos || [], 4);
+  const ofertas = limitArray(data.ofertas || [], 4);
+  const destinosLines = destinos.length
+    ? destinos.map((destino) => `- ${destino.nombre}`).join("\n")
+    : "- Sin destinos disponibles.";
+  const ofertasLines = ofertas.length
+    ? ofertas.map((oferta) => `- ${oferta.titulo}`).join("\n")
+    : "- Sin salidas disponibles.";
+
+  return [
+    "Pantallazo rapido:",
+    "",
+    "Destinos destacados:",
+    destinosLines,
+    "",
+    "Salidas destacadas:",
+    ofertasLines,
+    "",
+    "Contame que te interesa y te ayudo a elegir."
   ].join("\n");
 }
 
@@ -371,7 +468,7 @@ async function requestGroq(messages, model) {
       model,
       messages,
       temperature: 0.2,
-      max_tokens: 350
+      max_tokens: 220
     })
   });
 
@@ -392,7 +489,7 @@ async function requestGroq(messages, model) {
     const error = new Error(
       `Groq error (${response.status}): ${message}`
     );
-    error.status = 502;
+    error.status = response.status === 429 ? 429 : 502;
     return { ok: false, error, decommissioned: code === "model_decommissioned" };
   }
 
@@ -435,23 +532,32 @@ async function createAssistantReply({ message, history }) {
     throw error;
   }
 
-  const data = await fetchAssistantData();
-  if (!isRelevantAssistantQuery(text, data)) {
+  const payload = await getAssistantCachePayload();
+  const data = payload.data || { destinos: [], ofertas: [], actividades: [] };
+  const historyMessages = normalizeHistory(history);
+  if (!isRelevantAssistantQuery(text, payload.keywords, historyMessages)) {
     return OUT_OF_SCOPE_REPLY;
   }
-  const dataContext = buildDataContext(data);
-  const historyMessages = normalizeHistory(history);
-
   const messages = [
     { role: "system", content: buildSystemPrompt() },
-    { role: "system", content: `Datos disponibles:\n${dataContext}` },
+    { role: "system", content: `Datos disponibles:\n${payload.dataContext}` },
     ...historyMessages,
     { role: "user", content: truncateText(text, MAX_HISTORY_CHARS) }
   ];
 
-  return callGroq(messages);
+  try {
+    return await callGroq(messages);
+  } catch (error) {
+    const messageText = String(error?.message || "");
+    if (error?.status === 429 || messageText.includes("Rate limit")) {
+      return "Estamos con mucha demanda en este momento. Probá de nuevo en unos segundos.";
+    }
+    throw error;
+  }
 }
 
 module.exports = {
-  createAssistantReply
+  createAssistantReply,
+  fetchAssistantData,
+  buildOverviewReply
 };

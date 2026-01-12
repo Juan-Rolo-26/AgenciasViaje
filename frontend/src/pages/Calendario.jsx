@@ -1,12 +1,22 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
-import { useTravelData } from "../hooks/useTravelData.js";
-import { formatCurrency } from "../utils/formatters.js";
+import { useDestinos, useOfertas } from "../hooks/useTravelData.js";
 import { getOfferImages } from "../utils/offerImages.js";
 
 export default function Calendario() {
-  const { ofertas, destinos, loading } = useTravelData();
+  const {
+    ofertas,
+    loading: loadingOfertas,
+    error: errorOfertas
+  } = useOfertas();
+  const {
+    destinos,
+    loading: loadingDestinos,
+    error: errorDestinos
+  } = useDestinos();
+  const loading = loadingOfertas || loadingDestinos;
+  const error = errorOfertas || errorDestinos;
   const [currentMonth, setCurrentMonth] = useState(() => {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
@@ -205,6 +215,8 @@ export default function Calendario() {
 
         {loading ? (
           <p className="section-state">Cargando fechas...</p>
+        ) : error ? (
+          <p className="section-state error">{error}</p>
         ) : eventosFiltrados.length === 0 ? (
           <p className="section-state">No hay fechas disponibles.</p>
         ) : (
@@ -314,14 +326,6 @@ export default function Calendario() {
                         <div className="calendar-offer-content">
                           <span className="calendar-offer-title">
                             {eventoMesActual.titulo}
-                          </span>
-                          <span className="calendar-offer-price">
-                            {eventoMesActual.precio
-                              ? formatCurrency(
-                                  eventoMesActual.precio,
-                                  eventoMesActual.moneda
-                                )
-                              : "Precio a consultar"}
                           </span>
                           <span className="calendar-offer-destination">
                             {eventoMesActual.destino || "Destino confirmado"}

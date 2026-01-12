@@ -3,7 +3,8 @@ const destinationService = require("../../services/destinationService");
 async function listDestinos(req, res, next) {
   try {
     const activos = req.query.activos !== "false";
-    const destinos = await destinationService.listDestinos({ activos });
+    const lite = req.query.lite === "1";
+    const destinos = await destinationService.listDestinos({ activos, lite });
     res.json(destinos);
   } catch (error) {
     next(error);

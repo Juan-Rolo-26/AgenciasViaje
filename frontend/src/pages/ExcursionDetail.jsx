@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
-import { useTravelData } from "../hooks/useTravelData.js";
-import { formatCurrency, formatDate } from "../utils/formatters.js";
+import { useActividades } from "../hooks/useTravelData.js";
+import { getExcursionGallery } from "../utils/excursionGallery.js";
 
 export default function ExcursionDetail() {
   const { slug } = useParams();
-  const { actividades, loading, error } = useTravelData();
+  const { actividades, loading, error } = useActividades();
 
   const actividad = useMemo(
     () =>
@@ -15,11 +15,49 @@ export default function ExcursionDetail() {
       ),
     [actividades, slug]
   );
+  const heroImage = actividad?.imagenPortada || fallbackDeal;
+  const destinoSlug = actividad?.destino?.slug || actividad?.destino?.id;
+  const cuposLabel =
+    actividad?.cupos && actividad.cupos > 0 ? actividad.cupos : "A coordinar";
+  const galleryImages = useMemo(() => {
+    const images = [];
+    const seen = new Set();
+    const addImage = (value) => {
+      if (!value || seen.has(value)) {
+        return;
+      }
+      seen.add(value);
+      images.push(value);
+    };
+
+    if (actividad?.slug) {
+      getExcursionGallery(actividad.slug).forEach(addImage);
+    }
+    addImage(heroImage);
+
+    if (!images.length) {
+      images.push(fallbackDeal);
+    }
+
+    while (images.length < 3) {
+      images.push(fallbackDeal);
+    }
+
+    return images.slice(0, 3);
+  }, [actividad?.slug, heroImage]);
+
+  const descripcion =
+    typeof actividad?.descripcion === "string" &&
+    actividad.descripcion.trim().length
+      ? actividad.descripcion
+      : "Consultanos para conocer el detalle de la excursión.";
+  const puntoEncuentro = actividad?.puntoEncuentro || "A coordinar";
+  const tipoActividad = actividad?.tipoActividad || "Excursión";
 
   if (loading) {
     return (
       <main>
-        <p className="section-state">Cargando excursion...</p>
+        <p className="section-state">Cargando excursión...</p>
       </main>
     );
   }
@@ -35,56 +73,56 @@ export default function ExcursionDetail() {
   if (!actividad) {
     return (
       <main>
-        <p className="section-state">No encontramos esta excursion.</p>
-        <Link className="primary" to="/excursiones">
+        <p className="section-state">No encontramos esta excursión.</p>
+        <Link className="primary" to="/cordoba">
           Volver a excursiones
         </Link>
       </main>
     );
   }
 
-  const heroImage = actividad.imagenPortada || fallbackDeal;
-  const destinoSlug = actividad.destino?.slug || actividad.destino?.id;
-  const precio = formatCurrency(actividad.precio, "ARS");
-
   return (
-    <main className="detail-page">
+    <main className="detail-page excursion-detail-page">
       <section
-        className="detail-hero"
+        className="destination-hero excursion-hero"
         style={{ backgroundImage: `url("${heroImage}")` }}
       >
-        <div className="detail-hero-overlay">
-          <div className="detail-hero-content">
-            <Link className="detail-back" to="/excursiones">
-              Volver a excursiones
-            </Link>
-            <p className="detail-kicker">Excursion</p>
-            <h1>{actividad.nombre}</h1>
-            <p>{actividad.destino?.nombre || "Destino destacado"}</p>
-            <div className="detail-hero-meta">
-              <span>{actividad.tipoActividad}</span>
-              <span>{precio || "Precio a consultar"}</span>
-              <span>
-                {actividad.fecha ? formatDate(actividad.fecha) : "Fecha a definir"}
-              </span>
-            </div>
-          </div>
+        <div className="destination-hero-overlay"></div>
+        <div className="destination-hero-card">
+          <Link className="destination-hero-back" to="/cordoba">
+            Anterior
+          </Link>
+          <span className="destination-hero-country">
+            {(actividad.destino?.nombre || "Excursión").toUpperCase()}
+          </span>
+          <h1>{actividad.nombre}</h1>
+          <p>Excursión con fecha a coordinar.</p>
         </div>
+      </section>
+
+      <section className="destination-photos">
+        {galleryImages.map((image, index) => (
+          <div className="destination-photo-card" key={`${image}-${index}`}>
+            <img src={image} alt={`${actividad.nombre} ${index + 1}`} />
+          </div>
+        ))}
       </section>
 
       <section className="detail-section">
         <div className="detail-grid">
           <article className="detail-card">
-            <h3>Detalle de la excursion</h3>
-            <p>{actividad.descripcion}</p>
+            <h3>Detalle de la excursión</h3>
+            <p>{descripcion}</p>
           </article>
           <article className="detail-card">
-            <h3>Informacion clave</h3>
+            <h3>Información clave</h3>
             <ul className="detail-list">
-              <li>Tipo: {actividad.tipoActividad}</li>
+              <li>Tipo: {tipoActividad}</li>
+              <li>Fecha: A coordinar</li>
               <li>Hora: {actividad.hora || "A confirmar"}</li>
-              <li>Punto de encuentro: {actividad.puntoEncuentro}</li>
-              <li>Cupos disponibles: {actividad.cupos}</li>
+              <li>Punto de encuentro: {puntoEncuentro}</li>
+              <li>Cupos disponibles: {cuposLabel}</li>
+              <li>Traslado: Incluido</li>
             </ul>
           </article>
         </div>

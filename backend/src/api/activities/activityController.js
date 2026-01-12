@@ -3,7 +3,8 @@ const activityService = require("../../services/activityService");
 async function listActividades(req, res, next) {
   try {
     const activas = req.query.activas !== "false";
-    const actividades = await activityService.listActividades({ activas });
+    const lite = req.query.lite === "1";
+    const actividades = await activityService.listActividades({ activas, lite });
     res.json(actividades);
   } catch (error) {
     next(error);

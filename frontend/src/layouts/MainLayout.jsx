@@ -14,37 +14,190 @@ const continentLinks = [
   { id: "africa", label: "Africa" }
 ];
 
-const offerLinks = [
-  { id: "salidas-grupales", label: "Salidas grupales" },
-  { id: "eventos", label: "Eventos" },
-  { id: "eventos-deportivos", label: "Eventos deportivos" },
-  { id: "paquetes-nacionales", label: "Paquetes nacionales" }
+const MONTHS = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre"
 ];
 
-const excursionLinks = [
-  { id: "nacionales", label: "Excursiones nacionales" },
-  { id: "internacionales", label: "Excursiones internacionales" }
-];
+const normalizeText = (value) =>
+  (value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
+const extractLeadData = (text, prevLead) => {
+  const normalized = normalizeText(text);
+  const nextLead = { ...prevLead };
+
+  if (!nextLead.people) {
+    const totalMatch =
+      normalized.match(/somos\s+(\d+)/) ||
+      normalized.match(/(\d+)\s*(personas|pasajeros|adultos)/);
+    if (totalMatch) {
+      let label = `${totalMatch[1]} personas`;
+      const kidsMatch = normalized.match(/(\d+)\s*(ninos|ninas)/);
+      if (kidsMatch) {
+        label = `${label} (${kidsMatch[1]} niños)`;
+      }
+      nextLead.people = label;
+    }
+  }
+
+  if (!nextLead.transport) {
+    const hasPlane =
+      normalized.includes("avion") ||
+      normalized.includes("aereo") ||
+      normalized.includes("vuelo");
+    const hasBus =
+      normalized.includes("colectivo") ||
+      normalized.includes("bus") ||
+      normalized.includes("micro");
+    if (hasPlane && hasBus) {
+      nextLead.transport = "Avion o colectivo";
+    } else if (hasPlane) {
+      nextLead.transport = "Avion";
+    } else if (hasBus) {
+      nextLead.transport = "Colectivo";
+    }
+  }
+
+  if (!nextLead.budget) {
+    const budgetMatch = normalized.match(
+      /(presupuesto|hasta|maximo|maxima|tope|gastar|inversion)\s*(de|:)?\s*(\$?\s*\d[\d.,]*)\s*(usd|dolares|pesos|ars)?/
+    );
+    if (budgetMatch) {
+      const amount = budgetMatch[3]?.replace(/\s+/g, "") || "";
+      const currency = budgetMatch[4] ? budgetMatch[4].toUpperCase() : "";
+      if (amount) {
+        nextLead.budget = `${amount} ${currency}`.trim();
+      }
+    } else {
+      const currencyMatch = normalized.match(
+        /(\$|usd|dolares|pesos|ars)\s*(\d[\d.,]*)/
+      );
+      if (currencyMatch) {
+        nextLead.budget = `${currencyMatch[2]} ${currencyMatch[1]}`.trim();
+      }
+    }
+  }
+
+  if (!nextLead.dates) {
+    const dateMatch = normalized.match(
+      /(\d{1,2}[\/\-]\d{1,2}(?:[\/\-]\d{2,4})?)/
+    );
+    if (dateMatch) {
+      nextLead.dates = dateMatch[1];
+    } else {
+      const monthMatch = MONTHS.find((month) => normalized.includes(month));
+      if (monthMatch) {
+        const yearMatch = normalized.match(/\b(20\d{2})\b/);
+        nextLead.dates = `${monthMatch}${yearMatch ? ` ${yearMatch[1]}` : ""}`;
+      }
+    }
+  }
+
+  if (!nextLead.destination) {
+    const destinationMatch = text.match(
+      /(destino|a|para|hacia)\s+([a-zA-ZÁÉÍÓÚÑáéíóúñ\s]{3,})/i
+    );
+    if (destinationMatch) {
+      const raw = destinationMatch[2]
+        .split(/[.,;!?]/)[0]
+        .trim();
+      const words = raw.split(/\s+/).filter(Boolean);
+      const stopWords = new Set([
+        "en",
+        "para",
+        "con",
+        "por",
+        "y",
+        "desde",
+        "hasta"
+      ]);
+      const selected = [];
+      for (const word of words) {
+        if (stopWords.has(normalizeText(word))) {
+          break;
+        }
+        selected.push(word);
+        if (selected.length >= 4) {
+          break;
+        }
+      }
+      if (selected.length) {
+        nextLead.destination = selected.join(" ");
+      }
+    }
+  }
+
+  return nextLead;
+};
+
+const buildLeadWhatsappMessage = (lead, note, summary) => {
+  const lines = [
+    "Hola! Estuve hablando con Topix IA y quiero avanzar con un asesor."
+  ];
+  lines.push(`Destino: ${lead.destination || "Pendiente"}`);
+  lines.push(`Personas: ${lead.people || "Pendiente"}`);
+  lines.push(`Fechas: ${lead.dates || "Pendiente"}`);
+  lines.push(`Presupuesto: ${lead.budget || "Pendiente"}`);
+  lines.push(`Transporte: ${lead.transport || "Pendiente"}`);
+  if (note) {
+    lines.push(`Nota: ${note}`);
+  }
+  if (summary) {
+    lines.push("", "Resumen del chat:", summary);
+  }
+  return lines.join("\n");
+};
 
 export default function MainLayout() {
   const location = useLocation();
+  const isDestinosRoute = location.pathname.startsWith("/destinos");
   const asesorWhatsappLink = getWhatsappLink(
     "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
   );
   const [navOpen, setNavOpen] = useState(false);
   const [navSectionsOpen, setNavSectionsOpen] = useState({
-    destinos: false,
-    ofertas: false,
-    excursiones: false
+    destinos: false
   });
   const [assistantOpen, setAssistantOpen] = useState(false);
+  const [assistantOverviewLoaded, setAssistantOverviewLoaded] =
+    useState(false);
+  const [assistantLead, setAssistantLead] = useState({
+    people: "",
+    destination: "",
+    budget: "",
+    dates: "",
+    transport: ""
+  });
+  const [assistantReservationIntent, setAssistantReservationIntent] =
+    useState(false);
+  const [assistantReservationNote, setAssistantReservationNote] =
+    useState("");
+  const [assistantLeadReadyNotified, setAssistantLeadReadyNotified] =
+    useState(false);
+  const [subscriptionStatus, setSubscriptionStatus] = useState({
+    type: "idle",
+    message: ""
+  });
   const initialMessages = useMemo(
     () => [
       {
         id: "intro",
         role: "assistant",
         text:
-          "Hola, soy Topix IA 👋 Trabajo con la info real de Topotours para ayudarte a elegir destino, fechas y presupuesto."
+          "Hola, soy Topix IA 👋 Trabajo con la info real de Topotours para ayudarte con destinos, fechas y opciones de viaje."
       }
     ],
     []
@@ -54,6 +207,26 @@ export default function MainLayout() {
   const [assistantDraft, setAssistantDraft] = useState("");
   const [assistantBusy, setAssistantBusy] = useState(false);
   const [assistantError, setAssistantError] = useState("");
+  const assistantLeadComplete = Object.values(assistantLead).every(Boolean);
+  const assistantShowWhatsapp =
+    assistantLeadComplete || assistantReservationIntent;
+  const assistantSummary = useMemo(() => {
+    const userMessages = assistantMessages
+      .filter((message) => message.role === "user")
+      .map((message) => message.text)
+      .filter(Boolean)
+      .slice(-6);
+    return userMessages.join(" | ");
+  }, [assistantMessages]);
+  const assistantLeadWhatsappLink = assistantShowWhatsapp
+    ? getWhatsappLink(
+        buildLeadWhatsappMessage(
+          assistantLead,
+          assistantReservationNote,
+          assistantSummary
+        )
+      )
+    : "";
 
   const buildHistoryPayload = (messages) =>
     messages
@@ -71,6 +244,51 @@ export default function MainLayout() {
     setNavOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (!assistantOpen || assistantOverviewLoaded) {
+      return;
+    }
+    let active = true;
+
+    const loadOverview = async () => {
+      setAssistantOverviewLoaded(true);
+      try {
+        const response = await apiRequest("/api/assistant/overview");
+        const replyText = response?.reply;
+        if (!active || !replyText) {
+          return;
+        }
+        setAssistantMessages((prev) => [
+          ...prev,
+          {
+            id: `overview-${Date.now()}`,
+            role: "assistant",
+            text: replyText
+          }
+        ]);
+      } catch (error) {
+        if (!active) {
+          return;
+        }
+        setAssistantMessages((prev) => [
+          ...prev,
+          {
+            id: `overview-${Date.now()}`,
+            role: "assistant",
+            text:
+              "Ahora mismo no puedo traer el pantallazo de salidas y destinos. Si queres, contame que estas buscando."
+          }
+        ]);
+      }
+    };
+
+    loadOverview();
+
+    return () => {
+      active = false;
+    };
+  }, [assistantOpen, assistantOverviewLoaded]);
+
   const toggleNav = () => {
     setNavOpen((prev) => !prev);
   };
@@ -84,8 +302,6 @@ export default function MainLayout() {
       const shouldOpen = !prev[sectionKey];
       return {
         destinos: false,
-        ofertas: false,
-        excursiones: false,
         [sectionKey]: shouldOpen
       };
     });
@@ -95,12 +311,67 @@ export default function MainLayout() {
     setAssistantOpen(false);
   };
 
+  const handleSubscriptionSubmit = async (event) => {
+    event.preventDefault();
+    if (subscriptionStatus.type === "sending") {
+      return;
+    }
+    const formData = new FormData(event.currentTarget);
+    const email = (formData.get("email") || "").toString().trim();
+
+    if (!email || !email.includes("@")) {
+      setSubscriptionStatus({
+        type: "error",
+        message: "Ingresá un email válido."
+      });
+      return;
+    }
+
+    setSubscriptionStatus({
+      type: "sending",
+      message: "Enviando suscripción..."
+    });
+
+    try {
+      await apiRequest("/api/suscripciones", {
+        method: "POST",
+        body: { email }
+      });
+      setSubscriptionStatus({
+        type: "success",
+        message: "Gracias, te sumamos a las notificaciones."
+      });
+      event.currentTarget.reset();
+    } catch (error) {
+      const rawMessage =
+        typeof error?.message === "string" ? error.message : "";
+      const isHtmlError =
+        rawMessage.includes("<!DOCTYPE html>") ||
+        rawMessage.includes("Cannot POST /api/suscripciones");
+      if (isHtmlError) {
+        const subject = "Suscripción a notificaciones - Topotours";
+        const body = `Email: ${email}`;
+        window.location.href = `mailto:topotoursviajes@gmail.com?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+        setSubscriptionStatus({
+          type: "success",
+          message:
+            "No pudimos enviar automaticamente. Abrimos tu mail para completar la suscripcion."
+        });
+        return;
+      }
+      setSubscriptionStatus({
+        type: "error",
+        message: rawMessage || "No pudimos enviar tu suscripción."
+      });
+    }
+  };
+
   useEffect(() => {
     if (!navOpen) {
       setNavSectionsOpen({
-        destinos: false,
-        ofertas: false,
-        excursiones: false
+        destinos: false
       });
     }
   }, [navOpen]);
@@ -110,7 +381,34 @@ export default function MainLayout() {
     setAssistantDraft("");
     setAssistantError("");
     setAssistantBusy(false);
+    setAssistantOverviewLoaded(false);
+    setAssistantLead({
+      people: "",
+      destination: "",
+      budget: "",
+      dates: "",
+      transport: ""
+    });
+    setAssistantReservationIntent(false);
+    setAssistantReservationNote("");
+    setAssistantLeadReadyNotified(false);
   };
+
+  useEffect(() => {
+    if (!assistantLeadComplete || assistantLeadReadyNotified) {
+      return;
+    }
+    setAssistantMessages((prev) => [
+      ...prev,
+      {
+        id: `lead-ready-${Date.now()}`,
+        role: "assistant",
+        text:
+          "Ya recaudé toda la información necesaria. Ahora voy a contactarte con un asesor de ventas para avanzar."
+      }
+    ]);
+    setAssistantLeadReadyNotified(true);
+  }, [assistantLeadComplete, assistantLeadReadyNotified]);
 
   const handleAssistantSubmit = async (event) => {
     event.preventDefault();
@@ -121,6 +419,32 @@ export default function MainLayout() {
     if (!message) {
       return;
     }
+    const normalizedMessage = normalizeText(message);
+    if (
+      normalizedMessage.includes("reservar") ||
+      normalizedMessage.includes("reserva") ||
+      normalizedMessage.includes("quiero reservar") ||
+      normalizedMessage.includes("me gustaria reservar") ||
+      normalizedMessage.includes("me gustaría reservar")
+    ) {
+      const stamp = Date.now();
+      setAssistantReservationIntent(true);
+      setAssistantReservationNote(message);
+      setAssistantLead((prev) => extractLeadData(message, prev));
+      setAssistantMessages((prev) => [
+        ...prev,
+        { id: `${stamp}-user`, role: "user", text: message },
+        {
+          id: `reservation-${stamp}`,
+          role: "assistant",
+          text:
+            "Perfecto. Para reservar pasamos directo con un asesor por WhatsApp. Te dejo el boton para continuar."
+        }
+      ]);
+      setAssistantDraft("");
+      return;
+    }
+    setAssistantLead((prev) => extractLeadData(message, prev));
     const stamp = Date.now();
     const pendingId = `${stamp}-assistant`;
     const history = buildHistoryPayload(assistantMessages);
@@ -218,10 +542,14 @@ export default function MainLayout() {
               }`}
             >
               <div className="nav-item-row">
-                <NavLink
-                  className={navLinkClass}
-                  to="/destinos"
-                  onClick={closeNav}
+                <button
+                  className={`nav-item nav-item-button${
+                    isDestinosRoute ? " active" : ""
+                  }`}
+                  type="button"
+                  aria-expanded={navSectionsOpen.destinos}
+                  aria-controls="nav-dropdown-destinos"
+                  onClick={() => toggleNavSection("destinos")}
                 >
                   <span className="nav-ico" aria-hidden="true">
                     <svg viewBox="0 0 24 24">
@@ -233,27 +561,6 @@ export default function MainLayout() {
                   </span>
                   Destinos
                   <span className="nav-caret" aria-hidden="true">
-                    <svg viewBox="0 0 12 12">
-                      <path
-                        d="M2 4.5l4 4 4-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </NavLink>
-                <button
-                  className="nav-group-toggle"
-                  type="button"
-                  aria-label="Mostrar secciones de destinos"
-                  aria-expanded={navSectionsOpen.destinos}
-                  aria-controls="nav-dropdown-destinos"
-                  onClick={() => toggleNavSection("destinos")}
-                >
-                  <span className="nav-caret-icon" aria-hidden="true">
                     <svg viewBox="0 0 12 12">
                       <path
                         d="M2 4.5l4 4 4-4"
@@ -286,184 +593,52 @@ export default function MainLayout() {
               </div>
             </div>
 
-            <div
-              className={`nav-item-group${
-                navSectionsOpen.ofertas ? " is-expanded" : ""
-              }`}
-            >
-              <div className="nav-item-row">
-                <NavLink
-                  className={navLinkClass}
-                  to="/ofertas"
-                  onClick={closeNav}
-                >
-                  <span className="nav-ico" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        d="M12 2c1.9 2.1 2.8 4.1 2.8 6.1 0 1.1-.3 2.1-.9 3 .9-.3 2-.9 2.8-2.1 1.8 2.1 2.3 4 2.3 5.6 0 3.6-2.9 6.4-7 6.4s-7-2.8-7-6.4c0-2.6 1.4-4.7 3.6-6.6.3 1.7 1.1 2.8 2.2 3.6-.1-.4-.2-.9-.2-1.4 0-2 1.1-4.5 4.4-8.2Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </span>
-                  Ofertas
-                  <span className="nav-caret" aria-hidden="true">
-                    <svg viewBox="0 0 12 12">
-                      <path
-                        d="M2 4.5l4 4 4-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </NavLink>
-                <button
-                  className="nav-group-toggle"
-                  type="button"
-                  aria-label="Mostrar secciones de ofertas"
-                  aria-expanded={navSectionsOpen.ofertas}
-                  aria-controls="nav-dropdown-ofertas"
-                  onClick={() => toggleNavSection("ofertas")}
-                >
-                  <span className="nav-caret-icon" aria-hidden="true">
-                    <svg viewBox="0 0 12 12">
-                      <path
-                        d="M2 4.5l4 4 4-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
-              <div
-                className="nav-dropdown"
-                role="menu"
-                aria-label="Secciones de ofertas"
-                id="nav-dropdown-ofertas"
-              >
-                {offerLinks.map((section) => (
-                  <Link
-                    key={section.id}
-                    className="nav-dropdown-item"
-                    to={`/ofertas?seccion=${section.id}`}
-                    onClick={closeNav}
-                  >
-                    {section.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div
-              className={`nav-item-group${
-                navSectionsOpen.excursiones ? " is-expanded" : ""
-              }`}
-            >
-              <div className="nav-item-row">
-                <NavLink
-                  className={navLinkClass}
-                  to="/excursiones"
-                  onClick={closeNav}
-                >
-                  <span className="nav-ico" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        d="M12 4a6 6 0 0 0-6 6c0 4.2 4.7 8.7 5.4 9.3a1 1 0 0 0 1.2 0c.7-.6 5.4-5.1 5.4-9.3a6 6 0 0 0-6-6Zm0 7.8A1.8 1.8 0 1 1 12 8a1.8 1.8 0 0 1 0 3.6ZM19.5 18.5a1 1 0 0 1-1.4 1.4l-1.7-1.7a1 1 0 1 1 1.4-1.4l1.7 1.7Zm-13.9 0 1.7-1.7a1 1 0 1 1 1.4 1.4l-1.7 1.7a1 1 0 0 1-1.4-1.4Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </span>
-                  Excursiones
-                  <span className="nav-caret" aria-hidden="true">
-                    <svg viewBox="0 0 12 12">
-                      <path
-                        d="M2 4.5l4 4 4-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </NavLink>
-                <button
-                  className="nav-group-toggle"
-                  type="button"
-                  aria-label="Mostrar secciones de excursiones"
-                  aria-expanded={navSectionsOpen.excursiones}
-                  aria-controls="nav-dropdown-excursiones"
-                  onClick={() => toggleNavSection("excursiones")}
-                >
-                  <span className="nav-caret-icon" aria-hidden="true">
-                    <svg viewBox="0 0 12 12">
-                      <path
-                        d="M2 4.5l4 4 4-4"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
-              <div
-                className="nav-dropdown"
-                role="menu"
-                aria-label="Secciones de excursiones"
-                id="nav-dropdown-excursiones"
-              >
-                {excursionLinks.map((section) => (
-                  <Link
-                    key={section.id}
-                    className="nav-dropdown-item"
-                    to={`/excursiones?seccion=${section.id}`}
-                    onClick={closeNav}
-                  >
-                    {section.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
             <NavLink
               className={navLinkClass}
-              to="/calendario"
+              to="/ofertas?seccion=salidas-grupales"
               onClick={closeNav}
             >
               <span className="nav-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path
-                    d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm14 8H3v9a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-9Z"
+                    d="M7 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3Zm10 0a3 3 0 1 0-3-3 3 3 0 0 0 3 3ZM7 13c-3 0-5 1.6-5 4v2h10v-2c0-2.4-2-4-5-4Zm10 0c-.7 0-1.3.1-1.9.3 1.2.9 1.9 2.1 1.9 3.7v2h6v-2c0-2.4-2-4-6-4Z"
                     fill="currentColor"
                   />
                 </svg>
               </span>
-              Calendario
+              Salidas grupales
             </NavLink>
 
             <NavLink
               className={navLinkClass}
-              to="/asistencia"
+              to="/argentina"
               onClick={closeNav}
             >
               <span className="nav-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path
-                    d="M12 3a7 7 0 0 0-7 7v4a3 3 0 0 0 3 3h1v-4H8a1 1 0 0 1-1-1V10a5 5 0 1 1 10 0v2a1 1 0 0 1-1 1h-1v4h1a3 3 0 0 0 3-3v-4a7 7 0 0 0-7-7Zm-1 14h2a2 2 0 0 1 0 4h-2a2 2 0 1 1 0-4Z"
+                    d="M12 2C8 2 5 5.1 5 9.2c0 4.9 6 12.6 6.3 13 .4.5 1 .5 1.4 0 .3-.4 6.3-8.1 6.3-13C19 5.1 16 2 12 2Zm0 9.7a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"
                     fill="currentColor"
                   />
                 </svg>
               </span>
-              Asistencia
+              Argentina
+            </NavLink>
+
+            <NavLink
+              className={navLinkClass}
+              to="/cordoba"
+              onClick={closeNav}
+            >
+              <span className="nav-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 4a6 6 0 0 0-6 6c0 4.2 4.7 8.7 5.4 9.3a1 1 0 0 0 1.2 0c.7-.6 5.4-5.1 5.4-9.3a6 6 0 0 0-6-6Zm0 7.8A1.8 1.8 0 1 1 12 8a1.8 1.8 0 0 1 0 3.6Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              Córdoba
             </NavLink>
           </nav>
 
@@ -558,6 +733,25 @@ export default function MainLayout() {
                 →
               </button>
             </form>
+            <div className="assistant-panel-cta">
+              <p>
+                Cerrar venta con un agente de ventas por WhatsApp con toda la
+                info del chat.
+              </p>
+              <a
+                className="assistant-panel-whatsapp"
+                href={
+                  assistantLeadWhatsappLink ||
+                  getWhatsappLink(
+                    buildLeadWhatsappMessage(assistantLead, "", assistantSummary)
+                  )
+                }
+                target="_blank"
+                rel="noreferrer"
+              >
+                Cerrar venta con un agente
+              </a>
+            </div>
             <p className="assistant-panel-note">
               La IA responde solo con datos de la base de Topotours. Puede
               cometer errores, considera verificar la informacion.
@@ -592,13 +786,15 @@ export default function MainLayout() {
                 <Link to="/destinos">Destinos</Link>
               </li>
               <li>
-                <Link to="/ofertas">Ofertas</Link>
+                <Link to="/ofertas?seccion=salidas-grupales">
+                  Salidas grupales
+                </Link>
               </li>
               <li>
-                <Link to="/excursiones">Excursiones</Link>
+                <Link to="/argentina">Argentina</Link>
               </li>
               <li>
-                <Link to="/calendario">Calendario</Link>
+                <Link to="/cordoba">Córdoba</Link>
               </li>
               <li>
                 <Link to="/politicas">Privacidad y cookies</Link>
@@ -670,6 +866,31 @@ export default function MainLayout() {
             <div className="footer-badge">
               <span>Agencia habilitada</span>
               <strong>Legajo N° 19929</strong>
+            </div>
+
+            <div className="footer-subscribe">
+              <h4>Notificaciones</h4>
+              <p>Poné tu mail y te suscribís a novedades de la agencia.</p>
+              <form
+                className="footer-subscribe-form"
+                onSubmit={handleSubscriptionSubmit}
+              >
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="tu@email.com"
+                  aria-label="Email para notificaciones"
+                />
+                <button type="submit">Suscribirme</button>
+              </form>
+              {subscriptionStatus.type !== "idle" ? (
+                <p
+                  className={`footer-subscribe-status ${subscriptionStatus.type}`}
+                  role="status"
+                >
+                  {subscriptionStatus.message}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>

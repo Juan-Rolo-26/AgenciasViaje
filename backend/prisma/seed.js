@@ -733,6 +733,198 @@ async function main() {
       ],
       destacado: true,
       orden: 45
+    },
+    {
+      nombre: "Punta Cana",
+      slug: "punta-cana",
+      paisRegion: "República Dominicana",
+      descripcionCorta: "Playas caribeñas y resorts todo incluido.",
+      descripcion:
+        "Vive la energía de Punta Cana: el paraíso del descanso eterno y las playas de arena blanca infinita. Disfruta de la exclusividad de sus resorts todo incluido, sumérgete en aguas color turquesa y relájate bajo la sombra de cocoteros que se inclinan hacia el mar. Un destino diseñado para el placer, la diversión acuática y la desconexión total en el corazón del Caribe.",
+      imagenPortada: "/assets/destinos/punta1.webp",
+      imagenes: [
+        "/assets/destinos/punta2.webp",
+        "/assets/destinos/punta3.webp",
+        "/assets/destinos/punta4.jpg"
+      ],
+      destacado: true,
+      orden: 46
+    },
+    {
+      nombre: "México (Riviera Maya)",
+      slug: "mexico-riviera-maya",
+      paisRegion: "México",
+      descripcionCorta: "Cultura maya, cenotes y playas vibrantes.",
+      descripcion:
+        "Vive la energía de México: una explosión de cultura, color y sabores ancestrales. Desde las místicas ruinas mayas de Tulum y Chichén Itzá hasta la vibrante vida nocturna de Playa del Carmen. Un destino que lo tiene todo: playas paradisíacas, cenotes sagrados ocultos en la selva y una de las gastronomías más ricas y premiadas del mundo.",
+      imagenPortada: "/assets/destinos/mexico1.webp",
+      imagenes: [
+        "/assets/destinos/mexico2.jpg",
+        "/assets/destinos/mexico3.webp",
+        "/assets/destinos/mexico4.webp"
+      ],
+      destacado: true,
+      orden: 47
+    },
+    {
+      nombre: "Bayahíbe",
+      slug: "bayahibe",
+      paisRegion: "República Dominicana",
+      descripcionCorta: "Tranquilidad, buceo y la Isla Saona.",
+      descripcion:
+        "Vive la energía de Bayahíbe: la joya auténtica de la República Dominicana. Este encantador pueblo de pescadores es la puerta de entrada a la espectacular Isla Saona y ofrece los mejores puntos de buceo del país. Un destino ideal para quienes buscan tranquilidad, atardeceres dorados frente al mar y playas de aguas cristalinas y poco profundas.",
+      imagenPortada: "/assets/destinos/bayahive1.webp",
+      imagenes: [
+        "/assets/destinos/bayahive2.jpg",
+        "/assets/destinos/bayahive3.jpg",
+        "/assets/destinos/bayahuve4.jpg"
+      ],
+      destacado: true,
+      orden: 48
+    },
+    {
+      nombre: "Costa Rica",
+      slug: "costa-rica",
+      paisRegion: "Costa Rica",
+      descripcionCorta: "Aventura, biodiversidad y pura vida.",
+      descripcion:
+        "Vive la energía de Costa Rica: el santuario de la \"Pura Vida\" y la biodiversidad. Explora volcanes activos, deslízate en tirolesa por bosques nubosos y descubre playas vírgenes donde la selva toca el océano. Un destino pionero en ecoturismo que invita a conectar con la naturaleza salvaje, los perezosos y una paz que solo el paraíso verde puede ofrecer.",
+      imagenPortada: "/assets/destinos/costarica1.jpg",
+      imagenes: [
+        "/assets/destinos/costarica2.jpg",
+        "/assets/destinos/costarica3.webp",
+        "/assets/destinos/costarica4.jpg"
+      ],
+      destacado: true,
+      orden: 49
+    },
+    {
+      nombre: "Santiago de Chile",
+      slug: "santiago-de-chile",
+      paisRegion: "Chile",
+      descripcionCorta: "Ciudad andina, vinos y cultura urbana.",
+      descripcion:
+        "Vive la energía de Santiago de Chile: una metrópolis cosmopolita custodiada por los imponentes picos de la Cordillera de los Andes. Disfruta de sus viñedos de clase mundial a pocos minutos de la ciudad, recorre el bohemio barrio Bellavista y maravíllate con la arquitectura moderna de \"Sanhattan\". Un destino que combina cultura urbana, nieve y los mejores vinos del sur.",
+      imagenPortada: "/assets/destinos/santiago1.jpg",
+      imagenes: [
+        "/assets/destinos/santiago2.jpg",
+        "/assets/destinos/santiago3.webp",
+        "/assets/destinos/santiago4.webp"
+      ],
+      destacado: true,
+      orden: 50
+    },
+    {
+      nombre: "Salvador de Bahía",
+      slug: "salvador-de-bahia",
+      paisRegion: "Brasil",
+      descripcionCorta: "Historia colonial y ritmo afro-brasileño.",
+      descripcion:
+        "Vive la energía de Salvador de Bahía: el alma africana de Brasil y la capital de la alegría. Recorre las calles coloridas del Pelourinho, déjate llevar por el ritmo de los tambores de Olodum y siente la espiritualidad en la Iglesia de San Francisco. Un destino lleno de magia, historia colonial y una gastronomía única que mezcla sabores de dos continentes.",
+      imagenPortada: "/assets/destinos/salvador1.jpg",
+      imagenes: [
+        "/assets/destinos/salvador2.jpg",
+        "/assets/destinos/salvador3.jpeg",
+        "/assets/destinos/salvador4.jpg"
+      ],
+      destacado: true,
+      orden: 51
+    },
+    {
+      nombre: "Maceió",
+      slug: "maceio",
+      paisRegion: "Brasil",
+      descripcionCorta: "Aguas verdes y piscinas naturales.",
+      descripcion:
+        "Vive la energía de Maceió: el Caribe brasileño de aguas verdes y piscinas naturales. Maravíllate con el color increíble del mar en playas como Pajuçara y Ponta Verde, y disfruta de la tranquilidad de navegar en tradicionales balsas hacia los arrecifes de coral. Un destino luminoso, con una costanera encantadora y algunos de los paisajes costeros más bellos de Brasil.",
+      imagenPortada: "/assets/destinos/maceio1.jpg",
+      imagenes: [
+        "/assets/destinos/maceio2.avif",
+        "/assets/destinos/maceio3.webp",
+        "/assets/destinos/maceio4.webp"
+      ],
+      destacado: true,
+      orden: 52
+    },
+    {
+      nombre: "Cuba",
+      slug: "cuba",
+      paisRegion: "Cuba",
+      descripcionCorta: "Historia, música y playas clásicas.",
+      descripcion:
+        "Vive la energía de Cuba: un viaje en el tiempo lleno de música, historia y ron. Camina por las calles detenidas en los años 50 de La Habana Vieja, disfruta de la arena blanca y fina de Varadero y descubre la esencia del tabaco en los valles de Viñales. Un destino con alma propia, gente cálida y un ritmo que te invita a bailar bajo el sol caribeño.",
+      imagenPortada: "/assets/destinos/cuba1.jpg",
+      imagenes: [
+        "/assets/destinos/cuba2.jpg",
+        "/assets/destinos/cuba3.jpg",
+        "/assets/destinos/cuba4.jpg"
+      ],
+      destacado: true,
+      orden: 53
+    },
+    {
+      nombre: "Colombia",
+      slug: "colombia",
+      paisRegion: "Colombia",
+      descripcionCorta: "Café, caribe y ciudades vibrantes.",
+      descripcion:
+        "Vive la energía de Colombia: el país del realismo mágico donde el café y la alegría se encuentran. Desde el encanto colonial de Cartagena de Indias hasta los paisajes verdes del Eje Cafetero y la vibrante transformación de Medellín. Un destino de contrastes fascinantes, selvas exuberantes y la calidez inigualable de su gente.",
+      imagenPortada: "/assets/destinos/colombia1.webp",
+      imagenes: [
+        "/assets/destinos/colombia2.webp",
+        "/assets/destinos/colombia3.webp",
+        "/assets/destinos/colombia4.png"
+      ],
+      destacado: true,
+      orden: 54
+    },
+    {
+      nombre: "Singapur",
+      slug: "singapur",
+      paisRegion: "Singapur",
+      descripcionCorta: "Ciudad futurista, jardines y lujo.",
+      descripcion:
+        "Vive la energía de Singapur: la ciudad-estado del futuro donde la naturaleza y la tecnología conviven en perfecta armonía. Déjate asombrar por los jardines verticales de Gardens by the Bay, el lujo del Marina Bay Sands y la diversidad de sus barrios étnicos. Un destino impecable, vanguardista y multicultural que redefine el concepto de modernidad.",
+      imagenPortada: "/assets/destinos/singapur1.webp",
+      imagenes: [
+        "/assets/destinos/singapur2.webp",
+        "/assets/destinos/singapur3.jpg",
+        "/assets/destinos/singapur4.webp"
+      ],
+      destacado: true,
+      orden: 55
+    },
+    {
+      nombre: "Japón",
+      slug: "japon",
+      paisRegion: "Japón",
+      descripcionCorta: "Tradición, tecnología y estética perfecta.",
+      descripcion:
+        "Vive la energía de Japón: el fascinante contraste entre el neón futurista de Tokio y el silencio sagrado de los templos de Kioto. Descubre la elegancia de los antiguos samuráis, saborea la perfección del sushi artesanal y maravíllate con la simetría del Monte Fuji. Un destino que ofrece una experiencia cultural profunda, tecnológica y estéticamente perfecta.",
+      imagenPortada: "/assets/destinos/japon1.jpg",
+      imagenes: [
+        "/assets/destinos/japon2.webp",
+        "/assets/destinos/japon3.webp",
+        "/assets/destinos/japon4.jpeg"
+      ],
+      destacado: true,
+      orden: 56
+    },
+    {
+      nombre: "Córdoba",
+      slug: "cordoba",
+      paisRegion: "Argentina",
+      descripcionCorta: "Sierras, valles y cultura cordobesa.",
+      descripcion:
+        "Vive la energía de Córdoba: el corazón de las sierras argentinas con ríos cristalinos, pueblos con encanto y una historia que se respira en cada rincón. Desde los valles de Punilla y Calamuchita hasta la magia de Traslasierra y el Mar de Ansenuza, un destino ideal para combinar naturaleza, cultura y descanso.",
+      imagenPortada: "/assets/destinos/punilla.jpg",
+      imagenes: [
+        "/assets/destinos/traslasierras1.jpg",
+        "/assets/destinos/ansenuza.jpg",
+        "/assets/destinos/calamuchita.jpg"
+      ],
+      destacado: true,
+      orden: 57
     }
   ];
 
@@ -778,353 +970,143 @@ async function main() {
   const ushuaia = destinosList.find((item) => item.slug === "ushuaia");
   const puertoMadryn = destinosList.find((item) => item.slug === "puerto-madryn");
   const lima = destinosList.find((item) => item.slug === "lima");
+  const cordoba = destinosList.find((item) => item.slug === "cordoba");
 
   const actividades = await prisma.actividad.createMany({
     data: [
       {
-        nombre: "Tour Cristo Redentor",
-        slug: "tour-cristo-redentor",
-        destinoId: rio.id,
+        nombre: "Valle de Punilla",
+        slug: "valle-de-punilla",
+        destinoId: cordoba.id,
         tipoActividad: "excursion",
-        fecha: new Date("2025-07-10"),
-        hora: "10:00",
-        precio: "45000",
-        cupos: 20,
-        puntoEncuentro: "Hotel Copacabana Palace",
-        descripcion: "Incluye traslado, guía local y entradas.",
-        imagenPortada: "/assets/destinos/rio4.webp",
+        fecha: new Date("2025-06-14"),
+        hora: "08:30",
+        precio: "52000",
+        cupos: 26,
+        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
+        descripcion:
+          "Vive la energía del Valle de Punilla: el corazón del turismo cordobés. Desde la icónica Villa Carlos Paz con su cartelera de espectáculos y el Lago San Roque, hasta el misticismo del Cerro Uritorco en Capilla del Monte. Un recorrido que combina naturaleza, ríos cristalinos y centros comerciales, ideal para disfrutar de la emblemática hospitalidad de las sierras. Incluye traslado ida y vuelta desde Córdoba Capital.",
+        imagenPortada: "/assets/destinos/punilla.jpg",
         destacada: true,
         orden: 1
       },
       {
-        nombre: "Navegación por la isla",
-        slug: "navegacion-isla-florianopolis",
-        destinoId: floripa.id,
+        nombre: "Valle de Traslasierra",
+        slug: "valle-de-traslasierra",
+        destinoId: cordoba.id,
         tipoActividad: "excursion",
-        fecha: new Date("2025-08-05"),
-        hora: "14:00",
-        precio: "52000",
-        cupos: 18,
-        puntoEncuentro: "Muelle central",
-        descripcion: "Paseo en barco con paradas para baño y snorkel.",
-        imagenPortada: "/assets/destinos/florianopolis3.jpg",
+        fecha: new Date("2025-06-28"),
+        hora: "07:30",
+        precio: "54000",
+        cupos: 24,
+        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
+        descripcion:
+          "Vive la energía de Traslasierra: un oasis de paz y naturaleza virgen detrás de las Altas Cumbres. Descubre la calidez de Mina Clavero y la tranquilidad bohemia de Nono, rodeados de los paisajes más imponentes de la provincia. Un destino de aire puro, productos regionales artesanales y ríos de agua fría que invitan a la desconexión total. Incluye traslado ida y vuelta desde Córdoba Capital.",
+        imagenPortada: "/assets/destinos/traslasierras1.jpg",
         destacada: true,
         orden: 2
       },
       {
-        nombre: "Caminata por los morros",
-        slug: "caminata-morros-garopaba",
-        destinoId: garopaba.id,
-        tipoActividad: "actividad",
-        fecha: new Date("2025-08-18"),
+        nombre: "Mar de Ansenuza",
+        slug: "mar-de-ansenuza",
+        destinoId: cordoba.id,
+        tipoActividad: "excursion",
+        fecha: new Date("2025-07-12"),
         hora: "09:00",
-        precio: "32000",
-        cupos: 16,
-        puntoEncuentro: "Centro de visitantes",
-        descripcion: "Senderos panorámicos con vistas a la bahía.",
-        imagenPortada: "/assets/destinos/garapoba3.jpg",
-        destacada: false,
+        precio: "50000",
+        cupos: 28,
+        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
+        descripcion:
+          "Vive la energía de Mar de Ansenuza: el mar interior de Argentina y un paraíso para la observación de aves. Maravíllate con la inmensidad de esta laguna salada en Miramar, hogar de miles de flamencos rosados y atardeceres que se funden con el horizonte. Un destino único para el relax, el bienestar con sus propiedades fangoterapéuticas y el contacto con la fauna silvestre. Incluye traslado ida y vuelta desde Córdoba Capital.",
+        imagenPortada: "/assets/destinos/ansenuza.jpg",
+        destacada: true,
         orden: 3
       },
       {
-        nombre: "Ruta gastronómica limeña",
-        slug: "ruta-gastronomica-lima",
-        destinoId: lima.id,
-        tipoActividad: "tour",
-        fecha: new Date("2025-09-12"),
-        hora: "19:00",
-        precio: "68000",
-        cupos: 20,
-        puntoEncuentro: "Barranco",
-        descripcion: "Degustaciones y mercados tradicionales con guía local.",
-        imagenPortada: "/assets/destinos/lima3.png",
+        nombre: "Valle de Calamuchita",
+        slug: "valle-de-calamuchita",
+        destinoId: cordoba.id,
+        tipoActividad: "excursion",
+        fecha: new Date("2025-07-26"),
+        hora: "08:00",
+        precio: "56000",
+        cupos: 22,
+        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
+        descripcion:
+          "Vive la energía del Valle de Calamuchita: el rincón europeo de las sierras cordobesas. Explora el encanto centroeuropeo de Villa General Belgrano con su cultura cervecera, el paisaje alpino de La Cumbrecita y los imponentes embalses de agua azul. Un destino que combina bosques de pinos, arquitectura de madera y la aventura de subir al Cerro Champaquí. Incluye traslado ida y vuelta desde Córdoba Capital.",
+        imagenPortada: "/assets/destinos/calamuchita.jpg",
         destacada: true,
         orden: 4
       },
       {
-        nombre: "Avistaje de fauna en Puerto Madryn",
-        slug: "avistaje-fauna-puerto-madryn",
-        destinoId: puertoMadryn.id,
+        nombre: "Ruta del Vino de Córdoba",
+        slug: "ruta-del-vino-de-cordoba",
+        destinoId: cordoba.id,
         tipoActividad: "excursion",
-        fecha: new Date("2025-09-20"),
-        hora: "10:30",
-        precio: "75000",
-        cupos: 22,
-        puntoEncuentro: "Puerto local",
-        descripcion: "Salida en barco para ver ballenas y lobos marinos.",
-        imagenPortada: "/assets/destinos/puerto3.jpg",
+        fecha: new Date("2025-08-09"),
+        hora: "10:00",
+        precio: "61000",
+        cupos: 20,
+        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
+        descripcion:
+          "Vive la energía de la Ruta del Vino: un viaje sensorial por los viñedos de altura y bodegas boutique de la provincia. Desde los premiados tintos de Colonia Caroya hasta las exclusivas cepas de Traslasierra y Calamuchita. Descubre la tradición vitivinícola cordobesa, maridando excelentes etiquetas con la mejor gastronomía local en entornos naturales inigualables. Incluye traslado ida y vuelta desde Córdoba Capital.",
+        imagenPortada: "/assets/destinos/ruta2.jpg",
         destacada: true,
         orden: 5
       },
       {
-        nombre: "Navegación Canal Beagle",
-        slug: "navegacion-canal-beagle",
-        destinoId: ushuaia.id,
+        nombre: "Camino de las Estancias Jesuíticas",
+        slug: "camino-de-las-estancias-jesuiticas",
+        destinoId: cordoba.id,
         tipoActividad: "excursion",
-        fecha: new Date("2025-10-12"),
-        hora: "11:00",
-        precio: "82000",
-        cupos: 18,
-        puntoEncuentro: "Muelle turístico",
-        descripcion: "Paisajes fueguinos y faro del fin del mundo.",
-        imagenPortada: "/assets/destinos/usuahia3.webp",
+        fecha: new Date("2025-08-23"),
+        hora: "09:30",
+        precio: "48000",
+        cupos: 24,
+        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
+        descripcion:
+          "Vive la energía del Camino de las Estancias: un recorrido por el legado histórico declarado Patrimonio de la Humanidad por la UNESCO. Visita los establecimientos de Caroya, Jesús María, Santa Catalina, Alta Gracia y La Candelaria para descubrir cómo la Orden Jesuita transformó la región. Un viaje fascinante al pasado colonial, la arquitectura religiosa y las raíces de nuestra identidad. Incluye traslado ida y vuelta desde Córdoba Capital.",
+        imagenPortada: "/assets/destinos/camino.jpg",
         destacada: true,
         orden: 6
       },
       {
-        nombre: "Paseo por piscinas naturales",
-        slug: "paseo-piscinas-porto-galinhas",
-        destinoId: portoGalinhas.id,
-        tipoActividad: "actividad",
-        fecha: new Date("2025-11-02"),
-        hora: "09:30",
-        precio: "61000",
-        cupos: 24,
-        puntoEncuentro: "Playa principal",
-        descripcion: "Traslado y embarcación para descubrir los arrecifes.",
-        imagenPortada: "/assets/destinos/porto3.webp",
-        destacada: false,
+        nombre: "Córdoba a tu medida",
+        slug: "cordoba-a-tu-medida",
+        destinoId: cordoba.id,
+        tipoActividad: "excursion",
+        fecha: new Date("2025-09-06"),
+        hora: "09:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Coordinación previa con asesor (traslado incluido)",
+        descripcion:
+          "Diseñá tu visita ideal por Córdoba con un itinerario flexible y personalizado. Podés combinar sierras, city tour, bodegas, gastronomía regional y experiencias especiales. Coordinamos traslados, horarios y paradas para que disfrutes una escapada a medida con la mejor atención.",
+        imagenPortada: "/assets/destinos/calamuchita2.jpg",
+        destacada: true,
         orden: 7
+      },
+      {
+        nombre: "Visita Córdoba a tu medida",
+        slug: "visita-cordoba-a-tu-medida",
+        destinoId: cordoba.id,
+        tipoActividad: "excursion",
+        fecha: new Date("2025-09-13"),
+        hora: "08:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Coordinación previa con asesor (traslado incluido)",
+        descripcion:
+          "Armá tu día perfecto en Córdoba combinando varias excursiones en una misma jornada. Podés elegir city tour, sierras, bodegas o circuitos gastronómicos, y nuestros asesores te ayudan a diseñar la mejor ruta según tiempos, gustos y traslados. Ideal para quienes quieren aprovechar al máximo con un plan flexible.",
+        imagenPortada: "/assets/destinos/punilla2.jpg",
+        destacada: true,
+        orden: 8
       }
     ]
   });
 
-  await prisma.oferta.create({
-    data: {
-      titulo: "Camboriu Abril",
-      slug: "camboriu-abril",
-      destinoId: camboriu.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 1,
-      condiciones: "Hotel Abril. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: camboriu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "549",
-            moneda: "USD",
-            fechaInicio: new Date("2026-04-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Camboriu Marzo",
-      slug: "camboriu-marzo",
-      destinoId: camboriu.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 2,
-      condiciones: "Hotel Sagres. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: camboriu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "649",
-            moneda: "USD",
-            fechaInicio: new Date("2026-03-01"),
-            fechaFin: new Date("2026-03-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Camboriu Febrero",
-      slug: "camboriu-febrero",
-      destinoId: camboriu.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 3,
-      condiciones: "Hotel Sagres. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: camboriu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "699",
-            moneda: "USD",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-28")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Camboriu Enero",
-      slug: "camboriu-enero",
-      destinoId: camboriu.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 4,
-      condiciones: "Hotel Sagres. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: camboriu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "749",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-01-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Charter Camboriu",
-      slug: "charter-camboriu",
-      destinoId: camboriu.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 8,
-      condiciones:
-        "Aereos desde Cordoba con Flybondi. Salidas martes y sabados. +USD 177 impuestos.",
-      destinos: {
-        create: [{ destinoId: camboriu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "1049",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-01-31")
-          },
-          {
-            precio: "949",
-            moneda: "USD",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-28")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Aereo desde Cordoba (Flybondi)" },
-          { tipo: "equipaje", descripcion: "Equipaje en bodega (15 kg)" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "servicio", descripcion: "Traslados in/out" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "alojamiento", descripcion: "Hotel Ilha da Madeira" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Charter Florianopolis",
-      slug: "charter-florianopolis",
-      destinoId: floripa.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 9,
-      condiciones:
-        "Aereos desde Cordoba con Flybondi. Salidas martes y sabados. +USD 177 impuestos.",
-      destinos: {
-        create: [{ destinoId: floripa.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "1149",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-01-31")
-          },
-          {
-            precio: "1049",
-            moneda: "USD",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-28")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Aereo desde Cordoba (Flybondi)" },
-          { tipo: "equipaje", descripcion: "Equipaje en bodega (15 kg)" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "servicio", descripcion: "Traslados in/out" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "alojamiento", descripcion: "Hotel Canasvieiras Internacional" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+  const salidasGrupales = [
+    {
       titulo: "Bombinhas Salida Grupal",
       slug: "bombinhas-salida-grupal",
       destinoId: bombinhas.id,
@@ -1132,7 +1114,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 10,
+      orden: 1,
       condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
@@ -1167,11 +1149,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Camboriu Salida Grupal",
       slug: "camboriu-salida-grupal",
       destinoId: camboriu.id,
@@ -1179,7 +1158,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 11,
+      orden: 2,
       condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
@@ -1214,11 +1193,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Ferrugem Salida Grupal",
       slug: "ferrugem-salida-grupal",
       destinoId: ferrugem.id,
@@ -1226,7 +1202,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 12,
+      orden: 3,
       condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
@@ -1261,11 +1237,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Florianopolis Salida Grupal",
       slug: "florianopolis-salida-grupal",
       destinoId: floripa.id,
@@ -1273,7 +1246,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 13,
+      orden: 4,
       condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
@@ -1308,11 +1281,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Garopaba Salida Grupal",
       slug: "garopaba-salida-grupal",
       destinoId: garopaba.id,
@@ -1320,7 +1290,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 14,
+      orden: 5,
       condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
@@ -1355,11 +1325,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Laguna Salida Grupal",
       slug: "laguna-salida-grupal",
       destinoId: laguna.id,
@@ -1367,7 +1334,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 15,
+      orden: 6,
       condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
@@ -1402,11 +1369,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Torres Salida Grupal",
       slug: "torres-salida-grupal",
       destinoId: torres.id,
@@ -1414,7 +1378,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 16,
+      orden: 7,
       condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
@@ -1449,375 +1413,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Canasvieiras Enero",
-      slug: "canasvieiras-enero",
-      destinoId: canasvieiras.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 4,
-      condiciones: "Hotel Canasvieiras Internacional. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: canasvieiras.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "849",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-01-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Canasvieiras Febrero",
-      slug: "canasvieiras-febrero",
-      destinoId: canasvieiras.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 5,
-      condiciones: "Hotel Canasvieiras Internacional. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: canasvieiras.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "799",
-            moneda: "USD",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-28")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Canasvieiras Marzo",
-      slug: "canasvieiras-marzo",
-      destinoId: canasvieiras.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 6,
-      condiciones: "Hotel Canasvieiras Internacional. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: canasvieiras.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "699",
-            moneda: "USD",
-            fechaInicio: new Date("2026-03-01"),
-            fechaFin: new Date("2026-03-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Canasvieiras Abril",
-      slug: "canasvieiras-abril",
-      destinoId: canasvieiras.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 7,
-      condiciones: "Hotel Canasvieiras Internacional. Tarifa por persona en base doble.",
-      destinos: {
-        create: [{ destinoId: canasvieiras.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "599",
-            moneda: "USD",
-            fechaInicio: new Date("2026-04-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus semicama" },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Desayuno y cena" },
-          { tipo: "servicio", descripcion: "Coordinador en viaje y en destino" },
-          { tipo: "servicio", descripcion: "Asistencia medico en destino" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Charter Camboriu 2026",
-      slug: "charter-camboriu-2026",
-      destinoId: camboriu.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 17,
-      condiciones:
-        "Charter flexi 2026. Tarifa en base doble. Entrega desde USD 343 + cuotas mensuales.",
-      destinos: {
-        create: [{ destinoId: camboriu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "967",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-12-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          {
-            tipo: "transporte",
-            descripcion: "Vuelo charter directo Cordoba - Florianopolis"
-          },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "alojamiento", descripcion: "Regimen segun hotel" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          {
-            tipo: "equipaje",
-            descripcion: "Incluye equipaje de mano y de bodega"
-          }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Charter Porto de Galinhas 2026",
-      slug: "charter-porto-galinhas-2026",
-      destinoId: portoGalinhas.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 18,
-      condiciones:
-        "Charter flexi 2026. Tarifa en base doble. Entrega desde USD 475 + cuotas mensuales.",
-      destinos: {
-        create: [{ destinoId: portoGalinhas.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "1387",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-12-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          {
-            tipo: "transporte",
-            descripcion: "Vuelo charter directo Cordoba - Recife"
-          },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "alojamiento", descripcion: "Regimen segun hotel" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          {
-            tipo: "equipaje",
-            descripcion: "Incluye equipaje de mano y de bodega"
-          }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Charter Florianopolis 2026",
-      slug: "charter-florianopolis-2026",
-      destinoId: floripa.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 19,
-      condiciones:
-        "Charter flexi 2026. Tarifa en base doble. Entrega desde USD 292 + cuotas mensuales.",
-      destinos: {
-        create: [{ destinoId: floripa.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "797",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-12-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          {
-            tipo: "transporte",
-            descripcion: "Vuelo charter directo Cordoba - Florianopolis"
-          },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "alojamiento", descripcion: "Regimen segun hotel" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          {
-            tipo: "equipaje",
-            descripcion: "Incluye equipaje de mano y de bodega"
-          }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Charter Ferrugem 2026",
-      slug: "charter-ferrugem-2026",
-      destinoId: ferrugem.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 20,
-      condiciones:
-        "Charter flexi 2026. Tarifa en base doble. Entrega desde USD 305 + cuotas mensuales.",
-      destinos: {
-        create: [{ destinoId: ferrugem.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "840",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-12-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          {
-            tipo: "transporte",
-            descripcion: "Vuelo charter directo Cordoba - Florianopolis"
-          },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "alojamiento", descripcion: "Regimen segun hotel" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          {
-            tipo: "equipaje",
-            descripcion: "Incluye equipaje de mano y de bodega"
-          }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Charter Bombinhas 2026",
-      slug: "charter-bombinhas-2026",
-      destinoId: bombinhas.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 21,
-      condiciones:
-        "Charter flexi 2026. Tarifa en base doble. Entrega desde USD 346 + cuotas mensuales.",
-      destinos: {
-        create: [{ destinoId: bombinhas.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "977",
-            moneda: "USD",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-12-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          {
-            tipo: "transporte",
-            descripcion: "Vuelo charter directo Cordoba - Florianopolis"
-          },
-          { tipo: "alojamiento", descripcion: "7 noches de alojamiento" },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "alojamiento", descripcion: "Regimen segun hotel" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          {
-            tipo: "equipaje",
-            descripcion: "Incluye equipaje de mano y de bodega"
-          }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Patagonia Fantastica",
       slug: "patagonia-fantastica",
       destinoId: puertoMadryn.id,
@@ -1825,7 +1422,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 22,
+      orden: 8,
       condiciones:
         "Salida grupal. Salidas Sep a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
       destinos: {
@@ -1862,11 +1459,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Asistencia al viajero" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Bariloche en mil colores",
       slug: "bariloche-en-mil-colores",
       destinoId: bariloche.id,
@@ -1874,7 +1468,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 23,
+      orden: 9,
       condiciones:
         "Salida grupal. Salidas Jul a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
       destinos: {
@@ -1906,11 +1500,8 @@ async function main() {
           { tipo: "servicio", descripcion: "Asistencia al viajero" }
         ]
       }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
+    },
+    {
       titulo: "Cataratas Premium",
       slug: "cataratas-premium",
       destinoId: iguazu.id,
@@ -1918,7 +1509,7 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 24,
+      orden: 10,
       condiciones:
         "Salida grupal. Salidas Jul a Dic 2026. Tarifa en base doble. 4 cuotas cero interes.",
       destinos: {
@@ -1952,80 +1543,11 @@ async function main() {
         ]
       }
     }
-  });
+  ];
 
-  await prisma.oferta.create({
-    data: {
-      titulo: "Bariloche Aereo",
-      slug: "bariloche-aereo-2026",
-      destinoId: bariloche.id,
-      noches: 4,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 25,
-      condiciones: "Salidas enero a junio 2026. Tarifa en base doble.",
-      destinos: {
-        create: [{ destinoId: bariloche.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "597000",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-06-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Aereo directo desde Cordoba" },
-          { tipo: "alojamiento", descripcion: "4 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Regimen segun hotel" },
-          { tipo: "servicio", descripcion: "Traslados in/out" },
-          { tipo: "servicio", descripcion: "Excursiones en programa" }
-        ]
-      }
-    }
-  });
-
-  await prisma.oferta.create({
-    data: {
-      titulo: "Cataratas Aereo",
-      slug: "cataratas-aereo-2026",
-      destinoId: iguazu.id,
-      noches: 3,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 26,
-      condiciones:
-        "Salidas enero a marzo 2026. Tarifa en base doble. 3 o 4 noches.",
-      destinos: {
-        create: [{ destinoId: iguazu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "497000",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-01-01"),
-            fechaFin: new Date("2026-03-31")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Aereo directo desde Cordoba" },
-          { tipo: "alojamiento", descripcion: "3 o 4 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Regimen desayuno" },
-          { tipo: "servicio", descripcion: "Traslados in/out" },
-          { tipo: "servicio", descripcion: "Excursiones en programa" }
-        ]
-      }
-    }
-  });
+  for (const oferta of salidasGrupales) {
+    await prisma.oferta.create({ data: oferta });
+  }
 
   await prisma.seccionNosotros.create({
     data: {

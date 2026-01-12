@@ -1,28 +1,68 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
-import About from "../components/About.jsx";
+import logo from "../assets/logo.png";
+import ComplaintSection from "../components/ComplaintSection.jsx";
 import { useTravelData } from "../hooks/useTravelData.js";
-import {
-  formatCurrency,
-  formatDate,
-  getPrecioVigente
-} from "../utils/formatters.js";
+import { getExcursionGallery } from "../utils/excursionGallery.js";
 import { getOfferImages } from "../utils/offerImages.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
+
+const CONTINENTS = [
+  { id: "america", label: "America" },
+  { id: "europa", label: "Europa" },
+  { id: "asia", label: "Asia" },
+  { id: "africa", label: "Africa" }
+];
+
+const CONTINENT_BY_COUNTRY = {
+  Argentina: "america",
+  Brasil: "america",
+  Chile: "america",
+  Colombia: "america",
+  "Costa Rica": "america",
+  Cuba: "america",
+  México: "america",
+  "República Dominicana": "america",
+  Perú: "america",
+  "Estados Unidos": "america",
+  "Emiratos Árabes": "asia",
+  Japón: "asia",
+  Indonesia: "asia",
+  China: "asia",
+  Vietnam: "asia",
+  Maldivas: "asia",
+  India: "asia",
+  Singapur: "asia",
+  "Sudáfrica": "africa",
+  Kenia: "africa",
+  Egipto: "africa",
+  Marruecos: "africa",
+  Tanzania: "africa",
+  Francia: "europa",
+  Inglaterra: "europa",
+  Italia: "europa",
+  Portugal: "europa",
+  Grecia: "europa",
+  Alemania: "europa",
+  "Países Bajos": "europa",
+  "República Checa": "europa",
+  España: "europa"
+};
 
 export default function Home() {
   const { destinos, ofertas, actividades, loading, error } = useTravelData();
+  const heroImage = resolveAssetUrl("/assets/destinos/mexico1.webp");
   const [searchType, setSearchType] = useState("destino");
   const [searchDestino, setSearchDestino] = useState("");
+  const [searchRegion, setSearchRegion] = useState("");
+  const [searchPais, setSearchPais] = useState("");
   const [searchDate, setSearchDate] = useState("");
   const [searchText, setSearchText] = useState("");
   const [searchTransporte, setSearchTransporte] = useState("");
   const [searchIndex, setSearchIndex] = useState(0);
 
-  const ofertasDestacadas = useMemo(() => {
-    const destacadas = ofertas.filter((oferta) => oferta.destacada);
-    return (destacadas.length ? destacadas : ofertas).slice(0, 6);
-  }, [ofertas]);
+  const salidasDisponibles = useMemo(() => ofertas, [ofertas]);
 
   const ofertasDisponibles = useMemo(() => {
     const titles = new Set();
@@ -34,12 +74,74 @@ export default function Home() {
     return Array.from(titles).sort((a, b) => a.localeCompare(b));
   }, [ofertas]);
 
+  const regionesDisponibles = useMemo(() => {
+    const continents = new Set();
+    destinos.forEach((destino) => {
+      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
+      if (continent) {
+        continents.add(continent);
+      }
+    });
+    return CONTINENTS.filter((item) => continents.has(item.id));
+  }, [destinos]);
+
+  const paisesDisponibles = useMemo(() => {
+    const countries = new Set();
+    destinos.forEach((destino) => {
+      if (!destino.paisRegion) {
+        return;
+      }
+      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
+      if (searchRegion && continent !== searchRegion) {
+        return;
+      }
+      countries.add(destino.paisRegion);
+    });
+    return Array.from(countries).sort((a, b) => a.localeCompare(b));
+  }, [destinos, searchRegion]);
+
+  const destinosDisponibles = useMemo(() => {
+    return destinos.filter((destino) => {
+      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
+      if (searchRegion && continent !== searchRegion) {
+        return false;
+      }
+      if (searchPais && destino.paisRegion !== searchPais) {
+        return false;
+      }
+      return true;
+    });
+  }, [destinos, searchRegion, searchPais]);
+
+  useEffect(() => {
+    if (searchPais && !paisesDisponibles.includes(searchPais)) {
+      setSearchPais("");
+    }
+  }, [searchPais, paisesDisponibles]);
+
+  useEffect(() => {
+    if (
+      searchDestino &&
+      !destinosDisponibles.some(
+        (destino) => destino.nombre === searchDestino
+      )
+    ) {
+      setSearchDestino("");
+    }
+  }, [searchDestino, destinosDisponibles]);
+
   const loopDestinos = useMemo(() => {
     if (!destinos.length) {
       return [];
     }
     return [...destinos, ...destinos];
   }, [destinos]);
+
+  const normalizeText = (value) =>
+    (value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
 
   const excursionesDestacadas = useMemo(() => {
     const destacadas = actividades.filter((actividad) => actividad.destacada);
@@ -50,17 +152,18 @@ export default function Home() {
     const names = new Set();
     actividades.forEach((actividad) => {
       if (actividad.nombre) {
-        names.add(actividad.nombre);
+        const destinoNombre = normalizeText(actividad.destino?.nombre);
+        const actividadNombre = normalizeText(actividad.nombre);
+        if (
+          destinoNombre.includes("cordoba") ||
+          actividadNombre.includes("cordoba")
+        ) {
+          names.add(actividad.nombre);
+        }
       }
     });
     return Array.from(names).sort((a, b) => a.localeCompare(b));
   }, [actividades]);
-
-  const normalizeText = (value) =>
-    (value || "")
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
 
   const getTransportType = (oferta) => {
     const transporteItem = (oferta.incluyeItems || []).find(
@@ -92,16 +195,24 @@ export default function Home() {
 
   const searchResults = useMemo(() => {
     const destinoQuery = searchDestino.trim().toLowerCase();
+    const regionQuery = searchRegion.trim().toLowerCase();
+    const paisQuery = searchPais.trim().toLowerCase();
     const textQuery = searchText.trim().toLowerCase();
     const selectedDate = searchDate ? new Date(searchDate) : null;
     const transporteQuery = searchTransporte;
 
     const matchesDestino = (nombre) =>
       !destinoQuery || nombre.toLowerCase().includes(destinoQuery);
+    const matchesRegion = (region) =>
+      !regionQuery || CONTINENT_BY_COUNTRY[region] === regionQuery;
+    const matchesPais = (region) =>
+      !paisQuery || (region || "").toLowerCase() === paisQuery;
 
     if (searchType === "destino") {
       return destinos.filter((destino) => {
         const matchesName = matchesDestino(destino.nombre);
+        const matchesRegionValue = matchesRegion(destino.paisRegion);
+        const matchesPaisValue = matchesPais(destino.paisRegion);
         const matchesText =
           !textQuery ||
           destino.nombre.toLowerCase().includes(textQuery) ||
@@ -109,7 +220,12 @@ export default function Home() {
             .toLowerCase()
             .includes(textQuery) ||
           destino.descripcion.toLowerCase().includes(textQuery);
-        return matchesName && matchesText;
+        return (
+          matchesName &&
+          matchesRegionValue &&
+          matchesPaisValue &&
+          matchesText
+        );
       });
     }
 
@@ -146,6 +262,14 @@ export default function Home() {
 
     return actividades.filter((actividad) => {
       const destinoNombre = actividad.destino?.nombre || "";
+      const matchesCordoba = (() => {
+        const destinoNorm = normalizeText(destinoNombre);
+        const actividadNorm = normalizeText(actividad.nombre);
+        return (
+          destinoNorm.includes("cordoba") ||
+          actividadNorm.includes("cordoba")
+        );
+      })();
       const matchesName = matchesDestino(destinoNombre);
       const matchesText =
         !textQuery ||
@@ -155,7 +279,7 @@ export default function Home() {
         ? new Date(actividad.fecha).toDateString() ===
           selectedDate.toDateString()
         : true;
-      return matchesName && matchesText && matchesDate;
+      return matchesCordoba && matchesName && matchesText && matchesDate;
     });
   }, [
     actividades,
@@ -163,22 +287,24 @@ export default function Home() {
     ofertas,
     searchDate,
     searchDestino,
+    searchRegion,
+    searchPais,
     searchText,
     searchTransporte,
     searchType
   ]);
 
   const loopOfertas = useMemo(() => {
-    if (!ofertasDestacadas.length) {
+    if (!salidasDisponibles.length) {
       return [];
     }
     const base = [];
     while (base.length < 6) {
-      base.push(...ofertasDestacadas);
+      base.push(...salidasDisponibles);
     }
     const trimmed = base.slice(0, 6);
     return [...trimmed, ...trimmed];
-  }, [ofertasDestacadas]);
+  }, [salidasDisponibles]);
 
   const loopExcursiones = useMemo(() => {
     if (!excursionesDestacadas.length) {
@@ -194,6 +320,8 @@ export default function Home() {
 
   const hasSearchFilters =
     searchDestino.trim() ||
+    searchRegion ||
+    searchPais ||
     searchDate ||
     searchText.trim() ||
     searchTransporte;
@@ -201,14 +329,20 @@ export default function Home() {
     searchType === "destino"
       ? "Destinos"
       : searchType === "oferta"
-      ? "Ofertas"
-      : "Excursiones";
+      ? "Salidas"
+      : "Excursiones Córdoba";
+  const searchButtonLabel =
+    searchType === "destino"
+      ? "Buscar destinos"
+      : searchType === "oferta"
+      ? "Buscar viajes"
+      : "Buscar excursiones";
   const searchLink =
     searchType === "destino"
       ? "/destinos"
       : searchType === "oferta"
-      ? "/ofertas"
-      : "/excursiones";
+      ? "/ofertas?seccion=salidas-grupales"
+      : "/cordoba";
   const searchSubtitle = "Resultados según tu búsqueda.";
   const totalResults = searchResults.length;
   const currentResult = totalResults
@@ -222,6 +356,8 @@ export default function Home() {
       setSearchTransporte("");
     } else {
       setSearchDestino("");
+      setSearchRegion("");
+      setSearchPais("");
       if (searchType !== "oferta") {
         setSearchTransporte("");
       }
@@ -229,10 +365,18 @@ export default function Home() {
   }, [searchType]);
 
   useEffect(() => {
+    if (searchPais && !paisesDisponibles.includes(searchPais)) {
+      setSearchPais("");
+    }
+  }, [paisesDisponibles, searchPais]);
+
+  useEffect(() => {
     setSearchIndex(0);
   }, [
     searchType,
     searchDestino,
+    searchRegion,
+    searchPais,
     searchDate,
     searchText,
     searchTransporte,
@@ -255,21 +399,26 @@ export default function Home() {
 
   return (
     <main>
-      <section className="hero hero-search" id="inicio">
+      <section
+        className="hero hero-search"
+        id="inicio"
+        style={{ backgroundImage: `url("${heroImage}")` }}
+      >
         <div
           className={`hero-content${
             searchType === "oferta" ? " hero-content--wide" : ""
           }`}
         >
-          <p className="eyebrow">Viajes premium, compará y disfrutá</p>
-          <h1>
-            Tu próxima escapada empieza en{" "}
-            <span className="brand-word topotours-word">Topotours</span>.
-          </h1>
-          <p className="hero-subtitle">
-            Buscá destinos, fechas y servicios con atención personalizada y
-            ofertas pensadas para vos.
-          </p>
+          <div className="hero-text">
+            <h1>
+              Tu próxima escapada empieza en{" "}
+              <span className="brand-word topotours-word">Topotours</span>
+            </h1>
+            <p className="hero-subtitle">
+              Buscá destinos, fechas y servicios con atención personalizada y
+              salidas pensadas para vos.
+            </p>
+          </div>
           <form
             className={`search-bar premium-filter premium-filter-${searchType}`}
             onSubmit={(event) => event.preventDefault()}
@@ -306,9 +455,104 @@ export default function Home() {
                       onChange={(event) => setSearchDestino(event.target.value)}
                     >
                       <option value="">Todos</option>
-                      {destinos.map((destino) => (
+                      {destinosDisponibles.map((destino) => (
                         <option key={destino.id} value={destino.nombre}>
                           {destino.nombre}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="filter-card-arrow" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div className="filter-card filter-card-select">
+                  <span className="filter-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M4 6h16M4 12h16M4 18h16"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <circle
+                        cx="8"
+                        cy="6"
+                        r="2"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <circle
+                        cx="14"
+                        cy="12"
+                        r="2"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <circle
+                        cx="10"
+                        cy="18"
+                        r="2"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </span>
+                  <div className="filter-card-body">
+                    <label className="filter-card-label" htmlFor="search-pais">
+                      País
+                    </label>
+                    <select
+                      id="search-pais"
+                      className="filter-card-input"
+                      value={searchPais}
+                      onChange={(event) => setSearchPais(event.target.value)}
+                    >
+                      <option value="">Todos</option>
+                      {paisesDisponibles.map((pais) => (
+                        <option key={pais} value={pais}>
+                          {pais}
+                        </option>
+                      ))}
+                    </select>
+                    <span className="filter-card-arrow" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div className="filter-card filter-card-select">
+                  <span className="filter-card-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M9 4v14M15 6v14"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <div className="filter-card-body">
+                    <label className="filter-card-label" htmlFor="search-region">
+                      Continente
+                    </label>
+                    <select
+                      id="search-region"
+                      className="filter-card-input"
+                      value={searchRegion}
+                      onChange={(event) => setSearchRegion(event.target.value)}
+                    >
+                      <option value="">Todos</option>
+                      {regionesDisponibles.map((region) => (
+                        <option key={region.id} value={region.id}>
+                          {region.label}
                         </option>
                       ))}
                     </select>
@@ -345,9 +589,9 @@ export default function Home() {
                       value={searchType}
                       onChange={(event) => setSearchType(event.target.value)}
                     >
-                      <option value="destino">Destino (lugares)</option>
-                      <option value="oferta">Oferta (promos y salidas)</option>
-                      <option value="excursion">Excursión (actividades)</option>
+                      <option value="destino">Destinos</option>
+                      <option value="oferta">Salidas</option>
+                      <option value="excursion">Excursiones (Córdoba)</option>
                     </select>
                     <span className="filter-card-arrow" aria-hidden="true"></span>
                   </div>
@@ -377,9 +621,7 @@ export default function Home() {
                   </span>
                   <div className="filter-card-body">
                     <label className="filter-card-label" htmlFor="search-text">
-                      {searchType === "oferta"
-                        ? "Qué querés buscar"
-                        : "Excursión"}
+                      {searchType === "oferta" ? "Salidas" : "Excursión Córdoba"}
                     </label>
                     <select
                       id="search-text"
@@ -389,7 +631,7 @@ export default function Home() {
                     >
                       <option value="">
                         {searchType === "oferta"
-                          ? "Todas las ofertas"
+                          ? "Todas las salidas"
                           : "Todas las excursiones"}
                       </option>
                       {(searchType === "oferta"
@@ -533,9 +775,9 @@ export default function Home() {
                       value={searchType}
                       onChange={(event) => setSearchType(event.target.value)}
                     >
-                      <option value="destino">Destino (lugares)</option>
-                      <option value="oferta">Oferta (promos y salidas)</option>
-                      <option value="excursion">Excursión (actividades)</option>
+                      <option value="destino">Destinos</option>
+                      <option value="oferta">Salidas</option>
+                      <option value="excursion">Excursiones (Córdoba)</option>
                     </select>
                     <span className="filter-card-arrow" aria-hidden="true"></span>
                   </div>
@@ -544,7 +786,7 @@ export default function Home() {
             )}
 
             <button className="filter-button" type="submit">
-              Buscar viajes
+              {searchButtonLabel}
             </button>
           </form>
           {hasSearchFilters ? (
@@ -620,7 +862,6 @@ export default function Home() {
 
                       if (searchType === "oferta") {
                         const ofertaSlug = currentResult.slug || currentResult.id;
-                        const precio = getPrecioVigente(currentResult.precios);
                         const offerImages = getOfferImages(currentResult);
                         const offerImage = offerImages[0] || fallbackDeal;
                         return (
@@ -639,17 +880,8 @@ export default function Home() {
                             ></div>
                             <div className="tile-content">
                               <h4>{currentResult.titulo}</h4>
-                              <p className="destination-price">
-                                {precio
-                                  ? formatCurrency(
-                                      precio.precio,
-                                      precio.moneda
-                                    )
-                                  : "Precio a consultar"}
-                              </p>
                               <span className="destination-meta">
-                                {currentResult.destino?.nombre ||
-                                  "Oferta destacada"}
+                                {currentResult.destino?.nombre || "Salida"}
                               </span>
                             </div>
                           </Link>
@@ -733,7 +965,7 @@ export default function Home() {
         ) : destinos.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
-          <div className="offer-carousel destination-carousel">
+          <div className="offer-carousel destination-carousel destination-carousel--slow">
             <div className="offer-track">
               {loopDestinos.map((destino, index) => {
                 const destinoSlug = destino.slug || destino.id;
@@ -792,24 +1024,23 @@ export default function Home() {
       <section className="grid-section">
         <div className="section-header section-header-row">
           <div>
-            <h2>Ofertas destacadas</h2>
-            <p>Promos con fechas flexibles y beneficios exclusivos.</p>
+            <h2>Salidas</h2>
+            <p>Experiencias con cupos confirmados y fechas flexibles.</p>
           </div>
-          <Link className="secondary" to="/ofertas">
+          <Link className="secondary" to="/ofertas?seccion=salidas-grupales">
             Ver mas
           </Link>
         </div>
         {loading ? (
-          <p className="section-state">Cargando ofertas...</p>
+          <p className="section-state">Cargando salidas...</p>
         ) : error ? (
           <p className="section-state error">{error}</p>
         ) : loopOfertas.length === 0 ? (
-          <p className="section-state">No hay ofertas disponibles.</p>
+          <p className="section-state">No hay salidas disponibles.</p>
         ) : (
-          <div className="offer-carousel">
+          <div className="offer-carousel destination-carousel">
             <div className="offer-track">
               {loopOfertas.map((oferta, index) => {
-                const precio = getPrecioVigente(oferta.precios);
                 const ofertaSlug = oferta.slug || oferta.id;
                 const offerImages = getOfferImages(oferta);
                 const offerImage = offerImages[0] || fallbackDeal;
@@ -841,28 +1072,13 @@ export default function Home() {
                     <div className="offer-body">
                       <div className="offer-header">
                         <span className="offer-tag">
-                          {oferta.destino?.nombre || "Destino destacado"}
+                          {oferta.destino?.nombre || "Destino"}
                         </span>
                         <h3>{oferta.titulo}</h3>
                       </div>
                       <p className="offer-description">
                         {oferta.condiciones || oferta.noIncluye || "Consultanos"}
                       </p>
-                      <div className="offer-meta">
-                        {precio ? (
-                          <span className="offer-price">
-                            {formatCurrency(precio.precio, precio.moneda)}
-                          </span>
-                        ) : (
-                          <span className="offer-price">Precio a consultar</span>
-                        )}
-                        {precio ? (
-                          <span className="offer-dates">
-                            {formatDate(precio.fechaInicio)} -{" "}
-                            {formatDate(precio.fechaFin)}
-                          </span>
-                        ) : null}
-                      </div>
                     </div>
                   </Link>
                 );
@@ -873,12 +1089,12 @@ export default function Home() {
       </section>
 
       <section className="grid-section">
-        <div className="section-header section-header-row">
+          <div className="section-header section-header-row">
           <div>
-            <h2>Excursiones destacadas</h2>
+            <h2>Excursiones</h2>
             <p>Sumale experiencias y recorridos locales a tu viaje.</p>
           </div>
-          <Link className="secondary" to="/excursiones">
+          <Link className="secondary" to="/cordoba">
             Ver mas
           </Link>
         </div>
@@ -889,30 +1105,49 @@ export default function Home() {
         ) : loopExcursiones.length === 0 ? (
           <p className="section-state">No hay excursiones disponibles.</p>
         ) : (
-          <div className="excursion-carousel">
-            <div className="excursion-track">
+          <div className="offer-carousel destination-carousel">
+            <div className="offer-track">
               {loopExcursiones.map((actividad, index) => {
                 const actividadSlug = actividad.slug || actividad.id;
+                const galleryImages = getExcursionGallery(actividad.slug);
+                const coverImage =
+                  actividad.imagenPortada ||
+                  galleryImages[0] ||
+                  fallbackDeal;
+                const extraImages = galleryImages
+                  .filter((image) => image !== coverImage)
+                  .slice(0, 2);
                 return (
                   <Link
-                    className="tile excursion-card"
+                    className="offer-card offer-card-feature offer-link"
                     key={`${actividad.id}-${index}`}
                     to={`/excursiones/${actividadSlug}`}
                   >
-                    <div
-                      className="tile-image"
-                      style={{
-                        backgroundImage: actividad.imagenPortada
-                          ? `url("${actividad.imagenPortada}")`
-                          : `url("${fallbackDeal}")`
-                      }}
-                    ></div>
-                    <div className="tile-content">
-                      <h4>{actividad.nombre}</h4>
-                      <p>{actividad.descripcion}</p>
-                      <span className="tile-meta">
-                        {actividad.destino?.nombre || "Destino"}
-                      </span>
+                    <div className="offer-image">
+                      <img
+                        className="offer-image-main"
+                        src={coverImage}
+                        alt={actividad.nombre}
+                      />
+                      {extraImages.length ? (
+                        <div className="offer-image-stack">
+                          {extraImages.map((image, imageIndex) => (
+                            <img
+                              key={`${actividad.id}-home-${imageIndex}`}
+                              src={image}
+                              alt={`${actividad.nombre} ${imageIndex + 2}`}
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="offer-body">
+                      <div className="offer-header">
+                        <span className="offer-tag">
+                          {actividad.destino?.nombre || "Córdoba"}
+                        </span>
+                        <h3>{actividad.nombre}</h3>
+                      </div>
                     </div>
                   </Link>
                 );
@@ -923,23 +1158,59 @@ export default function Home() {
       </section>
 
       <section className="grid-section travel-docs-preview">
-        <div className="section-header travel-docs-preview-header">
-          <span className="section-state">
-            Ministerio del Interior - Dirección Nacional de Migraciones
-          </span>
-          <h2>¿Lo que necesito para salir del país?</h2>
-          <p>
-            Accedé a la guía completa con requisitos para viajes internacionales.
-          </p>
-        </div>
-        <div className="travel-docs-preview-action">
-          <Link className="primary" to="/documentacion">
-            Ver documentación
-          </Link>
+        <div className="travel-docs-preview-frame">
+          <div className="section-header travel-docs-preview-header">
+            <span className="section-state">
+              Ministerio del Interior - Dirección Nacional de Migraciones
+            </span>
+            <h2>¿Lo que necesito para salir del país?</h2>
+            <p>
+              Accedé a la guía completa con requisitos para viajes internacionales.
+            </p>
+          </div>
+          <div className="travel-docs-preview-action">
+            <Link className="primary" to="/documentacion">
+              Ver documentación
+            </Link>
+          </div>
         </div>
       </section>
 
-      <About />
+      <section className="about-topotours">
+        <div className="about-topotours-card">
+          <div className="about-topotours-brand">
+            <img
+              className="about-topotours-logo"
+              src={logo}
+              alt="Topotours"
+            />
+            <div className="about-topotours-brand-text">
+              <strong>Topotours</strong>
+              <span>Agencia de viajes</span>
+            </div>
+          </div>
+          <div className="about-topotours-content">
+            <span className="about-topotours-kicker">Sobre nosotros</span>
+            <h2>Viajes bien acompañados</h2>
+            <p>
+              Somos Topotours: armamos experiencias a medida y te acompañamos
+              en cada etapa del viaje.
+            </p>
+            <p>
+              Nos ocupamos de seleccionar proveedores confiables, coordinar la
+              logística y sumar detalles que hacen la diferencia para que viajes
+              con tranquilidad y disfrutes desde el primer día.
+            </p>
+            <div className="about-topotours-highlights">
+              <span>Asesoramiento cercano</span>
+              <span>Itinerarios a medida</span>
+              <span>Gestión integral</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ComplaintSection />
     </main>
   );
 }

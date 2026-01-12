@@ -1,9 +1,40 @@
 const prisma = require("../lib/prisma");
 
-async function listActividades({ activas = true } = {}) {
-  return prisma.actividad.findMany({
+async function listActividades({ activas = true, lite = false } = {}) {
+  const baseQuery = {
     where: activas ? { activa: true } : undefined,
-    orderBy: [{ orden: "asc" }, { fecha: "asc" }],
+    orderBy: [{ orden: "asc" }, { fecha: "asc" }]
+  };
+
+  if (lite) {
+    return prisma.actividad.findMany({
+      ...baseQuery,
+      select: {
+        id: true,
+        nombre: true,
+        slug: true,
+        descripcion: true,
+        imagenPortada: true,
+        tipoActividad: true,
+        fecha: true,
+        hora: true,
+        cupos: true,
+        puntoEncuentro: true,
+        destacada: true,
+        destino: {
+          select: {
+            id: true,
+            nombre: true,
+            slug: true,
+            paisRegion: true
+          }
+        }
+      }
+    });
+  }
+
+  return prisma.actividad.findMany({
+    ...baseQuery,
     include: { destino: true }
   });
 }
