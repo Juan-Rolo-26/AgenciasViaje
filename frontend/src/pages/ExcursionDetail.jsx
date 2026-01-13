@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useActividades } from "../hooks/useTravelData.js";
+import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getExcursionGallery } from "../utils/excursionGallery.js";
 
 export default function ExcursionDetail() {
@@ -53,6 +54,8 @@ export default function ExcursionDetail() {
       : "Consultanos para conocer el detalle de la excursión.";
   const puntoEncuentro = actividad?.puntoEncuentro || "A coordinar";
   const tipoActividad = actividad?.tipoActividad || "Excursión";
+  const whatsappMessage = `Hola! Quiero reservar la excursión ${actividad?.nombre || "Córdoba"}.`;
+  const whatsappLink = getWhatsappLink(whatsappMessage);
 
   if (loading) {
     return (
@@ -106,6 +109,17 @@ export default function ExcursionDetail() {
             <img src={image} alt={`${actividad.nombre} ${index + 1}`} />
           </div>
         ))}
+      </section>
+
+      <section className="detail-cta">
+        <a
+          className="detail-whatsapp"
+          href={whatsappLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Reservar por WhatsApp
+        </a>
       </section>
 
       <section className="detail-section">

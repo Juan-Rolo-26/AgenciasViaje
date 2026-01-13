@@ -16,19 +16,22 @@ const CONTINENTS = [
 ];
 
 const HERO_IMAGES = [
-  "/assets/destinos/punta2.webp",
-  "/assets/destinos/barcelona2.webp",
+  "/assets/destinos/bayahive1.webp",
+  "/assets/destinos/roma.jpg",
   "/assets/destinos/madrid3.jpg",
-  "/assets/destinos/mexico2.jpg",
-  "/assets/destinos/maldivas2.jpg",
-  "/assets/destinos/dubai4.jpg",
-  "/assets/destinos/paris3.jpg",
-  "/assets/destinos/roma2.jpg",
-  "/assets/destinos/londres2.jpg",
-  "/assets/destinos/singapur2.webp"
+  "/assets/destinos/sudafrica2.jpg",
+  "/assets/destinos/Buzios.webp",
+  "/assets/destinos/maldivas1.webp",
+  "/assets/destinos/singapur1.webp",
+  "/assets/destinos/africa1.jpg",
+  "/assets/destinos/tai3.webp",
+  "/assets/destinos/santiago4.webp",
+  "/assets/destinos/Paris1.webp",
+  "/assets/destinos/dubai3.webp",
+  "/assets/destinos/costarica1.jpg"
 ];
 
-const HERO_ROTATION_MS = 11000;
+const HERO_ROTATION_MS = 5000;
 const HERO_FADE_MS = 3000;
 const CAROUSEL_PX_PER_SECOND = 24;
 

@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useOfertas } from "../hooks/useTravelData.js";
 import { formatDate } from "../utils/formatters.js";
+import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getOfferImages } from "../utils/offerImages.js";
 
 const incluyeIconos = {
@@ -119,6 +120,8 @@ export default function OfertaDetail() {
   const offerImages = getOfferImages(oferta);
   const heroImage = offerImages[0] || fallbackDeal;
   const destinoPrincipal = oferta.destino?.nombre || "Destino";
+  const whatsappMessage = `Hola! Quiero reservar la salida ${oferta.titulo} para ${destinoPrincipal}.`;
+  const whatsappLink = getWhatsappLink(whatsappMessage);
 
   return (
     <main className="detail-page">
@@ -139,6 +142,17 @@ export default function OfertaDetail() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="detail-cta">
+        <a
+          className="detail-whatsapp"
+          href={whatsappLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Consultar por WhatsApp
+        </a>
       </section>
 
       <section className="detail-section">
