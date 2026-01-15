@@ -2667,22 +2667,24 @@ section[id] {
 
 .detail-hero {
   position: relative;
-  min-height: 320px;
+  min-height: 360px;
+  height: clamp(360px, 58vh, 520px);
   border-radius: 28px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
   color: #ffffff;
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  place-items: center;
   box-shadow: 0 20px 40px rgba(10, 16, 44, 0.25);
 }
 
 .detail-hero-overlay {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: flex-end;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 6vh, 60px) 24px;
   background: linear-gradient(
     180deg,
     rgba(10, 12, 28, 0.2) 0%,
@@ -2693,14 +2695,28 @@ section[id] {
 .detail-hero-content {
   position: relative;
   z-index: 1;
-  padding: 48px;
-  max-width: 760px;
+  width: min(520px, 90%);
+  padding: 22px 26px 26px;
+  border-radius: 22px;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.78) 0%,
+    rgba(15, 23, 42, 0.55) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 40px rgba(9, 16, 44, 0.45);
+  text-align: center;
   display: grid;
-  gap: 12px;
+  gap: 10px;
+  justify-items: center;
 }
 
 .detail-hero-content h1 {
   font-size: clamp(30px, 4vw, 46px);
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 8px 22px rgba(5, 10, 30, 0.4);
 }
 
 .detail-kicker {
@@ -2708,15 +2724,24 @@ section[id] {
   letter-spacing: 2px;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+.detail-hero-content > p:not(.detail-kicker) {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
 }
 
 .detail-back {
-  color: #ffffff;
+  justify-self: center;
   text-decoration: none;
-  font-weight: 600;
-  width: fit-content;
-  padding-bottom: 4px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  color: #0b1c39;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 .detail-hero-meta {
@@ -2724,6 +2749,7 @@ section[id] {
   flex-wrap: wrap;
   gap: 10px;
   font-size: 0.9rem;
+  justify-content: center;
 }
 
 .detail-hero-meta span {
@@ -4483,6 +4509,8 @@ section[id] {
   }
   .detail-hero {
     border-radius: 22px;
+    min-height: 320px;
+    height: clamp(320px, 60vh, 420px);
   }
 }
 

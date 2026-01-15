@@ -16,7 +16,7 @@ const CONTINENTS = [
 ];
 
 const HERO_IMAGES = [
-  "/assets/destinos/bayahive1.webp",
+  "/assets/destinos/berlin1.jpg",
   "/assets/destinos/roma.jpg",
   "/assets/destinos/madrid3.jpg",
   "/assets/destinos/sudafrica2.jpg",
