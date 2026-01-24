@@ -8,7 +8,7 @@ const CONTINENTS = [
   {
     id: "america",
     label: "America",
-    image: "/assets/destinos/estados1.jpg"
+    image: "/assets/destinos/rio1.jpg"
   },
   {
     id: "europa",
@@ -67,6 +67,12 @@ const CONTINENT_SET = new Set(CONTINENTS.map((item) => item.id));
 export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   const { destinos, loading, error } = useDestinos();
   const lockedPaisValue = (lockedPais || "").trim();
+  const destinosBase = useMemo(() => {
+    if (lockedPaisValue) {
+      return destinos;
+    }
+    return destinos.filter((destino) => destino.paisRegion !== "Argentina");
+  }, [destinos, lockedPaisValue]);
   const continentCards = useMemo(
     () =>
       CONTINENTS.map((item) => ({
@@ -131,7 +137,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   }, [selectedContinent, selectedPais]);
 
   const destinosParaOpciones = useMemo(() => {
-    return destinos.filter((destino) => {
+    return destinosBase.filter((destino) => {
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion] || "";
       if (draftFilters.continente && continent !== draftFilters.continente) {
         return false;
@@ -141,7 +147,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
       }
       return true;
     });
-  }, [destinos, draftFilters.continente, draftFilters.pais]);
+  }, [destinosBase, draftFilters.continente, draftFilters.pais]);
 
   const paises = useMemo(() => {
     return Array.from(
@@ -167,7 +173,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
 
   const destinosFiltrados = useMemo(() => {
     const query = filters.query.trim().toLowerCase();
-    return destinos.filter((destino) => {
+    return destinosBase.filter((destino) => {
       const matchesPais =
         !filters.pais || destino.paisRegion === filters.pais;
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion] || "";
@@ -187,7 +193,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
         matchesQuery
       );
     });
-  }, [destinos, filters]);
+  }, [destinosBase, filters]);
 
   const handleApply = (event) => {
     event.preventDefault();

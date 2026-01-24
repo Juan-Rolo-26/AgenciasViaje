@@ -59,15 +59,13 @@ const extractLeadData = (text, prevLead) => {
       normalized.includes("aereo") ||
       normalized.includes("vuelo");
     const hasBus =
-      normalized.includes("colectivo") ||
-      normalized.includes("bus") ||
-      normalized.includes("micro");
+      normalized.includes("bus") || normalized.includes("micro");
     if (hasPlane && hasBus) {
-      nextLead.transport = "Avion o colectivo";
+      nextLead.transport = "Avion o bus";
     } else if (hasPlane) {
       nextLead.transport = "Avion";
     } else if (hasBus) {
-      nextLead.transport = "Colectivo";
+      nextLead.transport = "Bus";
     }
   }
 
@@ -164,7 +162,7 @@ const buildLeadWhatsappMessage = (lead, note, summary) => {
 export default function MainLayout() {
   const location = useLocation();
   const isDestinosRoute = location.pathname.startsWith("/destinos");
-  const asesorWhatsappLink = getWhatsappLink(
+  const asesorPhoneLink = getWhatsappLink(
     "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
   );
   const [navOpen, setNavOpen] = useState(false);
@@ -187,10 +185,6 @@ export default function MainLayout() {
     useState("");
   const [assistantLeadReadyNotified, setAssistantLeadReadyNotified] =
     useState(false);
-  const [subscriptionStatus, setSubscriptionStatus] = useState({
-    type: "idle",
-    message: ""
-  });
   const initialMessages = useMemo(
     () => [
       {
@@ -311,63 +305,6 @@ export default function MainLayout() {
     setAssistantOpen(false);
   };
 
-  const handleSubscriptionSubmit = async (event) => {
-    event.preventDefault();
-    if (subscriptionStatus.type === "sending") {
-      return;
-    }
-    const formData = new FormData(event.currentTarget);
-    const email = (formData.get("email") || "").toString().trim();
-
-    if (!email || !email.includes("@")) {
-      setSubscriptionStatus({
-        type: "error",
-        message: "Ingresá un email válido."
-      });
-      return;
-    }
-
-    setSubscriptionStatus({
-      type: "sending",
-      message: "Enviando suscripción..."
-    });
-
-    try {
-      await apiRequest("/api/suscripciones", {
-        method: "POST",
-        body: { email }
-      });
-      setSubscriptionStatus({
-        type: "success",
-        message: "Gracias, te sumamos a las notificaciones."
-      });
-      event.currentTarget.reset();
-    } catch (error) {
-      const rawMessage =
-        typeof error?.message === "string" ? error.message : "";
-      const isHtmlError =
-        rawMessage.includes("<!DOCTYPE html>") ||
-        rawMessage.includes("Cannot POST /api/suscripciones");
-      if (isHtmlError) {
-        const subject = "Suscripción a notificaciones - Topotours";
-        const body = `Email: ${email}`;
-        window.location.href = `mailto:topotoursviajes@gmail.com?subject=${encodeURIComponent(
-          subject
-        )}&body=${encodeURIComponent(body)}`;
-        setSubscriptionStatus({
-          type: "success",
-          message:
-            "No pudimos enviar automaticamente. Abrimos tu mail para completar la suscripcion."
-        });
-        return;
-      }
-      setSubscriptionStatus({
-        type: "error",
-        message: rawMessage || "No pudimos enviar tu suscripción."
-      });
-    }
-  };
-
   useEffect(() => {
     if (!navOpen) {
       setNavSectionsOpen({
@@ -404,7 +341,7 @@ export default function MainLayout() {
         id: `lead-ready-${Date.now()}`,
         role: "assistant",
         text:
-          "Ya recaudé toda la información necesaria. Ahora voy a contactarte con un asesor de ventas para avanzar."
+          "Ya tengo presupuesto, fechas, destino, personas y transporte. Para cerrar la venta, escribinos por WhatsApp y seguimos por ahi."
       }
     ]);
     setAssistantLeadReadyNotified(true);
@@ -611,6 +548,22 @@ export default function MainLayout() {
 
             <NavLink
               className={navLinkClass}
+              to="/modo-fanatico"
+              onClick={closeNav}
+            >
+              <span className="nav-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 2 9.6 7.2 4 8l4 3.9-1 5.9L12 15l5 2.8-1-5.9 4-3.9-5.6-.8L12 2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </span>
+              Modo fanático
+            </NavLink>
+
+            <NavLink
+              className={navLinkClass}
               to="/argentina"
               onClick={closeNav}
             >
@@ -645,7 +598,7 @@ export default function MainLayout() {
           <div className={`nav-cta${navOpen ? " is-open" : ""}`}>
             <a
               className="cta-button"
-              href={asesorWhatsappLink}
+              href={asesorPhoneLink}
               target="_blank"
               rel="noreferrer"
             >
@@ -822,8 +775,10 @@ export default function MainLayout() {
               <li>
                 <a
                   className="footer-contact-button"
-                  href="tel:3518785667"
-                  aria-label="Llamar a Topotours"
+                  href={asesorPhoneLink}
+                  aria-label="WhatsApp de Topotours"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
@@ -866,31 +821,6 @@ export default function MainLayout() {
             <div className="footer-badge">
               <span>Agencia habilitada</span>
               <strong>Legajo N° 19929</strong>
-            </div>
-
-            <div className="footer-subscribe">
-              <h4>Notificaciones</h4>
-              <p>Poné tu mail y te suscribís a novedades de la agencia.</p>
-              <form
-                className="footer-subscribe-form"
-                onSubmit={handleSubscriptionSubmit}
-              >
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="tu@email.com"
-                  aria-label="Email para notificaciones"
-                />
-                <button type="submit">Suscribirme</button>
-              </form>
-              {subscriptionStatus.type !== "idle" ? (
-                <p
-                  className={`footer-subscribe-status ${subscriptionStatus.type}`}
-                  role="status"
-                >
-                  {subscriptionStatus.message}
-                </p>
-              ) : null}
             </div>
           </div>
         </div>

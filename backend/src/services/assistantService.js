@@ -45,7 +45,6 @@ const BASE_RELEVANT_KEYWORDS = [
   "vuelos",
   "avion",
   "aereo",
-  "colectivo",
   "bus",
   "traslado",
   "presupuesto",
@@ -418,7 +417,7 @@ function buildSystemPrompt() {
     `Si el usuario pregunta algo fuera de viajes, responde: "${OUT_OF_SCOPE_REPLY}"`,
     "Mantene un tono cordial y directo, estilo chat.",
     "Si faltan datos (destino, fechas, presupuesto, pasajeros), pedilos con una pregunta concreta.",
-    "Si el usuario menciona un destino o una salida, pregunta siempre: cuantas personas viajan, fechas estimadas, presupuesto y si prefieren avion o colectivo.",
+    "Si el usuario menciona un destino o una salida, pregunta siempre: cuantas personas viajan, fechas estimadas, presupuesto y si prefieren avion o bus.",
     "Si el usuario quiere reservar, deriva a WhatsApp con un asesor sin pedir mas datos.",
     "Si el usuario saluda o pide un resumen, mostra primero un pantallazo con salidas destacadas y destinos destacados.",
     "Si ves listados con '... adicionales', pedi mas detalles para acotar."

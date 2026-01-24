@@ -17,6 +17,7 @@ const OFFER_SECTION_SET = new Set(OFFER_SECTIONS.map((section) => section.id));
 
 export default function Ofertas() {
   const { ofertas, loading, error } = useOfertas();
+  const ofertasVisibles = useMemo(() => [], [ofertas]);
   const [searchParams] = useSearchParams();
   const selectedSection = (() => {
     const value = (searchParams.get("seccion") || "").toLowerCase();
@@ -51,9 +52,9 @@ export default function Ofertas() {
       .toLowerCase();
 
   const ofertasDestacadas = useMemo(() => {
-    const destacadas = ofertas.filter((oferta) => oferta.destacada);
-    return destacadas.length ? destacadas : ofertas;
-  }, [ofertas]);
+    const destacadas = ofertasVisibles.filter((oferta) => oferta.destacada);
+    return destacadas.length ? destacadas : ofertasVisibles;
+  }, [ofertasVisibles]);
 
   const matchesSection = (oferta, sectionFilter) => {
     if (!sectionFilter) {
@@ -213,11 +214,10 @@ export default function Ofertas() {
     }
     if (
       texto.includes("bus") ||
-      texto.includes("colectivo") ||
       texto.includes("micro") ||
       texto.includes("semicama")
     ) {
-      return "colectivo";
+      return "bus";
     }
     return "";
   };
@@ -330,7 +330,7 @@ export default function Ofertas() {
           <section className="offers-hero page-hero">
             <div className="offers-hero-inner page-hero-inner">
               <span className="offers-kicker page-hero-kicker">
-                Salidas <span className="topotours-word">Topotours</span>
+                Salidas grupales <span className="topotours-word">Topotours</span>
               </span>
               <h1>
                 {activeSection
@@ -338,7 +338,7 @@ export default function Ofertas() {
                   : "Encontra tu proximo viaje"}
               </h1>
               <p>
-                Experiencias seleccionadas, salidas confirmadas y cupos limitados.
+                Experiencias seleccionadas, salidas grupales confirmadas y cupos limitados.
               </p>
             </div>
           </section>
@@ -389,7 +389,7 @@ export default function Ofertas() {
                 </div>
 
                 <div className="offers-field">
-                  <label htmlFor="ofertas-salida">Salida</label>
+                  <label htmlFor="ofertas-salida">Salida grupal</label>
                   <select
                     id="ofertas-salida"
                     value={draftFilters.oferta}
@@ -423,7 +423,7 @@ export default function Ofertas() {
                   >
                     <option value="">Todos</option>
                     <option value="avion">Avión</option>
-                    <option value="colectivo">Colectivo</option>
+                    <option value="bus">Bus</option>
                   </select>
                 </div>
               </div>
@@ -474,13 +474,13 @@ export default function Ofertas() {
               </div>
             </form>
 
-          {loading ? (
-            <p className="section-state">Cargando salidas...</p>
-          ) : error ? (
-            <p className="section-state error">{error}</p>
-          ) : ofertasFiltradas.length === 0 ? (
-            <p className="section-state">No hay salidas disponibles.</p>
-          ) : (
+        {loading ? (
+          <p className="section-state">Cargando salidas grupales...</p>
+        ) : error ? (
+          <p className="section-state error">{error}</p>
+        ) : ofertasFiltradas.length === 0 ? (
+          <p className="section-state">No hay salidas grupales disponibles.</p>
+        ) : (
             <div className="offer-grid">
               {ofertasFiltradas.map((oferta) => {
                 const preciosOrdenados = [...(oferta.precios || [])].sort(

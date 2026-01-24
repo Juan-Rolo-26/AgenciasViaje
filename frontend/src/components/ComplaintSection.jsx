@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { apiRequest } from "../api/api.js";
-import { CONTACT_EMAIL } from "../utils/contactLinks.js";
+import { CONTACT_EMAIL, getWhatsappLink } from "../utils/contactLinks.js";
 
 export default function ComplaintSection() {
   const contactPhone = "351 878 5667";
-  const contactPhoneLink = "tel:+5493518785667";
+  const contactPhoneLink = getWhatsappLink(
+    "Hola! Quiero hacer una consulta. Me pueden ayudar?"
+  );
   const instagramHandle = "@topotoursviajes";
   const instagramLink = "https://instagram.com/topotoursviajes";
   const [formStatus, setFormStatus] = useState({
@@ -166,7 +168,12 @@ export default function ComplaintSection() {
               </span>
               <span className="channel-cta">Escribir</span>
             </a>
-            <a className="complaint-channel" href={contactPhoneLink}>
+            <a
+              className="complaint-channel"
+              href={contactPhoneLink}
+              target="_blank"
+              rel="noreferrer"
+            >
               <span className="channel-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path
@@ -181,7 +188,7 @@ export default function ComplaintSection() {
                 <span className="channel-label">Teléfono</span>
                 <span className="channel-value">{contactPhone}</span>
               </span>
-              <span className="channel-cta">Llamar</span>
+              <span className="channel-cta">WhatsApp</span>
             </a>
             <a
               className="complaint-channel"

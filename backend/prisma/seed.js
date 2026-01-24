@@ -96,6 +96,54 @@ async function main() {
       destacado: true,
       orden: 5
     },
+    {
+      nombre: "Buenos Aires",
+      slug: "buenos-aires",
+      paisRegion: "Argentina",
+      descripcionCorta: "Ciudad vibrante y clásica porteña.",
+      descripcion:
+        "Vive la energía de Buenos Aires: la vibrante capital que nunca duerme y el corazón cultural de Sudamérica. Desde el tango místico en las calles de San Telmo y el colorido de Caminito, hasta la elegancia europea de Recoleta y la modernidad de Puerto Madero. Una ciudad de contrastes inagotables, librerías históricas, una gastronomía de clase mundial y una vida nocturna que te invita a vivir la noche porteña en todo su esplendor.",
+      imagenPortada: "/assets/destinos/buenos1.png",
+      imagenes: [
+        "/assets/destinos/buenos2.png",
+        "/assets/destinos/buenos3.png",
+        "/assets/destinos/buenos4.webp"
+      ],
+      destacado: true,
+      orden: 6
+    },
+    {
+      nombre: "Misiones",
+      slug: "misiones",
+      paisRegion: "Argentina",
+      descripcionCorta: "Selva paranaense y cultura jesuítica.",
+      descripcion:
+        "Vive la energía de Misiones: la tierra colorada donde la selva paranaense despliega todo su esplendor. Déjate cautivar por las milenarias Ruinas Jesuíticas de San Ignacio Miní, asómbrate con los Saltos del Moconá y descubre el fascinante proceso de la yerba mate en sus establecimientos tradicionales. Un destino que es puro pulmón verde, lleno de biodiversidad, ríos rojizos y una cultura fronteriza llena de historia.",
+      imagenPortada: "/assets/destinos/misiones2.png",
+      imagenes: [
+        "/assets/destinos/misiones3.png",
+        "/assets/destinos/misiones4.jpg",
+        "/assets/destinos/misiones2.png"
+      ],
+      destacado: true,
+      orden: 7
+    },
+    {
+      nombre: "Pinamar",
+      slug: "pinamar",
+      paisRegion: "Argentina",
+      descripcionCorta: "Bosque y mar en equilibrio perfecto.",
+      descripcion:
+        "Vive la energía de Pinamar: el destino donde el bosque se encuentra con el mar en perfecta armonía. Disfruta de la exclusividad de sus balnearios, recorre sus avenidas arboladas y vive la aventura en los imponentes médanos del norte. Un destino que combina sofisticación, una vibrante propuesta comercial y la tranquilidad de sus pinos, ideal para quienes buscan un descanso con estilo y naturaleza.",
+      imagenPortada: "/assets/destinos/pinamar1.png",
+      imagenes: [
+        "/assets/destinos/pinamar2.png",
+        "/assets/destinos/pinamar3.png",
+        "/assets/destinos/pinamar1.png"
+      ],
+      destacado: true,
+      orden: 8
+    },
 
     // ================= BRASIL =================
     {
@@ -115,33 +163,17 @@ async function main() {
       orden: 6
     },
     {
-      nombre: "Florianópolis",
-      slug: "florianopolis",
-      paisRegion: "Brasil",
-      descripcionCorta: "Isla de playas y naturaleza.",
-      descripcion:
-        "Florianopolis es una isla con playas extensas, dunas y lagunas cristalinas. Combina surf, descanso y una escena gastronomica fresca y marina. El centro historico y los mercados muestran la cultura local. En temporada alta hay fiestas, deportes y paisajes increibles. Un destino completo para todo tipo de viajeros.",
-      imagenPortada: "/assets/destinos/florianopolis1.png",
-      imagenes: [
-        "/assets/destinos/florianopolis2.jpg",
-        "/assets/destinos/florianopolis3.jpg",
-        "/assets/destinos/florianopolis4.JPG"
-      ],
-      destacado: true,
-      orden: 7
-    },
-    {
       nombre: "Canasvieiras",
       slug: "canasvieiras",
       paisRegion: "Brasil",
       descripcionCorta: "Playa familiar y mar calmo.",
       descripcion:
         "Vive la energía de Canasvieiras: el epicentro del confort y la diversión en Florianópolis. Disfruta de sus playas de aguas calmas ideales para la familia, sus famosos paseos en barco pirata y una infraestructura completa donde te sentirás como en casa. El destino preferido para quienes buscan practicidad, servicios y sol en el sur de Brasil.",
-      imagenPortada: "/assets/destinos/canasvieiras.webp",
+      imagenPortada: "/assets/destinos/canasvieras.webp",
       imagenes: [
         "/assets/destinos/Canasvieiras 1.jpg",
         "/assets/destinos/Canasvieras 2.jpg",
-        "/assets/destinos/florianopolis2.jpg"
+        "/assets/destinos/canasvieras.webp"
       ],
       destacado: true,
       orden: 8
@@ -169,7 +201,7 @@ async function main() {
       descripcionCorta: "Playas cristalinas y tranquilidad.",
       descripcion:
         "Vive la energía de Bombinhas: la capital del buceo ecológico en Brasil. Déjate cautivar por sus playas de aguas transparentes y calmas, como Sepultura y Retiro dos Padres, rodeadas de una selva exuberante. Un destino paradisíaco, ideal para familias y amantes de la vida marina, que ofrece uno de los paisajes más biodiversos y hermosos del litoral catarinense.",
-      imagenPortada: "/assets/destinos/bombhinas1.webp",
+      imagenPortada: "/assets/destinos/bombhinas.webp",
       imagenes: [
         "/assets/destinos/bombinhas2.jpg",
         "/assets/destinos/bombhinas3.jpeg",
@@ -297,7 +329,7 @@ async function main() {
       descripcionCorta: "Playas salvajes y paisajes naturales.",
       descripcion:
         "Vive la energía de Cabo de Santo Agostinho: un refugio de historia y bienestar rodeado de acantilados volcánicos. Disfruta de la famosa playa de Calhetas, vive la tradición de los baños de arcilla natural y explora ruinas coloniales frente al mar. El destino ideal para desconectarse y disfrutar de la belleza rústica de Pernambuco.",
-      imagenPortada: "/assets/destinos/cabo2.jpg",
+      imagenPortada: "/assets/destinos/florianopolis1.png",
       imagenes: [
         "/assets/destinos/cabo3.jpg",
         "/assets/destinos/cabo4.webp",
@@ -925,6 +957,38 @@ async function main() {
       ],
       destacado: true,
       orden: 57
+    },
+    {
+      nombre: "Fórmula 1",
+      slug: "formula-1",
+      paisRegion: "Programas y eventos",
+      descripcionCorta: "Grandes premios y experiencias únicas.",
+      descripcion:
+        "Viví la Fórmula 1 como un verdadero fanático: programas con entradas a los grandes premios, hoteles seleccionados y opciones para seguir cada carrera desde ubicaciones exclusivas.",
+      imagenPortada: "/assets/destinos/f1.jpg",
+      imagenes: [
+        "/assets/destinos/f1b.jpg",
+        "/assets/destinos/f13.webp",
+        "/assets/destinos/f1.4.jpeg"
+      ],
+      destacado: true,
+      orden: 58
+    },
+    {
+      nombre: "Experiencia Mundial",
+      slug: "experiencia-mundial",
+      paisRegion: "Programas y eventos",
+      descripcionCorta: "Paquetes mundialistas para hinchas.",
+      descripcion:
+        "Experiencias para vivir el Mundial con traslados, entradas, alojamiento y la emoción de cada partido. Programas flexibles con opciones de hoteles y servicios premium.",
+      imagenPortada: "/assets/destinos/mundial.jpg",
+      imagenes: [
+        "/assets/destinos/mundial1.jpg",
+        "/assets/destinos/mundial3.webp",
+        "/assets/destinos/mundial.jpg"
+      ],
+      destacado: true,
+      orden: 59
     }
   ];
 
@@ -954,7 +1018,14 @@ async function main() {
 
   const destinosList = await prisma.destino.findMany({ orderBy: { orden: "asc" } });
   const rio = destinosList.find((item) => item.slug === "rio-de-janeiro");
-  const floripa = destinosList.find((item) => item.slug === "florianopolis");
+  const buzios = destinosList.find((item) => item.slug === "buzios");
+  const buenosAires = destinosList.find((item) => item.slug === "buenos-aires");
+  const misiones = destinosList.find((item) => item.slug === "misiones");
+  const pinamar = destinosList.find((item) => item.slug === "pinamar");
+  const formula1 = destinosList.find((item) => item.slug === "formula-1");
+  const experienciaMundial = destinosList.find(
+    (item) => item.slug === "experiencia-mundial"
+  );
   const canasvieiras = destinosList.find((item) => item.slug === "canasvieiras");
   const camboriu = destinosList.find((item) => item.slug === "camboriu");
   const bombinhas = destinosList.find((item) => item.slug === "bombinhas");
@@ -975,75 +1046,206 @@ async function main() {
   const actividades = await prisma.actividad.createMany({
     data: [
       {
-        nombre: "Valle de Punilla",
-        slug: "valle-de-punilla",
+        nombre: "Capilla del Monte - Valle de Punilla",
+        slug: "capilla-del-monte-valle-de-punilla",
         destinoId: cordoba.id,
-        tipoActividad: "excursion",
+        tipoActividad: "Excursión día completo",
         fecha: new Date("2025-06-14"),
         hora: "08:30",
-        precio: "52000",
-        cupos: 26,
-        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
-        descripcion:
-          "Vive la energía del Valle de Punilla: el corazón del turismo cordobés. Desde la icónica Villa Carlos Paz con su cartelera de espectáculos y el Lago San Roque, hasta el misticismo del Cerro Uritorco en Capilla del Monte. Un recorrido que combina naturaleza, ríos cristalinos y centros comerciales, ideal para disfrutar de la emblemática hospitalidad de las sierras. Incluye traslado ida y vuelta desde Córdoba Capital.",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba, conociendo La Calera con su Usina Hidroeléctrica. Seguimos bordeando el río Suquía desembarcando en el Dique San Roque con su magnífica arquitectura en la que sobresale su embudo y su imponente murallón, como así también el moderno puente nuevo renovando el paisaje. Pasamos por Bialet Masse observando la capilla de San Placido y el Horno La Primera Argentina. Seguimos por RN 38 hasta llegar a Cosquín capital nacional del Folklore conociendo la Plaza Próspero Molina y en su lejanía el cerro Pan de Azúcar. Seguimos por Valle Hermoso con su Monumento a San Antonio de Padua y pasamos por la ex casa del Virrey Zevallos y luego llegamos a La Falda recorriendo la clásica Av. Edén hasta llegar al imponente hotel. Atravesamos Huerta Grande y Villa Giardino para arribar a la localidad de La Cumbre con sus antiguas y distinguidas residencias de estilo europeo y se observa el Cristo Redentor. Continuamos por Cruz Chica pasando por la puerta del Museo Manuel Mujica Láinez, Cruz Grande y visitamos Los Cocos con su complejo El Descanso y la aerosilla (opcionales). Seguimos hasta arribar a Capilla del Monte, al pie del místico cerro Uritorco, la calle techada y la llamativa figura de piedra conocida como el Zapato. Las últimas horas de la tarde nos encuentran observando el atardecer por el Camino del Cuadrado para regresar a Córdoba.`,
         imagenPortada: "/assets/destinos/punilla.jpg",
         destacada: true,
         orden: 1
       },
       {
-        nombre: "Valle de Traslasierra",
-        slug: "valle-de-traslasierra",
+        nombre: "Villa General Belgrano - Valle de Calamuchita",
+        slug: "villa-general-belgrano-valle-de-calamuchita",
         destinoId: cordoba.id,
-        tipoActividad: "excursion",
-        fecha: new Date("2025-06-28"),
-        hora: "07:30",
-        precio: "54000",
-        cupos: 24,
-        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
-        descripcion:
-          "Vive la energía de Traslasierra: un oasis de paz y naturaleza virgen detrás de las Altas Cumbres. Descubre la calidez de Mina Clavero y la tranquilidad bohemia de Nono, rodeados de los paisajes más imponentes de la provincia. Un destino de aire puro, productos regionales artesanales y ríos de agua fría que invitan a la desconexión total. Incluye traslado ida y vuelta desde Córdoba Capital.",
-        imagenPortada: "/assets/destinos/traslasierras1.jpg",
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-06-21"),
+        hora: "08:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia donde visitaremos los valiosos tesoros que heredó del pasado: la Iglesia y estancia Jesuítica de Alta Gracia, museo histórico nacional casa del Virrey Liniers, la torre del reloj público y su tajamar, Museo Casa de Ernesto "Che" Guevara. Continuamos por Anisacate, La Bolsa, La Serranita y Villa Ciudad de América acariciado por las aguas del lago y Dique Los Molinos donde haremos una degustación de salame y queso típico de la zona mientras observamos desde el mirador el imponente espejo. Continuamos con Villa General Belgrano, pueblo de raíces europeas y espíritu serrano, donde también realizaremos una degustación de cerveza artesanal. Regresamos por Los Reartes y por la costa noroeste del lago Los Molinos, Potrero de Garay, para luego retomar rumbo a Córdoba.`,
+        imagenPortada: "/assets/destinos/calamuchita.jpg",
         destacada: true,
         orden: 2
       },
       {
-        nombre: "Mar de Ansenuza",
-        slug: "mar-de-ansenuza",
+        nombre: "Mina Clavero - Valle de Traslasierra",
+        slug: "mina-clavero-valle-de-traslasierra",
         destinoId: cordoba.id,
-        tipoActividad: "excursion",
-        fecha: new Date("2025-07-12"),
-        hora: "09:00",
-        precio: "50000",
-        cupos: 28,
-        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
-        descripcion:
-          "Vive la energía de Mar de Ansenuza: el mar interior de Argentina y un paraíso para la observación de aves. Maravíllate con la inmensidad de esta laguna salada en Miramar, hogar de miles de flamencos rosados y atardeceres que se funden con el horizonte. Un destino único para el relax, el bienestar con sus propiedades fangoterapéuticas y el contacto con la fauna silvestre. Incluye traslado ida y vuelta desde Córdoba Capital.",
-        imagenPortada: "/assets/destinos/ansenuza.jpg",
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-06-28"),
+        hora: "07:30",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos de Córdoba por autopista Justiniano Posse a Carlos Paz, San Antonio de Arredondo, Mayú Sumaj, Icho Cruz y Cuesta Blanca, todos bordeando el río San Antonio. Luego comenzamos a recorrer el Camino de Altas Cumbres donde las vistas panorámicas se adueñan del paisaje. En el punto más alto del camino se encuentra el paraje El Cóndor; seguimos por la Pampa de Achala y el nacimiento del río Mina Clavero. Llegando al corazón del Valle de Traslasierra encontramos a Mina Clavero donde conoceremos el centro comercial, el balneario de los Elefantes, etc. Un pueblo que creció con el ejemplo solidario e idealista. Llegamos a Villa Cura Brochero pasando por su iglesia, su balneario y el museo Brocheriano. Continuamos por Nono donde se respira armonía y tradición al pie de los cerros Ñuñu, también el polifacético museo Rocsen y la fábrica de alfajores. Regresamos a Córdoba por el camino de Bosque Alegre con vistas de la Estación Terrena y el Observatorio Nacional que lleva el nombre de su camino.`,
+        imagenPortada: "/assets/destinos/traslasierras1.jpg",
         destacada: true,
         orden: 3
       },
       {
-        nombre: "Valle de Calamuchita",
-        slug: "valle-de-calamuchita",
+        nombre: "Camino de la Historia - Estancias Jesuiticas",
+        slug: "camino-de-la-historia-estancias-jesuiticas",
         destinoId: cordoba.id,
-        tipoActividad: "excursion",
-        fecha: new Date("2025-07-26"),
-        hora: "08:00",
-        precio: "56000",
-        cupos: 22,
-        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
-        descripcion:
-          "Vive la energía del Valle de Calamuchita: el rincón europeo de las sierras cordobesas. Explora el encanto centroeuropeo de Villa General Belgrano con su cultura cervecera, el paisaje alpino de La Cumbrecita y los imponentes embalses de agua azul. Un destino que combina bosques de pinos, arquitectura de madera y la aventura de subir al Cerro Champaquí. Incluye traslado ida y vuelta desde Córdoba Capital.",
-        imagenPortada: "/assets/destinos/calamuchita.jpg",
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-07-05"),
+        hora: "09:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos de Córdoba por RN 9 hasta llegar a Colonia Caroya, tierras impregnadas del espíritu y la pasión de los colonos italianos y famosa por sus salames artesanales. Allí visitaremos la Estancia Jesuítica Casa de Caroya, la primera de las seis que fundaron los jesuitas en las sierras cordobesas, y la Iglesia Nuestra Señora del Monserrat. Luego conocemos Jesús María, pueblo orgulloso de sus costumbres, donde se rinde homenaje a la patria entre relinchos y cantos de argentinidad con su Festival Nacional de Doma y Folklore y su escenario José Hernández, y la Estancia Jesuítica San Isidro Labrador, pionera en la elaboración del vino en la región. Continuamos hacia el norte donde las huellas se hacen evidentes: llegamos a la Posta de Sinsacate, la más grande y destacada del Camino Real, y el paraje de Barranca Yaco que recuerda la muerte del caudillo Facundo Quiroga para luego arribar donde se produce el encuentro de la sierra con el llano y la Estancia Santa Catalina, un paisaje serrano impregnado por la mística jesuítica. Seguimos bordeando las Sierras Chicas, pasando por las pintorescas localidades de Ascochinga, La Granja, Agua de Oro, Salsipuedes y Río Ceballos, regresando a Córdoba.`,
+        imagenPortada: "/assets/destinos/camino.jpg",
         destacada: true,
         orden: 4
+      },
+      {
+        nombre: "La Cumbrecita - Pueblo Peatonal",
+        slug: "la-cumbrecita-pueblo-peatonal",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-07-12"),
+        hora: "07:45",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia, Anisacate, La Bolsa, La Serranita y Villa Ciudad de América. Continuamos el recorrido por Potrero de Garay y el más serrano y autóctono pueblo en esa región de reminiscencia europea: Los Reartes. Desde allí a una pampa de altura ubicada entre los valles y los faldeos de las Sierras Grandes nos recibe Atos Pampa; pasamos también por una de las grandes cañadas del río Los Reartes con un gran puente que cruza su cauce y nos presenta a Inti Yaco. Luego Villa Berna, donde el aire delata un intenso perfume con notas de pino y extensos bosques exóticos. Llegamos a La Cumbrecita, una aldea de montaña que preserva su entorno natural como tesoro supremo, uno de los pocos pueblos peatonales del mundo donde visitaremos el balneario La Olla, la Capilla Ecuménica, el tradicional hotel La Cumbrecita, la cascada grande, etc. Luego conocemos el exótico, diferente, original y cautivante de raíces centroeuropeas y espíritus serranos Villa General Belgrano. Retomamos el camino por el límite sur de la región de Paravachasca donde el agua y las sierras crean formas cada día, el gran lago Los Molinos y su dique, y emprendemos el regreso a Córdoba.`,
+        imagenPortada: "/assets/destinos/cumbrecita1.jpg",
+        destacada: true,
+        orden: 5
+      },
+      {
+        nombre: "Alta Gracia / Carlos Paz - Combo x2 Calamuchita y Punilla",
+        slug: "alta-gracia-carlos-paz-combo",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-07-19"),
+        hora: "08:15",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia donde visitaremos los valiosos tesoros que heredó del pasado: la Iglesia y estancia Jesuítica de Alta Gracia, museo histórico nacional casa del Virrey Liniers, la torre del reloj público y su tajamar, la iglesia Nuestra Señora de la Merced, Museo Casa de Ernesto "Che" Guevara, el museo del célebre compositor musical Manuel de Falla, el Sierras Hotel con su historia legendaria y, junto a una pequeña caminata, llegamos al santuario cavado en la roca, la Gruta Nuestra Señora de Lourdes. Luego nos dirigimos por Falda del Carmen a la ciudad turística más importante de la provincia, Villa Carlos Paz, el destino soñado de quienes la elijen. Conoceremos el símbolo más popular y reconocido de la villa, el Reloj Cu Cu, uno de sus atractivos: la aerosilla y una visita a la fábrica artesanal de alfajores. Junto a su imponente espejo de agua, el lago San Roque con su costanera y, retomando por el camino de las 100 curvas, llegamos al Dique San Roque con su magnífica arquitectura en la que sobresale su embudo y su imponente murallón, como así también el moderno puente nuevo renovando el paisaje. La Calera es la que nos indica el regreso a la ciudad de Córdoba.`,
+        imagenPortada: "/assets/destinos/altagracia1.jpg",
+        destacada: true,
+        orden: 6
+      },
+      {
+        nombre: "Cerro Colorado - Región Norte",
+        slug: "cerro-colorado-region-norte",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-07-26"),
+        hora: "07:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos de Córdoba por RN 9 hasta llegar a Colonia Caroya, tierras impregnadas del espíritu y la pasión de los colonos italianos y famosa por sus salames artesanales. Seguimos por Jesús María, pueblo orgulloso de sus costumbres y donde se rinde homenaje a la patria entre relinchos y cantos de argentinidad con su Festival Nacional de Doma y Folklore. Continuamos hacia el norte donde las huellas se hacen evidentes: llegamos a la Posta de Sinsacate, la más grande y destacada del Camino Real, y el paraje de Barranca Yaco que recuerda la muerte del caudillo Facundo Quiroga. Luego, en acuarelas, óleos y acrílicos de prodigiosos artistas nos recibe Villa del Totoral; continuamos camino hacia Las Peñas y Simbolar y terminamos en el corazón del departamento Tulumba donde la llanura le gana protagonismo a las sierras: se levanta San José de la Dormida. Santa Elena, un lugar distinguido con colores diversos y formas sorprendentes donde el hombre primitivo dejó uno de sus legados más valiosos en suelo americano, y Don Atahualpa Yupanqui, el más grande poeta del folklore argentino, decidió inmortalizarse en su tierra, nos recibe Cerro Colorado. Conoceremos la Reserva Cultural Natural Cerro Colorado, el museo arqueológico y la casa museo de Atahualpa Yupanqui para luego retomar el viaje hacia Córdoba.`,
+        imagenPortada: "/assets/destinos/cerrocolorado1.jpg",
+        destacada: true,
+        orden: 7
+      },
+      {
+        nombre: "Mar de Ansenuza - Leyendas y Flamencos",
+        slug: "mar-de-ansenuza-leyendas-y-flamencos",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-08-02"),
+        hora: "09:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba con rumbo a Monte Cristo y Río Primero, y si están con ganas de cruzarse con personajes de historietas y dibujos animados hay que hacer una parada en Santiago Temple. Siguiendo por la ciudad de las golosinas llegamos a Arroyito. Pasando por El Tío y en medio de los llanos donde abundan siembras diversas está Balnearia con el horizonte cercano al Mar de Ansenuza. Finalmente llegamos a orillas de ese gran mar, donde se despliegan colores a cada instante y se respira aire con perfume a sal: se levanta Miramar, la más grande laguna de agua salada de Sudamérica. Conoceremos, como un viejo trasatlántico encallado en sus costas con sus lujos oxidados por el aire salitroso, el Gran Hotel Viena que resguarda secretos y misterios. El criadero de coipos, avistaje de la más emblemática de las aves que habitan Ansenuza (los flamencos rosados) y un agradable paseo por los márgenes de la laguna para luego regresar a Córdoba.`,
+        imagenPortada: "/assets/destinos/ansenuza.jpg",
+        destacada: true,
+        orden: 8
+      },
+      {
+        nombre: "Villa Carlos Paz - Corazón de Córdoba",
+        slug: "villa-carlos-paz-corazon-de-cordoba",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión medio día",
+        fecha: new Date("2025-08-09"),
+        hora: "09:30",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba, conociendo La Calera con su Usina Hidroeléctrica. Seguimos bordeando el río Suquía desembarcando en el Dique San Roque con su magnífica arquitectura en la que sobresale su embudo y su imponente murallón, como así también el moderno puente nuevo renovando el paisaje. Luego tomamos el camino de las 100 curvas que bordea el gran espejo de agua llegando a la ciudad turística más importante de la provincia, Villa Carlos Paz, el destino soñado de quienes la elijen. Recorremos su centro comercial, el símbolo más popular y reconocido de la villa, el Reloj Cu Cu, el complejo aerosilla y una visita a la fábrica artesanal de alfajores. Regresamos a Córdoba por la autopista Justiniano Allende Posse.`,
+        imagenPortada: "/assets/destinos/carlospaz1.webp",
+        destacada: false,
+        orden: 9
+      },
+      {
+        nombre: "Alta Gracia - Jesuitas",
+        slug: "alta-gracia-jesuitas",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión medio día",
+        fecha: new Date("2025-08-16"),
+        hora: "09:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia donde visitaremos los valiosos tesoros que heredó del pasado: la Iglesia y estancia Jesuítica de Alta Gracia, museo histórico nacional casa del Virrey Liniers, la torre del reloj público y su tajamar, la iglesia Nuestra Señora de la Merced, Museo Casa de Ernesto "Che" Guevara, el museo del célebre compositor musical Manuel de Falla, el Sierras Hotel con su historia legendaria y, junto a una pequeña caminata, llegamos al santuario cavado en la roca, la Gruta Nuestra Señora de Lourdes, para luego regresar a Córdoba.`,
+        imagenPortada: "/assets/destinos/altagracia1.jpg",
+        destacada: false,
+        orden: 10
+      },
+      {
+        nombre: "Jesús María - La del Camino Real",
+        slug: "jesus-maria-camino-real",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión medio día",
+        fecha: new Date("2025-08-23"),
+        hora: "09:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos de Córdoba por RN 9 hasta llegar a Colonia Caroya, tierras impregnadas del espíritu y la pasión de los colonos italianos y famosa por sus salames artesanales. Allí visitaremos la Estancia Jesuítica Casa de Caroya, la primera de las seis que fundaron los jesuitas en las sierras cordobesas, y la Iglesia Nuestra Señora del Monserrat. Luego conocemos Jesús María, pueblo orgulloso de sus costumbres y donde se rinde homenaje a la patria entre relinchos y cantos de argentinidad con su Festival Nacional de Doma y Folklore y su escenario José Hernández, la Estancia Jesuítica San Isidro Labrador, pionera en la elaboración del vino en la región, y regresamos a Córdoba.`,
+        imagenPortada: "/assets/destinos/jesusmaria1.jpg",
+        destacada: false,
+        orden: 11
+      },
+      {
+        nombre: "Sierras Chicas - Región de la historia",
+        slug: "sierras-chicas-region-de-la-historia",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión medio día",
+        fecha: new Date("2025-08-30"),
+        hora: "09:00",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos de Córdoba visitando quien supo conservar la tranquilidad de sus calles, la frescura del paisaje y la magia del río: nos abre las puertas La Calera, que guarda monumentos históricos como la capilla vieja y el molino doble. Pasamos por el Dique Mal Paso y bordeamos el cordón de las Sierras Chicas. Saldán con un puñado de casas sobre el lomo de sierras, Villa Allende sobre la ladera este del Cerro Pan de Azúcar y la iglesia Nuestra Señora del Carmen, Mendiolaza con su túnel de sombras en temporada estival y luego un manto de hojas sobre el asfalto. Llegamos a Unquillo que resguarda valiosos exponentes de la arquitectura de la primera década del siglo XX. Luego arribamos a Río Ceballos, con callecitas que suben y bajan hacia las sierras y arroyos, con su sagrado protector el Cristo Redentor desde lo alto del Cerro Ñu Porá y su vista panorámica. Para terminar en el Dique La Quebrada, la reserva hídrica natural, y regresamos a Córdoba.`,
+        imagenPortada: "/assets/destinos/sierraschicas1.jpg",
+        destacada: false,
+        orden: 12
+      },
+      {
+        nombre: "Paseo del Indio - La perla de las Sierras",
+        slug: "paseo-del-indio-perla-de-las-sierras",
+        destinoId: cordoba.id,
+        tipoActividad: "Excursión medio día",
+        fecha: new Date("2025-09-06"),
+        hora: "08:30",
+        precio: "0",
+        cupos: 0,
+        puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
+        descripcion: `Salimos desde Córdoba rumbo a la localidad de Capilla del Monte donde los amantes de la naturaleza disfrutamos de balnearios o senderismo por el río entre saltos y cuevas hasta llegar a la grieta donde escaparon aborígenes de la gran matanza. Es un paisaje único entre paredones de 300 metros de altura matizado por caídas de agua. Mostrándonos uno de los escenarios más imponentes de las sierras de Córdoba, del otro lado nos observa el gran Cerro Uritorco con toda su mística. Regresamos por Dolores conociendo el Molino de Eiffel, Flor de Durazno y La Capilla, para luego observar el atardecer por el gran Camino del Cuadrado con sus colores y ondas sobre las sierras para regresar a Córdoba.`,
+        imagenPortada: "/assets/destinos/paseoindio1.jpg",
+        destacada: false,
+        orden: 13
       },
       {
         nombre: "Ruta del Vino de Córdoba",
         slug: "ruta-del-vino-de-cordoba",
         destinoId: cordoba.id,
-        tipoActividad: "excursion",
-        fecha: new Date("2025-08-09"),
+        tipoActividad: "Excursión día completo",
+        fecha: new Date("2025-09-13"),
         hora: "10:00",
         precio: "61000",
         cupos: 20,
@@ -1052,30 +1254,14 @@ async function main() {
           "Vive la energía de la Ruta del Vino: un viaje sensorial por los viñedos de altura y bodegas boutique de la provincia. Desde los premiados tintos de Colonia Caroya hasta las exclusivas cepas de Traslasierra y Calamuchita. Descubre la tradición vitivinícola cordobesa, maridando excelentes etiquetas con la mejor gastronomía local en entornos naturales inigualables. Incluye traslado ida y vuelta desde Córdoba Capital.",
         imagenPortada: "/assets/destinos/ruta2.jpg",
         destacada: true,
-        orden: 5
-      },
-      {
-        nombre: "Camino de las Estancias Jesuíticas",
-        slug: "camino-de-las-estancias-jesuiticas",
-        destinoId: cordoba.id,
-        tipoActividad: "excursion",
-        fecha: new Date("2025-08-23"),
-        hora: "09:30",
-        precio: "48000",
-        cupos: 24,
-        puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
-        descripcion:
-          "Vive la energía del Camino de las Estancias: un recorrido por el legado histórico declarado Patrimonio de la Humanidad por la UNESCO. Visita los establecimientos de Caroya, Jesús María, Santa Catalina, Alta Gracia y La Candelaria para descubrir cómo la Orden Jesuita transformó la región. Un viaje fascinante al pasado colonial, la arquitectura religiosa y las raíces de nuestra identidad. Incluye traslado ida y vuelta desde Córdoba Capital.",
-        imagenPortada: "/assets/destinos/camino.jpg",
-        destacada: true,
-        orden: 6
+        orden: 14
       },
       {
         nombre: "Córdoba a tu medida",
         slug: "cordoba-a-tu-medida",
         destinoId: cordoba.id,
-        tipoActividad: "excursion",
-        fecha: new Date("2025-09-06"),
+        tipoActividad: "Excursión a medida",
+        fecha: new Date("2025-09-20"),
         hora: "09:00",
         precio: "0",
         cupos: 0,
@@ -1084,14 +1270,14 @@ async function main() {
           "Diseñá tu visita ideal por Córdoba con un itinerario flexible y personalizado. Podés combinar sierras, city tour, bodegas, gastronomía regional y experiencias especiales. Coordinamos traslados, horarios y paradas para que disfrutes una escapada a medida con la mejor atención.",
         imagenPortada: "/assets/destinos/calamuchita2.jpg",
         destacada: true,
-        orden: 7
+        orden: 15
       },
       {
         nombre: "Visita Córdoba a tu medida",
         slug: "visita-cordoba-a-tu-medida",
         destinoId: cordoba.id,
-        tipoActividad: "excursion",
-        fecha: new Date("2025-09-13"),
+        tipoActividad: "Excursión a medida",
+        fecha: new Date("2025-09-27"),
         hora: "08:00",
         precio: "0",
         cupos: 0,
@@ -1100,22 +1286,22 @@ async function main() {
           "Armá tu día perfecto en Córdoba combinando varias excursiones en una misma jornada. Podés elegir city tour, sierras, bodegas o circuitos gastronómicos, y nuestros asesores te ayudan a diseñar la mejor ruta según tiempos, gustos y traslados. Ideal para quienes quieren aprovechar al máximo con un plan flexible.",
         imagenPortada: "/assets/destinos/punilla2.jpg",
         destacada: true,
-        orden: 8
+        orden: 16
       }
     ]
   });
 
   const salidasGrupales = [
     {
-      titulo: "Bombinhas Salida Grupal",
-      slug: "bombinhas-salida-grupal",
+      titulo: "Bombinhas Paquete",
+      slug: "bombinhas-paquete",
       destinoId: bombinhas.id,
       noches: 7,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 1,
-      condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
+      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
         create: [{ destinoId: bombinhas.id }]
@@ -1151,59 +1337,216 @@ async function main() {
       }
     },
     {
-      titulo: "Camboriu Salida Grupal",
-      slug: "camboriu-salida-grupal",
+      titulo: "Camboriu Paquete",
+      slug: "camboriu-paquete",
       destinoId: camboriu.id,
       noches: 7,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 2,
-      condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
-      noIncluye: "Impuestos (RG 5617).",
+      condiciones:
+        "Salida en bus MIX con servicio a bordo. Habitaciones a compartir garantizadas. Cupos sujetos a disponibilidad.",
       destinos: {
         create: [{ destinoId: camboriu.id }]
       },
       precios: {
         create: [
           {
-            precio: "590",
-            moneda: "USD",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-01"),
+            fechaFin: new Date("2026-02-01")
           },
           {
-            precio: "769700",
+            precio: "0",
             moneda: "ARS",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
+            fechaInicio: new Date("2026-02-08"),
+            fechaFin: new Date("2026-02-08")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-15"),
+            fechaFin: new Date("2026-02-15")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-22"),
+            fechaFin: new Date("2026-02-22")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-01"),
+            fechaFin: new Date("2026-03-01")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-08"),
+            fechaFin: new Date("2026-03-08")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-15"),
+            fechaFin: new Date("2026-03-15")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-22"),
+            fechaFin: new Date("2026-03-22")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-29"),
+            fechaFin: new Date("2026-03-29")
           }
         ]
       },
       incluyeItems: {
         create: [
-          { tipo: "transporte", descripcion: "Bus grupal Mix o cama" },
+          { tipo: "detalle-programa", descripcion: "Sur de Brasil - Camboriu" },
+          { tipo: "detalle-destino", descripcion: "Sur de Brasil - Camboriu" },
+          { tipo: "detalle-transporte", descripcion: "Bus MIX, con servicio a bordo" },
+          { tipo: "detalle-duracion", descripcion: "07 noches" },
+          {
+            tipo: "detalle-hotel",
+            descripcion:
+              "Bella Camboriu / Centromar / H / HM / Puca (hotelpuca.com.br) / Tropikalya Gold"
+          },
+          { tipo: "detalle-regimen", descripcion: "Desayuno" },
+          {
+            tipo: "detalle-media-pension",
+            descripcion:
+              "Media pensión opcional (Restaurante Dom Albero). Hoteles H y HM: media pensión en el hotel."
+          },
+          {
+            tipo: "detalle-servicios",
+            descripcion:
+              "Asistencia médica incluida sin límite de edad."
+          },
+          {
+            tipo: "detalle-servicios",
+            descripcion: "Coordinación permanente."
+          },
+          {
+            tipo: "detalle-salidas",
+            descripcion:
+              "Salidas: 01, 08, 15 y 22 de febrero; 01, 08, 15, 22 y 29 de marzo (Semana Santa)."
+          },
+          { tipo: "transporte", descripcion: "Bus MIX con servicio a bordo" },
           {
             tipo: "alojamiento",
-            descripcion: "7 noches con regimen segun el hotel"
+            descripcion: "7 noches con régimen según hotel"
           },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "servicio", descripcion: "Coordinador de viaje" },
-          { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
+          { tipo: "comida", descripcion: "Régimen desayuno" },
+          {
+            tipo: "servicio",
+            descripcion: "Asistencia médica incluida sin límite de edad"
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Coordinación permanente durante el viaje"
+          }
         ]
       }
     },
     {
-      titulo: "Ferrugem Salida Grupal",
-      slug: "ferrugem-salida-grupal",
+      titulo: "Combinado Búzios + Río de Janeiro",
+      slug: "combinado-buzios-rio",
+      destinoId: buzios.id,
+      noches: 7,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 4,
+      condiciones:
+        "Salida aérea combinada. Cupos sujetos a disponibilidad. Los cupos aéreos incluyen estadía en cochera (hasta vehículos medianos).",
+      destinos: {
+        create: [{ destinoId: buzios.id }, { destinoId: rio.id }]
+      },
+      precios: {
+        create: [
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-22"),
+            fechaFin: new Date("2026-02-22")
+          }
+        ]
+      },
+      incluyeItems: {
+        create: [
+          { tipo: "detalle-programa", descripcion: "Combinado" },
+          { tipo: "detalle-destino", descripcion: "Búzios + Río de Janeiro" },
+          { tipo: "detalle-duracion", descripcion: "08 días / 07 noches" },
+          {
+            tipo: "detalle-transporte",
+            descripcion: "Aéreos volando por Aerolíneas Argentinas"
+          },
+          { tipo: "detalle-equipaje", descripcion: "Carry on" },
+          {
+            tipo: "detalle-hotel",
+            descripcion: "La Foret (3N) + Oceano Copacabana Hotel (4N)"
+          },
+          { tipo: "detalle-regimen", descripcion: "Desayuno" },
+          { tipo: "detalle-servicios", descripcion: "Trf in out + interhotel" },
+          {
+            tipo: "detalle-asistencia",
+            descripcion: "Master plus Cobertura 40k"
+          },
+          {
+            tipo: "detalle-salidas",
+            descripcion: "Salidas: 22 de febrero"
+          },
+          { tipo: "transporte", descripcion: "Aéreos con Aerolíneas Argentinas" },
+          {
+            tipo: "alojamiento",
+            descripcion: "7 noches: 3 en Búzios + 4 en Río de Janeiro"
+          },
+          { tipo: "comida", descripcion: "Régimen desayuno" },
+          { tipo: "equipaje", descripcion: "Carry on incluido" },
+          {
+            tipo: "servicio",
+            descripcion: "Traslados in/out y entre hoteles (interhotel)"
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Asistencia al viajero Master Plus 40k"
+          },
+          {
+            tipo: "itinerario-1",
+            descripcion:
+              "Día de salida: Comienza la experiencia. Nos reunimos en el punto de encuentro indicado, realizamos el check in y emprendemos el traslado hacia el destino."
+          },
+          {
+            tipo: "itinerario-2",
+            descripcion:
+              "Estadía en destino: Viví cada momento con actividades y servicios incluidos. El itinerario puede variar según condiciones del viaje y preferencias del grupo."
+          },
+          {
+            tipo: "itinerario-3",
+            descripcion:
+              "Día de regreso: Finaliza el viaje con el traslado de vuelta. Nuestro equipo acompaña el proceso para cerrar la experiencia con la misma calidad."
+          }
+        ]
+      }
+    },
+    {
+      titulo: "Ferrugem Paquete",
+      slug: "ferrugem-paquete",
       destinoId: ferrugem.id,
       noches: 7,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 3,
-      condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
+      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
         create: [{ destinoId: ferrugem.id }]
@@ -1239,59 +1582,15 @@ async function main() {
       }
     },
     {
-      titulo: "Florianopolis Salida Grupal",
-      slug: "florianopolis-salida-grupal",
-      destinoId: floripa.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 4,
-      condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
-      noIncluye: "Impuestos (RG 5617).",
-      destinos: {
-        create: [{ destinoId: floripa.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "417",
-            moneda: "USD",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          },
-          {
-            precio: "559700",
-            moneda: "ARS",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus grupal Mix o cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches con regimen segun el hotel"
-          },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "servicio", descripcion: "Coordinador de viaje" },
-          { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
-        ]
-      }
-    },
-    {
-      titulo: "Garopaba Salida Grupal",
-      slug: "garopaba-salida-grupal",
+      titulo: "Garopaba Paquete",
+      slug: "garopaba-paquete",
       destinoId: garopaba.id,
       noches: 7,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 5,
-      condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
+      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
         create: [{ destinoId: garopaba.id }]
@@ -1327,15 +1626,15 @@ async function main() {
       }
     },
     {
-      titulo: "Laguna Salida Grupal",
-      slug: "laguna-salida-grupal",
+      titulo: "Laguna Paquete",
+      slug: "laguna-paquete",
       destinoId: laguna.id,
       noches: 7,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 6,
-      condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
+      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
         create: [{ destinoId: laguna.id }]
@@ -1371,15 +1670,15 @@ async function main() {
       }
     },
     {
-      titulo: "Torres Salida Grupal",
-      slug: "torres-salida-grupal",
+      titulo: "Torres Paquete",
+      slug: "torres-paquete",
       destinoId: torres.id,
       noches: 7,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 7,
-      condiciones: "Salidas Nov 2025 - Abr 2026. Tarifa en base doble.",
+      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
       noIncluye: "Impuestos (RG 5617).",
       destinos: {
         create: [{ destinoId: torres.id }]
@@ -1415,6 +1714,311 @@ async function main() {
       }
     },
     {
+      titulo: "Buenos Aires",
+      slug: "buenos-aires-aereo",
+      destinoId: buenosAires.id,
+      noches: 3,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 8,
+      condiciones:
+        "Salida aérea nacional. Habitaciones a compartir garantizadas (dobles o triples). Cupos sujetos a disponibilidad. Los cupos aéreos incluyen estadía en cochera.",
+      destinos: {
+        create: [{ destinoId: buenosAires.id }]
+      },
+      precios: {
+        create: [
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-04-02"),
+            fechaFin: new Date("2026-04-02")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-05-23"),
+            fechaFin: new Date("2026-05-23")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-07-03"),
+            fechaFin: new Date("2026-07-03")
+          }
+        ]
+      },
+      incluyeItems: {
+        create: [
+          { tipo: "detalle-programa", descripcion: "Buenos Aires" },
+          { tipo: "detalle-destino", descripcion: "Buenos Aires" },
+          {
+            tipo: "detalle-duracion",
+            descripcion: "04 días / 03 noches - 03 días / 02 noches"
+          },
+          {
+            tipo: "detalle-transporte",
+            descripcion: "Aéreo desde Córdoba volando por Flybondi"
+          },
+          { tipo: "detalle-equipaje", descripcion: "12 kg" },
+          { tipo: "detalle-hotel", descripcion: "HTL LUXOR" },
+          { tipo: "detalle-regimen", descripcion: "Desayuno" },
+          { tipo: "detalle-servicios", descripcion: "Trf in out + City" },
+          {
+            tipo: "detalle-asistencia",
+            descripcion: "Nacional - Cobertura 2M"
+          },
+          {
+            tipo: "detalle-salidas",
+            descripcion: "Salidas: 02 de abril, 23 de mayo y 03 de julio"
+          },
+          { tipo: "transporte", descripcion: "Aéreos con Flybondi" },
+          { tipo: "alojamiento", descripcion: "3 o 2 noches según salida" },
+          { tipo: "comida", descripcion: "Régimen desayuno" },
+          { tipo: "equipaje", descripcion: "Equipaje 12 kg" },
+          {
+            tipo: "servicio",
+            descripcion: "Traslados in/out + City tour"
+          },
+          {
+            tipo: "servicio",
+            descripcion:
+              "Coordinador SAVI: acompañamiento integral y asistencia personalizada durante todo el viaje."
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Asistencia médica nacional con cobertura 2M"
+          },
+          {
+            tipo: "itinerario-1",
+            descripcion:
+              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
+          },
+          {
+            tipo: "itinerario-2",
+            descripcion:
+              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje y preferencias del grupo."
+          },
+          {
+            tipo: "itinerario-3",
+            descripcion:
+              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. Nuestro equipo te acompaña hasta el final del servicio."
+          }
+        ]
+      }
+    },
+    {
+      titulo: "Bañados de la Estrella",
+      slug: "banados-de-la-estrella",
+      destinoId: misiones.id,
+      noches: 0,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 9,
+      condiciones:
+        "Habitación a compartir garantizada (dobles o triples). Parque Nacional El Impenetrable opcional. Adicional MAP (2 o 3 comidas) disponible.",
+      destinos: {
+        create: [{ destinoId: misiones.id }]
+      },
+      precios: {
+        create: [
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-06-14"),
+            fechaFin: new Date("2026-06-14")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-07-04"),
+            fechaFin: new Date("2026-07-04")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-07-11"),
+            fechaFin: new Date("2026-07-11")
+          }
+        ]
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Bañados de la Estrella + Parque Nacional El Impenetrable"
+          },
+          {
+            tipo: "detalle-destino",
+            descripcion: "Resistencia - Ibarreta - Juan José Castelli"
+          },
+          {
+            tipo: "detalle-duracion",
+            descripcion: "6 días / 4 noches - 5 días / 3 noches"
+          },
+          { tipo: "detalle-transporte", descripcion: "Bus CAMA" },
+          {
+            tipo: "detalle-hotel",
+            descripcion:
+              "Hoteles a confirmar: Resistencia (Hotel Royal), Ibarreta (Dolce Maiten) y Juan José Castelli (Hotel Florencia)"
+          },
+          { tipo: "detalle-regimen", descripcion: "Desayuno" },
+          {
+            tipo: "detalle-excursiones",
+            descripcion:
+              "Panorámica en Corrientes + Fortín La Soledad (Bañados de la Estrella con navegación y cena especial)"
+          },
+          {
+            tipo: "detalle-excursiones",
+            descripcion:
+              "Programa de 3 noches incluye Parque Nacional El Impenetrable"
+          },
+          {
+            tipo: "detalle-asistencia",
+            descripcion:
+              "Universal Assistance Nacional - Cobertura UDA 2M (sin límite de edad)"
+          },
+          { tipo: "detalle-servicios", descripcion: "Coordinador permanente" },
+          {
+            tipo: "detalle-salidas",
+            descripcion: "Salidas: 14 de junio; 04 y 11 de julio"
+          },
+          {
+            tipo: "detalle-rutas",
+            descripcion: "Ruta 1: Río Cuarto, Villa María, Rosario, Santa Fe"
+          },
+          {
+            tipo: "detalle-rutas",
+            descripcion: "Ruta 2: Córdoba, Villa María"
+          },
+          { tipo: "transporte", descripcion: "Bus CAMA" },
+          { tipo: "alojamiento", descripcion: "4 o 3 noches según salida" },
+          { tipo: "comida", descripcion: "Régimen desayuno" },
+          {
+            tipo: "servicio",
+            descripcion: "Panorámica en Corrientes + Fortín La Soledad"
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Programa 3 noches con El Impenetrable"
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Coordinador permanente durante todo el viaje"
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Asistencia médica Universal Assistance Nacional UDA 2M"
+          },
+          {
+            tipo: "itinerario-1",
+            descripcion:
+              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
+          },
+          {
+            tipo: "itinerario-2",
+            descripcion:
+              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje."
+          },
+          {
+            tipo: "itinerario-3",
+            descripcion:
+              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. Nuestro equipo te acompaña hasta el final del servicio."
+          }
+        ]
+      }
+    },
+    {
+      titulo: "Pinamar",
+      slug: "pinamar",
+      destinoId: pinamar.id,
+      noches: 6,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 10,
+      condiciones:
+        "Habitación a compartir garantizada (dobles o triples). Cupos sujetos a disponibilidad.",
+      destinos: {
+        create: [{ destinoId: pinamar.id }]
+      },
+      precios: {
+        create: [
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-01"),
+            fechaFin: new Date("2026-02-01")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-06"),
+            fechaFin: new Date("2026-02-06")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-13"),
+            fechaFin: new Date("2026-02-13")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-20"),
+            fechaFin: new Date("2026-02-20")
+          }
+        ]
+      },
+      incluyeItems: {
+        create: [
+          { tipo: "detalle-programa", descripcion: "Pinamar" },
+          { tipo: "detalle-destino", descripcion: "Pinamar" },
+          { tipo: "detalle-duracion", descripcion: "07 noches / 06 noches" },
+          {
+            tipo: "detalle-transporte",
+            descripcion: "Bus CAMA con servicio de snack a bordo"
+          },
+          { tipo: "detalle-hotel", descripcion: "Hotel Yarma" },
+          { tipo: "detalle-servicios", descripcion: "Asistencia Médica" },
+          {
+            tipo: "detalle-servicios",
+            descripcion: "Coordinación durante el viaje de ida y regreso"
+          },
+          {
+            tipo: "detalle-salidas",
+            descripcion:
+              "Salidas: 01, 06, 13 y 20 de febrero. Salida especial 01/02 con 8 noches (regreso en bus)."
+          },
+          { tipo: "transporte", descripcion: "Bus CAMA con snack a bordo" },
+          { tipo: "alojamiento", descripcion: "Hotel Yarma" },
+          { tipo: "servicio", descripcion: "Asistencia médica incluida" },
+          {
+            tipo: "servicio",
+            descripcion: "Coordinación durante ida y regreso"
+          },
+          {
+            tipo: "itinerario-1",
+            descripcion:
+              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
+          },
+          {
+            tipo: "itinerario-2",
+            descripcion:
+              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje y preferencias del grupo."
+          },
+          {
+            tipo: "itinerario-3",
+            descripcion:
+              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. Nuestro equipo te acompaña hasta el final del servicio."
+          }
+        ]
+      }
+    },
+    {
       titulo: "Patagonia Fantastica",
       slug: "patagonia-fantastica",
       destinoId: puertoMadryn.id,
@@ -1424,7 +2028,7 @@ async function main() {
       activa: true,
       orden: 8,
       condiciones:
-        "Salida grupal. Salidas Sep a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
+        "Paquete grupal. Paquetes Sep a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
       destinos: {
         create: [
           { destinoId: puertoMadryn.id },
@@ -1461,6 +2065,148 @@ async function main() {
       }
     },
     {
+      titulo: "Bariloche Aéreo 26",
+      slug: "bariloche-aereo-26",
+      destinoId: bariloche.id,
+      noches: 6,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 9,
+      condiciones:
+        "Salida aérea a Bariloche. Promo especial 2x1 (solo aéreo) salida 24 de enero. Habitaciones a compartir garantizadas (dobles o triples). Cupos sujetos a disponibilidad. Los cupos aéreos incluyen estadía en cochera.",
+      destinos: {
+        create: [{ destinoId: bariloche.id }]
+      },
+      precios: {
+        create: [
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-14"),
+            fechaFin: new Date("2026-02-14")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-13"),
+            fechaFin: new Date("2026-03-13")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-14"),
+            fechaFin: new Date("2026-03-14")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-04-19"),
+            fechaFin: new Date("2026-04-19")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-05-23"),
+            fechaFin: new Date("2026-05-23")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-05-24"),
+            fechaFin: new Date("2026-05-24")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-06-12"),
+            fechaFin: new Date("2026-06-12")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-06-13"),
+            fechaFin: new Date("2026-06-13")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-06-18"),
+            fechaFin: new Date("2026-06-18")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-07-12"),
+            fechaFin: new Date("2026-07-12")
+          }
+        ]
+      },
+      incluyeItems: {
+        create: [
+          { tipo: "detalle-programa", descripcion: "Bariloche Aéreo 26" },
+          {
+            tipo: "detalle-destino",
+            descripcion: "San Carlos de Bariloche"
+          },
+          {
+            tipo: "detalle-duracion",
+            descripcion: "07 días / 06 noches - 06 días / 05 noches"
+          },
+          {
+            tipo: "detalle-transporte",
+            descripcion: "Aéreo desde Córdoba volando por Aerolíneas Argentinas"
+          },
+          { tipo: "detalle-equipaje", descripcion: "Carry on" },
+          {
+            tipo: "detalle-hotel",
+            descripcion: "Cadena Terra Cauchá / Kenton / Aspen / Eco Ski"
+          },
+          { tipo: "detalle-regimen", descripcion: "Desayuno" },
+          { tipo: "detalle-excursiones", descripcion: "Trf in out" },
+          {
+            tipo: "detalle-asistencia",
+            descripcion: "Nacional - Cobertura 2M"
+          },
+          {
+            tipo: "detalle-salidas",
+            descripcion:
+              "Salidas: 14 de febrero; 13 y 14 de marzo; 19 de abril; 23 y 24 de mayo; 12, 13 y 18 de junio; 12 de julio"
+          },
+          {
+            tipo: "transporte",
+            descripcion: "Aéreos desde Córdoba con Aerolíneas Argentinas"
+          },
+          {
+            tipo: "alojamiento",
+            descripcion: "6 o 5 noches de alojamiento según salida"
+          },
+          { tipo: "comida", descripcion: "Régimen desayuno" },
+          { tipo: "equipaje", descripcion: "Carry on incluido" },
+          { tipo: "servicio", descripcion: "Traslados in/out" },
+          {
+            tipo: "servicio",
+            descripcion: "Asistencia médica nacional con cobertura 2M"
+          },
+          {
+            tipo: "itinerario-1",
+            descripcion:
+              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido. Nuestro equipo acompañará todo el proceso para que disfrutes desde el primer momento."
+          },
+          {
+            tipo: "itinerario-2",
+            descripcion:
+              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje y las preferencias del grupo, siempre priorizando tu seguridad y comodidad. Tiempo libre para aprovechar a tu manera y crear recuerdos únicos."
+          },
+          {
+            tipo: "itinerario-3",
+            descripcion:
+              "Día de regreso — Fin del viaje, inicio de nuevos planes. Luego de los procedimientos de check out y embarque, emprendemos el retorno. Nuestro equipo te asistirá hasta el final del servicio. ¡Gracias por viajar con nosotros! Esperamos volver a acompañarte en tu próxima aventura."
+          }
+        ]
+      }
+    },
+    {
       titulo: "Bariloche en mil colores",
       slug: "bariloche-en-mil-colores",
       destinoId: bariloche.id,
@@ -1468,9 +2214,9 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 9,
+      orden: 10,
       condiciones:
-        "Salida grupal. Salidas Jul a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
+        "Paquete grupal. Paquetes Jul a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
       destinos: {
         create: [{ destinoId: bariloche.id }]
       },
@@ -1509,9 +2255,9 @@ async function main() {
       cupos: 20,
       destacada: true,
       activa: true,
-      orden: 10,
+      orden: 11,
       condiciones:
-        "Salida grupal. Salidas Jul a Dic 2026. Tarifa en base doble. 4 cuotas cero interes.",
+        "Paquete grupal. Paquetes Jul a Dic 2026. Tarifa en base doble. 4 cuotas cero interes.",
       destinos: {
         create: [{ destinoId: iguazu.id }]
       },
@@ -1540,6 +2286,273 @@ async function main() {
           },
           { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
           { tipo: "servicio", descripcion: "Asistencia al viajero" }
+        ]
+      }
+    },
+    {
+      titulo: "Fórmula 1 por el mundo",
+      slug: "formula-1-por-el-mundo",
+      destinoId: formula1.id,
+      noches: 0,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 12,
+      condiciones: "Consultar por otras ubicaciones y horarios.",
+      destinos: {
+        create: [{ destinoId: formula1.id }]
+      },
+      precios: {
+        create: [
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-05-01"),
+            fechaFin: new Date("2026-05-03")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-06-05"),
+            fechaFin: new Date("2026-06-07")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-07-03"),
+            fechaFin: new Date("2026-07-05")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-09-04"),
+            fechaFin: new Date("2026-09-06")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-09-11"),
+            fechaFin: new Date("2026-09-13")
+          },
+          {
+            precio: "0",
+            moneda: "ARS",
+            fechaInicio: new Date("2026-11-21"),
+            fechaFin: new Date("2026-11-23")
+          }
+        ]
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Miami — Gran Premio de Miami. Fecha del GP: 1-3 de mayo. 4 noches Hotel 4★ en Miami (30 abril al 4 mayo, solo alojamiento). Entradas 3 días al circuito."
+          },
+          {
+            tipo: "detalle-tribunas",
+            descripcion:
+              "Miami — Tribunas: Beach Grandstand, Tribuna Turn 1, Tribuna Start/Finish, Tribuna Marina, Tribuna Turn 18."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Las Vegas — Gran Premio de Las Vegas. Fecha del GP: 21-23 de noviembre. 4 noches Hotel Park MGM, Las Vegas (solo alojamiento del 18 al 22 de noviembre). Entradas viernes, sábado y domingo."
+          },
+          {
+            tipo: "detalle-tribunas",
+            descripcion:
+              "Las Vegas — Tribunas: General admission Heineken South Koval, General admission T-Mobile Sphere, West Harmon Hamilton, Sphere Grandstand, Main Grandstand."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Mónaco — Gran Premio de Mónaco. Fecha del GP: 5-7 de junio. 3 noches Hotel 3★ Campanile RIME - Nice Airport o similar (solo alojamiento del 5 al 8 de junio). Entrada al circuito."
+          },
+          {
+            tipo: "detalle-tribunas",
+            descripcion:
+              "Mónaco — Sectores: Rocher (1, 2 o 3 días) y K (1, 2 o 3 días)."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Madrid — Gran Premio de Madrid. Fecha del GP: 11-13 de septiembre. 3 noches Hotel 3★ Holiday Inn Alcorcón o similar con desayuno (11 al 14 de septiembre). Entrada al circuito."
+          },
+          {
+            tipo: "detalle-tribunas",
+            descripcion:
+              "Madrid — Tribunas: Silver 7, Silver 12, Silver 16, Silver 13, Bronce 5."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Italia — Gran Premio de Monza. Fecha del GP: 4-6 de septiembre. 4 noches Hotel 4★ Novotel Linate o similar con desayuno (3 al 7 de septiembre). Traslados al circuito y hotel. Entrada al circuito 3 días."
+          },
+          {
+            tipo: "detalle-tribunas",
+            descripcion:
+              "Italia — Tribunas: General Admission Prato, Right lateral 26 A, Left lateral 26 A, Outer first variant B 8."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Gran Bretaña — Gran Premio Silverstone. Fecha del GP: 3-5 de julio. 3 noches Hotel 4★ Novotel Leicester o similar con desayuno (3 al 6 de julio). Entrada al circuito 3 días."
+          },
+          {
+            tipo: "detalle-tribunas",
+            descripcion:
+              "Gran Bretaña — Tribunas: General Admission, Abbey A, Hamilton Straight, Luffield, Vale, Woodcote."
+          },
+          {
+            tipo: "detalle-notas",
+            descripcion: "Consultar por otras ubicaciones y hoteles."
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Entradas a los circuitos según programa."
+          },
+          {
+            tipo: "alojamiento",
+            descripcion: "Alojamiento en hoteles 3★/4★ según programa."
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Programas sin aéreo (solo alojamiento)."
+          },
+          {
+            tipo: "itinerario-1",
+            descripcion:
+              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
+          },
+          {
+            tipo: "itinerario-2",
+            descripcion:
+              "Estadía en destino — Viví cada momento. Disfrutá de las actividades y del Gran Premio según el programa elegido. El itinerario puede variar según condiciones del viaje."
+          },
+          {
+            tipo: "itinerario-3",
+            descripcion:
+              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. ¡Gracias por viajar con nosotros!"
+          }
+        ]
+      }
+    },
+    {
+      titulo: "Experiencia Mundial",
+      slug: "experiencia-mundial",
+      destinoId: experienciaMundial.id,
+      noches: 0,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 13,
+      condiciones:
+        "Programas sujetos a disponibilidad. Fechas según fixture oficial.",
+      destinos: {
+        create: [{ destinoId: experienciaMundial.id }]
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Experiencia Mundial (sin aéreo) — Kansas — 1 partido. Incluye traslados HTL/Estadio/HTL, 3 noches, entrada y asistencia al viajero."
+          },
+          {
+            tipo: "detalle-entradas",
+            descripcion:
+              "Kansas — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Experiencia Mundial (sin aéreo) — Dallas — 2 partidos. Incluye traslados HTL/Estadio/HTL, kit del hincha, 8 noches, entradas y asistencia al viajero."
+          },
+          {
+            tipo: "detalle-entradas",
+            descripcion:
+              "Dallas (2 partidos) — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Experiencia Mundial (sin aéreo) — 3 partidos de fase de grupos — Kansas / Dallas / Dallas. Incluye traslados HTL/Estadio/HTL, kit del hincha, 8 noches, entradas, asistencia al viajero y 1 cena especial."
+          },
+          {
+            tipo: "detalle-entradas",
+            descripcion:
+              "Kansas + Dallas (3 partidos fase de grupos) — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Experiencia Completa — Kansas / Dallas / Dallas — 3 partidos de fase de grupos. Incluye aéreo internacional, traslados IN/OUT hotel - estadio - hotel entre sedes, kit del hincha, alojamiento por 13 noches, entradas, asistencia al viajero y 1 cena especial."
+          },
+          {
+            tipo: "detalle-entradas",
+            descripcion:
+              "Experiencia Completa (3 partidos) — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "3 partidos en Dallas + llaves. Incluye traslados hotel/estadio/hotel, kit del hincha, alojamiento por 8 noches, entradas y asistencia al viajero."
+          },
+          {
+            tipo: "detalle-entradas",
+            descripcion:
+              "Dallas + llaves — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
+          },
+          {
+            tipo: "detalle-programa",
+            descripcion:
+              "Llaves de final — 1 partido. Incluye traslados hotel/estadio/hotel, alojamiento por 3 noches, entrada al partido y asistencia al viajero."
+          },
+          {
+            tipo: "detalle-entradas",
+            descripcion:
+              "Llaves de final — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
+          },
+          {
+            tipo: "detalle-salidas",
+            descripcion: "Fechas según fixture oficial."
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Traslados hotel/estadio/hotel según programa."
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Entradas a los partidos según categoría."
+          },
+          {
+            tipo: "alojamiento",
+            descripcion: "Hoteles 3★ o 4★ según programa."
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Kit del hincha (según programa)."
+          },
+          {
+            tipo: "servicio",
+            descripcion: "Asistencia al viajero."
+          },
+          {
+            tipo: "itinerario-1",
+            descripcion:
+              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
+          },
+          {
+            tipo: "itinerario-2",
+            descripcion:
+              "Estadía en destino — Viví cada momento. Disfrutá de los partidos y actividades incluidas según el programa elegido."
+          },
+          {
+            tipo: "itinerario-3",
+            descripcion:
+              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. ¡Gracias por viajar con nosotros!"
+          }
         ]
       }
     }

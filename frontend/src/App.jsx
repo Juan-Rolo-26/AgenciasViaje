@@ -13,8 +13,17 @@ import Ofertas from "./pages/Ofertas.jsx";
 import OfertaDetail from "./pages/OfertaDetail.jsx";
 import Politicas from "./pages/Politicas.jsx";
 import Documentacion from "./pages/Documentacion.jsx";
+import ModoFanatico from "./pages/ModoFanatico.jsx";
+import ModoFanaticoDetail from "./pages/ModoFanaticoDetail.jsx";
+import WebEnDesarrollo from "./pages/WebEnDesarrollo.jsx";
+
+const MAINTENANCE_MODE = true;
 
 export default function App() {
+  if (MAINTENANCE_MODE) {
+    return <WebEnDesarrollo />;
+  }
+
   return (
     <Routes>
       <Route element={<MainLayout />}>
@@ -27,6 +36,8 @@ export default function App() {
         <Route path="ofertas/:slug" element={<OfertaDetail />} />
         <Route path="excursiones" element={<Excursiones />} />
         <Route path="excursiones/:slug" element={<ExcursionDetail />} />
+        <Route path="modo-fanatico" element={<ModoFanatico />} />
+        <Route path="modo-fanatico/:slug" element={<ModoFanaticoDetail />} />
         <Route path="calendario" element={<Calendario />} />
         <Route path="asistencia" element={<Asistencia />} />
         <Route path="politicas" element={<Politicas />} />

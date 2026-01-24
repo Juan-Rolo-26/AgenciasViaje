@@ -4,6 +4,18 @@ import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
 import { formatDate, getPrecioVigente } from "../utils/formatters.js";
 
+function formatDateRangeLabel(startValue, endValue) {
+  const start = formatDate(startValue);
+  const end = formatDate(endValue);
+  if (!start) {
+    return "";
+  }
+  if (!end || start === end) {
+    return start;
+  }
+  return `${start} - ${end}`;
+}
+
 export default function DestinoDetail() {
   const { slug } = useParams();
   const { destinos, ofertas, actividades, loading, error } = useTravelData();
@@ -99,6 +111,8 @@ export default function DestinoDetail() {
   }
 
   const heroImage = destino.imagenPortada || fallbackDeal;
+  const backLink =
+    destino.paisRegion === "Argentina" ? "/argentina" : "/destinos";
 
   return (
     <main className="destination-detail-page">
@@ -108,7 +122,7 @@ export default function DestinoDetail() {
       >
         <div className="destination-hero-overlay"></div>
         <div className="destination-hero-card">
-          <Link className="destination-hero-back" to="/destinos">
+          <Link className="destination-hero-back" to={backLink}>
             Anterior
           </Link>
           <span className="destination-hero-country">
@@ -133,12 +147,12 @@ export default function DestinoDetail() {
 
       <section className="grid-section">
         <div className="section-header">
-          <h2>Salidas para {destino.nombre}</h2>
-          <p>Salidas grupales y propuestas pensadas para este destino.</p>
+          <h2>Paquetes para {destino.nombre}</h2>
+          <p>Paquetes y propuestas pensadas para este destino.</p>
         </div>
         {ofertasDestino.length === 0 ? (
           <p className="section-state">
-            No hay salidas disponibles para este destino.
+            No hay paquetes disponibles para este destino.
           </p>
         ) : (
           <div className="offer-grid">
@@ -165,8 +179,10 @@ export default function DestinoDetail() {
                   {precio ? (
                     <div className="offer-meta">
                       <span className="offer-dates">
-                        {formatDate(precio.fechaInicio)} -{" "}
-                        {formatDate(precio.fechaFin)}
+                        {formatDateRangeLabel(
+                          precio.fechaInicio,
+                          precio.fechaFin
+                        )}
                       </span>
                     </div>
                   ) : null}

@@ -62,6 +62,73 @@ function formatIncluyeTipo(tipo) {
   return tipo.charAt(0).toUpperCase() + tipo.slice(1);
 }
 
+const DETAIL_PREFIX = "detalle-";
+const ITINERARY_PREFIX = "itinerario-";
+const DETAIL_LABELS = {
+  programa: "Programa",
+  destino: "Destino",
+  duracion: "Duración",
+  transporte: "Transporte",
+  equipaje: "Equipaje",
+  hotel: "Hotel",
+  regimen: "Régimen",
+  "media-pension": "Media pensión opcional",
+  servicios: "Servicios",
+  excursiones: "Excursiones",
+  asistencia: "Asistencia médica",
+  salidas: "Salidas",
+  rutas: "Rutas",
+  tribunas: "Tribunas / categorías",
+  entradas: "Tipo de entrada",
+  notas: "Notas"
+};
+
+const normalizeTipo = (tipo) => String(tipo || "").toLowerCase().trim();
+
+const isDetailItem = (tipo) => normalizeTipo(tipo).startsWith(DETAIL_PREFIX);
+const isItineraryItem = (tipo) => normalizeTipo(tipo).startsWith(ITINERARY_PREFIX);
+
+function formatDetailLabel(tipo) {
+  const normalized = normalizeTipo(tipo).replace(DETAIL_PREFIX, "");
+  if (!normalized) {
+    return "Detalle";
+  }
+  return DETAIL_LABELS[normalized] || normalized.charAt(0).toUpperCase() + normalized.slice(1);
+}
+
+function getItineraryIndex(tipo) {
+  const match = normalizeTipo(tipo).match(/^itinerario-(\d+)/);
+  return match ? Number(match[1]) : 0;
+}
+
+function renderItineraryText(text) {
+  const raw = String(text || "").trim();
+  if (!raw) {
+    return raw;
+  }
+  const [title, ...rest] = raw.split(":");
+  if (!rest.length) {
+    return raw;
+  }
+  return (
+    <>
+      <strong>{title.trim()}:</strong> {rest.join(":").trim()}
+    </>
+  );
+}
+
+function formatDateRangeLabel(startValue, endValue) {
+  const start = formatDate(startValue);
+  const end = formatDate(endValue);
+  if (!start) {
+    return "";
+  }
+  if (!end || start === end) {
+    return start;
+  }
+  return `${start} - ${end}`;
+}
+
 export default function OfertaDetail() {
   const { slug } = useParams();
   const { ofertas, loading, error } = useOfertas();
@@ -77,6 +144,30 @@ export default function OfertaDetail() {
       (a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio)
     );
   }, [oferta]);
+
+  const detalleItems = useMemo(() => {
+    return (oferta?.incluyeItems || []).filter((item) => isDetailItem(item.tipo));
+  }, [oferta]);
+
+  const itinerarioItems = useMemo(() => {
+    return (oferta?.incluyeItems || [])
+      .filter((item) => isItineraryItem(item.tipo))
+      .sort((a, b) => getItineraryIndex(a.tipo) - getItineraryIndex(b.tipo));
+  }, [oferta]);
+
+  const incluyeItems = useMemo(() => {
+    return (oferta?.incluyeItems || []).filter(
+      (item) => !isDetailItem(item.tipo) && !isItineraryItem(item.tipo)
+    );
+  }, [oferta]);
+
+  const detalleFechas = useMemo(() => {
+    return detalleItems.find(
+      (item) =>
+        normalizeTipo(item.tipo) === "detalle-salidas" ||
+        normalizeTipo(item.tipo) === "detalle-fechas"
+    );
+  }, [detalleItems]);
 
   const actividadesIncluidas = useMemo(() => {
     return (oferta?.actividades || [])
@@ -138,7 +229,7 @@ export default function OfertaDetail() {
             <h1>{oferta.titulo}</h1>
             <p>{destinoPrincipal}</p>
             <div className="detail-hero-meta">
-              <span>Noches: {oferta.noches}</span>
+              {oferta.noches ? <span>Noches: {oferta.noches}</span> : null}
             </div>
           </div>
         </div>
@@ -158,17 +249,29 @@ export default function OfertaDetail() {
       <section className="detail-section">
         <div className="detail-grid">
           <article className="detail-card">
-            <h3>Detalle de la oferta</h3>
-            <p>{oferta.condiciones || "Consultanos para mas info."}</p>
-            {oferta.noIncluye ? (
-              <p>No incluye: {oferta.noIncluye}</p>
+            <h3>{detalleItems.length ? "Detalle del producto" : "Detalle de la oferta"}</h3>
+            {detalleItems.length ? (
+              <div className="detail-table">
+                {detalleItems.map((item) => (
+                  <div className="detail-table-row" key={item.id}>
+                    <span>{formatDetailLabel(item.tipo)}</span>
+                    <span>{item.descripcion}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>{oferta.condiciones || "Consultanos para mas info."}</p>
+            )}
+            {detalleItems.length && oferta.condiciones ? (
+              <p>{oferta.condiciones}</p>
             ) : null}
+            {oferta.noIncluye ? <p>No incluye: {oferta.noIncluye}</p> : null}
           </article>
           <article className="detail-card">
-            <h3>Que incluye</h3>
-            {oferta.incluyeItems?.length ? (
-              <ul className="detail-list detail-list--icons">
-                {oferta.incluyeItems.map((item) => (
+            <h3>Qué incluye</h3>
+            {incluyeItems.length ? (
+              <ul className="detail-list detail-list--icons detail-list--fancy">
+                {incluyeItems.map((item) => (
                   <li key={item.id}>
                     <span className="detail-icon">{getIncluyeIcon(item.tipo)}</span>
                     <span className="detail-list-text">
@@ -193,17 +296,38 @@ export default function OfertaDetail() {
               {preciosOrdenados.map((precio) => (
                 <div className="detail-table-row" key={precio.id}>
                   <span>
-                    {formatDate(precio.fechaInicio)} -{" "}
-                    {formatDate(precio.fechaFin)}
+                    {formatDateRangeLabel(
+                      precio.fechaInicio,
+                      precio.fechaFin
+                    )}
                   </span>
                 </div>
               ))}
             </div>
+          ) : detalleFechas?.descripcion ? (
+            <p>{detalleFechas.descripcion}</p>
           ) : (
             <p>Fechas a confirmar. Te asesoramos por WhatsApp.</p>
           )}
         </article>
       </section>
+
+      {itinerarioItems.length ? (
+        <section className="detail-section">
+          <article className="detail-card">
+            <h3>Itinerario</h3>
+            <ul className="detail-list detail-list--timeline">
+              {itinerarioItems.map((item, index) => (
+                <li key={item.id} data-step={index + 1}>
+                  <span className="detail-list-text">
+                    {renderItineraryText(item.descripcion)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </section>
+      ) : null}
 
       {destinosExtras.length ? (
         <section className="detail-section">

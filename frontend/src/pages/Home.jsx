@@ -72,6 +72,11 @@ const CONTINENT_BY_COUNTRY = {
 
 export default function Home() {
   const { destinos, ofertas, actividades, loading, error } = useTravelData();
+  const destinosNoArgentina = useMemo(
+    () => destinos.filter((destino) => destino.paisRegion !== "Argentina"),
+    [destinos]
+  );
+  const salidasDisponibles = useMemo(() => [], []);
   const heroImages = useMemo(
     () => HERO_IMAGES.map((image) => resolveAssetUrl(image)),
     []
@@ -134,32 +139,30 @@ export default function Home() {
     };
   }, [heroImages.length]);
 
-  const salidasDisponibles = useMemo(() => ofertas, [ofertas]);
-
   const ofertasDisponibles = useMemo(() => {
     const titles = new Set();
-    ofertas.forEach((oferta) => {
+    salidasDisponibles.forEach((oferta) => {
       if (oferta.titulo) {
         titles.add(oferta.titulo);
       }
     });
     return Array.from(titles).sort((a, b) => a.localeCompare(b));
-  }, [ofertas]);
+  }, [salidasDisponibles]);
 
   const regionesDisponibles = useMemo(() => {
     const continents = new Set();
-    destinos.forEach((destino) => {
+    destinosNoArgentina.forEach((destino) => {
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
       if (continent) {
         continents.add(continent);
       }
     });
     return CONTINENTS.filter((item) => continents.has(item.id));
-  }, [destinos]);
+  }, [destinosNoArgentina]);
 
   const paisesDisponibles = useMemo(() => {
     const countries = new Set();
-    destinos.forEach((destino) => {
+    destinosNoArgentina.forEach((destino) => {
       if (!destino.paisRegion) {
         return;
       }
@@ -170,10 +173,10 @@ export default function Home() {
       countries.add(destino.paisRegion);
     });
     return Array.from(countries).sort((a, b) => a.localeCompare(b));
-  }, [destinos, searchRegion]);
+  }, [destinosNoArgentina, searchRegion]);
 
   const destinosDisponibles = useMemo(() => {
-    return destinos.filter((destino) => {
+    return destinosNoArgentina.filter((destino) => {
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
       if (searchRegion && continent !== searchRegion) {
         return false;
@@ -183,7 +186,7 @@ export default function Home() {
       }
       return true;
     });
-  }, [destinos, searchRegion, searchPais]);
+  }, [destinosNoArgentina, searchRegion, searchPais]);
 
   useEffect(() => {
     if (searchPais && !paisesDisponibles.includes(searchPais)) {
@@ -203,11 +206,11 @@ export default function Home() {
   }, [searchDestino, destinosDisponibles]);
 
   const loopDestinos = useMemo(() => {
-    if (!destinos.length) {
+    if (!destinosNoArgentina.length) {
       return [];
     }
-    return [...destinos, ...destinos];
-  }, [destinos]);
+    return [...destinosNoArgentina, ...destinosNoArgentina];
+  }, [destinosNoArgentina]);
 
   const normalizeText = (value) =>
     (value || "")
@@ -256,11 +259,10 @@ export default function Home() {
     }
     if (
       texto.includes("bus") ||
-      texto.includes("colectivo") ||
       texto.includes("micro") ||
       texto.includes("semicama")
     ) {
-      return "colectivo";
+      return "bus";
     }
     return "";
   };
@@ -281,7 +283,7 @@ export default function Home() {
       !paisQuery || (region || "").toLowerCase() === paisQuery;
 
     if (searchType === "destino") {
-      return destinos.filter((destino) => {
+      return destinosNoArgentina.filter((destino) => {
         const matchesName = matchesDestino(destino.nombre);
         const matchesRegionValue = matchesRegion(destino.paisRegion);
         const matchesPaisValue = matchesPais(destino.paisRegion);
@@ -302,7 +304,7 @@ export default function Home() {
     }
 
     if (searchType === "oferta") {
-      return ofertas.filter((oferta) => {
+      return salidasDisponibles.filter((oferta) => {
         const destinosAsociados = [
           oferta.destino,
           ...(oferta.destinos || []).map((item) => item.destino)
@@ -352,8 +354,8 @@ export default function Home() {
     });
   }, [
     actividades,
-    destinos,
-    ofertas,
+    destinosNoArgentina,
+    salidasDisponibles,
     searchDate,
     searchDestino,
     searchRegion,
@@ -443,13 +445,13 @@ export default function Home() {
     searchType === "destino"
       ? "Destinos"
       : searchType === "oferta"
-      ? "Salidas"
+      ? "Salidas grupales"
       : "Excursiones Córdoba";
   const searchButtonLabel =
     searchType === "destino"
       ? "Buscar destinos"
       : searchType === "oferta"
-      ? "Buscar viajes"
+      ? "Buscar salidas grupales"
       : "Buscar excursiones";
   const searchLink =
     searchType === "destino"
@@ -537,10 +539,6 @@ export default function Home() {
               Tu próxima escapada empieza en{" "}
               <span className="brand-word topotours-word">Topotours</span>
             </h1>
-            <p className="hero-subtitle">
-              Buscá destinos, fechas y servicios con atención personalizada y
-              salidas pensadas para vos.
-            </p>
           </div>
           <form
             className={`search-bar premium-filter premium-filter-${searchType}`}
@@ -552,35 +550,35 @@ export default function Home() {
                   <span className="filter-card-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
-                        d="M12 22s7-7 7-12a7 7 0 0 0-14 0c0 5 7 12 7 12Z"
+                        d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
+                        strokeLinejoin="round"
                       />
-                      <circle
-                        cx="12"
-                        cy="10"
-                        r="3"
+                      <path
+                        d="M9 4v14M15 6v14"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
+                        strokeLinejoin="round"
                       />
                     </svg>
                   </span>
                   <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-destino">
-                      Destino
+                    <label className="filter-card-label" htmlFor="search-region">
+                      Continente
                     </label>
                     <select
-                      id="search-destino"
+                      id="search-region"
                       className="filter-card-input"
-                      value={searchDestino}
-                      onChange={(event) => setSearchDestino(event.target.value)}
+                      value={searchRegion}
+                      onChange={(event) => setSearchRegion(event.target.value)}
                     >
                       <option value="">Todos</option>
-                      {destinosDisponibles.map((destino) => (
-                        <option key={destino.id} value={destino.nombre}>
-                          {destino.nombre}
+                      {regionesDisponibles.map((region) => (
+                        <option key={region.id} value={region.id}>
+                          {region.label}
                         </option>
                       ))}
                     </select>
@@ -647,35 +645,35 @@ export default function Home() {
                   <span className="filter-card-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
-                        d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"
+                        d="M12 22s7-7 7-12a7 7 0 0 0-14 0c0 5 7 12 7 12Z"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
-                        strokeLinejoin="round"
                       />
-                      <path
-                        d="M9 4v14M15 6v14"
+                      <circle
+                        cx="12"
+                        cy="10"
+                        r="3"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
-                        strokeLinejoin="round"
                       />
                     </svg>
                   </span>
                   <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-region">
-                      Continente
+                    <label className="filter-card-label" htmlFor="search-destino">
+                      Destino
                     </label>
                     <select
-                      id="search-region"
+                      id="search-destino"
                       className="filter-card-input"
-                      value={searchRegion}
-                      onChange={(event) => setSearchRegion(event.target.value)}
+                      value={searchDestino}
+                      onChange={(event) => setSearchDestino(event.target.value)}
                     >
                       <option value="">Todos</option>
-                      {regionesDisponibles.map((region) => (
-                        <option key={region.id} value={region.id}>
-                          {region.label}
+                      {destinosDisponibles.map((destino) => (
+                        <option key={destino.id} value={destino.nombre}>
+                          {destino.nombre}
                         </option>
                       ))}
                     </select>
@@ -713,7 +711,7 @@ export default function Home() {
                       onChange={(event) => setSearchType(event.target.value)}
                     >
                       <option value="destino">Destinos</option>
-                      <option value="oferta">Salidas</option>
+                      <option value="oferta">Salidas grupales</option>
                       <option value="excursion">Excursiones (Córdoba)</option>
                     </select>
                     <span className="filter-card-arrow" aria-hidden="true"></span>
@@ -744,7 +742,9 @@ export default function Home() {
                   </span>
                   <div className="filter-card-body">
                     <label className="filter-card-label" htmlFor="search-text">
-                      {searchType === "oferta" ? "Salidas" : "Excursión Córdoba"}
+                      {searchType === "oferta"
+                        ? "Salidas grupales"
+                        : "Excursión Córdoba"}
                     </label>
                     <select
                       id="search-text"
@@ -754,7 +754,7 @@ export default function Home() {
                     >
                       <option value="">
                         {searchType === "oferta"
-                          ? "Todas las salidas"
+                          ? "Todas las salidas grupales"
                           : "Todas las excursiones"}
                       </option>
                       {(searchType === "oferta"
@@ -859,7 +859,7 @@ export default function Home() {
                       >
                         <option value="">Todos</option>
                         <option value="avion">Avion</option>
-                        <option value="colectivo">Colectivo</option>
+                        <option value="bus">Bus</option>
                       </select>
                       <span
                         className="filter-card-arrow"
@@ -899,7 +899,7 @@ export default function Home() {
                       onChange={(event) => setSearchType(event.target.value)}
                     >
                       <option value="destino">Destinos</option>
-                      <option value="oferta">Salidas</option>
+                      <option value="oferta">Salidas grupales</option>
                       <option value="excursion">Excursiones (Córdoba)</option>
                     </select>
                     <span className="filter-card-arrow" aria-hidden="true"></span>
@@ -1085,7 +1085,7 @@ export default function Home() {
           <p className="section-state">Cargando destinos...</p>
         ) : error ? (
           <p className="section-state error">{error}</p>
-        ) : destinos.length === 0 ? (
+        ) : destinosNoArgentina.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
           <div
@@ -1150,7 +1150,7 @@ export default function Home() {
       <section className="grid-section">
         <div className="section-header section-header-row">
           <div>
-            <h2>Salidas</h2>
+            <h2>Salidas grupales</h2>
             <p>Experiencias con cupos confirmados y fechas flexibles.</p>
           </div>
           <Link className="secondary" to="/ofertas?seccion=salidas-grupales">
