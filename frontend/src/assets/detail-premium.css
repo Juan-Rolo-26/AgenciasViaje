@@ -252,7 +252,7 @@
 
 .detail-grid--package .detail-card,
 .detail-grid--offer .detail-card {
-    align-self: stretch;
+    align-self: start;
 }
 
 /* ===============================
@@ -592,7 +592,8 @@
    INFO CONTENT MEJORADO (Markdown)
    =============================== */
 
-.info-content {
+.info-content,
+.info-content-wrapper {
     display: flex;
     flex-direction: column;
     color: #334155;
@@ -601,11 +602,13 @@
     width: 100%;
 }
 
-.info-content>*:first-child {
+.info-content>*:first-child,
+.info-content-wrapper>*:first-child {
     margin-top: 0;
 }
 
-.info-content h2 {
+.info-content h2,
+.info-content-wrapper h2 {
     font-size: 1.75rem !important;
     /* Más grande */
     color: #1e293b;
@@ -618,7 +621,8 @@
     position: relative;
 }
 
-.info-content h2::after {
+.info-content h2::after,
+.info-content-wrapper h2::after {
     content: "";
     position: absolute;
     bottom: -2px;
@@ -628,7 +632,8 @@
     background: #9333ea;
 }
 
-.info-content h3 {
+.info-content h3,
+.info-content-wrapper h3 {
     font-size: 1.4rem !important;
     color: #9333ea !important;
     margin: 32px 0 16px;
@@ -651,7 +656,8 @@
     margin-top: 2px;
 }
 
-.info-content h4 {
+.info-content h4,
+.info-content-wrapper h4 {
     font-size: 1.2rem;
     color: #475569;
     margin: 24px 0 12px;
@@ -661,19 +667,23 @@
     font-size: 0.95rem;
 }
 
-.info-content p {
+.info-content p,
+.info-content-wrapper p,
+.info-text {
     margin-bottom: 16px;
     color: #475569;
 }
 
-.info-content strong {
+.info-content strong,
+.info-content-wrapper strong {
     color: #0f172a;
     /* Texto más oscuro para resaltar */
     font-weight: 700;
 }
 
 /* Listas estilizadas */
-.info-content ul {
+.info-content ul,
+.info-content-wrapper ul {
     list-style: none;
     padding: 0;
     margin: 16px 0 24px;
@@ -681,13 +691,17 @@
     gap: 10px;
 }
 
-.info-content ul li {
+.info-content ul li,
+.info-content-wrapper ul li,
+.info-list-item {
     position: relative;
     padding-left: 28px;
     line-height: 1.7;
 }
 
-.info-content ul li::before {
+.info-content ul li::before,
+.info-content-wrapper ul li::before,
+.info-bullet {
     content: "•";
     color: #9333ea;
     font-weight: bold;

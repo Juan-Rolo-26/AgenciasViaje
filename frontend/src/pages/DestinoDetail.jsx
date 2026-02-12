@@ -503,8 +503,8 @@ export default function DestinoDetail() {
 
   const hasDetailDates = Boolean(
     selectedPackageData &&
-      (selectedPackageData.preciosOrdenados.length ||
-        selectedPackageData.detalleFechas)
+    (selectedPackageData.preciosOrdenados.length ||
+      selectedPackageData.detalleFechas)
   );
   const hasItinerary = Boolean(
     selectedPackageData && selectedPackageData.itinerarioItems.length > 0
@@ -950,7 +950,7 @@ export default function DestinoDetail() {
                     ) : (
                       <ReactMarkdown>{cleanContent(selectedPackage.condiciones) || "Consultanos para más información."}</ReactMarkdown>
                     )}
-                    {selectedPackageData.detalleItems.length > 0 && selectedPackage.condiciones && (
+                    {selectedPackageData.detalleItems.length > 0 && cleanContent(selectedPackage.condiciones) && (
                       <div style={{ marginTop: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
                         <ReactMarkdown>{cleanContent(selectedPackage.condiciones)}</ReactMarkdown>
                       </div>

@@ -152,6 +152,10 @@ function formatRawContent(text) {
     }
   });
 
+  if (elements.length === 0) {
+    return null;
+  }
+
   return <div className="info-content-wrapper">{elements}</div>;
 }
 
