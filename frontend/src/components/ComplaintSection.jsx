@@ -115,7 +115,6 @@ export default function ComplaintSection() {
             <select className="form-input" id="complaint-topic" name="topic">
               <option value="">Seleccioná una opción</option>
               <option value="reserva">Reserva / Cupos</option>
-              <option value="pago">Pago / Facturación</option>
               <option value="asistencia">Asistencia en viaje</option>
               <option value="otro">Otro</option>
             </select>

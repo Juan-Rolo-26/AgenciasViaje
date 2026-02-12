@@ -57,12 +57,6 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Topotours EVT. Todos los derechos reservados.</p>
-          <div className="payment-icons">
-            {/* Simple visual representation of payment - could be SVGs */}
-            <span>Visa</span>
-            <span>Mastercard</span>
-            <span>Amex</span>
-          </div>
         </div>
       </div>
     </footer>

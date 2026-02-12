@@ -52,7 +52,7 @@ export default function Politicas() {
                 <li>Fecha de nacimiento</li>
                 <li>Información de viaje (destinos, fechas, preferencias)</li>
                 <li>
-                  Datos de facturación y pago (gestionados a través de plataformas
+                  Datos de facturación (gestionados a través de plataformas
                   seguras de terceros)
                 </li>
                 <li>Dirección IP y datos de navegación</li>
@@ -64,7 +64,7 @@ export default function Politicas() {
                 <li>Gestionar consultas y solicitudes de información</li>
                 <li>Cotizar, reservar y organizar viajes</li>
                 <li>Contactar al usuario por correo, teléfono o WhatsApp</li>
-                <li>Gestionar pagos y facturación</li>
+                <li>Gestionar facturación</li>
                 <li>Mejorar nuestros servicios y la experiencia del usuario</li>
                 <li>Cumplir con obligaciones legales y contractuales</li>
                 <li>
@@ -89,7 +89,7 @@ export default function Politicas() {
                   Proveedores de servicios turísticos (aerolíneas, hoteles,
                   operadores)
                 </li>
-                <li>Plataformas de pago seguras</li>
+                <li>Plataformas seguras de procesamiento</li>
                 <li>Proveedores tecnológicos (hosting, email, sistemas de gestión)</li>
               </ul>
               <p>
@@ -220,7 +220,7 @@ export default function Politicas() {
               <h3>Cookies de terceros</h3>
               <p>
                 Podemos utilizar servicios de terceros que instalan cookies para
-                análisis, pagos o integración con redes sociales. Estos terceros
+                análisis o integración con redes sociales. Estos terceros
                 gestionan sus propias políticas de privacidad.
               </p>
             </li>

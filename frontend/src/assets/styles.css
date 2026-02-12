@@ -28,6 +28,13 @@
   margin: 0;
   padding: 0;
   font-family: "Manrope", sans-serif;
+  /* Prevenir zoom con gestos táctiles */
+  touch-action: manipulation;
+}
+
+html {
+  /* Prevenir zoom con scroll del mouse */
+  touch-action: pan-x pan-y;
 }
 
 body {
@@ -35,6 +42,9 @@ body {
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
+  /* Prevenir zoom adicional */
+  touch-action: pan-x pan-y;
+  -ms-content-zooming: none;
 }
 
 .bg-orbs span {
@@ -3925,11 +3935,9 @@ section[id] {
 }
 
 .complaint-section .section-header h2 {
-  font-size: clamp(
-    calc(26px * var(--complaint-font-scale)),
-    calc(3vw * var(--complaint-font-scale)),
-    calc(38px * var(--complaint-font-scale))
-  );
+  font-size: clamp(calc(26px * var(--complaint-font-scale)),
+      calc(3vw * var(--complaint-font-scale)),
+      calc(38px * var(--complaint-font-scale)));
 }
 
 .complaint-section .section-header p {
@@ -7183,19 +7191,15 @@ html {
 }
 
 .premium-docs-page .docs-hero-title {
-  font-size: clamp(
-    calc(2rem * var(--docs-font-scale)),
-    calc(4vw * var(--docs-font-scale)),
-    calc(3.5rem * var(--docs-font-scale))
-  );
+  font-size: clamp(calc(2rem * var(--docs-font-scale)),
+      calc(4vw * var(--docs-font-scale)),
+      calc(3.5rem * var(--docs-font-scale)));
 }
 
 .premium-docs-page .docs-hero-subtitle {
-  font-size: clamp(
-    calc(1rem * var(--docs-font-scale)),
-    calc(2vw * var(--docs-font-scale)),
-    calc(1.25rem * var(--docs-font-scale))
-  );
+  font-size: clamp(calc(1rem * var(--docs-font-scale)),
+      calc(2vw * var(--docs-font-scale)),
+      calc(1.25rem * var(--docs-font-scale)));
 }
 
 .premium-docs-page .quick-info-card h3 {
