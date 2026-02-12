@@ -34,30 +34,30 @@ export default function Ofertas() {
   const activeSection = OFFER_SECTIONS.find(
     (section) => section.id === selectedSection
   );
-const initialFilters = {
-  destino: "",
-  pais: "",
-  oferta: "",
-  transporte: "",
-  desde: "",
-  hasta: ""
-};
+  const initialFilters = {
+    destino: "",
+    pais: "",
+    oferta: "",
+    transporte: "",
+    desde: "",
+    hasta: ""
+  };
 
-const SALIDAS_GRUPALES_SLUGS = new Set([
-  "mexico-a-su-tiempo-2026",
-  "cartagena-san-andres-2026",
-  "colombia-aromas-cafe-2026",
-  "peru-aereo-grupal-2026",
-  "peru-y-bolivia-2026",
-  "europa-a-su-tiempo-2026",
-  "costa-rica-al-maximo-2026",
-  "esencias-centroeuropeas-2026",
-  "europa-al-maximo-2026",
-  "joyas-balcanicas-2026",
-  "turquia-islas-griegas-2026",
-  "turquia-dubai-2026",
-  "turquia-islas-griegas-dubai-2026"
-]);
+  const SALIDAS_GRUPALES_SLUGS = new Set([
+    "mexico-a-su-tiempo-2026",
+    "cartagena-san-andres-2026",
+    "colombia-aromas-cafe-2026",
+    "peru-aereo-grupal-2026",
+    "peru-y-bolivia-2026",
+    "europa-a-su-tiempo-2026",
+    "costa-rica-al-maximo-2026",
+    "esencias-centroeuropeas-2026",
+    "europa-al-maximo-2026",
+    "joyas-balcanicas-2026",
+    "turquia-islas-griegas-2026",
+    "turquia-dubai-2026",
+    "turquia-islas-griegas-dubai-2026"
+  ]);
   const [draftFilters, setDraftFilters] = useState(initialFilters);
   const [filters, setFilters] = useState(initialFilters);
 
@@ -355,132 +355,128 @@ const SALIDAS_GRUPALES_SLUGS = new Set([
 
           <section className="offers-section">
             <form className="offers-filters" onSubmit={handleApply}>
-              <div className="offers-filters-row">
-                <div className="offers-field">
-                  <label htmlFor="ofertas-destino">Destino</label>
-                  <select
-                    id="ofertas-destino"
-                    value={draftFilters.destino}
-                    onChange={(event) =>
-                      setDraftFilters((prev) => ({
-                        ...prev,
-                        destino: event.target.value
-                      }))
-                    }
-                  >
-                    <option value="">Todos</option>
-                    {destinos.map((destino) => (
-                      <option key={destino} value={destino}>
-                        {destino}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="offers-field">
-                  <label htmlFor="ofertas-pais">País</label>
-                  <select
-                    id="ofertas-pais"
-                    value={draftFilters.pais}
-                    onChange={(event) =>
-                      setDraftFilters((prev) => ({
-                        ...prev,
-                        pais: event.target.value
-                      }))
-                    }
-                  >
-                    <option value="">Todos</option>
-                    {paises.map((pais) => (
-                      <option key={pais} value={pais}>
-                        {pais}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="offers-field">
-                  <label htmlFor="ofertas-salida">Salida grupal</label>
-                  <select
-                    id="ofertas-salida"
-                    value={draftFilters.oferta}
-                    onChange={(event) =>
-                      setDraftFilters((prev) => ({
-                        ...prev,
-                        oferta: event.target.value
-                      }))
-                    }
-                  >
-                    <option value="">Todas</option>
-                    {ofertasDisponibles.map((oferta) => (
-                      <option key={oferta} value={oferta}>
-                        {oferta}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="offers-field">
-                  <label htmlFor="ofertas-transporte">Transporte</label>
-                  <select
-                    id="ofertas-transporte"
-                    value={draftFilters.transporte}
-                    onChange={(event) =>
-                      setDraftFilters((prev) => ({
-                        ...prev,
-                        transporte: event.target.value
-                      }))
-                    }
-                  >
-                    <option value="">Todos</option>
-                    <option value="avion">Avión</option>
-                    <option value="bus">Bus</option>
-                  </select>
-                </div>
+              <div className="offers-field">
+                <label htmlFor="ofertas-destino">Destino</label>
+                <select
+                  id="ofertas-destino"
+                  value={draftFilters.destino}
+                  onChange={(event) =>
+                    setDraftFilters((prev) => ({
+                      ...prev,
+                      destino: event.target.value
+                    }))
+                  }
+                >
+                  <option value="">Todos</option>
+                  {destinos.map((destino) => (
+                    <option key={destino} value={destino}>
+                      {destino}
+                    </option>
+                  ))}
+                </select>
               </div>
 
-              <div className="offers-filters-row">
-                <div className="offers-field">
-                  <label htmlFor="ofertas-desde">Desde</label>
-                  <input
-                    id="ofertas-desde"
-                    type="date"
-                    value={draftFilters.desde}
-                    onChange={(event) =>
-                      setDraftFilters((prev) => ({
-                        ...prev,
-                        desde: event.target.value
-                      }))
-                    }
-                  />
-                </div>
+              <div className="offers-field">
+                <label htmlFor="ofertas-pais">País</label>
+                <select
+                  id="ofertas-pais"
+                  value={draftFilters.pais}
+                  onChange={(event) =>
+                    setDraftFilters((prev) => ({
+                      ...prev,
+                      pais: event.target.value
+                    }))
+                  }
+                >
+                  <option value="">Todos</option>
+                  {paises.map((pais) => (
+                    <option key={pais} value={pais}>
+                      {pais}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                <div className="offers-field">
-                  <label htmlFor="ofertas-hasta">Hasta</label>
-                  <input
-                    id="ofertas-hasta"
-                    type="date"
-                    value={draftFilters.hasta}
-                    onChange={(event) =>
-                      setDraftFilters((prev) => ({
-                        ...prev,
-                        hasta: event.target.value
-                      }))
-                    }
-                  />
-                </div>
+              <div className="offers-field">
+                <label htmlFor="ofertas-salida">Salida grupal</label>
+                <select
+                  id="ofertas-salida"
+                  value={draftFilters.oferta}
+                  onChange={(event) =>
+                    setDraftFilters((prev) => ({
+                      ...prev,
+                      oferta: event.target.value
+                    }))
+                  }
+                >
+                  <option value="">Todas</option>
+                  {ofertasDisponibles.map((oferta) => (
+                    <option key={oferta} value={oferta}>
+                      {oferta}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                <div className="offers-actions">
-                  <button className="primary" type="submit">
-                    Buscar viajes
-                  </button>
-                  <button
-                    className="secondary"
-                    type="button"
-                    onClick={handleClear}
-                  >
-                    Limpiar
-                  </button>
-                </div>
+              <div className="offers-field">
+                <label htmlFor="ofertas-transporte">Transporte</label>
+                <select
+                  id="ofertas-transporte"
+                  value={draftFilters.transporte}
+                  onChange={(event) =>
+                    setDraftFilters((prev) => ({
+                      ...prev,
+                      transporte: event.target.value
+                    }))
+                  }
+                >
+                  <option value="">Todos</option>
+                  <option value="avion">Avión</option>
+                  <option value="bus">Bus</option>
+                </select>
+              </div>
+
+              <div className="offers-field">
+                <label htmlFor="ofertas-desde">Desde</label>
+                <input
+                  id="ofertas-desde"
+                  type="date"
+                  value={draftFilters.desde}
+                  onChange={(event) =>
+                    setDraftFilters((prev) => ({
+                      ...prev,
+                      desde: event.target.value
+                    }))
+                  }
+                />
+              </div>
+
+              <div className="offers-field">
+                <label htmlFor="ofertas-hasta">Hasta</label>
+                <input
+                  id="ofertas-hasta"
+                  type="date"
+                  value={draftFilters.hasta}
+                  onChange={(event) =>
+                    setDraftFilters((prev) => ({
+                      ...prev,
+                      hasta: event.target.value
+                    }))
+                  }
+                />
+              </div>
+
+              <div className="offers-actions">
+                <button className="primary" type="submit">
+                  Buscar viajes
+                </button>
+                <button
+                  className="secondary"
+                  type="button"
+                  onClick={handleClear}
+                >
+                  Limpiar
+                </button>
               </div>
             </form>
 
