@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { apiRequest } from "../api/api.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
 
-const CACHE_TTL_MS = 5 * 60 * 1000;
+const CACHE_TTL_MS = 0;
 
 const datasetCache = {
   destinos: { data: null, timestamp: 0, promise: null },
@@ -19,9 +19,9 @@ const normalizeDestino = (destino) => {
     imagenPortada: resolveAssetUrl(destino.imagenPortada),
     galeria: Array.isArray(destino.galeria)
       ? destino.galeria.map((item) => ({
-          ...item,
-          imagen: resolveAssetUrl(item.imagen)
-        }))
+        ...item,
+        imagen: resolveAssetUrl(item.imagen)
+      }))
       : destino.galeria
   };
 };
@@ -45,17 +45,17 @@ const normalizeOferta = (oferta) => {
     destino: oferta.destino ? normalizeDestino(oferta.destino) : oferta.destino,
     destinos: Array.isArray(oferta.destinos)
       ? oferta.destinos.map((item) => ({
-          ...item,
-          destino: item.destino ? normalizeDestino(item.destino) : item.destino
-        }))
+        ...item,
+        destino: item.destino ? normalizeDestino(item.destino) : item.destino
+      }))
       : oferta.destinos,
     actividades: Array.isArray(oferta.actividades)
       ? oferta.actividades.map((item) => ({
-          ...item,
-          actividad: item.actividad
-            ? normalizeActividad(item.actividad)
-            : item.actividad
-        }))
+        ...item,
+        actividad: item.actividad
+          ? normalizeActividad(item.actividad)
+          : item.actividad
+      }))
       : oferta.actividades
   };
 };

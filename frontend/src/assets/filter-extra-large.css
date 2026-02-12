@@ -1,0 +1,277 @@
+/* ==============================
+   SEARCH FILTER – ULTRA PREMIUM
+   Inspiración: Despegar / TurismoCity / SaaS Travel
+   ============================== */
+
+.premium-filter {
+    --filter-height: 140px;
+    --filter-card-width: clamp(280px, 22vw, 560px);
+
+    display: flex;
+    gap: 12px;
+    padding: 20px 16px;
+
+    background:
+        radial-gradient(1200px 400px at 50% -20%, rgba(147, 51, 234, 0.18), transparent 60%),
+        linear-gradient(135deg, #2b0d63, #35106f);
+
+    border-radius: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 30px 80px rgba(13, 8, 32, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+    width: 100%;
+    max-width: none;
+    margin: 40px auto 0;
+
+    align-items: stretch;
+    flex-wrap: nowrap;
+    position: relative;
+    z-index: 4;
+
+    backdrop-filter: blur(12px);
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Forzar ancho completo en el home */
+.hero-search .hero-content {
+    max-width: none;
+    width: 100%;
+}
+
+.hero-search .premium-filter,
+.hero-search .premium-filter.premium-filter-destino,
+.hero-search .premium-filter.premium-filter-excursion,
+.hero-search .premium-filter.premium-filter-oferta,
+.hero-search .premium-filter.premium-filter-paquete {
+    width: 96vw;
+    max-width: 96vw;
+    margin-left: calc(50% - 48vw);
+    margin-right: calc(50% - 48vw);
+}
+
+.premium-filter:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 40px 100px rgba(13, 8, 32, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ==============================
+   FILTER CARD
+   ============================== */
+
+.filter-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px;
+
+    min-height: var(--filter-height);
+    height: var(--filter-height);
+    flex: 1 1 0%;
+    /* Allow shrinking/growing equally */
+
+    background:
+        linear-gradient(180deg, #ffffff, #f8f9ff);
+
+    border-radius: 36px;
+    border: 2px solid rgba(182, 196, 230, 0.35);
+
+    box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    position: relative;
+    overflow: hidden;
+
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.filter-card.custom-select {
+    overflow: visible;
+}
+
+/* brillo suave */
+.filter-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(120deg,
+            transparent 30%,
+            rgba(147, 51, 234, 0.08),
+            transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.filter-card:hover::before {
+    opacity: 1;
+}
+
+.filter-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(147, 51, 234, 0.45);
+    box-shadow:
+        0 20px 44px rgba(147, 51, 234, 0.25),
+        0 8px 20px rgba(15, 23, 42, 0.18);
+}
+
+.filter-card:focus-within {
+    border-color: rgba(147, 51, 234, 0.7);
+    box-shadow:
+        0 0 0 6px rgba(147, 51, 234, 0.2),
+        0 24px 48px rgba(147, 51, 234, 0.3);
+}
+
+/* ==============================
+   ICONO
+   ============================== */
+
+.filter-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(147, 51, 234, 0.35),
+            rgba(118, 132, 210, 0.25));
+
+    color: #4c1d95;
+    flex-shrink: 0;
+
+    box-shadow:
+        0 10px 20px rgba(147, 51, 234, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.filter-card:hover .filter-card-icon {
+    transform: scale(1.1) rotate(8deg);
+}
+
+.filter-card-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* ==============================
+   CONTENIDO
+   ============================== */
+
+.filter-card-body {
+    display: grid;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.filter-card-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #7b85b7;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filter-card:hover .filter-card-label,
+.filter-card:focus-within .filter-card-label {
+    color: #5b21b6;
+}
+
+.filter-card-input {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #1f2a44;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==============================
+   FLECHA SELECT
+   ============================== */
+
+.filter-card-arrow {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-right: 2.5px solid #7b85b7;
+    border-bottom: 2.5px solid #7b85b7;
+    transform: translateY(-50%) rotate(45deg);
+    transition: all 0.35s ease;
+}
+
+.filter-card:hover .filter-card-arrow {
+    border-color: #5b21b6;
+    transform: translateY(-45%) rotate(45deg) scale(1.15);
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+@media (max-width: 1024px) {
+    .premium-filter {
+        --filter-height: 125px;
+        gap: 18px;
+        padding: 24px;
+    }
+
+    .filter-card-input {
+        font-size: 1.45rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .premium-filter {
+        flex-wrap: wrap;
+    }
+
+    .filter-card {
+        flex: 1 1 calc(50% - 12px);
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 640px) {
+    .premium-filter {
+        flex-direction: column;
+    }
+
+    .filter-card {
+        width: 100%;
+    }
+
+    .filter-card-input {
+        font-size: 1.3rem;
+    }
+}
+
+/* ==============================
+   OPTIONS
+   ============================== */
+
+.premium-filter select option {
+    font-size: 1.25rem;
+    padding: 16px 20px;
+}

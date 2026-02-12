@@ -1,0 +1,440 @@
+/* ===============================
+   ENHANCED ANIMATIONS & TRANSITIONS
+   Professional travel website aesthetics
+   =============================== */
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced keyframe animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Apply animations to main sections */
+.hero-section,
+.search-section,
+.destinations-section,
+.offers-section,
+.excursions-section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Staggered animation for cards */
+.destination-card,
+.offer-card,
+.excursion-card,
+.package-card {
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.destination-card:nth-child(1),
+.offer-card:nth-child(1),
+.excursion-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.destination-card:nth-child(2),
+.offer-card:nth-child(2),
+.excursion-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.destination-card:nth-child(3),
+.offer-card:nth-child(3),
+.excursion-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.destination-card:nth-child(4),
+.offer-card:nth-child(4),
+.excursion-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.destination-card:nth-child(5),
+.offer-card:nth-child(5),
+.excursion-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.destination-card:nth-child(6),
+.offer-card:nth-child(6),
+.excursion-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* ===============================
+   ENHANCED SEARCH FILTERS
+   =============================== */
+
+/* Home filter - sin animación shimmer */
+.search-bar-home {
+    position: relative;
+    overflow: hidden;
+}
+
+.search-bar-home .search-input,
+.search-bar-home .search-select {
+    transition: all 0.3s ease;
+}
+
+.search-bar-home .search-input:focus,
+.search-bar-home .search-select:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(112, 0, 235, 0.25);
+}
+
+.search-bar-home .search-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-bar-home .search-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.search-bar-home .search-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.search-bar-home .search-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(112, 0, 235, 0.4);
+}
+
+/* Otros filtros - diseño moderno */
+.filters-container:not(.search-bar-home) {
+    background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(203, 215, 244, 0.5);
+    transition: all 0.3s ease;
+}
+
+.filters-container:not(.search-bar-home):hover {
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12);
+    transform: translateY(-2px);
+}
+
+.filter-input,
+.filter-select {
+    background: white;
+    border: 2px solid rgba(203, 215, 244, 0.6);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    border-color: var(--violet-500);
+    box-shadow: 0 0 0 4px rgba(112, 0, 235, 0.1);
+    transform: translateY(-2px);
+}
+
+.filter-button {
+    background: linear-gradient(135deg, var(--violet-600), var(--violet-500));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(112, 0, 235, 0.25);
+}
+
+.filter-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(112, 0, 235, 0.35);
+    background: linear-gradient(135deg, var(--violet-700), var(--violet-600));
+}
+
+.filter-button:active {
+    transform: translateY(0);
+}
+
+/* ===============================
+   ENHANCED BUTTONS & INTERACTIONS
+   =============================== */
+
+.premium-button,
+.cta-button,
+.action-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-button::after,
+.cta-button::after,
+.action-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.premium-button:hover::after,
+.cta-button:hover::after,
+.action-button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Icon animations */
+.icon-rotate {
+    transition: transform 0.3s ease;
+}
+
+.icon-rotate:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.icon-bounce {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-bounce:hover {
+    animation: float 1s ease-in-out infinite;
+}
+
+/* ===============================
+   ENHANCED LOADING STATES
+   =============================== */
+
+.loading-spinner {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-loader {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* ===============================
+   ENHANCED HOVER EFFECTS
+   =============================== */
+
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+}
+
+.hover-glow {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.hover-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--violet-400), var(--violet-700));
+    opacity: 0;
+    filter: blur(10px);
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.hover-glow:hover::before {
+    opacity: 0.4;
+}
+
+/* ===============================
+   ENHANCED FOCUS STATES
+   =============================== */
+
+*:focus-visible {
+    outline: 2px solid var(--violet-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(112, 0, 235, 0.15);
+}
+
+/* ===============================
+   ENHANCED TRANSITIONS
+   =============================== */
+
+.smooth-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.smooth-transition-slow {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===============================
+   PERFORMANCE OPTIMIZATIONS
+   =============================== */
+
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+/* ===============================
+   ACCESSIBILITY
+   =============================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===============================
+   RESPONSIVE ENHANCEMENTS
+   =============================== */
+
+@media (max-width: 768px) {
+
+    .destination-card,
+    .offer-card,
+    .excursion-card {
+        animation-delay: 0s !important;
+    }
+
+    .filters-container:not(.search-bar-home) {
+        padding: 20px;
+    }
+
+    .filter-input,
+    .filter-select,
+    .filter-button {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+}

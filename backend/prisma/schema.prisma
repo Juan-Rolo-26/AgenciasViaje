@@ -49,6 +49,7 @@ model Oferta {
   condiciones     String?
   destacada       Boolean          @default(false)
   activa          Boolean          @default(true)
+  tipo            String           @default("individual") // "individual", "grupal"
   orden           Int              @default(0)
   tituloSeo       String?
   descripcionSeo  String?

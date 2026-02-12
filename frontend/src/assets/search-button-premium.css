@@ -1,0 +1,146 @@
+/* ==============================
+   SEARCH BUTTON PREMIUM ENHANCEMENT
+   Mejoras de color y animaciones para el botón de búsqueda
+   ============================== */
+
+.filter-button {
+    background: linear-gradient(135deg, #d10000 0%, #ff1744 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 18px 32px;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow:
+        0 12px 32px rgba(209, 0, 0, 0.4),
+        0 4px 12px rgba(209, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Efecto de brillo animado */
+.filter-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transition: left 0.6s ease;
+    animation: shimmerButton 3s ease-in-out infinite;
+}
+
+@keyframes shimmerButton {
+
+    0%,
+    100% {
+        left: -100%;
+    }
+
+    50% {
+        left: 100%;
+    }
+}
+
+/* Gradiente superior sutil */
+.filter-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.15) 0%,
+            transparent 50%,
+            rgba(0, 0, 0, 0.1) 100%);
+    border-radius: 16px;
+    pointer-events: none;
+}
+
+.filter-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        0 20px 48px rgba(209, 0, 0, 0.5),
+        0 8px 20px rgba(209, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg, #e61100 0%, #ff2955 100%);
+}
+
+.filter-button:hover::before {
+    animation: shimmerButtonFast 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmerButtonFast {
+
+    0%,
+    100% {
+        left: -100%;
+    }
+
+    50% {
+        left: 100%;
+    }
+}
+
+.filter-button:active {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow:
+        0 8px 24px rgba(209, 0, 0, 0.4),
+        0 2px 8px rgba(209, 0, 0, 0.2);
+}
+
+/* Pulso sutil en el botón */
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 12px 32px rgba(209, 0, 0, 0.4),
+            0 4px 12px rgba(209, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 12px 32px rgba(209, 0, 0, 0.5),
+            0 4px 12px rgba(209, 0, 0, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2),
+            0 0 0 4px rgba(209, 0, 0, 0.1);
+    }
+}
+
+.filter-button:focus {
+    outline: none;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Icono de búsqueda dentro del botón */
+.filter-button svg {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s ease;
+}
+
+.filter-button:hover svg {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-button {
+        font-size: 1rem;
+        padding: 16px 28px;
+    }
+}

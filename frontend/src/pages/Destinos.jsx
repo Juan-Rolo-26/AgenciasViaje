@@ -8,7 +8,7 @@ const CONTINENTS = [
   {
     id: "america",
     label: "America",
-    image: "/assets/destinos/rio1.jpg"
+    image: "/assets/destinos/bayahibe.jpg"
   },
   {
     id: "europa",
@@ -36,6 +36,7 @@ const CONTINENT_BY_COUNTRY = {
   Cuba: "america",
   México: "america",
   "República Dominicana": "america",
+  Uruguay: "america",
   Perú: "america",
   "Estados Unidos": "america",
   "Emiratos Árabes": "asia",
@@ -59,7 +60,12 @@ const CONTINENT_BY_COUNTRY = {
   Alemania: "europa",
   "Países Bajos": "europa",
   "República Checa": "europa",
-  España: "europa"
+  España: "europa",
+  Bolivia: "america",
+  Aruba: "america",
+  Curazao: "america",
+  Panamá: "america",
+  Australia: "asia"
 };
 
 const CONTINENT_SET = new Set(CONTINENTS.map((item) => item.id));
@@ -108,8 +114,8 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
     (activeContinent
       ? `Destinos en ${activeContinent.label}`
       : selectedPais
-      ? `Destinos en ${selectedPais}`
-      : "Destinos inolvidables");
+        ? `Destinos en ${selectedPais}`
+        : "Destinos inolvidables");
   const heroSubtitle =
     heroOverrides.subtitle ||
     "Elegí tu próxima aventura con propuestas a tu medida.";
@@ -328,6 +334,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
                         <span className="destination-meta">
                           {destino.paisRegion || "Destino"}
                         </span>
+                        <span className="card-cta">Explorar destino →</span>
                       </div>
                     </Link>
                   );

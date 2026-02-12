@@ -17,7 +17,7 @@ const OFFER_SECTION_SET = new Set(OFFER_SECTIONS.map((section) => section.id));
 
 export default function Ofertas() {
   const { ofertas, loading, error } = useOfertas();
-  const ofertasVisibles = useMemo(() => [], [ofertas]);
+  const ofertasVisibles = useMemo(() => ofertas, [ofertas]);
   const [searchParams] = useSearchParams();
   const selectedSection = (() => {
     const value = (searchParams.get("seccion") || "").toLowerCase();
@@ -34,14 +34,30 @@ export default function Ofertas() {
   const activeSection = OFFER_SECTIONS.find(
     (section) => section.id === selectedSection
   );
-  const initialFilters = {
-    destino: "",
-    pais: "",
-    oferta: "",
-    transporte: "",
-    desde: "",
-    hasta: ""
-  };
+const initialFilters = {
+  destino: "",
+  pais: "",
+  oferta: "",
+  transporte: "",
+  desde: "",
+  hasta: ""
+};
+
+const SALIDAS_GRUPALES_SLUGS = new Set([
+  "mexico-a-su-tiempo-2026",
+  "cartagena-san-andres-2026",
+  "colombia-aromas-cafe-2026",
+  "peru-aereo-grupal-2026",
+  "peru-y-bolivia-2026",
+  "europa-a-su-tiempo-2026",
+  "costa-rica-al-maximo-2026",
+  "esencias-centroeuropeas-2026",
+  "europa-al-maximo-2026",
+  "joyas-balcanicas-2026",
+  "turquia-islas-griegas-2026",
+  "turquia-dubai-2026",
+  "turquia-islas-griegas-dubai-2026"
+]);
   const [draftFilters, setDraftFilters] = useState(initialFilters);
   const [filters, setFilters] = useState(initialFilters);
 
@@ -68,19 +84,14 @@ export default function Ofertas() {
       (destino) => destino.paisRegion === "Argentina"
     );
     const textBlock = normalizeText(
-      `${oferta.titulo || ""} ${oferta.condiciones || ""} ${
-        oferta.noIncluye || ""
+      `${oferta.titulo || ""} ${oferta.condiciones || ""} ${oferta.noIncluye || ""
       } ${oferta.descripcion || ""}`
     );
     if (sectionFilter === "paquetes-nacionales") {
       return isNational;
     }
     if (sectionFilter === "salidas-grupales") {
-      return (
-        textBlock.includes("salida grupal") ||
-        textBlock.includes("salidas grupales") ||
-        textBlock.includes("grupal")
-      );
+      return SALIDAS_GRUPALES_SLUGS.has(oferta.slug);
     }
     if (sectionFilter === "eventos-deportivos") {
       return (
@@ -200,8 +211,7 @@ export default function Ofertas() {
       (item) => (item.tipo || "").toLowerCase() === "transporte"
     );
     const texto = normalizeText(
-      `${transporteItem?.descripcion || ""} ${transporteItem?.tipo || ""} ${
-        oferta.condiciones || ""
+      `${transporteItem?.descripcion || ""} ${transporteItem?.tipo || ""} ${oferta.condiciones || ""
       } ${oferta.titulo || ""}`
     ).trim();
     if (
@@ -474,45 +484,55 @@ export default function Ofertas() {
               </div>
             </form>
 
-        {loading ? (
-          <p className="section-state">Cargando salidas grupales...</p>
-        ) : error ? (
-          <p className="section-state error">{error}</p>
-        ) : ofertasFiltradas.length === 0 ? (
-          <p className="section-state">No hay salidas grupales disponibles.</p>
-        ) : (
-            <div className="offer-grid">
-              {ofertasFiltradas.map((oferta) => {
-                const preciosOrdenados = [...(oferta.precios || [])].sort(
-                  (a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio)
-                );
-                const fechaReferencia = preciosOrdenados[0];
-                const ofertaSlug = oferta.slug || oferta.id;
-                const offerImages = getOfferImages(oferta);
-                const offerImage = offerImages[0] || fallbackDeal;
-                return (
-                  <Link
-                    className="offer-card"
-                    key={oferta.id}
-                    to={`/ofertas/${ofertaSlug}`}
-                  >
-                    <div className="offer-card-image">
-                      <img src={offerImage} alt={oferta.titulo} />
-                    </div>
+            {loading ? (
+              <p className="section-state">Cargando salidas grupales...</p>
+            ) : error ? (
+              <p className="section-state error">{error}</p>
+            ) : ofertasFiltradas.length === 0 ? (
+              <p className="section-state">No hay salidas grupales disponibles.</p>
+            ) : (
+              <div className="grid grid-3x3">
+                {ofertasFiltradas.map((oferta) => {
+                  const ofertaSlug = oferta.slug || oferta.id;
+                  const offerImages = getOfferImages(oferta);
+                  const offerImage = offerImages[0] || fallbackDeal;
+                  const targetDestino = oferta.destino;
+                  const transportType = getTransportType(oferta);
+                  const transportLabel = transportType === "avion" ? "Avión" : transportType === "bus" ? "Bus" : "";
 
-                    <div className="offer-card-body">
-                      <h3 className="offer-card-title">{oferta.titulo}</h3>
-                    </div>
-
-                    <div className="offer-card-footer">
-                      <span className="offer-card-cta">Ver oferta</span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-        </section>
+                  return (
+                    <Link
+                      className="tile destination-card salidas-card"
+                      key={oferta.id}
+                      to={targetDestino ? `/destinos/${targetDestino.slug}?oferta=${ofertaSlug}` : `/ofertas/${ofertaSlug}`}
+                    >
+                      <div
+                        className="tile-image"
+                        style={{
+                          backgroundImage: `url("${offerImage}")`
+                        }}
+                      ></div>
+                      <div className="tile-content">
+                        <span className="destination-meta">
+                          {targetDestino?.paisRegion || targetDestino?.nombre || "Salida grupal"}
+                        </span>
+                        <h4>{oferta.titulo}</h4>
+                        <p className="offer-card-description">
+                          {oferta.descripcion || "Salida grupal confirmada. Consultanos para conocer el itinerario completo."}
+                        </p>
+                        {transportLabel ? (
+                          <span className="offer-card-transport">
+                            Transporte: <strong>{transportLabel}</strong>
+                          </span>
+                        ) : null}
+                        <span className="card-cta">Explorar destino →</span>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </section>
         </>
       )}
     </main>

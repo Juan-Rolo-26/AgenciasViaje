@@ -73,12 +73,13 @@ export default function Excursiones({
           <p className="section-state">No hay excursiones disponibles.</p>
         ) : (
           <div className="grid grid-3x3">
-            {excursionesFiltradas.map((actividad) => {
+            {excursionesFiltradas.map((actividad, index) => {
               const actividadSlug = actividad.slug || actividad.id;
               return (
                 <Link
-                  className="tile excursion-card"
+                  className="tile destination-card"
                   key={actividad.id}
+                  style={{ "--delay": `${index * 70}ms` }}
                   to={`/excursiones/${actividadSlug}`}
                 >
                   <div
@@ -91,9 +92,10 @@ export default function Excursiones({
                   ></div>
                   <div className="tile-content">
                     <h4>{actividad.nombre}</h4>
-                    <span className="tile-meta">
+                    <span className="destination-meta">
                       {actividad.destino?.nombre || "Destino"}
                     </span>
+                    <span className="card-cta">Ver excursión →</span>
                   </div>
                 </Link>
               );

@@ -1,0 +1,361 @@
+/* ===============================
+   ENHANCED DESTINATION CARDS
+   Professional, modern design with smooth animations
+   =============================== */
+
+.destination-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover suave y elegante */
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* Sin shimmer effect */
+.destination-card .tile-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.destination-card .tile-image img {
+    transition: transform 0.3s ease;
+}
+
+.destination-card:hover .tile-image img {
+    transform: scale(1.03);
+}
+
+/* Enhanced card content */
+.destination-card .tile-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Animated underline for title */
+.destination-card h4 {
+    position: relative;
+    transition: color 0.3s ease;
+    color: var(--text);
+}
+
+.destination-card h4::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--violet-400), var(--violet-700));
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.destination-card:hover h4 {
+    color: var(--text);
+}
+
+.destination-card:hover h4::after {
+    width: 60px;
+}
+
+/* Enhanced CTA arrow animation con visibilidad mejorada */
+.destination-card .card-cta {
+    position: relative;
+    padding-right: 24px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-weight: 600;
+    color: var(--violet-600);
+}
+
+.destination-card .card-cta::before {
+    content: '→';
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: var(--violet-600);
+}
+
+.destination-card:hover .card-cta {
+    color: var(--violet-700);
+    transform: translateX(4px);
+    text-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
+}
+
+.destination-card:hover .card-cta::before {
+    opacity: 1;
+    transform: translateX(0);
+    animation: arrowBounce 0.6s ease infinite;
+}
+
+@keyframes arrowBounce {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(4px);
+    }
+}
+
+/* ===============================
+   ENHANCED OFFER CARDS
+   Modern, professional design
+   =============================== */
+
+.offer-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.offer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+}
+
+/* Sin gradient border effect */
+
+/* Image zoom effect */
+.offer-card-feature .offer-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.offer-card-feature .offer-image img {
+    transition: transform 0.5s ease;
+}
+
+.offer-card:hover .offer-image img {
+    transform: scale(1.05);
+}
+
+/* Overlay eliminado para imágenes más claras */
+
+/* Enhanced offer body */
+.offer-body {
+    position: relative;
+}
+
+.offer-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--violet-400), var(--violet-700));
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.offer-card:hover .offer-body::before {
+    height: 100%;
+}
+
+/* ===============================
+   ENHANCED EXCURSION CARDS
+   Beautiful, engaging design
+   =============================== */
+
+.excursion-card-premium,
+.excursion-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.excursion-card-premium:hover,
+.excursion-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+}
+
+/* Sin glow effect */
+
+/* Overlays eliminados para imágenes más claras */
+
+.excursion-card-overlay,
+.excursion-card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.excursion-card-image img,
+.excursion-card-overlay img {
+    transition: transform 0.5s ease;
+}
+
+.excursion-card-premium:hover .excursion-card-image img,
+.excursion-card:hover .excursion-card-overlay img {
+    transform: scale(1.05);
+}
+
+/* Meta icon animation */
+.excursion-card-meta svg {
+    transition: all 0.3s ease;
+}
+
+.excursion-card-premium:hover .excursion-card-meta svg,
+.excursion-card:hover .excursion-card-meta svg {
+    transform: scale(1.1) rotate(5deg);
+    color: var(--violet-600);
+}
+
+/* ===============================
+   ENHANCED MODO FANÁTICO CARDS
+   =============================== */
+
+.fanatic-card,
+.event-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fanatic-card:hover,
+.event-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+}
+
+/* Overlay eliminado para imágenes más claras */
+
+/* ===============================
+   ENHANCED CÓRDOBA/ARGENTINA CARDS
+   =============================== */
+
+.region-card,
+.local-destination-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.region-card:hover,
+.local-destination-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+}
+
+.region-card .card-image,
+.local-destination-card .card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.region-card .card-image img,
+.local-destination-card .card-image img {
+    transition: transform 0.5s ease;
+}
+
+.region-card:hover .card-image img,
+.local-destination-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Sin shimmer */
+
+/* ===============================
+   ENHANCED PACKAGE CARDS
+   Premium look with sophisticated animations
+   =============================== */
+
+.package-card-premium {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Floating shadow effect */
+.package-card-premium::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(112, 0, 235, 0);
+    transition: box-shadow 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.package-card-premium:hover::after {
+    box-shadow: 0 30px 60px rgba(112, 0, 235, 0.2);
+}
+
+/* Badge animation */
+.package-destination-badge {
+    transition: all 0.3s ease;
+}
+
+.package-card-premium:hover .package-destination-badge {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced dates display */
+.package-dates {
+    position: relative;
+    overflow: hidden;
+}
+
+.package-dates::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.package-card-premium:hover .package-dates::before {
+    left: 100%;
+}
+
+/* ===============================
+   PERFORMANCE OPTIMIZATIONS
+   =============================== */
+
+.destination-card,
+.offer-card,
+.excursion-card-premium,
+.excursion-card,
+.fanatic-card,
+.event-card,
+.region-card,
+.local-destination-card,
+.package-card-premium {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* ===============================
+   RESPONSIVE ADJUSTMENTS
+   =============================== */
+
+@media (max-width: 768px) {
+
+    .destination-card:hover,
+    .offer-card:hover,
+    .excursion-card-premium:hover,
+    .excursion-card:hover,
+    .fanatic-card:hover,
+    .event-card:hover,
+    .region-card:hover,
+    .local-destination-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .fanatic-card:hover,
+    .event-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+}

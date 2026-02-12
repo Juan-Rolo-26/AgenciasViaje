@@ -1,0 +1,1158 @@
+/* ===============================
+   DETAIL PAGE PREMIUM REDESIGN
+   Diseño profesional tipo Despegar/Booking
+   =============================== */
+
+/* Reset del diseño anterior - Sobrescribir completamente */
+.detail-page {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: #f7f9fc;
+    min-height: 100vh;
+}
+
+/* ===============================
+   HERO SECTION - MUCHO MÁS IMPACTANTE
+   =============================== */
+
+.detail-hero {
+    position: relative;
+    min-height: 450px !important;
+    height: clamp(450px, 65vh, 600px) !important;
+    border-radius: 0 !important;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    box-shadow: none !important;
+    margin-bottom: 40px;
+}
+
+.detail-hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: clamp(24px, 6vh, 60px) 24px;
+    background: linear-gradient(180deg,
+            rgba(10, 12, 28, 0.1) 0%,
+            rgba(10, 12, 28, 0.75) 100%);
+}
+
+.detail-hero-content {
+    position: relative;
+    z-index: 1;
+    width: min(600px, 90%) !important;
+    padding: 32px 40px 36px !important;
+    border-radius: 24px !important;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.88) 100%) !important;
+    border: 2px solid rgba(147, 51, 234, 0.15) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow:
+        0 24px 60px rgba(9, 16, 44, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    text-align: center;
+    display: grid;
+    gap: 14px;
+    justify-items: center;
+}
+
+.detail-hero-content h1 {
+    font-size: clamp(32px, 5vw, 52px) !important;
+    margin: 0;
+    line-height: 1.15 !important;
+    text-shadow: none !important;
+    color: #1e293b !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.detail-kicker {
+    text-transform: uppercase;
+    letter-spacing: 3px !important;
+    font-size: 0.7rem !important;
+    color: #9333ea !important;
+    margin: 0;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.08), rgba(147, 51, 234, 0.12));
+    padding: 8px 18px !important;
+    border-radius: 999px;
+    border: 1px solid rgba(147, 51, 234, 0.2);
+}
+
+.detail-hero-content>p:not(.detail-kicker) {
+    margin: 0;
+    color: #475569 !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+}
+
+.detail-back {
+    justify-self: center;
+    text-decoration: none;
+    color: #9333ea !important;
+    background: rgba(147, 51, 234, 0.08) !important;
+    padding: 10px 20px !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    border: 2px solid rgba(147, 51, 234, 0.2);
+    transition: all 0.3s ease;
+}
+
+.detail-back:hover {
+    background: rgba(147, 51, 234, 0.15) !important;
+    border-color: rgba(147, 51, 234, 0.4);
+    transform: translateY(-2px);
+}
+
+.detail-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.95rem !important;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.detail-hero-meta span {
+    padding: 10px 18px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.06), rgba(147, 51, 234, 0.1)) !important;
+    border: 2px solid rgba(147, 51, 234, 0.15) !important;
+    color: #1e293b !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 12px rgba(147, 51, 234, 0.08);
+}
+
+/* ===============================
+   CTA BUTTON - MÁS VISIBLE Y ATRACTIVO
+   =============================== */
+
+.detail-cta {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    padding: 20px;
+    background: linear-gradient(180deg,
+            rgba(247, 249, 252, 0.98) 0%,
+            rgba(247, 249, 252, 0.92) 100%);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(10, 16, 44, 0.08);
+    margin-bottom: 24px;
+}
+
+.detail-whatsapp {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px !important;
+    padding: 16px 36px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%) !important;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    box-shadow:
+        0 16px 40px rgba(22, 163, 74, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.detail-whatsapp:hover {
+    transform: translateY(-3px) !important;
+    box-shadow:
+        0 20px 50px rgba(22, 163, 74, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.detail-whatsapp:active {
+    transform: translateY(-1px) !important;
+    box-shadow:
+        0 14px 35px rgba(22, 163, 74, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ===============================
+   SECTIONS CONTAINER
+   =============================== */
+
+.detail-section {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 40px;
+    width: 100%;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+}
+
+/* Compact layout for package and offer details (reduce empty gaps) */
+.detail-grid--package,
+.detail-grid--offer {
+    grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr);
+    grid-template-areas:
+        "info includes"
+        "info dates"
+        "info itinerary";
+    align-items: start;
+    grid-auto-flow: dense;
+}
+
+.detail-grid--package.detail-grid--no-dates {
+    grid-template-areas:
+        "info includes"
+        "info itinerary";
+}
+
+.detail-grid--package.detail-grid--no-itinerary,
+.detail-grid--offer.detail-grid--no-itinerary {
+    grid-template-areas:
+        "info includes"
+        "info dates";
+}
+
+.detail-grid--package.detail-grid--no-dates.detail-grid--no-itinerary {
+    grid-template-areas: "info includes";
+}
+
+.detail-card--info {
+    grid-area: info;
+}
+
+.detail-card--includes {
+    grid-area: includes;
+}
+
+.detail-card--dates {
+    grid-area: dates;
+}
+
+.detail-card--itinerary {
+    grid-area: itinerary;
+}
+
+.detail-grid--package .detail-card,
+.detail-grid--offer .detail-card {
+    align-self: stretch;
+}
+
+/* ===============================
+   CARDS - MUCHO MÁS PREMIUM
+   =============================== */
+
+.detail-card {
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    padding: 32px !important;
+    border: 2px solid rgba(147, 51, 234, 0.08) !important;
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.06),
+        0 2px 8px rgba(15, 23, 42, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    display: grid;
+    gap: 22px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9333ea, #a855f7, #c084fc);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.detail-card:hover {
+    border-color: rgba(147, 51, 234, 0.2) !important;
+    box-shadow:
+        0 16px 48px rgba(147, 51, 234, 0.12),
+        0 4px 16px rgba(15, 23, 42, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    transform: translateY(-4px);
+}
+
+.detail-card:hover::before {
+    opacity: 1;
+}
+
+.detail-card h3 {
+    font-size: clamp(1.25rem, 1.6vw, 1.5rem) !important;
+    letter-spacing: -0.02em !important;
+    color: #1e293b !important;
+    font-weight: 800 !important;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(147, 51, 234, 0.1);
+}
+
+.detail-card p {
+    color: #64748b !important;
+    line-height: 1.75 !important;
+    font-size: 1.05rem !important;
+    margin: 0;
+}
+
+/* ===============================
+   LISTAS MEJORADAS
+   =============================== */
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 14px !important;
+}
+
+.detail-list li {
+    display: flex;
+    gap: 12px !important;
+    align-items: flex-start;
+    line-height: 1.65 !important;
+    font-size: 1.05rem !important;
+    color: #475569 !important;
+}
+
+.detail-list li::before {
+    content: "✓" !important;
+    color: #22c55e !important;
+    font-weight: 800 !important;
+    margin-top: 2px;
+    font-size: 1.1rem;
+}
+
+/* Lista con iconos - MUCHO MÁS ATRACTIVA */
+.detail-list--icons li {
+    align-items: center;
+    gap: 16px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.detail-list--icons li::before {
+    content: "" !important;
+    display: none;
+}
+
+.detail-list--fancy li {
+    background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%) !important;
+    border: 2px solid rgba(147, 51, 234, 0.12) !important;
+    padding: 18px 20px !important;
+    border-radius: 16px !important;
+    box-shadow:
+        0 4px 16px rgba(147, 51, 234, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    transition: all 0.3s ease;
+}
+
+.detail-list--fancy li:hover {
+    border-color: rgba(147, 51, 234, 0.25) !important;
+    box-shadow:
+        0 8px 24px rgba(147, 51, 234, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    transform: translateX(4px);
+}
+
+.detail-list--fancy .detail-list-text {
+    font-size: 1.05rem !important;
+    color: #334155 !important;
+}
+
+.detail-list--fancy .detail-icon {
+    background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%) !important;
+    box-shadow: 0 8px 20px rgba(147, 51, 234, 0.25) !important;
+}
+
+/* Timeline mejorado */
+.detail-list--timeline {
+    position: relative;
+    gap: 20px !important;
+    padding-left: 8px;
+}
+
+.detail-list--timeline::before {
+    content: "";
+    position: absolute;
+    left: 22px;
+    top: 8px;
+    bottom: 8px;
+    width: 3px !important;
+    background: linear-gradient(180deg,
+            #9333ea 0%,
+            #a855f7 50%,
+            #c084fc 100%) !important;
+    box-shadow: 0 0 12px rgba(147, 51, 234, 0.3);
+}
+
+.detail-list--timeline li {
+    position: relative;
+    padding: 20px 22px 20px 64px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
+    border: 2px solid rgba(147, 51, 234, 0.12) !important;
+    box-shadow:
+        0 6px 20px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    transition: all 0.3s ease;
+}
+
+.detail-list--timeline li:hover {
+    border-color: rgba(147, 51, 234, 0.25) !important;
+    transform: translateX(8px);
+    box-shadow:
+        0 12px 32px rgba(147, 51, 234, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.detail-list--timeline li::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 10px;
+    top: 16px;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%) !important;
+    border: 3px solid #ffffff !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: 0.9rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 8px 20px rgba(147, 51, 234, 0.35),
+        0 0 0 4px rgba(147, 51, 234, 0.1) !important;
+}
+
+/* Iconos mejorados */
+.detail-icon {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 14px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%) !important;
+    box-shadow:
+        0 8px 24px rgba(147, 51, 234, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    flex: 0 0 48px !important;
+    transition: all 0.3s ease;
+}
+
+.detail-list--fancy li:hover .detail-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.detail-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.detail-list-text strong {
+    color: #9333ea !important;
+    font-weight: 800 !important;
+}
+
+.detail-list a {
+    color: #9333ea !important;
+    text-decoration: none;
+    font-weight: 700 !important;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.detail-list a:hover {
+    border-bottom-color: #9333ea;
+}
+
+/* ===============================
+   TABLA MEJORADA
+   =============================== */
+
+.detail-table {
+    display: grid;
+    gap: 12px !important;
+}
+
+.detail-table-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px !important;
+    padding: 16px 20px !important;
+    border-radius: 14px !important;
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%) !important;
+    border: 2px solid rgba(147, 51, 234, 0.08) !important;
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+    transition: all 0.3s ease;
+    align-items: center;
+}
+
+.detail-table-row:hover {
+    background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%) !important;
+    border-color: rgba(147, 51, 234, 0.2) !important;
+    transform: translateX(4px);
+    box-shadow:
+        0 6px 16px rgba(147, 51, 234, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.detail-table-row span {
+    font-size: 1.05rem !important;
+    color: #334155 !important;
+    font-weight: 600 !important;
+}
+
+.detail-table-row span:first-child {
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+
+@media (max-width: 768px) {
+    .detail-hero {
+        min-height: 380px !important;
+        height: 380px !important;
+    }
+
+    .detail-hero-content {
+        padding: 24px 28px !important;
+    }
+
+    .detail-hero-content h1 {
+        font-size: clamp(26px, 6vw, 40px) !important;
+    }
+
+    .detail-card {
+        padding: 24px !important;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-grid--package,
+    .detail-grid--offer {
+        grid-template-columns: 1fr;
+        grid-template-areas: none;
+    }
+
+    .detail-card--info,
+    .detail-card--includes,
+    .detail-card--dates,
+    .detail-card--itinerary {
+        grid-area: auto;
+    }
+
+    .detail-whatsapp {
+        font-size: 0.95rem !important;
+        padding: 14px 28px !important;
+    }
+}
+
+/* ===============================
+   INFO CONTENT MEJORADO
+   =============================== */
+
+/* ===============================
+   INFO CONTENT MEJORADO (Markdown)
+   =============================== */
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+    color: #334155;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    width: 100%;
+}
+
+.info-content>*:first-child {
+    margin-top: 0;
+}
+
+.info-content h2 {
+    font-size: 1.75rem !important;
+    /* Más grande */
+    color: #1e293b;
+    margin: 40px 0 24px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(147, 51, 234, 0.15);
+    /* Línea divisoria sutil */
+    position: relative;
+}
+
+.info-content h2::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: #9333ea;
+}
+
+.info-content h3 {
+    font-size: 1.4rem !important;
+    color: #9333ea !important;
+    margin: 32px 0 16px;
+    font-weight: 700 !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-content h3::before {
+    content: "";
+    /* Decoración visual */
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: currentColor;
+    border-radius: 50%;
+    margin-top: 2px;
+}
+
+.info-content h4 {
+    font-size: 1.2rem;
+    color: #475569;
+    margin: 24px 0 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.95rem;
+}
+
+.info-content p {
+    margin-bottom: 16px;
+    color: #475569;
+}
+
+.info-content strong {
+    color: #0f172a;
+    /* Texto más oscuro para resaltar */
+    font-weight: 700;
+}
+
+/* Listas estilizadas */
+.info-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 24px;
+    display: grid;
+    gap: 10px;
+}
+
+.info-content ul li {
+    position: relative;
+    padding-left: 28px;
+    line-height: 1.7;
+}
+
+.info-content ul li::before {
+    content: "•";
+    color: #9333ea;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 6px;
+    top: -4px;
+    line-height: 1;
+}
+
+/* Itinerarios (listas anidadas o especiales) */
+.info-content ul ul {
+    margin: 8px 0 8px 16px;
+    gap: 6px;
+}
+
+.info-content ul ul li::before {
+    content: "◦";
+    font-size: 1.2rem;
+    color: #a855f7;
+}
+
+/* Bloques de énfasis */
+.info-content blockquote {
+    background: #f8fafc;
+    border-left: 4px solid #9333ea;
+    margin: 24px 0;
+    padding: 16px 24px;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #64748b;
+}
+
+/* Separadores */
+.info-content hr {
+    border: none;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 32px 0;
+}
+
+/* ===============================
+   ACCESIBILIDAD: TEXTO +30% EN DETALLES
+   =============================== */
+
+.detail-page,
+.premium-destination-detail,
+.premium-excursion-detail,
+.package-embedded-detail {
+    --detail-font-scale: 1.3;
+}
+
+/* Ofertas / Paquetes (detalle general) */
+.detail-page .detail-hero-content h1,
+.premium-destination-detail .detail-hero-content h1 {
+    font-size: clamp(calc(32px * var(--detail-font-scale)), calc(5vw * var(--detail-font-scale)), calc(52px * var(--detail-font-scale))) !important;
+}
+
+.detail-page .detail-kicker,
+.premium-destination-detail .detail-kicker {
+    font-size: calc(0.7rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .detail-hero-content>p:not(.detail-kicker),
+.premium-destination-detail .detail-hero-content>p:not(.detail-kicker) {
+    font-size: calc(1.15rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .detail-hero-meta,
+.premium-destination-detail .detail-hero-meta {
+    font-size: calc(0.95rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .detail-card h3,
+.premium-destination-detail .detail-card h3 {
+    font-size: clamp(calc(1.25rem * var(--detail-font-scale)), calc(1.6vw * var(--detail-font-scale)), calc(1.5rem * var(--detail-font-scale))) !important;
+}
+
+.detail-page .detail-card p,
+.premium-destination-detail .detail-card p,
+.detail-page .detail-list li,
+.premium-destination-detail .detail-list li,
+.detail-page .detail-list-text,
+.premium-destination-detail .detail-list-text,
+.detail-page .detail-table-row span,
+.premium-destination-detail .detail-table-row span {
+    font-size: calc(1.05rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .detail-list li::before,
+.premium-destination-detail .detail-list li::before {
+    font-size: calc(1.1rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .detail-list--fancy .detail-list-text,
+.premium-destination-detail .detail-list--fancy .detail-list-text {
+    font-size: calc(1.05rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .detail-list--timeline li::before,
+.premium-destination-detail .detail-list--timeline li::before {
+    font-size: calc(0.9rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .detail-info-block,
+.premium-destination-detail .detail-info-block {
+    font-size: calc(1.05rem * var(--detail-font-scale));
+    line-height: 1.8;
+}
+
+/* Markdown dentro de detalles */
+.detail-page .info-content,
+.premium-destination-detail .info-content {
+    font-size: calc(1.1rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .info-content h2,
+.premium-destination-detail .info-content h2 {
+    font-size: calc(1.75rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .info-content h3,
+.premium-destination-detail .info-content h3 {
+    font-size: calc(1.4rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .info-content h4,
+.premium-destination-detail .info-content h4 {
+    font-size: calc(0.95rem * var(--detail-font-scale)) !important;
+}
+
+.detail-page .info-content ul li::before,
+.premium-destination-detail .info-content ul li::before {
+    font-size: calc(1.5rem * var(--detail-font-scale));
+}
+
+.detail-page .info-content ul ul li::before,
+.premium-destination-detail .info-content ul ul li::before {
+    font-size: calc(1.2rem * var(--detail-font-scale));
+}
+
+/* Detalle embebido de paquetes */
+.package-embedded-detail h2 {
+    font-size: calc(2.5rem * var(--detail-font-scale)) !important;
+}
+
+.package-embedded-detail .detail-card h3 {
+    font-size: calc(1.75rem * var(--detail-font-scale)) !important;
+}
+
+.package-embedded-detail .detail-card p {
+    font-size: calc(1.1rem * var(--detail-font-scale)) !important;
+}
+
+.package-embedded-detail .detail-table-row span:first-child {
+    font-size: calc(1rem * var(--detail-font-scale)) !important;
+}
+
+.package-embedded-detail .detail-table-row span:last-child {
+    font-size: calc(1.05rem * var(--detail-font-scale)) !important;
+}
+
+.package-embedded-detail .detail-list li {
+    font-size: calc(1.05rem * var(--detail-font-scale)) !important;
+}
+
+.package-embedded-detail .itinerary-day strong {
+    font-size: calc(1.15rem * var(--detail-font-scale)) !important;
+}
+
+.premium-destination-detail .destination-summary h2,
+.premium-excursion-detail .excursion-summary h2,
+.detail-page .destination-summary h2,
+.detail-page .excursion-summary h2 {
+    font-size: calc(2.5rem * var(--detail-font-scale)) !important;
+}
+
+.premium-destination-detail .destination-summary p,
+.premium-excursion-detail .excursion-summary p,
+.detail-page .destination-summary p,
+.detail-page .excursion-summary p,
+.premium-destination-detail .description-text,
+.premium-excursion-detail .description-text,
+.detail-page .description-text {
+    font-size: calc(1.2rem * var(--detail-font-scale)) !important;
+}
+
+/* Excursiones (detalle específico) */
+.premium-excursion-detail .excursion-hero-title {
+    font-size: clamp(calc(2.2rem * var(--detail-font-scale)), calc(5vw * var(--detail-font-scale)), calc(3.5rem * var(--detail-font-scale))) !important;
+}
+
+.premium-excursion-detail .excursion-hero-subtitle {
+    font-size: clamp(calc(1.1rem * var(--detail-font-scale)), calc(2vw * var(--detail-font-scale)), calc(1.3rem * var(--detail-font-scale))) !important;
+}
+
+.premium-excursion-detail .excursion-hero-badge {
+    font-size: calc(0.9rem * var(--detail-font-scale)) !important;
+}
+
+.premium-excursion-detail .hero-meta-item {
+    font-size: calc(0.95rem * var(--detail-font-scale)) !important;
+}
+
+.premium-excursion-detail .detail-card-premium .card-header h3 {
+    font-size: calc(1.35rem * var(--detail-font-scale)) !important;
+}
+
+.premium-excursion-detail .detail-card-premium .description-text {
+    font-size: calc(1.05rem * var(--detail-font-scale)) !important;
+}
+
+.premium-excursion-detail .info-label {
+    font-size: calc(0.8rem * var(--detail-font-scale)) !important;
+}
+
+.premium-excursion-detail .info-value {
+    font-size: calc(1rem * var(--detail-font-scale)) !important;
+}
+
+/* ===============================
+   MODO FANÁTICO - DETALLE DE PAQUETES
+   =============================== */
+
+.modo-fanatico-detail .package-embedded-detail {
+    background: linear-gradient(180deg, #ffffff 0%, #f7f5ff 100%);
+    border: 1px solid rgba(112, 0, 235, 0.12);
+}
+
+.modo-fanatico-detail .fanatico-detail-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.9fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.modo-fanatico-detail .fanatico-detail-main,
+.modo-fanatico-detail .fanatico-detail-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.modo-fanatico-detail .fanatico-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.modo-fanatico-detail .fanatico-summary-item {
+    background: linear-gradient(135deg, rgba(248, 250, 255, 0.9), rgba(238, 242, 255, 0.6));
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid rgba(203, 215, 244, 0.4);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.modo-fanatico-detail .fanatico-summary-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.modo-fanatico-detail .fanatico-summary-value {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--violet-900);
+}
+
+.modo-fanatico-detail .fanatico-price-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modo-fanatico-detail .fanatico-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid rgba(203, 215, 244, 0.4);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.modo-fanatico-detail .fanatico-price-date {
+    font-weight: 600;
+    color: var(--violet-700);
+    font-size: 0.95rem;
+}
+
+.modo-fanatico-detail .fanatico-price-amount {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.modo-fanatico-detail .fanatico-price-amount.is-muted {
+    color: #94a3b8;
+}
+
+.modo-fanatico-detail .fanatico-price-note {
+    margin-top: 14px;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.modo-fanatico-detail .fanatico-excludes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modo-fanatico-detail .fanatico-excludes-list li {
+    padding: 12px 16px;
+    background: rgba(255, 245, 245, 0.9);
+    border-radius: 12px;
+    border: 1px solid rgba(248, 113, 113, 0.25);
+    color: #991b1b;
+    font-weight: 500;
+}
+
+.modo-fanatico-detail .fanatico-markdown h2 {
+    font-size: 1.35rem;
+    color: var(--violet-900);
+    margin: 0 0 12px 0;
+}
+
+.modo-fanatico-detail .fanatico-markdown h3 {
+    font-size: 1.1rem;
+    color: var(--violet-800);
+    margin: 20px 0 10px;
+}
+
+.modo-fanatico-detail .fanatico-markdown p {
+    color: #475569;
+    margin: 0 0 14px 0;
+    line-height: 1.8;
+}
+
+.modo-fanatico-detail .fanatico-markdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modo-fanatico-detail .fanatico-markdown ul li {
+    background: linear-gradient(135deg, rgba(248, 250, 255, 0.9), rgba(238, 242, 255, 0.5));
+    border-radius: 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(203, 215, 244, 0.4);
+    color: #475569;
+}
+
+.modo-fanatico-detail .fanatico-cta {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (max-width: 1100px) {
+    .modo-fanatico-detail .fanatico-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .modo-fanatico-detail .fanatico-summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .modo-fanatico-detail .package-embedded-detail {
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+
+    .modo-fanatico-detail .fanatico-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .modo-fanatico-detail .fanatico-detail-sidebar {
+        order: -1;
+    }
+
+    .modo-fanatico-detail .detail-card-premium {
+        padding: 22px;
+        border-radius: 16px;
+    }
+
+    .modo-fanatico-detail .detail-card-premium .card-header {
+        gap: 12px;
+        padding-bottom: 16px;
+        margin-bottom: 18px;
+    }
+
+    .modo-fanatico-detail .fanatico-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modo-fanatico-detail .fanatico-price-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .modo-fanatico-detail .fanatico-markdown h2 {
+        font-size: 1.2rem;
+    }
+
+    .modo-fanatico-detail .fanatico-markdown h3 {
+        font-size: 1rem;
+    }
+
+    .modo-fanatico-detail .detail-list--timeline {
+        padding-left: 0;
+        gap: 14px !important;
+    }
+
+    .modo-fanatico-detail .detail-list--timeline::before {
+        left: 14px;
+        width: 2px !important;
+    }
+
+    .modo-fanatico-detail .detail-list--timeline li {
+        padding: 16px 16px 16px 52px !important;
+        border-radius: 14px !important;
+        transform: none !important;
+    }
+
+    .modo-fanatico-detail .detail-list--timeline li::before {
+        left: 2px;
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 0.75rem !important;
+        box-shadow: 0 4px 12px rgba(147, 51, 234, 0.25) !important;
+    }
+
+    .modo-fanatico-detail .fanatico-excludes-list li {
+        padding: 12px 14px;
+    }
+
+    .modo-fanatico-detail .fanatico-cta {
+        margin-top: 32px;
+        padding: 0 6px;
+    }
+}
+
+.premium-excursion-detail .related-description {
+    font-size: calc(0.95rem * var(--detail-font-scale)) !important;
+}

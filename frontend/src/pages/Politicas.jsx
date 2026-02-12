@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Politicas() {
   const lastUpdated = new Date().toLocaleDateString("es-AR");
 
@@ -231,6 +233,22 @@ export default function Politicas() {
             </li>
           </ol>
         </article>
+
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+          <Link to="/" className="cta-button" style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            background: "#2b5bff", // Using a solid color as requested implicitly by reverting styles, but ensuring visibility
+            color: "white",
+            padding: "12px 24px"
+          }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+              <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            Volver al inicio
+          </Link>
+        </div>
       </section>
     </main>
   );

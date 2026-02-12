@@ -1,0 +1,80 @@
+/* ===============================
+   CORRECCIONES DE CARDS
+   Eliminar overlays y mejorar visibilidad
+   =============================== */
+
+/* Asegurar que no haya overlays oscuros en el contenido blanco */
+.destination-card .tile-content,
+.offer-card .card-body,
+.excursion-card .card-body,
+.package-card .card-body {
+    position: relative;
+    background: white !important;
+    z-index: 2;
+}
+
+/* Eliminar cualquier pseudo-elemento que pueda oscurecer */
+.destination-card .tile-content::before,
+.destination-card .tile-content::after,
+.offer-card .card-body::before,
+.offer-card .card-body::after {
+    display: none !important;
+}
+
+/* Mejorar visibilidad del CTA en hover */
+.destination-card .card-cta {
+    color: var(--violet-700) !important;
+    font-weight: 700;
+}
+
+.destination-card:hover .card-cta {
+    color: var(--violet-900) !important;
+}
+
+.destination-card:hover .card-cta::before {
+    color: var(--violet-900) !important;
+}
+
+/* Mejorar visibilidad del título en hover - mantener oscuro */
+.destination-card:hover h4 {
+    color: var(--text) !important;
+}
+
+/* Asegurar que el meta text sea visible */
+.destination-meta {
+    color: #64748b !important;
+}
+
+/* Eliminar cualquier overlay de las cards en general */
+.destination-card>*:not(.tile-image):not(.tile-content)::before,
+.destination-card>*:not(.tile-image):not(.tile-content)::after {
+    display: none !important;
+}
+
+/* Asegurar fondo blanco limpio en todas las cards */
+.tile-content,
+.card-body,
+.offer-body,
+.package-body {
+    background: #ffffff !important;
+}
+
+/* Mejorar contraste de textos */
+.card-cta,
+.cta-link,
+.view-more {
+    color: var(--violet-700) !important;
+    font-weight: 700 !important;
+}
+
+.card-cta:hover,
+.cta-link:hover,
+.view-more:hover {
+    color: var(--violet-900) !important;
+}
+
+/* Eliminar sombras internas que puedan oscurecer */
+.destination-card .tile-content,
+.offer-card .card-body {
+    box-shadow: none !important;
+}

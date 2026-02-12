@@ -1,0 +1,515 @@
+/* ==============================
+   SEARCH RESULTS PAGE - PREMIUM REDESIGN
+   Diseño moderno, animaciones fluidas y estética premium
+   ============================== */
+
+.search-results-page-new {
+    min-height: 100vh;
+    background: #f8f9fd;
+    /* Fondo más limpio */
+    padding-bottom: 80px;
+    font-family: 'Manrope', sans-serif;
+}
+
+/* ==============================
+   HEADER CON GRADIENTE ANIMADO
+   ============================== */
+
+.search-results-header-top {
+    background: linear-gradient(-45deg, #3a1c71, #d76d77, #ffaf7b);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    /* Fallback a un gradiente premium sólido si la animación es mucho */
+    background: linear-gradient(135deg, #4A00E0 0%, #8E2DE2 100%);
+
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    color: white;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.back-to-home-btn {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-to-home-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.back-to-home-btn:hover {
+    background: #ffffff;
+    color: #4A00E0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-home-btn:hover svg {
+    transform: translateX(-4px);
+}
+
+.search-results-header-top h1 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ==============================
+   FILTRO HORIZONTAL FLOTANTE
+   ============================== */
+
+.search-filter-horizontal {
+    background: #ffffff;
+    padding: 24px 32px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    /* Sombra suave */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* Sidebar tiene que estar debajo si hubiera */
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.search-form-horizontal {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    align-items: end;
+}
+
+.filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-field label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8E2DE2;
+    /* Color acento */
+    margin-left: 4px;
+}
+
+.filter-field select,
+.filter-field input {
+    padding: 14px 20px;
+    border: 2px solid #eff0f6;
+    border-radius: 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2d3748;
+    background: #fcfdff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.filter-field select:hover,
+.filter-field input:hover {
+    border-color: #d6bbfb;
+    background: #ffffff;
+}
+
+.filter-field select:focus,
+.filter-field input:focus {
+    outline: none;
+    border-color: #8E2DE2;
+    box-shadow: 0 0 0 4px rgba(142, 45, 226, 0.15);
+    background: #ffffff;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 12px;
+    align-items: end;
+}
+
+.btn-search,
+.btn-clear {
+    padding: 14px 28px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-search {
+    background: linear-gradient(135deg, #4A00E0 0%, #8E2DE2 100%);
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(74, 0, 224, 0.25);
+}
+
+.btn-search:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(74, 0, 224, 0.35);
+}
+
+.btn-search:active {
+    transform: translateY(-1px);
+}
+
+.btn-clear {
+    background: #ffffff;
+    color: #64748b;
+    border: 2px solid #eff0f6;
+}
+
+.btn-clear:hover {
+    background: #f8f9fd;
+    border-color: #cbd5e1;
+    color: #1e293b;
+}
+
+/* ==============================
+   CONTADOR DE RESULTADOS
+   ============================== */
+
+.results-count {
+    max-width: 1400px;
+    margin: 40px auto 20px;
+    padding: 0 32px;
+}
+
+.results-count h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    letter-spacing: -0.5px;
+}
+
+.count-badge {
+    background: #8E2DE2;
+    color: #ffffff;
+    padding: 4px 14px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(142, 45, 226, 0.3);
+}
+
+/* ==============================
+   CONTENEDOR Y GRID
+   ============================== */
+
+.search-results-container {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 10px;
+    /* Para que la sombra no se corte al hover */
+}
+
+@media (max-width: 1100px) {
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ANIMA CADA CARD INDIVIDUALMENTE CON STAGGER (NECESITA SOPORTE JS O SIMPLEMENTE CSS GENERICO) */
+.results-grid>* {
+    animation: fadeInUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+/* Hardcodeado para las primeras 10 cards para dar efecto cascada */
+.results-grid>*:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.results-grid>*:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.results-grid>*:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.results-grid>*:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.results-grid>*:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.results-grid>*:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================
+   CARDS PREMIUM
+   ============================== */
+
+/* Reset de estilos base para asegurar personalización */
+.search-results-page-new .tile,
+.search-results-page-new .destination-card,
+/* Asegurar precedencia */
+.search-results-page-new .salidas-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 24px;
+    /* Bordes más redondeados */
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+    /* Sombra elegante por defecto */
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    height: 100%;
+}
+
+.search-results-page-new .tile:hover {
+    transform: translateY(-12px) scale(1.01);
+    box-shadow: 0 25px 50px -12px rgba(50, 50, 93, 0.25);
+    /* Sombra profunda al hover */
+    z-index: 10;
+}
+
+/* IMAGEN */
+.search-results-page-new .tile-image {
+    height: 240px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Zoom effect on image hover */
+.search-results-page-new .tile-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+    transition: opacity 0.3s ease;
+}
+
+.search-results-page-new .tile:hover .tile-image {
+    /* No aplicamos transform a la imagen si es background-image, pero si fuera img tag si.
+       Como es background-image, usaremos un pseudo-elemento si quisieramos zoom, pero
+       por simplicidad, dejaremos el card lift.
+       Si quieres animar el background-size es costoso, mejor el lift de la card.
+    */
+}
+
+/* CONTENIDO */
+.search-results-page-new .tile-content {
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+/* ETIIQUETA META (PAIS/REGION) */
+.search-results-page-new .destination-meta {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    color: #8E2DE2;
+    background: rgba(142, 45, 226, 0.08);
+    padding: 6px 12px;
+    border-radius: 8px;
+    align-self: start;
+    margin-bottom: 4px;
+}
+
+/* TITULO */
+.search-results-page-new .tile-content h4 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin: 0;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.search-results-page-new .tile:hover .tile-content h4 {
+    color: #4A00E0;
+    /* Color primario al hover */
+}
+
+/* DESCRIPCION */
+.search-results-page-new .offer-card-description,
+.search-results-page-new .destination-description {
+    font-size: 0.95rem;
+    color: #718096;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+    /* Empuja el botón hacia abajo */
+}
+
+/* TRANSPORTE INFO */
+.search-results-page-new .offer-card-transport {
+    font-size: 0.9rem;
+    color: #4a5568;
+    background: #f7fafc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* BOTON CTA */
+.search-results-page-new .card-cta {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #4A00E0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.3s ease;
+}
+
+.search-results-page-new .tile:hover .card-cta {
+    gap: 10px;
+    text-decoration: underline;
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+@media (max-width: 1024px) {
+    .search-results-header-top h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-results-header-top {
+        padding: 30px 20px;
+        gap: 14px;
+        text-align: center;
+    }
+
+    .search-filter-horizontal {
+        position: relative;
+        /* En movil mejor no sticky si es muy alto */
+        padding: 20px;
+    }
+
+    .search-form-horizontal {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .filter-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-search,
+    .btn-clear {
+        width: 100%;
+    }
+
+    .results-count {
+        margin: 24px auto 16px;
+        padding: 0 16px;
+        text-align: left;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-results-page-new .tile-image {
+        height: 190px;
+    }
+
+    .search-results-page-new .tile-content {
+        padding: 16px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-results-header-top h1 {
+        font-size: 1.7rem;
+    }
+
+    .search-results-page-new .tile-image {
+        height: 180px;
+    }
+}

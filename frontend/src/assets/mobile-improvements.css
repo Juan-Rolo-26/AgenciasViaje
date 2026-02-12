@@ -1,0 +1,446 @@
+/* ===============================
+   MOBILE POLISH - LEGIBILITY FIRST
+   Target: ~360px width (Samsung average)
+   =============================== */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  p,
+  li {
+    line-height: 1.65;
+  }
+
+  .section-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .section-header-row .secondary {
+    width: auto;
+  }
+
+  .grid.grid-3x3,
+  .offer-grid.grid-3x3,
+  .destination-grid.grid-3x3,
+  .results-grid,
+  .section-grid,
+  .excursions-grid-premium,
+  .packages-grid-premium {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .destination-card,
+  .offer-card,
+  .deal-card,
+  .salidas-card {
+    height: auto;
+  }
+
+  .destination-card .tile-image,
+  .offers-page .salidas-card .tile-image,
+  .offer-card-image {
+    height: 220px;
+  }
+
+  .offers-page .salidas-card .tile-image {
+    height: 230px;
+  }
+
+  .destination-card .tile-content,
+  .offers-page .salidas-card .tile-content {
+    padding: 18px 20px 20px;
+  }
+
+  .card-cta,
+  .offers-page .salidas-card .card-cta {
+    font-size: 0.95rem;
+  }
+
+  /* Carousels: disable auto-scroll and enable swipe */
+  .destination-carousel,
+  .offer-carousel,
+  .excursion-carousel {
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+  }
+
+  .destination-track,
+  .offer-track,
+  .excursion-track {
+    animation: none;
+    padding: 0 5vw 6px;
+    gap: 14px;
+  }
+
+  .destination-track .destination-card,
+  .offer-track .offer-card,
+  .excursion-track .tile,
+  .offer-track .salidas-card-compact {
+    flex: 0 0 82%;
+    max-width: 82%;
+    scroll-snap-align: start;
+  }
+
+  /* Home hero / search */
+  .hero {
+    padding: 32px 6vw 40px;
+  }
+
+  .hero-text h1 {
+    font-size: clamp(26px, 7vw, 36px);
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .premium-filter {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 26px;
+    width: 100%;
+  }
+
+  .filter-card {
+    width: 100%;
+    min-height: 84px;
+    height: auto;
+    padding: 12px 16px;
+    border-radius: 22px;
+  }
+
+  .filter-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+
+  .filter-card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .filter-card-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+
+  .filter-card-input {
+    font-size: 1.1rem;
+  }
+
+  .filter-button {
+    width: 100%;
+    height: 56px;
+    border-radius: 18px;
+    font-size: 1rem;
+  }
+
+  /* Offers / Destinations filters */
+  .destinations-filters,
+  .offers-filters {
+    padding: 16px !important;
+    gap: 14px !important;
+  }
+
+  .destinations-field,
+  .offers-field {
+    width: 100% !important;
+  }
+
+  .destinations-actions,
+  .offers-actions {
+    width: 100% !important;
+    flex-direction: column;
+  }
+
+  .destinations-actions .primary,
+  .destinations-actions .secondary,
+  .offers-actions button {
+    width: 100%;
+    height: 52px;
+  }
+
+  /* Detail pages */
+  .destination-hero {
+    min-height: 360px;
+    margin: -16px -5vw 0;
+    border-radius: 0 0 22px 22px;
+  }
+
+  .destination-hero-card {
+    width: min(94%, 520px);
+    padding: 18px 18px 20px;
+  }
+
+  .destination-hero-card h1 {
+    font-size: clamp(24px, 6.5vw, 34px);
+  }
+
+  .destination-summary {
+    margin: 16px auto 0;
+    padding: 20px;
+  }
+
+  .destination-summary::before,
+  .destination-summary::after {
+    opacity: 0.25;
+  }
+
+  /* Package cards */
+  .package-card-image,
+  .package-card-header {
+    height: 220px;
+  }
+
+  .package-title {
+    font-size: 1.3rem !important;
+  }
+
+  .package-card-body,
+  .package-card-footer {
+    padding: 18px 20px !important;
+  }
+
+  .package-dates-list {
+    max-height: 200px;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 40px 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 28px 5vw 36px;
+  }
+
+  .destination-card .tile-image,
+  .offers-page .salidas-card .tile-image,
+  .offer-card-image {
+    height: 200px;
+  }
+
+  .destination-track .destination-card,
+  .offer-track .offer-card,
+  .excursion-track .tile,
+  .offer-track .salidas-card-compact {
+    flex: 0 0 88%;
+    max-width: 88%;
+  }
+
+  .destination-hero {
+    min-height: 320px;
+  }
+}
+
+/* ===============================
+   MOBILE GLOBAL POLISH
+   =============================== */
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  main {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+
+  .nav-main {
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-item {
+    padding: 12px 16px;
+  }
+
+  .nav-dropdown {
+    padding-left: 24px;
+  }
+
+  .nav-cta .cta-button {
+    height: 52px;
+  }
+
+  .page-hero,
+  .offers-hero,
+  .destinations-hero,
+  .docs-hero-premium {
+    padding: 36px 6vw;
+  }
+
+  .page-hero h1,
+  .offers-hero h1,
+  .docs-hero-title {
+    font-size: clamp(26px, 6vw, 34px);
+  }
+
+  .page-hero p,
+  .offers-hero p,
+  .docs-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .search-results-header-top {
+    padding: 28px 18px;
+    gap: 14px;
+    text-align: center;
+  }
+
+  .search-results-header-top h1 {
+    font-size: 1.9rem;
+  }
+
+  .search-filter-horizontal {
+    padding: 14px 16px;
+  }
+
+  .search-form-horizontal {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-search,
+  .btn-clear {
+    width: 100%;
+  }
+
+  .results-count {
+    margin: 24px auto 16px;
+    padding: 0 16px;
+  }
+
+  .search-results-page-new .tile-image {
+    height: 190px;
+  }
+
+  .search-results-page-new .tile-content {
+    padding: 16px 18px;
+  }
+
+  .detail-grid,
+  .detail-page .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .detail-table-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .detail-cta {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .detail-whatsapp {
+    width: 100%;
+  }
+
+  .calendar-panel {
+    padding: 1rem;
+  }
+
+  .calendar-days-grid {
+    gap: 6px;
+  }
+
+  .calendar-day {
+    min-height: 56px;
+    padding: 8px;
+  }
+
+  .calendar-month-offers {
+    padding: 16px;
+  }
+
+  .assistant-panel {
+    width: 94vw;
+    height: 70vh;
+    right: 3vw;
+  }
+
+  .assistant-panel-body {
+    padding: 12px;
+  }
+
+  .assistant-panel-input {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .assistant-panel-input input,
+  .assistant-panel-send {
+    width: 100%;
+  }
+
+  .complaint-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .complaint-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: clamp(24px, 7vw, 30px);
+  }
+
+  .package-card-image,
+  .package-card-header {
+    height: 200px;
+  }
+
+  .offer-card-feature .offer-image {
+    height: 200px;
+  }
+
+  .assistant-fab {
+    bottom: 18px;
+    right: 18px;
+  }
+
+  .assistant-panel {
+    height: 75vh;
+  }
+}

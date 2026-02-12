@@ -1,0 +1,447 @@
+/* ===============================
+   ANIMACIONES DE ENTRADA GLOBALES
+   Transiciones suaves y profesionales
+   =============================== */
+
+/* Keyframes para diferentes tipos de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   APLICAR ANIMACIONES GLOBALMENTE
+   =============================== */
+
+/* Secciones principales */
+section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Headers de secciones */
+.section-header,
+.page-header,
+.hero-text {
+    animation: fadeInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tarjetas con entrada escalonada */
+.destination-card,
+.offer-card,
+.excursion-card,
+.package-card,
+.region-card,
+.local-destination-card {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+/* Delays escalonados para tarjetas */
+.destination-card:nth-child(1),
+.offer-card:nth-child(1),
+.excursion-card:nth-child(1),
+.package-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.destination-card:nth-child(2),
+.offer-card:nth-child(2),
+.excursion-card:nth-child(2),
+.package-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.destination-card:nth-child(3),
+.offer-card:nth-child(3),
+.excursion-card:nth-child(3),
+.package-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.destination-card:nth-child(4),
+.offer-card:nth-child(4),
+.excursion-card:nth-child(4),
+.package-card:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.destination-card:nth-child(5),
+.offer-card:nth-child(5),
+.excursion-card:nth-child(5),
+.package-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.destination-card:nth-child(6),
+.offer-card:nth-child(6),
+.excursion-card:nth-child(6),
+.package-card:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+/* Grids y contenedores */
+.destinations-grid,
+.offers-grid,
+.excursions-grid,
+.packages-grid,
+.regions-grid {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Formularios */
+.form-field,
+.filter-card {
+    animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.form-field:nth-child(1),
+.filter-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.form-field:nth-child(2),
+.filter-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.form-field:nth-child(3),
+.filter-card:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.form-field:nth-child(4),
+.filter-card:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.form-field:nth-child(5),
+.filter-card:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+/* Botones */
+button,
+.btn,
+.cta-button,
+.form-button {
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+    animation-delay: 0.3s;
+}
+
+/* Imágenes */
+img {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Hero sections */
+.hero {
+    animation: fadeIn 1s ease-out;
+}
+
+.hero-background {
+    animation: scaleIn 1.2s ease-out;
+}
+
+/* Complaint section */
+.complaint-card {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.complaint-info {
+    animation: fadeInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-delay: 0.2s;
+    animation-fill-mode: backwards;
+}
+
+/* Travel docs */
+.travel-doc-card {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.travel-doc-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.travel-doc-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.travel-doc-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Tablas y listas */
+table,
+.table-wrapper {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+tbody tr {
+    animation: fadeInLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+tbody tr:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+tbody tr:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+tbody tr:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+tbody tr:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+tbody tr:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+/* Footer */
+.site-footer {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.footer-column {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.footer-column:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.footer-column:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.footer-column:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.footer-column:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Modales y overlays */
+.modal,
+.overlay {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Navegación */
+.site-header {
+    animation: fadeInDown 0.6s ease-out;
+}
+
+nav ul li {
+    animation: fadeInDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+nav ul li:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+nav ul li:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+nav ul li:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+nav ul li:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+nav ul li:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+nav ul li:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+nav ul li:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+/* Detalles de ofertas/destinos */
+.detail-hero {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.detail-content {
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-delay: 0.2s;
+    animation-fill-mode: backwards;
+}
+
+.detail-sidebar {
+    animation: fadeInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-delay: 0.3s;
+    animation-fill-mode: backwards;
+}
+
+/* Badges y etiquetas */
+.badge,
+.tag,
+.label {
+    animation: scaleIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+/* Galería de imágenes */
+.gallery-item {
+    animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.gallery-item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.gallery-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.gallery-item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.gallery-item:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.gallery-item:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.gallery-item:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+/* ===============================
+   RESPONSIVE - Reducir animaciones en móvil
+   =============================== */
+
+@media (max-width: 768px) {
+
+    /* Reducir delays en móvil para carga más rápida */
+    .destination-card,
+    .offer-card,
+    .excursion-card,
+    .package-card,
+    .form-field,
+    .filter-card,
+    nav ul li,
+    tbody tr,
+    .footer-column,
+    .gallery-item,
+    .travel-doc-card {
+        animation-delay: 0s !important;
+    }
+
+    /* Animaciones más cortas en móvil */
+    section,
+    .section-header,
+    .destination-card,
+    .offer-card {
+        animation-duration: 0.4s !important;
+    }
+}
+
+/* ===============================
+   ACCESIBILIDAD - Respetar preferencias
+   =============================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

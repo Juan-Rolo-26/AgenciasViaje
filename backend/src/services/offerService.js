@@ -27,6 +27,7 @@ async function listOfertas({ activas = true, lite = false } = {}) {
         condiciones: true,
         destacada: true,
         activa: true,
+        tipo: true,
         orden: true,
         destino: {
           select: {

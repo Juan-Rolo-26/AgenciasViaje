@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import Asistencia from "./pages/Asistencia.jsx";
 import Argentina from "./pages/Argentina.jsx";
 import Calendario from "./pages/Calendario.jsx";
@@ -15,9 +16,10 @@ import Politicas from "./pages/Politicas.jsx";
 import Documentacion from "./pages/Documentacion.jsx";
 import ModoFanatico from "./pages/ModoFanatico.jsx";
 import ModoFanaticoDetail from "./pages/ModoFanaticoDetail.jsx";
+import SearchResults from "./pages/SearchResults.jsx";
 import WebEnDesarrollo from "./pages/WebEnDesarrollo.jsx";
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 export default function App() {
   if (MAINTENANCE_MODE) {
@@ -27,22 +29,23 @@ export default function App() {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route index element={<Home />} />
-        <Route path="argentina" element={<Argentina />} />
-        <Route path="cordoba" element={<Cordoba />} />
-        <Route path="destinos" element={<Destinos />} />
-        <Route path="destinos/:slug" element={<DestinoDetail />} />
-        <Route path="ofertas" element={<Ofertas />} />
-        <Route path="ofertas/:slug" element={<OfertaDetail />} />
-        <Route path="excursiones" element={<Excursiones />} />
-        <Route path="excursiones/:slug" element={<ExcursionDetail />} />
-        <Route path="modo-fanatico" element={<ModoFanatico />} />
-        <Route path="modo-fanatico/:slug" element={<ModoFanaticoDetail />} />
-        <Route path="calendario" element={<Calendario />} />
-        <Route path="asistencia" element={<Asistencia />} />
-        <Route path="politicas" element={<Politicas />} />
-        <Route path="documentacion" element={<Documentacion />} />
-        <Route path="*" element={<Home />} />
+        <Route index element={<><ScrollToTop /><Home /></>} />
+        <Route path="argentina" element={<><ScrollToTop /><Argentina /></>} />
+        <Route path="cordoba" element={<><ScrollToTop /><Cordoba /></>} />
+        <Route path="destinos" element={<><ScrollToTop /><Destinos /></>} />
+        <Route path="destinos/:slug" element={<><ScrollToTop /><DestinoDetail /></>} />
+        <Route path="ofertas" element={<><ScrollToTop /><Ofertas /></>} />
+        <Route path="ofertas/:slug" element={<><ScrollToTop /><OfertaDetail /></>} />
+        <Route path="excursiones" element={<><ScrollToTop /><Excursiones /></>} />
+        <Route path="excursiones/:slug" element={<><ScrollToTop /><ExcursionDetail /></>} />
+        <Route path="modo-fanatico" element={<><ScrollToTop /><ModoFanatico /></>} />
+        <Route path="modo-fanatico/:slug" element={<><ScrollToTop /><ModoFanaticoDetail /></>} />
+        <Route path="calendario" element={<><ScrollToTop /><Calendario /></>} />
+        <Route path="asistencia" element={<><ScrollToTop /><Asistencia /></>} />
+        <Route path="politicas" element={<><ScrollToTop /><Politicas /></>} />
+        <Route path="documentacion" element={<><ScrollToTop /><Documentacion /></>} />
+        <Route path="busqueda" element={<><ScrollToTop /><SearchResults /></>} />
+        <Route path="*" element={<><ScrollToTop /><Home /></>} />
       </Route>
     </Routes>
   );

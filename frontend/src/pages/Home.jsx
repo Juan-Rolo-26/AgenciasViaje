@@ -1,18 +1,55 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import logo from "../assets/logo.png";
 import ComplaintSection from "../components/ComplaintSection.jsx";
+import CustomSelect from "../components/CustomSelect.jsx";
+import SearchLoadingAnimation from "../components/SearchLoadingAnimation.jsx";
 import { useTravelData } from "../hooks/useTravelData.js";
 import { getExcursionGallery } from "../utils/excursionGallery.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
+import "../assets/search-button-premium.css";
+import "../assets/filter-extra-large.css";
+import "../assets/salidas-compact.css";
+import "../assets/continents-section.css";
 
 const CONTINENTS = [
   { id: "america", label: "America" },
   { id: "europa", label: "Europa" },
   { id: "asia", label: "Asia" },
   { id: "africa", label: "Africa" }
+];
+
+const CONTINENT_DATA = [
+  {
+    id: "america",
+    name: "América",
+    description: "Playas paradisíacas, ciudades vibrantes y naturaleza salvaje",
+    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    alt: "Playa tropical en el Caribe"
+  },
+  {
+    id: "europa",
+    name: "Europa",
+    description: "Historia milenaria, arte y arquitectura incomparable",
+    image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
+    alt: "Coliseo Romano al atardecer"
+  },
+  {
+    id: "asia",
+    name: "Asia",
+    description: "Cultura milenaria, templos místicos y paisajes exóticos",
+    image: "https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&q=80",
+    alt: "Templos y paisajes asiáticos"
+  },
+  {
+    id: "africa",
+    name: "África",
+    description: "Safaris únicos, wildlife y aventuras inolvidables",
+    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80",
+    alt: "Safari africano con jirafas"
+  }
 ];
 
 const HERO_IMAGES = [
@@ -67,16 +104,54 @@ const CONTINENT_BY_COUNTRY = {
   Alemania: "europa",
   "Países Bajos": "europa",
   "República Checa": "europa",
-  España: "europa"
+  España: "europa",
+  Bolivia: "america",
+  Aruba: "america",
+  Curazao: "america",
+  Panamá: "america",
+  Australia: "asia"
 };
 
 export default function Home() {
+  const navigate = useNavigate();
   const { destinos, ofertas, actividades, loading, error } = useTravelData();
   const destinosNoArgentina = useMemo(
     () => destinos.filter((destino) => destino.paisRegion !== "Argentina"),
     [destinos]
   );
-  const salidasDisponibles = useMemo(() => [], []);
+  const [isSearching, setIsSearching] = useState(false);
+
+  // Función para manejar la búsqueda
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    // Mostrar animación de carga
+    setIsSearching(true);
+
+    // Después de 4 segundos, navegar a resultados
+    setTimeout(() => {
+      const params = new URLSearchParams();
+      params.append("type", searchType);
+      if (searchDestino) params.append("destino", searchDestino);
+      if (searchRegion) params.append("region", searchRegion);
+      if (searchPais) params.append("pais", searchPais);
+      if (searchText) params.append("text", searchText);
+      if (searchDate) params.append("date", searchDate);
+      if (searchTransporte) params.append("transporte", searchTransporte);
+
+      navigate(`/busqueda?${params.toString()}`);
+      setIsSearching(false);
+    }, 4000);
+  };
+
+  // Filtrar salidas grupales
+  const salidasDisponibles = useMemo(() => {
+    return ofertas.filter((oferta) => oferta.tipo === "grupal");
+  }, [ofertas]);
+
+  const paquetesDisponibles = useMemo(() => {
+    return ofertas;
+  }, [ofertas]);
   const heroImages = useMemo(
     () => HERO_IMAGES.map((image) => resolveAssetUrl(image)),
     []
@@ -148,6 +223,16 @@ export default function Home() {
     });
     return Array.from(titles).sort((a, b) => a.localeCompare(b));
   }, [salidasDisponibles]);
+
+  const paquetesTitles = useMemo(() => {
+    const titles = new Set();
+    paquetesDisponibles.forEach((oferta) => {
+      if (oferta.titulo) {
+        titles.add(oferta.titulo);
+      }
+    });
+    return Array.from(titles).sort((a, b) => a.localeCompare(b));
+  }, [paquetesDisponibles]);
 
   const regionesDisponibles = useMemo(() => {
     const continents = new Set();
@@ -245,8 +330,7 @@ export default function Home() {
       (item) => (item.tipo || "").toLowerCase() === "transporte"
     );
     const texto = normalizeText(
-      `${transporteItem?.descripcion || ""} ${transporteItem?.tipo || ""} ${
-        oferta.condiciones || ""
+      `${transporteItem?.descripcion || ""} ${transporteItem?.tipo || ""} ${oferta.condiciones || ""
       } ${oferta.titulo || ""}`
     ).trim();
     if (
@@ -322,10 +406,41 @@ export default function Home() {
           );
         const matchesDate = selectedDate
           ? (oferta.precios || []).some((precio) => {
-              const inicio = new Date(precio.fechaInicio);
-              const fin = new Date(precio.fechaFin);
-              return selectedDate >= inicio && selectedDate <= fin;
-            })
+            const inicio = new Date(precio.fechaInicio);
+            const fin = new Date(precio.fechaFin);
+            return selectedDate >= inicio && selectedDate <= fin;
+          })
+          : true;
+        const matchesTransporte = transporteQuery
+          ? getTransportType(oferta) === transporteQuery
+          : true;
+        return matchesName && matchesText && matchesDate && matchesTransporte;
+      });
+    }
+
+    if (searchType === "paquete") {
+      return paquetesDisponibles.filter((oferta) => {
+        const destinosAsociados = [
+          oferta.destino,
+          ...(oferta.destinos || []).map((item) => item.destino)
+        ].filter(Boolean);
+        const matchesName =
+          !destinoQuery ||
+          destinosAsociados.some((destino) =>
+            matchesDestino(destino.nombre)
+          );
+        const matchesText =
+          !textQuery ||
+          oferta.titulo.toLowerCase().includes(textQuery) ||
+          destinosAsociados.some((destino) =>
+            destino.nombre.toLowerCase().includes(textQuery)
+          );
+        const matchesDate = selectedDate
+          ? (oferta.precios || []).some((precio) => {
+            const inicio = new Date(precio.fechaInicio);
+            const fin = new Date(precio.fechaFin);
+            return selectedDate >= inicio && selectedDate <= fin;
+          })
           : true;
         const matchesTransporte = transporteQuery
           ? getTransportType(oferta) === transporteQuery
@@ -356,6 +471,7 @@ export default function Home() {
     actividades,
     destinosNoArgentina,
     salidasDisponibles,
+    paquetesDisponibles,
     searchDate,
     searchDestino,
     searchRegion,
@@ -445,20 +561,26 @@ export default function Home() {
     searchType === "destino"
       ? "Destinos"
       : searchType === "oferta"
-      ? "Salidas grupales"
-      : "Excursiones Córdoba";
+        ? "Salidas grupales"
+        : searchType === "paquete"
+          ? "Paquetes"
+          : "Excursiones Córdoba";
   const searchButtonLabel =
     searchType === "destino"
       ? "Buscar destinos"
       : searchType === "oferta"
-      ? "Buscar salidas grupales"
-      : "Buscar excursiones";
+        ? "Buscar salidas grupales"
+        : searchType === "paquete"
+          ? "Buscar paquetes"
+          : "Buscar excursiones";
   const searchLink =
     searchType === "destino"
       ? "/destinos"
       : searchType === "oferta"
-      ? "/ofertas?seccion=salidas-grupales"
-      : "/cordoba";
+        ? "/ofertas?seccion=salidas-grupales"
+        : searchType === "paquete"
+          ? "/ofertas"
+          : "/cordoba";
   const searchSubtitle = "Resultados según tu búsqueda.";
   const totalResults = searchResults.length;
   const currentResult = totalResults
@@ -530,9 +652,8 @@ export default function Home() {
           aria-hidden="true"
         ></div>
         <div
-          className={`hero-content${
-            searchType === "oferta" ? " hero-content--wide" : ""
-          }`}
+          className={`hero-content${searchType === "oferta" ? " hero-content--wide" : ""
+            }`}
         >
           <div className="hero-text">
             <h1>
@@ -542,12 +663,20 @@ export default function Home() {
           </div>
           <form
             className={`search-bar premium-filter premium-filter-${searchType}`}
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={handleSearch}
           >
             {searchType === "destino" ? (
               <>
-                <div className="filter-card filter-card-select">
-                  <span className="filter-card-icon" aria-hidden="true">
+                <CustomSelect
+                  id="search-region"
+                  label="Continente"
+                  value={searchRegion}
+                  onChange={(event) => setSearchRegion(event.target.value)}
+                  options={regionesDisponibles.map((region) => ({
+                    value: region.id,
+                    label: region.label,
+                  }))}
+                  icon={
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
                         d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6Z"
@@ -564,29 +693,19 @@ export default function Home() {
                         strokeLinejoin="round"
                       />
                     </svg>
-                  </span>
-                  <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-region">
-                      Continente
-                    </label>
-                    <select
-                      id="search-region"
-                      className="filter-card-input"
-                      value={searchRegion}
-                      onChange={(event) => setSearchRegion(event.target.value)}
-                    >
-                      <option value="">Todos</option>
-                      {regionesDisponibles.map((region) => (
-                        <option key={region.id} value={region.id}>
-                          {region.label}
-                        </option>
-                      ))}
-                    </select>
-                    <span className="filter-card-arrow" aria-hidden="true"></span>
-                  </div>
-                </div>
-                <div className="filter-card filter-card-select">
-                  <span className="filter-card-icon" aria-hidden="true">
+                  }
+                  placeholder="Todos"
+                />
+                <CustomSelect
+                  id="search-pais"
+                  label="País"
+                  value={searchPais}
+                  onChange={(event) => setSearchPais(event.target.value)}
+                  options={paisesDisponibles.map((pais) => ({
+                    value: pais,
+                    label: pais,
+                  }))}
+                  icon={
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
                         d="M4 6h16M4 12h16M4 18h16"
@@ -620,29 +739,19 @@ export default function Home() {
                         strokeWidth="2"
                       />
                     </svg>
-                  </span>
-                  <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-pais">
-                      País
-                    </label>
-                    <select
-                      id="search-pais"
-                      className="filter-card-input"
-                      value={searchPais}
-                      onChange={(event) => setSearchPais(event.target.value)}
-                    >
-                      <option value="">Todos</option>
-                      {paisesDisponibles.map((pais) => (
-                        <option key={pais} value={pais}>
-                          {pais}
-                        </option>
-                      ))}
-                    </select>
-                    <span className="filter-card-arrow" aria-hidden="true"></span>
-                  </div>
-                </div>
-                <div className="filter-card filter-card-select">
-                  <span className="filter-card-icon" aria-hidden="true">
+                  }
+                  placeholder="Todos"
+                />
+                <CustomSelect
+                  id="search-destino"
+                  label="Destino"
+                  value={searchDestino}
+                  onChange={(event) => setSearchDestino(event.target.value)}
+                  options={destinosDisponibles.map((destino) => ({
+                    value: destino.nombre,
+                    label: destino.nombre,
+                  }))}
+                  icon={
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path
                         d="M12 22s7-7 7-12a7 7 0 0 0-14 0c0 5 7 12 7 12Z"
@@ -659,29 +768,21 @@ export default function Home() {
                         strokeWidth="2"
                       />
                     </svg>
-                  </span>
-                  <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-destino">
-                      Destino
-                    </label>
-                    <select
-                      id="search-destino"
-                      className="filter-card-input"
-                      value={searchDestino}
-                      onChange={(event) => setSearchDestino(event.target.value)}
-                    >
-                      <option value="">Todos</option>
-                      {destinosDisponibles.map((destino) => (
-                        <option key={destino.id} value={destino.nombre}>
-                          {destino.nombre}
-                        </option>
-                      ))}
-                    </select>
-                    <span className="filter-card-arrow" aria-hidden="true"></span>
-                  </div>
-                </div>
-                <div className="filter-card filter-card-select">
-                  <span className="filter-card-icon" aria-hidden="true">
+                  }
+                  placeholder="Todos"
+                />
+                <CustomSelect
+                  id="search-type"
+                  label="Filtro de búsqueda"
+                  value={searchType}
+                  onChange={(event) => setSearchType(event.target.value)}
+                  options={[
+                    { value: "destino", label: "Destinos" },
+                    { value: "paquete", label: "Paquetes" },
+                    { value: "oferta", label: "Salidas grupales" },
+                    { value: "excursion", label: "Excursiones (Córdoba)" },
+                  ]}
+                  icon={
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <circle
                         cx="11"
@@ -699,29 +800,33 @@ export default function Home() {
                         strokeLinecap="round"
                       />
                     </svg>
-                  </span>
-                  <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-type">
-                      Filtro de búsqueda
-                    </label>
-                    <select
-                      id="search-type"
-                      className="filter-card-input"
-                      value={searchType}
-                      onChange={(event) => setSearchType(event.target.value)}
-                    >
-                      <option value="destino">Destinos</option>
-                      <option value="oferta">Salidas grupales</option>
-                      <option value="excursion">Excursiones (Córdoba)</option>
-                    </select>
-                    <span className="filter-card-arrow" aria-hidden="true"></span>
-                  </div>
-                </div>
+                  }
+                  showPlaceholderOption={false}
+                />
               </>
             ) : (
               <>
-                <div className="filter-card filter-card-select">
-                  <span className="filter-card-icon" aria-hidden="true">
+                <CustomSelect
+                  id="search-text"
+                  label={
+                    searchType === "oferta"
+                      ? "Salidas grupales"
+                      : searchType === "paquete"
+                        ? "Paquetes"
+                        : "Excursión Córdoba"
+                  }
+                  value={searchText}
+                  onChange={(event) => setSearchText(event.target.value)}
+                  options={(searchType === "oferta"
+                    ? ofertasDisponibles
+                    : searchType === "paquete"
+                      ? paquetesTitles
+                      : excursionesDisponibles
+                  ).map((item) => ({
+                    value: item,
+                    label: item,
+                  }))}
+                  icon={
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <circle
                         cx="11"
@@ -739,36 +844,15 @@ export default function Home() {
                         strokeLinecap="round"
                       />
                     </svg>
-                  </span>
-                  <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-text">
-                      {searchType === "oferta"
-                        ? "Salidas grupales"
-                        : "Excursión Córdoba"}
-                    </label>
-                    <select
-                      id="search-text"
-                      className="filter-card-input"
-                      value={searchText}
-                      onChange={(event) => setSearchText(event.target.value)}
-                    >
-                      <option value="">
-                        {searchType === "oferta"
-                          ? "Todas las salidas grupales"
-                          : "Todas las excursiones"}
-                      </option>
-                      {(searchType === "oferta"
-                        ? ofertasDisponibles
-                        : excursionesDisponibles
-                      ).map((item) => (
-                        <option key={item} value={item}>
-                          {item}
-                        </option>
-                      ))}
-                    </select>
-                    <span className="filter-card-arrow" aria-hidden="true"></span>
-                  </div>
-                </div>
+                  }
+                  placeholder={
+                    searchType === "oferta"
+                      ? "Todas las salidas grupales"
+                      : searchType === "paquete"
+                        ? "Todos los paquetes"
+                        : "Todas las excursiones"
+                  }
+                />
                 <div className="filter-card">
                   <span className="filter-card-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -804,9 +888,19 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                {searchType === "oferta" ? (
-                  <div className="filter-card filter-card-select">
-                    <span className="filter-card-icon" aria-hidden="true">
+                {searchType === "oferta" || searchType === "paquete" ? (
+                  <CustomSelect
+                    id="search-transporte"
+                    label="Transporte"
+                    value={searchTransporte}
+                    onChange={(event) =>
+                      setSearchTransporte(event.target.value)
+                    }
+                    options={[
+                      { value: "avion", label: "Avion" },
+                      { value: "bus", label: "Bus" },
+                    ]}
+                    icon={
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <rect
                           x="3"
@@ -841,35 +935,22 @@ export default function Home() {
                           strokeWidth="2"
                         />
                       </svg>
-                    </span>
-                    <div className="filter-card-body">
-                      <label
-                        className="filter-card-label"
-                        htmlFor="search-transporte"
-                      >
-                        Transporte
-                      </label>
-                      <select
-                        id="search-transporte"
-                        className="filter-card-input"
-                        value={searchTransporte}
-                        onChange={(event) =>
-                          setSearchTransporte(event.target.value)
-                        }
-                      >
-                        <option value="">Todos</option>
-                        <option value="avion">Avion</option>
-                        <option value="bus">Bus</option>
-                      </select>
-                      <span
-                        className="filter-card-arrow"
-                        aria-hidden="true"
-                      ></span>
-                    </div>
-                  </div>
+                    }
+                    placeholder="Todos"
+                  />
                 ) : null}
-                <div className="filter-card filter-card-select">
-                  <span className="filter-card-icon" aria-hidden="true">
+                <CustomSelect
+                  id="search-type"
+                  label="Filtro de búsqueda"
+                  value={searchType}
+                  onChange={(event) => setSearchType(event.target.value)}
+                  options={[
+                    { value: "destino", label: "Destinos" },
+                    { value: "paquete", label: "Paquetes" },
+                    { value: "oferta", label: "Salidas grupales" },
+                    { value: "excursion", label: "Excursiones (Córdoba)" },
+                  ]}
+                  icon={
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <circle
                         cx="11"
@@ -887,189 +968,35 @@ export default function Home() {
                         strokeLinecap="round"
                       />
                     </svg>
-                  </span>
-                  <div className="filter-card-body">
-                    <label className="filter-card-label" htmlFor="search-type">
-                      Filtro de búsqueda
-                    </label>
-                    <select
-                      id="search-type"
-                      className="filter-card-input"
-                      value={searchType}
-                      onChange={(event) => setSearchType(event.target.value)}
-                    >
-                      <option value="destino">Destinos</option>
-                      <option value="oferta">Salidas grupales</option>
-                      <option value="excursion">Excursiones (Córdoba)</option>
-                    </select>
-                    <span className="filter-card-arrow" aria-hidden="true"></span>
-                  </div>
-                </div>
+                  }
+                  showPlaceholderOption={false}
+                />
               </>
             )}
 
             <button className="filter-button" type="submit">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="7"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+                <path
+                  d="m20 20-3.5-3.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
               {searchButtonLabel}
             </button>
           </form>
-          {hasSearchFilters ? (
-            <div className="search-results">
-              {loading ? (
-                <p className="section-state">Cargando resultados...</p>
-              ) : error ? (
-                <p className="section-state error">{error}</p>
-              ) : searchResults.length === 0 ? (
-                <p className="section-state">No encontramos resultados.</p>
-              ) : (
-                <div className="search-results-panel">
-                  <div className="search-results-header">
-                    <div>
-                      <span className="search-results-kicker">Resultados</span>
-                      <h3>{searchLabel}</h3>
-                      <p>{searchSubtitle}</p>
-                    </div>
-                    <Link className="secondary" to={searchLink}>
-                      Ver todos
-                    </Link>
-                  </div>
-                  <div className="search-results-carousel">
-                    <button
-                      className={`search-results-nav${
-                        totalResults > 1 ? "" : " is-hidden"
-                      }`}
-                      type="button"
-                      onClick={goPrevResult}
-                      aria-label="Resultado anterior"
-                    >
-                      <svg
-                        className="search-results-nav-icon"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M15 6l-6 6 6 6"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                    {currentResult ? (() => {
-                      if (searchType === "destino") {
-                        const destinoSlug = currentResult.slug || currentResult.id;
-                        return (
-                          <Link
-                            className="tile destination-card search-result-card"
-                            key={`${searchType}-${currentResult.id}`}
-                            to={`/destinos/${destinoSlug}`}
-                          >
-                            <div
-                              className="tile-image"
-                              style={{
-                                backgroundImage: currentResult.imagenPortada
-                                  ? `url("${currentResult.imagenPortada}")`
-                                  : `url("${fallbackDeal}")`
-                              }}
-                            ></div>
-                            <div className="tile-content">
-                              <h4>{currentResult.nombre}</h4>
-                              <span className="destination-meta">
-                                {currentResult.paisRegion || "Destino"}
-                              </span>
-                            </div>
-                          </Link>
-                        );
-                      }
-
-                      if (searchType === "oferta") {
-                        const ofertaSlug = currentResult.slug || currentResult.id;
-                        const offerImages = getOfferImages(currentResult);
-                        const offerImage = offerImages[0] || fallbackDeal;
-                        return (
-                          <Link
-                            className="tile destination-card search-result-card"
-                            key={`${searchType}-${currentResult.id}`}
-                            to={`/ofertas/${ofertaSlug}`}
-                          >
-                            <div
-                              className="tile-image"
-                              style={{
-                                backgroundImage: offerImage
-                                  ? `url("${offerImage}")`
-                                  : `url("${fallbackDeal}")`
-                              }}
-                            ></div>
-                            <div className="tile-content">
-                              <h4>{currentResult.titulo}</h4>
-                              <span className="destination-meta">
-                                {currentResult.destino?.nombre || "Salida"}
-                              </span>
-                            </div>
-                          </Link>
-                        );
-                      }
-
-                      const actividadSlug = currentResult.slug || currentResult.id;
-                      return (
-                        <Link
-                          className="tile destination-card search-result-card"
-                          key={`${searchType}-${currentResult.id}`}
-                          to={`/excursiones/${actividadSlug}`}
-                        >
-                          <div
-                            className="tile-image"
-                            style={{
-                              backgroundImage: currentResult.imagenPortada
-                                ? `url("${currentResult.imagenPortada}")`
-                                : `url("${fallbackDeal}")`
-                            }}
-                          ></div>
-                          <div className="tile-content">
-                            <h4>{currentResult.nombre}</h4>
-                            <span className="destination-meta">
-                              {currentResult.destino?.nombre || "Excursión"}
-                            </span>
-                          </div>
-                        </Link>
-                      );
-                    })() : null}
-                    <button
-                      className={`search-results-nav${
-                        totalResults > 1 ? "" : " is-hidden"
-                      }`}
-                      type="button"
-                      onClick={goNextResult}
-                      aria-label="Siguiente resultado"
-                    >
-                      <svg
-                        className="search-results-nav-icon"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M9 6l6 6-6 6"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  {totalResults > 1 ? (
-                    <div className="search-results-count">
-                      {searchIndex + 1} / {totalResults}
-                    </div>
-                  ) : null}
-                </div>
-              )}
-            </div>
-          ) : null}
         </div>
       </section>
+
+      {isSearching && <SearchLoadingAnimation searchType={searchType} />}
 
       <section className="grid-section">
         <div className="section-header section-header-row">
@@ -1099,11 +1026,11 @@ export default function Home() {
                   destino.descripcionCorta || "Descubrí este destino.";
                 const galeriaImages = Array.isArray(destino.galeria)
                   ? destino.galeria
-                      .map((item) =>
-                        typeof item === "string" ? item : item?.imagen
-                      )
-                      .filter(Boolean)
-                      .slice(0, 2)
+                    .map((item) =>
+                      typeof item === "string" ? item : item?.imagen
+                    )
+                    .filter(Boolean)
+                    .slice(0, 2)
                   : [];
                 return (
                   <Link
@@ -1173,41 +1100,27 @@ export default function Home() {
                 const ofertaSlug = oferta.slug || oferta.id;
                 const offerImages = getOfferImages(oferta);
                 const offerImage = offerImages[0] || fallbackDeal;
-                const extraImages = offerImages.slice(1, 3);
+                const targetDestino = oferta.destino;
+                const targetLink = targetDestino
+                  ? `/destinos/${targetDestino.slug}?oferta=${ofertaSlug}`
+                  : `/ofertas/${ofertaSlug}`;
                 return (
                   <Link
-                    className="offer-card offer-card-feature offer-link"
+                    className="salidas-card-compact"
                     key={`${oferta.id}-${index}`}
-                    to={`/ofertas/${ofertaSlug}`}
+                    to={targetLink}
                   >
-                    <div className="offer-image">
+                    <div className="salidas-card-image">
                       <img
-                        className="offer-image-main"
                         src={offerImage}
                         alt={oferta.titulo}
                       />
-                      {extraImages.length ? (
-                        <div className="offer-image-stack">
-                          {extraImages.map((image, imageIndex) => (
-                            <img
-                              key={`${oferta.id}-home-${imageIndex}`}
-                              src={image}
-                              alt={`${oferta.titulo} destino ${imageIndex + 2}`}
-                            />
-                          ))}
-                        </div>
-                      ) : null}
                     </div>
-                    <div className="offer-body">
-                      <div className="offer-header">
-                        <span className="offer-tag">
-                          {oferta.destino?.nombre || "Destino"}
-                        </span>
-                        <h3>{oferta.titulo}</h3>
-                      </div>
-                      <p className="offer-description">
-                        {oferta.condiciones || oferta.noIncluye || "Consultanos"}
-                      </p>
+                    <div className="salidas-card-body">
+                      <span className="salidas-card-destino">
+                        {oferta.destino?.nombre || "Destino"}
+                      </span>
+                      <h4 className="salidas-card-titulo">{oferta.titulo}</h4>
                     </div>
                   </Link>
                 );
@@ -1217,8 +1130,10 @@ export default function Home() {
         )}
       </section>
 
+
+
       <section className="grid-section">
-          <div className="section-header section-header-row">
+        <div className="section-header section-header-row">
           <div>
             <h2>Excursiones</h2>
             <p>Sumale experiencias y recorridos locales a tu viaje.</p>
@@ -1289,6 +1204,69 @@ export default function Home() {
         )}
       </section>
 
+      {/* SECCIÓN EXPLORAR POR CONTINENTE */}
+      <section className="explore-continents-section">
+        <div className="explore-header">
+          <span className="explore-header-badge">Descubrí el mundo</span>
+          <h2>Buscá los mejores paquetes por destino</h2>
+          <p>
+            Elegí tu próximo destino y viví experiencias únicas en cada rincón del planeta.
+          </p>
+        </div>
+
+        <div className="continents-scroll-container">
+          <div className="continents-track">
+            {CONTINENT_DATA.map((continent) => {
+              // Contar destinos disponibles para este continente
+              const count = destinos.filter(
+                (d) => CONTINENT_BY_COUNTRY[d.paisRegion] === continent.id
+              ).length;
+
+              return (
+                <div
+                  key={continent.id}
+                  className="continent-card"
+                  onClick={() => {
+                    navigate(`/busqueda?region=${continent.id}`);
+                  }}
+                >
+                  <img
+                    className="continent-image"
+                    src={continent.image}
+                    alt={continent.alt}
+                  />
+                  <span className="continent-badge">
+                    {count > 0 ? `${count} Destinos` : "Explorar"}
+                  </span>
+                  <div className="continent-overlay">
+                    <h3 className="continent-name">{continent.name}</h3>
+                    <p className="continent-description">
+                      {continent.description}
+                    </p>
+                    <div className="continent-cta">
+                      Explorar destino
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2.5}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="grid-section travel-docs-preview">
         <div className="travel-docs-preview-frame">
           <div className="section-header travel-docs-preview-header">
@@ -1308,37 +1286,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about-topotours" id="nosotros">
-        <div className="about-topotours-card">
-          <div className="about-topotours-brand">
-            <img className="about-topotours-logo" src={logo} alt="Topotours" />
-            <div className="about-topotours-brand-text">
-              <strong>Topotours</strong>
-              <span>Agencia de viajes</span>
-            </div>
-          </div>
-          <div className="about-topotours-content">
-            <span className="about-topotours-kicker">Sobre nosotros</span>
-            <h2>Viajes bien acompañados</h2>
-            <p>
-              Somos Topotours: armamos experiencias a medida y te acompañamos
-              en cada etapa del viaje.
-            </p>
-            <p>
-              Nos ocupamos de seleccionar proveedores confiables, coordinar la
-              logística y sumar detalles que hacen la diferencia para que viajes
-              con tranquilidad y disfrutes desde el primer día.
-            </p>
-            <div className="about-topotours-highlights">
-              <span>Asesoramiento cercano</span>
-              <span>Itinerarios a medida</span>
-              <span>Gestión integral</span>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       <ComplaintSection />
-    </main>
+    </main >
   );
 }

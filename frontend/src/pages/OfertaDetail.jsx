@@ -5,55 +5,7 @@ import { useOfertas } from "../hooks/useTravelData.js";
 import { formatDate } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getOfferImages } from "../utils/offerImages.js";
-
-const incluyeIconos = {
-  transporte: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="7" width="18" height="9" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
-      <path d="M7 7V5H17V7" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="7" cy="18" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="17" cy="18" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
-  alojamiento: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="3" y="11" width="18" height="6" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
-      <path d="M7 11V8H11V11" fill="none" stroke="currentColor" strokeWidth="2" />
-      <path d="M3 17V20M21 17V20" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
-  comida: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
-      <circle cx="12" cy="12" r="2" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
-  servicio: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 12a8 8 0 0 1 16 0" fill="none" stroke="currentColor" strokeWidth="2" />
-      <rect x="3" y="12" width="3" height="6" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
-      <rect x="18" y="12" width="3" height="6" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
-      <path d="M12 18v2" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
-  equipaje: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <rect x="6" y="7" width="12" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="2" />
-      <path d="M9 7V5H15V7" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
-  default: (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
-      <path d="M12 8v8M8 12h8" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  )
-};
-
-function getIncluyeIcon(tipo) {
-  const key = String(tipo || "").toLowerCase();
-  return incluyeIconos[key] || incluyeIconos.default;
-}
+import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
 
 function formatIncluyeTipo(tipo) {
   if (!tipo) {
@@ -129,6 +81,94 @@ function formatDateRangeLabel(startValue, endValue) {
   return `${start} - ${end}`;
 }
 
+// Helper para limpiar el título
+function cleanTitle(title) {
+  if (!title) return "";
+  // Borra "con KMB", "KMB -", "- KMB", o "KMB" solo, case insensitive
+  return title
+    .replace(/\s+con\s+kmb/gi, "")
+    .replace(/[-–]?\s*kmb\s*[-–]?/gi, "")
+    .trim();
+}
+
+// Helper para formatear contenido markdown raw
+function formatRawContent(text) {
+  if (!text) return null;
+
+  // Clean prices
+  const cleaned = text
+    .split('\n')
+    .filter(line => {
+      const lower = line.toLowerCase();
+      return !(lower.includes('tarifa') || lower.includes('usd') || lower.includes('precio') || lower.includes('impuestos') || lower.includes('imp.'));
+    })
+    .join('\n');
+
+  // Normalizar los saltos de línea y asegurar espacio antes de headers
+  let processed = cleaned
+    .replace(/\r\n/g, "\n")
+    .replace(/([^\n])\s*(#{2,})/g, "$1\n\n$2") // Header sticky
+    .replace(/([^\n])\s*(#{3,})/g, "$1\n\n$3") // Header sticky
+    .replace(/([^\n])\s*•/g, "$1\n•"); // Bullets sticky
+
+  // Split por headers para crear secciones si es posible
+  // Esto asume que el texto usa markdown headers ## o ###
+  const lines = processed.split("\n");
+  const elements = [];
+
+  lines.forEach((line, index) => {
+    const trimmed = line.trim();
+    if (!trimmed) return;
+
+    if (trimmed.startsWith("###")) {
+      elements.push(
+        <h3 key={index} className="info-subtitle">
+          {trimmed.replace(/^#+\s*/, "")}
+        </h3>
+      );
+    } else if (trimmed.startsWith("##")) {
+      elements.push(
+        <h2 key={index} className="info-title">
+          {trimmed.replace(/^#+\s*/, "")}
+        </h2>
+      );
+    } else if (trimmed.startsWith("•")) {
+      // List items
+      // Check if previous element is a ul, otherwise create new
+      // En este simple parser, renderizamos como p con bullet styled por css o span
+      elements.push(
+        <div key={index} className="info-list-item">
+          <span className="info-bullet">•</span>
+          <p>{parseBold(trimmed.replace(/^•\s*/, ""))}</p>
+        </div>
+      );
+    } else {
+      // Paragraph
+      elements.push(
+        <p key={index} className="info-text">
+          {parseBold(trimmed)}
+        </p>
+      );
+    }
+  });
+
+  return <div className="info-content-wrapper">{elements}</div>;
+}
+
+function parseBold(text) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={i} className="info-highlight">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
 export default function OfertaDetail() {
   const { slug } = useParams();
   const { ofertas, loading, error } = useOfertas();
@@ -168,6 +208,8 @@ export default function OfertaDetail() {
         normalizeTipo(item.tipo) === "detalle-fechas"
     );
   }, [detalleItems]);
+
+  const hasItinerary = itinerarioItems.length > 0;
 
   const actividadesIncluidas = useMemo(() => {
     return (oferta?.actividades || [])
@@ -211,7 +253,9 @@ export default function OfertaDetail() {
   const offerImages = getOfferImages(oferta);
   const heroImage = offerImages[0] || fallbackDeal;
   const destinoPrincipal = oferta.destino?.nombre || "Destino";
-  const whatsappMessage = `Hola! Quiero reservar la salida ${oferta.titulo} para ${destinoPrincipal}.`;
+  // Usar título limpio
+  const tituloOferta = cleanTitle(oferta.titulo);
+  const whatsappMessage = `Hola! Quiero reservar la salida ${tituloOferta} para ${destinoPrincipal}.`;
   const whatsappLink = getWhatsappLink(whatsappMessage);
 
   return (
@@ -226,7 +270,7 @@ export default function OfertaDetail() {
               Volver a ofertas
             </Link>
             <p className="detail-kicker">Oferta</p>
-            <h1>{oferta.titulo}</h1>
+            <h1>{tituloOferta}</h1>
             <p>{destinoPrincipal}</p>
             <div className="detail-hero-meta">
               {oferta.noches ? <span>Noches: {oferta.noches}</span> : null}
@@ -247,9 +291,9 @@ export default function OfertaDetail() {
       </section>
 
       <section className="detail-section">
-        <div className="detail-grid">
-          <article className="detail-card">
-            <h3>{detalleItems.length ? "Detalle del producto" : "Detalle de la oferta"}</h3>
+        <div className={`detail-grid detail-grid--offer${hasItinerary ? "" : " detail-grid--no-itinerary"}`}>
+          <article className="detail-card detail-card--info">
+            <h3>{detalleItems.length ? "Detalle del producto" : "Información del viaje"}</h3>
             {detalleItems.length ? (
               <div className="detail-table">
                 {detalleItems.map((item) => (
@@ -259,15 +303,20 @@ export default function OfertaDetail() {
                   </div>
                 ))}
               </div>
-            ) : (
-              <p>{oferta.condiciones || "Consultanos para mas info."}</p>
-            )}
-            {detalleItems.length && oferta.condiciones ? (
-              <p>{oferta.condiciones}</p>
             ) : null}
+
+            {/* Renderizado especial para condiciones/información */}
+            {oferta.condiciones ? (
+              <div className="detail-info-block">
+                {formatRawContent(oferta.condiciones)}
+              </div>
+            ) : !detalleItems.length ? (
+              <p>Consultanos para mas info.</p>
+            ) : null}
+
             {oferta.noIncluye ? <p>No incluye: {oferta.noIncluye}</p> : null}
           </article>
-          <article className="detail-card">
+          <article className="detail-card detail-card--includes">
             <h3>Qué incluye</h3>
             {incluyeItems.length ? (
               <ul className="detail-list detail-list--icons detail-list--fancy">
@@ -285,49 +334,43 @@ export default function OfertaDetail() {
               <p>Consultanos para conocer el detalle del paquete.</p>
             )}
           </article>
+          <article className="detail-card detail-card--dates">
+            <h3>Fechas disponibles</h3>
+            {preciosOrdenados.length ? (
+              <div className="detail-table">
+                {preciosOrdenados.map((precio) => (
+                  <div className="detail-table-row" key={precio.id}>
+                    <span>
+                      {formatDateRangeLabel(
+                        precio.fechaInicio,
+                        precio.fechaFin
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : detalleFechas?.descripcion ? (
+              <p>{detalleFechas.descripcion}</p>
+            ) : (
+              <p>Fechas a confirmar. Te asesoramos por WhatsApp.</p>
+            )}
+          </article>
+          {hasItinerary ? (
+            <article className="detail-card detail-card--itinerary">
+              <h3>Itinerario</h3>
+              <ul className="detail-list detail-list--timeline">
+                {itinerarioItems.map((item, index) => (
+                  <li key={item.id} data-step={index + 1}>
+                    <span className="detail-list-text">
+                      {renderItineraryText(item.descripcion)}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ) : null}
         </div>
       </section>
-
-      <section className="detail-section">
-        <article className="detail-card">
-          <h3>Fechas disponibles</h3>
-          {preciosOrdenados.length ? (
-            <div className="detail-table">
-              {preciosOrdenados.map((precio) => (
-                <div className="detail-table-row" key={precio.id}>
-                  <span>
-                    {formatDateRangeLabel(
-                      precio.fechaInicio,
-                      precio.fechaFin
-                    )}
-                  </span>
-                </div>
-              ))}
-            </div>
-          ) : detalleFechas?.descripcion ? (
-            <p>{detalleFechas.descripcion}</p>
-          ) : (
-            <p>Fechas a confirmar. Te asesoramos por WhatsApp.</p>
-          )}
-        </article>
-      </section>
-
-      {itinerarioItems.length ? (
-        <section className="detail-section">
-          <article className="detail-card">
-            <h3>Itinerario</h3>
-            <ul className="detail-list detail-list--timeline">
-              {itinerarioItems.map((item, index) => (
-                <li key={item.id} data-step={index + 1}>
-                  <span className="detail-list-text">
-                    {renderItineraryText(item.descripcion)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        </section>
-      ) : null}
 
       {destinosExtras.length ? (
         <section className="detail-section">

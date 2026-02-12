@@ -1,0 +1,716 @@
+/* ===============================
+   MEJORAS PARA PAQUETES Y DESTINOS
+   Diseño profesional y atractivo
+   =============================== */
+
+/* ========================================
+   1. PORTADA DE PAQUETES - DISEÑO MEJORADO
+   ======================================== */
+
+.packages-grid-premium {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 32px;
+    margin-top: 32px;
+    justify-content: center;
+}
+
+.package-card-premium {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.1);
+    transition: all 0.3s ease;
+    height: auto;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.package-card-premium:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(112, 0, 235, 0.18);
+}
+
+.packages-grid-premium .package-card-premium {
+    animation: packageCardIntro 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.packages-grid-premium .package-card-premium:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.packages-grid-premium .package-card-premium:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.packages-grid-premium .package-card-premium:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+.packages-grid-premium .package-card-premium:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+.packages-grid-premium .package-card-premium:nth-child(5) {
+    animation-delay: 0.33s;
+}
+
+.packages-grid-premium .package-card-premium:nth-child(6) {
+    animation-delay: 0.4s;
+}
+
+/* Imagen de fondo del paquete */
+.package-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 320px;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.package-card-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.5) 100%);
+}
+
+.package-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.package-card-premium:hover .package-card-image img {
+    transform: scale(1.05);
+}
+
+/* Header del paquete (sobre la imagen) */
+.package-card-header {
+    position: relative;
+    z-index: 1;
+    padding: 24px 24px 16px;
+    height: 320px;
+    display: flex;
+    /* Ensure display flex is kept if it was there before, check original */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.package-destination-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--violet-700);
+    align-self: flex-start;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.package-destination-badge svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5;
+}
+
+.package-title {
+    font-size: 1.65rem !important;
+    font-weight: 800 !important;
+    color: white !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Body del paquete (fondo blanco) */
+.package-card-body {
+    position: relative;
+    z-index: 1;
+    background: white;
+    padding: 24px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 0;
+}
+
+.package-description {
+    display: none;
+    /* Ocultar descripción larga en portada */
+}
+
+.package-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.package-dates {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(112, 0, 235, 0.08), rgba(138, 96, 219, 0.06));
+    border-radius: 12px;
+    border: 1px solid rgba(112, 0, 235, 0.15);
+    position: relative;
+    isolation: isolate;
+}
+
+.package-dates svg {
+    width: 20px;
+    height: 20px;
+    color: var(--violet-600);
+    flex-shrink: 0;
+}
+
+.package-dates span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--violet-900);
+}
+
+.package-dates--dense {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(240, 244, 255, 0.9));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.package-dates--dense svg {
+    margin-top: 2px;
+}
+
+.package-dates-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.package-dates-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--violet-600);
+    font-weight: 700;
+}
+
+.package-dates-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 8px 10px;
+    padding: 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(112, 0, 235, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    max-height: 180px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(112, 0, 235, 0.35) transparent;
+}
+
+.package-dates-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.package-dates-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.package-dates-list::-webkit-scrollbar-thumb {
+    background: rgba(112, 0, 235, 0.3);
+    border-radius: 999px;
+}
+
+.package-dates-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 8px;
+    row-gap: 2px;
+    align-items: start;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(112, 0, 235, 0.12);
+    background: linear-gradient(135deg, #ffffff 0%, #f5f7ff 100%);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    animation: packageDatesRise 0.45s ease both;
+}
+
+.package-dates-row:nth-child(1) {
+    animation-delay: 0.04s;
+}
+
+.package-dates-row:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.package-dates-row:nth-child(3) {
+    animation-delay: 0.12s;
+}
+
+.package-dates-row:nth-child(4) {
+    animation-delay: 0.16s;
+}
+
+.package-dates-row:nth-child(5) {
+    animation-delay: 0.2s;
+}
+
+.package-dates-row:nth-child(6) {
+    animation-delay: 0.24s;
+}
+
+.package-dates-row:hover {
+    transform: translateY(-1px);
+    border-color: rgba(112, 0, 235, 0.28);
+    box-shadow: 0 10px 20px rgba(112, 0, 235, 0.15);
+}
+
+.package-dates-month {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--violet-900);
+    white-space: nowrap;
+}
+
+.package-dates-month::after {
+    content: ":";
+    margin-left: 4px;
+    color: #6b7280;
+}
+
+.package-dates-days {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: #4b5563;
+    line-height: 1.35;
+}
+
+.package-dates-row.is-solo {
+    grid-template-columns: 1fr;
+}
+
+.package-dates-row.is-solo .package-dates-days {
+    grid-column: 1 / -1;
+    font-weight: 600;
+}
+
+@keyframes packageCardIntro {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes packageDatesRise {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 8px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Información adicional en portada */
+.package-info-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 0;
+}
+
+.package-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+.package-info-item svg {
+    width: 18px;
+    height: 18px;
+    color: var(--violet-500);
+    flex-shrink: 0;
+}
+
+.package-info-item strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+/* Footer del paquete */
+.package-card-footer {
+    position: relative;
+    z-index: 1;
+    background: white;
+    padding: 0 24px 24px;
+    margin-top: auto;
+    box-shadow: 0 -8px 18px rgba(15, 23, 42, 0.04);
+}
+
+.package-card-footer .premium-button-gradient {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--violet-700), var(--violet-500));
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(112, 0, 235, 0.25);
+    margin: 0 !important;
+}
+
+.package-card-footer .premium-button-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(112, 0, 235, 0.35);
+}
+
+/* ========================================
+   2. DETALLE DE PAQUETES - DISEÑO MEJORADO
+   ======================================== */
+
+.package-embedded-detail {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+}
+
+.package-embedded-detail h2 {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    color: var(--violet-900) !important;
+    margin-bottom: 32px !important;
+    line-height: 1.2 !important;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 32px;
+}
+
+.detail-card {
+    background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid rgba(203, 215, 244, 0.5);
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+}
+
+.detail-card h3 {
+    font-size: 1.75rem !important;
+    font-weight: 700 !important;
+    color: var(--violet-900) !important;
+    margin: 0 0 24px 0 !important;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(112, 0, 235, 0.15);
+}
+
+.detail-card p {
+    font-size: 1.1rem !important;
+    line-height: 1.9 !important;
+    color: #475569 !important;
+    margin: 0 !important;
+}
+
+/* Tabla de detalles mejorada */
+.detail-table {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.detail-table-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid rgba(203, 215, 244, 0.4);
+    transition: all 0.3s ease;
+}
+
+.detail-table-row:hover {
+    border-color: rgba(112, 0, 235, 0.3);
+    box-shadow: 0 4px 12px rgba(112, 0, 235, 0.08);
+    transform: translateX(4px);
+}
+
+.detail-table-row span:first-child {
+    font-weight: 700;
+    color: var(--violet-700);
+    font-size: 1rem;
+}
+
+.detail-table-row span:last-child {
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* Listas mejoradas */
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.detail-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid rgba(203, 215, 244, 0.4);
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+    color: #475569 !important;
+    transition: all 0.3s ease;
+}
+
+.detail-list li:hover {
+    border-color: rgba(112, 0, 235, 0.3);
+    box-shadow: 0 4px 12px rgba(112, 0, 235, 0.08);
+    transform: translateX(4px);
+}
+
+.detail-list--icons li::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--violet-500), var(--violet-700));
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+/* Itinerario mejorado */
+.detail-itinerary {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.itinerary-day {
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid var(--violet-500);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.itinerary-day strong {
+    color: var(--violet-700);
+    font-size: 1.15rem;
+}
+
+/* ========================================
+   3. GALERÍA DE DESTINOS - IMÁGENES MÁS GRANDES
+   ======================================== */
+
+.destination-gallery-premium,
+.excursion-gallery-premium {
+    padding: 60px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    transition: all 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+}
+
+.gallery-image-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-image-wrapper img {
+    transform: scale(1.05);
+}
+
+/* ========================================
+   4. DESCRIPCIÓN DE DESTINOS - LETRA MÁS GRANDE
+   ======================================== */
+
+.destination-summary,
+.excursion-summary {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 24px;
+}
+
+.destination-summary h2,
+.excursion-summary h2 {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    color: var(--violet-900) !important;
+    margin-bottom: 24px !important;
+    line-height: 1.2 !important;
+}
+
+.destination-summary p,
+.excursion-summary p,
+.description-text {
+    font-size: 1.2rem !important;
+    line-height: 2 !important;
+    color: #475569 !important;
+    margin-bottom: 20px !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .packages-grid-premium {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .package-card-premium {
+        height: auto;
+    }
+
+    .package-title {
+        font-size: 1.4rem !important;
+    }
+
+    .package-embedded-detail {
+        padding: 28px 20px;
+    }
+
+    .package-embedded-detail h2 {
+        font-size: 1.9rem !important;
+    }
+
+    .detail-card {
+        padding: 24px 20px;
+    }
+
+    .detail-card h3 {
+        font-size: 1.4rem !important;
+    }
+
+    .detail-table-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .destination-summary h2,
+    .excursion-summary h2 {
+        font-size: 1.9rem !important;
+    }
+
+    .destination-summary p,
+    .excursion-summary p {
+        font-size: 1.05rem !important;
+    }
+
+    .package-dates-list {
+        grid-template-columns: 1fr;
+        max-height: 220px;
+    }
+
+    .package-dates-row {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .package-card-header {
+        padding: 20px 20px 14px;
+    }
+
+    .package-title {
+        font-size: 1.25rem !important;
+    }
+
+    .package-card-body {
+        padding: 20px;
+    }
+
+    .package-card-footer {
+        padding: 0 20px 20px;
+    }
+
+    .package-dates-list {
+        max-height: 200px;
+        padding: 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .packages-grid-premium .package-card-premium,
+    .package-dates-row {
+        animation: none !important;
+    }
+}

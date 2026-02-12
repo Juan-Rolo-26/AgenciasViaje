@@ -24,5 +24,31 @@ export const FANATIC_ITEMS = [
       "/assets/destinos/mundial3.webp",
       "/assets/destinos/mundia2.jpg"
     ]
+  },
+  {
+    slug: "finalisima",
+    nombre: "La Finalisima",
+    descripcionCorta: "El duelo definitivo entre campeones.",
+    descripcion:
+      "Vive la energía de La Finalisima: el duelo definitivo entre los dueños del fútbol. Sé testigo del choque histórico entre el Campeón de América y el Campeón de Europa en una batalla épica por la supremacía mundial. Un evento único, cargado de mística y estrellas internacionales, donde la pasión de las hinchadas y el prestigio continental se encuentran en un solo partido para coronar al mejor de los mejores. ¡Una oportunidad irrepetible para vivir la historia del fútbol desde la tribuna!",
+    imagenPortada: "/assets/destinos/finalisima.png",
+    imagenes: [
+      "/assets/destinos/finalisima2.png",
+      "/assets/destinos/finalisima3.png",
+      "/assets/destinos/finalisima4.png"
+    ]
+  },
+  {
+    slug: "f1-sao-paulo",
+    nombre: "F1 Sao Paulo",
+    descripcionCorta: "La emoción de Interlagos te espera.",
+    descripcion:
+      "Viví la pasión de la Fórmula 1 en el mítico circuito de Interlagos. Disfruta del Gran Premio de Brasil con entradas exclusivas, traslados y la mejor compañía para alentar a tus pilotos favoritos en una de las carreras más vibrantes del calendario latinoamericano.",
+    imagenPortada: "/assets/destinos/f13.webp",
+    imagenes: [
+      "/assets/destinos/f1.jpg",
+      "/assets/destinos/f1b.jpg",
+      "/assets/destinos/f1.4.jpeg"
+    ]
   }
 ];

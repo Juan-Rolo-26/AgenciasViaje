@@ -121,9 +121,9 @@ async function main() {
         "Vive la energía de Misiones: la tierra colorada donde la selva paranaense despliega todo su esplendor. Déjate cautivar por las milenarias Ruinas Jesuíticas de San Ignacio Miní, asómbrate con los Saltos del Moconá y descubre el fascinante proceso de la yerba mate en sus establecimientos tradicionales. Un destino que es puro pulmón verde, lleno de biodiversidad, ríos rojizos y una cultura fronteriza llena de historia.",
       imagenPortada: "/assets/destinos/misiones2.png",
       imagenes: [
+        "/assets/destinos/misiones1 (2).png",
         "/assets/destinos/misiones3.png",
-        "/assets/destinos/misiones4.jpg",
-        "/assets/destinos/misiones2.png"
+        "/assets/destinos/misiones4.jpg"
       ],
       destacado: true,
       orden: 7
@@ -138,11 +138,90 @@ async function main() {
       imagenPortada: "/assets/destinos/pinamar1.png",
       imagenes: [
         "/assets/destinos/pinamar2.png",
-        "/assets/destinos/pinamar3.png",
-        "/assets/destinos/pinamar1.png"
+        "/assets/destinos/pinamar3.png"
       ],
       destacado: true,
       orden: 8
+    },
+    {
+      nombre: "Salta",
+      slug: "salta",
+      paisRegion: "Argentina",
+      descripcionCorta: "Colonial, valles y tradición folclórica.",
+      descripcion:
+        "Vive la energía de Salta, la Linda: una ciudad que enamora con su arquitectura colonial perfectamente preservada y su alma de peña folclórica. Recorre la Plaza 9 de Julio, sube al Cerro San Bernardo para una vista panorámica única y déjate llevar por la magia de los Valles Calchaquíes. Un destino donde el vino torrontés de Cafayate, la historia del Tren a las Nubes y la hospitalidad de su gente crean un viaje inolvidable para todos los sentidos.",
+      imagenPortada: "/assets/destinos/salta1.jpg",
+      imagenes: [
+        "/assets/destinos/salta.jpg",
+        "/assets/destinos/salta2.jpg",
+        "/assets/destinos/salta4.jpg"
+      ],
+      destacado: true,
+      orden: 68
+    },
+    {
+      nombre: "Jujuy",
+      slug: "jujuy",
+      paisRegion: "Argentina",
+      descripcionCorta: "Quebradas, cerros de colores y salinas.",
+      descripcion:
+        "Vive la energía de Jujuy: un lienzo de colores naturales que desafía la imaginación. Descubre la majestuosidad de la Quebrada de Humahuaca, maravíllate con el Cerro de los Siete Colores en Purmamarca y explora la inmensidad blanca de las Salinas Grandes. Un destino de raíces profundas, donde los mercados artesanales, las tradiciones milenarias y paisajes como las Serranías del Hornocal te conectan con la esencia más pura de la Puna argentina.",
+      imagenPortada: "/assets/destinos/jujuy1.webp",
+      imagenes: [
+        "/assets/destinos/jujuy.jpg",
+        "/assets/destinos/jujuy2.jpg",
+        "/assets/destinos/jujuy3.jpg"
+      ],
+      destacado: true,
+      orden: 69
+    },
+    {
+      nombre: "Las Grutas",
+      slug: "las-grutas",
+      paisRegion: "Argentina",
+      descripcionCorta: "Aguas cálidas y acantilados patagónicos.",
+      descripcion:
+        "Vive la energía de Las Grutas: el paraíso de aguas cálidas en pleno corazón de la Patagonia. Descubre sus famosas cuevas naturales excavadas en los acantilados por el mar y disfruta de playas extensas de arenas blancas y aguas cristalinas. Con un microclima privilegiado que invita al relax y la aventura náutica, Las Grutas es el destino ideal para quienes buscan la combinación perfecta entre la paz del océano y la calidez de un balneario único en el sur argentino.",
+      imagenPortada: "/assets/destinos/lasgrutas.jpg",
+      imagenes: [
+        "/assets/destinos/lasgrutas2.jpg",
+        "/assets/destinos/lasgrutas3.jpg",
+        "/assets/destinos/lasgrutas4.webp"
+      ],
+      destacado: true,
+      orden: 70
+    },
+    {
+      nombre: "Perito Moreno",
+      slug: "perito-moreno",
+      paisRegion: "Argentina",
+      descripcionCorta: "Glaciar imponente y naturaleza patagónica.",
+      descripcion:
+        "Vive la energía del Glaciar Perito Moreno: un gigante de hielo milenario que te dejará sin aliento. Maravíllate con sus paredes de un azul profundo que se elevan más de 60 metros sobre el Lago Argentino y vive la adrenalina de escuchar el estruendo de sus desprendimientos naturales. Ya sea recorriendo sus pasarelas con vistas panorámicas únicas o navegando frente a sus torres de hielo, este monumento natural es una de las experiencias más puras y poderosas que la naturaleza puede ofrecer en el corazón de la Patagonia.",
+      imagenPortada: "/assets/destinos/peritomoreno1.jpg",
+      imagenes: [
+        "/assets/destinos/peritomoreno2.jpg",
+        "/assets/destinos/peritomoreno3.jpg",
+        "/assets/destinos/peritomoreno4.jpg"
+      ],
+      destacado: true,
+      orden: 71
+    },
+    {
+      nombre: "Neuquén",
+      slug: "neuquen",
+      paisRegion: "Argentina",
+      descripcionCorta: "Ruta de los lagos y paisajes patagónicos.",
+      descripcion:
+        "Vive la energía de Neuquén: el portal de entrada a una tierra de contrastes infinitos y naturaleza indómita. Descubre la majestuosidad de la Ruta de los Siete Lagos, maravíllate con la inmensidad del Volcán Lanín y recorre los valles donde alguna vez habitaron los dinosaurios más grandes del mundo. Un destino que combina la sofisticación de sus ciudades, la calidez de sus aldeas de montaña y paisajes que van desde estepas milenarias hasta bosques de araucarias prehistóricas.",
+      imagenPortada: "/assets/destinos/neuquen.jpg",
+      imagenes: [
+        "/assets/destinos/neuquen2.jpg",
+        "/assets/destinos/neuquen3.jpg",
+        "/assets/destinos/neuquen4.jpg"
+      ],
+      destacado: true,
+      orden: 72
     },
 
     // ================= BRASIL =================
@@ -172,8 +251,7 @@ async function main() {
       imagenPortada: "/assets/destinos/canasvieras.webp",
       imagenes: [
         "/assets/destinos/Canasvieiras 1.jpg",
-        "/assets/destinos/Canasvieras 2.jpg",
-        "/assets/destinos/canasvieras.webp"
+        "/assets/destinos/Canasvieras 2.jpg"
       ],
       destacado: true,
       orden: 8
@@ -184,7 +262,7 @@ async function main() {
       paisRegion: "Brasil",
       descripcionCorta: "Ciudad moderna frente al mar.",
       descripcion:
-        "Camboriu combina playas urbanas con rascacielos y un skyline moderno. El teleferico lleva a miradores con vistas panoramicas. Hay vida nocturna, gastronomia variada y centros comerciales. La costanera invita a caminar y disfrutar del atardecer. Un destino dinamico para quienes buscan ciudad y mar.",
+        "Vive la energía de Balneário Camboriú: el Miami brasileño que deslumbra con su skyline de rascacielos frente al mar. Disfruta de sus playas urbanas de arena fina, sube al famoso teleférico Parque Unipraias para vistas panorámicas de 360°, y vive la modernidad de su costanera llena de vida. Un destino vibrante que combina playa, gastronomía internacional, centros comerciales de primer nivel y una vida nocturna que nunca duerme. Ideal para quienes buscan la energía de una ciudad cosmopolita con el encanto del litoral catarinense.",
       imagenPortada: "/assets/destinos/camboriu1.jpg",
       imagenes: [
         "/assets/destinos/camboriu2.jpg",
@@ -209,6 +287,22 @@ async function main() {
       ],
       destacado: false,
       orden: 10
+    },
+    {
+      nombre: "Bombas",
+      slug: "bombas",
+      paisRegion: "Brasil",
+      descripcionCorta: "Playa familiar y costanera moderna.",
+      descripcion:
+        "Vive la energía de Bombas: el refugio ideal para la familia en el sur de Brasil. Disfruta de una playa de arenas blancas y aguas mansas, perfectas para nadar y practicar deportes náuticos. Con su moderna costanera renovada, ideal para caminatas al atardecer, y una infraestructura completa de servicios y gastronomía, Bombas ofrece el equilibrio perfecto entre la serenidad del mar y la comodidad urbana.",
+      imagenPortada: "/assets/destinos/bombas.jpg",
+      imagenes: [
+        "/assets/destinos/Bombas2.jpg",
+        "/assets/destinos/Bombas3.jpg",
+        "/assets/destinos/Bombas4.jpg"
+      ],
+      destacado: false,
+      orden: 11
     },
     {
       nombre: "Búzios",
@@ -338,6 +432,38 @@ async function main() {
       destacado: false,
       orden: 17
     },
+    {
+      nombre: "Maragogi",
+      slug: "maragogi",
+      paisRegion: "Brasil",
+      descripcionCorta: "Caribe brasileño y piscinas naturales.",
+      descripcion:
+        "Vive la energía de Maragogi: el verdadero Caribe del Nordeste brasileño. Déjate maravillar por sus famosas \"Galés\", piscinas naturales de aguas turquesas y cristalinas que se forman entre arrecifes de coral a pocos kilómetros de la costa. Un destino paradisíaco de arenas blancas y cocoteros infinitos, ideal para quienes buscan sumergirse en un acuario natural y disfrutar de la paz absoluta en un entorno tropical virgen.",
+      imagenPortada: "/assets/destinos/maragoggi.jpeg",
+      imagenes: [
+        "/assets/destinos/maragoggi1.jpg",
+        "/assets/destinos/maragoggi2.jpg",
+        "/assets/destinos/maragoggi3.jpg"
+      ],
+      destacado: true,
+      orden: 18
+    },
+    {
+      nombre: "Angra dos Reis",
+      slug: "angra-dos-reis",
+      paisRegion: "Brasil",
+      descripcionCorta: "Islas verdes y aguas cristalinas.",
+      descripcion:
+        "Vive la energía de Angra dos Reis: un universo de islas verdes y aguas cristalinas en el corazón de la Costa Verde. Navega por sus bahías legendarias, descubre playas vírgenes accesibles solo por mar y sumérgete en la rica biodiversidad de la Ilha Grande. Un destino náutico de primer nivel que combina el lujo de sus resorts con la aventura de explorar un paraíso tropical donde la selva abraza al océano en cada una de sus 365 islas.",
+      imagenPortada: "/assets/destinos/angra1.jpg",
+      imagenes: [
+        "/assets/destinos/angra2.jpg",
+        "/assets/destinos/angra3.webp",
+        "/assets/destinos/angra4.jpg"
+      ],
+      destacado: true,
+      orden: 19
+    },
 
     // ================= PERÚ =================
     {
@@ -413,9 +539,9 @@ async function main() {
       descripcionCorta: "Arte, cultura y vida urbana.",
       descripcion:
         "Vive la energía de Madrid: una capital vibrante que combina el esplendor imperial con una alegría de vivir contagiosa. Explora la elegancia del Palacio Real, disfruta del arte en el Museo del Prado y vive el pulso de la ciudad en la Gran Vía y sus famosas tabernas de tapas. Un destino lleno de luz, historia y una vida nocturna que nunca duerme.",
-      imagenPortada: "/assets/destinos/madrid.jpeg",
+      imagenPortada: "/assets/destinos/madrid.jpg",
       imagenes: [
-        "/assets/destinos/mdrid2.jpg",
+        "/assets/destinos/madrid2.jpg",
         "/assets/destinos/madrid3.jpg",
         "/assets/destinos/madrid4.jpeg"
       ],
@@ -582,8 +708,7 @@ async function main() {
       imagenPortada: "/assets/destinos/china2.jpg",
       imagenes: [
         "/assets/destinos/china3.jpg",
-        "/assets/destinos/china4.jpg",
-        "/assets/destinos/china2.jpg"
+        "/assets/destinos/china4.jpg"
       ],
       destacado: true,
       orden: 34
@@ -647,8 +772,8 @@ async function main() {
         "Vive la energía de Londres: la metrópoli donde la tradición monárquica se encuentra con la vanguardia global. Desde el icónico Big Ben y el Palacio de Buckingham hasta los mercados alternativos de Camden Town y los museos de clase mundial. Un destino cosmopolita y vibrante que marca tendencia en moda, arte y cultura en cada esquina de sus históricos barrios.",
       imagenPortada: "/assets/destinos/londres.jpg",
       imagenes: [
-        "/assets/destinos/londres2.jpg",
-        "/assets/destinos/londres3.jpeg",
+        "/assets/destinos/londres2.webp",
+        "/assets/destinos/londres3.jpg",
         "/assets/destinos/londres4.jpg"
       ],
       destacado: true,
@@ -680,8 +805,7 @@ async function main() {
       imagenPortada: "/assets/destinos/praga.webp",
       imagenes: [
         "/assets/destinos/praga2.jpg",
-        "/assets/destinos/praga3.jpg",
-        "/assets/destinos/praga.webp"
+        "/assets/destinos/praga3.jpg"
       ],
       destacado: true,
       orden: 40
@@ -783,8 +907,8 @@ async function main() {
       orden: 46
     },
     {
-      nombre: "México (Riviera Maya)",
-      slug: "mexico-riviera-maya",
+      nombre: "México",
+      slug: "mexico",
       paisRegion: "México",
       descripcionCorta: "Cultura maya, cenotes y playas vibrantes.",
       descripcion:
@@ -797,6 +921,102 @@ async function main() {
       ],
       destacado: true,
       orden: 47
+    },
+    {
+      nombre: "Costa Dorada (Australia)",
+      slug: "costa-dorada",
+      paisRegion: "Australia",
+      descripcionCorta: "Surf, playas doradas y entretenimiento.",
+      descripcion:
+        "Vive la energía de la Costa Dorada: el paraíso de los surfistas y el entretenimiento bajo el sol australiano. Disfruta de kilómetros de playas doradas, olas perfectas en Surfers Paradise y una vibrante vida nocturna rodeada de rascacielos frente al mar. Un destino que combina parques temáticos de clase mundial, selvas tropicales cercanas y una atmósfera moderna y relajada que captura la esencia pura del verano eterno.",
+      imagenPortada: "/assets/destinos/costadorada1.jpg",
+      imagenes: [
+        "/assets/destinos/costadorada2.jpg",
+        "/assets/destinos/costadorada3.jpg",
+        "/assets/destinos/costadorada4.webp"
+      ],
+      destacado: true,
+      orden: 83
+    },
+    {
+      nombre: "Cancún",
+      slug: "cancun",
+      paisRegion: "México",
+      descripcionCorta: "Caribe turquesa y resorts de lujo.",
+      descripcion:
+        "Vive la energía de Cancún: el portal de entrada al mundo maya y las aguas más azules del Caribe. Disfruta de una infraestructura hotelera de lujo, playas de arena blanca que parecen talco y una vida nocturna legendaria. Un destino que te permite combinar el relax total en sus resorts con la exploración de arrecifes de coral, cenotes sagrados y la majestuosidad de las zonas arqueológicas cercanas.",
+      imagenPortada: "/assets/destinos/cancun1.webp",
+      imagenes: [
+        "/assets/destinos/cancun2.jpg",
+        "/assets/destinos/cancun3.jpg",
+        "/assets/destinos/cancun4.jpg"
+      ],
+      destacado: true,
+      orden: 84
+    },
+    {
+      nombre: "Aruba",
+      slug: "aruba",
+      paisRegion: "Aruba",
+      descripcionCorta: "Sol eterno y playas serenas.",
+      descripcion:
+        "Vive la energía de Aruba: la \"Isla Feliz\" donde el sol brilla todo el año y la brisa marina te acompaña siempre. Camina por la famosa Eagle Beach, asómbrate con sus paisajes desérticos llenos de cactus frente al océano y disfruta de una cultura multicultural encantadora. Un destino seguro, sofisticado y de aguas calmas, ideal para quienes buscan el equilibrio perfecto entre lujo, romance y aventura.",
+      imagenPortada: "/assets/destinos/aruba1.jpg",
+      imagenes: [
+        "/assets/destinos/aruba2.jpg",
+        "/assets/destinos/aruba3.png",
+        "/assets/destinos/aruba4.webp"
+      ],
+      destacado: true,
+      orden: 85
+    },
+    {
+      nombre: "Curazao",
+      slug: "curazao",
+      paisRegion: "Curazao",
+      descripcionCorta: "Caribe holandés y colores vibrantes.",
+      descripcion:
+        "Vive la energía de Curazao: una joya del Caribe con alma europea y colores vibrantes. Recorre las icónicas fachadas coloniales de Willemstad, Patrimonio de la Humanidad, y descubre caletas escondidas de aguas turquesas entre acantilados. Un destino que enamora con su mezcla única de herencia holandesa, playas vírgenes ideales para el snorkel y una atmósfera auténtica y relajada.",
+      imagenPortada: "/assets/destinos/curazao1.webp",
+      imagenes: [
+        "/assets/destinos/curazao2.jpg",
+        "/assets/destinos/curazao3.webp",
+        "/assets/destinos/curazao4.webp"
+      ],
+      destacado: true,
+      orden: 86
+    },
+    {
+      nombre: "Panamá",
+      slug: "panama",
+      paisRegion: "Panamá",
+      descripcionCorta: "Canal, historia y compras internacionales.",
+      descripcion:
+        "Vive la energía de Panamá: el puente del mundo donde la ingeniería moderna se cruza con la selva virgen. Maravíllate con el Canal de Panamá, recorre el casco antiguo lleno de historia colonial y disfruta de un paraíso de compras internacionales. Un destino de contrastes fascinantes que ofrece desde islas paradisíacas en Bocas del Toro hasta el skyline más impresionante de Centroamérica.",
+      imagenPortada: "/assets/destinos/panama1.jpg",
+      imagenes: [
+        "/assets/destinos/panama2.jpg",
+        "/assets/destinos/panama3.webp",
+        "/assets/destinos/panama4.webp"
+      ],
+      destacado: true,
+      orden: 87
+    },
+    {
+      nombre: "Playa del Carmen",
+      slug: "playa-del-carmen",
+      paisRegion: "México",
+      descripcionCorta: "Quinta Avenida y Riviera Maya.",
+      descripcion:
+        "Vive la energía de Playa del Carmen: el corazón vibrante de la Riviera Maya. Camina por la famosa Quinta Avenida con su mezcla inmejorable de tiendas, bares y cultura, y disfruta de sus clubes de playa con vista al azul turquesa del Caribe. Un destino cosmopolita y estratégico que combina el encanto de un pueblo costero con la sofisticación moderna, ideal para explorar los parques naturales, los cenotes y la mística de las ruinas mayas cercanas.",
+      imagenPortada: "/assets/destinos/playadelcarmen1.webp",
+      imagenes: [
+        "/assets/destinos/playadelcarmen2.jpg",
+        "/assets/destinos/playadelcarmen3.jpg",
+        "/assets/destinos/playadelcarmen4.jpg"
+      ],
+      destacado: true,
+      orden: 88
     },
     {
       nombre: "Bayahíbe",
@@ -959,6 +1179,22 @@ async function main() {
       orden: 57
     },
     {
+      nombre: "Punta del Este",
+      slug: "punta-del-este",
+      paisRegion: "Uruguay",
+      descripcionCorta: "Playa, glamour y la perla del Atlántico.",
+      descripcion:
+        "Vive la energía de Punta del Este: el epicentro del glamour y la sofisticación en el Atlántico. Desde la icónica escultura de 'Los Dedos' en la Playa Brava hasta los atardeceres mágicos en Casapueblo. Disfruta de sus puertos deportivos, sus tiendas de lujo en la Calle 20 y la vibrante vida nocturna de La Barra. Un destino de clase mundial que combina playas serenas con la mejor gastronomía y una arquitectura de vanguardia que enamora a visitantes de todo el mundo.",
+      imagenPortada: "/assets/destinos/puntadeleste1.jpg",
+      imagenes: [
+        "/assets/destinos/puntadeleste2.jpg",
+        "/assets/destinos/puntadeleste3.png",
+        "/assets/destinos/puntadeleste4.jpg"
+      ],
+      destacado: true,
+      orden: 3
+    },
+    {
       nombre: "Fórmula 1",
       slug: "formula-1",
       paisRegion: "Programas y eventos",
@@ -984,17 +1220,211 @@ async function main() {
       imagenPortada: "/assets/destinos/mundial.jpg",
       imagenes: [
         "/assets/destinos/mundial1.jpg",
-        "/assets/destinos/mundial3.webp",
-        "/assets/destinos/mundial.jpg"
+        "/assets/destinos/mundia2.jpg",
+        "/assets/destinos/mundial3.webp"
       ],
       destacado: true,
       orden: 59
+    },
+    {
+      nombre: "La Finalisima",
+      slug: "la-finalisima",
+      paisRegion: "Programas y eventos",
+      descripcionCorta: "El duelo definitivo entre campeones.",
+      descripcion:
+        "Vive la energía de La Finalisima: el duelo definitivo entre los dueños del fútbol. Sé testigo del choque histórico entre el Campeón de América y el Campeón de Europa en una batalla épica por la supremacía mundial. Un evento único, cargado de mística y estrellas internacionales, donde la pasión de las hinchadas y el prestigio continental se encuentran en un solo partido para coronar al mejor de los mejores. ¡Una oportunidad irrepetible para vivir la historia del fútbol desde la tribuna!",
+      imagenPortada: "/assets/destinos/finalisima.png",
+      imagenes: [
+        "/assets/destinos/finalisima2.png",
+        "/assets/destinos/finalisima3.png",
+        "/assets/destinos/finalisima4.png"
+      ],
+      destacado: true,
+      orden: 60
+    },
+    {
+      nombre: "Bolivia",
+      slug: "bolivia",
+      paisRegion: "Bolivia",
+      descripcionCorta: "Paisajes surrealistas y tradiciones andinas.",
+      descripcion:
+        "Vive la energía de Bolivia: un destino de paisajes surrealistas y tradiciones ancestrales que laten en lo más alto de los Andes. Déjate maravillar por la inmensidad del Salar de Uyuni, donde el cielo y la tierra se confunden, y navega por las aguas sagradas del Lago Titicaca. Desde la vibrante y vertiginosa La Paz con sus teleféricos, hasta la historia colonial de Sucre y Potosí, Bolivia te invita a un viaje auténtico al corazón de la cultura sudamericana.",
+      imagenPortada: "/assets/destinos/bolivia1.jpg",
+      imagenes: [
+        "/assets/destinos/bolivia2.jpg",
+        "/assets/destinos/bolivia3.webp",
+        "/assets/destinos/bolivia4.jpg"
+      ],
+      destacado: true,
+      orden: 66
+    },
+    {
+      nombre: "Madrid",
+      slug: "madrid",
+      paisRegion: "España",
+      descripcionCorta: "Arte, historia y vida nocturna vibrante.",
+      descripcion: "La capital española, famosa por sus museos, el Palacio Real y su inagotable energía.",
+      imagenPortada: "/assets/destinos/madrid.jpg",
+      imagenes: [
+        "/assets/destinos/madrid2.jpg",
+        "/assets/destinos/madrid3.jpg",
+        "/assets/destinos/madrid4.jpeg"
+      ],
+      destacado: true,
+      orden: 70
+    },
+    {
+      nombre: "Barcelona",
+      slug: "barcelona",
+      paisRegion: "España",
+      descripcionCorta: "Arquitectura de Gaudí y playas mediterráneas.",
+      descripcion: "Una ciudad cosmopolita conocida por su arte y arquitectura, la Sagrada Familia y el Parque Güell.",
+      imagenPortada: "/assets/destinos/barcelona.jpg",
+      imagenes: [
+        "/assets/destinos/barcelona2.jpg",
+        "/assets/destinos/barcelona3.jpg",
+        "/assets/destinos/barcelona4.webp"
+      ],
+      destacado: true,
+      orden: 71
+    },
+    {
+      nombre: "París",
+      slug: "paris",
+      paisRegion: "Francia",
+      descripcionCorta: "La ciudad de la luz y el amor.",
+      descripcion: "Hogar de la Torre Eiffel, el Louvre y la moda mundial, París es un centro global de arte y cultura.",
+      imagenPortada: "/assets/destinos/Paris1.webp",
+      imagenes: [
+        "/assets/destinos/paris2.jpg",
+        "/assets/destinos/paris3.jpg",
+        "/assets/destinos/paris4.jpg"
+      ],
+      destacado: true,
+      orden: 72
+    },
+    {
+      nombre: "Londres",
+      slug: "londres",
+      paisRegion: "Reino Unido",
+      descripcionCorta: "Historia real y modernidad icónica.",
+      descripcion: "Desde el Big Ben hasta el London Eye, Londres es una metrópolis diversa llena de historia.",
+      imagenPortada: "/assets/destinos/londres.jpg",
+      imagenes: [
+        "/assets/destinos/londres2.jpg",
+        "/assets/destinos/londres3.jpeg",
+        "/assets/destinos/londres4.jpg"
+      ],
+      destacado: true,
+      orden: 73
+    },
+    {
+      nombre: "Venecia",
+      slug: "venecia",
+      paisRegion: "Italia",
+      descripcionCorta: "Canales románticos y arquitectura única.",
+      descripcion: "La ciudad de los canales, famosa por sus góndolas, la Plaza de San Marcos y su atmósfera única.",
+      imagenPortada: "/assets/destinos/venecia.jpg",
+      imagenes: [
+        "/assets/destinos/venecia2.jpg",
+        "/assets/destinos/venecia3.jpg"
+      ],
+      destacado: true,
+      orden: 74
+    },
+    {
+      nombre: "Florencia",
+      slug: "florencia",
+      paisRegion: "Italia",
+      descripcionCorta: "Cuna del Renacimiento.",
+      descripcion: "Hogar de obras maestras del arte y la arquitectura renacentista, como el Duomo y el David de Miguel Ángel.",
+      imagenPortada: "/assets/destinos/florencia.jpg",
+      imagenes: [
+        "/assets/destinos/florencia2.jpg",
+        "/assets/destinos/florencia3.jpg",
+        "/assets/destinos/florencia4.jpg"
+      ],
+      destacado: true,
+      orden: 75
+    },
+    {
+      nombre: "Roma",
+      slug: "roma",
+      paisRegion: "Italia",
+      descripcionCorta: "La Ciudad Eterna.",
+      descripcion: "Capital de Italia, famosa por su historia antigua, el Coliseo y la Ciudad del Vaticano.",
+      imagenPortada: "/assets/destinos/roma.jpg",
+      imagenes: [
+        "/assets/destinos/roma2.jpg",
+        "/assets/destinos/roma3.jpg",
+        "/assets/destinos/roma4.jpg"
+      ],
+      destacado: true,
+      orden: 76
+    },
+    {
+      nombre: "Catamarca",
+      slug: "catamarca",
+      paisRegion: "Argentina",
+      descripcionCorta: "Paisajes lunares y horizontes infinitos en la Puna.",
+      descripcion: "Vive la energía de Catamarca: un destino de paisajes lunares y horizontes infinitos en el corazón de la Puna. Déjate asombrar por el blanco radiante del Campo de Piedra Pómez, recorre la mística Ruta del Adobe y maravíllate con la inmensidad de los Seis Miles, las cumbres más altas de los Andes. Un viaje al silencio y la grandeza de la naturaleza, donde los volcanes, las lagunas de colores y la calidez de sus pueblos te ofrecen una experiencia de aventura y paz absoluta.",
+      imagenPortada: "/assets/destinos/catamarca1.jpg",
+      imagenes: [
+        "/assets/destinos/catamarca2.jpg",
+        "/assets/destinos/catamarca3.jpg",
+        "/assets/destinos/catamarca4.jpg"
+      ],
+      destacado: true,
+      orden: 80
+    },
+    {
+      nombre: "Turquía",
+      slug: "turquia",
+      paisRegion: "Turquía",
+      descripcionCorta: "Oriente y Occidente en perfecta armonía.",
+      descripcion:
+        "Vive la energía de Turquía: el puente mágico donde Oriente se abraza con Occidente. Déjate cautivar por la majestuosidad de las mezquitas de Estambul, navega por el Bósforo y descubre los paisajes lunares de Capadocia desde un globo al amanecer. Un destino que despierta todos los sentidos con sus bazares aromáticos, sus ciudades subterráneas y una historia que respira en cada rincón, desde los palacios otomanos hasta las ruinas de Éfeso.",
+      imagenPortada: "/assets/destinos/turquia.jpg",
+      imagenes: [
+        "/assets/dubai.jpg",
+        "/assets/destinos/turquia2.jpg",
+        "/assets/destinos/turquia3.jpg",
+        "/assets/destinos/turquia4.jpg"
+      ],
+      destacado: true,
+      orden: 81
+    },
+    {
+      nombre: "Islas Griegas",
+      slug: "islas-griegas",
+      paisRegion: "Grecia",
+      descripcionCorta: "Cúpulas azules y atardeceres sobre el Egeo.",
+      descripcion:
+        "Vive la energía de las Islas Griegas: un paraíso de casas blancas y cúpulas azules que brillan sobre el mar Egeo. Disfruta de los atardeceres legendarios de Santorini, la vibrante vida nocturna de Mykonos y la rica historia de Creta. Un destino de ensueño donde el tiempo se detiene entre aguas cristalinas, playas de arena volcánica y la calidez de la hospitalidad mediterránea en su máxima expresión.",
+      imagenPortada: "/assets/destinos/islasgriegas1.webp",
+      imagenes: [
+        "/assets/destinos/islasgriegas2.jpg",
+        "/assets/destinos/islasgriegas3.jpg",
+        "/assets/destinos/islasgriegas4.webp"
+      ],
+      destacado: true,
+      orden: 82
     }
   ];
 
   for (const destino of destinosData) {
-    const created = await prisma.destino.create({
-      data: {
+    const created = await prisma.destino.upsert({
+      where: { slug: destino.slug },
+      update: {
+        nombre: destino.nombre,
+        paisRegion: destino.paisRegion,
+        descripcionCorta: destino.descripcionCorta,
+        descripcion: destino.descripcion,
+        imagenPortada: destino.imagenPortada,
+        destacado: destino.destacado,
+        orden: destino.orden
+      },
+      create: {
         nombre: destino.nombre,
         slug: destino.slug,
         paisRegion: destino.paisRegion,
@@ -1004,6 +1434,11 @@ async function main() {
         destacado: destino.destacado,
         orden: destino.orden
       }
+    });
+
+    // Delete existing images to avoid duplicates or stale data
+    await prisma.imagenDestino.deleteMany({
+      where: { destinoId: created.id }
     });
 
     await prisma.imagenDestino.createMany({
@@ -1026,6 +1461,7 @@ async function main() {
   const experienciaMundial = destinosList.find(
     (item) => item.slug === "experiencia-mundial"
   );
+  const finalisima = destinosList.find((item) => item.slug === "la-finalisima");
   const canasvieiras = destinosList.find((item) => item.slug === "canasvieiras");
   const camboriu = destinosList.find((item) => item.slug === "camboriu");
   const bombinhas = destinosList.find((item) => item.slug === "bombinhas");
@@ -1034,14 +1470,43 @@ async function main() {
   const laguna = destinosList.find((item) => item.slug === "laguna");
   const itapema = destinosList.find((item) => item.slug === "itapema");
   const portoGalinhas = destinosList.find((item) => item.slug === "porto-galinhas");
+  const angra = destinosList.find((item) => item.slug === "angra-dos-reis");
   const torres = destinosList.find((item) => item.slug === "torres");
   const bariloche = destinosList.find((item) => item.slug === "bariloche");
+  const neuquen = destinosList.find((item) => item.slug === "neuquen");
   const calafate = destinosList.find((item) => item.slug === "el-calafate");
   const iguazu = destinosList.find((item) => item.slug === "cataratas-del-iguazu");
   const ushuaia = destinosList.find((item) => item.slug === "ushuaia");
   const puertoMadryn = destinosList.find((item) => item.slug === "puerto-madryn");
   const lima = destinosList.find((item) => item.slug === "lima");
   const cordoba = destinosList.find((item) => item.slug === "cordoba");
+  const peritoMoreno = destinosList.find((item) => item.slug === "perito-moreno");
+  const santiagoChile = destinosList.find((item) => item.slug === "santiago-de-chile");
+  const maragogi = destinosList.find((item) => item.slug === "maragogi");
+  const caboSantoAgostinho = destinosList.find((item) => item.slug === "cabo-de-santo-agostinho");
+  const colombia = destinosList.find((item) => item.slug === "colombia");
+  const mexico = destinosList.find((item) => item.slug === "mexico");
+  const cuba = destinosList.find((item) => item.slug === "cuba");
+  const salta = destinosList.find((item) => item.slug === "salta");
+  const jujuy = destinosList.find((item) => item.slug === "jujuy");
+  const lasGrutas = destinosList.find((item) => item.slug === "las-grutas");
+
+  const cusco = destinosList.find((item) => item.slug === "cusco");
+  const bolivia = destinosList.find((item) => item.slug === "bolivia");
+  const madrid = destinosList.find((item) => item.slug === "madrid");
+  const barcelona = destinosList.find((item) => item.slug === "barcelona");
+  const paris = destinosList.find((item) => item.slug === "paris");
+  const londres = destinosList.find((item) => item.slug === "londres");
+  const venecia = destinosList.find((item) => item.slug === "venecia");
+  const florencia = destinosList.find((item) => item.slug === "florencia");
+  const roma = destinosList.find((item) => item.slug === "roma");
+  const amsterdam = destinosList.find((item) => item.slug === "amsterdam");
+  const costaRica = destinosList.find((item) => item.slug === "costa-rica");
+  const turquia = destinosList.find((item) => item.slug === "turquia");
+  const islasGriegas = destinosList.find((item) => item.slug === "islas-griegas");
+  const dubai = destinosList.find((item) => item.slug === "dubai");
+  const praga = destinosList.find((item) => item.slug === "praga");
+
 
   const actividades = await prisma.actividad.createMany({
     data: [
@@ -1050,7 +1515,7 @@ async function main() {
         slug: "capilla-del-monte-valle-de-punilla",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-06-14"),
+        fecha: new Date("2026-06-14"),
         hora: "08:30",
         precio: "0",
         cupos: 0,
@@ -1065,7 +1530,7 @@ async function main() {
         slug: "villa-general-belgrano-valle-de-calamuchita",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-06-21"),
+        fecha: new Date("2026-06-21"),
         hora: "08:00",
         precio: "0",
         cupos: 0,
@@ -1080,7 +1545,7 @@ async function main() {
         slug: "mina-clavero-valle-de-traslasierra",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-06-28"),
+        fecha: new Date("2026-06-28"),
         hora: "07:30",
         precio: "0",
         cupos: 0,
@@ -1095,7 +1560,7 @@ async function main() {
         slug: "camino-de-la-historia-estancias-jesuiticas",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-07-05"),
+        fecha: new Date("2026-07-05"),
         hora: "09:00",
         precio: "0",
         cupos: 0,
@@ -1110,7 +1575,7 @@ async function main() {
         slug: "la-cumbrecita-pueblo-peatonal",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-07-12"),
+        fecha: new Date("2026-07-12"),
         hora: "07:45",
         precio: "0",
         cupos: 0,
@@ -1125,7 +1590,7 @@ async function main() {
         slug: "alta-gracia-carlos-paz-combo",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-07-19"),
+        fecha: new Date("2026-07-19"),
         hora: "08:15",
         precio: "0",
         cupos: 0,
@@ -1140,7 +1605,7 @@ async function main() {
         slug: "cerro-colorado-region-norte",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-07-26"),
+        fecha: new Date("2026-07-26"),
         hora: "07:00",
         precio: "0",
         cupos: 0,
@@ -1155,7 +1620,7 @@ async function main() {
         slug: "mar-de-ansenuza-leyendas-y-flamencos",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-08-02"),
+        fecha: new Date("2026-08-02"),
         hora: "09:00",
         precio: "0",
         cupos: 0,
@@ -1170,7 +1635,7 @@ async function main() {
         slug: "villa-carlos-paz-corazon-de-cordoba",
         destinoId: cordoba.id,
         tipoActividad: "Excursión medio día",
-        fecha: new Date("2025-08-09"),
+        fecha: new Date("2026-08-09"),
         hora: "09:30",
         precio: "0",
         cupos: 0,
@@ -1185,7 +1650,7 @@ async function main() {
         slug: "alta-gracia-jesuitas",
         destinoId: cordoba.id,
         tipoActividad: "Excursión medio día",
-        fecha: new Date("2025-08-16"),
+        fecha: new Date("2026-08-16"),
         hora: "09:00",
         precio: "0",
         cupos: 0,
@@ -1200,7 +1665,7 @@ async function main() {
         slug: "jesus-maria-camino-real",
         destinoId: cordoba.id,
         tipoActividad: "Excursión medio día",
-        fecha: new Date("2025-08-23"),
+        fecha: new Date("2026-08-23"),
         hora: "09:00",
         precio: "0",
         cupos: 0,
@@ -1215,7 +1680,7 @@ async function main() {
         slug: "sierras-chicas-region-de-la-historia",
         destinoId: cordoba.id,
         tipoActividad: "Excursión medio día",
-        fecha: new Date("2025-08-30"),
+        fecha: new Date("2026-08-30"),
         hora: "09:00",
         precio: "0",
         cupos: 0,
@@ -1230,7 +1695,7 @@ async function main() {
         slug: "paseo-del-indio-perla-de-las-sierras",
         destinoId: cordoba.id,
         tipoActividad: "Excursión medio día",
-        fecha: new Date("2025-09-06"),
+        fecha: new Date("2026-09-06"),
         hora: "08:30",
         precio: "0",
         cupos: 0,
@@ -1245,7 +1710,7 @@ async function main() {
         slug: "ruta-del-vino-de-cordoba",
         destinoId: cordoba.id,
         tipoActividad: "Excursión día completo",
-        fecha: new Date("2025-09-13"),
+        fecha: new Date("2026-09-13"),
         hora: "10:00",
         precio: "61000",
         cupos: 20,
@@ -1261,7 +1726,7 @@ async function main() {
         slug: "cordoba-a-tu-medida",
         destinoId: cordoba.id,
         tipoActividad: "Excursión a medida",
-        fecha: new Date("2025-09-20"),
+        fecha: new Date("2026-09-20"),
         hora: "09:00",
         precio: "0",
         cupos: 0,
@@ -1277,7 +1742,7 @@ async function main() {
         slug: "visita-cordoba-a-tu-medida",
         destinoId: cordoba.id,
         tipoActividad: "Excursión a medida",
-        fecha: new Date("2025-09-27"),
+        fecha: new Date("2026-09-27"),
         hora: "08:00",
         precio: "0",
         cupos: 0,
@@ -1293,1272 +1758,5049 @@ async function main() {
 
   const salidasGrupales = [
     {
-      titulo: "Bombinhas Paquete",
-      slug: "bombinhas-paquete",
-      destinoId: bombinhas.id,
+      titulo: "Viaje a Balneário Camboriú - 7 Noches",
+      slug: "balneario-camboriu-7-noches",
+      destinoId: null, // Se asignará después de encontrar Camboriú
       noches: 7,
-      cupos: 20,
+      cupos: 45,
       destacada: true,
       activa: true,
       orden: 1,
-      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
-      noIncluye: "Impuestos (RG 5617).",
+      noIncluye: `
+• Servicio a bordo del bus (comidas y bebidas durante el viaje)
+• Excursiones opcionales no mencionadas en el programa
+• Gastos personales y propinas
+• Seguro de cancelación (disponible como extra)
+      `.trim(),
+      condiciones: `
+## Condiciones de Reserva y Formas de Pago
+
+### Reserva y Pagos
+• **Seña inicial**: Se requiere una seña para confirmar la reserva del paquete
+• **Refuerzo de seña**: Un segundo pago parcial se solicita en fecha acordada
+• **Saldo final**: El saldo restante debe abonarse antes de la fecha de salida según cronograma establecido
+• **Métodos de pago**: Efectivo, transferencia bancaria, tarjetas de crédito (consultar recargos)
+
+### Cancelaciones
+• Las cancelaciones están sujetas a las condiciones generales de la agencia
+• Se recomienda contratar seguro de cancelación para mayor tranquilidad
+• Los reembolsos dependerán de la anticipación con que se realice la cancelación
+
+### Documentación Necesaria
+• DNI vigente (para menores, autorización notarial si viajan sin ambos padres)
+• Pasaporte al día si se planean excursiones a países limítrofes
+• Certificado de vacunación COVID-19 (según normativas vigentes)
+
+### Condiciones Generales
+• Los servicios están sujetos a disponibilidad al momento de la reserva
+• Los precios pueden variar según la fecha de salida y tipo de habitación
+• La agencia se reserva el derecho de modificar itinerarios por razones de fuerza mayor
+• Rigen las condiciones generales de agencias de viajes según normativa vigente
+• Consultar por descuentos para grupos familiares o pagos anticipados
+      `.trim(),
       destinos: {
-        create: [{ destinoId: bombinhas.id }]
+        create: [] // Se llenará con el ID de Camboriú
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "Transporte",
+            descripcion: "Viaje en bus moderno semicama o cama (según opción elegida) con salida desde terminal de ómnibus"
+          },
+          {
+            tipo: "Transporte",
+            descripcion: "Traslados incluidos desde la terminal de bus hasta el hotel en destino"
+          },
+          {
+            tipo: "Alojamiento",
+            descripcion: "7 noches de alojamiento en hotel seleccionado (opciones: Hotel Sagres, Hotel Ilha da Madeira, Hotel Dos Açores u otros de categoría similar)"
+          },
+          {
+            tipo: "Comidas",
+            descripcion: "Desayunos diarios incluidos en el hotel (buffet o continental según establecimiento)"
+          },
+          {
+            tipo: "Comidas",
+            descripcion: "Cenas en restaurantes seleccionados durante la estadía (cantidad según plan contratado)"
+          },
+          {
+            tipo: "Asistencia",
+            descripcion: "Coordinador de viaje durante todo el trayecto y en destino para asistencia permanente"
+          },
+          {
+            tipo: "Asistencia",
+            descripcion: "Asistencia al viajero en destino con cobertura AssistCard (incluye ronda médica en hoteles seleccionados)"
+          },
+          {
+            tipo: "Servicios",
+            descripcion: "Información turística y asesoramiento sobre actividades y excursiones opcionales en destino"
+          }
+        ]
       },
       precios: {
         create: [
           {
-            precio: "590",
-            moneda: "USD",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          },
-          {
-            precio: "769700",
+            precio: 0,
             moneda: "ARS",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus grupal Mix o cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches con regimen segun el hotel"
+            fechaInicio: new Date("2026-02-01"),
+            fechaFin: new Date("2026-02-22")
           },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "servicio", descripcion: "Coordinador de viaje" },
-          { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
+          {
+            precio: 0,
+            moneda: "ARS",
+            fechaInicio: new Date("2026-02-23"),
+            fechaFin: new Date("2026-03-11")
+          },
+          {
+            precio: 0,
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-12"),
+            fechaFin: new Date("2026-03-31")
+          },
+          {
+            precio: 0,
+            moneda: "ARS",
+            fechaInicio: new Date("2026-04-02"),
+            fechaFin: new Date("2026-04-27")
+          }
         ]
       }
     },
     {
-      titulo: "Camboriu Paquete",
-      slug: "camboriu-paquete",
-      destinoId: camboriu.id,
+      titulo: "Descubrí Canasvieiras - 7 Noches en Florianópolis",
+      slug: "canasvieiras-7-noches",
+      destinoId: null, // Se asignará después de encontrar Canasvieiras
       noches: 7,
-      cupos: 20,
+      cupos: 45,
       destacada: true,
       activa: true,
       orden: 2,
-      condiciones:
-        "Salida en bus MIX con servicio a bordo. Habitaciones a compartir garantizadas. Cupos sujetos a disponibilidad.",
+      noIncluye: `
+• Servicio a bordo del bus (disponible como opcional)
+• Excursiones opcionales en destino
+• Gastos personales y propinas
+• Bebidas alcohólicas durante las comidas
+• Actividades turísticas no especificadas en el programa
+      `.trim(),
+      condiciones: `
+## Condiciones de Reserva y Formas de Pago
+
+**Reserva y Pagos:** Se requiere una seña inicial para congelar la tarifa del paquete y confirmar la reserva. Un segundo pago parcial (refuerzo de seña) hasta alcanzar un porcentaje del total, con fecha límite establecida. El saldo final se abona antes de la fecha de salida según cronograma de pagos.
+
+**Formas de Pago:** Efectivo en oficina • Transferencia bancaria • Tarjetas de crédito (consultar cuotas) • Tarjetas de débito • Pagos digitales (MercadoPago, etc.)
+
+**Cancelaciones:** Las cancelaciones están sujetas a los términos generales de la agencia. Se aplican retenciones según el tiempo de anticipación. La seña puede no ser reembolsable según condiciones. En caso de fuerza mayor, se evalúa cada caso. Se recomienda contratar seguro de cancelación.
+
+**Modificaciones:** Los cambios de fecha están sujetos a disponibilidad y pueden aplicarse cargos administrativos.
+
+## Información General del Viaje
+
+**Documentación Requerida:** DNI o pasaporte vigente. Menores deben viajar con autorización si no van con ambos padres. Llevar copia de documentos importantes.
+
+**Moneda:** Real brasileño (BRL). Se recomienda llevar efectivo en reales. Tarjetas de crédito aceptadas en la mayoría de comercios. Casas de cambio disponibles en la zona turística.
+
+**Recomendaciones:** Llevar protector solar de alto factor, ropa de playa y casual, calzado cómodo, repelente de mosquitos y medicación personal. Canasvieiras es una zona turística segura, tomar precauciones habituales con pertenencias.
+
+**Conectividad:** Wi-Fi disponible en hoteles y comercios. Se recomienda contratar roaming o chip local para datos móviles.
+
+**Nota:** Todos los servicios están sujetos a disponibilidad. Las condiciones pueden variar según la temporada. Los itinerarios y servicios pueden sufrir modificaciones por razones operativas.
+      `.trim(),
       destinos: {
-        create: [{ destinoId: camboriu.id }]
+        create: [] // Se llenará con el ID de Canasvieiras
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "Transporte",
+            descripcion: "Salida en bus moderno semicama o cama con aire acondicionado"
+          },
+          {
+            tipo: "Transporte",
+            descripcion: "Traslados inn/out desde y hacia el alojamiento en Canasvieiras"
+          },
+          {
+            tipo: "Alojamiento",
+            descripcion: "7 noches de hospedaje en hotel seleccionado (Canasvieiras Internacional o Almare)"
+          },
+          {
+            tipo: "Comida",
+            descripcion: "Desayuno buffet incluido todos los días"
+          },
+          {
+            tipo: "Comida",
+            descripcion: "Cena incluida todos los días con menú variado"
+          },
+          {
+            tipo: "Servicio",
+            descripcion: "Coordinador de viaje que acompaña al grupo durante todo el trayecto"
+          },
+          {
+            tipo: "Servicio",
+            descripcion: "Coordinador en destino disponible para consultas y asistencia"
+          },
+          {
+            tipo: "Servicio",
+            descripcion: "Asistencia al viajero AssistCard con cobertura médica"
+          },
+          {
+            tipo: "Servicio",
+            descripcion: "Ronda médica en destino para mayor tranquilidad"
+          }
+        ]
       },
       precios: {
         create: [
           {
-            precio: "0",
+            precio: 0,
             moneda: "ARS",
             fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-01")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-08"),
-            fechaFin: new Date("2026-02-08")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-15"),
-            fechaFin: new Date("2026-02-15")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-22"),
             fechaFin: new Date("2026-02-22")
           },
           {
-            precio: "0",
+            precio: 0,
             moneda: "ARS",
-            fechaInicio: new Date("2026-03-01"),
-            fechaFin: new Date("2026-03-01")
+            fechaInicio: new Date("2026-02-23"),
+            fechaFin: new Date("2026-03-11")
           },
           {
-            precio: "0",
+            precio: 0,
             moneda: "ARS",
-            fechaInicio: new Date("2026-03-08"),
-            fechaFin: new Date("2026-03-08")
+            fechaInicio: new Date("2026-03-13"),
+            fechaFin: new Date("2026-03-31")
           },
           {
-            precio: "0",
+            precio: 0,
             moneda: "ARS",
-            fechaInicio: new Date("2026-03-15"),
-            fechaFin: new Date("2026-03-15")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-03-22"),
-            fechaFin: new Date("2026-03-22")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-03-29"),
-            fechaFin: new Date("2026-03-29")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "detalle-programa", descripcion: "Sur de Brasil - Camboriu" },
-          { tipo: "detalle-destino", descripcion: "Sur de Brasil - Camboriu" },
-          { tipo: "detalle-transporte", descripcion: "Bus MIX, con servicio a bordo" },
-          { tipo: "detalle-duracion", descripcion: "07 noches" },
-          {
-            tipo: "detalle-hotel",
-            descripcion:
-              "Bella Camboriu / Centromar / H / HM / Puca (hotelpuca.com.br) / Tropikalya Gold"
-          },
-          { tipo: "detalle-regimen", descripcion: "Desayuno" },
-          {
-            tipo: "detalle-media-pension",
-            descripcion:
-              "Media pensión opcional (Restaurante Dom Albero). Hoteles H y HM: media pensión en el hotel."
-          },
-          {
-            tipo: "detalle-servicios",
-            descripcion:
-              "Asistencia médica incluida sin límite de edad."
-          },
-          {
-            tipo: "detalle-servicios",
-            descripcion: "Coordinación permanente."
-          },
-          {
-            tipo: "detalle-salidas",
-            descripcion:
-              "Salidas: 01, 08, 15 y 22 de febrero; 01, 08, 15, 22 y 29 de marzo (Semana Santa)."
-          },
-          { tipo: "transporte", descripcion: "Bus MIX con servicio a bordo" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches con régimen según hotel"
-          },
-          { tipo: "comida", descripcion: "Régimen desayuno" },
-          {
-            tipo: "servicio",
-            descripcion: "Asistencia médica incluida sin límite de edad"
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Coordinación permanente durante el viaje"
+            fechaInicio: new Date("2026-04-02"),
+            fechaFin: new Date("2026-04-27")
           }
         ]
       }
     },
     {
-      titulo: "Combinado Búzios + Río de Janeiro",
-      slug: "combinado-buzios-rio",
-      destinoId: buzios.id,
+      titulo: "Verano en Bombas y Bombinhas - 7 Noches",
+      slug: "bombas-bombinhas-7-noches",
+      destinoId: null, // Se asignará después
       noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 4,
-      condiciones:
-        "Salida aérea combinada. Cupos sujetos a disponibilidad. Los cupos aéreos incluyen estadía en cochera (hasta vehículos medianos).",
-      destinos: {
-        create: [{ destinoId: buzios.id }, { destinoId: rio.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-22"),
-            fechaFin: new Date("2026-02-22")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "detalle-programa", descripcion: "Combinado" },
-          { tipo: "detalle-destino", descripcion: "Búzios + Río de Janeiro" },
-          { tipo: "detalle-duracion", descripcion: "08 días / 07 noches" },
-          {
-            tipo: "detalle-transporte",
-            descripcion: "Aéreos volando por Aerolíneas Argentinas"
-          },
-          { tipo: "detalle-equipaje", descripcion: "Carry on" },
-          {
-            tipo: "detalle-hotel",
-            descripcion: "La Foret (3N) + Oceano Copacabana Hotel (4N)"
-          },
-          { tipo: "detalle-regimen", descripcion: "Desayuno" },
-          { tipo: "detalle-servicios", descripcion: "Trf in out + interhotel" },
-          {
-            tipo: "detalle-asistencia",
-            descripcion: "Master plus Cobertura 40k"
-          },
-          {
-            tipo: "detalle-salidas",
-            descripcion: "Salidas: 22 de febrero"
-          },
-          { tipo: "transporte", descripcion: "Aéreos con Aerolíneas Argentinas" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches: 3 en Búzios + 4 en Río de Janeiro"
-          },
-          { tipo: "comida", descripcion: "Régimen desayuno" },
-          { tipo: "equipaje", descripcion: "Carry on incluido" },
-          {
-            tipo: "servicio",
-            descripcion: "Traslados in/out y entre hoteles (interhotel)"
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Asistencia al viajero Master Plus 40k"
-          },
-          {
-            tipo: "itinerario-1",
-            descripcion:
-              "Día de salida: Comienza la experiencia. Nos reunimos en el punto de encuentro indicado, realizamos el check in y emprendemos el traslado hacia el destino."
-          },
-          {
-            tipo: "itinerario-2",
-            descripcion:
-              "Estadía en destino: Viví cada momento con actividades y servicios incluidos. El itinerario puede variar según condiciones del viaje y preferencias del grupo."
-          },
-          {
-            tipo: "itinerario-3",
-            descripcion:
-              "Día de regreso: Finaliza el viaje con el traslado de vuelta. Nuestro equipo acompaña el proceso para cerrar la experiencia con la misma calidad."
-          }
-        ]
-      }
-    },
-    {
-      titulo: "Ferrugem Paquete",
-      slug: "ferrugem-paquete",
-      destinoId: ferrugem.id,
-      noches: 7,
-      cupos: 20,
+      cupos: 40,
       destacada: true,
       activa: true,
       orden: 3,
-      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
-      noIncluye: "Impuestos (RG 5617).",
+      noIncluye: `
+• Servicio a bordo del bus
+• Comidas no especificadas en el régimen
+• Gastos personales y propinas
+• Tours opcionales no mencionados
+      `.trim(),
+      condiciones: `
+## Condiciones de Reserva y Formas de Pago
+
+### Reserva y Pagos
+• **Seña inicial**: Se requiere una seña para reservar y congelar la tarifa dentro de las 72 horas posteriores a la reserva.
+• **Refuerzo de seña**: Existe un pago parcial de refuerzo previo al viaje.
+• **Saldo final**: Se completa en su totalidad antes de la fecha de salida.
+• **Formas de Pago**: Consultar opciones disponibles (efectivo, transferencia, etc.).
+
+### Cancelaciones
+• Aplican cargos por cancelación según las normas generales de la agencia.
+• Recomendamos consultar políticas específicas al momento de reservar.
+
+## Información Útil
+• **Clima**: Verano cálido, ideal para playa.
+• **Actividades**: Snorkel, buceo, caminatas, vida nocturna y gastronomía de mar.
+• **Recomendaciones**: Llevar protector solar, ropa ligera y calzado cómodo para caminar.
+      `.trim(),
       destinos: {
-        create: [{ destinoId: ferrugem.id }]
+        create: [] // Se llenará con el ID
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "Transporte",
+            descripcion: "Viaje en bus unidades modernas (semicama o cama según disponibilidad)"
+          },
+          {
+            tipo: "Traslado",
+            descripcion: "Traslados in/out desde y hacia el alojamiento"
+          },
+          {
+            tipo: "Alojamiento",
+            descripcion: "7 noches de alojamiento en Bombas/Bombinhas (Residencial Bahia do Sonho, Apart Hotel Vila do Centro, Hotel Bora Bora u otros)"
+          },
+          {
+            tipo: "Régimen",
+            descripcion: "Pensión según hotel (Desayuno o Sin Pensión)"
+          },
+          {
+            tipo: "Asistencia",
+            descripcion: "Coordinador de viaje y asistencia al viajero en destino"
+          },
+          {
+            tipo: "Opcional",
+            descripcion: "Butaca cama + comidas en ruta (consultar)"
+          }
+        ]
       },
       precios: {
         create: [
           {
-            precio: "510",
-            moneda: "USD",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          },
-          {
-            precio: "673700",
+            precio: 0, // No mostrar precios
             moneda: "ARS",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus grupal Mix o cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches con regimen segun el hotel"
+            fechaInicio: new Date("2026-02-01"),
+            fechaFin: new Date("2026-02-28")
           },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "servicio", descripcion: "Coordinador de viaje" },
-          { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
+          {
+            precio: 0, // No mostrar precios
+            moneda: "ARS",
+            fechaInicio: new Date("2026-03-01"),
+            fechaFin: new Date("2026-03-31")
+          }
         ]
       }
     },
     {
-      titulo: "Garopaba Paquete",
-      slug: "garopaba-paquete",
-      destinoId: garopaba.id,
+      titulo: "Descubrí Punta del Este - 7 Noches",
+      slug: "punta-del-este-7-noches",
+      destinoId: null, // Se asignará después
       noches: 7,
-      cupos: 20,
+      cupos: 40,
+      destacada: true,
+      activa: true,
+      orden: 4,
+      noIncluye: `
+• Cenas u otros servicios fuera de lo estipulado en el régimen.
+• Cargos adicionales de turismo o tasas locales según normativa vigente.
+• Gastos de índole personal, propinas y excursiones opcionales no contratadas.
+      `.trim(),
+      condiciones: `
+## Condiciones de Reserva y Formas de Pago
+
+### Reserva
+• Se puede asegurar la plaza con una seña inicial dentro de las 72 horas posteriores a la reserva.
+• Refuerzo de seña previo a la salida y saldo total a cancelar antes del viaje.
+
+### Cancelaciones
+• Las condiciones generales de cancelación y cambios aplican según las normas de la agencia.
+
+## Información Útil
+• **Actividades**: Visitar Playa Mansa y Playa Brava, recorrer la zona del Puerto, conocer la escultura de La Mano, disfrutar de la vida nocturna y la gastronomía local.
+• **Temporada**: Verano con clima ideal para playa (Diciembre a Marzo).
+      `.trim(),
+      destinos: {
+        create: [] // Se llenará con el ID
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "Transporte",
+            descripcion: "Transporte en bus desde el punto de partida hasta Punta del Este y regreso (unidades semicama)"
+          },
+          {
+            tipo: "Comidas",
+            descripcion: "Snack y cena a bordo ofrecidos como beneficio durante el viaje sin costo extra"
+          },
+          {
+            tipo: "Traslado",
+            descripcion: "Traslados in/out desde el lugar de llegada hasta el alojamiento"
+          },
+          {
+            tipo: "Alojamiento",
+            descripcion: "7 noches de alojamiento en hoteles seleccionados (Aqua Punta, Bravo Hotel, Concorde Hotel u otros según disponibilidad)"
+          },
+          {
+            tipo: "Régimen",
+            descripcion: "Desayuno diario incluido"
+          },
+          {
+            tipo: "Asistencia",
+            descripcion: "Asistencia médica en destino incluida para mayor tranquilidad"
+          }
+        ]
+      },
+      precios: {
+        create: [
+          {
+            precio: 0,
+            moneda: "USD",
+            fechaInicio: new Date("2026-02-01"),
+            fechaFin: new Date("2026-02-28")
+          },
+          {
+            precio: 0,
+            moneda: "USD",
+            fechaInicio: new Date("2026-03-01"),
+            fechaFin: new Date("2026-03-31")
+          }
+        ]
+      }
+    },
+    {
+      titulo: "Experiencia Mundial – Fútbol y Playa – México",
+      slug: "mundial-futbol-playa-mexico",
+      destinoId: null, // Se asignará después
+      noches: 13,
+      cupos: 40,
       destacada: true,
       activa: true,
       orden: 5,
-      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
-      noIncluye: "Impuestos (RG 5617).",
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Comidas no especificadas
+• Propinas y gastos personales
+• Entradas a otros eventos no mencionados
+      `.trim(),
+      condiciones: `
+## Itinerario de Partidos y Sedes
+
+**Argentina vs Argelia**
+📍 16 de junio – Kansas
+
+**Argentina vs Austria**
+📍 22 de junio – Dallas
+
+**Argentina vs Jordania**
+📍 27 de junio – Dallas
+
+### Itinerario detallado
+• **16 de Junio**: Partido en Kansas.
+• **17 de Junio**: Kansas → Cancún.
+• **21 de Junio**: Cancún → Dallas.
+• **22 de Junio**: Partido en Dallas.
+• **22 de Junio**: Dallas → Cancún.
+• **27 de Junio**: Cancún → Dallas.
+• **27 de Junio**: Partido en Dallas.
+*(Entre partido y partido, regresaremos a Cancún y volveremos a la ciudad del partido el día correspondiente)*
+
+### Información del Viaje
+• **Día 1**: Salida e inicio de la experiencia. Check-in y traslado.
+• **Estadía**: Disfrutá de actividades, playa y fútbol.
+• **Regreso**: Check-out y retorno asistido por nuestro equipo.
+
+### Tarifas Referenciales (Base Doble)
+• **Categoría 3 (Hotel 3★)**: USD 12,000 final
+• **Categoría 2 (Mejor ubicación)**: USD 14,000 final
+• **Categoría 1 (Premium)**: USD 16,000 final
+• *Suplemento individual: USD 2,450*
+      `.trim(),
       destinos: {
-        create: [{ destinoId: garopaba.id }]
+        create: [] // Se llenará con el ID
+      },
+      incluyeItems: {
+        create: [
+          {
+            tipo: "Aéreo",
+            descripcion: "Aéreo internacional incluido"
+          },
+          {
+            tipo: "Traslado",
+            descripcion: "Traslados IN/OUT y HTL / ESTADIO / HTL"
+          },
+          {
+            tipo: "Traslado",
+            descripcion: "Traslados ENTRE SEDES (Kansas - Dallas - Cancún)"
+          },
+          {
+            tipo: "Alojamiento",
+            descripcion: "13 noches de alojamiento (Kansas – Cancún – Dallas)"
+          },
+          {
+            tipo: "Entrada",
+            descripcion: "Entradas a los 03 partidos de fase de grupos"
+          },
+          {
+            tipo: "Asistencia",
+            descripcion: "Asistencia al viajero incluida"
+          }
+        ]
       },
       precios: {
         create: [
           {
-            precio: "690",
+            precio: 12000,
             moneda: "USD",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          },
-          {
-            precio: "917700",
-            moneda: "ARS",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus grupal Mix o cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches con regimen segun el hotel"
-          },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "servicio", descripcion: "Coordinador de viaje" },
-          { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
-        ]
-      }
-    },
-    {
-      titulo: "Laguna Paquete",
-      slug: "laguna-paquete",
-      destinoId: laguna.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 6,
-      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
-      noIncluye: "Impuestos (RG 5617).",
-      destinos: {
-        create: [{ destinoId: laguna.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "480",
-            moneda: "USD",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          },
-          {
-            precio: "638700",
-            moneda: "ARS",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus grupal Mix o cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches con regimen segun el hotel"
-          },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "servicio", descripcion: "Coordinador de viaje" },
-          { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
-        ]
-      }
-    },
-    {
-      titulo: "Torres Paquete",
-      slug: "torres-paquete",
-      destinoId: torres.id,
-      noches: 7,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 7,
-      condiciones: "Paquetes Nov 2025 - Abr 2026. Tarifa en base doble.",
-      noIncluye: "Impuestos (RG 5617).",
-      destinos: {
-        create: [{ destinoId: torres.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "717",
-            moneda: "USD",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          },
-          {
-            precio: "939700",
-            moneda: "ARS",
-            fechaInicio: new Date("2025-11-01"),
-            fechaFin: new Date("2026-04-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus grupal Mix o cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "7 noches con regimen segun el hotel"
-          },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" },
-          { tipo: "servicio", descripcion: "Coordinador de viaje" },
-          { tipo: "servicio", descripcion: "Coordinador en destino y receptivo" }
-        ]
-      }
-    },
-    {
-      titulo: "Buenos Aires",
-      slug: "buenos-aires-aereo",
-      destinoId: buenosAires.id,
-      noches: 3,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 8,
-      condiciones:
-        "Salida aérea nacional. Habitaciones a compartir garantizadas (dobles o triples). Cupos sujetos a disponibilidad. Los cupos aéreos incluyen estadía en cochera.",
-      destinos: {
-        create: [{ destinoId: buenosAires.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-04-02"),
-            fechaFin: new Date("2026-04-02")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-05-23"),
-            fechaFin: new Date("2026-05-23")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-07-03"),
-            fechaFin: new Date("2026-07-03")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "detalle-programa", descripcion: "Buenos Aires" },
-          { tipo: "detalle-destino", descripcion: "Buenos Aires" },
-          {
-            tipo: "detalle-duracion",
-            descripcion: "04 días / 03 noches - 03 días / 02 noches"
-          },
-          {
-            tipo: "detalle-transporte",
-            descripcion: "Aéreo desde Córdoba volando por Flybondi"
-          },
-          { tipo: "detalle-equipaje", descripcion: "12 kg" },
-          { tipo: "detalle-hotel", descripcion: "HTL LUXOR" },
-          { tipo: "detalle-regimen", descripcion: "Desayuno" },
-          { tipo: "detalle-servicios", descripcion: "Trf in out + City" },
-          {
-            tipo: "detalle-asistencia",
-            descripcion: "Nacional - Cobertura 2M"
-          },
-          {
-            tipo: "detalle-salidas",
-            descripcion: "Salidas: 02 de abril, 23 de mayo y 03 de julio"
-          },
-          { tipo: "transporte", descripcion: "Aéreos con Flybondi" },
-          { tipo: "alojamiento", descripcion: "3 o 2 noches según salida" },
-          { tipo: "comida", descripcion: "Régimen desayuno" },
-          { tipo: "equipaje", descripcion: "Equipaje 12 kg" },
-          {
-            tipo: "servicio",
-            descripcion: "Traslados in/out + City tour"
-          },
-          {
-            tipo: "servicio",
-            descripcion:
-              "Coordinador SAVI: acompañamiento integral y asistencia personalizada durante todo el viaje."
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Asistencia médica nacional con cobertura 2M"
-          },
-          {
-            tipo: "itinerario-1",
-            descripcion:
-              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
-          },
-          {
-            tipo: "itinerario-2",
-            descripcion:
-              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje y preferencias del grupo."
-          },
-          {
-            tipo: "itinerario-3",
-            descripcion:
-              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. Nuestro equipo te acompaña hasta el final del servicio."
+            fechaInicio: new Date("2026-06-01"),
+            fechaFin: new Date("2026-07-01")
           }
         ]
       }
     },
     {
-      titulo: "Bañados de la Estrella",
-      slug: "banados-de-la-estrella",
-      destinoId: misiones.id,
-      noches: 0,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 9,
-      condiciones:
-        "Habitación a compartir garantizada (dobles o triples). Parque Nacional El Impenetrable opcional. Adicional MAP (2 o 3 comidas) disponible.",
-      destinos: {
-        create: [{ destinoId: misiones.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-06-14"),
-            fechaFin: new Date("2026-06-14")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-07-04"),
-            fechaFin: new Date("2026-07-04")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-07-11"),
-            fechaFin: new Date("2026-07-11")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Bañados de la Estrella + Parque Nacional El Impenetrable"
-          },
-          {
-            tipo: "detalle-destino",
-            descripcion: "Resistencia - Ibarreta - Juan José Castelli"
-          },
-          {
-            tipo: "detalle-duracion",
-            descripcion: "6 días / 4 noches - 5 días / 3 noches"
-          },
-          { tipo: "detalle-transporte", descripcion: "Bus CAMA" },
-          {
-            tipo: "detalle-hotel",
-            descripcion:
-              "Hoteles a confirmar: Resistencia (Hotel Royal), Ibarreta (Dolce Maiten) y Juan José Castelli (Hotel Florencia)"
-          },
-          { tipo: "detalle-regimen", descripcion: "Desayuno" },
-          {
-            tipo: "detalle-excursiones",
-            descripcion:
-              "Panorámica en Corrientes + Fortín La Soledad (Bañados de la Estrella con navegación y cena especial)"
-          },
-          {
-            tipo: "detalle-excursiones",
-            descripcion:
-              "Programa de 3 noches incluye Parque Nacional El Impenetrable"
-          },
-          {
-            tipo: "detalle-asistencia",
-            descripcion:
-              "Universal Assistance Nacional - Cobertura UDA 2M (sin límite de edad)"
-          },
-          { tipo: "detalle-servicios", descripcion: "Coordinador permanente" },
-          {
-            tipo: "detalle-salidas",
-            descripcion: "Salidas: 14 de junio; 04 y 11 de julio"
-          },
-          {
-            tipo: "detalle-rutas",
-            descripcion: "Ruta 1: Río Cuarto, Villa María, Rosario, Santa Fe"
-          },
-          {
-            tipo: "detalle-rutas",
-            descripcion: "Ruta 2: Córdoba, Villa María"
-          },
-          { tipo: "transporte", descripcion: "Bus CAMA" },
-          { tipo: "alojamiento", descripcion: "4 o 3 noches según salida" },
-          { tipo: "comida", descripcion: "Régimen desayuno" },
-          {
-            tipo: "servicio",
-            descripcion: "Panorámica en Corrientes + Fortín La Soledad"
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Programa 3 noches con El Impenetrable"
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Coordinador permanente durante todo el viaje"
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Asistencia médica Universal Assistance Nacional UDA 2M"
-          },
-          {
-            tipo: "itinerario-1",
-            descripcion:
-              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
-          },
-          {
-            tipo: "itinerario-2",
-            descripcion:
-              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje."
-          },
-          {
-            tipo: "itinerario-3",
-            descripcion:
-              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. Nuestro equipo te acompaña hasta el final del servicio."
-          }
-        ]
-      }
-    },
-    {
-      titulo: "Pinamar",
-      slug: "pinamar",
-      destinoId: pinamar.id,
-      noches: 6,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 10,
-      condiciones:
-        "Habitación a compartir garantizada (dobles o triples). Cupos sujetos a disponibilidad.",
-      destinos: {
-        create: [{ destinoId: pinamar.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-01")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-06"),
-            fechaFin: new Date("2026-02-06")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-13"),
-            fechaFin: new Date("2026-02-13")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-20"),
-            fechaFin: new Date("2026-02-20")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "detalle-programa", descripcion: "Pinamar" },
-          { tipo: "detalle-destino", descripcion: "Pinamar" },
-          { tipo: "detalle-duracion", descripcion: "07 noches / 06 noches" },
-          {
-            tipo: "detalle-transporte",
-            descripcion: "Bus CAMA con servicio de snack a bordo"
-          },
-          { tipo: "detalle-hotel", descripcion: "Hotel Yarma" },
-          { tipo: "detalle-servicios", descripcion: "Asistencia Médica" },
-          {
-            tipo: "detalle-servicios",
-            descripcion: "Coordinación durante el viaje de ida y regreso"
-          },
-          {
-            tipo: "detalle-salidas",
-            descripcion:
-              "Salidas: 01, 06, 13 y 20 de febrero. Salida especial 01/02 con 8 noches (regreso en bus)."
-          },
-          { tipo: "transporte", descripcion: "Bus CAMA con snack a bordo" },
-          { tipo: "alojamiento", descripcion: "Hotel Yarma" },
-          { tipo: "servicio", descripcion: "Asistencia médica incluida" },
-          {
-            tipo: "servicio",
-            descripcion: "Coordinación durante ida y regreso"
-          },
-          {
-            tipo: "itinerario-1",
-            descripcion:
-              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
-          },
-          {
-            tipo: "itinerario-2",
-            descripcion:
-              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje y preferencias del grupo."
-          },
-          {
-            tipo: "itinerario-3",
-            descripcion:
-              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. Nuestro equipo te acompaña hasta el final del servicio."
-          }
-        ]
-      }
-    },
-    {
-      titulo: "Patagonia Fantastica",
-      slug: "patagonia-fantastica",
-      destinoId: puertoMadryn.id,
-      noches: 9,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 8,
-      condiciones:
-        "Paquete grupal. Paquetes Sep a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
-      destinos: {
-        create: [
-          { destinoId: puertoMadryn.id },
-          { destinoId: calafate.id },
-          { destinoId: ushuaia.id }
-        ]
-      },
-      precios: {
-        create: [
-          {
-            precio: "1439700",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-09-01"),
-            fechaFin: new Date("2026-11-30")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "transporte", descripcion: "Bus coche cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "9 noches de alojamiento en hoteles categoria turista"
-          },
-          { tipo: "comida", descripcion: "Regimen desayuno" },
-          { tipo: "servicio", descripcion: "Excursiones" },
-          {
-            tipo: "servicio",
-            descripcion: "Coordinador permanente y guias locales profesionales"
-          },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" }
-        ]
-      }
-    },
-    {
-      titulo: "Bariloche Aéreo 26",
-      slug: "bariloche-aereo-26",
-      destinoId: bariloche.id,
-      noches: 6,
-      cupos: 20,
-      destacada: true,
-      activa: true,
-      orden: 9,
-      condiciones:
-        "Salida aérea a Bariloche. Promo especial 2x1 (solo aéreo) salida 24 de enero. Habitaciones a compartir garantizadas (dobles o triples). Cupos sujetos a disponibilidad. Los cupos aéreos incluyen estadía en cochera.",
-      destinos: {
-        create: [{ destinoId: bariloche.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-14"),
-            fechaFin: new Date("2026-02-14")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-03-13"),
-            fechaFin: new Date("2026-03-13")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-03-14"),
-            fechaFin: new Date("2026-03-14")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-04-19"),
-            fechaFin: new Date("2026-04-19")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-05-23"),
-            fechaFin: new Date("2026-05-23")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-05-24"),
-            fechaFin: new Date("2026-05-24")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-06-12"),
-            fechaFin: new Date("2026-06-12")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-06-13"),
-            fechaFin: new Date("2026-06-13")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-06-18"),
-            fechaFin: new Date("2026-06-18")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-07-12"),
-            fechaFin: new Date("2026-07-12")
-          }
-        ]
-      },
-      incluyeItems: {
-        create: [
-          { tipo: "detalle-programa", descripcion: "Bariloche Aéreo 26" },
-          {
-            tipo: "detalle-destino",
-            descripcion: "San Carlos de Bariloche"
-          },
-          {
-            tipo: "detalle-duracion",
-            descripcion: "07 días / 06 noches - 06 días / 05 noches"
-          },
-          {
-            tipo: "detalle-transporte",
-            descripcion: "Aéreo desde Córdoba volando por Aerolíneas Argentinas"
-          },
-          { tipo: "detalle-equipaje", descripcion: "Carry on" },
-          {
-            tipo: "detalle-hotel",
-            descripcion: "Cadena Terra Cauchá / Kenton / Aspen / Eco Ski"
-          },
-          { tipo: "detalle-regimen", descripcion: "Desayuno" },
-          { tipo: "detalle-excursiones", descripcion: "Trf in out" },
-          {
-            tipo: "detalle-asistencia",
-            descripcion: "Nacional - Cobertura 2M"
-          },
-          {
-            tipo: "detalle-salidas",
-            descripcion:
-              "Salidas: 14 de febrero; 13 y 14 de marzo; 19 de abril; 23 y 24 de mayo; 12, 13 y 18 de junio; 12 de julio"
-          },
-          {
-            tipo: "transporte",
-            descripcion: "Aéreos desde Córdoba con Aerolíneas Argentinas"
-          },
-          {
-            tipo: "alojamiento",
-            descripcion: "6 o 5 noches de alojamiento según salida"
-          },
-          { tipo: "comida", descripcion: "Régimen desayuno" },
-          { tipo: "equipaje", descripcion: "Carry on incluido" },
-          { tipo: "servicio", descripcion: "Traslados in/out" },
-          {
-            tipo: "servicio",
-            descripcion: "Asistencia médica nacional con cobertura 2M"
-          },
-          {
-            tipo: "itinerario-1",
-            descripcion:
-              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido. Nuestro equipo acompañará todo el proceso para que disfrutes desde el primer momento."
-          },
-          {
-            tipo: "itinerario-2",
-            descripcion:
-              "Estadía en destino — Viví cada momento. Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje y las preferencias del grupo, siempre priorizando tu seguridad y comodidad. Tiempo libre para aprovechar a tu manera y crear recuerdos únicos."
-          },
-          {
-            tipo: "itinerario-3",
-            descripcion:
-              "Día de regreso — Fin del viaje, inicio de nuevos planes. Luego de los procedimientos de check out y embarque, emprendemos el retorno. Nuestro equipo te asistirá hasta el final del servicio. ¡Gracias por viajar con nosotros! Esperamos volver a acompañarte en tu próxima aventura."
-          }
-        ]
-      }
-    },
-    {
-      titulo: "Bariloche en mil colores",
-      slug: "bariloche-en-mil-colores",
-      destinoId: bariloche.id,
+      titulo: "F1 Miami - Gran Premio 2026",
+      slug: "f1-miami-2026",
+      destinoId: null,
       noches: 4,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 10,
-      condiciones:
-        "Paquete grupal. Paquetes Jul a Nov 2026. Tarifa en base doble. 4 cuotas cero interes.",
-      destinos: {
-        create: [{ destinoId: bariloche.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "679700",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-07-01"),
-            fechaFin: new Date("2026-11-30")
-          }
-        ]
-      },
+      noIncluye: "Aéreos no incluidos. Gastos administrativos (3.5%).",
+      condiciones: `
+## Programa: MIAMI – Gran Premio de Miami 🇺🇸
+**Fecha del GP**: 1–3 de mayo
+**Alojamiento**: 4 noches Hotel 4★ (30 abril - 4 mayo)
+**Entradas**: 3 días al circuito
+
+### Tarifas Referenciales (Base Doble)
+• **Beach Grandstand**: USD 4,769
+• **Tribuna Turn 1**: USD 6,629
+• **Tribuna Start/Finish**: USD 7,219
+• **Tribuna Marina**: USD 4,879
+• **Tribuna Turn 18**: USD 6,439
+      `.trim(),
+      destinos: { create: [] },
       incluyeItems: {
         create: [
-          { tipo: "transporte", descripcion: "Bus cama" },
-          {
-            tipo: "alojamiento",
-            descripcion: "4 noches de alojamiento con regimen segun hotel"
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Visita a San Martin de los Andes"
-          },
-          { tipo: "servicio", descripcion: "Coordinador permanente" },
-          { tipo: "servicio", descripcion: "Traslados in/out" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" }
+          { tipo: "Alojamiento", descripcion: "4 noches Hotel 4* en Miami (Solo alojamiento)" },
+          { tipo: "Entrada", descripcion: "Entrada 3 días al circuito (según categoría)" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada y Alojamiento" },
+          { tipo: "Itinerario-2", descripcion: "Días 2-3: Prácticas y Clasificación" },
+          { tipo: "Itinerario-3", descripcion: "Día 4: Gran Premio (Carrera)" },
+          { tipo: "Itinerario-4", descripcion: "Día 5: Check-out y Regreso" }
         ]
-      }
+      },
+      precios: { create: [{ precio: 4769, moneda: "USD", fechaInicio: new Date("2026-04-30"), fechaFin: new Date("2026-05-04") }] }
     },
     {
-      titulo: "Cataratas Premium",
-      slug: "cataratas-premium",
-      destinoId: iguazu.id,
-      noches: 3,
+      titulo: "F1 Las Vegas - Gran Premio 2026",
+      slug: "f1-las-vegas-2026",
+      destinoId: null,
+      noches: 4,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 11,
-      condiciones:
-        "Paquete grupal. Paquetes Jul a Dic 2026. Tarifa en base doble. 4 cuotas cero interes.",
-      destinos: {
-        create: [{ destinoId: iguazu.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "459700",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-07-01"),
-            fechaFin: new Date("2026-12-31")
-          }
-        ]
-      },
+      noIncluye: "Aéreos no incluidos. Gastos administrativos (3.5%).",
+      condiciones: `
+## Programa: LAS VEGAS – Gran Premio de Las Vegas 🇺🇸
+**Fecha del GP**: 19 – 21 de noviembre
+**Alojamiento**: 4 noches Hotel Park MGM o similar (18 - 22 noviembre)
+**Entradas**: Viernes, sábado y domingo
+
+### Tarifas Referenciales (Base Doble)
+• **General Admission**: USD 3,769
+• **West Harmon Hamilton**: USD 4,219
+• **Sphere Grandstand**: USD 5,109
+• **Main Grandstand**: USD 6,329
+      `.trim(),
+      destinos: { create: [] },
       incluyeItems: {
         create: [
-          { tipo: "transporte", descripcion: "Bus grupal coche cama" },
-          { tipo: "alojamiento", descripcion: "3 noches de alojamiento" },
-          { tipo: "comida", descripcion: "Regimen desayuno" },
-          {
-            tipo: "servicio",
-            descripcion: "Excursiones incluidas (sin tickets de ingreso)"
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Coordinador permanente y guias locales profesionales"
-          },
-          { tipo: "servicio", descripcion: "Traslados de ingreso y egreso" },
-          { tipo: "servicio", descripcion: "Asistencia al viajero" }
+          { tipo: "Alojamiento", descripcion: "4 noches Hotel Park MGM o similar (Solo alojamiento)" },
+          { tipo: "Entrada", descripcion: "Entrada 3 días (Viernes, Sábado, Domingo)" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada y Alojamiento" },
+          { tipo: "Itinerario-2", descripcion: "Días 2-3: Prácticas y Clasificación Nocturna" },
+          { tipo: "Itinerario-3", descripcion: "Día 4: Gran Premio Las Vegas" },
+          { tipo: "Itinerario-4", descripcion: "Día 5: Check-out y Regreso" }
         ]
-      }
+      },
+      precios: { create: [{ precio: 3769, moneda: "USD", fechaInicio: new Date("2026-11-18"), fechaFin: new Date("2026-11-22") }] }
     },
     {
-      titulo: "Fórmula 1 por el mundo",
-      slug: "formula-1-por-el-mundo",
-      destinoId: formula1.id,
-      noches: 0,
-      cupos: 20,
+      titulo: "F1 Mónaco - Gran Premio 2026",
+      slug: "f1-monaco-2026",
+      destinoId: null,
+      noches: 3,
+      cupos: 15,
       destacada: true,
       activa: true,
       orden: 12,
-      condiciones: "Consultar por otras ubicaciones y horarios.",
-      destinos: {
-        create: [{ destinoId: formula1.id }]
-      },
-      precios: {
-        create: [
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-05-01"),
-            fechaFin: new Date("2026-05-03")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-06-05"),
-            fechaFin: new Date("2026-06-07")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-07-03"),
-            fechaFin: new Date("2026-07-05")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-09-04"),
-            fechaFin: new Date("2026-09-06")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-09-11"),
-            fechaFin: new Date("2026-09-13")
-          },
-          {
-            precio: "0",
-            moneda: "ARS",
-            fechaInicio: new Date("2026-11-21"),
-            fechaFin: new Date("2026-11-23")
-          }
-        ]
-      },
+      noIncluye: "Aéreos no incluidos. Gastos administrativos (3.5%).",
+      condiciones: `
+## Programa: MONACO – Gran Premio de Mónaco 🇲🇨
+**Fecha del GP**: 05 – 07 Junio
+**Alojamiento**: 3 noches Hotel 3★ Campanile PRIME (Nice) o similar (5 - 8 junio)
+**Entradas**: Acceso al circuito según sector
+
+### Tarifas Referenciales (Base Doble)
+• **Sector Rocher (1 día)**: €1,329
+• **Sector Rocher (2 días)**: €1,549
+• **Sector Rocher (3 días)**: €1,769
+• **Sector K (1 día)**: €2,549
+• **Sector K (2 días)**: €3,109
+• **Sector K (3 días)**: €3,329
+      `.trim(),
+      destinos: { create: [] },
       incluyeItems: {
         create: [
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Miami — Gran Premio de Miami. Fecha del GP: 1-3 de mayo. 4 noches Hotel 4★ en Miami (30 abril al 4 mayo, solo alojamiento). Entradas 3 días al circuito."
-          },
-          {
-            tipo: "detalle-tribunas",
-            descripcion:
-              "Miami — Tribunas: Beach Grandstand, Tribuna Turn 1, Tribuna Start/Finish, Tribuna Marina, Tribuna Turn 18."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Las Vegas — Gran Premio de Las Vegas. Fecha del GP: 21-23 de noviembre. 4 noches Hotel Park MGM, Las Vegas (solo alojamiento del 18 al 22 de noviembre). Entradas viernes, sábado y domingo."
-          },
-          {
-            tipo: "detalle-tribunas",
-            descripcion:
-              "Las Vegas — Tribunas: General admission Heineken South Koval, General admission T-Mobile Sphere, West Harmon Hamilton, Sphere Grandstand, Main Grandstand."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Mónaco — Gran Premio de Mónaco. Fecha del GP: 5-7 de junio. 3 noches Hotel 3★ Campanile RIME - Nice Airport o similar (solo alojamiento del 5 al 8 de junio). Entrada al circuito."
-          },
-          {
-            tipo: "detalle-tribunas",
-            descripcion:
-              "Mónaco — Sectores: Rocher (1, 2 o 3 días) y K (1, 2 o 3 días)."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Madrid — Gran Premio de Madrid. Fecha del GP: 11-13 de septiembre. 3 noches Hotel 3★ Holiday Inn Alcorcón o similar con desayuno (11 al 14 de septiembre). Entrada al circuito."
-          },
-          {
-            tipo: "detalle-tribunas",
-            descripcion:
-              "Madrid — Tribunas: Silver 7, Silver 12, Silver 16, Silver 13, Bronce 5."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Italia — Gran Premio de Monza. Fecha del GP: 4-6 de septiembre. 4 noches Hotel 4★ Novotel Linate o similar con desayuno (3 al 7 de septiembre). Traslados al circuito y hotel. Entrada al circuito 3 días."
-          },
-          {
-            tipo: "detalle-tribunas",
-            descripcion:
-              "Italia — Tribunas: General Admission Prato, Right lateral 26 A, Left lateral 26 A, Outer first variant B 8."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Gran Bretaña — Gran Premio Silverstone. Fecha del GP: 3-5 de julio. 3 noches Hotel 4★ Novotel Leicester o similar con desayuno (3 al 6 de julio). Entrada al circuito 3 días."
-          },
-          {
-            tipo: "detalle-tribunas",
-            descripcion:
-              "Gran Bretaña — Tribunas: General Admission, Abbey A, Hamilton Straight, Luffield, Vale, Woodcote."
-          },
-          {
-            tipo: "detalle-notas",
-            descripcion: "Consultar por otras ubicaciones y hoteles."
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Entradas a los circuitos según programa."
-          },
-          {
-            tipo: "alojamiento",
-            descripcion: "Alojamiento en hoteles 3★/4★ según programa."
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Programas sin aéreo (solo alojamiento)."
-          },
-          {
-            tipo: "itinerario-1",
-            descripcion:
-              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
-          },
-          {
-            tipo: "itinerario-2",
-            descripcion:
-              "Estadía en destino — Viví cada momento. Disfrutá de las actividades y del Gran Premio según el programa elegido. El itinerario puede variar según condiciones del viaje."
-          },
-          {
-            tipo: "itinerario-3",
-            descripcion:
-              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. ¡Gracias por viajar con nosotros!"
-          }
+          { tipo: "Alojamiento", descripcion: "3 noches Hotel 3* en Nice (Solo alojamiento)" },
+          { tipo: "Entrada", descripcion: "Entrada al circuito según sector elegido" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada y Alojamiento en Niza" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Clasificación en Mónaco" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Gran Premio de Mónaco" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Check-out y Regreso" }
         ]
-      }
+      },
+      precios: { create: [{ precio: 1329, moneda: "EUR", fechaInicio: new Date("2026-06-05"), fechaFin: new Date("2026-06-08") }] }
     },
     {
-      titulo: "Experiencia Mundial",
-      slug: "experiencia-mundial",
-      destinoId: experienciaMundial.id,
-      noches: 0,
+      titulo: "F1 Madrid - Gran Premio 2026",
+      slug: "f1-madrid-2026",
+      destinoId: null,
+      noches: 3,
       cupos: 20,
       destacada: true,
       activa: true,
       orden: 13,
-      condiciones:
-        "Programas sujetos a disponibilidad. Fechas según fixture oficial.",
-      destinos: {
-        create: [{ destinoId: experienciaMundial.id }]
-      },
+      noIncluye: "Aéreos no incluidos. Gastos administrativos (3.5%).",
+      condiciones: `
+## Programa: MADRID – Gran Premio de Madrid 🇪🇸
+**Fecha del GP**: 11-13 Septiembre
+**Alojamiento**: 3 noches Hotel 3★ Holiday Inn Alcorcon o similar (11 - 14 septiembre)
+**Entradas**: Acceso al circuito
+
+### Tarifas Referenciales (Base Doble)
+• **Tribuna Silver 7/16**: €2,109
+• **Tribuna Silver 12**: €2,069
+• **Tribuna Silver 13**: €2,439
+• **Bronce 15**: €1,989
+      `.trim(),
+      destinos: { create: [] },
       incluyeItems: {
         create: [
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Experiencia Mundial (sin aéreo) — Kansas — 1 partido. Incluye traslados HTL/Estadio/HTL, 3 noches, entrada y asistencia al viajero."
-          },
-          {
-            tipo: "detalle-entradas",
-            descripcion:
-              "Kansas — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Experiencia Mundial (sin aéreo) — Dallas — 2 partidos. Incluye traslados HTL/Estadio/HTL, kit del hincha, 8 noches, entradas y asistencia al viajero."
-          },
-          {
-            tipo: "detalle-entradas",
-            descripcion:
-              "Dallas (2 partidos) — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Experiencia Mundial (sin aéreo) — 3 partidos de fase de grupos — Kansas / Dallas / Dallas. Incluye traslados HTL/Estadio/HTL, kit del hincha, 8 noches, entradas, asistencia al viajero y 1 cena especial."
-          },
-          {
-            tipo: "detalle-entradas",
-            descripcion:
-              "Kansas + Dallas (3 partidos fase de grupos) — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Experiencia Completa — Kansas / Dallas / Dallas — 3 partidos de fase de grupos. Incluye aéreo internacional, traslados IN/OUT hotel - estadio - hotel entre sedes, kit del hincha, alojamiento por 13 noches, entradas, asistencia al viajero y 1 cena especial."
-          },
-          {
-            tipo: "detalle-entradas",
-            descripcion:
-              "Experiencia Completa (3 partidos) — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "3 partidos en Dallas + llaves. Incluye traslados hotel/estadio/hotel, kit del hincha, alojamiento por 8 noches, entradas y asistencia al viajero."
-          },
-          {
-            tipo: "detalle-entradas",
-            descripcion:
-              "Dallas + llaves — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
-          },
-          {
-            tipo: "detalle-programa",
-            descripcion:
-              "Llaves de final — 1 partido. Incluye traslados hotel/estadio/hotel, alojamiento por 3 noches, entrada al partido y asistencia al viajero."
-          },
-          {
-            tipo: "detalle-entradas",
-            descripcion:
-              "Llaves de final — Tipo de entrada: Hotel 3★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual) y Hotel 4★ (Cat. 3 / Cat. 2 / Cat. 1 / Suplemento individual)."
-          },
-          {
-            tipo: "detalle-salidas",
-            descripcion: "Fechas según fixture oficial."
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Traslados hotel/estadio/hotel según programa."
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Entradas a los partidos según categoría."
-          },
-          {
-            tipo: "alojamiento",
-            descripcion: "Hoteles 3★ o 4★ según programa."
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Kit del hincha (según programa)."
-          },
-          {
-            tipo: "servicio",
-            descripcion: "Asistencia al viajero."
-          },
-          {
-            tipo: "itinerario-1",
-            descripcion:
-              "Día de salida — Comienza la experiencia. Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check in correspondiente y emprendemos el traslado hacia el destino elegido."
-          },
-          {
-            tipo: "itinerario-2",
-            descripcion:
-              "Estadía en destino — Viví cada momento. Disfrutá de los partidos y actividades incluidas según el programa elegido."
-          },
-          {
-            tipo: "itinerario-3",
-            descripcion:
-              "Día de regreso — Fin del viaje. Luego del check out y los procedimientos de regreso, emprendemos el retorno. ¡Gracias por viajar con nosotros!"
-          }
+          { tipo: "Alojamiento", descripcion: "3 noches con desayuno incluido" },
+          { tipo: "Entrada", descripcion: "Entrada al circuito (Tribuna seleccionada)" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada a Madrid y Check-in" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Prácticas y Clasificación" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Gran Premio de Madrid" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Check-out y Regreso" }
+        ]
+      },
+      precios: { create: [{ precio: 1989, moneda: "EUR", fechaInicio: new Date("2026-09-11"), fechaFin: new Date("2026-09-14") }] }
+    },
+    {
+      titulo: "F1 Monza - Gran Premio de Italia 2026",
+      slug: "f1-monza-2026",
+      destinoId: null,
+      noches: 4,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 14,
+      noIncluye: "Aéreos no incluidos. Gastos administrativos (3.5%).",
+      condiciones: `
+## Programa: ITALIA – Gran Premio de Monza 🇮🇹
+**Fecha del GP**: 04-06 Septiembre
+**Alojamiento**: 4 noches Hotel 4★ Novotel Linate o similar (3 - 7 septiembre)
+**Entradas**: 3 días al circuito
+
+### Tarifas Referenciales (Base Doble)
+• **General Admission**: €1,769
+• **Right Lateral 26A**: €3,669
+• **Left Lateral 4 / Outer 8B**: €3,229
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Alojamiento", descripcion: "4 noches con desayuno incluido" },
+          { tipo: "Traslado", descripcion: "Traslado hotel - circuito - hotel" },
+          { tipo: "Entrada", descripcion: "Entrada 3 días al circuito" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada a Milán y Check-in" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Prácticas Libres" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Clasificación en Monza" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Gran Premio de Italia" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Check-out y Regreso" }
+        ]
+      },
+      precios: { create: [{ precio: 1769, moneda: "EUR", fechaInicio: new Date("2026-09-03"), fechaFin: new Date("2026-09-07") }] }
+    },
+    {
+      titulo: "F1 Silverstone - Gran Bretaña 2026",
+      slug: "f1-silverstone-2026",
+      destinoId: null,
+      noches: 3,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 15,
+      noIncluye: "Aéreos no incluidos. Gastos administrativos (3.5%).",
+      condiciones: `
+## Programa: GRAN BRETAÑA – Gran Premio Silverstone 🇬🇧
+**Fecha**: 03-05 Julio
+**Alojamiento**: 3 noches Hotel 4★ Novotel Leicester o similar (3 - 6 julio)
+**Entradas**: 3 días al circuito
+
+### Tarifas Referenciales (Base Doble)
+• **General Admission**: €1,666
+• **Abbey A / Luffield**: €2,211
+• **Hamilton Straight**: €2,656
+• **Vale**: €2,100
+• **Woodcote**: €2,217
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Alojamiento", descripcion: "3 noches con desayuno incluido" },
+          { tipo: "Entrada", descripcion: "Entrada 3 días al circuito" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada y Check-in" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Clasificación en Silverstone" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Gran Premio de Gran Bretaña" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Check-out y Regreso" }
+        ]
+      },
+      precios: { create: [{ precio: 1666, moneda: "EUR", fechaInicio: new Date("2026-07-03"), fechaFin: new Date("2026-07-06") }] }
+    },
+    {
+      titulo: "F1 Sao Paulo - Gran Premio 2026",
+      slug: "f1-sao-paulo-2026",
+      destinoId: null, // Will be linked via script logic safely
+      noches: 4,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 16,
+      noIncluye: "A estas tarifas se les debe agregar el 3.5% de gastos administrativos. Gastos personales.",
+      condiciones: `
+## Programa: Fórmula 1 Sao Paulo 🇧🇷
+**Fecha**: 05 de noviembre de 2026
+**Destino**: Sao Paulo
+**Duración**: 05 Días / 04 Noches
+**Transporte**: Aéreos desde COR por LA
+**Equipaje**: Carry on
+**Hotel**: Hotel 3* Summit Paulista 3* o similar
+**Régimen**: Desayuno
+
+### Tarifas y Opciones
+**Sector G (20L)**
+• **Doble**: Neto USD 2,373 + IVA USD 46 + Imp. Aéreo USD 540 = **USD 2,959** final
+• **Single**: Neto USD 3,033 + IVA USD 46 + Imp. Aéreo USD 540 = **USD 3,619** final
+
+**Sector A – RQ**
+• **Doble**: Neto USD 2,684 + IVA USD 45 + Imp. Aéreo USD 660 = **USD 3,389** final
+• **Single**: Neto USD 3,344 + IVA USD 45 + Imp. Aéreo USD 660 = **USD 4,049** final
+
+**Sector H – RQ**
+• **Doble**: Neto USD 3,113 + IVA USD 46 + Imp. Aéreo USD 660 = **USD 3,819** final
+• **Single**: Neto USD 3,773 + IVA USD 46 + Imp. Aéreo USD 660 = **USD 4,479** final
+
+### Consultar por otros sectores
+• SECTOR M, D, B, ORANGE TREE
+• PIT TOP CLUB, GRAND PRIX CLUB, PADDOCK CLUB
+      `.trim(),
+      destinos: { create: [] }, // Will be handled by the seed script logic
+      incluyeItems: {
+        create: [
+          { tipo: "Alojamiento", descripcion: "04 noches en Hotel 3* Summit Paulista o similar" },
+          { tipo: "Transporte", descripcion: "Aéreos desde COR por LA (Carry on incluido)" },
+          { tipo: "Régimen", descripcion: "Desayuno incluido" },
+          { tipo: "Entrada", descripcion: "SECTOR G (viernes, sábado y domingo)" },
+          { tipo: "Traslado", descripcion: "Traslados In/Out y al circuito (Viernes, Sábado y Domingo)" },
+          { tipo: "Servicio", descripcion: "Kit de regalo" },
+          { tipo: "Servicio", descripcion: "Coordinación en destino" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance Value 80K sin limite de edad" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Salida - Comienza la experiencia. Reunión en punto de encuentro." },
+          { tipo: "Itinerario-2", descripcion: "Día 2-4: Estadía en destino - Viví cada momento. Actividades y GP de Brasil." },
+          { tipo: "Itinerario-3", descripcion: "Día 5: Regreso - Fin del viaje." }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 2959, moneda: "USD", fechaInicio: new Date("2026-11-05"), fechaFin: new Date("2026-11-09") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete Turístico – Laguna, Brasil en Bus 2026",
+      slug: "laguna-brasil-bus-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 40,
+      destacada: true,
+      activa: true,
+      orden: 16,
+      noIncluye: `
+• Servicio de comidas en ruta (salvo especificación contraria)
+• Bebidas en las comidas
+• Excursiones opcionales no detalladas
+• Gastos personales y propinas
+      `.trim(),
+      condiciones: `
+## Laguna, Brasil: Naturaleza y Relax
+
+Laguna es una ciudad costera ubicada en Santa Catarina, Brasil, reconocida por sus hermosas playas, ambiente tranquilo y naturaleza junto al mar. Es ideal para vacaciones de verano con familias y amigos, combinando descanso en la playa, deportes acuáticos y turismo costero.
+
+### Fechas y Duración
+El paquete se ofrece con salidas específicas durante los meses de **enero, febrero, marzo y abril 2026**.
+La duración típica del programa es de **10 días y 7 noches**, con alojamiento en destino incluido durante ese período.
+
+### Transporte y Coordinación
+Viajamos en **bus grupal tipo Mix o Cama**, con opción de butaca cama disponible bajo petición.
+Contamos con **coordinador de viaje** que acompaña desde la salida hasta el regreso.
+Incluye traslados de ingreso y egreso en destino (terminal - hotel).
+
+### Alojamiento y Régimen
+El programa incluye **7 noches de alojamiento** en hoteles seleccionados con **régimen de media pensión** (desayuno y cena, o similar).
+Hoteles previstos (o similares):
+• **Hotel Renascença**
+• **Hotel Atlántico Sul**
+
+### Servicios Opcionales
+• Butaca Cama para mayor confort en el viaje.
+• Asistencia médica adicional para mayores de edad.
+• Butacas panorámicas o con servicios especiales (cafetera, etc).
+
+### Condiciones de Reserva
+• Seña dentro de las 72hs de confirmada la solicitud.
+• Pago total antes de la salida según cronograma.
+• Cancelaciones sujetas a políticas del operador.
+
+### Información Útil
+• **Documentación**: DNI tarjeta vigente o Pasaporte. Menores con autorización si corresponde.
+• **Equipaje**: Respetar pesos y medidas estándar de bus.
+• **Destino**: Laguna ofrece playas extensas, avistaje de delfines y un centro histórico encantador.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus grupal Mix o Cama (ida y vuelta)" },
+          { tipo: "Alojamiento", descripcion: "7 noches en hotel seleccionado (Renascença, Atlántico Sul o similar)" },
+          { tipo: "Régimen", descripcion: "Media pensión (Desayuno y cena/comida según hotel)" },
+          { tipo: "Traslados", descripcion: "Traslados in/out en destino" },
+          { tipo: "Asistencia", descripcion: "Coordinador permanente y asistencia al viajero AC35 (Ene-Mar)" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-12"), fechaFin: new Date("2026-02-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-19"), fechaFin: new Date("2026-02-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-26"), fechaFin: new Date("2026-02-26") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-08"), fechaFin: new Date("2026-03-08") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-19"), fechaFin: new Date("2026-03-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-22"), fechaFin: new Date("2026-03-22") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-26"), fechaFin: new Date("2026-03-26") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-29"), fechaFin: new Date("2026-03-29") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-05"), fechaFin: new Date("2026-04-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-12"), fechaFin: new Date("2026-04-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-19"), fechaFin: new Date("2026-04-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-26"), fechaFin: new Date("2026-04-26") }
+        ]
+      }
+    },
+    {
+      titulo: "Ferrugem en Bus – Temporada 2026",
+      slug: "ferrugem-bus-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 40,
+      destacada: true,
+      activa: true,
+      orden: 17,
+      noIncluye: `
+• Comidas no especificadas (almuerzos, cenas sin régimen)
+• Bebidas en las comidas
+• Excursiones opcionales
+• Gastos personales y propinas
+      `.trim(),
+      condiciones: `
+## Descripción general del paquete
+Programa grupal en bus con duración de **10 días y 7 noches** en destino.
+Viaje organizado con transporte, alojamiento y servicios coordinados para disfrutar de las playas de Ferrugem.
+
+### Incluye
+• **Transporte**: Bus grupal Mix o Cama como transporte principal.
+• **Alojamiento**: Estadía completa en destino durante todo el programa (7 noches).
+• **Régimen**: Según hotel seleccionado (según disponibilidad).
+• **Traslados**: Ingreso y egreso en destino (terminal - posada).
+• **Asistencia**: Coordinador permanente en viaje y receptivo en destino. Asistencia al viajero incluida.
+
+### Fechas de salida 2026
+Salidas programadas desde **febrero a diciembre 2026**.
+Consultar fechas específicas de salida para cada mes.
+
+### Hotelería
+Opciones de alojamiento disponibles (sujeto a disponibilidad):
+• **Pousada Do Boto**
+• **Pousada Baleia Franca**
+• **Pousada Ilha Mar**
+• **La Ferrugem Suites**
+
+### Detalles operativos
+• **Salidas**: Desde Córdoba, Rosario, Santa Fe, Paraná y ciudades sobre RN 19 y RN 9 (Consultar puntos de ascenso).
+• **Horarios**: Salidas programadas por la tarde/noche. Desde Rosario puede ser madrugada siguiente.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus grupal Mix o Cama" },
+          { tipo: "Alojamiento", descripcion: "7 noches en posada seleccionada" },
+          { tipo: "Régimen", descripcion: "Según hotel (Desayuno opcional)" },
+          { tipo: "Traslados", descripcion: "Traslados in/out en destino" },
+          { tipo: "Asistencia", descripcion: "Coordinador y asistencia al viajero" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-12"), fechaFin: new Date("2026-02-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-15"), fechaFin: new Date("2026-02-15") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-19"), fechaFin: new Date("2026-02-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-26"), fechaFin: new Date("2026-02-26") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-08"), fechaFin: new Date("2026-03-08") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-19"), fechaFin: new Date("2026-03-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-22"), fechaFin: new Date("2026-03-22") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-26"), fechaFin: new Date("2026-03-26") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-29"), fechaFin: new Date("2026-03-29") }
+        ]
+      }
+    },
+    {
+      titulo: "Bombinhas en Bus – Temporada 2026",
+      slug: "bombinhas-bus-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 40,
+      destacada: true,
+      activa: true,
+      orden: 18,
+      noIncluye: `
+• Comidas no especificadas
+• Bebidas en las comidas
+• Excursiones opcionales
+• Gastos personales y propinas
+      `.trim(),
+      condiciones: `
+## Descripción del paquete
+Este paquete incluye un viaje en **bus grupal** con duración de **10 días y 7 noches** a Bombinhas, Brasil.
+Ofrece transporte, alojamiento, coordinación completa y servicios inclusivos durante todo el recorrido.
+
+### Incluye
+• **Asistencia**: Asistencia al viajero incluida durante la estadía.
+• **Transporte**: Bus grupal Mix o Cama para todo el recorrido.
+• **Coordinación**: Coordinador en viaje y atención en destino para acompañar al grupo.
+• **Alojamiento**: Estadía completa en destino durante las 7 noches del programa.
+• **Régimen**: Según el hotel seleccionado (según disponibilidad).
+• **Traslados**: Traslados de ingreso y egreso desde y hacia los alojamientos.
+
+### Disponibilidad de salidas 2026
+Este programa está disponible con salidas durante **febrero 2026 hasta diciembre 2026**, con múltiples opciones cada mes adaptadas a la temporada de verano y otoño.
+
+### Hoteles disponibles
+Opciones de alojamiento (sujeto a disponibilidad):
+• **Pousada Mar Azul** – alojamiento con desayuno.
+• **Mar Azul Flat** – alojamiento con desayuno.
+• **Vila do Centro** – alojamiento con desayuno y opciones familiares.
+• **HSH Bombinhas** – alojamiento con media pensión.
+
+### Operativa del viaje
+• **Origen**: El origen del viaje es desde Córdoba, Rosario, Santa Fe, Paraná y ciudades sobre RN 9 y RN 19.
+• **Horarios**: Las salidas desde Rosario se realizan en la noche o madrugada previa al viaje.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus grupal Mix o Cama" },
+          { tipo: "Alojamiento", descripcion: "7 noches en hotel seleccionado" },
+          { tipo: "Régimen", descripcion: "Según hotel (Desayuno o Media Pensión)" },
+          { tipo: "Traslados", descripcion: "Traslados in/out en destino" },
+          { tipo: "Asistencia", descripcion: "Coordinador y asistencia al viajero" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-12"), fechaFin: new Date("2026-02-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-15"), fechaFin: new Date("2026-02-15") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-19"), fechaFin: new Date("2026-02-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-26"), fechaFin: new Date("2026-02-26") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-08"), fechaFin: new Date("2026-03-08") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-19"), fechaFin: new Date("2026-03-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-22"), fechaFin: new Date("2026-03-22") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-26"), fechaFin: new Date("2026-03-26") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-29"), fechaFin: new Date("2026-03-29") }
+        ]
+      }
+    },
+    {
+      titulo: "Cataratas – Foz do Iguaçu – Temporada 2026",
+      slug: "cataratas-foz-2026",
+      destinoId: null,
+      noches: 3,
+      cupos: 40,
+      destacada: true,
+      activa: true,
+      orden: 19,
+      noIncluye: `
+• Comidas no especificadas
+• Bebidas en las comidas
+• Entradas a parques nacionales
+• Gastos personales y propinas
+      `.trim(),
+      condiciones: `
+## Descripción del paquete
+Este paquete incluye un viaje a **Cataratas del Iguazú (Foz do Iguaçu)**, diseñado para quienes desean conocer una de las maravillas naturales más impresionantes del mundo.
+El programa tiene una duración en destino de **3 noches** y ofrece la oportunidad de explorar tanto el lado brasileño como el argentino.
+
+### Incluye
+• **Estadía**: Alojamiento en destino durante las 3 noches del programa (según régimen seleccionado).
+• **Traslados**: Ingreso y egreso incluidos según la modalidad del programa.
+• **Asistencia**: Asistencia al viajero con cobertura médica completas durante todo el viaje.
+
+### Disponibilidad de salidas 2026
+Las salidas para este paquete están disponibles desde **febrero de 2026 hasta diciembre de 2026**, con múltiples posibilidades dentro de ese período según programación operativa.
+
+### Servicios principales
+• **Coordinación**: Acompañamiento permanente y guías locales.
+• **Transporte**: Bus semi-cama o cama de última generación (según opción elegida).
+• **Excursiones**: Visita a Cataratas Argentinas y Brasileñas (entradas no incluidas).
+
+### Excursiones Incluidas
+• **Yerbatera**: Recorrido por la Ruta de la Yerba Mate para conocer el proceso productivo y realizar degustaciones.
+
+### Excursiones Opcionales
+(Tarifas sujetas a modificación)
+• **Ruinas de San Ignacio**: Visita a las reducciones jesuíticas fundadas en 1609 (Patrimonio de la Humanidad).
+• **Minas de Wanda**: Recorrido por yacimientos de piedras semipreciosas.
+• **Paseo Catamarán Iguazú**: Navegación por la triple frontera al atardecer.
+• **Parque Nacional Iguazú (Argentina)**: Recorrido por pasarelas superior, inferior y Garganta del Diablo.
+• **Gran Aventura**: Paseo náutico y selvático, navegando los rápidos del río Iguazú.
+• **Visita a Ciudad del Este**: Tour de compras en la zona franca de Paraguay.
+• **Parque Nacional do Iguaçu (Brasil)**: Vistas panorámicas de los saltos desde el lado brasileño.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus grupal Mix o Cama" },
+          { tipo: "Alojamiento", descripcion: "3 noches en Foz do Iguaçu" },
+          { tipo: "Traslados", descripcion: "Traslados y excursiones a Cataratas Arg/Bra" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero incluida" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-30"), fechaFin: new Date("2026-04-30") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-10") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-17"), fechaFin: new Date("2026-05-17") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-07"), fechaFin: new Date("2026-06-07") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-16"), fechaFin: new Date("2026-06-16") }
+        ]
+      }
+    },
+    {
+      titulo: "Patagonia Fantástica 2026 - 9 Noches",
+      slug: "patagonia-fantastica-2026",
+      destinoId: null,
+      noches: 9,
+      cupos: 40,
+      destacada: true,
+      activa: true,
+      orden: 21,
+      noIncluye: `
+• Extras no especificados.
+• Entradas a parques nacionales, reservas o museos no indicados.
+• Comidas no especificadas.
+      `.trim(),
+      condiciones: `
+## Patagonia Fantástica
+
+**Duración:** 14 Días - 9 Noches
+**Salidas:** 10 Abril y 30 Mayo 2026
+**Inicio:** Córdoba (Embarques en Río Cuarto y Santa Rosa)
+**Régimen:** Desayuno
+
+### El programa incluye:
+• Bus Coche cama salida desde Córdoba, embarques en Río Cuarto y Santa Rosa.
+• 9 noches de alojamiento en Hoteles Categoría Turista con desayuno:
+  - 2 noches Puerto Madryn
+  - 3 noches en El Calafate
+  - 3 noches en Ushuaia
+  - 1 noche en Puerto Madryn (De Regreso)
+• Excursiones Incluidas:
+  - Mini City tour Madryn
+  - Península Valdés hasta Puerto Pirámides
+  - Parque Nacional Los Glaciares (sin tickets de ingreso)
+  - Parque Nacional Tierra del Fuego (sin tickets de ingreso)
+  - Visita a Las Grutas
+• Coordinador permanente y guías locales profesionales.
+• Traslados de ingreso y egreso
+• Asistencia al viajero
+
+### Hoteles Previstos
+• **Opción 1:** Hotel Las Maras + Hotel Kalken + Hotel Costa Ushuaia
+• **Opción 2:** Hotel Las Maras + Hotel Kapenke + Hotel Costa Ushuaia
+
+### Itinerario
+**Día 1:** SALIDA
+**Día 2:** PUERTO MADRYN
+**Día 3:** PUERTO MADRYN
+**Día 4:** PUERTO MADRYN-EL CALAFATE
+**Día 5:** EL CALAFATE
+**Día 6:** EL CALAFATE
+**Día 7:** EL CALAFATE
+**Día 8:** EL CALAFATE-USHUAIA
+**Día 9:** USHUAIA
+**Día 10:** USHUAIA
+**Día 11:** USHUAIA-PUERTO MADRYN
+**Día 12:** PUERTO MADRYN
+**Día 13:** PUERTO MADRYN-CÓRDOBA
+**Día 14:** CÓRDOBA
+
+### Excursiones Opcionales
+*Las tarifas están sujetas a modificación.*
+
+**PUERTO MADRYN**
+• Lobería Punta Loma
+• Avistaje Fauna Marina en Puerto Pirámides
+• Pingüinera Punta Tombo
+
+**CALAFATE**
+• City Tour
+• Safari Náutico
+• El Chaltén
+• Todo Glaciares
+
+**USHUAIA**
+• Navegación Canal de Beagle
+• City Tour Ushuaia con Almuerzo de Cordero Fueguino
+• Tren del Fin del Mundo
+• Cárcel del Fin del Mundo
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Bus", descripcion: "Bus Coche cama salida desde Córdoba" },
+          { tipo: "Alojamiento", descripcion: "9 noches de alojamiento con desayuno" },
+          { tipo: "Excursión", descripcion: "Península Valdés, PN Los Glaciares, PN Tierra del Fuego" },
+          { tipo: "Excursión", descripcion: "Visita a Las Grutas, Mini City Tour Madryn" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Asistencia", descripcion: "Coordinador y asistencia al viajero" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-10"), fechaFin: new Date("2026-04-10") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-30"), fechaFin: new Date("2026-05-30") }
+        ]
+      }
+    },
+    {
+      titulo: "El Calafate y Ushuaia 2026 - 6 Noches",
+      slug: "calafate-ushuaia-2026",
+      destinoId: null,
+      noches: 6,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 22,
+      noIncluye: `
+• Extras no especificados en el programa.
+• Servicios adicionales.
+      `.trim(),
+      condiciones: `
+## El Calafate y Ushuaia 2026
+
+**Duración:** 6 Noches
+**Salidas:** 13 y 20 Enero, 5 y 17 Febrero, 12 y 18 Marzo 2026
+**Inicio:** Córdoba
+
+### El programa incluye:
+• Aéreos desde Córdoba cupos confirmados con Flybondi.
+• 6 noches de Alojamiento con régimen según hotel:
+  - 3 noches en El Calafate
+  - 3 noches en Ushuaia
+• Traslado de Ingreso y Egreso.
+• Asistencia al Viajero.
+
+### Excursiones incluidas (Sin tickets de ingreso a parques):
+• Parque Nacional Los Glaciares
+• Parque Nacional Tierra del Fuego
+
+### Hoteles Previstos
+• **Opción 1:** Hotel Kalken + Hotel Costa Ushuaia
+• **Opción 2:** Hotel Kapenke + Hotel Costa Ushuaia
+
+### Equipaje Incluido
+• **De mano:** 1 pieza de hasta 6 kg (30x20x40cm) para ubicar bajo el asiento.
+• **En bodega:** 1 pieza de hasta 12 kg (máx. 158 cm lineales).
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreos desde Córdoba con Flybondi" },
+          { tipo: "Alojamiento", descripcion: "6 noches (3 en Calafate, 3 en Ushuaia)" },
+          { tipo: "Traslados", descripcion: "Traslados de ingreso y egreso" },
+          { tipo: "Excursión", descripcion: "PN Los Glaciares y PN Tierra del Fuego" },
+          { tipo: "Equipaje", descripcion: "Bodega 12kg + Mano 6kg" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-13"), fechaFin: new Date("2026-01-13") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-20"), fechaFin: new Date("2026-01-20") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-17"), fechaFin: new Date("2026-02-17") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-18"), fechaFin: new Date("2026-03-18") }
+        ]
+      }
+    },
+    {
+      titulo: "Bariloche Aéreo",
+      slug: "bariloche-aereo-2026",
+      destinoId: null,
+      noches: 6,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 20,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Recargos de butaca (Cama/Panorámica/Cafetera)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Bariloche Aéreo '26
+
+**Destino:** San Carlos de Bariloche  
+**Duración:** 07 días / 06 noches – 06 días / 05 noches  
+**Transporte:** Aéreo desde Córdoba (Aerolíneas Argentinas)  
+**Equipaje:** Carry on  
+**Hotel:** Cadena Tierra Gaucha / Kenton  
+**Régimen:** Desayuno  
+**Excursiones:** Trf in/out  
+**Asistencia Médica:** Nacional – Cobertura 2M  
+
+### Salidas 2026
+• **14 Febrero**  
+• **13 y 31 Marzo**  
+• **9 Abril (AR Carry)**  
+• **19 Abril (AR Carry)**  
+• **23 Mayo (FO 12kg)**  
+• **24 Mayo (AR Carry)**  
+• **13 y 18 Junio (FO 12kg)**  
+
+### Consultas
+Consultar valores por fecha y disponibilidad.  
+
+🛎️ Habitación a compartir GARANTIZADA  
+🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad).  
+Tarifas por persona sujetas a modificación y disponibilidad.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo desde Córdoba con Aerolíneas Argentinas" },
+          { tipo: "Equipaje", descripcion: "Carry on" },
+          { tipo: "Alojamiento", descripcion: "Cadena Tierra Gaucha / Kenton" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Traslados", descripcion: "Transfer in/out" },
+          { tipo: "Asistencia", descripcion: "Cobertura nacional 2M" },
+          { tipo: "Detalle-Salidas", descripcion: "14 Febrero; 13 y 31 Marzo; 9 y 19 Abril (AR Carry); 23 Mayo (FO 12kg); 24 Mayo (AR Carry); 13 y 18 Junio (FO 12kg)" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-14"), fechaFin: new Date("2026-02-14") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-13") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-31"), fechaFin: new Date("2026-03-31") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-09"), fechaFin: new Date("2026-04-09") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-19"), fechaFin: new Date("2026-04-19") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-24"), fechaFin: new Date("2026-05-24") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-13"), fechaFin: new Date("2026-06-13") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-18"), fechaFin: new Date("2026-06-18") }
         ]
       }
     }
   ];
 
+  // Asignar los destinoId a los paquetes
+  const bombas = destinosList.find((item) => item.slug === "bombas");
+  const puntadeleste = destinosList.find((item) => item.slug === "punta-del-este");
+  const f1 = destinosList.find((item) => item.slug === "formula-1");
+  const catamarcaDest = destinosList.find((item) => item.slug === "catamarca"); // Assuming catamarca destination exists or we link to null?
+  // `misiones` ya está definido arriba con el resto de destinos.
+
+  for (const paquete of salidasGrupales) {
+    if (paquete.titulo.includes("Camboriu")) {
+      paquete.destinoId = camboriu.id;
+    } else if (paquete.titulo.includes("Canasvieiras")) {
+      paquete.destinoId = canasvieiras.id;
+    } else if (paquete.titulo.includes("Rio de Janeiro")) {
+      paquete.destinoId = rio.id;
+    } else if (paquete.titulo.includes("Cataratas")) {
+      const cataratas = destinosList.find((item) => item.slug === "cataratas-del-iguazu");
+      if (cataratas) paquete.destinoId = cataratas.id;
+    } else if (paquete.slug.includes("banados-estrella")) {
+      if (misiones) paquete.destinoId = misiones.id;
+    } else if (paquete.slug.includes("catamarca")) {
+      if (catamarcaDest) paquete.destinoId = catamarcaDest.id;
+    } else if (paquete.titulo.includes("F1") || paquete.titulo.includes("Fórmula 1")) {
+      if (f1) paquete.destinoId = f1.id;
+    }
+
+
+  }
+
+
+  const extraPaquetes = [
+    // ================= PAQUETES CHARTER 2026 =================
+    {
+      titulo: "Charter Aéreo Porto de Galinhas 2026",
+      slug: "charter-porto-galinhas-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 23,
+      noIncluye: `
+• Gastos personales y propinas
+• Tours opcionales no detallados
+      `.trim(),
+      condiciones: `
+## Charter Aéreo Porto de Galinhas
+
+**Duración:** 7 Noches
+**Salidas:** 6, 13, 20 y 27 Febrero; 6 Marzo 2026
+**Inicio:** Córdoba (Aéreo directo)
+
+### El programa incluye:
+• Aéreos desde Córdoba con Flybondi
+• 7 Noches de Alojamiento
+• Traslados de ingreso y egreso
+• Asistencia al viajero AC35
+
+### Hoteles y Tarifas (Base Doble Referencial)
+**ENERO / FEBRERO**
+• **POUSADA AMADA TERRA / FLOR DE MAGNOLIA**: USD 1.397 / 1.240
+• **PORTO 2 LIFE**: USD 1.437 / 1.350
+• **POUSADA LUAR DAS MARES**: USD 1.517 / 1.397
+• **ACONCHEGO**: USD 1.527 / 1.437
+• **SOLAR PORTO DE GALINHAS**: USD 1.897 / 1.687
+• **VIVÁ PORTO DE GALINHAS**: USD 2.487 / 1.797
+• **VILLAGE PORTO DE GALINHAS**: USD 2.547 / 2.017
+• **OCAPORÃ (All Inc)**: USD 2.847 / 1.977
+• **ENOTEL (All Inc)**: USD 2.910 / 2.427
+• **THE WESTIN (All Inc)**: USD 3.590 / 2.957
+
+### Adicionales Traslados (Opcional)
+• Santa Fe / San Luis: USD 70
+• Rosario: USD 80
+• Villa María / San Francisco: USD 47
+• *Consultar por otras localidades.*
+
+### Equipaje Incluido
+• **De mano:** 10 kg (Carry on + Bolso de mano).
+• **Bodega:** 1 pieza de hasta 15 kg (Máx 158 cm lineales).
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo charter directo desde Córdoba" },
+          { tipo: "Alojamiento", descripcion: "7 noches según hotel seleccionado" },
+          { tipo: "Traslados", descripcion: "Traslados IN/OUT en destino" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero AC35" },
+          { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-06"), fechaFin: new Date("2026-02-06") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-20"), fechaFin: new Date("2026-02-20") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-27"), fechaFin: new Date("2026-02-27") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-06"), fechaFin: new Date("2026-03-06") }
+        ]
+      }
+    },
+    {
+      titulo: "Charter Aéreo Maragogi 2026",
+      slug: "charter-maragogi-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 24,
+      noIncluye: `
+• Gastos personales
+• Excursiones opcionales
+      `.trim(),
+      condiciones: `
+## Charter Aéreo Maragogi
+
+**Duración:** 7 Noches
+**Salidas:** 6, 13, 20 y 27 Febrero; 6 Marzo 2026
+**Inicio:** Córdoba (Aéreo directo)
+
+### El programa incluye:
+• Aéreos desde Córdoba con Flybondi
+• 7 Noches de Alojamiento
+• Traslados de ingreso y egreso
+• Asistencia al viajero AC35
+
+### Hoteles y Tarifas (Base Doble Referencial)
+**ENERO / FEBRERO**
+• **PRAIA DOURADA** (Media Pensión): USD 2.150 / 1.887
+• **GRAND OCA** (All Inclusive): USD 2.950 / 2.570
+
+### Adicionales Traslados (Opcional)
+• Santa Fe / San Luis: USD 70
+• Rosario: USD 80
+• Villa María / Rio Cuarto: USD 47
+• *Consultar por otras localidades.*
+
+### Equipaje Incluido
+• **De mano:** 10 kg (Carry on + Bolso de mano).
+• **Bodega:** 1 pieza de hasta 15 kg.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo charter directo desde Córdoba" },
+          { tipo: "Alojamiento", descripcion: "7 noches (Praia Dourada o Grand Oca)" },
+          { tipo: "Traslados", descripcion: "Traslados IN/OUT" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero AC35" },
+          { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-06"), fechaFin: new Date("2026-02-06") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-20"), fechaFin: new Date("2026-02-20") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-27"), fechaFin: new Date("2026-02-27") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-06"), fechaFin: new Date("2026-03-06") }
+        ]
+      }
+    },
+    {
+      titulo: "Charter Aéreo Cabo de Santo Agostinho 2026",
+      slug: "charter-cabo-santo-agostinho-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 25,
+      noIncluye: `
+• Gastos personales
+      `.trim(),
+      condiciones: `
+## Charter Cabo de Santo Agostinho
+
+**Duración:** 7 Noches
+**Salidas:** 6, 13, 20 y 27 Febrero; 6 Marzo 2026
+**Inicio:** Córdoba (Aéreo directo)
+
+### El programa incluye:
+• Aéreos desde Córdoba con Flybondi
+• 7 Noches de Alojamiento en Vila Galé Cabo
+• Traslados de ingreso y egreso
+• Asistencia al viajero AC35
+
+### Hoteles y Tarifas (Base Doble Referencial)
+**ENERO / FEBRERO**
+• **VILA GALE CABO** (All Inclusive): USD 1.994 / 1.727
+
+### Adicionales Traslados (Opcional)
+• Santa Fe / San Luis: USD 70
+• Rosario: USD 80
+• Villa María / Rio Cuarto: USD 47
+
+### Equipaje Incluido
+• **De mano:** 10 kg (Carry on + Bolso de mano).
+• **Bodega:** 1 pieza de hasta 15 kg.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo charter directo desde Córdoba" },
+          { tipo: "Alojamiento", descripcion: "7 noches en Vila Galé Cabo" },
+          { tipo: "Régimen", descripcion: "All Inclusive" },
+          { tipo: "Traslados", descripcion: "Traslados IN/OUT" },
+          { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-06"), fechaFin: new Date("2026-02-06") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-20"), fechaFin: new Date("2026-02-20") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-27"), fechaFin: new Date("2026-02-27") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-06"), fechaFin: new Date("2026-03-06") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...extraPaquetes);
+
+  const moreCharters = [
+    {
+      titulo: "Charter Aéreo Buzios 2026",
+      slug: "charter-buzios-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 26,
+      noIncluye: `
+• Gastos personales
+• Ecotasa municipal (pago en destino)
+      `.trim(),
+      condiciones: `
+## Charter Aéreo Búzios
+
+**Duración:** 7 Noches
+**Salidas:** 2 y 9 Febrero 2026
+**Inicio:** Córdoba (Aéreo Flybondi a GIG + Traslado)
+
+### El programa incluye:
+• Aéreos desde Córdoba con Flybondi (Destino GIG)
+• 7 Noches de Alojamiento
+• Traslados de ingreso y egreso
+• Asistencia al viajero AC35
+
+### Hoteles y Tarifas (Base Doble Referencial)
+**FEBRERO**
+• **BRISAS DE BUZIOS / DESTINO BUZIOS / KAIRÓS**: USD 970
+• **NEW PARADISE**: USD 1.127
+• **GAMMEL DANSK / LESTADA**: USD 1.360
+• **VILLA MERCEDES / AROMA DO MAR**: USD 1.407
+• **CORONADO INN / CORONADO BEACH**: USD 1.397
+• **POSADA AFRIKA**: Consultar
+• **POSADA DOS REIS**: Consultar
+
+### Adicionales Traslados (Opcional)
+• Santa Fe / San Luis / Rosario: Consultar tarifas vigentes.
+
+### Equipaje Incluido
+• **De mano:** 10 kg (Carry on + Bolso de mano).
+• **Bodega:** 1 pieza de hasta 15 kg.
+
+### Flexi Charter
+• Cambio de destino hasta 60 días antes.
+• Cambio de hotel hasta 30 días antes.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo charter Córdoba - Rio (GIG)" },
+          { tipo: "Alojamiento", descripcion: "7 noches en Búzios" },
+          { tipo: "Traslados", descripcion: "Transfer Aeropuerto GIG - Búzios - Aeropuerto" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero AC35" },
+          { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-02"), fechaFin: new Date("2026-02-02") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") }
+        ]
+      }
+    },
+    {
+      titulo: "Charter Aéreo Rio de Janeiro 2026",
+      slug: "charter-rio-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 27,
+      noIncluye: `
+• Gastos personales
+      `.trim(),
+      condiciones: `
+## Charter Aéreo Rio de Janeiro
+
+**Duración:** 7 Noches
+**Salidas:** 2 y 9 Febrero 2026
+**Inicio:** Córdoba (Aéreo Flybondi)
+
+### El programa incluye:
+• Aéreos desde Córdoba con Flybondi
+• 7 Noches de Alojamiento
+• Traslados de ingreso y egreso
+• Asistencia al viajero AC35
+
+### Hoteles y Tarifas (Base Doble Referencial)
+**FEBRERO**
+• **MIRADOR RIO COPACABANA**: USD 800
+• **MAJESTIC RIO / MAR PALACE**: USD 927
+• **SAVOY OTHON**: USD 1.047
+• **ROYALTI BARRA**: USD 1.240
+• **OLINDA RIO**: USD 1.287
+• **NOVOTEL LEME**: USD 1.400
+• **POUSADA GIRASSOL**: Consultar
+
+### Adicionales Traslados (Opcional)
+• Consultar tarifas desde interior.
+
+### Equipaje Incluido
+• **De mano:** 10 kg (Carry on + Bolso de mano).
+• **Bodega:** 1 pieza de hasta 15 kg.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo charter Córdoba - Rio (GIG)" },
+          { tipo: "Alojamiento", descripcion: "7 noches en Rio de Janeiro" },
+          { tipo: "Traslados", descripcion: "Traslados IN/OUT" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero AC35" },
+          { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-02"), fechaFin: new Date("2026-02-02") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") }
+        ]
+      }
+    },
+    {
+      titulo: "Charter Aéreo Angra dos Reis 2026",
+      slug: "charter-angra-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 28,
+      noIncluye: `
+• Gastos personales
+      `.trim(),
+      condiciones: `
+## Charter Aéreo Angra dos Reis
+
+**Duración:** 7 Noches
+**Salidas:** 2 y 9 Febrero 2026
+**Inicio:** Córdoba (Aéreo Flybondi a GIG + Traslado)
+
+### El programa incluye:
+• Aéreos desde Córdoba con Flybondi (Destino GIG)
+• 7 Noches de Alojamiento
+• Traslados de ingreso y egreso (Regular)
+• Asistencia al viajero AC35
+
+### Hoteles y Tarifas (Base Doble Referencial)
+**FEBRERO**
+• **DOLCE VITA** (Media Pensión): USD 1.397
+• **NACIONAL INN**: USD 1.450
+• **VILA GALE ECO RESORT** (All Inclusive): USD 2.157
+
+### Adicionales Traslados (Opcional)
+• Consultar tarifas desde interior.
+
+### Equipaje Incluido
+• **De mano:** 10 kg (Carry on + Bolso de mano).
+• **Bodega:** 1 pieza de hasta 15 kg.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo charter Córdoba - Rio (GIG)" },
+          { tipo: "Alojamiento", descripcion: "7 noches en Angra" },
+          { tipo: "Traslados", descripcion: "Transfer Aeropuerto GIG - Angra - Aeropuerto" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero AC35" },
+          { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-02"), fechaFin: new Date("2026-02-02") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...moreCharters);
+
+  const torresPackage = [
+    {
+      titulo: "Torres y Gramado 2026",
+      slug: "torres-y-gramado-2026",
+      destinoId: null, // Will be linked to Torres
+      tipo: "grupal",
+      noches: 4,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 30,
+      noIncluye: `
+• Recargo Butacas Panorámicas (USD 50)
+• Recargo Butacas Cafetera (USD 30)
+• Adicional Butaca Cama (sin asistencia - USD 250)
+• Entradas a parques no mencionadas
+      `.trim(),
+      condiciones: `
+## Torres y Gramado 2026
+
+**Duración:** 07 Días | 04 Noches
+**Bus:** CAMA (Ultima Generación, bar a bordo, snack y bebidas)
+**Salidas:** 30 Marzo 2026 (Semana Santa)
+
+### El programa incluye:
+• Bus Cama desde Córdoba (Última Generación).
+• Servicio de bar a bordo.
+• 04 Noches de Alojamiento (02 en Torres + 02 en Gramado).
+• Régimen Media Pensión:
+  - Gramado: 2 noches Buffet Completo.
+  - Torres: Media Pensión en Hotel A Furninha.
+• Coordinador permanente.
+• Asistencia Médica: Universal Assistance (Sin Limite de Edad).
+
+### Hoteles Previstos:
+• **Gramado:** Hotel Ski Gramado (Matriz)
+• **Torres:** Hotel A Furninha
+
+### Excursiones Incluidas:
+• City Tour Gramado y Canela COMPLETO:
+  - Porticos de Entrada y Calle techada
+  - Lago Negro
+  - Mini Mundo
+  - Fabrica de Chocolate
+  - Catedral de Pedra
+  - Parque Caracol (sin ingresos)
+
+### Itinerario
+**Día 1 - Salida:**
+Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check-in correspondiente y emprendemos el traslado hacia el destino elegido con servicio a bordo.
+
+**Día 2 - Llegada y Alojamiento:**
+Llegada a destino, alojamiento en hotel seleccionado. Tiempo para comenzar a disfrutar.
+
+**Días 3 al 6 - Estadía en destino:**
+Disfrute de la estadía combinada entre la playa de Torres y el encanto de las sierras en Gramado. Realizaremos el City Tour completo por Gramado y Canela visitando los principales atractivos. Días libres para playa o paseos opcionales.
+
+**Día 7 - Regreso:**
+Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nuestro equipo te asistirá hasta el final del servicio.
+
+### Tarifas Referenciales (USD Billete)
+• **Salida 30 Marzo (Semana Santa):** USD 649 (Final con impuestos)
+• *Opción Butaca Panorámica: + USD 50*
+• *Opción Butaca Cafetera: + USD 30*
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus Cama Última Generación" },
+          { tipo: "Alojamiento", descripcion: "4 Noches (2 Torres / 2 Gramado)" },
+          { tipo: "Régimen", descripcion: "Media Pensión" },
+          { tipo: "Excursiones", descripcion: "City Tour Gramado y Canela" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance Sin Límite" },
+          { tipo: "Coordinador", descripcion: "Permanente" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 649, moneda: "USD", fechaInicio: new Date("2026-03-30"), fechaFin: new Date("2026-03-30") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...torresPackage);
+
+  const catamarcaPackage = [
+    {
+      titulo: "Catamarca y Ruta del Adobe",
+      slug: "catamarca-ruta-adobe-2026",
+      destinoId: null, // Will be linked to Catamarca
+      tipo: "grupal",
+      noches: 5,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 31,
+      noIncluye: `
+• Entradas a sitios turísticos (Ruinas de Shincal, Termas, etc.)
+• Gastos administrativos (3.5%)
+• Excursiones opcionales:
+  - Salar de Antofalla ($125,000)
+  - Balcón de Pissis ($150,000)
+• Recargo Butaca Panorámica ($90,000)
+      `.trim(),
+      condiciones: `
+## Catamarca y Ruta del Adobe
+
+**Duración:** 07 Días – 05 Noches
+**Transporte:** Bus Cama
+**Salidas:** 24 Abril 2026
+
+### El programa incluye:
+• Bus Cama desde Córdoba.
+• 05 Noches de Alojamiento.
+• Régimen MAP (Media Pensión).
+• Habitación a compartir GARANTIZADA.
+• Asistencia Médica Nacional 2M.
+
+### Hoteles Previstos:
+• **Antofagasta:** Hostería Municipal Antofagasta (2 noches)
+• **Belén:** Hotel Belén (1 noche)
+• **Fiambalá:** Hotel San Francisco Fiambalá (2 noches)
+
+### Excursiones Incluidas:
+• **Campo de Piedra Pómez:** Paisaje surrealista de origen volcánico.
+• **Ruinas de Shincal:** Visita al sitio arqueológico inca (sin entrada).
+• **Termas de Fiambalá:** Ascenso incluido (sin entrada).
+• **Ruta del Adobe:** Recorrido por las construcciones históricas.
+
+### Itinerario
+**Día 1 - Salida:**
+Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check-in correspondiente y emprendemos el traslado hacia Catamarca.
+
+**Día 2 - Llegada y Alojamiento:**
+Llegada a destino, alojamiento en el primer punto del recorrido (Antofagasta o según logística). Tiempo para aclimatarse.
+
+**Días 3 al 6 - Recorrido:**
+Durante estos días realizaremos el circuito completo visitando el Campo de Piedra Pómez, las Ruinas de Shincal en Londres, la famosa Ruta del Adobe y el relax en las Termas de Fiambalá.
+
+**Día 7 - Regreso:**
+Luego de los procedimientos de check-out, emprendemos el retorno a casa llevando los recuerdos de la Puna.
+
+### Tarifas Referenciales (Base Doble/Triple)
+• **Salida 24 Abril 2026:** $999,929 (Final con impuestos)
+• *Opción Single:* $1,347,929
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus CAMA" },
+          { tipo: "Alojamiento", descripcion: "5 Noches (2 Antofagasta, 1 Belén, 2 Fiambalá)" },
+          { tipo: "Régimen", descripcion: "Media Pensión (MAP)" },
+          { tipo: "Excursiones", descripcion: "Piedra Pómez, Shincal, Ruta Adobe, Termas" },
+          { tipo: "Asistencia", descripcion: "Cobertura Nacional 2M" },
+          { tipo: "Coordinador", descripcion: "Permanente" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 999929, moneda: "ARS", fechaInicio: new Date("2026-04-24"), fechaFin: new Date("2026-04-24") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...catamarcaPackage);
+
+  const banadosPackage = [
+    {
+      titulo: "Bañados de la Estrella",
+      slug: "banados-estrella-2026",
+      destinoId: null, // Will be linked to Misiones as requested
+      tipo: "grupal",
+      noches: 4, // 3 or 4, setting 4 as max
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 32,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Parque Nacional El Impenetrable (opcional $125.000)
+• Adicional MAP (3 comidas $80.000 / 2 comidas $55.000)
+• Comidas no especificadas
+      `.trim(),
+      condiciones: `
+## Bañados de la Estrella
+
+**Programa:** Bañado de la Estrella, y Parque Nacional “El Impenetrable”
+**Destino:** Resistencia – Ibarreta – Juan Jose Castelli
+**Duración:** 6 Días, y 4 Noches / 5 Días, y 3 Noches
+**Transporte:** Bus CAMA
+**Salidas:** 14 Junio, 04 y 11 Julio 2026
+**Régimen:** Desayuno
+
+### Hoteles a confirmar
+• **Resistencia:** Hotel Royal (o Covadonga)
+• **Ibarreta:** Doña Melitona (o similar)
+• **Juan Jose Castelli:** Hotel Florencia
+
+### Excursiones
+• Panorámica en Corrientes
+• Fortin La Soledad (Bañados La Estrella) con Navegación y cena Especial
+• Programa de 03 noches incluye “El Impenetrable”
+
+### Servicios
+• Coordinador Permanente
+• Asistencia Médica: Universal Assistance Nacional – Cobertura UA 2M (sin límite de edad)
+
+### Tarifas y Fechas
+**14 Jun (3 noches - Desayuno y una Cena)**
+• **DBL:** Neto $655,131 | IVA $93,619 | Total $748,749
+• **SLG:** Neto $755,642 | IVA $114,726 | Total $870,369
+
+**04 y 11 Jul (4 noches - Desayuno y una Cena)**
+• **DBL:** Neto $660,890 | IVA $90,628 | Total $751,519
+• **SLG:** Neto $832,039 | IVA $126,570 | Total $958,609
+
+*🛎️ Habitación a compartir GARANTIZADA.*
+*Las habitaciones garantizadas a compartir podrán ser dobles o triples.*
+*Tarifas por persona sujetas a modificación y disponibilidad. Agregar 3.5% de gastos administrativos.*
+
+### Opcionales
+• Parque Nacional El Impenetrable – $125.000
+• Adicional MAP (3 comidas) – $80.000 Neto
+• Adicional MAP (2 comidas) – $55.000 Neto
+
+### Rutas
+• Ruta 1: Rio Cuarto, Villa Maria, Rosario, Santa Fe
+• Ruta 2: Cordoba, Villa Maria
+
+### Itinerario
+**Día 1 — Día de salida: Comienza la experiencia**
+Nos reunimos en el punto de encuentro indicado para iniciar el viaje. Realizamos el check-in correspondiente y emprendemos el traslado hacia el destino elegido. Nuestro equipo acompaña todo el proceso para que disfrutes desde el primer momento.
+
+**Día 2 — Estadía en destino: Viví cada momento**
+Durante la estadía podrás disfrutar de las actividades, servicios y atractivos incluidos en tu paquete. El itinerario puede variar según condiciones del viaje y las preferencias del grupo, siempre priorizando tu seguridad y comodidad. Tiempo libre para aprovechar a tu manera y crear recuerdos únicos.
+
+**Día 3 — Día de regreso: Fin del viaje, inicio de nuevos planes**
+Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nuestro equipo te asistirá hasta el final del servicio. ¡Gracias por viajar con nosotros! Esperamos volver a acompañarte en tu próxima aventura.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus CAMA" },
+          { tipo: "Alojamiento", descripcion: "Hoteles a confirmar (Royal / Doña Melitona / Florencia)" },
+          { tipo: "Régimen", descripcion: "Desayuno y una Cena" },
+          { tipo: "Excursiones", descripcion: "Panorámica Corrientes, Fortin La Soledad, Navegación" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance Nacional UA 2M" },
+          { tipo: "Coordinador", descripcion: "Permanente" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 748749, moneda: "ARS", fechaInicio: new Date("2026-06-14"), fechaFin: new Date("2026-06-14") },
+          { precio: 751519, moneda: "ARS", fechaInicio: new Date("2026-07-04"), fechaFin: new Date("2026-07-04") },
+          { precio: 751519, moneda: "ARS", fechaInicio: new Date("2026-07-11"), fechaFin: new Date("2026-07-11") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...banadosPackage);
+
+  const caminosDelNortePackage = [
+    {
+      titulo: "Caminos del Norte",
+      slug: "caminos-del-norte-2026",
+      destinoId: null, // Se asigna a Salta y se agrega Jujuy como extra
+      tipo: "grupal",
+      noches: 5,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 33,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+• Extras de butaca (semi-cama o cama)
+      `.trim(),
+      condiciones: `
+## Caminos del Norte
+
+**Destino:** Caminos del Norte (Salta + Jujuy)
+**Transporte:** Bus CAMA con servicio de bar a bordo
+**Duración:** 03 o 05 noches
+**Hotel:** Apart Carlos I, III, IV
+**Régimen:** Media Pensión en el hotel
+**Servicios:** Asistencia médica incluida, coordinación permanente
+
+### Excursiones incluidas
+• Visita a Cafayate con visita a Bodega
+• Quebrada de Las Conchas
+• City tour en Salta
+• Quebrada de Humahuaca (Purmamarca - Tilcara - Humahuaca)
+
+### Salidas y tarifas (MAP, DBL / TPL)
+**13 Feb (Carnaval) - 3 noches:** Neto $441.665 | IVA $37.835 | Tarifa $479.500  
+**14 Mar - 5 noches:** Neto $490.043 | IVA $44.857 | Tarifa $534.900  
+**01 Abr (Semana Santa) - 3 noches:** Neto $448.369 | IVA $40.630 | Tarifa $459.000  
+**09 May - 5 noches:** Neto $503.276 | IVA $46.224 | Tarifa $549.500  
+**17 Jun (Feriado) - 3 noches:** Neto $417.330 | IVA $38.170 | Tarifa $455.500  
+
+### Butacas y menores
+• Solo Butaca Semi-Cama: $200.000  
+• Solo Butaca Cama: $250.000  
+• Menor 0 a 2 años sin butaca + asistencia médica: $15.000  
+• De 3 años: solo butaca + asistencia (sin servicio en el hotel)  
+• Desde 4 años abona como adulto  
+
+### Embarque y notas
+• Embarque: consultar ruta (salida desde Córdoba y valor del traslado)  
+• Tarifas por persona sujetas a modificación y disponibilidad  
+• Habitaciones garantizadas a compartir pueden ser dobles o triples  
+• Agregar 3.5% de gastos administrativos
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus CAMA con bar a bordo" },
+          { tipo: "Alojamiento", descripcion: "Apart Carlos I, III, IV (03 o 05 noches)" },
+          { tipo: "Régimen", descripcion: "Media Pensión (MAP)" },
+          { tipo: "Servicios", descripcion: "Coordinación permanente" },
+          { tipo: "Asistencia", descripcion: "Asistencia médica incluida" },
+          { tipo: "Excursiones", descripcion: "Cafayate + Bodega, Quebrada de Las Conchas, City en Salta, Quebrada de Humahuaca" },
+          { tipo: "Detalle-Salidas", descripcion: "13 Feb (Carnaval), 14 Mar, 01 Abr (Semana Santa), 09 May, 17 Jun (Feriado)" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 479500, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
+          { precio: 534900, moneda: "ARS", fechaInicio: new Date("2026-03-14"), fechaFin: new Date("2026-03-14") },
+          { precio: 459000, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") },
+          { precio: 549500, moneda: "ARS", fechaInicio: new Date("2026-05-09"), fechaFin: new Date("2026-05-09") },
+          { precio: 455500, moneda: "ARS", fechaInicio: new Date("2026-06-17"), fechaFin: new Date("2026-06-17") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...caminosDelNortePackage);
+
+  const lasGrutasPackage = [
+    {
+      titulo: "Las Grutas 2026",
+      slug: "las-grutas-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 5,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 34,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Adicional butaca panorámica o cafetera
+• Servicios no detallados
+      `.trim(),
+      condiciones: `
+## Las Grutas 2026
+
+**Duración:** 08 días | 5 noches (según salida)
+**Transporte:** Bus MIX con servicio a bordo, snack y bebidas
+**Hotel:** Antares / Acantilados
+**Régimen:** Desayuno + Media Pensión
+**Servicios:** Coordinador durante todo el circuito
+**Asistencia Médica:** Universal Assistance (sin límite de edad)
+
+### Salidas 2026
+• 04, 11, 18 y 25 Ene  
+• 01, 08, 13 (Carnaval), 18, 23 y 28 Feb  
+• 05 y 15 Mar  
+• 01 Abr (Semana Santa)  
+
+### Adicionales
+• Butaca Panorámica: $40.000  
+• Butaca Cafetera: $35.000  
+
+### Menores
+• 0 a 2 años (obligatorio asistencia médica): $20.000  
+• 0 a 2 años (butaca semi-cama + asistencia): $200.000  
+• 3 años (butaca semi-cama + asistencia): $200.000  
+
+### Rutas
+Paraná – Santa Fe – Rosario – Armstrong – Villa María – RIO (e intermedios)
+
+### Notas
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Habitaciones garantizadas a compartir pueden ser dobles o triples.  
+Agregar 3.5% de gastos administrativos.
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus MIX con snack y bebidas" },
+          { tipo: "Alojamiento", descripcion: "Hotel Antares / Acantilados (5 noches según salida)" },
+          { tipo: "Régimen", descripcion: "Desayuno + Media Pensión" },
+          { tipo: "Servicios", descripcion: "Coordinador durante todo el circuito" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance (sin límite de edad)" },
+          { tipo: "Detalle-Salidas", descripcion: "04, 11, 18 y 25 Ene; 01, 08, 13, 18, 23 y 28 Feb; 05 y 15 Mar; 01 Abr (Semana Santa)" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-04"), fechaFin: new Date("2026-01-04") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-11"), fechaFin: new Date("2026-01-11") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-18"), fechaFin: new Date("2026-01-18") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-25"), fechaFin: new Date("2026-01-25") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-18"), fechaFin: new Date("2026-02-18") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-23"), fechaFin: new Date("2026-02-23") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-28"), fechaFin: new Date("2026-02-28") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...lasGrutasPackage);
+
+  const maravillasLitoralPackage = [
+    {
+      titulo: "Maravillas del Litoral",
+      slug: "maravillas-litoral-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 4,
+      cupos: 25,
+      destacada: true,
+      activa: true,
+      orden: 35,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Entradas a parques y atractivos no indicados
+• Navegación Saltos de Mocona (opcional)
+• Adicionales de butaca (Cama/Panorámica/Cafetera)
+      `.trim(),
+      condiciones: `
+## Maravillas del Litoral
+
+**Programa:** Maravillas de Litoral, Iguazú, Iberá y Saltos del Moconá  
+**Destino:** Cataratas del Iguazú, Esteros del Iberá y Saltos de Moconá  
+**Duración:** 6 Días y 4 Noches  
+**Transporte:** Bus MIX  
+**Hotel:** Iguazú Ñamandú Guazú + Posadas Bagu Urbano  
+**Régimen:** Media Pensión  
+**Servicios:** Coordinador permanente  
+**Asistencia médica:** Universal Assistance Nacional – Cobertura 2M (sin límite de edad)
+
+### Excursiones incluidas
+• Portal Galarza Parque Iberá (desayuno, infusión, tortas fritas, navegación, sendero autoguiado, merienda)  
+• Traslado a Parque Nacional Iguazú (sin entradas)  
+• Traslado a Ruinas de San Ignacio y Minas de Wanda (sin entradas)  
+• Traslado al Soberbio para Saltos de Moconá (navegación no incluida, sujeto a clima)
+
+### Salida y tarifas (MAP)
+**20 Abril 2026 – 4 noches**  
+• **DBL:** Neto $670.495 | IVA $110.154 | Total $780.649  
+• **SLG:** Neto $952.999 | IVA $169.480 | Total $1.122.479  
+
+### Adicionales
+• Butaca CAMA: $95.000  
+• Butaca PANORÁMICA: $75.000  
+• Butaca CAFETERA: $55.000  
+
+### Rutas
+• Ruta 1: Río Cuarto, Villa María, Rosario, Santa Fe  
+• Ruta 2: Córdoba, Río Tercero, Villa María  
+
+### Notas
+🛎️ Habitación a compartir GARANTIZADA  
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Habitaciones garantizadas a compartir pueden ser dobles o triples.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus MIX con servicio a bordo" },
+          { tipo: "Alojamiento", descripcion: "2 noches Iguazú Ñamandú Guazú + 2 noches Posadas Bagu Urbano" },
+          { tipo: "Régimen", descripcion: "Media Pensión" },
+          { tipo: "Servicios", descripcion: "Coordinador permanente" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance Nacional 2M" },
+          { tipo: "Excursiones", descripcion: "Iberá (Portal Galarza), PN Iguazú, San Ignacio y Wanda, Saltos del Moconá" },
+          { tipo: "Detalle-Salidas", descripcion: "20 Abril 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 780649, moneda: "ARS", fechaInicio: new Date("2026-04-20"), fechaFin: new Date("2026-04-20") },
+          { precio: 1122479, moneda: "ARS", fechaInicio: new Date("2026-04-20"), fechaFin: new Date("2026-04-20") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...maravillasLitoralPackage);
+
+  const puertoMadrynPackage = [
+    {
+      titulo: "Puerto Madryn \"Playas Patagónicas\"",
+      slug: "puerto-madryn-playas-patagonicas-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 5,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 36,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Recargos de butaca (Cama/Panorámica/Cafetera)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Puerto Madryn "Playas Patagónicas"
+
+**Destino:** Puerto Madryn  
+**Transporte:** Bus CAMA con servicio a bordo  
+**Duración:** 04 o 05 noches  
+**Régimen:** Desayuno (Media Pensión opcional en restaurante del hotel)  
+**Servicios:** Asistencia médica incluida, coordinación permanente  
+
+### Excursiones incluidas
+• Punta Perdices “El Caribe Patagónico” (ida)  
+• Rawson – Playa Unión (avistaje de toninas opcional)  
+• Día de playa en Puerto Pirámides  
+
+### Servicios incluidos
+• Playzone en Puerto Madryn  
+• Servicio de playa (1 sombrilla por habitación para toda la estadía)  
+
+### Salidas y tarifas
+**24 Enero 2026 (3 noches)**  
+• DBL / TPL: Neto $398.178 | IVA $50.822 | Final $449.000  
+• FAMILY PLAN 1 (2 adultos + 1 menor 3-10 años, hab triple): $545.900  
+
+**01 Abril 2026 (3 noches)**  
+• DBL / TPL: Neto $398.178 | IVA $50.822 | Final $449.000  
+• FAMILY PLAN 1 (2 adultos + 1 menor 3-10 años, hab triple): $545.900  
+
+### Media pensión opcional (salidas de enero)
+• 04 comidas: $80.000 por pasajero  
+• 05 comidas: $100.000 por pasajero  
+
+### Adicionales
+• Menor 0 a 2 años (asistencia médica obligatoria): $280.000  
+• Recargo Butaca Cama: $45.000  
+• Recargo Butaca Panorámica: $45.000  
+• Recargo Butaca Cafetera: $35.000  
+
+### Ruta
+Paraná – Santa Fe – Rosario – Villa María – Río Cuarto e intermedios
+
+### Notas
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Habitaciones garantizadas a compartir pueden ser dobles o triples.  
+Agregar 3.5% de gastos administrativos.
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus CAMA con servicio a bordo" },
+          { tipo: "Alojamiento", descripcion: "Hotel Bahía Madryn (04 o 05 noches según salida)" },
+          { tipo: "Régimen", descripcion: "Desayuno (Media Pensión opcional)" },
+          { tipo: "Servicios", descripcion: "Coordinación permanente + Playzone + servicio de playa" },
+          { tipo: "Asistencia", descripcion: "Asistencia médica incluida" },
+          { tipo: "Excursiones", descripcion: "Punta Perdices, Rawson/Playa Unión, Puerto Pirámides" },
+          { tipo: "Detalle-Salidas", descripcion: "24 Enero y 01 Abril 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 449000, moneda: "ARS", fechaInicio: new Date("2026-01-24"), fechaFin: new Date("2026-01-24") },
+          { precio: 449000, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...puertoMadrynPackage);
+
+  const visitandoNortePackage = [
+    {
+      titulo: "Visitando el Norte",
+      slug: "visitando-norte-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 6,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 37,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Recargos de butaca (Cama/Panorámica/Cafetera/Semi-Cama)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Visitando el Norte
+
+**Destino:** Visitando el Norte Argentino  
+**Transporte:** Bus MIX con servicio de snack a bordo  
+**Duración:** 08 días | 06 noches  
+**Hoteles:** Cafayate (Hotel Emperador, 1 noche) • Salta (Apart Carlos, 3 noches) • Tilcara (Cadena Turismo Tilcara, 2 noches)  
+**Régimen:** Media Pensión  
+**Servicios:** Asistencia médica incluida • Coordinación permanente  
+
+### Excursiones
+• Quebrada de los Sosa  
+• Visita a bodega  
+• Quebrada de las Conchas  
+• City en Salta  
+• Salinas Grandes, Purmamarca y Quebrada de Humahuaca (2 días)  
+🛎️ Habitación a compartir GARANTIZADA
+
+### Salidas y tarifas (MAP - DBL/TPL)
+**01 Febrero:** Neto $630.766 | IVA $48.734 | Tarifa $679.500  
+**01 Marzo:** Neto $630.766 | IVA $48.734 | Tarifa $679.500  
+**11 Abril:** Neto $649.832 | IVA $50.068 | Tarifa $699.900  
+**25 Abril:** Neto $649.832 | IVA $50.068 | Tarifa $699.900  
+**23 Mayo:** Neto $649.832 | IVA $50.068 | Tarifa $699.900  
+
+### Adicionales
+• Recargo Butaca Cama: $45.000  
+• Recargo Butaca Panorámica: $45.000  
+• Recargo Butaca Cafetera: $40.000  
+• Solo Butaca Semi-Cama: $200.000  
+• Menor 0 a 2 años sin butaca + asistencia médica: $15.000  
+
+### Embarque y notas
+Consultar ruta, embarque desde Córdoba y valor del traslado.  
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Habitaciones garantizadas a compartir pueden ser dobles o triples.  
+
+### Itinerario (resumen)
+**Día 1:** Embarque / Noche a bordo / Cafayate  
+**Día 2:** Cuesta de los Sosa - Tafí del Valle - Cafayate  
+**Día 3:** Cafayate - Salta (City tour)  
+**Día 4:** Salta (Opcional Cachi)  
+**Día 5:** Salta (Opcional San Antonio de los Cobres)  
+**Día 6:** Salta - Purmamarca y Salinas Grandes - Tilcara  
+**Día 7:** Tilcara - Humahuaca (Opcional Hornocal)  
+**Día 8:** Tilcara - Tucumán - Regreso  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus MIX con snack a bordo" },
+          { tipo: "Alojamiento", descripcion: "06 noches (Cafayate 1, Salta 3, Tilcara 2)" },
+          { tipo: "Régimen", descripcion: "Media Pensión (MAP)" },
+          { tipo: "Servicios", descripcion: "Coordinación permanente" },
+          { tipo: "Asistencia", descripcion: "Asistencia médica incluida" },
+          { tipo: "Excursiones", descripcion: "Sosa, bodega, Conchas, City Salta, Salinas Grandes, Purmamarca y Humahuaca" },
+          { tipo: "Detalle-Salidas", descripcion: "01 Febrero, 01 Marzo, 11 Abril, 25 Abril, 23 Mayo 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Embarque / Noche a bordo / Cafayate" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Cuesta de los Sosa / Tafí del Valle / Cafayate" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Cafayate / Salta City Tour" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Salta / Opcional Cachi" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Salta / Opcional San Antonio de los Cobres" },
+          { tipo: "Itinerario-6", descripcion: "Día 6: Salta / Purmamarca y Salinas Grandes / Tilcara" },
+          { tipo: "Itinerario-7", descripcion: "Día 7: Tilcara / Humahuaca / Opcional Hornocal" },
+          { tipo: "Itinerario-8", descripcion: "Día 8: Tilcara / Tucumán / Noche a bordo" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 679500, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
+          { precio: 679500, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
+          { precio: 699900, moneda: "ARS", fechaInicio: new Date("2026-04-11"), fechaFin: new Date("2026-04-11") },
+          { precio: 699900, moneda: "ARS", fechaInicio: new Date("2026-04-25"), fechaFin: new Date("2026-04-25") },
+          { precio: 699900, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...visitandoNortePackage);
+
+  const barilocheVlaPackage = [
+    {
+      titulo: "Bariloche y Villa La Angostura",
+      slug: "bariloche-villa-la-angostura-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 6,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 38,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Bariloche y Villa La Angostura
+
+**Programa:** Combinado Aéreo  
+**Destino:** San Carlos de Bariloche – Villa La Angostura  
+**Duración:** 07 días / 06 noches – 06 días / 05 noches  
+**Transporte:** Aéreo desde Córdoba (Aerolíneas Argentinas)  
+**Equipaje:** Carry on  
+**Hoteles:** BRC Cadena Tierra Gaucha • VLA Posta Los Colonos  
+**Régimen:** Desayuno  
+**Excursiones:** Traslados in/out + Camino de los Siete Lagos  
+**Asistencia Médica:** Nacional – Cobertura 2M  
+
+🛎️ Habitación a compartir GARANTIZADA  
+🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
+
+### Salidas y tarifas (DBL / TPL / CPL)
+**14 Febrero (03 nts BRC + 02 nts VLA):** Neto $721.850 | IVA $65.895 | Imp. Aéreo $83.085 | Total $870.829  
+**13 Marzo (03 nts BRC + 03 nts VLA):** Neto $677.696 | IVA $54.913 | Imp. Aéreo $80.820 | Total $813.429  
+**31 Marzo (03 nts BRC + 02 nts VLA):** Neto $721.850 | IVA $65.895 | Imp. Aéreo $113.085 | Total $900.829  
+**19 Abril (AR Carry):** Neto $580.867 | IVA $52.762 | Imp. Aéreo $66.240 | Total $699.869  
+**23 Mayo (FO 12kg) / 24 Mayo (Carry):** Neto $560.357 | IVA $52.762 | Imp. Aéreo $65.400 | Total $678.519  
+**13 y 18 Junio (FO 12kg):** Neto $577.529 | IVA $56.100 | Imp. Aéreo $66.240 | Total $699.869  
+
+### Tarifas Single (SLG)
+Consultar valores por fecha (ver tabla completa).  
+
+### Tarifa CHD (todas las fechas)
+Total $423.709 (Neto $336.717 + IVA $21.537 + Imp. Aéreo $65.455)
+
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde Córdoba (Aerolíneas Argentinas)" },
+          { tipo: "Equipaje", descripcion: "Carry on" },
+          { tipo: "Alojamiento", descripcion: "BRC Cadena Tierra Gaucha + VLA Posta Los Colonos" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Excursiones", descripcion: "Traslados in/out + Camino de los Siete Lagos" },
+          { tipo: "Asistencia", descripcion: "Cobertura Nacional 2M" },
+          { tipo: "Servicios", descripcion: "Cupos aéreos incluyen cochera (sujeto a disponibilidad)" },
+          { tipo: "Detalle-Salidas", descripcion: "14 Febrero; 13 y 31 Marzo; 19 Abril (AR Carry); 23 Mayo (FO 12kg); 24 Mayo (Carry); 13 y 18 Junio (FO 12kg)" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 870829, moneda: "ARS", fechaInicio: new Date("2026-02-14"), fechaFin: new Date("2026-02-14") },
+          { precio: 813429, moneda: "ARS", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-13") },
+          { precio: 900829, moneda: "ARS", fechaInicio: new Date("2026-03-31"), fechaFin: new Date("2026-03-31") },
+          { precio: 699869, moneda: "ARS", fechaInicio: new Date("2026-04-19"), fechaFin: new Date("2026-04-19") },
+          { precio: 678519, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") },
+          { precio: 678519, moneda: "ARS", fechaInicio: new Date("2026-05-24"), fechaFin: new Date("2026-05-24") },
+          { precio: 699869, moneda: "ARS", fechaInicio: new Date("2026-06-13"), fechaFin: new Date("2026-06-13") },
+          { precio: 699869, moneda: "ARS", fechaInicio: new Date("2026-06-18"), fechaFin: new Date("2026-06-18") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...barilocheVlaPackage);
+
+  const buenosAiresPackage = [
+    {
+      titulo: "Buenos Aires",
+      slug: "buenos-aires-aereo-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 3,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 39,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Buenos Aires
+
+**Programa:** Buenos Aires  
+**Destino:** Buenos Aires  
+**Duración:** 04 días / 03 noches – 03 días / 02 noches  
+**Transporte:** Aéreo desde Córdoba (Flybondi)  
+**Equipaje:** 12KG  
+**Hotel:** HR Luxor  
+**Régimen:** Desayuno  
+**Excursiones:** Traslados in/out + City  
+**Asistencia Médica:** Nacional – Cobertura 2M  
+
+### Coordinador SAVI
+SAVI (Servicio de Asistencia al Viajero) brinda acompañamiento integral antes, durante y después del viaje.  
+
+### Salidas y tarifas
+**02 Abril (3 noches):**  
+• DBL / TPL: Neto $384.879 | IVA $47.390 | Imp. Aéreo $66.830 | Total $499.099  
+• SLG: Neto $540.006 | IVA $79.698 | Imp. Aéreo $74.525 | Total $694.229  
+• CHD: Neto $231.031 | IVA $15.083 | Imp. Aéreo $59.185 | Total $305.299  
+
+**23 Mayo (2 noches):**  
+• DBL / TPL: Neto $328.106 | IVA $36.338 | Imp. Aéreo $64.045 | Total $428.489  
+• SLG: Neto $430.672 | IVA $57.877 | Imp. Aéreo $69.140 | Total $557.689  
+• CHD: Neto $231.031 | IVA $15.083 | Imp. Aéreo $59.185 | Total $305.299  
+
+🛎️ Habitación a compartir GARANTIZADA  
+🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde Córdoba (Flybondi)" },
+          { tipo: "Equipaje", descripcion: "12KG" },
+          { tipo: "Alojamiento", descripcion: "Hotel HR Luxor" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Excursiones", descripcion: "Traslados in/out + City" },
+          { tipo: "Asistencia", descripcion: "Cobertura Nacional 2M" },
+          { tipo: "Servicios", descripcion: "Coordinador SAVI" },
+          { tipo: "Detalle-Salidas", descripcion: "13 Marzo 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-05-31") },
+          { precio: 499099, moneda: "ARS", fechaInicio: new Date("2026-04-02"), fechaFin: new Date("2026-04-05") },
+          { precio: 428489, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-25") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...buenosAiresPackage);
+
+  const peritoMorenoPackage = [
+    {
+      titulo: "Capillas de Mármol",
+      slug: "capillas-de-marmol-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 5,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 40,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Ingresos a sitios no indicados
+• Excursiones opcionales (Monte Zeballos, Ea La Ascensión)
+      `.trim(),
+      condiciones: `
+## Capillas de Mármol
+
+**Destino:** Perito Moreno  
+**Duración:** 06 días / 05 noches – 05 días / 04 noches  
+**Transporte:** Aéreo desde Córdoba (Aerolíneas Argentinas)  
+**Equipaje:** Carry on  
+**Hotel:** Cueva de las Manos  
+**Régimen:** Desayuno  
+**Excursiones:** Traslados Comodoro–Perito Moreno / Cueva de las Manos con guía / Capillas de Mármol (navegación, guía, coffee break y almuerzo) / Traslado Perito–Comodoro  
+**Asistencia Médica:** Universal Assistance Nacional – Cobertura 1.3M  
+
+🛎️ Habitación a compartir GARANTIZADA  
+🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
+
+### Salidas y tarifas (DBL / TPL)
+**21 Marzo (5 noches):** Neto $1.205.592 | IVA $144.357 | Imp. Aéreo $119.650 | Total $1.469.599  
+**01 Abril (4 noches):** Neto $1.160.194 | IVA $135.520 | Imp. Aéreo $157.425 | Total $1.453.139  
+
+### Tarifas Single (SLG)
+Consultar valores por fecha (ver tabla completa).  
+
+### Tarifa CHD (todas las fechas)
+Total $1.161.099 (Neto $946.749 + IVA $97.255 + Imp. Aéreo $117.095)
+
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Itinerario (resumen)
+**Día 1:** Córdoba / Comodoro Rivadavia / Perito Moreno  
+**Día 2:** Perito Moreno / Cueva de las Manos  
+**Día 3:** Perito Moreno / Capillas de Mármol  
+**Día 4:** Perito Moreno / Opcional Monte Zeballos  
+**Día 5:** Perito Moreno / Opcional Ea La Ascensión y Los Antiguos  
+**Día 6:** Perito Moreno / Comodoro Rivadavia / Córdoba  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde Córdoba (Aerolíneas Argentinas)" },
+          { tipo: "Equipaje", descripcion: "Carry on" },
+          { tipo: "Alojamiento", descripcion: "Hotel Cueva de las Manos (04/05 noches)" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Excursiones", descripcion: "Cueva de las Manos + Capillas de Mármol (navegación)" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance Nacional 1.3M" },
+          { tipo: "Detalle-Salidas", descripcion: "21 Marzo y 01 Abril 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Córdoba / Comodoro / Perito Moreno" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Cueva de las Manos" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Capillas de Mármol" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Opcional Monte Zeballos" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Opcional Ea La Ascensión y Los Antiguos" },
+          { tipo: "Itinerario-6", descripcion: "Día 6: Regreso a Córdoba" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 1469599, moneda: "ARS", fechaInicio: new Date("2026-03-21"), fechaFin: new Date("2026-03-21") },
+          { precio: 1453139, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...peritoMorenoPackage);
+
+  const cruceLagosPackage = [
+    {
+      titulo: "Cruce de Lagos",
+      slug: "cruce-de-lagos-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 6,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 41,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+• Ingresos a parques (si corresponde)
+      `.trim(),
+      condiciones: `
+## Cruce de Lagos 26
+
+**Programa:** Cruce de Lagos 26  
+**Destinos:** San Carlos de Bariloche – Puerto Montt  
+**Duración:** 07 días / 06 noches (01 BRC + 03 PMT – 02 BRC)  
+**Transporte:** Aerolíneas Argentinas  
+**Equipaje:** Carry On  
+**Hoteles:** BRC Cadena Tierra Gaucha – PMC Hotel Gran Pacifico  
+**Régimen:** Desayuno  
+**Excursiones:** Traslados in/out + traslados a puertos + catamaranes + panorámica en Puerto Varas con Frutillar + PN Vicente Pérez Rosales  
+**Asistencia Médica:** Nacional – Cobertura 1.3M + Master Basic 25k (Chile)  
+
+🛎️ Habitación a compartir GARANTIZADA  
+🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
+
+### Salida y tarifas (USD)
+**13 Marzo (referencial):**  
+• DBL / TPL: Neto USD 774 | IVA USD 55 | Imp. Aéreo USD 60 | Total USD 889  
+• SLG: Neto USD 1,084 | IVA USD 95 | Imp. Aéreo USD 80 | Total USD 1,259  
+• CHD: Neto USD 464 | IVA USD 15 | Imp. Aéreo USD 50 | Total USD 529  
+
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Itinerario
+**Día 1:** Córdoba / Bariloche  
+**Día 2:** Bariloche / Cruce de Lagos / Puerto Montt  
+**Día 3:** Puerto Montt / Puerto Varas y Frutillar  
+**Día 4:** Puerto Montt / Saltos del Petrohué / Cruce de Lagos / Bariloche  
+**Día 5:** Opcional San Martín de los Andes / Camino de los 7 Lagos  
+**Día 6:** Opcional Cerro Tronador  
+**Día 7:** Bariloche / Córdoba  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo Aerolíneas Argentinas" },
+          { tipo: "Equipaje", descripcion: "Carry On" },
+          { tipo: "Alojamiento", descripcion: "BRC Cadena Tierra Gaucha + PMC Hotel Gran Pacifico" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Excursiones", descripcion: "Cruce de Lagos + Puerto Varas / Frutillar + PN Vicente Pérez Rosales" },
+          { tipo: "Asistencia", descripcion: "Cobertura 1.3M + Master Basic 25k (Chile)" },
+          { tipo: "Detalle-Salidas", descripcion: "Abril 2026 hasta Mayo 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Córdoba / Bariloche" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Cruce de Lagos / Puerto Montt" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Puerto Varas y Frutillar" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Regreso a Bariloche" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Opcional S. M. de los Andes" },
+          { tipo: "Itinerario-6", descripcion: "Día 6: Opcional Cerro Tronador" },
+          { tipo: "Itinerario-7", descripcion: "Día 7: Regreso a Córdoba" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 889, moneda: "USD", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-13") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...cruceLagosPackage);
+
+  const glampingNubesPackage = [
+    {
+      titulo: "Experiencia Glamping Entre las Nubes",
+      slug: "glamping-entre-las-nubes-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 4,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 42,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## 🌄 Experiencia Glamping Entre las Nubes
+
+**Destino:** Salta – Tilcara – Pueblo Viejo  
+**Duración:** 04 días / 03 noches – 05 días / 04 noches  
+**Transporte:** Aéreos desde COR (FO o AR)  
+**Equipaje:** FO 12kg / AR Carry  
+**Hotel:** Ver cuadro tarifario  
+**Régimen:** SLA (Media Pensión) + Tilcara (Desayuno) + Glamping Pueblo Viejo (Pensión completa)  
+**Excursiones:** Según programa e Iruya + caminata guiada al pueblo ancestral  
+**Asistencia Médica:** Universal Assistance 2M  
+**Coordinador:** SAVI  
+
+🛎️ Habitación a compartir GARANTIZADA  
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Salidas y tarifas
+**24 Abril / 23 Mayo / 13 y 18 Junio**  
+03 noches SLA – Cadena Apart Carlos (MAP) + 01 noche Tilcara (DES) + 01 noche Pueblo Viejo (Pensión completa)  
+• DBL: Neto $811.151 | IVA $57.638 | Imp. Aéreo $92.850 | Total $961.639  
+• TPL: Neto $759.861 | IVA $57.638 | Imp. Aéreo $90.750 | Total $908.249  
+• CPL: Neto $721.401 | IVA $57.638 | Imp. Aéreo $89.170 | Total $868.209  
+• SLG: Neto $1.335.730 | IVA $84.339 | Imp. Aéreo $114.390 | Total $1.534.459  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde COR (FO o AR)" },
+          { tipo: "Equipaje", descripcion: "FO 12kg / AR Carry" },
+          { tipo: "Alojamiento", descripcion: "SLA Apart Carlos + Tilcara + Glamping Pueblo Viejo" },
+          { tipo: "Régimen", descripcion: "Media Pensión + Pensión Completa en Glamping" },
+          { tipo: "Excursiones", descripcion: "Iruya + caminata guiada al pueblo ancestral" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance 2M" },
+          { tipo: "Servicios", descripcion: "Coordinador SAVI" },
+          { tipo: "Detalle-Salidas", descripcion: "24 Abril, 23 Mayo, 13 y 18 Junio 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 961639, moneda: "ARS", fechaInicio: new Date("2026-04-24"), fechaFin: new Date("2026-04-24") },
+          { precio: 908249, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") },
+          { precio: 961639, moneda: "ARS", fechaInicio: new Date("2026-06-13"), fechaFin: new Date("2026-06-13") },
+          { precio: 961639, moneda: "ARS", fechaInicio: new Date("2026-06-18"), fechaFin: new Date("2026-06-18") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...glampingNubesPackage);
+
+  const neuquenCaviahuePackage = [
+    {
+      titulo: "Neuquén y Caviahue",
+      slug: "neuquen-caviahue-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 4,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 43,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Neuquén y Caviahue
+
+**Destino:** Neuquén – Caviahue  
+**Duración:** 05 días / 04 noches  
+**Transporte:** Aéreo desde Córdoba (Flybondi)  
+**Equipaje:** Ver por salida  
+**Hoteles:** NQN El Cortijo – CAV Nieve del Cerro / Lago Caviahue  
+**Régimen:** Desayuno  
+**Excursiones:** Transfer in/out en Neuquén y Caviahue + Termas de Copahue con guía  
+**Asistencia Médica:** Universal Assistance Nacional – Cobertura 1.3M  
+
+🛎️ Habitación a compartir GARANTIZADA  
+🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
+
+### Salidas y tarifas
+**01 Abril (NQN El Cortijo / CAV Nieve del Cerro)**  
+• DBL / TPL: Neto $809.867 | IVA $47.557 | Imp. Aéreo $96.255 | Total $953.679,32  
+• SLG: Neto $1.187.590 | IVA $51.978 | Imp. Aéreo $111.340 | Total $1.350.908,51  
+• CHD: Neto $432.143 | IVA $43.135 | Imp. Aéreo $81.170 | Total $556.448,80  
+
+**13 Febrero – 01 Abril (NQN El Cortijo / CAV Lago Caviahue)**  
+• DBL / TPL: Neto $847.952 | IVA $48.003 | Imp. Aéreo $97.775 | Total $993.729,23  
+• SLG: Neto $1.263.749 | IVA $52.870 | Imp. Aéreo $114.380 | Total $1.430.998,99  
+• CHD: Neto $432.143 | IVA $43.135 | Imp. Aéreo $81.170 | Total $556.448,80  
+
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde Córdoba (Flybondi)" },
+          { tipo: "Equipaje", descripcion: "Ver por salida" },
+          { tipo: "Alojamiento", descripcion: "NQN El Cortijo + CAV Nieve del Cerro / Lago Caviahue" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Excursiones", descripcion: "Transfers in/out + Termas de Copahue con guía" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance 1.3M" },
+          { tipo: "Detalle-Salidas", descripcion: "01 Abril; 13 Febrero – 01 Abril 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 953679.32, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") },
+          { precio: 993729.23, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-04-01") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...neuquenCaviahuePackage);
+
+  const descubriendoSurPackage = [
+    {
+      titulo: "Descubriendo el Sur",
+      slug: "descubriendo-el-sur-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 6,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 44,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Entradas a parques y atractivos no indicados
+      `.trim(),
+      condiciones: `
+## Combinado Ushuaia y Calafate
+
+**Destino:** Ushuaia y Calafate / Calafate y Ushuaia  
+**Duración:** 07 días / 06 noches – 08 días / 7 noches  
+**Transporte:** Aéreos desde Córdoba (Aerolíneas Argentinas)  
+**Equipaje:** Carry on (13 Mar 15kg)  
+**Hotel:** Ver cuadro tarifario  
+**Régimen:** Desayuno  
+**Excursiones:** Traslados in/out + PN Tierra del Fuego + PN Los Glaciares (sin entradas)  
+**Asistencia Médica:** Universal Assistance Nacional – Cobertura 2M  
+**Coordinador:** SAVI  
+
+🛎️ Habitación a compartir GARANTIZADA  
+🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
+
+### Salidas y tarifas (DBL/TPL/SLG)
+**09 Enero:** Consultar tarifas  
+**16 Enero:** Consultar tarifas  
+
+**09 Febrero (03N FTE Glaciares + 04N USH Monaco):**  
+• DBL $1.499.109 | SLG $2.094.349  
+
+**13 Febrero (03N USH Monaco + 03N FTE Glaciares):**  
+• DBL $1.414.089 | SLG $1.931.259  
+
+**20 Marzo (03N FTE Kapenke + 03N USH Monaco):**  
+• DBL/TPL $1.330.629 | SLG $1.807.299  
+
+**CHD todas las fechas:** $822.189  
+
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde Córdoba (Aerolíneas Argentinas)" },
+          { tipo: "Equipaje", descripcion: "Carry on (13 Mar 15kg)" },
+          { tipo: "Alojamiento", descripcion: "Ushuaia + Calafate (según salida)" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Excursiones", descripcion: "PN Tierra del Fuego + PN Los Glaciares (sin entradas)" },
+          { tipo: "Asistencia", descripcion: "Universal Assistance Nacional 2M" },
+          { tipo: "Servicios", descripcion: "Coordinador SAVI" },
+          { tipo: "Detalle-Salidas", descripcion: "09 y 16 Enero; 09 y 13 Febrero; 20 Marzo 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-09"), fechaFin: new Date("2026-01-09") },
+          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-16"), fechaFin: new Date("2026-01-16") },
+          { precio: 1499109, moneda: "ARS", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") },
+          { precio: 1414089, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
+          { precio: 1330629, moneda: "ARS", fechaInicio: new Date("2026-03-20"), fechaFin: new Date("2026-03-20") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...descubriendoSurPackage);
+
+  const descubriendoChilePackage = [
+    {
+      titulo: "Descubriendo Chile",
+      slug: "descubriendo-chile-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 6,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 45,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Entradas no incluidas (Saltos de Petrohué y Lago Todos Los Santos)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Descubriendo Chile
+
+**Programa:** Descubriendo Chile  
+**Transporte:** Bus MIX o CAMA con servicio de bar a bordo  
+**Duración:** 10 Días | 6 Noches + 1 noche a bordo  
+**Hoteles:** Santa Lucía/Libertador (Santiago) • Gran Pacífico (Puerto Montt) • Turismo Patagonia/Crismalu (San Martín de los Andes)  
+**Régimen:** Media Pensión  
+**Servicios:** Asistencia médica incluida, coordinación permanente  
+**Excursiones:** Viña del Mar–Reñaca–Valparaíso, City Tour Santiago, Pucón, Frutillar, Saltos de Petrohué y Lago Todos Los Santos (sin entrada), City Tour Puerto Montt, Camino de los 7 Lagos  
+
+### Salidas y tarifas (USD)
+**11 Enero (CAMA):** USD 949  
+**22 Febrero (MIX):** USD 899  
+**15 Marzo – 11 Abril:** USD 869  
+
+Ruta: Paraná – Santo Tomé – Santa Fé – Arocena – Coronda – San Lorenzo – Rosario – Carcarañá – Cañada de Gómez – Armstrong (e intermedios)  
+
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus MIX o CAMA con servicio de bar a bordo" },
+          { tipo: "Alojamiento", descripcion: "Santiago + Puerto Montt + San Martín de los Andes" },
+          { tipo: "Régimen", descripcion: "Media Pensión" },
+          { tipo: "Servicios", descripcion: "Asistencia médica y coordinación permanente" },
+          { tipo: "Excursiones", descripcion: "Viña del Mar, Valparaíso, Santiago, Pucón, Frutillar, Saltos de Petrohué, Lago Todos Los Santos, Puerto Montt, 7 Lagos" },
+          { tipo: "Detalle-Salidas", descripcion: "11 Enero, 22 Febrero, 15 Marzo – 11 Abril 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día de salida — Comienza la experiencia" },
+          { tipo: "Itinerario-2", descripcion: "Estadía en destino — Viví cada momento" },
+          { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 949, moneda: "USD", fechaInicio: new Date("2026-01-11"), fechaFin: new Date("2026-01-11") },
+          { precio: 899, moneda: "USD", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
+          { precio: 869, moneda: "USD", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-04-11") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...descubriendoChilePackage);
+
+  const costaRicaMaximoPackage = [
+    {
+      titulo: "Costa Rica al Máximo",
+      slug: "costa-rica-al-maximo-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 7,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 46,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## Costa Rica al Máximo
+
+**Destino:** Costa Rica  
+**Duración:** 08 días / 07 noches  
+**Transporte:** Aéreos desde COR (LATAM)  
+**Equipaje:** Equipaje de mano  
+**Hotel:** Según programa  
+**Régimen:** Según programa  
+**Excursiones:** Según programa  
+**Asistencia Médica:** Master Plus Cobertura 40k  
+• 71-85 años: USD 40 neto + GA  
+• +86 años: USD 80 neto + GA  
+
+### Salida y tarifas
+**02 Junio 2026**  
+• DBL / TPL: Neto USD 2,719 | Imp. USD 450 | Tarifa USD 3,169  
+• SLG: Neto USD 3,608 | Imp. USD 460 | Tarifa USD 4,068  
+
+Tarifas por persona sujetas a modificación y disponibilidad.  
+Agregar 3.5% de gastos administrativos.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde COR (LATAM)" },
+          { tipo: "Equipaje", descripcion: "Equipaje de mano" },
+          { tipo: "Alojamiento", descripcion: "Según programa" },
+          { tipo: "Régimen", descripcion: "Según programa" },
+          { tipo: "Excursiones", descripcion: "Según programa" },
+          { tipo: "Asistencia", descripcion: "Master Plus Cobertura 40k" },
+          { tipo: "Detalle-Salidas", descripcion: "02 Junio 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 3169, moneda: "USD", fechaInicio: new Date("2026-06-02"), fechaFin: new Date("2026-06-09") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...costaRicaMaximoPackage);
+
+  const esenciasCentroeuropeasPackage = [
+    {
+      titulo: "Esencias Centroeuropeas",
+      slug: "esencias-centroeuropeas-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 14,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 47,
+      noIncluye: `
+• Tasa de servicio obligatoria: 75 EUR por pasajero (pago en destino)
+• Impuestos hoteleros en Europa (pago en destino)
+• Excursiones opcionales y traslados no indicados
+• Gastos personales y bebidas
+      `.trim(),
+      condiciones: `
+## Esencias Centroeuropeas
+
+**Duración:** 14 noches  
+**Transporte:** Aéreo Buenos Aires/Ámsterdam/Buenos Aires (Air France/KLM)  
+**Vuelos:** Horarios locales sujetos a modificación  
+**Equipaje:** 01 maleta de 23kg  
+**Alojamiento:** Hoteles categoría X  
+**Incluye:** Traslados con asistencia en inglés, entradas y visitas según programa, guía de habla hispana  
+**Asistencia Médica:** Assist Card 100k  
+
+### Salida y tarifas
+**16 Junio 2026**  
+• DBL: Neto USD 3,488 | IVA USD 58 | Imp. Aéreos USD 1,261 | Tarifa USD 4,807  
+• SLG: Neto USD 4,210 | IVA USD 55 | Imp. Aéreos USD 1,261 | Tarifa USD 5,526  
+
+Sólo pago en dólar billete.  
+Seña 30% guarda lugar – Refuerzo 60 días antes de la salida: 80% – Pago total 30 días antes: 100%.  
+Paquete promocional: sin cambios ni devoluciones.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo BA/Ámsterdam/BA (Air France/KLM)" },
+          { tipo: "Equipaje", descripcion: "1 maleta de 23kg" },
+          { tipo: "Alojamiento", descripcion: "Hoteles categoría X" },
+          { tipo: "Servicios", descripcion: "Traslados con asistencia en inglés" },
+          { tipo: "Excursiones", descripcion: "Entradas y visitas según programa" },
+          { tipo: "Guía", descripcion: "Guía de habla hispana" },
+          { tipo: "Asistencia", descripcion: "Assist Card 100k" },
+          { tipo: "Detalle-Salidas", descripcion: "16 Junio 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 4807, moneda: "USD", fechaInicio: new Date("2026-06-16"), fechaFin: new Date("2026-06-30") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...esenciasCentroeuropeasPackage);
+
+  const europaMaximoPackage = [
+    {
+      titulo: "Europa al Máximo: Londres – Madrid",
+      slug: "europa-al-maximo-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 19,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 48,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Tasas de servicio obligatoria: 75 EUR por pasajero (pago en destino)
+• Impuestos hoteleros en Europa (pago en destino)
+• Excursiones opcionales y traslados no indicados
+• Bebidas y gastos personales
+      `.trim(),
+      condiciones: `
+## Colección Europa: Londres – Madrid (Grupal MD)
+
+**Duración:** 21 días / 19 noches  
+**Vuelo internacional:** Aéreo desde COR por UX  
+**Equipaje:** Carry + 23kg  
+**Destinos y noches:**  
+• 3 Londres • 3 París • 1 Frankfurt • 1 Zúrich • 1 Múnich • 1 Venecia • 3 Roma • 1 Florencia • 1 Costa Azul • 1 Barcelona • 3 Madrid  
+
+**Incluye:** Traslado de llegada, guía acompañante todo el recorrido, desayuno diario, autocar de lujo, visitas en Londres/París/Roma/Florencia/Madrid con guías locales, audioguía, seguro turístico y traslados de salida.  
+**Asistencia al viajero:**  
+• Salida 16 de mayo: no incluida (ver opcionales)  
+• Salida 19 de septiembre: incluida  
+
+Value 80k  
+Adicional 71–85 años: USD 190  
+Adicional +86 años: USD 250  
+
+### Salidas y tarifas (USD)
+**16 Mayo 2026**  
+• DBL/TPL: Neto USD 3.919 | Imp. USD 1.020 | Tarifa USD 4.939  
+
+**19 Septiembre 2026**  
+• DBL/TPL: Neto USD 4.099 | Imp. USD 900 | Tarifa USD 4.999  
+• SLG: Neto USD 5.287 | Imp. USD 1.170 | Tarifa USD 6.459  
+
+Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
+Paquete promocional: sin cambios ni devoluciones.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde COR (UX)" },
+          { tipo: "Equipaje", descripcion: "Carry + 23kg" },
+          { tipo: "Alojamiento", descripcion: "Hoteles según programa (Europa)" },
+          { tipo: "Régimen", descripcion: "Desayuno diario" },
+          { tipo: "Servicios", descripcion: "Guía acompañante + autocar + audioguía" },
+          { tipo: "Excursiones", descripcion: "Visitas en Londres, París, Roma, Florencia y Madrid" },
+          { tipo: "Asistencia", descripcion: "Seguro turístico (según salida)" },
+          { tipo: "Detalle-Salidas", descripcion: "16 Mayo 2026 y 19 Septiembre 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 4939, moneda: "USD", fechaInicio: new Date("2026-05-16"), fechaFin: new Date("2026-06-04") },
+          { precio: 4999, moneda: "USD", fechaInicio: new Date("2026-09-19"), fechaFin: new Date("2026-10-08") },
+          { precio: 6459, moneda: "USD", fechaInicio: new Date("2026-09-19"), fechaFin: new Date("2026-10-08") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...europaMaximoPackage);
+
+  const joyasBalcanicasPackage = [
+    {
+      titulo: "Joyas Balcánicas",
+      slug: "joyas-balcanicas-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 15,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 49,
+      noIncluye: `
+• Tarifa de servicio local: EUR 65 por persona (pago en destino)
+• Impuestos hoteleros (pago en destino)
+• Excursiones opcionales y traslados no indicados
+• Gastos personales, bebidas, almuerzos y cenas
+      `.trim(),
+      condiciones: `
+## Joyas Balcánicas I
+
+**Duración:** 15 noches  
+**Transporte:** Aéreo BA/Bucarest/Belgrado/BA (Air France/KLM)  
+**Equipaje:** 01 maleta de 23kg  
+**Alojamiento:** Hoteles categoría X  
+**Incluye:** Traslados con asistencia, excursiones según itinerario, guía en español  
+**Asistencia Médica:** Assist Card 100k  
+
+### Salida y tarifas
+**13 Agosto 2026**  
+• DBL: Neto USD 3,289 | Imp. USD 1,100 | Tarifa USD 4,389  
+• SLG: Neto USD 4,049 | Imp. USD 1,100 | Tarifa USD 5,149  
+
+Sólo pago en dólar billete.  
+Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
+Paquete promocional: sin cambios ni devoluciones.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo BA/Bucarest/Belgrado/BA (Air France/KLM)" },
+          { tipo: "Equipaje", descripcion: "1 maleta de 23kg" },
+          { tipo: "Alojamiento", descripcion: "Hoteles categoría X" },
+          { tipo: "Servicios", descripcion: "Traslados con asistencia" },
+          { tipo: "Excursiones", descripcion: "Excursiones según itinerario" },
+          { tipo: "Guía", descripcion: "Guía de habla hispana" },
+          { tipo: "Asistencia", descripcion: "Assist Card 100k" },
+          { tipo: "Detalle-Salidas", descripcion: "13 Agosto 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 4389, moneda: "USD", fechaInicio: new Date("2026-08-13"), fechaFin: new Date("2026-08-28") },
+          { precio: 5149, moneda: "USD", fechaInicio: new Date("2026-08-13"), fechaFin: new Date("2026-08-28") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...joyasBalcanicasPackage);
+
+  const turquiaIslasGriegasPackage = [
+    {
+      titulo: "Turquía e Islas Griegas",
+      slug: "turquia-islas-griegas-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 12,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 50,
+      noIncluye: `
+• Tarifa local de servicio en Turquía: USD 55 por persona (pago en destino)
+• Tarifas de servicio de crucero y tasas de desembarque en Grecia
+• Excursiones opcionales, gastos personales y bebidas
+• Traslados no indicados o en días diferentes
+      `.trim(),
+      condiciones: `
+## Turquía e Islas Griegas
+
+**Duración:** 15 días / 12 noches  
+**Transporte:** Aéreos desde Ezeiza (KLM)  
+**Equipaje:** 01 maleta de 23kg  
+**Alojamiento:** Hoteles categoría Platino 4★/5★  
+**Incluye:** Pasaje aéreo, 12 noches según régimen, traslados con asistencia, visitas según programa  
+**Asistencia Médica:** Assist Card 100k  
+
+### Salida y tarifas
+**11 Junio 2026**  
+• Doble: Neto USD 2,535 | IVA USD 58 | Imp. USD 1,206 | Tarifa USD 3,799  
+• Single: Neto USD 3,068 | IVA USD 55 | Imp. USD 1,206 | Tarifa USD 4,329  
+
+Sólo pago en dólar billete.  
+Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
+Paquete promocional: sin cambios ni devoluciones.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde EZE (KLM)" },
+          { tipo: "Equipaje", descripcion: "1 maleta de 23kg" },
+          { tipo: "Alojamiento", descripcion: "Hoteles Platino 4★/5★" },
+          { tipo: "Servicios", descripcion: "Traslados con asistencia" },
+          { tipo: "Excursiones", descripcion: "Visitas según programa" },
+          { tipo: "Asistencia", descripcion: "Assist Card 100k" },
+          { tipo: "Detalle-Salidas", descripcion: "11 Junio 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 3799, moneda: "USD", fechaInicio: new Date("2026-06-11"), fechaFin: new Date("2026-06-23") },
+          { precio: 4329, moneda: "USD", fechaInicio: new Date("2026-06-11"), fechaFin: new Date("2026-06-23") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...turquiaIslasGriegasPackage);
+
+  const turquiaDubaiPackage = [
+    {
+      titulo: "Turquía y Dubái",
+      slug: "turquia-dubai-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 14,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 51,
+      noIncluye: `
+• Tarifas de servicios obligatorias: Turquía USD 55 + Dubái USD 35 (pago en destino)
+• Impuesto Turismo Dírham (pago en hotel)
+• Excursiones opcionales, gastos personales y bebidas
+• Traslados no indicados o en días diferentes
+      `.trim(),
+      condiciones: `
+## Turquía y Dubái
+
+**Duración:** 16 días / 14 noches  
+**Transporte:** Aéreos desde Ezeiza (Emirates)  
+**Equipaje:** 01 maleta de 23kg  
+**Alojamiento:** Hoteles categoría Platino 4★/5★  
+**Incluye:** Pasaje aéreo, 14 noches según régimen, traslados con asistencia, excursiones según programa  
+**Asistencia Médica:** Assist Card 100k  
+
+### Salida y tarifas
+**17 Abril 2026** (salida a requerir, disponible hasta 01 Marzo 2026)  
+• Doble: Neto USD 2,056 | IVA USD 45 | Imp. USD 1,199 | Tarifa USD 3,300  
+• Single: Neto USD 2,546 | IVA USD 55 | Imp. USD 1,199 | Tarifa USD 3,800  
+
+Sólo pago en dólar billete.  
+Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
+Paquete promocional: sin cambios ni devoluciones.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde EZE (Emirates)" },
+          { tipo: "Equipaje", descripcion: "1 maleta de 23kg" },
+          { tipo: "Alojamiento", descripcion: "Hoteles Platino 4★/5★" },
+          { tipo: "Servicios", descripcion: "Traslados con asistencia" },
+          { tipo: "Excursiones", descripcion: "Visitas según programa" },
+          { tipo: "Asistencia", descripcion: "Assist Card 100k" },
+          { tipo: "Detalle-Salidas", descripcion: "17 Abril 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 3300, moneda: "USD", fechaInicio: new Date("2026-04-17"), fechaFin: new Date("2026-05-01") },
+          { precio: 3800, moneda: "USD", fechaInicio: new Date("2026-04-17"), fechaFin: new Date("2026-05-01") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...turquiaDubaiPackage);
+
+  const turquiaIslasDubaiPackage = [
+    {
+      titulo: "Turquía, Islas Griegas y Dubái",
+      slug: "turquia-islas-griegas-dubai-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 17,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 52,
+      noIncluye: `
+• Tarifas de servicios obligatorias: Turquía USD 55 + Dubái USD 35 + Crucero 5€ por día
+• Impuesto Turismo Dírham (pago en hotel)
+• Impuestos de desembarque en puertos griegos
+• Excursiones opcionales, gastos personales y bebidas
+      `.trim(),
+      condiciones: `
+## Turquía, Islas Griegas y Dubái
+
+**Duración:** 19 días / 17 noches  
+**Transporte:** Aéreos desde Ezeiza (Emirates)  
+**Equipaje:** 01 maleta de 23kg  
+**Alojamiento:** Hoteles categoría Platino 4★/5★  
+**Incluye:** Pasaje aéreo, 17 noches según régimen, traslados con asistencia, visitas según programa  
+**Asistencia Médica:** Assist Card 100k  
+
+### Salidas y tarifas
+**04 Mayo 2026**  
+• Doble: Neto USD 2,993 | IVA USD 45 | Imp. USD 1,252 | Tarifa USD 4,290  
+• Single: Neto USD 3,833 | IVA USD 55 | Imp. USD 1,252 | Tarifa USD 5,140  
+
+**13 Julio 2026**  
+• Doble: Neto USD 2,993 | IVA USD 45 | Imp. USD 1,252 | Tarifa USD 4,290  
+• Single: Neto USD 3,833 | IVA USD 55 | Imp. USD 1,252 | Tarifa USD 5,140  
+
+Sólo pago en dólar billete.  
+Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
+Paquete promocional: sin cambios ni devoluciones.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Aéreo desde EZE (Emirates)" },
+          { tipo: "Equipaje", descripcion: "1 maleta de 23kg" },
+          { tipo: "Alojamiento", descripcion: "Hoteles Platino 4★/5★" },
+          { tipo: "Servicios", descripcion: "Traslados con asistencia" },
+          { tipo: "Excursiones", descripcion: "Visitas según programa" },
+          { tipo: "Asistencia", descripcion: "Assist Card 100k" },
+          { tipo: "Detalle-Salidas", descripcion: "04 Mayo 2026 y 13 Julio 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 4290, moneda: "USD", fechaInicio: new Date("2026-05-04"), fechaFin: new Date("2026-05-21") },
+          { precio: 5140, moneda: "USD", fechaInicio: new Date("2026-05-04"), fechaFin: new Date("2026-05-21") },
+          { precio: 4290, moneda: "USD", fechaInicio: new Date("2026-07-13"), fechaFin: new Date("2026-07-30") },
+          { precio: 5140, moneda: "USD", fechaInicio: new Date("2026-07-13"), fechaFin: new Date("2026-07-30") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...turquiaIslasDubaiPackage);
+
+  /* Regular Packages Definition */
+  const regularPackages = [
+    {
+      titulo: "Finalissima 2026",
+      slug: "finalisima-2026",
+      destinoId: null,
+      noches: 4,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 28,
+      noIncluye: `
+• Gastos administrativos (3.5%)
+• Servicios no detallados en el programa
+      `.trim(),
+      condiciones: `
+## 🏆 FINALÍSIMA 2026 – MARZO
+ARGENTINA vs ESPAÑA
+
+### Programa con aéreo (charter argentino)
+Incluye ✈️ Vuelo charter • 🏨 Alojamiento 5★ • 🎟️ Entrada categoría 1 • 🚌 Traslados IN/OUT y hotel–estadio–hotel • 🌙 4 noches en Qatar  
+**Turista:** Neto USD 4.949 | Imp/IVA USD 550 | Tarifa USD 5.499  
+**Business:** Neto USD 10.019 | Imp/IVA USD 1.120 | Tarifa USD 11.139  
+**Suplemento SLG:** USD 679  
+
+### Programa sin aéreo
+Incluye 🏨 Alojamiento 5★ con desayuno • 🎟️ Entrada categoría 1 • 🚌 Traslados hotel–estadio–hotel • 🌙 3 noches en Qatar  
+**Sin aéreo:** Neto USD 2.015 | Imp/IVA USD 224 | Tarifa USD 2.239  
+
+### Aéreo desde Madrid
+Incluye ✈️ Aéreo desde MAD (Qatar Airways) • 🏨 Alojamiento 5★ con desayuno • 🎟️ Entrada categoría 1 • 🚌 Traslados hotel–estadio–hotel • 🌙 3 noches en Qatar  
+**Desde MAD:** Neto USD 3.032 | Imp/IVA USD 337 | Tarifa USD 3.369  
+
+Estimativo de salida: 24 de marzo por la noche o 25 de marzo por la madrugada.  
+Tarifas por persona sujetas a modificación y disponibilidad.  
+
+### Itinerario
+**Día 1 — Día de salida:** Comienza la experiencia.  
+**Día 2 — Estadía en destino:** Viví cada momento.  
+**Día 3 — Día de regreso:** Fin del viaje, inicio de nuevos planes.  
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Charter argentino / opción sin aéreo / opción desde MAD" },
+          { tipo: "Alojamiento", descripcion: "Hotel 5★ con desayuno" },
+          { tipo: "Entrada", descripcion: "Entrada categoría 1" },
+          { tipo: "Traslados", descripcion: "Traslados hotel–estadio–hotel" },
+          { tipo: "Servicios", descripcion: "Paquetes con 3 o 4 noches en Qatar" },
+          { tipo: "Detalle-Salidas", descripcion: "Marzo 2026 (24-25 estimativo)" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 2239, moneda: "USD", fechaInicio: new Date("2026-03-24"), fechaFin: new Date("2026-03-28") }
+        ]
+      }
+    },
+    {
+      titulo: "Porto de Galinhas - Vuelo Regular 2026",
+      slug: "porto-galinhas-regular-2026",
+      destinoId: null,
+      noches: 7,
+      cupos: 30,
+      destacada: true,
+      activa: true,
+      orden: 29,
+      noIncluye: `
+• Gastos personales y propinas
+• Equipaje en bodega (consultar costo adicional)
+      `.trim(),
+      condiciones: `
+## Porto de Galinhas desde Córdoba
+
+**Duración:** 7 Noches
+**Salidas:** 31 Marzo, 11 Abril, 18 Abril, 10 Mayo 2026
+**Inicio:** Córdoba (Vuelo Regular)
+
+### El programa incluye:
+• Aéreos desde Córdoba en vuelo regular
+• 7 Noches de Alojamiento
+• Traslados de ingreso y egreso
+• Asistencia al viajero AC35
+
+### Hoteles Previstos
+• **Porto 2 Life**
+
+### Equipaje Incluido
+• **De mano:** 10 kg (Carry on + Bolso de mano).
+• *Nota: La suma de ambos no debe superar los 10kg.*
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo Regular desde Córdoba" },
+          { tipo: "Alojamiento", descripcion: "7 noches en Porto 2 Life" },
+          { tipo: "Traslados", descripcion: "Traslados IN/OUT" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero AC35" },
+          { tipo: "Equipaje", descripcion: "De mano hasta 10kg" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-31"), fechaFin: new Date("2026-03-31") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-04-11"), fechaFin: new Date("2026-04-11") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-04-18"), fechaFin: new Date("2026-04-18") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-10") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...regularPackages);
+
+  /* Colombia Packages Definition */
+  const colombiaPackages = [
+    {
+      titulo: "Cartagena & San Andrés 2026",
+      slug: "cartagena-san-andres-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 30,
+      noIncluye: `
+• Servicios adicionales no especificados
+      `.trim(),
+      condiciones: `
+## Cartagena & San Andrés - Cupos OK LATAM
+
+**Duración:** 8 Noches
+**Inicio:** Córdoba
+**Salida:** 2026 (Cupos confirmados)
+
+### El programa incluye:
+• Aéreos desde Córdoba con LATAM (Cupos OK)
+• 8 Noches de Alojamiento (3 en Cartagena + 5 en San Andrés)
+• Traslados de ingreso y egreso
+• Régimen de comidas: Todo Incluido
+• Asistencia al Viajero AC35
+
+### Hoteles Previstos
+• **Decameron Cartagena / Decameron San Luis**
+• **Decameron Cartagena / Decameron Marazul**
+• **Decameron Cartagena / Decameron Maryland**
+• **Decameron Cartagena / Decameron Isleño**
+
+### Equipaje Incluido
+• **Artículo personal:** (45x35x20cm, máx 3kg)
+• **Equipaje de mano (Carry on):** (55x35x25cm, máx 10kg)
+• **Equipaje en bodega:** (Máx 158cm lineales, máx 23kg)
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreos LATAM desde Córdoba (Cupos OK)" },
+          { tipo: "Alojamiento", descripcion: "3 noches en Cartagena" },
+          { tipo: "Alojamiento", descripcion: "5 noches en San Andrés" },
+          { tipo: "Régimen", descripcion: "Todo Incluido" },
+          { tipo: "Traslados", descripcion: "Traslados IN/OUT" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero AC35" },
+          { tipo: "Equipaje", descripcion: "Bodega 23kg + Carry On 10kg + Mochila" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-01-01"), fechaFin: new Date("2026-12-31") }
+        ]
+      }
+    },
+    {
+      titulo: "Colombia con Aromas de Café 2026",
+      slug: "colombia-aromas-cafe-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 10,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 31,
+      noIncluye: `
+• Extras no especificados
+• Entradas en San Andrés (aprox 30 USD si desea traslado)
+      `.trim(),
+      condiciones: `
+## Colombia con Aromas de Café - Salida Grupal
+
+**Duración:** 11 Días / 10 Noches
+**Salidas:** 10 de Mayo, 8 de Julio 2026
+**Inicio:** Córdoba (Bogotá / Pereira / San Andrés)
+
+### El programa incluye:
+• Aéreo desde Córdoba con LATAM
+• 3 noches en Bogotá (Desayuno) + City Tour El Dorado y Monserrate + Mina de Sal
+• 2 noches en Pereira (Desayuno) + Tour Finca de Café
+• 5 noches en San Andrés (All Inclusive) + Vuelta a la Isla
+• Traslados, Guía privado en español y Coordinador permanente
+• Asistencia al viajero AC60
+
+### Hoteles Previstos
+• **Bogotá:** BH Mercure
+• **Pereira:** Finca Hotel Yerbabuena
+• **San Andrés:** GHL Relax
+
+### Equipaje Incluido
+• **Artículo personal:** (45x35x20cm, máx 3kg)
+• **Equipaje de mano:** 10 kg
+• **Equipaje en bodega:** 23 kg
+
+### Itinerario Resumido
+• **Día 1:** Llegada a Bogotá
+• **Día 2:** Bogotá - City Tour
+• **Día 3:** Bogotá - Mina de Sal
+• **Día 4:** Vuelo a Pereira - Finca Cafetera
+• **Día 5:** Pereira - Día Libre
+• **Día 6:** Vuelo a San Andrés
+• **Día 7:** San Andrés - Vuelta a la Isla
+• **Día 8-11:** San Andrés (Playa y descanso)
+
+### Adicionales Traslados (Opcional)
+*Precios por persona*
+• **Santa Fe:** U$D 87
+• **Sunchales, Rafaela, Esperanza:** U$D 67
+• **San Francisco:** U$D 57
+• **Rosario:** U$D 90
+• **Villa María:** U$D 57
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreos LATAM desde Córdoba" },
+          { tipo: "Alojamiento", descripcion: "3n Bogotá + 2n Pereira + 5n San Andrés" },
+          { tipo: "Régimen", descripcion: "Desayuno (Bogotá/Pereira) + All Inclusive (San Andrés)" },
+          { tipo: "Excursión", descripcion: "City Tour, Mina de Sal, Finca Cafetera, Vuelta a la Isla" },
+          { tipo: "Asistencia", descripcion: "Asist. AC60 + Coordinador permanente" },
+          { tipo: "Equipaje", descripcion: "Bodega 23kg + Carry On 10kg" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada a Bogotá" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Bogotá - City tour el Dorado" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Bogotá – Mina de Sal y Zipaquirá" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Bogotá / Pereira (Eje Cafetero) City Tour Finca del Café" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Pereira - Día Libre" },
+          { tipo: "Itinerario-6", descripcion: "Día 6: Pereira / Isla de San Andrés" },
+          { tipo: "Itinerario-7", descripcion: "Día 7: San Andrés - Vuelta a la Isla" },
+          { tipo: "Itinerario-8", descripcion: "Día 8-11: San Andrés (Playa y relax)" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-21") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-08"), fechaFin: new Date("2026-07-19") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...colombiaPackages);
+
+  /* Mexico Packages Definition */
+  const mexicoPackages = [
+    {
+      titulo: "México a su tiempo 2026 – Grupal",
+      slug: "mexico-a-su-tiempo-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 11,
+      cupos: 15,
+      destacada: true,
+      activa: true,
+      orden: 20,
+      noIncluye: `
+• Extras no especificados en el programa.
+• Propinas a camaristas, guías y conductores
+• Servicios adicionales
+• Comidas y bebidas no especificadas
+• Entradas no detalladas
+• Tasas turísticas a abonar en destino
+      `.trim(),
+      condiciones: `
+## México a su tiempo 2026 – Grupal
+
+**Duración:** 12 Días 11 Noches
+**Inicio:** Córdoba
+**Salidas:** 5 Agosto
+
+### El programa incluye:
+• Aéreo desde Córdoba con LATAM
+• Alojamiento de tipo categoría turista con régimen según hotel
+• 4 noches en Ciudad de México con Desayuno
+• 1 noche es Taxco con Desayuno
+• 6 noches en Playa del Carmen con All Inclusive
+• Traslados de ingreso y egreso
+• Excursiones según programa: City Tour, Basílica, Pirámides, Cuernavaca y Taxco
+• Coordinador permanente y guías locales
+• Asistencia al viajero AC-60
+
+### Hoteles Previstos (o similares)
+• **CIUDAD DE MÉXICO:** ROYAL REFORMA (4 noches)
+• **TAXCO:** AGUA ESCONDIDA (1 noche)
+• **PLAYA DEL CARMEN:** THE REEF PLAYACAR (6 noches)
+
+### Nota Importante
+Salida grupal acompañada por un coordinador desde el inicio del itinerario. Si el grupo no llegase al mínimo de 15 pasajeros para el acompañamiento, 360Regional Tour Operador asignará personal en el Aeropuerto de salida para despachar el grupo y nuestro receptivo en destino dará asistencia.
+
+### Itinerario
+• **Día 1:** Córdoba - México
+• **Día 2:** México - Visita de Ciudad de México
+• **Día 3:** México - Basílica de Guadalupe y Pirámides de Teotihuacan
+• **Día 4:** México - Cuernavaca y Taxco
+• **Día 5:** Día libre en Taxco - Regreso a la Ciudad de México
+• **Día 6:** México - Playa del Carmen en la Riviera Maya
+• **Día 7-11:** Playa del Carmen (Días de playa)
+• **Día 12:** Playa del Carmen - Córdoba
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo desde Córdoba con LATAM" },
+          { tipo: "Alojamiento", descripcion: "4n CDMX + 1n Taxco + 6n Playa del Carmen" },
+          { tipo: "Régimen", descripcion: "Desayuno (CDMX/Taxco) + All Inclusive (Playa)" },
+          { tipo: "Excursiones", descripcion: "City Tour, Basílica, Pirámides, Cuernavaca, Taxco" },
+          { tipo: "Traslados", descripcion: "Traslados de ingreso, egreso e inter-hoteles" },
+          { tipo: "Asistencia", descripcion: "Asistencia AC-60 + Coordinador permanente" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Córdoba - México" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: México - Visita de Ciudad de México" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: México - Basílica de Guadalupe y Pirámides" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: México - Cuernavaca y Taxco" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Taxco - Regreso a CDMX" },
+          { tipo: "Itinerario-6", descripcion: "Día 6: México - Playa del Carmen" },
+          { tipo: "Itinerario-7", descripcion: "Día 7-11: Playa del Carmen" },
+          { tipo: "Itinerario-8", descripcion: "Día 12: Playa del Carmen - Córdoba" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-08-05"), fechaFin: new Date("2026-08-17") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...mexicoPackages);
+
+  /* Cuba Packages Definition */
+  const cubaPackages = [
+    {
+      titulo: "Chárter Aéreo a Cuba",
+      slug: "charter-aereo-cuba",
+      destinoId: null,
+      tipo: "paquete",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 32,
+      noIncluye: `
+• Extras no especificados en el programa.
+      `.trim(),
+      condiciones: `
+## Chárter Aéreo a Cuba
+
+**Duración:** 8 Noches
+**Inicio:** Córdoba
+**Salidas:** 04 y 18 Enero, 01 y 15 Febrero 2026
+
+### El programa incluye:
+• Aéreo desde COR
+• Alojamiento por 8 noches
+• Régimen All inclusive
+• Traslados de ingreso y egreso
+• Asistencia al viajero
+
+### Hoteles posibles
+• **STARFISH CAYO LARGO**
+• **VILLA LINDA MAR**
+• **MEMORIES CAYO LARGO**
+• **SANCTUARY CAYO LARGO**
+
+### Equipaje Incluido
+• **Equipaje de mano:** Mochila, cartera o bolso de hasta 5 kg
+• **Equipaje en bodega:** 1 pieza por pasajero de hasta 15kg (máx 158 cm lineales)
+
+### Servicios Adicionales
+• Consultar por excursiones opcionales extra
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo desde COR" },
+          { tipo: "Alojamiento", descripcion: "8 noches de estadía" },
+          { tipo: "Régimen", descripcion: "All inclusive" },
+          { tipo: "Traslados", descripcion: "Traslados de ingreso y egreso" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero" },
+          { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 5kg" },
+          { tipo: "Fechas", descripcion: "04 y 18 Enero, 01 y 15 Febrero 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-01-04"), fechaFin: new Date("2026-01-04") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-01-18"), fechaFin: new Date("2026-01-18") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-15"), fechaFin: new Date("2026-02-15") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...cubaPackages);
+
+  /* Peru Packages Definition */
+  const peruPackages = [
+    {
+      titulo: "Perú Aéreo Grupal",
+      slug: "peru-aereo-grupal-2026",
+      destinoId: null,
+      tipo: "grupal",
+      noches: 9,
+      cupos: 25,
+      destacada: true,
+      activa: true,
+      orden: 33,
+      noIncluye: `
+• Extras no especificados en el programa.
+• Servicios adicionales
+      `.trim(),
+      condiciones: `
+## Perú Aéreo Grupal
+
+**Duración:** 10 Días / 9 Noches
+**Salidas desde Córdoba:** 9 Abril, 10 Mayo, 20 Junio, 4 y 8 Julio 2026
+**Salidas desde Rosario:** 10 Mayo, 21 Junio*, 8 Julio** 2026
+**Régimen:** Desayuno
+
+### El programa incluye:
+• Aéreo desde Córdoba, Rosario, Mendoza y Buenos Aires con LATAM
+• Alojamiento de tipo categoría turista con desayuno
+• Traslados de Ingreso y Egreso
+• Guía privado en idioma español
+• Excursiones según programa
+• Bus turístico Cusco Puno con almuerzo
+• Entrada y visita guiada a la Ciudadela de Machu Picchu
+• Tickets de tren Expedition
+• Entradas de ingreso a atractivos mencionados en el itinerario
+• Coordinador permanente y Asistencia al viajero
+
+### Itinerario de Alojamiento (9 Noches)
+• **Lima:** 2 Noches *
+• **Cusco:** 2 Noches
+• **Valle Sagrado:** 1 Noche
+• **Aguas Calientes (Machu Picchu):** 1 Noche
+• **Cusco:** 1 Noche
+• **Puno:** 2 Noches
+
+*\* Nota Rosario 21 Junio: 1 noche Lima al inicio + 1 noche Lima al final (2 total)*
+*\*\* Nota Rosario 8 Julio: 1 noche adicional Lima al final (3 total en Lima)*
+
+### Equipaje Incluido
+• **Artículo personal:** (45x35x20cm, máx 3kg) debajo del asiento.
+• **Equipaje de mano (Carry on):** (55x35x25cm, máx 10kg).
+• **Equipaje en bodega:** (Máx 158cm lineales, máx 23kg).
+
+### Itinerario Detallado
+• **DÍA 1:** LLEGADA A LIMA
+• **DÍA 2:** LIMA – VISITA A LA CIUDAD Y MUSEO LARCO
+• **DÍA 3:** LIMA - CUSCO
+• **DÍA 4:** CUSCO - City tour & Ruinas cercanas
+• **DÍA 5:** CUSCO - VALLE SAGRADO
+• **DÍA 6:** VALLE SAGRADO - AGUAS CALIENTES - Machu Picchu
+• **DÍA 7:** AGUAS CALIENTES - CUSCO
+• **DÍA 8:** CUSCO – PUNO - Ruta del Sol
+• **DÍA 9:** PUNO - Visita a las Islas Uros & Taquile en el Lago Titicaca
+• **DÍA 10:** PUNO - REGRESO
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreos LATAM desde COR/ROS/MDZ/BUE" },
+          { tipo: "Alojamiento", descripcion: "2n Lima + 3n Cusco + 1n Valle + 1n Aguas Calientes + 2n Puno" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Excursiones", descripcion: "City Tours, Machu Picchu, Valle Sagrado, Ruta del Sol, Uros & Taquile" },
+          { tipo: "Traslados", descripcion: "Todos los traslados y tren Expedition incluidos" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero + Coordinador" },
+          { tipo: "Equipaje", descripcion: "Bodega 23kg + Carry On 10kg + Mochila" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Llegada a Lima" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Lima - City Tour" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Lima - Cusco" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Cusco - City Tour" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Valle Sagrado" },
+          { tipo: "Itinerario-6", descripcion: "Día 6: Machu Picchu" },
+          { tipo: "Itinerario-7", descripcion: "Día 7: Aguas Calientes - Cusco" },
+          { tipo: "Itinerario-8", descripcion: "Día 8: Ruta del Sol" },
+          { tipo: "Itinerario-9", descripcion: "Día 9: Lago Titicaca" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-04-09"), fechaFin: new Date("2026-04-19") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-20") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-06-20"), fechaFin: new Date("2026-06-30") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-04"), fechaFin: new Date("2026-07-14") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-08"), fechaFin: new Date("2026-07-18") }
+        ]
+      }
+    },
+    {
+      titulo: "Perú y Bolivia 2026",
+      slug: "peru-y-bolivia-2026",
+      destinoId: null, // Will be set to Bolivia logic
+      tipo: "grupal",
+      noches: 13,
+      cupos: 25,
+      destacada: true,
+      activa: true,
+      orden: 34,
+      noIncluye: `
+• Entradas
+• Extras no especificados en el programa.
+• Propinas a camaristas, guías y conductores
+• Servicios adicionales
+      `.trim(),
+      condiciones: `
+## Perú y Bolivia 2026
+
+**Duración:** 13 Noches
+**Inicio:** Córdoba
+**Salidas:** 15 Mayo, 3 y 17 Julio
+
+### El programa incluye:
+• Bus Cama desde Córdoba. Obligatorio sistema rotativo de asientos.
+• 13 Noches de Alojamiento con Desayuno, hoteles Categoría Turista.
+• 1 noche en Tilcara
+• 1 noche en Uyuni
+• 1 noche en Puno
+• 4 noches en Cusco
+• 1 noche en Aguas Calientes
+• 2 noches en Copacabana
+• 2 noches en La Paz
+• 1 noche en San Salvador de Jujuy
+• 13 Comidas incluidas (pueden variar de orden en itinerario)
+• Coordinador permanente y guías locales profesionales
+• Asistencia al Viajero AC60
+• Servicios en Privado
+
+### Traslados, visitas y excursiones:
+• Tilcara y Purmamarca
+• Salar de Uyuni
+• Visita nocturna al salar
+• Navegacion Isla de los Uros
+• City Tour en Cusco y ruinas aledañas
+• Valle Sagrado de los Incas
+• Machu Pichu en tren (no incluye entrada)
+• Copacabana, Tiwanaku, La Paz
+
+### Adicional traslados desde:
+• **Santa Fe:** U$D 87
+• **Sunchales, Rafaela, Esperanza:** U$D 67
+• **San Francisco:** U$D 57
+• **Rosario:** U$D 90
+• **Villa Maria:** U$D 57
+
+### Nota Importante: Ingreso a Machu Picchu
+Ingreso a Machu Picchu: solo se puede confirmar con los datos completos de los pasajeros y abonada la seña. Una vez emitidos podremos informar el horario de la visita y horarios. Considerar que una vez emitidos no están sujetos a cambios ni devoluciones.
+
+Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio de Cultura ha dispuesto reducir el número de visitantes diarios. Se recomienda realizar la compra inmediata de entradas. No habrá reembolsos ni modificaciones.
+
+### Itinerario
+**DÍA 1:** SALIDA DESDE CORDOBA
+**DÍA 2:** QUEBRADA DE HUMAHUCA – PURMAMARCA - TILCARA
+**DÍA 3:** TILCARA -LA QUIACA - TUPIZA – UYUNI
+**DÍA 4:** UYUNI - SALAR DE UYUNI
+**DÍA 5:** DESAGUADERO-PUNO
+**DÍA 6:** PUNO-CUSCO
+**DÍA 7:** CUSCO - SACSAYHUAMAN - CORICANCHA - QENQO - PUCA PUCARA
+**DÍA 8:** CUSCO - VALLE SAGRADO - OLLANTAYTAMBO - AGUAS CALIENTES
+**DÍA 9:** MACHU PICCHU – CUSCO
+**DÍA 10:** CUSCO
+**DÍA 11:** CUSCO - COPACABANA.
+**DÍA 12:** COPACABANA - ISLA DEL SOL.
+**DÍA 13:** COPACABANA – LA PAZ
+**DÍA 14:** LA PAZ
+**DÍA 15:** LA PAZ - VILLAZÓN
+**DÍA 16:** VILLAZÓN - SAN SALVADOR DE JUJUY
+**DÍA 17:** SAN SALVADOR DE JUJUY - CÓRDOBA
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Transporte", descripcion: "Bus Cama desde Córdoba" },
+          { tipo: "Alojamiento", descripcion: "13 Noches con desayuno" },
+          { tipo: "Régimen", descripcion: "13 Comidas incluidas" },
+          { tipo: "Excursiones", descripcion: "Salar de Uyuni, Machu Picchu, Isla de los Uros y más" },
+          { tipo: "Asistencia", descripcion: "Asistencia al Viajero AC60" },
+          { tipo: "Coordinador", descripcion: "Permanente y guías locales" },
+          { tipo: "Detalle-Salidas", descripcion: "15 Mayo, 3 y 17 Julio" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Salida desde Córdoba" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Quebrada de Humahuaca - Purmamarca - Tilcara" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Tilcara - La Quiaca - Tupiza - Uyuni" },
+          { tipo: "Itinerario-4", descripcion: "Día 4: Uyuni - Salar de Uyuni" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Desaguadero - Puno" },
+          { tipo: "Itinerario-6", descripcion: "Día 6: Puno - Cusco" },
+          { tipo: "Itinerario-7", descripcion: "Día 7: Cusco - City Tour y Ruinas" },
+          { tipo: "Itinerario-8", descripcion: "Día 8: Valle Sagrado - Aguas Calientes" },
+          { tipo: "Itinerario-9", descripcion: "Día 9: Machu Picchu - Cusco" },
+          { tipo: "Itinerario-10", descripcion: "Día 10: Cusco Libre" },
+          { tipo: "Itinerario-11", descripcion: "Día 11: Cusco - Copacabana" },
+          { tipo: "Itinerario-12", descripcion: "Día 12: Copacabana - Isla del Sol" },
+          { tipo: "Itinerario-13", descripcion: "Día 13: Copacabana - La Paz" },
+          { tipo: "Itinerario-14", descripcion: "Día 14: La Paz City Tour" },
+          { tipo: "Itinerario-15", descripcion: "Día 15: La Paz - Villazón" },
+          { tipo: "Itinerario-16", descripcion: "Día 16: Villazón - San Salvador de Jujuy" },
+          { tipo: "Itinerario-17", descripcion: "Día 17: Llegada a Córdoba" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-15"), fechaFin: new Date("2026-05-15") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-03"), fechaFin: new Date("2026-07-03") },
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-17"), fechaFin: new Date("2026-07-17") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...peruPackages);
+
+  /* Europe Packages Definition */
+  const europaPackages = [
+    {
+      titulo: "Europa a Su Tiempo 2026 – Grupal",
+      slug: "europa-a-su-tiempo-2026",
+      destinoId: null, // Will be linked to Madrid or another main hub
+      tipo: "grupal",
+      noches: 21,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 35,
+      noIncluye: `
+• Almuerzos y cenas no especificados en el programa.
+• Paseos y excursiones extras no especificadas.
+• Entradas no detalladas.
+• Bebidas en las comidas.
+• Tasas turísticas a abonar en destino.
+      `.trim(),
+      condiciones: `
+## Europa a Su Tiempo 2026 – Grupal
+
+**Duración:** 24 Días / 21 Noches
+**Inicio:** Córdoba - Buenos Aires
+**Salida:** 07 Mayo 2026
+
+### El programa incluye:
+• Aéreo desde Córdoba o Buenos Aires con Air Europa
+• 21 noches de alojamiento con desayuno:
+  - 3 noches en Madrid
+  - 3 noches en Barcelona
+  - 3 noches en Paris
+  - 3 noches en Londres
+  - 3 noches en Mestre
+  - 2 noches en Florencia
+  - 4 noches en Roma
+• Bus Autocar exclusivo para todo el Grupo en España e Italia.
+• Guiado privado en idioma español en todo el recorrido.
+• Vuelo Interno de Londres a Venecia.
+• Tickets de Tren de Alta Velocidad (Barcelona – Paris, Paris – Londres).
+• 02 Comidas Incluidas (Cena Bienvenida y Cena Despedida).
+• 03 Cenas en Mestre.
+• Coordinador permanente y guías locales.
+• Asistencia al viajero.
+
+### Excursiones Incluidas:
+• Visitas panorámicas (City Tour) en: Madrid, Barcelona, Paris, Londres, Venecia, Florencia, Roma.
+• Terraza Panorámica en Venecia y Paseo en Góndola.
+• Sky Garden en Londres.
+• Ingreso Coliseo / Foro Romano.
+• Basílica de San Pedro.
+• Viajes en Metro / Underground.
+
+### Equipaje Incluido:
+• **Artículo personal:** hasta 3kg (45x35x20cm).
+• **Equipaje de mano (carry on):** hasta 10kg (55x35x25cm).
+• **Equipaje en bodega:** hasta 23kg (158cm lineales).
+
+### Hoteles Previstos (o similares):
+• Madrid: Hotel Agumar
+• Barcelona: Hotel Catalonia Ramblas
+• Paris: Hotel Cittadines Tour Eiffel
+• Londres: Royal National
+• Mestre: Hotel Mercure Marghera
+• Florencia: Hotel B&B Firenze City Center
+• Roma: Hotel Exe Domus Aurea
+
+### Itinerario
+**DÍA 1:** Córdoba - Madrid
+**DÍA 2:** Madrid + Cena en Chueca
+**DÍA 3:** Madrid City Tour + Parque del Retiro
+**DÍA 4:** Madrid - Toledo
+**DÍA 5:** Madrid – Zaragoza – Barcelona
+**DÍA 6:** Barcelona – Villa Olimpica – Flamenco & Tapas
+**DÍA 7:** Barcelona Parc Guell – Montjuic
+**DÍA 8:** Barcelona – Paris – Paseo Nocturno
+**DÍA 9:** París – City Tour – Torre Eiffel
+**DÍA 10:** París Versalles - Montmartre
+**DÍA 11:** Paris – Londres
+**DÍA 12:** Londres – City Tour
+**DÍA 13:** Londres Tower Bridge – Londres Antigua
+**DÍA 14:** Londres – Venecia (Mestre)
+**DÍA 15:** Venecia / Sirmione / Verona / Venecia
+**DÍA 16:** Venecia – City Tour – Terraza
+**DÍA 17:** Venecia – Padua – Florencia
+**DÍA 18:** Florencia – City Tour
+**DÍA 19:** Florencia – Pisa – Asís – Roma
+**DÍA 20:** Roma – City Tour
+**DÍA 21:** Roma – Coliseo Romano
+**DÍA 22:** Roma – Vaticano
+**DÍA 23:** Roma
+**DÍA 24:** Fin de los servicios
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Desde COR/BUE con Air Europa" },
+          { tipo: "Alojamiento", descripcion: "21 Noches con desayuno" },
+          { tipo: "Transporte", descripcion: "Bus Autocar Exclusivo / Trenes / Vuelos" },
+          { tipo: "Excursiones", descripcion: "City Tours, Coliseo, Góndola, Versalles y más" },
+          { tipo: "Comidas", descripcion: "Cena Bienvenida, Despedida y 3 en Mestre" },
+          { tipo: "Coordinador", descripcion: "Permanente en español" },
+          { tipo: "Asistencia", descripcion: "Asistencia al viajero incluida" },
+          { tipo: "Equipaje", descripcion: "Bodega 23kg + Carry On 10kg + Mochila" },
+          { tipo: "Detalle-Salidas", descripcion: "07 Mayo 2026" },
+          { tipo: "Itinerario-1", descripcion: "Día 1: Vuelo Córdoba - Madrid" },
+          { tipo: "Itinerario-2", descripcion: "Día 2: Llegada a Madrid" },
+          { tipo: "Itinerario-3", descripcion: "Día 3: Madrid City Tour" },
+          { tipo: "Itinerario-5", descripcion: "Día 5: Madrid - Barcelona" },
+          { tipo: "Itinerario-8", descripcion: "Día 8: Barcelona - París" },
+          { tipo: "Itinerario-11", descripcion: "Día 11: París - Londres" },
+          { tipo: "Itinerario-14", descripcion: "Día 14: Londres - Venecia" },
+          { tipo: "Itinerario-19", descripcion: "Día 19: Florencia - Roma" },
+          { tipo: "Itinerario-24", descripcion: "Día 24: Regreso" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-07"), fechaFin: new Date("2026-05-07") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...europaPackages);
+
+  /* New Packages: Aruba and Bayahibe */
+  const newCaribbeanPackages = [
+    {
+      titulo: "Paquete a Aruba desde Córdoba",
+      slug: "aruba-desde-cordoba-2026",
+      destinoId: null, // Will be linked via script logic safely
+      tipo: "paquete",
+      noches: 7,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 53,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Aruba desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** mayo 2026
+**Cantidad de noches:** 7 noches
+
+### ✅ INCLUYE
+✈️ Pasaje aéreo directo Córdoba / Aruba / Córdoba volando con Aerolíneas Argentinas. Incluye carry on.
+🚍 Traslados Aeropuerto - Hotel - Aeropuerto en servicio regular.
+🏨 Alojamiento por 7 noches en Aruba sin pensión, en base doble.
+🩺 Asistencia al viajero Assist Card AC150 FULL (hasta 74 años cumplidos).
+
+### Hotel y Tarifas
+**ORIGEN:** COR
+**DESTINO:** AUA (Aruba)
+**FECHA SALIDA:** MAYO
+**ALOJAMIENTO:** EAGLE ARUBA RESORT & CASINO 3★
+**CATEGORÍA Y REGIMEN:** PREMIUM S/COMIDAS
+**TARIFA POR PERSONA:** USD 1736 + Impuestos Aéreos USD 175,65
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Aéreo directo Córdoba / Aruba / Córdoba (Aerolíneas Argentinas)" },
+          { tipo: "Equipaje", descripcion: "Incluye Carry On" },
+          { tipo: "Traslados", descripcion: "Aeropuerto - Hotel - Aeropuerto (Regular)" },
+          { tipo: "Alojamiento", descripcion: "7 noches en Eagle Aruba Resort & Casino 3★" },
+          { tipo: "Régimen", descripcion: "Sin Comidas" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL (hasta 74 años)" },
+          { tipo: "Salidas", descripcion: "Mayo 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 1912, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete a Bayahíbe desde Córdoba",
+      slug: "bayahibe-desde-cordoba-2026",
+      destinoId: null, // Will be linked via script logic safely
+      tipo: "paquete",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 54,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Bayahíbe desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** abril 2026, mayo 2026, junio 2026
+**Cantidad de noches:** 8 noches
+
+### ✅ INCLUYE
+✈️ Vuelo a Punta Cana con LATAM Airlines, incluye carry on y 1 equipaje en bodega.
+🚍 Traslados in-out regulares compartidos.
+🏨 Alojamiento en Bayahíbe con all inclusive.
+🩺 Asistencia al viajero Assist Card AC150 FULL.
+
+### Hoteles y Tarifas (Base Doble)
+**17/04/2026**
+• **SUNSCAPE DOMINICUS LA ROMANA 5★ (Superior Tropical View):** USD 2115 + Imp. 244
+• **CATALONIA BAYAHIBE 4★ (Comfort):** USD 2482 + Imp. 244
+• **IBEROSTAR SELECTION HACIENDA DOMINICUS 5★ (Premium):** USD 2942 + Imp. 244
+
+**01/05/2026**
+• **SUNSCAPE DOMINICUS LA ROMANA 5★ (Superior Tropical View):** USD 1606 + Imp. 244
+• **CATALONIA BAYAHIBE 4★ (Deluxe Privilege):** USD 2590 + Imp. 244
+• **IBEROSTAR SELECTION HACIENDA DOMINICUS 5★ (Premium):** USD 2698 + Imp. 244
+
+**12/06/2026**
+• **SUNSCAPE DOMINICUS LA ROMANA 5★ (Deluxe Tropical View):** USD 1476 + Imp. 244
+• **VIVA DOMINICUS BEACH BY WYNDHAM 4★ (Superior):** USD 1987 + Imp. 244
+• **IBEROSTAR SELECTION HACIENDA DOMINICUS 5★ (Premium):** USD 2188 + Imp. 244
+
+- Tarifas en USD por persona.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo a Punta Cana (LATAM) con equipaje en bodega" },
+          { tipo: "Traslados", descripcion: "Traslados in-out regulares" },
+          { tipo: "Alojamiento", descripcion: "8 noches con All Inclusive" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Abril, Mayo y Junio 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 2359, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") },
+          { precio: 1850, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") },
+          { precio: 1720, moneda: "USD", fechaInicio: new Date("2026-06-01"), fechaFin: new Date("2026-06-30") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...newCaribbeanPackages);
+
+  /* New Packages: Cancun and Costa Dorada */
+  const moreCaribbeanPackages = [
+    {
+      titulo: "Paquete a Cancún desde Córdoba",
+      slug: "cancun-desde-cordoba-2026",
+      destinoId: null, // Linked via logic
+      tipo: "paquete",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 55,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Cancún desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** marzo 2026
+**Cantidad de noches:** 8 noches
+
+### ✅ INCLUYE
+✈️ Vuelo con LATAM Airlines, incluye carry on y 1 equipaje en bodega.
+🚍 Traslados in-out regulares compartidos.
+🏨 Alojamiento en Cancún con régimen según se indica.
+🩺 Asistencia al viajero Assist Card AC150 FULL.
+
+### Hotel y Tarifas (13/03/2026)
+**ALOFT CANCÚN 4★ (Aloft, Desayuno)**
+• DBL: USD 1592 | TPL: USD 1560 | CPL: USD 1545 | Imp: USD 221
+
+**FLAMINGO CANCÚN RESORT 4★ (Standard, All Inclusive)**
+• DBL: USD 1885 | TPL: USD 1848 | Imp: USD 221
+
+**OCCIDENTAL COSTA CANCÚN 4★ (Standard, All Inclusive)**
+• DBL: USD 1964 | TPL: USD 1924 | Imp: USD 221
+
+**HOTEL RIU PALACE PENINSULA 5★ (Junior Suite, All Inclusive)**
+• DBL: USD 2502 | TPL: USD 2452 | CPL: USD 2502 | Imp: USD 221
+
+- Tarifas en USD por persona.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo con LATAM Airlines (Carry On + Bodega)" },
+          { tipo: "Traslados", descripcion: "Traslados in-out regulares" },
+          { tipo: "Alojamiento", descripcion: "8 noches en Cancún" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Marzo 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 1813, moneda: "USD", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-21") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete a Costa Dorada desde Córdoba",
+      slug: "costa-dorada-desde-cordoba-2026",
+      destinoId: null, // Linked via logic
+      tipo: "paquete",
+      noches: 7,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 56,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Costa Dorada desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** mayo 2026, junio 2026
+**Cantidad de noches:** 7 noches
+
+### ✅ INCLUYE
+✈️ Pasaje aéreo a Puerto Plata desde Córdoba volando con COPA Airlines - Incluye carry on.
+🚍 Traslados in-out en servicio regular compartido.
+🏨 Alojamiento por 7 noches en Costa Dorada con all inclusive, en base doble.
+🩺 Asistencia al viajero Assist Card AC150 FULL.
+
+### Hotel y Tarifas
+**ORIGEN:** COR
+**DESTINO:** POP (Puerto Plata)
+**FECHA SALIDA:** MAYO y JUNIO
+**ALOJAMIENTO:** IBEROSTAR WAVES COSTA DORADA 5★
+**CATEGORÍA Y REGIMEN:** PREMIUM C/ALL INCLUSIVE
+**TARIFA POR PERSONA:** USD 1325 + Impuestos Aéreos USD 279
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo a Puerto Plata con COPA Airlines (Carry On)" },
+          { tipo: "Traslados", descripcion: "Traslados in-out regulares" },
+          { tipo: "Alojamiento", descripcion: "7 noches en Iberostar Waves Costa Dorada 5★" },
+          { tipo: "Régimen", descripcion: "All Inclusive" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Mayo y Junio 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 1604, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") },
+          { precio: 1604, moneda: "USD", fechaInicio: new Date("2026-06-01"), fechaFin: new Date("2026-06-30") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete a Curazao desde Córdoba",
+      slug: "curazao-desde-cordoba-2026",
+      destinoId: null, // Logic will handle
+      tipo: "paquete",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 57,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Curazao desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** mayo 2026
+**Cantidad de noches:** 8 noches
+
+### ✅ INCLUYE
+✈️ Pasaje aéreo Córdoba / Curazao / Córdoba volando con COPA Airlines - Incluye carry on.
+🚍 Traslados Aeropuerto - Hotel – Aeropuerto en servicio regular.
+🏨 Alojamiento por 8 noches en Curazao con all inclusive, en base doble.
+🩺 Asistencia al viajero Assist Card AC150 FULL (hasta 74 años inclusive).
+
+### Hotel y Tarifas
+**ORIGEN:** COR
+**DESTINO:** CUR (Curazao)
+**FECHA SALIDA:** MAYO
+**ALOJAMIENTO:** SUNSCAPE CURACAO RESORT SPA & CASINO 4★
+**CATEGORÍA Y REGIMEN:** DELUXE GARDEN VIEW C/ALL INCLUSIVE
+**TARIFA POR PERSONA:** USD 2266 + Impuestos Aéreos USD 182
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo COPA Airlines (Carry On)" },
+          { tipo: "Traslados", descripcion: "Traslados Aeropuerto - Hotel - Aeropuerto" },
+          { tipo: "Alojamiento", descripcion: "8 noches en Sunscape Curacao Resort Spa & Casino 4★" },
+          { tipo: "Régimen", descripcion: "All Inclusive" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Mayo 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 2448, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete a Los Cabos & Panamá desde Córdoba",
+      slug: "loscabos-panama-desde-cordoba-2026",
+      destinoId: null, // Logic will handle
+      tipo: "paquete",
+      noches: 7,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 58,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Los Cabos & Panamá desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** marzo 2026, abril 2026
+**Cantidad de noches:** 7 noches (5 en Los Cabos + 2 en Panamá)
+
+### ✅ INCLUYE
+✈️ Pasaje aéreo Córdoba / Los Cabos - Panamá / Córdoba volando con COPA Airlines. Incluye carry on.
+🚍 Traslados Aeropuerto - Hotel - Aeropuerto en servicio regular.
+🏨 Alojamiento en base doble por 5 noches en Los Cabos con all inclusive y 2 noches en Panamá con desayuno.
+📌 Excursión en Panamá: City Tour y Canal de Panamá (4 horas) en servicio compartido.
+🩺 Asistencia al viajero Assist Card AC150 FULL (hasta 74 años inclusive).
+
+### Hoteles y Tarifas
+**MARZO y ABRIL**
+• **Los Cabos:** HOTEL RIU SANTA FE 5★ (Vista Jardin C/ All Inclusive)
+• **Panamá:** VICTORIA HOTEL & SUITES 4★ (Desayuno)
+
+**TARIFA POR PERSONA:** USD 1695 + Impuestos Aéreos USD 387
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo COPA Airlines (Carry On)" },
+          { tipo: "Traslados", descripcion: "Traslados in-out regulares" },
+          { tipo: "Alojamiento", descripcion: "5n Los Cabos (All Inc) + 2n Panamá (Desayuno)" },
+          { tipo: "Excursión", descripcion: "Panamá: City Tour y Canal de Panamá (4hs)" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Marzo y Abril 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 2082, moneda: "USD", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-31") },
+          { precio: 2082, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete a Playa del Carmen desde Córdoba",
+      slug: "playadelcarmen-desde-cordoba-2026",
+      destinoId: null, // Logic will handle
+      tipo: "paquete",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 59,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Playa del Carmen desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** marzo 2026
+**Cantidad de noches:** 8 noches
+
+### ✅ INCLUYE
+✈️ Vuelo a Cancún con LATAM Airlines, incluye carry on y 1 equipaje en bodega.
+🚍 Traslados in-out regulares compartidos.
+🏨 Alojamiento en Playa del Carmen con régimen según se indica.
+🩺 Asistencia al viajero Assist Card AC150 FULL.
+
+### Hoteles y Tarifas (13/03/2026)
+**HOTEL RIU TEQUILA 5★ (Standard, All Inclusive)**
+• DBL: USD 1858 | TPL: USD 1820 | CPL: USD 1858 | Imp: USD 221
+
+**VIVA WYNDHAM MAYA 4★ (Superior, All Inclusive)**
+• DBL: USD 2108 | TPL: USD 2065 | CPL: USD 2045 | Imp: USD 221
+
+**RIU PLAYACAR 5★ (Standard, All Inclusive)**
+• DBL: USD 2423 | TPL: USD 2374 | CPL: USD 2423 | Imp: USD 221
+
+**SANDOS PLAYACAR 5★ (Platinum King JR Suite, Solo Adultos, All Inclusive)**
+• DBL: USD 3025 | TPL: USD 2964 | CPL: USD 2935 | Imp: USD 221
+
+- Tarifas en USD por persona.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo a Cancún LATAM (Carry On + Bodega)" },
+          { tipo: "Traslados", descripcion: "Traslados in-out regulares" },
+          { tipo: "Alojamiento", descripcion: "8 noches en Playa del Carmen" },
+          { tipo: "Excursión", descripcion: "All Inclusive" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Marzo 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 2079, moneda: "USD", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-31") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete a Punta Cana desde Córdoba",
+      slug: "puntacana-desde-cordoba-2026",
+      destinoId: null, // Logic will handle
+      tipo: "paquete",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 60,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Punta Cana desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** abril 2026, mayo 2026, junio 2026
+**Cantidad de noches:** 8 noches
+
+### ✅ INCLUYE
+✈️ Vuelo con LATAM Airlines, incluye carry on y 1 equipaje en bodega.
+🚍 Traslados in-out regulares compartidos.
+🏨 Alojamiento en Punta Cana con all inclusive.
+🩺 Asistencia al viajero Assist Card AC150 FULL.
+
+### Hoteles y Tarifas
+**17/04/2026**
+• **WHALA!BÁVARO 4★:** DBL USD 1404 + Imp. 244
+• **RIU BAMBÚ 5★:** DBL USD 1685 + Imp. 244
+• **GRAND PALLADIUM 5★:** DBL USD 2235 + Imp. 244
+
+**01/05/2026**
+• **WHALA!BÁVARO 4★:** DBL USD 1334 + Imp. 244
+• **RIU BAMBÚ 5★:** DBL USD 1563 + Imp. 244
+• **GRAND PALLADIUM 5★:** DBL USD 1915 + Imp. 244
+
+**12/06/2026**
+• **WHALA!BÁVARO 4★:** DBL USD 1236 + Imp. 244
+• **RIU BAMBÚ 5★:** DBL USD 1563 + Imp. 244
+• **GRAND PALLADIUM 5★:** DBL USD 1899 + Imp. 244
+
+- Tarifas en USD por persona.
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo LATAM (Carry On + Bodega)" },
+          { tipo: "Traslados", descripcion: "Traslados in-out regulares" },
+          { tipo: "Alojamiento", descripcion: "8 noches All Inclusive" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Abril, Mayo y Junio 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 1648, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") },
+          { precio: 1578, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") },
+          { precio: 1480, moneda: "USD", fechaInicio: new Date("2026-06-01"), fechaFin: new Date("2026-06-30") }
+        ]
+      }
+    },
+    {
+      titulo: "Paquete a Salvador de Bahía desde Córdoba",
+      slug: "salvador-bahia-desde-cordoba-2026",
+      destinoId: null, // Logic will handle
+      tipo: "paquete",
+      noches: 8,
+      cupos: 20,
+      destacada: true,
+      activa: true,
+      orden: 61,
+      noIncluye: "Consultar diferencia por pasajeros mayores de 74 años.",
+      condiciones: `
+## Paquete a Salvador de Bahía desde Córdoba
+**Desde:** Córdoba
+**Meses de Salida:** abril 2026
+**Cantidad de noches:** 8 noches
+
+### ✅ INCLUYE
+✈️ Pasaje aéreo Córdoba / Salvador de Bahía / Córdoba volando con LATAM Airlines - Incluye carry on.
+🚍 Traslados Aeropuerto - Hotel - Aeropuerto en servicio regular.
+🏨 Alojamiento por 8 noches en Salvador de Bahía con desayuno, en base doble.
+🩺 Asistencia al viajero de Assist Card AC150 FULL (hasta 74 años cumplidos).
+
+### Hotel y Tarifas
+**ORIGEN:** COR
+**DESTINO:** SSA (Salvador)
+**FECHA SALIDA:** ABRIL
+**ALOJAMIENTO:** GRANDE HOTEL DA BARRA 4★
+**CATEGORÍA Y REGIMEN:** STANDARD C/DESAYUNO
+**TARIFA POR PERSONA:** USD 1079 + Impuestos Aéreos USD 140
+      `.trim(),
+      destinos: { create: [] },
+      incluyeItems: {
+        create: [
+          { tipo: "Aéreo", descripcion: "Vuelo LATAM (Carry On)" },
+          { tipo: "Traslados", descripcion: "Traslados in-out regulares" },
+          { tipo: "Alojamiento", descripcion: "8 noches en Grande Hotel da Barra 4★" },
+          { tipo: "Régimen", descripcion: "Desayuno" },
+          { tipo: "Asistencia", descripcion: "Assist Card AC150 FULL" },
+          { tipo: "Salidas", descripcion: "Abril 2026" }
+        ]
+      },
+      precios: {
+        create: [
+          { precio: 1219, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") }
+        ]
+      }
+    }
+  ];
+  salidasGrupales.push(...moreCaribbeanPackages);
+
+  const catamarca = destinosList.find((item) => item.slug === "catamarca");
+  const cancun = destinosList.find((item) => item.slug === "cancun");
+
+  const uniqueSalidas = [];
+  const seenSlugs = new Set();
   for (const oferta of salidasGrupales) {
+    if (!oferta?.slug) continue;
+    if (seenSlugs.has(oferta.slug)) continue;
+    seenSlugs.add(oferta.slug);
+    uniqueSalidas.push(oferta);
+  }
+
+  const salidasGrupalesWhitelist = new Set([
+    "mexico-a-su-tiempo-2026",
+    "cartagena-san-andres-2026",
+    "colombia-aromas-cafe-2026",
+    "peru-aereo-grupal-2026",
+    "peru-y-bolivia-2026",
+    "europa-a-su-tiempo-2026",
+    "costa-rica-al-maximo-2026",
+    "esencias-centroeuropeas-2026",
+    "europa-al-maximo-2026",
+    "joyas-balcanicas-2026",
+    "turquia-islas-griegas-2026",
+    "turquia-dubai-2026",
+    "turquia-islas-griegas-dubai-2026"
+  ]);
+
+  for (const oferta of uniqueSalidas) {
+    const shouldBeGrupal = salidasGrupalesWhitelist.has(oferta.slug);
+    oferta.tipo = shouldBeGrupal ? "grupal" : "individual";
+    if (oferta.slug === "mexico-a-su-tiempo-2026" && mexico) {
+      oferta.destinoId = mexico.id;
+      if (cancun) {
+        oferta.destinos = {
+          create: [
+            { destinoId: cancun.id }
+          ]
+        };
+      }
+    }
+    if (oferta.slug === "catamarca-ruta-adobe-2026" && catamarca) {
+      oferta.destinoId = catamarca.id;
+    }
+    if (oferta.slug === "charter-aereo-cuba" && cuba) {
+      oferta.destinoId = cuba.id;
+    }
+    if (oferta.slug === "peru-aereo-grupal-2026" && lima) {
+      oferta.destinoId = lima.id;
+      if (cusco) {
+        oferta.destinos = {
+          create: [
+            { destinoId: cusco.id }
+          ]
+        };
+      }
+    }
+    if (oferta.slug === "peru-y-bolivia-2026" && bolivia) {
+      oferta.destinoId = bolivia.id;
+      if (cusco) {
+        oferta.destinos = {
+          create: [
+            { destinoId: cusco.id }
+          ]
+        };
+      }
+    }
+    if (oferta.slug === "europa-a-su-tiempo-2026" && madrid) {
+      oferta.destinoId = madrid.id;
+      oferta.destinos = {
+        create: [
+          { destinoId: barcelona ? barcelona.id : undefined },
+          { destinoId: paris ? paris.id : undefined },
+          { destinoId: londres ? londres.id : undefined },
+          { destinoId: venecia ? venecia.id : undefined },
+          { destinoId: florencia ? florencia.id : undefined },
+          { destinoId: roma ? roma.id : undefined }
+        ].filter(d => d.destinoId)
+      };
+    }
+    if (oferta.slug === "europa-al-maximo-2026" && madrid) {
+      oferta.destinoId = madrid.id;
+      oferta.destinos = {
+        create: [
+          { destinoId: londres ? londres.id : undefined },
+          { destinoId: paris ? paris.id : undefined },
+          { destinoId: venecia ? venecia.id : undefined },
+          { destinoId: roma ? roma.id : undefined },
+          { destinoId: florencia ? florencia.id : undefined },
+          { destinoId: barcelona ? barcelona.id : undefined }
+        ].filter(d => d.destinoId)
+      };
+    }
+    if (oferta.slug === "joyas-balcanicas-2026" && praga) {
+      oferta.destinoId = praga.id;
+    }
+    if (oferta.slug === "turquia-islas-griegas-2026" && turquia) {
+      oferta.destinoId = turquia.id;
+      oferta.destinos = {
+        create: [
+          { destinoId: islasGriegas ? islasGriegas.id : undefined }
+        ].filter(d => d.destinoId)
+      };
+    }
+    if (oferta.slug === "turquia-dubai-2026" && turquia) {
+      oferta.destinoId = turquia.id;
+      oferta.destinos = {
+        create: [
+          { destinoId: dubai ? dubai.id : undefined }
+        ].filter(d => d.destinoId)
+      };
+    }
+    if (oferta.slug === "turquia-islas-griegas-dubai-2026" && turquia) {
+      oferta.destinoId = turquia.id;
+      oferta.destinos = {
+        create: [
+          { destinoId: islasGriegas ? islasGriegas.id : undefined },
+          { destinoId: dubai ? dubai.id : undefined }
+        ].filter(d => d.destinoId)
+      };
+    }
+    // Link Bañados to Misiones
+    const misionesDest = destinosList.find((item) => item.slug === "misiones") ||
+      destinosList.find((item) =>
+        item.slug.includes("cataratas") ||
+        item.slug.includes("iguazu")
+      ) ||
+      destinosList[0];
+
+    if (oferta.slug === "banados-estrella-2026") {
+      oferta.destinoId = misionesDest.id;
+    }
+    if (oferta.slug === "balneario-camboriu-7-noches" && camboriu) {
+      oferta.destinoId = camboriu.id;
+    }
+    if (oferta.slug === "torres-y-gramado-2026" && torres) {
+      oferta.destinoId = torres.id;
+    }
+    if (oferta.slug === "canasvieiras-7-noches" && canasvieiras) {
+      oferta.destinoId = canasvieiras.id;
+    }
+    if (oferta.slug === "bombas-bombinhas-7-noches" && bombas) {
+      oferta.destinoId = bombas.id;
+    }
+    if (oferta.slug === "punta-del-este-7-noches" && puntadeleste) {
+      oferta.destinoId = puntadeleste.id;
+    }
+    if (oferta.slug.startsWith("f1-") && f1) {
+      oferta.destinoId = f1.id;
+    }
+    if (oferta.slug === "mundial-futbol-playa-mexico" && experienciaMundial) {
+      oferta.destinoId = experienciaMundial.id;
+    }
+    if (oferta.slug === "finalisima-2026" && finalisima) {
+      oferta.destinoId = finalisima.id;
+    }
+    if (oferta.slug === "laguna-brasil-bus-2026" && laguna) {
+      oferta.destinoId = laguna.id;
+    }
+    if (oferta.slug === "ferrugem-bus-2026" && ferrugem) {
+      oferta.destinoId = ferrugem.id;
+    }
+    if (oferta.slug === "bombinhas-bus-2026" && bombinhas) {
+      oferta.destinoId = bombinhas.id;
+    }
+    if (oferta.slug === "cataratas-foz-2026" && iguazu) {
+      oferta.destinoId = iguazu.id;
+    }
+    if (oferta.slug === "maravillas-litoral-2026" && iguazu) {
+      oferta.destinoId = iguazu.id;
+    }
+    if (oferta.slug === "puerto-madryn-playas-patagonicas-2026" && puertoMadryn) {
+      oferta.destinoId = puertoMadryn.id;
+    }
+    if (oferta.slug === "visitando-norte-2026" && salta) {
+      oferta.destinoId = salta.id;
+      if (jujuy) {
+        oferta.destinos = {
+          create: [
+            { destinoId: jujuy.id }
+          ]
+        };
+      }
+    }
+    if (oferta.slug === "patagonia-fantastica-2026" && bariloche) {
+      oferta.destinoId = bariloche.id;
+    }
+    if (oferta.slug === "bariloche-aereo-2026" && bariloche) {
+      oferta.destinoId = bariloche.id;
+    }
+    if (oferta.slug === "bariloche-villa-la-angostura-2026" && bariloche) {
+      oferta.destinoId = bariloche.id;
+    }
+    if (oferta.slug === "buenos-aires-aereo-2026" && buenosAires) {
+      oferta.destinoId = buenosAires.id;
+    }
+    if (oferta.slug === "capillas-de-marmol-2026" && peritoMoreno) {
+      oferta.destinoId = peritoMoreno.id;
+    }
+    if (oferta.slug === "cruce-de-lagos-2026" && bariloche) {
+      oferta.destinoId = bariloche.id;
+    }
+    if (oferta.slug === "glamping-entre-las-nubes-2026" && salta) {
+      oferta.destinoId = salta.id;
+      if (jujuy) {
+        oferta.destinos = {
+          create: [
+            { destinoId: jujuy.id }
+          ]
+        };
+      }
+    }
+    if (oferta.slug === "neuquen-caviahue-2026" && neuquen) {
+      oferta.destinoId = neuquen.id;
+    }
+    if (oferta.slug === "descubriendo-el-sur-2026" && calafate) {
+      oferta.destinoId = calafate.id;
+      if (ushuaia) {
+        oferta.destinos = {
+          create: [
+            { destinoId: ushuaia.id }
+          ]
+        };
+      }
+    }
+    if (oferta.slug === "descubriendo-chile-2026" && santiagoChile) {
+      oferta.destinoId = santiagoChile.id;
+    }
+    if (oferta.slug === "costa-rica-al-maximo-2026" && costaRica) {
+      oferta.destinoId = costaRica.id;
+    }
+    if (oferta.slug === "esencias-centroeuropeas-2026" && amsterdam) {
+      oferta.destinoId = amsterdam.id;
+    }
+    if (oferta.slug === "calafate-ushuaia-2026" && calafate && ushuaia) {
+      oferta.destinoId = calafate.id;
+      oferta.destinos = {
+        create: [
+          { destinoId: ushuaia.id }
+        ]
+      };
+    }
+    if (oferta.slug === "charter-porto-galinhas-2026" && portoGalinhas) {
+      oferta.destinoId = portoGalinhas.id;
+    }
+    if (oferta.slug === "charter-maragogi-2026" && maragogi) {
+      oferta.destinoId = maragogi.id;
+    }
+    if (oferta.slug === "charter-cabo-santo-agostinho-2026" && caboSantoAgostinho) {
+      oferta.destinoId = caboSantoAgostinho.id;
+    }
+    if (oferta.slug === "charter-buzios-2026" && buzios) {
+      oferta.destinoId = buzios.id;
+    }
+    if (oferta.slug === "charter-rio-2026" && rio) {
+      oferta.destinoId = rio.id;
+    }
+    if (oferta.slug === "charter-angra-2026" && angra) {
+      oferta.destinoId = angra.id;
+    }
+    if (oferta.slug === "porto-galinhas-regular-2026" && portoGalinhas) {
+      oferta.destinoId = portoGalinhas.id;
+    }
+    if (oferta.slug.startsWith("cartagena-san-andres") && colombia) {
+      oferta.destinoId = colombia.id;
+    }
+    if (oferta.slug === "colombia-aromas-cafe-2026" && colombia) {
+      oferta.destinoId = colombia.id;
+    }
+    if (oferta.slug === "caminos-del-norte-2026" && salta) {
+      oferta.destinoId = salta.id;
+      if (jujuy) {
+        oferta.destinos = {
+          create: [
+            { destinoId: jujuy.id }
+          ]
+        };
+      }
+    }
+    if (oferta.slug === "las-grutas-2026" && lasGrutas) {
+      oferta.destinoId = lasGrutas.id;
+    }
+    if (oferta.slug === "las-grutas-2026" && lasGrutas) {
+      oferta.destinoId = lasGrutas.id;
+    }
+    // Logic for new packages
+    if (oferta.slug === "aruba-desde-cordoba-2026") {
+      const arubaDest = destinosList.find(d => d.slug === "aruba");
+      if (arubaDest) oferta.destinoId = arubaDest.id;
+    }
+    if (oferta.slug === "bayahibe-desde-cordoba-2026") {
+      const bayahibeDest = destinosList.find(d => d.slug === "bayahibe") ||
+        destinosList.find(d => d.nombre?.toLowerCase().includes("bayahibe")) ||
+        destinosList.find(d => d.slug === "republica-dominicana");
+      if (bayahibeDest) oferta.destinoId = bayahibeDest.id;
+    }
+    if (oferta.slug === "cancun-desde-cordoba-2026") {
+      const cancunDest = destinosList.find(d => d.slug === "cancun") || destinosList.find(d => d.slug === "mexico");
+      if (cancunDest) oferta.destinoId = cancunDest.id;
+    }
+    if (oferta.slug === "costa-dorada-desde-cordoba-2026") {
+      const costaDest = destinosList.find(d => d.slug === "costa-dorada") ||
+        destinosList.find(d => d.nombre?.toLowerCase().includes("costa dorada")) ||
+        destinosList.find(d => d.nombre?.toLowerCase().includes("puerto plata")) ||
+        destinosList.find(d => d.slug === "republica-dominicana");
+      if (costaDest) oferta.destinoId = costaDest.id;
+    }
+    if (oferta.slug === "curazao-desde-cordoba-2026") {
+      const curazaoDest = destinosList.find(d => d.slug === "curazao");
+      if (curazaoDest) oferta.destinoId = curazaoDest.id;
+    }
+    if (oferta.slug === "loscabos-panama-desde-cordoba-2026") {
+      const losCabosDest = destinosList.find(d => d.slug === "los-cabos") || destinosList.find(d => d.slug === "mexico");
+      if (losCabosDest) oferta.destinoId = losCabosDest.id;
+
+      const panamaDest = destinosList.find(d => d.slug === "panama");
+      if (panamaDest) {
+        oferta.destinos = {
+          create: [
+            { destinoId: panamaDest.id }
+          ]
+        };
+      }
+    }
+
+    if (oferta.slug === "playadelcarmen-desde-cordoba-2026") {
+      const playaDest = destinosList.find(d => d.slug === "playa-del-carmen") ||
+        destinosList.find(d => d.nombre?.toLowerCase().includes("playa del carmen")) ||
+        destinosList.find(d => d.slug === "mexico");
+      if (playaDest) oferta.destinoId = playaDest.id;
+    }
+    if (oferta.slug === "puntacana-desde-cordoba-2026") {
+      const puntaDest = destinosList.find(d => d.slug === "punta-cana") ||
+        destinosList.find(d => d.slug === "republica-dominicana");
+      if (puntaDest) oferta.destinoId = puntaDest.id;
+    }
+    if (oferta.slug === "salvador-bahia-desde-cordoba-2026") {
+      const salvadorDest = destinosList.find(d => d.slug === "salvador-de-bahia") ||
+        destinosList.find(d => d.slug === "brasil");
+      if (salvadorDest) oferta.destinoId = salvadorDest.id;
+    }
+
+    // Fallback if destinoId is null after all checks
+    if (!oferta.destinoId) {
+      // Find 'otros' or first available as fallback to prevent crash
+      const fallbackDest = destinosList[0];
+      if (fallbackDest) oferta.destinoId = fallbackDest.id;
+    }
+
+    if (!oferta.destinoId) {
+      console.error(`Skipping oferta ${oferta.slug} because no destination matches`);
+      continue;
+    }
+
+    const existingOferta = await prisma.oferta.findUnique({
+      where: { slug: oferta.slug }
+    });
+    if (existingOferta) {
+      if (existingOferta.tipo !== oferta.tipo || oferta.destinoId !== existingOferta.destinoId) {
+        await prisma.oferta.update({
+          where: { slug: oferta.slug },
+          data: {
+            tipo: oferta.tipo,
+            destacada: oferta.destacada,
+            activa: oferta.activa,
+            orden: oferta.orden,
+            destinoId: oferta.destinoId
+          }
+        });
+      }
+      continue;
+    }
     await prisma.oferta.create({ data: oferta });
   }
 
