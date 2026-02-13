@@ -28,23 +28,9 @@
   margin: 0;
   padding: 0;
   font-family: "Manrope", sans-serif;
-  /* Prevenir zoom completamente */
-  touch-action: pan-x pan-y;
-  -ms-touch-action: pan-x pan-y;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 html {
-  /* Prevenir zoom en todos los navegadores */
-  touch-action: pan-x pan-y;
-  -ms-touch-action: pan-x pan-y;
-  -ms-content-zooming: none;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-size-adjust: 100%;
   overflow-x: hidden;
 }
 
@@ -53,13 +39,6 @@ body {
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
-  /* Prevenir zoom completamente */
-  touch-action: pan-x pan-y;
-  -ms-touch-action: pan-x pan-y;
-  -ms-content-zooming: none;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-size-adjust: 100%;
 }
 
 .bg-orbs span {
@@ -895,6 +874,9 @@ section[id] {
 .hero-text h1 {
   color: #ffffff;
   text-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+  font-size: clamp(32px, 3.5vw, 76px);
+  /* Escala suave hasta 1920px */
+  line-height: 1.1;
 }
 
 .hero-text .hero-subtitle {
@@ -903,12 +885,17 @@ section[id] {
 }
 
 .hero-content {
-  max-width: 1320px;
+  width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
+  padding: clamp(20px, 4vw, 80px);
+  /* Padding proporcional en pantallas grandes */
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(20px, 3vh, 40px);
   align-items: center;
+  position: relative;
+  z-index: 10;
 }
 
 .hero-content--wide {
@@ -2229,6 +2216,7 @@ section[id] {
   text-shadow: none;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -2877,7 +2865,7 @@ section[id] {
 }
 
 .offers-page .salidas-card .tile-image {
-  height: 320px;
+  height: 420px;
   border-radius: 26px 26px 0 0;
   position: relative;
   overflow: hidden;
@@ -2933,6 +2921,7 @@ section[id] {
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex: 1;
@@ -8587,6 +8576,7 @@ html {
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

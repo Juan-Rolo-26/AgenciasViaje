@@ -521,7 +521,7 @@ export default function Ofertas() {
                             Transporte: <strong>{transportLabel}</strong>
                           </span>
                         ) : null}
-                        <span className="card-cta">Explorar destino →</span>
+                        <span className="card-cta">Explorar destino</span>
                       </div>
                     </Link>
                   );

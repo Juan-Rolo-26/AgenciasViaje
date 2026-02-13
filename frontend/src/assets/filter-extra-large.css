@@ -23,8 +23,9 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
 
     width: 100%;
-    max-width: none;
-    margin: 40px auto 0;
+    max-width: 1600px;
+    /* Expandido para 1920px */
+    margin: clamp(30px, 4vh, 60px) auto 0;
 
     align-items: stretch;
     flex-wrap: nowrap;

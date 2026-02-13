@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="HandheldFriendly" content="true" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Topotours | Agencia de Viajes</title>
@@ -15,46 +14,6 @@
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet" />
 
-  <!-- Script para prevenir zoom por completo -->
-  <script>
-    // Prevenir zoom con Ctrl/Cmd + (+, -, 0, rueda del mouse)
-    document.addEventListener('keydown', function (e) {
-      if ((e.ctrlKey || e.metaKey) &&
-        (e.key === '+' || e.key === '-' || e.key === '=' || e.key === '0')) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    // Prevenir zoom con Ctrl/Cmd + rueda del mouse
-    document.addEventListener('wheel', function (e) {
-      if (e.ctrlKey || e.metaKey) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    // Prevenir zoom táctil (pinch)
-    document.addEventListener('touchstart', function (e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    document.addEventListener('touchmove', function (e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    // Prevenir doble tap para zoom en móviles
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function (e) {
-      const now = Date.now();
-      if (now - lastTouchEnd <= 300) {
-        e.preventDefault();
-      }
-      lastTouchEnd = now;
-    }, { passive: false });
-  </script>
 </head>
 
 <body>

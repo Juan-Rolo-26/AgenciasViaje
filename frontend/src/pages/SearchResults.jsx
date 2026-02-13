@@ -631,7 +631,7 @@ export default function SearchResults() {
                                             <p className="destination-description">
                                                 {item.descripcionCorta || item.descripcion}
                                             </p>
-                                            <span className="card-cta">Explorar destino →</span>
+                                            <span className="card-cta">Explorar destino</span>
                                         </div>
                                     </Link>
                                 );
@@ -670,7 +670,7 @@ export default function SearchResults() {
                                                     Transporte: <strong>{transportLabel}</strong>
                                                 </span>
                                             )}
-                                            <span className="card-cta">Explorar destino →</span>
+                                            <span className="card-cta">Explorar destino</span>
                                         </div>
                                     </Link>
                                 );
@@ -700,7 +700,7 @@ export default function SearchResults() {
                                         <p className="destination-description">
                                             {item.descripcion}
                                         </p>
-                                        <span className="card-cta">Ver detalles →</span>
+                                        <span className="card-cta">Ver detalles</span>
                                     </div>
                                 </Link>
                             );

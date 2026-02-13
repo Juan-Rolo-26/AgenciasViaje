@@ -95,7 +95,7 @@ export default function Excursiones({
                     <span className="destination-meta">
                       {actividad.destino?.nombre || "Destino"}
                     </span>
-                    <span className="card-cta">Ver excursión →</span>
+                    <span className="card-cta">Ver excursión</span>
                   </div>
                 </Link>
               );

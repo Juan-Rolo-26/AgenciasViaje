@@ -40,7 +40,7 @@ export default function ModoFanatico() {
                 <div className="tile-content">
                   <h4>{item.nombre}</h4>
                   <span className="destination-meta">Modo fanático</span>
-                  <span className="card-cta">Ver experiencia →</span>
+                  <span className="card-cta">Ver experiencia</span>
                 </div>
               </Link>
             );

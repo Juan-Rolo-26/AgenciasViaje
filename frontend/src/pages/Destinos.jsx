@@ -334,7 +334,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
                         <span className="destination-meta">
                           {destino.paisRegion || "Destino"}
                         </span>
-                        <span className="card-cta">Explorar destino →</span>
+                        <span className="card-cta">Explorar destino</span>
                       </div>
                     </Link>
                   );

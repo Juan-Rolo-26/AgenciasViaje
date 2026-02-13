@@ -232,7 +232,7 @@ async function main() {
       descripcionCorta: "Playas icónicas y energía vibrante.",
       descripcion:
         "Vive la energía de Río de Janeiro: la Ciudad Maravillosa que vibra entre el mar y la montaña. Desde la mística del Cristo Redentor y el Pan de Azúcar hasta el ritmo del samba en sus calles y las playas legendarias de Copacabana e Ipanema. Un destino icónico que combina cultura, historia y una naturaleza exuberante sin igual.",
-      imagenPortada: "/assets/destinos/rio1.jpg",
+      imagenPortada: "/assets/destinos/rio_new.png",
       imagenes: [
         "/assets/destinos/rio2.jpg",
         "/assets/destinos/rio3.jpg",
