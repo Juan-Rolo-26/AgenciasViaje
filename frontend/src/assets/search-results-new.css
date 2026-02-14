@@ -442,9 +442,25 @@
     transition: gap 0.3s ease;
 }
 
+.search-results-page-new .salidas-card .card-cta::before {
+    content: "→";
+    position: static;
+    opacity: 1;
+    transform: translateX(0);
+    margin-left: 2px;
+    color: currentColor;
+    animation: none;
+    transition: transform 0.25s ease;
+}
+
 .search-results-page-new .tile:hover .card-cta {
     gap: 10px;
     text-decoration: underline;
+}
+
+.search-results-page-new .salidas-card:hover .card-cta::before {
+    transform: translateX(2px);
+    animation: none;
 }
 
 /* ==============================

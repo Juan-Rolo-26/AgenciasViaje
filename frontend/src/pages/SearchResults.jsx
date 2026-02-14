@@ -642,8 +642,6 @@ export default function SearchResults() {
                                 const offerImages = getOfferImages(item);
                                 const offerImage = offerImages[0] || fallbackDeal;
                                 const targetDestino = item.destino;
-                                const transportType = getTransportType(item);
-                                const transportLabel = transportType === "avion" ? "Avión" : transportType === "bus" ? "Bus" : "";
 
                                 return (
                                     <Link
@@ -665,11 +663,6 @@ export default function SearchResults() {
                                             <p className="offer-card-description">
                                                 {item.descripcion || "Salida grupal confirmada. Consultanos para conocer el itinerario completo."}
                                             </p>
-                                            {transportLabel && (
-                                                <span className="offer-card-transport">
-                                                    Transporte: <strong>{transportLabel}</strong>
-                                                </span>
-                                            )}
                                             <span className="card-cta">Explorar destino</span>
                                         </div>
                                     </Link>

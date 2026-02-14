@@ -2964,10 +2964,26 @@ section[id] {
   text-shadow: 0 1px 2px rgba(15, 23, 42, 0.25);
 }
 
+.offers-page .salidas-card .card-cta::before {
+  content: "→";
+  position: static;
+  opacity: 1;
+  transform: translateX(0);
+  margin-left: 4px;
+  color: inherit;
+  animation: none;
+  transition: transform 0.25s ease;
+}
+
 .offers-page .salidas-card:hover .card-cta {
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(112, 0, 235, 0.35);
   filter: brightness(1.02);
+}
+
+.offers-page .salidas-card:hover .card-cta::before {
+  transform: translateX(2px);
+  animation: none;
 }
 
 .offer-valid {
