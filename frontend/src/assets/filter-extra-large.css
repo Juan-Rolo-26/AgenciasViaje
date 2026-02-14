@@ -5,11 +5,15 @@
 
 .premium-filter {
     --filter-height: 140px;
-    --filter-card-width: clamp(280px, 22vw, 560px);
+    --filter-item-min: 205px;
+    --filter-button-min: 235px;
 
     display: flex;
-    gap: 12px;
-    padding: 20px 16px;
+    gap: clamp(6px, 0.6vw, 10px);
+    /* Reducimos un poco el gap para ganar espacio */
+    padding: clamp(10px, 1vw, 18px) clamp(16px, 2vw, 32px);
+    /* Más padding a los lados */
+
 
     background:
         radial-gradient(1200px 400px at 50% -20%, rgba(147, 51, 234, 0.18), transparent 60%),
@@ -23,23 +27,31 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
 
     width: 100%;
-    max-width: 1600px;
-    /* Expandido para 1920px */
+    max-width: none;
     margin: clamp(30px, 4vh, 60px) auto 0;
 
     align-items: stretch;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     position: relative;
     z-index: 4;
+    box-sizing: border-box;
 
     backdrop-filter: blur(12px);
     transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Forzar ancho completo en el home */
+/* Forzar que el contenido del hero ocupe el máximo ancho posible */
 .hero-search .hero-content {
-    max-width: none;
     width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 15px;
+    /* Margen chiquito como pidió el usuario */
+    padding-right: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-search .premium-filter,
@@ -47,11 +59,55 @@
 .hero-search .premium-filter.premium-filter-excursion,
 .hero-search .premium-filter.premium-filter-oferta,
 .hero-search .premium-filter.premium-filter-paquete {
-    width: 96vw;
-    max-width: 96vw;
-    margin-left: calc(50% - 48vw);
-    margin-right: calc(50% - 48vw);
+    width: 100% !important;
+    max-width: 1920px !important;
+    min-width: 0;
+    margin: clamp(20px, 4vh, 50px) auto 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
+
+/* Forzar al contenedor padre (hero-search) a no tener paddings restrictivos */
+.hero-search {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* En escritorio, aseguramos una sola línea y permitimos que se ajusten */
+@media (min-width: 1200px) {
+    .hero-search .premium-filter {
+        flex-wrap: nowrap !important;
+        gap: 8px;
+    }
+
+    .filter-card {
+        flex: 1 1 200px;
+        /* Base sólida para evitar que se aplasten */
+        min-width: 180px;
+        gap: 8px;
+        /* Reducimos gap interno */
+    }
+
+    .filter-card-label {
+        font-size: 0.75rem;
+        /* Ajuste sutil */
+    }
+
+    .filter-card-input {
+        font-size: 1.15rem;
+        /* Ajuste sutil para que quepa el texto */
+    }
+
+    .filter-button {
+        font-size: 1rem;
+        /* Botón un poco más compacto */
+        padding: 16px 24px;
+    }
+}
+
+
+
 
 .premium-filter:hover {
     transform: translateY(-4px);
@@ -68,12 +124,13 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 0 20px;
+    padding: 0 clamp(12px, 0.95vw, 20px);
 
     min-height: var(--filter-height);
     height: var(--filter-height);
-    flex: 1 1 0%;
-    /* Allow shrinking/growing equally */
+    flex: 1 1 var(--filter-item-min);
+    min-width: var(--filter-item-min);
+    max-width: 100%;
 
     background:
         linear-gradient(180deg, #ffffff, #f8f9ff);
@@ -90,6 +147,17 @@
 
     transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.premium-filter .filter-button {
+    flex: 0 0 auto;
+    /* No se encoge para que el texto sea legible */
+    min-width: max-content;
+    width: auto;
+    white-space: nowrap;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 
 .filter-card.custom-select {
     overflow: visible;
@@ -176,15 +244,15 @@
 }
 
 .filter-card-label {
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 0.62vw, 0.8rem);
     font-weight: 800;
-    letter-spacing: 0.05em;
+    letter-spacing: clamp(0.03em, 0.05vw, 0.05em);
     text-transform: uppercase;
     color: #7b85b7;
     transition: color 0.3s ease;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .filter-card:hover .filter-card-label,
@@ -234,6 +302,8 @@
 @media (max-width: 1024px) {
     .premium-filter {
         --filter-height: 125px;
+        --filter-item-min: 260px;
+        --filter-button-min: 280px;
         gap: 18px;
         padding: 24px;
     }
@@ -243,8 +313,28 @@
     }
 }
 
+@media (max-width: 1400px) {
+    .premium-filter {
+        --filter-item-min: 190px;
+        --filter-button-min: 220px;
+    }
+
+    .filter-card-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .premium-filter .filter-button {
+        flex-basis: var(--filter-button-min);
+        min-width: var(--filter-button-min);
+        width: auto;
+    }
+}
+
 @media (max-width: 768px) {
     .premium-filter {
+        --filter-item-min: 280px;
+        --filter-button-min: 320px;
         flex-wrap: wrap;
     }
 
@@ -256,11 +346,14 @@
 
 @media (max-width: 640px) {
     .premium-filter {
+        --filter-item-min: 100%;
+        --filter-button-min: 100%;
         flex-direction: column;
     }
 
     .filter-card {
         width: 100%;
+        min-width: 100%;
     }
 
     .filter-card-input {

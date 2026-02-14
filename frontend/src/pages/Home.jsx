@@ -651,10 +651,7 @@ export default function Home() {
           style={{ backgroundImage: `url("${heroImage}")` }}
           aria-hidden="true"
         ></div>
-        <div
-          className={`hero-content${searchType === "oferta" ? " hero-content--wide" : ""
-            }`}
-        >
+        <div className="hero-content">
           <div className="hero-text">
             <h1>
               Tu próxima escapada empieza en{" "}
