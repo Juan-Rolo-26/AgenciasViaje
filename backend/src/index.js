@@ -1,12 +1,21 @@
 require("dotenv").config();
-const { exec } = require("child_process");
+const path = require("path");
+const { execFile } = require("child_process");
 
 const PORT = process.env.PORT || 3000;
+const PROJECT_ROOT = path.resolve(__dirname, "..");
+let PRISMA_CLI = "";
 
-function runPrismaCommand({ label, command }) {
+try {
+  PRISMA_CLI = require.resolve("prisma/build/index.js");
+} catch (error) {
+  PRISMA_CLI = "";
+}
+
+function runPrismaCommand({ label, args }) {
   return new Promise((resolve, reject) => {
     console.log(`🔄 ${label}...`);
-    exec(command, (error, stdout, stderr) => {
+    execFile(process.execPath, [PRISMA_CLI, ...args], { cwd: PROJECT_ROOT }, (error, stdout, stderr) => {
       if (error) {
         console.error(`❌ Error en ${label.toLowerCase()}: ${error.message}`);
         return reject(error);
@@ -23,18 +32,25 @@ function runPrismaCommand({ label, command }) {
 function generatePrismaClient() {
   return runPrismaCommand({
     label: "Generando cliente de Prisma",
-    command: "npx prisma generate"
+    args: ["generate"]
   });
 }
 
 function syncSchema() {
   return runPrismaCommand({
     label: "Sincronizando esquema de Prisma (SQLite)",
-    command: "npx prisma db push --skip-generate"
+    args: ["db", "push", "--skip-generate"]
   });
 }
 
 async function bootstrap() {
+  if (!PRISMA_CLI) {
+    console.error(
+      "❌ No se encontró Prisma CLI. Verificá que 'prisma' esté en dependencies."
+    );
+    process.exit(1);
+  }
+
   try {
     await generatePrismaClient();
   } catch (error) {
