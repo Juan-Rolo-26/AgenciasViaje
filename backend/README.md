@@ -27,7 +27,7 @@ npm run seed
 ## Variables de entorno
 
 - `PORT`: puerto del servidor (por defecto 3000).
-- `DATABASE_URL`: cadena de conexión SQLite (por defecto `file:./dev.db`).
+- `DATABASE_URL`: cadena de conexión SQLite (ejemplo en deploy: `file:./prisma/dev.db`).
 
 ## Endpoints base
 
