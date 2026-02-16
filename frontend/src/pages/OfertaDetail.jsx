@@ -6,6 +6,7 @@ import { formatDate } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
+import { stripMarkdownSectionByKeyword } from "../utils/markdownSanitizers.js";
 
 function formatIncluyeTipo(tipo) {
   if (!tipo) {
@@ -92,11 +93,15 @@ function cleanTitle(title) {
 }
 
 // Helper para formatear contenido markdown raw
-function formatRawContent(text) {
+function formatRawContent(text, { stripItinerary = false } = {}) {
   if (!text) return null;
 
+  const sourceText = stripItinerary
+    ? stripMarkdownSectionByKeyword(text, "itinerario")
+    : text;
+
   // Clean prices
-  const cleaned = text
+  const cleaned = sourceText
     .split('\n')
     .filter(line => {
       const lower = line.toLowerCase();
@@ -312,7 +317,7 @@ export default function OfertaDetail() {
             {/* Renderizado especial para condiciones/información */}
             {oferta.condiciones ? (
               <div className="detail-info-block">
-                {formatRawContent(oferta.condiciones)}
+                {formatRawContent(oferta.condiciones, { stripItinerary: hasItinerary })}
               </div>
             ) : !detalleItems.length ? (
               <p>Consultanos para mas info.</p>

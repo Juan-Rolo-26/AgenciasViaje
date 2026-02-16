@@ -8,6 +8,7 @@ import { useOfertas } from "../hooks/useTravelData.js";
 import { formatDate, formatCurrency } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
+import { stripMarkdownSectionByKeyword } from "../utils/markdownSanitizers.js";
 
 // === Constants and Helpers from OfertaDetail / DestinoDetail ===
 
@@ -73,9 +74,13 @@ const normalizeText = (value) =>
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 
-const cleanContent = (text) => {
+const cleanContent = (text, { stripItinerary = false } = {}) => {
   if (!text) return "";
-  return text
+  const sourceText = stripItinerary
+    ? stripMarkdownSectionByKeyword(text, "itinerario")
+    : text;
+
+  return sourceText
     .split('\n')
     .filter(line => {
       const lower = line.toLowerCase();
@@ -293,6 +298,21 @@ export default function ModoFanaticoDetail() {
       summaryItems
     };
   }, [selectedPackage]);
+
+  const cleanedSelectedConditions = useMemo(() => {
+    const sourceContent =
+      selectedPackage?.condiciones ||
+      selectedPackageData?.shortDesc ||
+      "Consultanos para más detalles.";
+
+    return cleanContent(sourceContent, {
+      stripItinerary: Boolean(selectedPackageData?.itinerarioItems?.length)
+    });
+  }, [
+    selectedPackage?.condiciones,
+    selectedPackageData?.shortDesc,
+    selectedPackageData?.itinerarioItems?.length
+  ]);
 
   if (!item) {
     return (
@@ -530,7 +550,7 @@ export default function ModoFanaticoDetail() {
                     </div>
                     <div className="card-content fanatico-markdown">
                       <ReactMarkdown>
-                        {cleanContent(selectedPackage.condiciones || selectedPackageData.shortDesc || "Consultanos para más detalles.")}
+                        {cleanedSelectedConditions}
                       </ReactMarkdown>
                     </div>
                   </article>

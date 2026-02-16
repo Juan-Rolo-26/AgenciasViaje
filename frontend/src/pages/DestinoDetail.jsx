@@ -6,6 +6,7 @@ import { useTravelData } from "../hooks/useTravelData.js";
 import { formatDate, getPrecioVigente } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
+import { stripMarkdownSectionByKeyword } from "../utils/markdownSanitizers.js";
 
 // === Constants and Helpers from OfertaDetail ===
 
@@ -258,9 +259,13 @@ const getCardSalidaRanges = (precios) => {
     .filter((item) => item.daysLabel);
 };
 
-const cleanContent = (text) => {
+const cleanContent = (text, { stripItinerary = false } = {}) => {
   if (!text) return "";
-  return text
+  const sourceText = stripItinerary
+    ? stripMarkdownSectionByKeyword(text, "itinerario")
+    : text;
+
+  return sourceText
     .split('\n')
     .filter(line => {
       const lower = line.toLowerCase();
@@ -508,6 +513,13 @@ export default function DestinoDetail() {
   );
   const hasItinerary = Boolean(
     selectedPackageData && selectedPackageData.itinerarioItems.length > 0
+  );
+  const cleanedSelectedConditions = useMemo(
+    () =>
+      cleanContent(selectedPackage?.condiciones, {
+        stripItinerary: hasItinerary
+      }),
+    [selectedPackage?.condiciones, hasItinerary]
   );
 
   if (loading) {
@@ -948,11 +960,11 @@ export default function DestinoDetail() {
                         ))}
                       </div>
                     ) : (
-                      <ReactMarkdown>{cleanContent(selectedPackage.condiciones) || "Consultanos para más información."}</ReactMarkdown>
+                      <ReactMarkdown>{cleanedSelectedConditions || "Consultanos para más información."}</ReactMarkdown>
                     )}
-                    {selectedPackageData.detalleItems.length > 0 && cleanContent(selectedPackage.condiciones) && (
+                    {selectedPackageData.detalleItems.length > 0 && cleanedSelectedConditions && (
                       <div style={{ marginTop: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
-                        <ReactMarkdown>{cleanContent(selectedPackage.condiciones)}</ReactMarkdown>
+                        <ReactMarkdown>{cleanedSelectedConditions}</ReactMarkdown>
                       </div>
                     )}
                   </div>

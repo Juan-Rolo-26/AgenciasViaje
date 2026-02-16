@@ -522,7 +522,7 @@ async function main() {
       paisRegion: "Italia",
       descripcionCorta: "Historia milenaria y gastronomía.",
       descripcion:
-        "Vive la energía de Roma: la Ciudad Eterna donde el tiempo parece haberse detenido. Camina entre las ruinas del imponente Coliseo, maravíllate con la espiritualidad del Vaticano y lanza una moneda en la Fontana di Trevi. Un destino que es un museo a cielo abierto, combinando historia milenaria, plazas vibrantes y la esencia de la mejor gastronomía italiana.",
+        "Vive la energía de Roma: la Ciudad Eterna donde el tiempo parece haberse detenido. Camina entre las ruinas del imponente Coliseo, maravíllate con la espiritualidad del Vaticano y vive la tradición de la Fontana di Trevi. Un destino que es un museo a cielo abierto, combinando historia milenaria, plazas vibrantes y la esencia de la mejor gastronomía italiana.",
       imagenPortada: "/assets/destinos/roma.jpg",
       imagenes: [
         "/assets/destinos/roma2.jpg",
@@ -1507,7 +1507,6 @@ async function main() {
   const dubai = destinosList.find((item) => item.slug === "dubai");
   const praga = destinosList.find((item) => item.slug === "praga");
 
-
   const actividades = await prisma.actividad.createMany({
     data: [
       {
@@ -1517,7 +1516,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-06-14"),
         hora: "08:30",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba, conociendo La Calera con su Usina Hidroeléctrica. Seguimos bordeando el río Suquía desembarcando en el Dique San Roque con su magnífica arquitectura en la que sobresale su embudo y su imponente murallón, como así también el moderno puente nuevo renovando el paisaje. Pasamos por Bialet Masse observando la capilla de San Placido y el Horno La Primera Argentina. Seguimos por RN 38 hasta llegar a Cosquín capital nacional del Folklore conociendo la Plaza Próspero Molina y en su lejanía el cerro Pan de Azúcar. Seguimos por Valle Hermoso con su Monumento a San Antonio de Padua y pasamos por la ex casa del Virrey Zevallos y luego llegamos a La Falda recorriendo la clásica Av. Edén hasta llegar al imponente hotel. Atravesamos Huerta Grande y Villa Giardino para arribar a la localidad de La Cumbre con sus antiguas y distinguidas residencias de estilo europeo y se observa el Cristo Redentor. Continuamos por Cruz Chica pasando por la puerta del Museo Manuel Mujica Láinez, Cruz Grande y visitamos Los Cocos con su complejo El Descanso y la aerosilla (opcionales). Seguimos hasta arribar a Capilla del Monte, al pie del místico cerro Uritorco, la calle techada y la llamativa figura de piedra conocida como el Zapato. Las últimas horas de la tarde nos encuentran observando el atardecer por el Camino del Cuadrado para regresar a Córdoba.`,
@@ -1532,7 +1530,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-06-21"),
         hora: "08:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia donde visitaremos los valiosos tesoros que heredó del pasado: la Iglesia y estancia Jesuítica de Alta Gracia, museo histórico nacional casa del Virrey Liniers, la torre del reloj público y su tajamar, Museo Casa de Ernesto "Che" Guevara. Continuamos por Anisacate, La Bolsa, La Serranita y Villa Ciudad de América acariciado por las aguas del lago y Dique Los Molinos donde haremos una degustación de salame y queso típico de la zona mientras observamos desde el mirador el imponente espejo. Continuamos con Villa General Belgrano, pueblo de raíces europeas y espíritu serrano, donde también realizaremos una degustación de cerveza artesanal. Regresamos por Los Reartes y por la costa noroeste del lago Los Molinos, Potrero de Garay, para luego retomar rumbo a Córdoba.`,
@@ -1547,7 +1544,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-06-28"),
         hora: "07:30",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos de Córdoba por autopista Justiniano Posse a Carlos Paz, San Antonio de Arredondo, Mayú Sumaj, Icho Cruz y Cuesta Blanca, todos bordeando el río San Antonio. Luego comenzamos a recorrer el Camino de Altas Cumbres donde las vistas panorámicas se adueñan del paisaje. En el punto más alto del camino se encuentra el paraje El Cóndor; seguimos por la Pampa de Achala y el nacimiento del río Mina Clavero. Llegando al corazón del Valle de Traslasierra encontramos a Mina Clavero donde conoceremos el centro comercial, el balneario de los Elefantes, etc. Un pueblo que creció con el ejemplo solidario e idealista. Llegamos a Villa Cura Brochero pasando por su iglesia, su balneario y el museo Brocheriano. Continuamos por Nono donde se respira armonía y tradición al pie de los cerros Ñuñu, también el polifacético museo Rocsen y la fábrica de alfajores. Regresamos a Córdoba por el camino de Bosque Alegre con vistas de la Estación Terrena y el Observatorio Nacional que lleva el nombre de su camino.`,
@@ -1562,7 +1558,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-07-05"),
         hora: "09:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos de Córdoba por RN 9 hasta llegar a Colonia Caroya, tierras impregnadas del espíritu y la pasión de los colonos italianos y famosa por sus salames artesanales. Allí visitaremos la Estancia Jesuítica Casa de Caroya, la primera de las seis que fundaron los jesuitas en las sierras cordobesas, y la Iglesia Nuestra Señora del Monserrat. Luego conocemos Jesús María, pueblo orgulloso de sus costumbres, donde se rinde homenaje a la patria entre relinchos y cantos de argentinidad con su Festival Nacional de Doma y Folklore y su escenario José Hernández, y la Estancia Jesuítica San Isidro Labrador, pionera en la elaboración del vino en la región. Continuamos hacia el norte donde las huellas se hacen evidentes: llegamos a la Posta de Sinsacate, la más grande y destacada del Camino Real, y el paraje de Barranca Yaco que recuerda la muerte del caudillo Facundo Quiroga para luego arribar donde se produce el encuentro de la sierra con el llano y la Estancia Santa Catalina, un paisaje serrano impregnado por la mística jesuítica. Seguimos bordeando las Sierras Chicas, pasando por las pintorescas localidades de Ascochinga, La Granja, Agua de Oro, Salsipuedes y Río Ceballos, regresando a Córdoba.`,
@@ -1577,7 +1572,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-07-12"),
         hora: "07:45",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia, Anisacate, La Bolsa, La Serranita y Villa Ciudad de América. Continuamos el recorrido por Potrero de Garay y el más serrano y autóctono pueblo en esa región de reminiscencia europea: Los Reartes. Desde allí a una pampa de altura ubicada entre los valles y los faldeos de las Sierras Grandes nos recibe Atos Pampa; pasamos también por una de las grandes cañadas del río Los Reartes con un gran puente que cruza su cauce y nos presenta a Inti Yaco. Luego Villa Berna, donde el aire delata un intenso perfume con notas de pino y extensos bosques exóticos. Llegamos a La Cumbrecita, una aldea de montaña que preserva su entorno natural como tesoro supremo, uno de los pocos pueblos peatonales del mundo donde visitaremos el balneario La Olla, la Capilla Ecuménica, el tradicional hotel La Cumbrecita, la cascada grande, etc. Luego conocemos el exótico, diferente, original y cautivante de raíces centroeuropeas y espíritus serranos Villa General Belgrano. Retomamos el camino por el límite sur de la región de Paravachasca donde el agua y las sierras crean formas cada día, el gran lago Los Molinos y su dique, y emprendemos el regreso a Córdoba.`,
@@ -1592,7 +1586,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-07-19"),
         hora: "08:15",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia donde visitaremos los valiosos tesoros que heredó del pasado: la Iglesia y estancia Jesuítica de Alta Gracia, museo histórico nacional casa del Virrey Liniers, la torre del reloj público y su tajamar, la iglesia Nuestra Señora de la Merced, Museo Casa de Ernesto "Che" Guevara, el museo del célebre compositor musical Manuel de Falla, el Sierras Hotel con su historia legendaria y, junto a una pequeña caminata, llegamos al santuario cavado en la roca, la Gruta Nuestra Señora de Lourdes. Luego nos dirigimos por Falda del Carmen a la ciudad turística más importante de la provincia, Villa Carlos Paz, el destino soñado de quienes la elijen. Conoceremos el símbolo más popular y reconocido de la villa, el Reloj Cu Cu, uno de sus atractivos: la aerosilla y una visita a la fábrica artesanal de alfajores. Junto a su imponente espejo de agua, el lago San Roque con su costanera y, retomando por el camino de las 100 curvas, llegamos al Dique San Roque con su magnífica arquitectura en la que sobresale su embudo y su imponente murallón, como así también el moderno puente nuevo renovando el paisaje. La Calera es la que nos indica el regreso a la ciudad de Córdoba.`,
@@ -1607,7 +1600,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-07-26"),
         hora: "07:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos de Córdoba por RN 9 hasta llegar a Colonia Caroya, tierras impregnadas del espíritu y la pasión de los colonos italianos y famosa por sus salames artesanales. Seguimos por Jesús María, pueblo orgulloso de sus costumbres y donde se rinde homenaje a la patria entre relinchos y cantos de argentinidad con su Festival Nacional de Doma y Folklore. Continuamos hacia el norte donde las huellas se hacen evidentes: llegamos a la Posta de Sinsacate, la más grande y destacada del Camino Real, y el paraje de Barranca Yaco que recuerda la muerte del caudillo Facundo Quiroga. Luego, en acuarelas, óleos y acrílicos de prodigiosos artistas nos recibe Villa del Totoral; continuamos camino hacia Las Peñas y Simbolar y terminamos en el corazón del departamento Tulumba donde la llanura le gana protagonismo a las sierras: se levanta San José de la Dormida. Santa Elena, un lugar distinguido con colores diversos y formas sorprendentes donde el hombre primitivo dejó uno de sus legados más valiosos en suelo americano, y Don Atahualpa Yupanqui, el más grande poeta del folklore argentino, decidió inmortalizarse en su tierra, nos recibe Cerro Colorado. Conoceremos la Reserva Cultural Natural Cerro Colorado, el museo arqueológico y la casa museo de Atahualpa Yupanqui para luego retomar el viaje hacia Córdoba.`,
@@ -1622,7 +1614,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-08-02"),
         hora: "09:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba con rumbo a Monte Cristo y Río Primero, y si están con ganas de cruzarse con personajes de historietas y dibujos animados hay que hacer una parada en Santiago Temple. Siguiendo por la ciudad de las golosinas llegamos a Arroyito. Pasando por El Tío y en medio de los llanos donde abundan siembras diversas está Balnearia con el horizonte cercano al Mar de Ansenuza. Finalmente llegamos a orillas de ese gran mar, donde se despliegan colores a cada instante y se respira aire con perfume a sal: se levanta Miramar, la más grande laguna de agua salada de Sudamérica. Conoceremos, como un viejo trasatlántico encallado en sus costas con sus lujos oxidados por el aire salitroso, el Gran Hotel Viena que resguarda secretos y misterios. El criadero de coipos, avistaje de la más emblemática de las aves que habitan Ansenuza (los flamencos rosados) y un agradable paseo por los márgenes de la laguna para luego regresar a Córdoba.`,
@@ -1637,7 +1628,6 @@ async function main() {
         tipoActividad: "Excursión medio día",
         fecha: new Date("2026-08-09"),
         hora: "09:30",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba, conociendo La Calera con su Usina Hidroeléctrica. Seguimos bordeando el río Suquía desembarcando en el Dique San Roque con su magnífica arquitectura en la que sobresale su embudo y su imponente murallón, como así también el moderno puente nuevo renovando el paisaje. Luego tomamos el camino de las 100 curvas que bordea el gran espejo de agua llegando a la ciudad turística más importante de la provincia, Villa Carlos Paz, el destino soñado de quienes la elijen. Recorremos su centro comercial, el símbolo más popular y reconocido de la villa, el Reloj Cu Cu, el complejo aerosilla y una visita a la fábrica artesanal de alfajores. Regresamos a Córdoba por la autopista Justiniano Allende Posse.`,
@@ -1652,7 +1642,6 @@ async function main() {
         tipoActividad: "Excursión medio día",
         fecha: new Date("2026-08-16"),
         hora: "09:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba por RP5 pasando por el gigantesco obelisco monumento a Myriam Steffor rumbo a Alta Gracia donde visitaremos los valiosos tesoros que heredó del pasado: la Iglesia y estancia Jesuítica de Alta Gracia, museo histórico nacional casa del Virrey Liniers, la torre del reloj público y su tajamar, la iglesia Nuestra Señora de la Merced, Museo Casa de Ernesto "Che" Guevara, el museo del célebre compositor musical Manuel de Falla, el Sierras Hotel con su historia legendaria y, junto a una pequeña caminata, llegamos al santuario cavado en la roca, la Gruta Nuestra Señora de Lourdes, para luego regresar a Córdoba.`,
@@ -1667,7 +1656,6 @@ async function main() {
         tipoActividad: "Excursión medio día",
         fecha: new Date("2026-08-23"),
         hora: "09:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos de Córdoba por RN 9 hasta llegar a Colonia Caroya, tierras impregnadas del espíritu y la pasión de los colonos italianos y famosa por sus salames artesanales. Allí visitaremos la Estancia Jesuítica Casa de Caroya, la primera de las seis que fundaron los jesuitas en las sierras cordobesas, y la Iglesia Nuestra Señora del Monserrat. Luego conocemos Jesús María, pueblo orgulloso de sus costumbres y donde se rinde homenaje a la patria entre relinchos y cantos de argentinidad con su Festival Nacional de Doma y Folklore y su escenario José Hernández, la Estancia Jesuítica San Isidro Labrador, pionera en la elaboración del vino en la región, y regresamos a Córdoba.`,
@@ -1682,7 +1670,6 @@ async function main() {
         tipoActividad: "Excursión medio día",
         fecha: new Date("2026-08-30"),
         hora: "09:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos de Córdoba visitando quien supo conservar la tranquilidad de sus calles, la frescura del paisaje y la magia del río: nos abre las puertas La Calera, que guarda monumentos históricos como la capilla vieja y el molino doble. Pasamos por el Dique Mal Paso y bordeamos el cordón de las Sierras Chicas. Saldán con un puñado de casas sobre el lomo de sierras, Villa Allende sobre la ladera este del Cerro Pan de Azúcar y la iglesia Nuestra Señora del Carmen, Mendiolaza con su túnel de sombras en temporada estival y luego un manto de hojas sobre el asfalto. Llegamos a Unquillo que resguarda valiosos exponentes de la arquitectura de la primera década del siglo XX. Luego arribamos a Río Ceballos, con callecitas que suben y bajan hacia las sierras y arroyos, con su sagrado protector el Cristo Redentor desde lo alto del Cerro Ñu Porá y su vista panorámica. Para terminar en el Dique La Quebrada, la reserva hídrica natural, y regresamos a Córdoba.`,
@@ -1697,7 +1684,6 @@ async function main() {
         tipoActividad: "Excursión medio día",
         fecha: new Date("2026-09-06"),
         hora: "08:30",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Salida desde Córdoba capital (traslado incluido)",
         descripcion: `Salimos desde Córdoba rumbo a la localidad de Capilla del Monte donde los amantes de la naturaleza disfrutamos de balnearios o senderismo por el río entre saltos y cuevas hasta llegar a la grieta donde escaparon aborígenes de la gran matanza. Es un paisaje único entre paredones de 300 metros de altura matizado por caídas de agua. Mostrándonos uno de los escenarios más imponentes de las sierras de Córdoba, del otro lado nos observa el gran Cerro Uritorco con toda su mística. Regresamos por Dolores conociendo el Molino de Eiffel, Flor de Durazno y La Capilla, para luego observar el atardecer por el gran Camino del Cuadrado con sus colores y ondas sobre las sierras para regresar a Córdoba.`,
@@ -1712,7 +1698,6 @@ async function main() {
         tipoActividad: "Excursión día completo",
         fecha: new Date("2026-09-13"),
         hora: "10:00",
-        precio: "61000",
         cupos: 20,
         puntoEncuentro: "Retiro coordinado en Córdoba Capital (traslado incluido)",
         descripcion:
@@ -1728,7 +1713,6 @@ async function main() {
         tipoActividad: "Excursión a medida",
         fecha: new Date("2026-09-20"),
         hora: "09:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Coordinación previa con asesor (traslado incluido)",
         descripcion:
@@ -1744,7 +1728,6 @@ async function main() {
         tipoActividad: "Excursión a medida",
         fecha: new Date("2026-09-27"),
         hora: "08:00",
-        precio: "0",
         cupos: 0,
         puntoEncuentro: "Coordinación previa con asesor (traslado incluido)",
         descripcion:
@@ -1753,7 +1736,7 @@ async function main() {
         destacada: true,
         orden: 16
       }
-    ]
+    ].map((actividad) => ({ ...actividad, precio: "0" }))
   });
 
   const salidasGrupales = [
@@ -1773,13 +1756,7 @@ async function main() {
 • Seguro de cancelación (disponible como extra)
       `.trim(),
       condiciones: `
-## Condiciones de Reserva y Formas de Pago
-
-### Reserva y Pagos
-• **Seña inicial**: Se requiere una seña para confirmar la reserva del paquete
-• **Refuerzo de seña**: Un segundo pago parcial se solicita en fecha acordada
-• **Saldo final**: El saldo restante debe abonarse antes de la fecha de salida según cronograma establecido
-• **Métodos de pago**: Efectivo, transferencia bancaria, tarjetas de crédito (consultar recargos)
+## Condiciones del Viaje
 
 ### Cancelaciones
 • Las cancelaciones están sujetas a las condiciones generales de la agencia
@@ -1793,10 +1770,9 @@ async function main() {
 
 ### Condiciones Generales
 • Los servicios están sujetos a disponibilidad al momento de la reserva
-• Los precios pueden variar según la fecha de salida y tipo de habitación
 • La agencia se reserva el derecho de modificar itinerarios por razones de fuerza mayor
 • Rigen las condiciones generales de agencias de viajes según normativa vigente
-• Consultar por descuentos para grupos familiares o pagos anticipados
+• Consultar por descuentos para grupos familiares
       `.trim(),
       destinos: {
         create: [] // Se llenará con el ID de Camboriú
@@ -1837,34 +1813,6 @@ async function main() {
           }
         ]
       },
-      precios: {
-        create: [
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-22")
-          },
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-23"),
-            fechaFin: new Date("2026-03-11")
-          },
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-03-12"),
-            fechaFin: new Date("2026-03-31")
-          },
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-04-02"),
-            fechaFin: new Date("2026-04-27")
-          }
-        ]
-      }
     },
     {
       titulo: "Descubrí Canasvieiras - 7 Noches en Florianópolis",
@@ -1883,21 +1831,11 @@ async function main() {
 • Actividades turísticas no especificadas en el programa
       `.trim(),
       condiciones: `
-## Condiciones de Reserva y Formas de Pago
-
-**Reserva y Pagos:** Se requiere una seña inicial para congelar la tarifa del paquete y confirmar la reserva. Un segundo pago parcial (refuerzo de seña) hasta alcanzar un porcentaje del total, con fecha límite establecida. El saldo final se abona antes de la fecha de salida según cronograma de pagos.
-
-**Formas de Pago:** Efectivo en oficina • Transferencia bancaria • Tarjetas de crédito (consultar cuotas) • Tarjetas de débito • Pagos digitales (MercadoPago, etc.)
-
-**Cancelaciones:** Las cancelaciones están sujetas a los términos generales de la agencia. Se aplican retenciones según el tiempo de anticipación. La seña puede no ser reembolsable según condiciones. En caso de fuerza mayor, se evalúa cada caso. Se recomienda contratar seguro de cancelación.
-
-**Modificaciones:** Los cambios de fecha están sujetos a disponibilidad y pueden aplicarse cargos administrativos.
+## Condiciones del Viaje
 
 ## Información General del Viaje
 
 **Documentación Requerida:** DNI o pasaporte vigente. Menores deben viajar con autorización si no van con ambos padres. Llevar copia de documentos importantes.
-
-**Moneda:** Real brasileño (BRL). Se recomienda llevar efectivo en reales. Tarjetas de crédito aceptadas en la mayoría de comercios. Casas de cambio disponibles en la zona turística.
 
 **Recomendaciones:** Llevar protector solar de alto factor, ropa de playa y casual, calzado cómodo, repelente de mosquitos y medicación personal. Canasvieiras es una zona turística segura, tomar precauciones habituales con pertenencias.
 
@@ -1948,34 +1886,6 @@ async function main() {
           }
         ]
       },
-      precios: {
-        create: [
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-22")
-          },
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-23"),
-            fechaFin: new Date("2026-03-11")
-          },
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-03-13"),
-            fechaFin: new Date("2026-03-31")
-          },
-          {
-            precio: 0,
-            moneda: "ARS",
-            fechaInicio: new Date("2026-04-02"),
-            fechaFin: new Date("2026-04-27")
-          }
-        ]
-      }
     },
     {
       titulo: "Verano en Bombas y Bombinhas - 7 Noches",
@@ -1993,16 +1903,9 @@ async function main() {
 • Tours opcionales no mencionados
       `.trim(),
       condiciones: `
-## Condiciones de Reserva y Formas de Pago
-
-### Reserva y Pagos
-• **Seña inicial**: Se requiere una seña para reservar y congelar la tarifa dentro de las 72 horas posteriores a la reserva.
-• **Refuerzo de seña**: Existe un pago parcial de refuerzo previo al viaje.
-• **Saldo final**: Se completa en su totalidad antes de la fecha de salida.
-• **Formas de Pago**: Consultar opciones disponibles (efectivo, transferencia, etc.).
+## Condiciones del Viaje
 
 ### Cancelaciones
-• Aplican cargos por cancelación según las normas generales de la agencia.
 • Recomendamos consultar políticas específicas al momento de reservar.
 
 ## Información Útil
@@ -2041,22 +1944,6 @@ async function main() {
           }
         ]
       },
-      precios: {
-        create: [
-          {
-            precio: 0, // No mostrar precios
-            moneda: "ARS",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-28")
-          },
-          {
-            precio: 0, // No mostrar precios
-            moneda: "ARS",
-            fechaInicio: new Date("2026-03-01"),
-            fechaFin: new Date("2026-03-31")
-          }
-        ]
-      }
     },
     {
       titulo: "Descubrí Punta del Este - 7 Noches",
@@ -2069,15 +1956,10 @@ async function main() {
       orden: 4,
       noIncluye: `
 • Cenas u otros servicios fuera de lo estipulado en el régimen.
-• Cargos adicionales de turismo o tasas locales según normativa vigente.
 • Gastos de índole personal, propinas y excursiones opcionales no contratadas.
       `.trim(),
       condiciones: `
-## Condiciones de Reserva y Formas de Pago
-
-### Reserva
-• Se puede asegurar la plaza con una seña inicial dentro de las 72 horas posteriores a la reserva.
-• Refuerzo de seña previo a la salida y saldo total a cancelar antes del viaje.
+## Condiciones del Viaje
 
 ### Cancelaciones
 • Las condiciones generales de cancelación y cambios aplican según las normas de la agencia.
@@ -2117,22 +1999,6 @@ async function main() {
           }
         ]
       },
-      precios: {
-        create: [
-          {
-            precio: 0,
-            moneda: "USD",
-            fechaInicio: new Date("2026-02-01"),
-            fechaFin: new Date("2026-02-28")
-          },
-          {
-            precio: 0,
-            moneda: "USD",
-            fechaInicio: new Date("2026-03-01"),
-            fechaFin: new Date("2026-03-31")
-          }
-        ]
-      }
     },
     {
       titulo: "Experiencia Mundial – Fútbol y Playa – México",
@@ -2144,7 +2010,6 @@ async function main() {
       activa: true,
       orden: 5,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Comidas no especificadas
 • Propinas y gastos personales
 • Entradas a otros eventos no mencionados
@@ -2176,11 +2041,6 @@ async function main() {
 • **Estadía**: Disfrutá de actividades, playa y fútbol.
 • **Regreso**: Check-out y retorno asistido por nuestro equipo.
 
-### Tarifas Referenciales (Base Doble)
-• **Categoría 3 (Hotel 3★)**: USD 12,000 final
-• **Categoría 2 (Mejor ubicación)**: USD 14,000 final
-• **Categoría 1 (Premium)**: USD 16,000 final
-• *Suplemento individual: USD 2,450*
       `.trim(),
       destinos: {
         create: [] // Se llenará con el ID
@@ -2213,16 +2073,6 @@ async function main() {
           }
         ]
       },
-      precios: {
-        create: [
-          {
-            precio: 12000,
-            moneda: "USD",
-            fechaInicio: new Date("2026-06-01"),
-            fechaFin: new Date("2026-07-01")
-          }
-        ]
-      }
     },
     {
       titulo: "F1 Miami - Gran Premio 2026",
@@ -2240,12 +2090,6 @@ async function main() {
 **Alojamiento**: 4 noches Hotel 4★ (30 abril - 4 mayo)
 **Entradas**: 3 días al circuito
 
-### Tarifas Referenciales (Base Doble)
-• **Beach Grandstand**: USD 4,769
-• **Tribuna Turn 1**: USD 6,629
-• **Tribuna Start/Finish**: USD 7,219
-• **Tribuna Marina**: USD 4,879
-• **Tribuna Turn 18**: USD 6,439
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -2258,7 +2102,6 @@ async function main() {
           { tipo: "Itinerario-4", descripcion: "Día 5: Check-out y Regreso" }
         ]
       },
-      precios: { create: [{ precio: 4769, moneda: "USD", fechaInicio: new Date("2026-04-30"), fechaFin: new Date("2026-05-04") }] }
     },
     {
       titulo: "F1 Las Vegas - Gran Premio 2026",
@@ -2276,11 +2119,6 @@ async function main() {
 **Alojamiento**: 4 noches Hotel Park MGM o similar (18 - 22 noviembre)
 **Entradas**: Viernes, sábado y domingo
 
-### Tarifas Referenciales (Base Doble)
-• **General Admission**: USD 3,769
-• **West Harmon Hamilton**: USD 4,219
-• **Sphere Grandstand**: USD 5,109
-• **Main Grandstand**: USD 6,329
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -2293,7 +2131,6 @@ async function main() {
           { tipo: "Itinerario-4", descripcion: "Día 5: Check-out y Regreso" }
         ]
       },
-      precios: { create: [{ precio: 3769, moneda: "USD", fechaInicio: new Date("2026-11-18"), fechaFin: new Date("2026-11-22") }] }
     },
     {
       titulo: "F1 Mónaco - Gran Premio 2026",
@@ -2311,7 +2148,6 @@ async function main() {
 **Alojamiento**: 3 noches Hotel 3★ Campanile PRIME (Nice) o similar (5 - 8 junio)
 **Entradas**: Acceso al circuito según sector
 
-### Tarifas Referenciales (Base Doble)
 • **Sector Rocher (1 día)**: €1,329
 • **Sector Rocher (2 días)**: €1,549
 • **Sector Rocher (3 días)**: €1,769
@@ -2330,7 +2166,6 @@ async function main() {
           { tipo: "Itinerario-4", descripcion: "Día 4: Check-out y Regreso" }
         ]
       },
-      precios: { create: [{ precio: 1329, moneda: "EUR", fechaInicio: new Date("2026-06-05"), fechaFin: new Date("2026-06-08") }] }
     },
     {
       titulo: "F1 Madrid - Gran Premio 2026",
@@ -2348,7 +2183,6 @@ async function main() {
 **Alojamiento**: 3 noches Hotel 3★ Holiday Inn Alcorcon o similar (11 - 14 septiembre)
 **Entradas**: Acceso al circuito
 
-### Tarifas Referenciales (Base Doble)
 • **Tribuna Silver 7/16**: €2,109
 • **Tribuna Silver 12**: €2,069
 • **Tribuna Silver 13**: €2,439
@@ -2365,7 +2199,6 @@ async function main() {
           { tipo: "Itinerario-4", descripcion: "Día 4: Check-out y Regreso" }
         ]
       },
-      precios: { create: [{ precio: 1989, moneda: "EUR", fechaInicio: new Date("2026-09-11"), fechaFin: new Date("2026-09-14") }] }
     },
     {
       titulo: "F1 Monza - Gran Premio de Italia 2026",
@@ -2383,7 +2216,6 @@ async function main() {
 **Alojamiento**: 4 noches Hotel 4★ Novotel Linate o similar (3 - 7 septiembre)
 **Entradas**: 3 días al circuito
 
-### Tarifas Referenciales (Base Doble)
 • **General Admission**: €1,769
 • **Right Lateral 26A**: €3,669
 • **Left Lateral 4 / Outer 8B**: €3,229
@@ -2401,7 +2233,6 @@ async function main() {
           { tipo: "Itinerario-5", descripcion: "Día 5: Check-out y Regreso" }
         ]
       },
-      precios: { create: [{ precio: 1769, moneda: "EUR", fechaInicio: new Date("2026-09-03"), fechaFin: new Date("2026-09-07") }] }
     },
     {
       titulo: "F1 Silverstone - Gran Bretaña 2026",
@@ -2419,7 +2250,6 @@ async function main() {
 **Alojamiento**: 3 noches Hotel 4★ Novotel Leicester o similar (3 - 6 julio)
 **Entradas**: 3 días al circuito
 
-### Tarifas Referenciales (Base Doble)
 • **General Admission**: €1,666
 • **Abbey A / Luffield**: €2,211
 • **Hamilton Straight**: €2,656
@@ -2437,7 +2267,6 @@ async function main() {
           { tipo: "Itinerario-4", descripcion: "Día 4: Check-out y Regreso" }
         ]
       },
-      precios: { create: [{ precio: 1666, moneda: "EUR", fechaInicio: new Date("2026-07-03"), fechaFin: new Date("2026-07-06") }] }
     },
     {
       titulo: "F1 Sao Paulo - Gran Premio 2026",
@@ -2448,7 +2277,7 @@ async function main() {
       destacada: true,
       activa: true,
       orden: 16,
-      noIncluye: "A estas tarifas se les debe agregar el 3.5% de gastos administrativos. Gastos personales.",
+      noIncluye: "Gastos personales.",
       condiciones: `
 ## Programa: Fórmula 1 Sao Paulo 🇧🇷
 **Fecha**: 05 de noviembre de 2026
@@ -2459,18 +2288,11 @@ async function main() {
 **Hotel**: Hotel 3* Summit Paulista 3* o similar
 **Régimen**: Desayuno
 
-### Tarifas y Opciones
 **Sector G (20L)**
-• **Doble**: Neto USD 2,373 + IVA USD 46 + Imp. Aéreo USD 540 = **USD 2,959** final
-• **Single**: Neto USD 3,033 + IVA USD 46 + Imp. Aéreo USD 540 = **USD 3,619** final
 
 **Sector A – RQ**
-• **Doble**: Neto USD 2,684 + IVA USD 45 + Imp. Aéreo USD 660 = **USD 3,389** final
-• **Single**: Neto USD 3,344 + IVA USD 45 + Imp. Aéreo USD 660 = **USD 4,049** final
 
 **Sector H – RQ**
-• **Doble**: Neto USD 3,113 + IVA USD 46 + Imp. Aéreo USD 660 = **USD 3,819** final
-• **Single**: Neto USD 3,773 + IVA USD 46 + Imp. Aéreo USD 660 = **USD 4,479** final
 
 ### Consultar por otros sectores
 • SECTOR M, D, B, ORANGE TREE
@@ -2492,11 +2314,6 @@ async function main() {
           { tipo: "Itinerario-3", descripcion: "Día 5: Regreso - Fin del viaje." }
         ]
       },
-      precios: {
-        create: [
-          { precio: 2959, moneda: "USD", fechaInicio: new Date("2026-11-05"), fechaFin: new Date("2026-11-09") }
-        ]
-      }
     },
     {
       titulo: "Paquete Turístico – Laguna, Brasil en Bus 2026",
@@ -2539,8 +2356,6 @@ Hoteles previstos (o similares):
 • Butacas panorámicas o con servicios especiales (cafetera, etc).
 
 ### Condiciones de Reserva
-• Seña dentro de las 72hs de confirmada la solicitud.
-• Pago total antes de la salida según cronograma.
 • Cancelaciones sujetas a políticas del operador.
 
 ### Información Útil
@@ -2558,30 +2373,6 @@ Hoteles previstos (o similares):
           { tipo: "Asistencia", descripcion: "Coordinador permanente y asistencia al viajero AC35 (Ene-Mar)" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-12"), fechaFin: new Date("2026-02-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-19"), fechaFin: new Date("2026-02-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-26"), fechaFin: new Date("2026-02-26") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-08"), fechaFin: new Date("2026-03-08") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-19"), fechaFin: new Date("2026-03-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-22"), fechaFin: new Date("2026-03-22") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-26"), fechaFin: new Date("2026-03-26") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-29"), fechaFin: new Date("2026-03-29") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-05"), fechaFin: new Date("2026-04-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-12"), fechaFin: new Date("2026-04-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-19"), fechaFin: new Date("2026-04-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-26"), fechaFin: new Date("2026-04-26") }
-        ]
-      }
     },
     {
       titulo: "Ferrugem en Bus – Temporada 2026",
@@ -2635,27 +2426,6 @@ Opciones de alojamiento disponibles (sujeto a disponibilidad):
           { tipo: "Asistencia", descripcion: "Coordinador y asistencia al viajero" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-12"), fechaFin: new Date("2026-02-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-15"), fechaFin: new Date("2026-02-15") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-19"), fechaFin: new Date("2026-02-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-26"), fechaFin: new Date("2026-02-26") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-08"), fechaFin: new Date("2026-03-08") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-19"), fechaFin: new Date("2026-03-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-22"), fechaFin: new Date("2026-03-22") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-26"), fechaFin: new Date("2026-03-26") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-29"), fechaFin: new Date("2026-03-29") }
-        ]
-      }
     },
     {
       titulo: "Bombinhas en Bus – Temporada 2026",
@@ -2709,27 +2479,6 @@ Opciones de alojamiento (sujeto a disponibilidad):
           { tipo: "Asistencia", descripcion: "Coordinador y asistencia al viajero" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-12"), fechaFin: new Date("2026-02-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-15"), fechaFin: new Date("2026-02-15") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-19"), fechaFin: new Date("2026-02-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-26"), fechaFin: new Date("2026-02-26") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-08"), fechaFin: new Date("2026-03-08") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-19"), fechaFin: new Date("2026-03-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-22"), fechaFin: new Date("2026-03-22") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-26"), fechaFin: new Date("2026-03-26") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-29"), fechaFin: new Date("2026-03-29") }
-        ]
-      }
     },
     {
       titulo: "Cataratas – Foz do Iguaçu – Temporada 2026",
@@ -2768,9 +2517,8 @@ Las salidas para este paquete están disponibles desde **febrero de 2026 hasta d
 • **Yerbatera**: Recorrido por la Ruta de la Yerba Mate para conocer el proceso productivo y realizar degustaciones.
 
 ### Excursiones Opcionales
-(Tarifas sujetas a modificación)
 • **Ruinas de San Ignacio**: Visita a las reducciones jesuíticas fundadas en 1609 (Patrimonio de la Humanidad).
-• **Minas de Wanda**: Recorrido por yacimientos de piedras semipreciosas.
+• **Minas de Wanda**: Recorrido por yacimientos de piedras naturales.
 • **Paseo Catamarán Iguazú**: Navegación por la triple frontera al atardecer.
 • **Parque Nacional Iguazú (Argentina)**: Recorrido por pasarelas superior, inferior y Garganta del Diablo.
 • **Gran Aventura**: Paseo náutico y selvático, navegando los rápidos del río Iguazú.
@@ -2786,16 +2534,6 @@ Las salidas para este paquete están disponibles desde **febrero de 2026 hasta d
           { tipo: "Asistencia", descripcion: "Asistencia al viajero incluida" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-30"), fechaFin: new Date("2026-04-30") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-10") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-17"), fechaFin: new Date("2026-05-17") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-07"), fechaFin: new Date("2026-06-07") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-16"), fechaFin: new Date("2026-06-16") }
-        ]
-      }
     },
     {
       titulo: "Patagonia Fantástica 2026 - 9 Noches",
@@ -2857,7 +2595,6 @@ Las salidas para este paquete están disponibles desde **febrero de 2026 hasta d
 **Día 14:** CÓRDOBA
 
 ### Excursiones Opcionales
-*Las tarifas están sujetas a modificación.*
 
 **PUERTO MADRYN**
 • Lobería Punta Loma
@@ -2887,12 +2624,6 @@ Las salidas para este paquete están disponibles desde **febrero de 2026 hasta d
           { tipo: "Asistencia", descripcion: "Coordinador y asistencia al viajero" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-10"), fechaFin: new Date("2026-04-10") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-30"), fechaFin: new Date("2026-05-30") }
-        ]
-      }
     },
     {
       titulo: "El Calafate y Ushuaia 2026 - 6 Noches",
@@ -2945,16 +2676,6 @@ Las salidas para este paquete están disponibles desde **febrero de 2026 hasta d
           { tipo: "Asistencia", descripcion: "Asistencia al viajero" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-13"), fechaFin: new Date("2026-01-13") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-20"), fechaFin: new Date("2026-01-20") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-05"), fechaFin: new Date("2026-02-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-17"), fechaFin: new Date("2026-02-17") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-12"), fechaFin: new Date("2026-03-12") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-18"), fechaFin: new Date("2026-03-18") }
-        ]
-      }
     },
     {
       titulo: "Bariloche Aéreo",
@@ -2966,8 +2687,6 @@ Las salidas para este paquete están disponibles desde **febrero de 2026 hasta d
       activa: true,
       orden: 20,
       noIncluye: `
-• Gastos administrativos (3.5%)
-• Recargos de butaca (Cama/Panorámica/Cafetera)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -2996,7 +2715,6 @@ Consultar valores por fecha y disponibilidad.
 
 🛎️ Habitación a compartir GARANTIZADA  
 🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad).  
-Tarifas por persona sujetas a modificación y disponibilidad.  
 
 ### Itinerario
 **Día 1 — Día de salida:** Comienza la experiencia.  
@@ -3015,19 +2733,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Detalle-Salidas", descripcion: "14 Febrero; 13 y 31 Marzo; 9 y 19 Abril (AR Carry); 23 Mayo (FO 12kg); 24 Mayo (AR Carry); 13 y 18 Junio (FO 12kg)" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-14"), fechaFin: new Date("2026-02-14") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-13") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-31"), fechaFin: new Date("2026-03-31") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-09"), fechaFin: new Date("2026-04-09") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-19"), fechaFin: new Date("2026-04-19") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-05-24"), fechaFin: new Date("2026-05-24") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-13"), fechaFin: new Date("2026-06-13") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-06-18"), fechaFin: new Date("2026-06-18") }
-        ]
-      }
     }
   ];
 
@@ -3056,9 +2761,7 @@ Tarifas por persona sujetas a modificación y disponibilidad.
       if (f1) paquete.destinoId = f1.id;
     }
 
-
   }
-
 
   const extraPaquetes = [
     // ================= PAQUETES CHARTER 2026 =================
@@ -3088,23 +2791,9 @@ Tarifas por persona sujetas a modificación y disponibilidad.
 • Traslados de ingreso y egreso
 • Asistencia al viajero AC35
 
-### Hoteles y Tarifas (Base Doble Referencial)
 **ENERO / FEBRERO**
-• **POUSADA AMADA TERRA / FLOR DE MAGNOLIA**: USD 1.397 / 1.240
-• **PORTO 2 LIFE**: USD 1.437 / 1.350
-• **POUSADA LUAR DAS MARES**: USD 1.517 / 1.397
-• **ACONCHEGO**: USD 1.527 / 1.437
-• **SOLAR PORTO DE GALINHAS**: USD 1.897 / 1.687
-• **VIVÁ PORTO DE GALINHAS**: USD 2.487 / 1.797
-• **VILLAGE PORTO DE GALINHAS**: USD 2.547 / 2.017
-• **OCAPORÃ (All Inc)**: USD 2.847 / 1.977
-• **ENOTEL (All Inc)**: USD 2.910 / 2.427
-• **THE WESTIN (All Inc)**: USD 3.590 / 2.957
 
 ### Adicionales Traslados (Opcional)
-• Santa Fe / San Luis: USD 70
-• Rosario: USD 80
-• Villa María / San Francisco: USD 47
 • *Consultar por otras localidades.*
 
 ### Equipaje Incluido
@@ -3121,15 +2810,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-06"), fechaFin: new Date("2026-02-06") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-20"), fechaFin: new Date("2026-02-20") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-27"), fechaFin: new Date("2026-02-27") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-06"), fechaFin: new Date("2026-03-06") }
-        ]
-      }
     },
     {
       titulo: "Charter Aéreo Maragogi 2026",
@@ -3157,15 +2837,9 @@ Tarifas por persona sujetas a modificación y disponibilidad.
 • Traslados de ingreso y egreso
 • Asistencia al viajero AC35
 
-### Hoteles y Tarifas (Base Doble Referencial)
 **ENERO / FEBRERO**
-• **PRAIA DOURADA** (Media Pensión): USD 2.150 / 1.887
-• **GRAND OCA** (All Inclusive): USD 2.950 / 2.570
 
 ### Adicionales Traslados (Opcional)
-• Santa Fe / San Luis: USD 70
-• Rosario: USD 80
-• Villa María / Rio Cuarto: USD 47
 • *Consultar por otras localidades.*
 
 ### Equipaje Incluido
@@ -3182,15 +2856,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-06"), fechaFin: new Date("2026-02-06") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-20"), fechaFin: new Date("2026-02-20") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-27"), fechaFin: new Date("2026-02-27") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-06"), fechaFin: new Date("2026-03-06") }
-        ]
-      }
     },
     {
       titulo: "Charter Aéreo Cabo de Santo Agostinho 2026",
@@ -3217,14 +2882,9 @@ Tarifas por persona sujetas a modificación y disponibilidad.
 • Traslados de ingreso y egreso
 • Asistencia al viajero AC35
 
-### Hoteles y Tarifas (Base Doble Referencial)
 **ENERO / FEBRERO**
-• **VILA GALE CABO** (All Inclusive): USD 1.994 / 1.727
 
 ### Adicionales Traslados (Opcional)
-• Santa Fe / San Luis: USD 70
-• Rosario: USD 80
-• Villa María / Rio Cuarto: USD 47
 
 ### Equipaje Incluido
 • **De mano:** 10 kg (Carry on + Bolso de mano).
@@ -3240,15 +2900,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-06"), fechaFin: new Date("2026-02-06") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-20"), fechaFin: new Date("2026-02-20") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-27"), fechaFin: new Date("2026-02-27") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-06"), fechaFin: new Date("2026-03-06") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...extraPaquetes);
@@ -3265,7 +2916,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
       orden: 26,
       noIncluye: `
 • Gastos personales
-• Ecotasa municipal (pago en destino)
       `.trim(),
       condiciones: `
 ## Charter Aéreo Búzios
@@ -3280,26 +2930,17 @@ Tarifas por persona sujetas a modificación y disponibilidad.
 • Traslados de ingreso y egreso
 • Asistencia al viajero AC35
 
-### Hoteles y Tarifas (Base Doble Referencial)
 **FEBRERO**
-• **BRISAS DE BUZIOS / DESTINO BUZIOS / KAIRÓS**: USD 970
-• **NEW PARADISE**: USD 1.127
-• **GAMMEL DANSK / LESTADA**: USD 1.360
-• **VILLA MERCEDES / AROMA DO MAR**: USD 1.407
-• **CORONADO INN / CORONADO BEACH**: USD 1.397
 • **POSADA AFRIKA**: Consultar
 • **POSADA DOS REIS**: Consultar
 
 ### Adicionales Traslados (Opcional)
-• Santa Fe / San Luis / Rosario: Consultar tarifas vigentes.
 
 ### Equipaje Incluido
 • **De mano:** 10 kg (Carry on + Bolso de mano).
 • **Bodega:** 1 pieza de hasta 15 kg.
 
 ### Flexi Charter
-• Cambio de destino hasta 60 días antes.
-• Cambio de hotel hasta 30 días antes.
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -3311,12 +2952,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-02"), fechaFin: new Date("2026-02-02") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") }
-        ]
-      }
     },
     {
       titulo: "Charter Aéreo Rio de Janeiro 2026",
@@ -3343,18 +2978,10 @@ Tarifas por persona sujetas a modificación y disponibilidad.
 • Traslados de ingreso y egreso
 • Asistencia al viajero AC35
 
-### Hoteles y Tarifas (Base Doble Referencial)
 **FEBRERO**
-• **MIRADOR RIO COPACABANA**: USD 800
-• **MAJESTIC RIO / MAR PALACE**: USD 927
-• **SAVOY OTHON**: USD 1.047
-• **ROYALTI BARRA**: USD 1.240
-• **OLINDA RIO**: USD 1.287
-• **NOVOTEL LEME**: USD 1.400
 • **POUSADA GIRASSOL**: Consultar
 
 ### Adicionales Traslados (Opcional)
-• Consultar tarifas desde interior.
 
 ### Equipaje Incluido
 • **De mano:** 10 kg (Carry on + Bolso de mano).
@@ -3370,12 +2997,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-02"), fechaFin: new Date("2026-02-02") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") }
-        ]
-      }
     },
     {
       titulo: "Charter Aéreo Angra dos Reis 2026",
@@ -3402,14 +3023,9 @@ Tarifas por persona sujetas a modificación y disponibilidad.
 • Traslados de ingreso y egreso (Regular)
 • Asistencia al viajero AC35
 
-### Hoteles y Tarifas (Base Doble Referencial)
 **FEBRERO**
-• **DOLCE VITA** (Media Pensión): USD 1.397
-• **NACIONAL INN**: USD 1.450
-• **VILA GALE ECO RESORT** (All Inclusive): USD 2.157
 
 ### Adicionales Traslados (Opcional)
-• Consultar tarifas desde interior.
 
 ### Equipaje Incluido
 • **De mano:** 10 kg (Carry on + Bolso de mano).
@@ -3425,12 +3041,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "Bodega 15kg + Mano 10kg" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-02"), fechaFin: new Date("2026-02-02") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...moreCharters);
@@ -3447,9 +3057,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
       activa: true,
       orden: 30,
       noIncluye: `
-• Recargo Butacas Panorámicas (USD 50)
-• Recargo Butacas Cafetera (USD 30)
-• Adicional Butaca Cama (sin asistencia - USD 250)
 • Entradas a parques no mencionadas
       `.trim(),
       condiciones: `
@@ -3495,10 +3102,6 @@ Disfrute de la estadía combinada entre la playa de Torres y el encanto de las s
 **Día 7 - Regreso:**
 Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nuestro equipo te asistirá hasta el final del servicio.
 
-### Tarifas Referenciales (USD Billete)
-• **Salida 30 Marzo (Semana Santa):** USD 649 (Final con impuestos)
-• *Opción Butaca Panorámica: + USD 50*
-• *Opción Butaca Cafetera: + USD 30*
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -3511,11 +3114,6 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
           { tipo: "Coordinador", descripcion: "Permanente" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 649, moneda: "USD", fechaInicio: new Date("2026-03-30"), fechaFin: new Date("2026-03-30") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...torresPackage);
@@ -3533,11 +3131,9 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
       orden: 31,
       noIncluye: `
 • Entradas a sitios turísticos (Ruinas de Shincal, Termas, etc.)
-• Gastos administrativos (3.5%)
 • Excursiones opcionales:
   - Salar de Antofalla ($125,000)
   - Balcón de Pissis ($150,000)
-• Recargo Butaca Panorámica ($90,000)
       `.trim(),
       condiciones: `
 ## Catamarca y Ruta del Adobe
@@ -3577,8 +3173,6 @@ Durante estos días realizaremos el circuito completo visitando el Campo de Pied
 **Día 7 - Regreso:**
 Luego de los procedimientos de check-out, emprendemos el retorno a casa llevando los recuerdos de la Puna.
 
-### Tarifas Referenciales (Base Doble/Triple)
-• **Salida 24 Abril 2026:** $999,929 (Final con impuestos)
 • *Opción Single:* $1,347,929
       `.trim(),
       destinos: { create: [] },
@@ -3592,11 +3186,6 @@ Luego de los procedimientos de check-out, emprendemos el retorno a casa llevando
           { tipo: "Coordinador", descripcion: "Permanente" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 999929, moneda: "ARS", fechaInicio: new Date("2026-04-24"), fechaFin: new Date("2026-04-24") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...catamarcaPackage);
@@ -3613,7 +3202,6 @@ Luego de los procedimientos de check-out, emprendemos el retorno a casa llevando
       activa: true,
       orden: 32,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Parque Nacional El Impenetrable (opcional $125.000)
 • Adicional MAP (3 comidas $80.000 / 2 comidas $55.000)
 • Comidas no especificadas
@@ -3642,23 +3230,15 @@ Luego de los procedimientos de check-out, emprendemos el retorno a casa llevando
 • Coordinador Permanente
 • Asistencia Médica: Universal Assistance Nacional – Cobertura UA 2M (sin límite de edad)
 
-### Tarifas y Fechas
 **14 Jun (3 noches - Desayuno y una Cena)**
-• **DBL:** Neto $655,131 | IVA $93,619 | Total $748,749
-• **SLG:** Neto $755,642 | IVA $114,726 | Total $870,369
 
 **04 y 11 Jul (4 noches - Desayuno y una Cena)**
-• **DBL:** Neto $660,890 | IVA $90,628 | Total $751,519
-• **SLG:** Neto $832,039 | IVA $126,570 | Total $958,609
 
 *🛎️ Habitación a compartir GARANTIZADA.*
 *Las habitaciones garantizadas a compartir podrán ser dobles o triples.*
-*Tarifas por persona sujetas a modificación y disponibilidad. Agregar 3.5% de gastos administrativos.*
 
 ### Opcionales
 • Parque Nacional El Impenetrable – $125.000
-• Adicional MAP (3 comidas) – $80.000 Neto
-• Adicional MAP (2 comidas) – $55.000 Neto
 
 ### Rutas
 • Ruta 1: Rio Cuarto, Villa Maria, Rosario, Santa Fe
@@ -3685,13 +3265,6 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
           { tipo: "Coordinador", descripcion: "Permanente" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 748749, moneda: "ARS", fechaInicio: new Date("2026-06-14"), fechaFin: new Date("2026-06-14") },
-          { precio: 751519, moneda: "ARS", fechaInicio: new Date("2026-07-04"), fechaFin: new Date("2026-07-04") },
-          { precio: 751519, moneda: "ARS", fechaInicio: new Date("2026-07-11"), fechaFin: new Date("2026-07-11") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...banadosPackage);
@@ -3708,7 +3281,6 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
       activa: true,
       orden: 33,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
 • Extras de butaca (semi-cama o cama)
       `.trim(),
@@ -3728,13 +3300,6 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
 • City tour en Salta
 • Quebrada de Humahuaca (Purmamarca - Tilcara - Humahuaca)
 
-### Salidas y tarifas (MAP, DBL / TPL)
-**13 Feb (Carnaval) - 3 noches:** Neto $441.665 | IVA $37.835 | Tarifa $479.500  
-**14 Mar - 5 noches:** Neto $490.043 | IVA $44.857 | Tarifa $534.900  
-**01 Abr (Semana Santa) - 3 noches:** Neto $448.369 | IVA $40.630 | Tarifa $459.000  
-**09 May - 5 noches:** Neto $503.276 | IVA $46.224 | Tarifa $549.500  
-**17 Jun (Feriado) - 3 noches:** Neto $417.330 | IVA $38.170 | Tarifa $455.500  
-
 ### Butacas y menores
 • Solo Butaca Semi-Cama: $200.000  
 • Solo Butaca Cama: $250.000  
@@ -3744,9 +3309,7 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
 
 ### Embarque y notas
 • Embarque: consultar ruta (salida desde Córdoba y valor del traslado)  
-• Tarifas por persona sujetas a modificación y disponibilidad  
 • Habitaciones garantizadas a compartir pueden ser dobles o triples  
-• Agregar 3.5% de gastos administrativos
 
 ### Itinerario
 **Día 1 — Día de salida:** Comienza la experiencia.  
@@ -3768,15 +3331,6 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 479500, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
-          { precio: 534900, moneda: "ARS", fechaInicio: new Date("2026-03-14"), fechaFin: new Date("2026-03-14") },
-          { precio: 459000, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") },
-          { precio: 549500, moneda: "ARS", fechaInicio: new Date("2026-05-09"), fechaFin: new Date("2026-05-09") },
-          { precio: 455500, moneda: "ARS", fechaInicio: new Date("2026-06-17"), fechaFin: new Date("2026-06-17") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...caminosDelNortePackage);
@@ -3793,7 +3347,6 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
       activa: true,
       orden: 34,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Adicional butaca panorámica o cafetera
 • Servicios no detallados
       `.trim(),
@@ -3826,9 +3379,7 @@ Luego de los procedimientos de check-out y embarque, emprendemos el retorno. Nue
 Paraná – Santa Fe – Rosario – Armstrong – Villa María – RIO (e intermedios)
 
 ### Notas
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Habitaciones garantizadas a compartir pueden ser dobles o triples.  
-Agregar 3.5% de gastos administrativos.
 
 ### Itinerario
 **Día 1 — Día de salida:** Comienza la experiencia.  
@@ -3849,23 +3400,6 @@ Agregar 3.5% de gastos administrativos.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-04"), fechaFin: new Date("2026-01-04") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-11"), fechaFin: new Date("2026-01-11") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-18"), fechaFin: new Date("2026-01-18") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-25"), fechaFin: new Date("2026-01-25") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-08"), fechaFin: new Date("2026-02-08") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-18"), fechaFin: new Date("2026-02-18") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-23"), fechaFin: new Date("2026-02-23") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-02-28"), fechaFin: new Date("2026-02-28") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-05"), fechaFin: new Date("2026-03-05") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-03-15") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...lasGrutasPackage);
@@ -3882,7 +3416,6 @@ Agregar 3.5% de gastos administrativos.
       activa: true,
       orden: 35,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Entradas a parques y atractivos no indicados
 • Navegación Saltos de Mocona (opcional)
 • Adicionales de butaca (Cama/Panorámica/Cafetera)
@@ -3905,10 +3438,7 @@ Agregar 3.5% de gastos administrativos.
 • Traslado a Ruinas de San Ignacio y Minas de Wanda (sin entradas)  
 • Traslado al Soberbio para Saltos de Moconá (navegación no incluida, sujeto a clima)
 
-### Salida y tarifas (MAP)
 **20 Abril 2026 – 4 noches**  
-• **DBL:** Neto $670.495 | IVA $110.154 | Total $780.649  
-• **SLG:** Neto $952.999 | IVA $169.480 | Total $1.122.479  
 
 ### Adicionales
 • Butaca CAMA: $95.000  
@@ -3921,7 +3451,6 @@ Agregar 3.5% de gastos administrativos.
 
 ### Notas
 🛎️ Habitación a compartir GARANTIZADA  
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Habitaciones garantizadas a compartir pueden ser dobles o triples.  
 
 ### Itinerario
@@ -3944,12 +3473,6 @@ Habitaciones garantizadas a compartir pueden ser dobles o triples.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 780649, moneda: "ARS", fechaInicio: new Date("2026-04-20"), fechaFin: new Date("2026-04-20") },
-          { precio: 1122479, moneda: "ARS", fechaInicio: new Date("2026-04-20"), fechaFin: new Date("2026-04-20") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...maravillasLitoralPackage);
@@ -3966,8 +3489,6 @@ Habitaciones garantizadas a compartir pueden ser dobles o triples.
       activa: true,
       orden: 36,
       noIncluye: `
-• Gastos administrativos (3.5%)
-• Recargos de butaca (Cama/Panorámica/Cafetera)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -3988,13 +3509,10 @@ Habitaciones garantizadas a compartir pueden ser dobles o triples.
 • Playzone en Puerto Madryn  
 • Servicio de playa (1 sombrilla por habitación para toda la estadía)  
 
-### Salidas y tarifas
 **24 Enero 2026 (3 noches)**  
-• DBL / TPL: Neto $398.178 | IVA $50.822 | Final $449.000  
 • FAMILY PLAN 1 (2 adultos + 1 menor 3-10 años, hab triple): $545.900  
 
 **01 Abril 2026 (3 noches)**  
-• DBL / TPL: Neto $398.178 | IVA $50.822 | Final $449.000  
 • FAMILY PLAN 1 (2 adultos + 1 menor 3-10 años, hab triple): $545.900  
 
 ### Media pensión opcional (salidas de enero)
@@ -4003,17 +3521,12 @@ Habitaciones garantizadas a compartir pueden ser dobles o triples.
 
 ### Adicionales
 • Menor 0 a 2 años (asistencia médica obligatoria): $280.000  
-• Recargo Butaca Cama: $45.000  
-• Recargo Butaca Panorámica: $45.000  
-• Recargo Butaca Cafetera: $35.000  
 
 ### Ruta
 Paraná – Santa Fe – Rosario – Villa María – Río Cuarto e intermedios
 
 ### Notas
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Habitaciones garantizadas a compartir pueden ser dobles o triples.  
-Agregar 3.5% de gastos administrativos.
 
 ### Itinerario
 **Día 1 — Día de salida:** Comienza la experiencia.  
@@ -4035,12 +3548,6 @@ Agregar 3.5% de gastos administrativos.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 449000, moneda: "ARS", fechaInicio: new Date("2026-01-24"), fechaFin: new Date("2026-01-24") },
-          { precio: 449000, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...puertoMadrynPackage);
@@ -4057,8 +3564,6 @@ Agregar 3.5% de gastos administrativos.
       activa: true,
       orden: 37,
       noIncluye: `
-• Gastos administrativos (3.5%)
-• Recargos de butaca (Cama/Panorámica/Cafetera/Semi-Cama)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -4079,23 +3584,12 @@ Agregar 3.5% de gastos administrativos.
 • Salinas Grandes, Purmamarca y Quebrada de Humahuaca (2 días)  
 🛎️ Habitación a compartir GARANTIZADA
 
-### Salidas y tarifas (MAP - DBL/TPL)
-**01 Febrero:** Neto $630.766 | IVA $48.734 | Tarifa $679.500  
-**01 Marzo:** Neto $630.766 | IVA $48.734 | Tarifa $679.500  
-**11 Abril:** Neto $649.832 | IVA $50.068 | Tarifa $699.900  
-**25 Abril:** Neto $649.832 | IVA $50.068 | Tarifa $699.900  
-**23 Mayo:** Neto $649.832 | IVA $50.068 | Tarifa $699.900  
-
 ### Adicionales
-• Recargo Butaca Cama: $45.000  
-• Recargo Butaca Panorámica: $45.000  
-• Recargo Butaca Cafetera: $40.000  
 • Solo Butaca Semi-Cama: $200.000  
 • Menor 0 a 2 años sin butaca + asistencia médica: $15.000  
 
 ### Embarque y notas
 Consultar ruta, embarque desde Córdoba y valor del traslado.  
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Habitaciones garantizadas a compartir pueden ser dobles o triples.  
 
 ### Itinerario (resumen)
@@ -4128,15 +3622,6 @@ Habitaciones garantizadas a compartir pueden ser dobles o triples.
           { tipo: "Itinerario-8", descripcion: "Día 8: Tilcara / Tucumán / Noche a bordo" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 679500, moneda: "ARS", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
-          { precio: 679500, moneda: "ARS", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-01") },
-          { precio: 699900, moneda: "ARS", fechaInicio: new Date("2026-04-11"), fechaFin: new Date("2026-04-11") },
-          { precio: 699900, moneda: "ARS", fechaInicio: new Date("2026-04-25"), fechaFin: new Date("2026-04-25") },
-          { precio: 699900, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...visitandoNortePackage);
@@ -4153,7 +3638,6 @@ Habitaciones garantizadas a compartir pueden ser dobles o triples.
       activa: true,
       orden: 38,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -4172,21 +3656,8 @@ Habitaciones garantizadas a compartir pueden ser dobles o triples.
 🛎️ Habitación a compartir GARANTIZADA  
 🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
 
-### Salidas y tarifas (DBL / TPL / CPL)
-**14 Febrero (03 nts BRC + 02 nts VLA):** Neto $721.850 | IVA $65.895 | Imp. Aéreo $83.085 | Total $870.829  
-**13 Marzo (03 nts BRC + 03 nts VLA):** Neto $677.696 | IVA $54.913 | Imp. Aéreo $80.820 | Total $813.429  
-**31 Marzo (03 nts BRC + 02 nts VLA):** Neto $721.850 | IVA $65.895 | Imp. Aéreo $113.085 | Total $900.829  
-**19 Abril (AR Carry):** Neto $580.867 | IVA $52.762 | Imp. Aéreo $66.240 | Total $699.869  
-**23 Mayo (FO 12kg) / 24 Mayo (Carry):** Neto $560.357 | IVA $52.762 | Imp. Aéreo $65.400 | Total $678.519  
-**13 y 18 Junio (FO 12kg):** Neto $577.529 | IVA $56.100 | Imp. Aéreo $66.240 | Total $699.869  
-
-### Tarifas Single (SLG)
 Consultar valores por fecha (ver tabla completa).  
 
-### Tarifa CHD (todas las fechas)
-Total $423.709 (Neto $336.717 + IVA $21.537 + Imp. Aéreo $65.455)
-
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
 ### Itinerario
@@ -4210,18 +3681,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 870829, moneda: "ARS", fechaInicio: new Date("2026-02-14"), fechaFin: new Date("2026-02-14") },
-          { precio: 813429, moneda: "ARS", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-13") },
-          { precio: 900829, moneda: "ARS", fechaInicio: new Date("2026-03-31"), fechaFin: new Date("2026-03-31") },
-          { precio: 699869, moneda: "ARS", fechaInicio: new Date("2026-04-19"), fechaFin: new Date("2026-04-19") },
-          { precio: 678519, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") },
-          { precio: 678519, moneda: "ARS", fechaInicio: new Date("2026-05-24"), fechaFin: new Date("2026-05-24") },
-          { precio: 699869, moneda: "ARS", fechaInicio: new Date("2026-06-13"), fechaFin: new Date("2026-06-13") },
-          { precio: 699869, moneda: "ARS", fechaInicio: new Date("2026-06-18"), fechaFin: new Date("2026-06-18") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...barilocheVlaPackage);
@@ -4238,7 +3697,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 39,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -4257,20 +3715,12 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 ### Coordinador SAVI
 SAVI (Servicio de Asistencia al Viajero) brinda acompañamiento integral antes, durante y después del viaje.  
 
-### Salidas y tarifas
 **02 Abril (3 noches):**  
-• DBL / TPL: Neto $384.879 | IVA $47.390 | Imp. Aéreo $66.830 | Total $499.099  
-• SLG: Neto $540.006 | IVA $79.698 | Imp. Aéreo $74.525 | Total $694.229  
-• CHD: Neto $231.031 | IVA $15.083 | Imp. Aéreo $59.185 | Total $305.299  
 
 **23 Mayo (2 noches):**  
-• DBL / TPL: Neto $328.106 | IVA $36.338 | Imp. Aéreo $64.045 | Total $428.489  
-• SLG: Neto $430.672 | IVA $57.877 | Imp. Aéreo $69.140 | Total $557.689  
-• CHD: Neto $231.031 | IVA $15.083 | Imp. Aéreo $59.185 | Total $305.299  
 
 🛎️ Habitación a compartir GARANTIZADA  
 🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
 ### Itinerario
@@ -4294,13 +3744,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-05-31") },
-          { precio: 499099, moneda: "ARS", fechaInicio: new Date("2026-04-02"), fechaFin: new Date("2026-04-05") },
-          { precio: 428489, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-25") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...buenosAiresPackage);
@@ -4317,7 +3760,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 40,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Ingresos a sitios no indicados
 • Excursiones opcionales (Monte Zeballos, Ea La Ascensión)
       `.trim(),
@@ -4336,17 +3778,8 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 🛎️ Habitación a compartir GARANTIZADA  
 🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
 
-### Salidas y tarifas (DBL / TPL)
-**21 Marzo (5 noches):** Neto $1.205.592 | IVA $144.357 | Imp. Aéreo $119.650 | Total $1.469.599  
-**01 Abril (4 noches):** Neto $1.160.194 | IVA $135.520 | Imp. Aéreo $157.425 | Total $1.453.139  
-
-### Tarifas Single (SLG)
 Consultar valores por fecha (ver tabla completa).  
 
-### Tarifa CHD (todas las fechas)
-Total $1.161.099 (Neto $946.749 + IVA $97.255 + Imp. Aéreo $117.095)
-
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
 ### Itinerario (resumen)
@@ -4375,12 +3808,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-6", descripcion: "Día 6: Regreso a Córdoba" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 1469599, moneda: "ARS", fechaInicio: new Date("2026-03-21"), fechaFin: new Date("2026-03-21") },
-          { precio: 1453139, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...peritoMorenoPackage);
@@ -4397,7 +3824,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 41,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
 • Ingresos a parques (si corresponde)
       `.trim(),
@@ -4417,13 +3843,8 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 🛎️ Habitación a compartir GARANTIZADA  
 🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
 
-### Salida y tarifas (USD)
 **13 Marzo (referencial):**  
-• DBL / TPL: Neto USD 774 | IVA USD 55 | Imp. Aéreo USD 60 | Total USD 889  
-• SLG: Neto USD 1,084 | IVA USD 95 | Imp. Aéreo USD 80 | Total USD 1,259  
-• CHD: Neto USD 464 | IVA USD 15 | Imp. Aéreo USD 50 | Total USD 529  
 
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
 ### Itinerario
@@ -4454,11 +3875,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-7", descripcion: "Día 7: Regreso a Córdoba" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 889, moneda: "USD", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-13") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...cruceLagosPackage);
@@ -4475,7 +3891,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 42,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -4485,23 +3900,16 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 **Duración:** 04 días / 03 noches – 05 días / 04 noches  
 **Transporte:** Aéreos desde COR (FO o AR)  
 **Equipaje:** FO 12kg / AR Carry  
-**Hotel:** Ver cuadro tarifario  
 **Régimen:** SLA (Media Pensión) + Tilcara (Desayuno) + Glamping Pueblo Viejo (Pensión completa)  
 **Excursiones:** Según programa e Iruya + caminata guiada al pueblo ancestral  
 **Asistencia Médica:** Universal Assistance 2M  
 **Coordinador:** SAVI  
 
 🛎️ Habitación a compartir GARANTIZADA  
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
-### Salidas y tarifas
 **24 Abril / 23 Mayo / 13 y 18 Junio**  
 03 noches SLA – Cadena Apart Carlos (MAP) + 01 noche Tilcara (DES) + 01 noche Pueblo Viejo (Pensión completa)  
-• DBL: Neto $811.151 | IVA $57.638 | Imp. Aéreo $92.850 | Total $961.639  
-• TPL: Neto $759.861 | IVA $57.638 | Imp. Aéreo $90.750 | Total $908.249  
-• CPL: Neto $721.401 | IVA $57.638 | Imp. Aéreo $89.170 | Total $868.209  
-• SLG: Neto $1.335.730 | IVA $84.339 | Imp. Aéreo $114.390 | Total $1.534.459  
 
 ### Itinerario
 **Día 1 — Día de salida:** Comienza la experiencia.  
@@ -4524,14 +3932,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 961639, moneda: "ARS", fechaInicio: new Date("2026-04-24"), fechaFin: new Date("2026-04-24") },
-          { precio: 908249, moneda: "ARS", fechaInicio: new Date("2026-05-23"), fechaFin: new Date("2026-05-23") },
-          { precio: 961639, moneda: "ARS", fechaInicio: new Date("2026-06-13"), fechaFin: new Date("2026-06-13") },
-          { precio: 961639, moneda: "ARS", fechaInicio: new Date("2026-06-18"), fechaFin: new Date("2026-06-18") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...glampingNubesPackage);
@@ -4548,7 +3948,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 43,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -4566,18 +3965,10 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 🛎️ Habitación a compartir GARANTIZADA  
 🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
 
-### Salidas y tarifas
 **01 Abril (NQN El Cortijo / CAV Nieve del Cerro)**  
-• DBL / TPL: Neto $809.867 | IVA $47.557 | Imp. Aéreo $96.255 | Total $953.679,32  
-• SLG: Neto $1.187.590 | IVA $51.978 | Imp. Aéreo $111.340 | Total $1.350.908,51  
-• CHD: Neto $432.143 | IVA $43.135 | Imp. Aéreo $81.170 | Total $556.448,80  
 
 **13 Febrero – 01 Abril (NQN El Cortijo / CAV Lago Caviahue)**  
-• DBL / TPL: Neto $847.952 | IVA $48.003 | Imp. Aéreo $97.775 | Total $993.729,23  
-• SLG: Neto $1.263.749 | IVA $52.870 | Imp. Aéreo $114.380 | Total $1.430.998,99  
-• CHD: Neto $432.143 | IVA $43.135 | Imp. Aéreo $81.170 | Total $556.448,80  
 
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
 ### Itinerario
@@ -4600,12 +3991,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 953679.32, moneda: "ARS", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-01") },
-          { precio: 993729.23, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-04-01") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...neuquenCaviahuePackage);
@@ -4622,7 +4007,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 44,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Entradas a parques y atractivos no indicados
       `.trim(),
       condiciones: `
@@ -4632,7 +4016,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 **Duración:** 07 días / 06 noches – 08 días / 7 noches  
 **Transporte:** Aéreos desde Córdoba (Aerolíneas Argentinas)  
 **Equipaje:** Carry on (13 Mar 15kg)  
-**Hotel:** Ver cuadro tarifario  
 **Régimen:** Desayuno  
 **Excursiones:** Traslados in/out + PN Tierra del Fuego + PN Los Glaciares (sin entradas)  
 **Asistencia Médica:** Universal Assistance Nacional – Cobertura 2M  
@@ -4640,10 +4023,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 
 🛎️ Habitación a compartir GARANTIZADA  
 🚗 Cupos aéreos incluyen estadía en cochera (sujeto a disponibilidad, hasta vehículos medianos).  
-
-### Salidas y tarifas (DBL/TPL/SLG)
-**09 Enero:** Consultar tarifas  
-**16 Enero:** Consultar tarifas  
 
 **09 Febrero (03N FTE Glaciares + 04N USH Monaco):**  
 • DBL $1.499.109 | SLG $2.094.349  
@@ -4656,7 +4035,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 
 **CHD todas las fechas:** $822.189  
 
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
 ### Itinerario
@@ -4680,15 +4058,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-09"), fechaFin: new Date("2026-01-09") },
-          { precio: 0, moneda: "ARS", fechaInicio: new Date("2026-01-16"), fechaFin: new Date("2026-01-16") },
-          { precio: 1499109, moneda: "ARS", fechaInicio: new Date("2026-02-09"), fechaFin: new Date("2026-02-09") },
-          { precio: 1414089, moneda: "ARS", fechaInicio: new Date("2026-02-13"), fechaFin: new Date("2026-02-13") },
-          { precio: 1330629, moneda: "ARS", fechaInicio: new Date("2026-03-20"), fechaFin: new Date("2026-03-20") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...descubriendoSurPackage);
@@ -4705,7 +4074,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 45,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Entradas no incluidas (Saltos de Petrohué y Lago Todos Los Santos)
 • Servicios no detallados en el programa
       `.trim(),
@@ -4720,14 +4088,8 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 **Servicios:** Asistencia médica incluida, coordinación permanente  
 **Excursiones:** Viña del Mar–Reñaca–Valparaíso, City Tour Santiago, Pucón, Frutillar, Saltos de Petrohué y Lago Todos Los Santos (sin entrada), City Tour Puerto Montt, Camino de los 7 Lagos  
 
-### Salidas y tarifas (USD)
-**11 Enero (CAMA):** USD 949  
-**22 Febrero (MIX):** USD 899  
-**15 Marzo – 11 Abril:** USD 869  
-
 Ruta: Paraná – Santo Tomé – Santa Fé – Arocena – Coronda – San Lorenzo – Rosario – Carcarañá – Cañada de Gómez – Armstrong (e intermedios)  
 
-Tarifas por persona sujetas a modificación y disponibilidad.  
 Las habitaciones garantizadas a compartir podrán ser dobles o triples.  
 
 ### Itinerario
@@ -4749,13 +4111,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
           { tipo: "Itinerario-3", descripcion: "Día de regreso — Fin del viaje" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 949, moneda: "USD", fechaInicio: new Date("2026-01-11"), fechaFin: new Date("2026-01-11") },
-          { precio: 899, moneda: "USD", fechaInicio: new Date("2026-02-22"), fechaFin: new Date("2026-02-22") },
-          { precio: 869, moneda: "USD", fechaInicio: new Date("2026-03-15"), fechaFin: new Date("2026-04-11") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...descubriendoChilePackage);
@@ -4772,7 +4127,6 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
       activa: true,
       orden: 46,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -4786,16 +4140,8 @@ Las habitaciones garantizadas a compartir podrán ser dobles o triples.
 **Régimen:** Según programa  
 **Excursiones:** Según programa  
 **Asistencia Médica:** Master Plus Cobertura 40k  
-• 71-85 años: USD 40 neto + GA  
-• +86 años: USD 80 neto + GA  
 
-### Salida y tarifas
 **02 Junio 2026**  
-• DBL / TPL: Neto USD 2,719 | Imp. USD 450 | Tarifa USD 3,169  
-• SLG: Neto USD 3,608 | Imp. USD 460 | Tarifa USD 4,068  
-
-Tarifas por persona sujetas a modificación y disponibilidad.  
-Agregar 3.5% de gastos administrativos.  
 
 ### Itinerario
 **Día 1 — Día de salida:** Comienza la experiencia.  
@@ -4814,11 +4160,6 @@ Agregar 3.5% de gastos administrativos.
           { tipo: "Detalle-Salidas", descripcion: "02 Junio 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 3169, moneda: "USD", fechaInicio: new Date("2026-06-02"), fechaFin: new Date("2026-06-09") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...costaRicaMaximoPackage);
@@ -4835,8 +4176,6 @@ Agregar 3.5% de gastos administrativos.
       activa: true,
       orden: 47,
       noIncluye: `
-• Tasa de servicio obligatoria: 75 EUR por pasajero (pago en destino)
-• Impuestos hoteleros en Europa (pago en destino)
 • Excursiones opcionales y traslados no indicados
 • Gastos personales y bebidas
       `.trim(),
@@ -4851,13 +4190,8 @@ Agregar 3.5% de gastos administrativos.
 **Incluye:** Traslados con asistencia en inglés, entradas y visitas según programa, guía de habla hispana  
 **Asistencia Médica:** Assist Card 100k  
 
-### Salida y tarifas
 **16 Junio 2026**  
-• DBL: Neto USD 3,488 | IVA USD 58 | Imp. Aéreos USD 1,261 | Tarifa USD 4,807  
-• SLG: Neto USD 4,210 | IVA USD 55 | Imp. Aéreos USD 1,261 | Tarifa USD 5,526  
 
-Sólo pago en dólar billete.  
-Seña 30% guarda lugar – Refuerzo 60 días antes de la salida: 80% – Pago total 30 días antes: 100%.  
 Paquete promocional: sin cambios ni devoluciones.  
 
 ### Itinerario
@@ -4878,11 +4212,6 @@ Paquete promocional: sin cambios ni devoluciones.
           { tipo: "Detalle-Salidas", descripcion: "16 Junio 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 4807, moneda: "USD", fechaInicio: new Date("2026-06-16"), fechaFin: new Date("2026-06-30") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...esenciasCentroeuropeasPackage);
@@ -4899,9 +4228,6 @@ Paquete promocional: sin cambios ni devoluciones.
       activa: true,
       orden: 48,
       noIncluye: `
-• Gastos administrativos (3.5%)
-• Tasas de servicio obligatoria: 75 EUR por pasajero (pago en destino)
-• Impuestos hoteleros en Europa (pago en destino)
 • Excursiones opcionales y traslados no indicados
 • Bebidas y gastos personales
       `.trim(),
@@ -4920,18 +4246,11 @@ Paquete promocional: sin cambios ni devoluciones.
 • Salida 19 de septiembre: incluida  
 
 Value 80k  
-Adicional 71–85 años: USD 190  
-Adicional +86 años: USD 250  
 
-### Salidas y tarifas (USD)
 **16 Mayo 2026**  
-• DBL/TPL: Neto USD 3.919 | Imp. USD 1.020 | Tarifa USD 4.939  
 
 **19 Septiembre 2026**  
-• DBL/TPL: Neto USD 4.099 | Imp. USD 900 | Tarifa USD 4.999  
-• SLG: Neto USD 5.287 | Imp. USD 1.170 | Tarifa USD 6.459  
 
-Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
 Paquete promocional: sin cambios ni devoluciones.  
 
 ### Itinerario
@@ -4952,13 +4271,6 @@ Paquete promocional: sin cambios ni devoluciones.
           { tipo: "Detalle-Salidas", descripcion: "16 Mayo 2026 y 19 Septiembre 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 4939, moneda: "USD", fechaInicio: new Date("2026-05-16"), fechaFin: new Date("2026-06-04") },
-          { precio: 4999, moneda: "USD", fechaInicio: new Date("2026-09-19"), fechaFin: new Date("2026-10-08") },
-          { precio: 6459, moneda: "USD", fechaInicio: new Date("2026-09-19"), fechaFin: new Date("2026-10-08") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...europaMaximoPackage);
@@ -4975,8 +4287,6 @@ Paquete promocional: sin cambios ni devoluciones.
       activa: true,
       orden: 49,
       noIncluye: `
-• Tarifa de servicio local: EUR 65 por persona (pago en destino)
-• Impuestos hoteleros (pago en destino)
 • Excursiones opcionales y traslados no indicados
 • Gastos personales, bebidas, almuerzos y cenas
       `.trim(),
@@ -4990,13 +4300,8 @@ Paquete promocional: sin cambios ni devoluciones.
 **Incluye:** Traslados con asistencia, excursiones según itinerario, guía en español  
 **Asistencia Médica:** Assist Card 100k  
 
-### Salida y tarifas
 **13 Agosto 2026**  
-• DBL: Neto USD 3,289 | Imp. USD 1,100 | Tarifa USD 4,389  
-• SLG: Neto USD 4,049 | Imp. USD 1,100 | Tarifa USD 5,149  
 
-Sólo pago en dólar billete.  
-Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
 Paquete promocional: sin cambios ni devoluciones.  
       `.trim(),
       destinos: { create: [] },
@@ -5012,12 +4317,6 @@ Paquete promocional: sin cambios ni devoluciones.
           { tipo: "Detalle-Salidas", descripcion: "13 Agosto 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 4389, moneda: "USD", fechaInicio: new Date("2026-08-13"), fechaFin: new Date("2026-08-28") },
-          { precio: 5149, moneda: "USD", fechaInicio: new Date("2026-08-13"), fechaFin: new Date("2026-08-28") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...joyasBalcanicasPackage);
@@ -5034,8 +4333,6 @@ Paquete promocional: sin cambios ni devoluciones.
       activa: true,
       orden: 50,
       noIncluye: `
-• Tarifa local de servicio en Turquía: USD 55 por persona (pago en destino)
-• Tarifas de servicio de crucero y tasas de desembarque en Grecia
 • Excursiones opcionales, gastos personales y bebidas
 • Traslados no indicados o en días diferentes
       `.trim(),
@@ -5049,13 +4346,8 @@ Paquete promocional: sin cambios ni devoluciones.
 **Incluye:** Pasaje aéreo, 12 noches según régimen, traslados con asistencia, visitas según programa  
 **Asistencia Médica:** Assist Card 100k  
 
-### Salida y tarifas
 **11 Junio 2026**  
-• Doble: Neto USD 2,535 | IVA USD 58 | Imp. USD 1,206 | Tarifa USD 3,799  
-• Single: Neto USD 3,068 | IVA USD 55 | Imp. USD 1,206 | Tarifa USD 4,329  
 
-Sólo pago en dólar billete.  
-Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
 Paquete promocional: sin cambios ni devoluciones.  
       `.trim(),
       destinos: { create: [] },
@@ -5070,12 +4362,6 @@ Paquete promocional: sin cambios ni devoluciones.
           { tipo: "Detalle-Salidas", descripcion: "11 Junio 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 3799, moneda: "USD", fechaInicio: new Date("2026-06-11"), fechaFin: new Date("2026-06-23") },
-          { precio: 4329, moneda: "USD", fechaInicio: new Date("2026-06-11"), fechaFin: new Date("2026-06-23") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...turquiaIslasGriegasPackage);
@@ -5092,8 +4378,6 @@ Paquete promocional: sin cambios ni devoluciones.
       activa: true,
       orden: 51,
       noIncluye: `
-• Tarifas de servicios obligatorias: Turquía USD 55 + Dubái USD 35 (pago en destino)
-• Impuesto Turismo Dírham (pago en hotel)
 • Excursiones opcionales, gastos personales y bebidas
 • Traslados no indicados o en días diferentes
       `.trim(),
@@ -5107,13 +4391,8 @@ Paquete promocional: sin cambios ni devoluciones.
 **Incluye:** Pasaje aéreo, 14 noches según régimen, traslados con asistencia, excursiones según programa  
 **Asistencia Médica:** Assist Card 100k  
 
-### Salida y tarifas
 **17 Abril 2026** (salida a requerir, disponible hasta 01 Marzo 2026)  
-• Doble: Neto USD 2,056 | IVA USD 45 | Imp. USD 1,199 | Tarifa USD 3,300  
-• Single: Neto USD 2,546 | IVA USD 55 | Imp. USD 1,199 | Tarifa USD 3,800  
 
-Sólo pago en dólar billete.  
-Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
 Paquete promocional: sin cambios ni devoluciones.  
       `.trim(),
       destinos: { create: [] },
@@ -5128,12 +4407,6 @@ Paquete promocional: sin cambios ni devoluciones.
           { tipo: "Detalle-Salidas", descripcion: "17 Abril 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 3300, moneda: "USD", fechaInicio: new Date("2026-04-17"), fechaFin: new Date("2026-05-01") },
-          { precio: 3800, moneda: "USD", fechaInicio: new Date("2026-04-17"), fechaFin: new Date("2026-05-01") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...turquiaDubaiPackage);
@@ -5150,9 +4423,6 @@ Paquete promocional: sin cambios ni devoluciones.
       activa: true,
       orden: 52,
       noIncluye: `
-• Tarifas de servicios obligatorias: Turquía USD 55 + Dubái USD 35 + Crucero 5€ por día
-• Impuesto Turismo Dírham (pago en hotel)
-• Impuestos de desembarque en puertos griegos
 • Excursiones opcionales, gastos personales y bebidas
       `.trim(),
       condiciones: `
@@ -5165,17 +4435,10 @@ Paquete promocional: sin cambios ni devoluciones.
 **Incluye:** Pasaje aéreo, 17 noches según régimen, traslados con asistencia, visitas según programa  
 **Asistencia Médica:** Assist Card 100k  
 
-### Salidas y tarifas
 **04 Mayo 2026**  
-• Doble: Neto USD 2,993 | IVA USD 45 | Imp. USD 1,252 | Tarifa USD 4,290  
-• Single: Neto USD 3,833 | IVA USD 55 | Imp. USD 1,252 | Tarifa USD 5,140  
 
 **13 Julio 2026**  
-• Doble: Neto USD 2,993 | IVA USD 45 | Imp. USD 1,252 | Tarifa USD 4,290  
-• Single: Neto USD 3,833 | IVA USD 55 | Imp. USD 1,252 | Tarifa USD 5,140  
 
-Sólo pago en dólar billete.  
-Seña 30% guarda lugar – Refuerzo 60 días antes: 80% – Pago total 30 días antes: 100%.  
 Paquete promocional: sin cambios ni devoluciones.  
       `.trim(),
       destinos: { create: [] },
@@ -5190,14 +4453,6 @@ Paquete promocional: sin cambios ni devoluciones.
           { tipo: "Detalle-Salidas", descripcion: "04 Mayo 2026 y 13 Julio 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 4290, moneda: "USD", fechaInicio: new Date("2026-05-04"), fechaFin: new Date("2026-05-21") },
-          { precio: 5140, moneda: "USD", fechaInicio: new Date("2026-05-04"), fechaFin: new Date("2026-05-21") },
-          { precio: 4290, moneda: "USD", fechaInicio: new Date("2026-07-13"), fechaFin: new Date("2026-07-30") },
-          { precio: 5140, moneda: "USD", fechaInicio: new Date("2026-07-13"), fechaFin: new Date("2026-07-30") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...turquiaIslasDubaiPackage);
@@ -5214,7 +4469,6 @@ Paquete promocional: sin cambios ni devoluciones.
       activa: true,
       orden: 28,
       noIncluye: `
-• Gastos administrativos (3.5%)
 • Servicios no detallados en el programa
       `.trim(),
       condiciones: `
@@ -5223,20 +4477,14 @@ ARGENTINA vs ESPAÑA
 
 ### Programa con aéreo (charter argentino)
 Incluye ✈️ Vuelo charter • 🏨 Alojamiento 5★ • 🎟️ Entrada categoría 1 • 🚌 Traslados IN/OUT y hotel–estadio–hotel • 🌙 4 noches en Qatar  
-**Turista:** Neto USD 4.949 | Imp/IVA USD 550 | Tarifa USD 5.499  
-**Business:** Neto USD 10.019 | Imp/IVA USD 1.120 | Tarifa USD 11.139  
-**Suplemento SLG:** USD 679  
 
 ### Programa sin aéreo
 Incluye 🏨 Alojamiento 5★ con desayuno • 🎟️ Entrada categoría 1 • 🚌 Traslados hotel–estadio–hotel • 🌙 3 noches en Qatar  
-**Sin aéreo:** Neto USD 2.015 | Imp/IVA USD 224 | Tarifa USD 2.239  
 
 ### Aéreo desde Madrid
 Incluye ✈️ Aéreo desde MAD (Qatar Airways) • 🏨 Alojamiento 5★ con desayuno • 🎟️ Entrada categoría 1 • 🚌 Traslados hotel–estadio–hotel • 🌙 3 noches en Qatar  
-**Desde MAD:** Neto USD 3.032 | Imp/IVA USD 337 | Tarifa USD 3.369  
 
 Estimativo de salida: 24 de marzo por la noche o 25 de marzo por la madrugada.  
-Tarifas por persona sujetas a modificación y disponibilidad.  
 
 ### Itinerario
 **Día 1 — Día de salida:** Comienza la experiencia.  
@@ -5254,11 +4502,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Detalle-Salidas", descripcion: "Marzo 2026 (24-25 estimativo)" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 2239, moneda: "USD", fechaInicio: new Date("2026-03-24"), fechaFin: new Date("2026-03-28") }
-        ]
-      }
     },
     {
       titulo: "Porto de Galinhas - Vuelo Regular 2026",
@@ -5303,14 +4546,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "De mano hasta 10kg" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-03-31"), fechaFin: new Date("2026-03-31") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-04-11"), fechaFin: new Date("2026-04-11") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-04-18"), fechaFin: new Date("2026-04-18") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-10") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...regularPackages);
@@ -5367,11 +4602,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Equipaje", descripcion: "Bodega 23kg + Carry On 10kg + Mochila" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-01-01"), fechaFin: new Date("2026-12-31") }
-        ]
-      }
     },
     {
       titulo: "Colombia con Aromas de Café 2026",
@@ -5385,7 +4615,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
       orden: 31,
       noIncluye: `
 • Extras no especificados
-• Entradas en San Andrés (aprox 30 USD si desea traslado)
       `.trim(),
       condiciones: `
 ## Colombia con Aromas de Café - Salida Grupal
@@ -5423,7 +4652,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
 • **Día 8-11:** San Andrés (Playa y descanso)
 
 ### Adicionales Traslados (Opcional)
-*Precios por persona*
 • **Santa Fe:** U$D 87
 • **Sunchales, Rafaela, Esperanza:** U$D 67
 • **San Francisco:** U$D 57
@@ -5449,12 +4677,6 @@ Tarifas por persona sujetas a modificación y disponibilidad.
           { tipo: "Itinerario-8", descripcion: "Día 8-11: San Andrés (Playa y relax)" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-21") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-08"), fechaFin: new Date("2026-07-19") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...colombiaPackages);
@@ -5534,11 +4756,6 @@ Salida grupal acompañada por un coordinador desde el inicio del itinerario. Si 
           { tipo: "Itinerario-8", descripcion: "Día 12: Playa del Carmen - Córdoba" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-08-05"), fechaFin: new Date("2026-08-17") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...mexicoPackages);
@@ -5597,14 +4814,6 @@ Salida grupal acompañada por un coordinador desde el inicio del itinerario. Si 
           { tipo: "Fechas", descripcion: "04 y 18 Enero, 01 y 15 Febrero 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-01-04"), fechaFin: new Date("2026-01-04") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-01-18"), fechaFin: new Date("2026-01-18") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-01"), fechaFin: new Date("2026-02-01") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-02-15"), fechaFin: new Date("2026-02-15") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...cubaPackages);
@@ -5653,9 +4862,6 @@ Salida grupal acompañada por un coordinador desde el inicio del itinerario. Si 
 • **Cusco:** 1 Noche
 • **Puno:** 2 Noches
 
-*\* Nota Rosario 21 Junio: 1 noche Lima al inicio + 1 noche Lima al final (2 total)*
-*\*\* Nota Rosario 8 Julio: 1 noche adicional Lima al final (3 total en Lima)*
-
 ### Equipaje Incluido
 • **Artículo personal:** (45x35x20cm, máx 3kg) debajo del asiento.
 • **Equipaje de mano (Carry on):** (55x35x25cm, máx 10kg).
@@ -5694,15 +4900,6 @@ Salida grupal acompañada por un coordinador desde el inicio del itinerario. Si 
           { tipo: "Itinerario-9", descripcion: "Día 9: Lago Titicaca" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-04-09"), fechaFin: new Date("2026-04-19") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-10"), fechaFin: new Date("2026-05-20") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-06-20"), fechaFin: new Date("2026-06-30") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-04"), fechaFin: new Date("2026-07-14") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-08"), fechaFin: new Date("2026-07-18") }
-        ]
-      }
     },
     {
       titulo: "Perú y Bolivia 2026",
@@ -5761,7 +4958,7 @@ Salida grupal acompañada por un coordinador desde el inicio del itinerario. Si 
 • **Villa Maria:** U$D 57
 
 ### Nota Importante: Ingreso a Machu Picchu
-Ingreso a Machu Picchu: solo se puede confirmar con los datos completos de los pasajeros y abonada la seña. Una vez emitidos podremos informar el horario de la visita y horarios. Considerar que una vez emitidos no están sujetos a cambios ni devoluciones.
+Ingreso a Machu Picchu: solo se puede confirmar con los datos completos de los pasajeros y reserva confirmada. Una vez emitidos podremos informar el horario de la visita y horarios. Considerar que una vez emitidos no están sujetos a cambios ni devoluciones.
 
 Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio de Cultura ha dispuesto reducir el número de visitantes diarios. Se recomienda realizar la compra inmediata de entradas. No habrá reembolsos ni modificaciones.
 
@@ -5813,13 +5010,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Itinerario-17", descripcion: "Día 17: Llegada a Córdoba" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-15"), fechaFin: new Date("2026-05-15") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-03"), fechaFin: new Date("2026-07-03") },
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-07-17"), fechaFin: new Date("2026-07-17") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...peruPackages);
@@ -5940,11 +5130,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Itinerario-24", descripcion: "Día 24: Regreso" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 0, moneda: "USD", fechaInicio: new Date("2026-05-07"), fechaFin: new Date("2026-05-07") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...europaPackages);
@@ -5974,13 +5159,11 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento por 7 noches en Aruba sin pensión, en base doble.
 🩺 Asistencia al viajero Assist Card AC150 FULL (hasta 74 años cumplidos).
 
-### Hotel y Tarifas
 **ORIGEN:** COR
 **DESTINO:** AUA (Aruba)
 **FECHA SALIDA:** MAYO
 **ALOJAMIENTO:** EAGLE ARUBA RESORT & CASINO 3★
 **CATEGORÍA Y REGIMEN:** PREMIUM S/COMIDAS
-**TARIFA POR PERSONA:** USD 1736 + Impuestos Aéreos USD 175,65
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -5994,11 +5177,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Mayo 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 1912, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") }
-        ]
-      }
     },
     {
       titulo: "Paquete a Bayahíbe desde Córdoba",
@@ -6023,23 +5201,12 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento en Bayahíbe con all inclusive.
 🩺 Asistencia al viajero Assist Card AC150 FULL.
 
-### Hoteles y Tarifas (Base Doble)
 **17/04/2026**
-• **SUNSCAPE DOMINICUS LA ROMANA 5★ (Superior Tropical View):** USD 2115 + Imp. 244
-• **CATALONIA BAYAHIBE 4★ (Comfort):** USD 2482 + Imp. 244
-• **IBEROSTAR SELECTION HACIENDA DOMINICUS 5★ (Premium):** USD 2942 + Imp. 244
 
 **01/05/2026**
-• **SUNSCAPE DOMINICUS LA ROMANA 5★ (Superior Tropical View):** USD 1606 + Imp. 244
-• **CATALONIA BAYAHIBE 4★ (Deluxe Privilege):** USD 2590 + Imp. 244
-• **IBEROSTAR SELECTION HACIENDA DOMINICUS 5★ (Premium):** USD 2698 + Imp. 244
 
 **12/06/2026**
-• **SUNSCAPE DOMINICUS LA ROMANA 5★ (Deluxe Tropical View):** USD 1476 + Imp. 244
-• **VIVA DOMINICUS BEACH BY WYNDHAM 4★ (Superior):** USD 1987 + Imp. 244
-• **IBEROSTAR SELECTION HACIENDA DOMINICUS 5★ (Premium):** USD 2188 + Imp. 244
 
-- Tarifas en USD por persona.
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6051,13 +5218,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Abril, Mayo y Junio 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 2359, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") },
-          { precio: 1850, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") },
-          { precio: 1720, moneda: "USD", fechaInicio: new Date("2026-06-01"), fechaFin: new Date("2026-06-30") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...newCaribbeanPackages);
@@ -6087,20 +5247,14 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento en Cancún con régimen según se indica.
 🩺 Asistencia al viajero Assist Card AC150 FULL.
 
-### Hotel y Tarifas (13/03/2026)
 **ALOFT CANCÚN 4★ (Aloft, Desayuno)**
-• DBL: USD 1592 | TPL: USD 1560 | CPL: USD 1545 | Imp: USD 221
 
 **FLAMINGO CANCÚN RESORT 4★ (Standard, All Inclusive)**
-• DBL: USD 1885 | TPL: USD 1848 | Imp: USD 221
 
 **OCCIDENTAL COSTA CANCÚN 4★ (Standard, All Inclusive)**
-• DBL: USD 1964 | TPL: USD 1924 | Imp: USD 221
 
 **HOTEL RIU PALACE PENINSULA 5★ (Junior Suite, All Inclusive)**
-• DBL: USD 2502 | TPL: USD 2452 | CPL: USD 2502 | Imp: USD 221
 
-- Tarifas en USD por persona.
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6112,11 +5266,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Marzo 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 1813, moneda: "USD", fechaInicio: new Date("2026-03-13"), fechaFin: new Date("2026-03-21") }
-        ]
-      }
     },
     {
       titulo: "Paquete a Costa Dorada desde Córdoba",
@@ -6141,13 +5290,11 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento por 7 noches en Costa Dorada con all inclusive, en base doble.
 🩺 Asistencia al viajero Assist Card AC150 FULL.
 
-### Hotel y Tarifas
 **ORIGEN:** COR
 **DESTINO:** POP (Puerto Plata)
 **FECHA SALIDA:** MAYO y JUNIO
 **ALOJAMIENTO:** IBEROSTAR WAVES COSTA DORADA 5★
 **CATEGORÍA Y REGIMEN:** PREMIUM C/ALL INCLUSIVE
-**TARIFA POR PERSONA:** USD 1325 + Impuestos Aéreos USD 279
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6160,12 +5307,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Mayo y Junio 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 1604, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") },
-          { precio: 1604, moneda: "USD", fechaInicio: new Date("2026-06-01"), fechaFin: new Date("2026-06-30") }
-        ]
-      }
     },
     {
       titulo: "Paquete a Curazao desde Córdoba",
@@ -6190,13 +5331,11 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento por 8 noches en Curazao con all inclusive, en base doble.
 🩺 Asistencia al viajero Assist Card AC150 FULL (hasta 74 años inclusive).
 
-### Hotel y Tarifas
 **ORIGEN:** COR
 **DESTINO:** CUR (Curazao)
 **FECHA SALIDA:** MAYO
 **ALOJAMIENTO:** SUNSCAPE CURACAO RESORT SPA & CASINO 4★
 **CATEGORÍA Y REGIMEN:** DELUXE GARDEN VIEW C/ALL INCLUSIVE
-**TARIFA POR PERSONA:** USD 2266 + Impuestos Aéreos USD 182
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6209,11 +5348,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Mayo 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 2448, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") }
-        ]
-      }
     },
     {
       titulo: "Paquete a Los Cabos & Panamá desde Córdoba",
@@ -6239,12 +5373,10 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 📌 Excursión en Panamá: City Tour y Canal de Panamá (4 horas) en servicio compartido.
 🩺 Asistencia al viajero Assist Card AC150 FULL (hasta 74 años inclusive).
 
-### Hoteles y Tarifas
 **MARZO y ABRIL**
 • **Los Cabos:** HOTEL RIU SANTA FE 5★ (Vista Jardin C/ All Inclusive)
 • **Panamá:** VICTORIA HOTEL & SUITES 4★ (Desayuno)
 
-**TARIFA POR PERSONA:** USD 1695 + Impuestos Aéreos USD 387
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6257,12 +5389,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Marzo y Abril 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 2082, moneda: "USD", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-31") },
-          { precio: 2082, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") }
-        ]
-      }
     },
     {
       titulo: "Paquete a Playa del Carmen desde Córdoba",
@@ -6287,20 +5413,14 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento en Playa del Carmen con régimen según se indica.
 🩺 Asistencia al viajero Assist Card AC150 FULL.
 
-### Hoteles y Tarifas (13/03/2026)
 **HOTEL RIU TEQUILA 5★ (Standard, All Inclusive)**
-• DBL: USD 1858 | TPL: USD 1820 | CPL: USD 1858 | Imp: USD 221
 
 **VIVA WYNDHAM MAYA 4★ (Superior, All Inclusive)**
-• DBL: USD 2108 | TPL: USD 2065 | CPL: USD 2045 | Imp: USD 221
 
 **RIU PLAYACAR 5★ (Standard, All Inclusive)**
-• DBL: USD 2423 | TPL: USD 2374 | CPL: USD 2423 | Imp: USD 221
 
 **SANDOS PLAYACAR 5★ (Platinum King JR Suite, Solo Adultos, All Inclusive)**
-• DBL: USD 3025 | TPL: USD 2964 | CPL: USD 2935 | Imp: USD 221
 
-- Tarifas en USD por persona.
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6313,11 +5433,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Marzo 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 2079, moneda: "USD", fechaInicio: new Date("2026-03-01"), fechaFin: new Date("2026-03-31") }
-        ]
-      }
     },
     {
       titulo: "Paquete a Punta Cana desde Córdoba",
@@ -6342,23 +5457,12 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento en Punta Cana con all inclusive.
 🩺 Asistencia al viajero Assist Card AC150 FULL.
 
-### Hoteles y Tarifas
 **17/04/2026**
-• **WHALA!BÁVARO 4★:** DBL USD 1404 + Imp. 244
-• **RIU BAMBÚ 5★:** DBL USD 1685 + Imp. 244
-• **GRAND PALLADIUM 5★:** DBL USD 2235 + Imp. 244
 
 **01/05/2026**
-• **WHALA!BÁVARO 4★:** DBL USD 1334 + Imp. 244
-• **RIU BAMBÚ 5★:** DBL USD 1563 + Imp. 244
-• **GRAND PALLADIUM 5★:** DBL USD 1915 + Imp. 244
 
 **12/06/2026**
-• **WHALA!BÁVARO 4★:** DBL USD 1236 + Imp. 244
-• **RIU BAMBÚ 5★:** DBL USD 1563 + Imp. 244
-• **GRAND PALLADIUM 5★:** DBL USD 1899 + Imp. 244
 
-- Tarifas en USD por persona.
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6370,13 +5474,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Abril, Mayo y Junio 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 1648, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") },
-          { precio: 1578, moneda: "USD", fechaInicio: new Date("2026-05-01"), fechaFin: new Date("2026-05-31") },
-          { precio: 1480, moneda: "USD", fechaInicio: new Date("2026-06-01"), fechaFin: new Date("2026-06-30") }
-        ]
-      }
     },
     {
       titulo: "Paquete a Salvador de Bahía desde Córdoba",
@@ -6401,13 +5498,11 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
 🏨 Alojamiento por 8 noches en Salvador de Bahía con desayuno, en base doble.
 🩺 Asistencia al viajero de Assist Card AC150 FULL (hasta 74 años cumplidos).
 
-### Hotel y Tarifas
 **ORIGEN:** COR
 **DESTINO:** SSA (Salvador)
 **FECHA SALIDA:** ABRIL
 **ALOJAMIENTO:** GRANDE HOTEL DA BARRA 4★
 **CATEGORÍA Y REGIMEN:** STANDARD C/DESAYUNO
-**TARIFA POR PERSONA:** USD 1079 + Impuestos Aéreos USD 140
       `.trim(),
       destinos: { create: [] },
       incluyeItems: {
@@ -6420,11 +5515,6 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
           { tipo: "Salidas", descripcion: "Abril 2026" }
         ]
       },
-      precios: {
-        create: [
-          { precio: 1219, moneda: "USD", fechaInicio: new Date("2026-04-01"), fechaFin: new Date("2026-04-30") }
-        ]
-      }
     }
   ];
   salidasGrupales.push(...moreCaribbeanPackages);
