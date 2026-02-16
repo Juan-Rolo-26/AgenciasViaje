@@ -1,6 +1,41 @@
-require("dotenv").config();
+const fs = require("fs");
 const path = require("path");
+const dotenv = require("dotenv");
 const { execFile } = require("child_process");
+
+function loadEnvironmentVariables() {
+  const candidateFiles = [
+    path.resolve(__dirname, "..", ".env"),
+    path.resolve(process.cwd(), ".env"),
+    path.resolve(__dirname, "..", "..", ".env")
+  ];
+  const visited = new Set();
+
+  for (const envPath of candidateFiles) {
+    if (visited.has(envPath)) {
+      continue;
+    }
+    visited.add(envPath);
+    if (!fs.existsSync(envPath)) {
+      continue;
+    }
+
+    dotenv.config({ path: envPath });
+    return envPath;
+  }
+
+  dotenv.config();
+  return "";
+}
+
+const loadedEnvPath = loadEnvironmentVariables();
+if (loadedEnvPath) {
+  console.log(`📦 Variables de entorno cargadas desde ${loadedEnvPath}`);
+} else {
+  console.warn(
+    "⚠️ No se encontró .env en rutas conocidas. Se usarán variables del sistema."
+  );
+}
 
 const PORT = process.env.PORT || 3000;
 const PROJECT_ROOT = path.resolve(__dirname, "..");

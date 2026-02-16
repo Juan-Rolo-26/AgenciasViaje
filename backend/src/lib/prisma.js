@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const { PrismaClient } = require("@prisma/client");
 const DEFAULT_DATABASE_URL = "file:./prisma/dev.db";
+const SQLITE_PROTOCOL = "file:";
 
 function normalizeDatabaseUrl(rawValue) {
   if (typeof rawValue !== "string") {
@@ -26,11 +27,11 @@ function normalizeDatabaseUrl(rawValue) {
 }
 
 function normalizeSqlitePath(value) {
-  if (!value.startsWith("file:")) {
+  if (!value.startsWith(SQLITE_PROTOCOL)) {
     return value;
   }
 
-  const rawPath = value.slice("file:".length).trim();
+  const rawPath = value.slice(SQLITE_PROTOCOL.length).trim();
   if (!rawPath) {
     return value;
   }
@@ -50,11 +51,11 @@ function normalizeSqlitePath(value) {
 }
 
 function ensureSqliteDatabaseFile(value) {
-  if (!value.startsWith("file:")) {
+  if (!value.startsWith(SQLITE_PROTOCOL)) {
     return;
   }
 
-  const rawPath = value.slice("file:".length).trim();
+  const rawPath = value.slice(SQLITE_PROTOCOL.length).trim();
   if (!rawPath) {
     return;
   }
@@ -72,13 +73,19 @@ function ensureSqliteDatabaseFile(value) {
   }
 }
 
+function detectProtocol(value) {
+  const match = value.match(/^([a-zA-Z][a-zA-Z0-9+.-]*):/);
+  return match ? match[1] : "desconocido";
+}
+
 const configuredDatabaseUrl = normalizeDatabaseUrl(process.env.DATABASE_URL);
 const rawDatabaseUrl = configuredDatabaseUrl || DEFAULT_DATABASE_URL;
 const databaseUrl = normalizeSqlitePath(rawDatabaseUrl);
 
-if (!databaseUrl.startsWith("file:")) {
+if (!databaseUrl.startsWith(SQLITE_PROTOCOL)) {
+  const protocol = detectProtocol(databaseUrl);
   throw new Error(
-    "DATABASE_URL inválida para SQLite. Debe empezar con file: (ej: file:./prisma/dev.db)"
+    `DATABASE_URL incompatible: prisma/schema.prisma usa provider "sqlite" pero DATABASE_URL tiene protocolo "${protocol}". Usá file:./prisma/dev.db o cambiá el provider del schema para usar otro motor.`
   );
 }
 
