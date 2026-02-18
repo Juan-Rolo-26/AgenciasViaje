@@ -6,7 +6,12 @@ import { formatDate } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
-import { stripMarkdownSectionByKeyword } from "../utils/markdownSanitizers.js";
+import {
+  stripMarkdownSectionByKeyword,
+  stripLinesWithPriceSignals,
+  hasPriceSignals,
+  hasMeaningfulInfoText
+} from "../utils/markdownSanitizers.js";
 
 function formatIncluyeTipo(tipo) {
   if (!tipo) {
@@ -100,14 +105,7 @@ function formatRawContent(text, { stripItinerary = false } = {}) {
     ? stripMarkdownSectionByKeyword(text, "itinerario")
     : text;
 
-  // Clean prices
-  const cleaned = sourceText
-    .split('\n')
-    .filter(line => {
-      const lower = line.toLowerCase();
-      return !(lower.includes('tarifa') || lower.includes('usd') || lower.includes('precio') || lower.includes('impuestos') || lower.includes('imp.'));
-    })
-    .join('\n');
+  const cleaned = stripLinesWithPriceSignals(sourceText);
 
   // Normalizar los saltos de línea y asegurar espacio antes de headers
   let processed = cleaned
@@ -195,7 +193,12 @@ export default function OfertaDetail() {
   }, [oferta]);
 
   const detalleItems = useMemo(() => {
-    return (oferta?.incluyeItems || []).filter((item) => isDetailItem(item.tipo));
+    return (oferta?.incluyeItems || []).filter(
+      (item) =>
+        isDetailItem(item.tipo) &&
+        !hasPriceSignals(item.tipo) &&
+        !hasPriceSignals(item.descripcion)
+    );
   }, [oferta]);
 
   const itinerarioItems = useMemo(() => {
@@ -206,7 +209,11 @@ export default function OfertaDetail() {
 
   const incluyeItems = useMemo(() => {
     return (oferta?.incluyeItems || []).filter(
-      (item) => !isDetailItem(item.tipo) && !isItineraryItem(item.tipo)
+      (item) =>
+        !isDetailItem(item.tipo) &&
+        !isItineraryItem(item.tipo) &&
+        !hasPriceSignals(item.tipo) &&
+        !hasPriceSignals(item.descripcion)
     );
   }, [oferta]);
 
@@ -219,6 +226,21 @@ export default function OfertaDetail() {
   }, [detalleItems]);
 
   const hasItinerary = itinerarioItems.length > 0;
+  const cleanedNoIncluye = useMemo(
+    () => stripLinesWithPriceSignals(oferta?.noIncluye || ""),
+    [oferta?.noIncluye]
+  );
+  const cleanedCondiciones = useMemo(() => {
+    const source = hasItinerary
+      ? stripMarkdownSectionByKeyword(oferta?.condiciones || "", "itinerario")
+      : oferta?.condiciones || "";
+    return stripLinesWithPriceSignals(source);
+  }, [oferta?.condiciones, hasItinerary]);
+  const hasInfoContent = Boolean(
+    detalleItems.length ||
+      hasMeaningfulInfoText(cleanedCondiciones) ||
+      cleanedNoIncluye
+  );
 
   const actividadesIncluidas = useMemo(() => {
     return (oferta?.actividades || [])
@@ -300,31 +322,32 @@ export default function OfertaDetail() {
       </section>
 
       <section className="detail-section">
-        <div className={`detail-grid detail-grid--offer${hasItinerary ? "" : " detail-grid--no-itinerary"}`}>
-          <article className="detail-card detail-card--info">
-            <h3>{detalleItems.length ? "Detalle del producto" : "Información del viaje"}</h3>
-            {detalleItems.length ? (
-              <div className="detail-table">
-                {detalleItems.map((item) => (
-                  <div className="detail-table-row" key={item.id}>
-                    <span>{formatDetailLabel(item.tipo)}</span>
-                    <span>{item.descripcion}</span>
-                  </div>
-                ))}
-              </div>
-            ) : null}
+        <div
+          className={`detail-grid detail-grid--offer${hasItinerary ? "" : " detail-grid--no-itinerary"}${hasInfoContent ? "" : " detail-grid--no-info"}`}
+        >
+          {hasInfoContent ? (
+            <article className="detail-card detail-card--info">
+              <h3>{detalleItems.length ? "Detalle del producto" : "Información del viaje"}</h3>
+              {detalleItems.length ? (
+                <div className="detail-table">
+                  {detalleItems.map((item) => (
+                    <div className="detail-table-row" key={item.id}>
+                      <span>{formatDetailLabel(item.tipo)}</span>
+                      <span>{item.descripcion}</span>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
 
-            {/* Renderizado especial para condiciones/información */}
-            {oferta.condiciones ? (
-              <div className="detail-info-block">
-                {formatRawContent(oferta.condiciones, { stripItinerary: hasItinerary })}
-              </div>
-            ) : !detalleItems.length ? (
-              <p>Consultanos para mas info.</p>
-            ) : null}
+              {hasMeaningfulInfoText(cleanedCondiciones) ? (
+                <div className="detail-info-block">
+                  {formatRawContent(cleanedCondiciones)}
+                </div>
+              ) : null}
 
-            {oferta.noIncluye ? <p>No incluye: {oferta.noIncluye}</p> : null}
-          </article>
+              {cleanedNoIncluye ? <p>No incluye: {cleanedNoIncluye}</p> : null}
+            </article>
+          ) : null}
           <article className="detail-card detail-card--includes">
             <h3>Qué incluye</h3>
             {incluyeItems.length ? (

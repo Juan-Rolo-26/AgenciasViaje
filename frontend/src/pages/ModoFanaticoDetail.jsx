@@ -5,10 +5,14 @@ import fallbackDeal from "../assets/inicio.jpg";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
 import { FANATIC_ITEMS } from "../utils/modoFanaticoData.js";
 import { useOfertas } from "../hooks/useTravelData.js";
-import { formatDate, formatCurrency } from "../utils/formatters.js";
+import { formatDate } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
-import { stripMarkdownSectionByKeyword } from "../utils/markdownSanitizers.js";
+import {
+  stripMarkdownSectionByKeyword,
+  stripLinesWithPriceSignals,
+  hasPriceSignals
+} from "../utils/markdownSanitizers.js";
 
 // === Constants and Helpers from OfertaDetail / DestinoDetail ===
 
@@ -80,12 +84,8 @@ const cleanContent = (text, { stripItinerary = false } = {}) => {
     ? stripMarkdownSectionByKeyword(text, "itinerario")
     : text;
 
-  return sourceText
+  return stripLinesWithPriceSignals(sourceText)
     .split('\n')
-    .filter(line => {
-      const lower = line.toLowerCase();
-      return !(lower.includes('tarifa') || lower.includes('usd') || lower.includes('precio') || lower.includes('impuestos') || lower.includes('imp.'));
-    })
     .map(line => line.replace(/^•\s*/, "- ").trimEnd())
     .join('\n');
 };
@@ -96,14 +96,6 @@ const formatDateRange = (inicio, fin) => {
   const end = fin ? formatDate(fin) : "";
   if (!end || start === end) return start;
   return `${start} - ${end}`;
-};
-
-const getPriceLabel = (precio) => {
-  const amount = Number(precio?.precio);
-  if (!Number.isFinite(amount) || amount <= 0) {
-    return "A consultar";
-  }
-  return formatCurrency(amount, precio?.moneda);
 };
 
 const splitBulletLines = (text) =>
@@ -234,14 +226,23 @@ export default function ModoFanaticoDetail() {
       (a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio)
     );
 
-    const detalleItems = (oferta.incluyeItems || []).filter((item) => isDetailItem(item.tipo));
+    const detalleItems = (oferta.incluyeItems || []).filter(
+      (item) =>
+        isDetailItem(item.tipo) &&
+        !hasPriceSignals(item.tipo) &&
+        !hasPriceSignals(item.descripcion)
+    );
 
     const itinerarioItems = (oferta.incluyeItems || [])
       .filter((item) => isItineraryItem(item.tipo))
       .sort((a, b) => getItineraryIndex(a.tipo) - getItineraryIndex(b.tipo));
 
     const incluyeItems = (oferta.incluyeItems || []).filter(
-      (item) => !isDetailItem(item.tipo) && !isItineraryItem(item.tipo)
+      (item) =>
+        !isDetailItem(item.tipo) &&
+        !isItineraryItem(item.tipo) &&
+        !hasPriceSignals(item.tipo) &&
+        !hasPriceSignals(item.descripcion)
     );
 
     const detalleFechas = detalleItems.find(
@@ -260,22 +261,19 @@ export default function ModoFanaticoDetail() {
 
     const priceRows = preciosOrdenados.map((precio, index) => ({
       id: precio.id || `${precio.fechaInicio}-${precio.fechaFin}-${index}`,
-      dateLabel: formatDateRange(precio.fechaInicio, precio.fechaFin),
-      amountLabel: getPriceLabel(precio)
+      dateLabel: formatDateRange(precio.fechaInicio, precio.fechaFin)
     }));
-
-    const priceFrom =
-      priceRows.find((row) => row.amountLabel !== "A consultar")?.amountLabel || "A consultar";
 
     const fechasResumen = priceRows[0]?.dateLabel || "Consultar fechas";
 
-    const noIncluyeItems = splitBulletLines(oferta.noIncluye);
+    const noIncluyeItems = splitBulletLines(oferta.noIncluye).filter(
+      (line) => !hasPriceSignals(line)
+    );
 
     const summaryItems = [
       { label: "Noches", value: oferta.noches ? `${oferta.noches} noches` : "A confirmar" },
       { label: "Transporte", value: transportLabel },
-      { label: "Fechas", value: fechasResumen },
-      { label: "Precio desde", value: priceFrom }
+      { label: "Fechas", value: fechasResumen }
     ];
 
     if (oferta.cupos) {
@@ -292,7 +290,6 @@ export default function ModoFanaticoDetail() {
       shortDesc,
       transportLabel,
       priceRows,
-      priceFrom,
       fechasResumen,
       noIncluyeItems,
       summaryItems
@@ -691,7 +688,7 @@ export default function ModoFanaticoDetail() {
                           <path d="M3 7h18M6 7V5h12v2M6 11h12M6 15h8" />
                         </svg>
                       </div>
-                      <h3>Fechas y precios</h3>
+                      <h3>Fechas disponibles</h3>
                     </div>
                     <div className="card-content">
                       {selectedPackageData.priceRows.length ? (
@@ -699,14 +696,11 @@ export default function ModoFanaticoDetail() {
                           {selectedPackageData.priceRows.map((row) => (
                             <div className="fanatico-price-row" key={row.id}>
                               <div className="fanatico-price-date">{row.dateLabel}</div>
-                              <div className={`fanatico-price-amount${row.amountLabel === "A consultar" ? " is-muted" : ""}`}>
-                                {row.amountLabel}
-                              </div>
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <p className="description-text">Consultanos para fechas y tarifas.</p>
+                        <p className="description-text">Consultanos para fechas disponibles.</p>
                       )}
                       {selectedPackageData.detalleFechas?.descripcion && (
                         <p className="fanatico-price-note">{selectedPackageData.detalleFechas.descripcion}</p>

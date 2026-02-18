@@ -223,6 +223,34 @@
         "info itinerary";
 }
 
+.detail-grid--package.detail-grid--no-info,
+.detail-grid--offer.detail-grid--no-info {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+        "includes"
+        "dates"
+        "itinerary";
+}
+
+.detail-grid--package.detail-grid--no-info.detail-grid--no-dates,
+.detail-grid--offer.detail-grid--no-info.detail-grid--no-dates {
+    grid-template-areas:
+        "includes"
+        "itinerary";
+}
+
+.detail-grid--package.detail-grid--no-info.detail-grid--no-itinerary,
+.detail-grid--offer.detail-grid--no-info.detail-grid--no-itinerary {
+    grid-template-areas:
+        "includes"
+        "dates";
+}
+
+.detail-grid--package.detail-grid--no-info.detail-grid--no-dates.detail-grid--no-itinerary,
+.detail-grid--offer.detail-grid--no-info.detail-grid--no-dates.detail-grid--no-itinerary {
+    grid-template-areas: "includes";
+}
+
 .detail-grid--package.detail-grid--no-itinerary,
 .detail-grid--offer.detail-grid--no-itinerary {
     grid-template-areas:

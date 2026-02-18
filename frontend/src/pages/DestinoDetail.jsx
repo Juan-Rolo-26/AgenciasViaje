@@ -6,7 +6,12 @@ import { useTravelData } from "../hooks/useTravelData.js";
 import { formatDate, getPrecioVigente } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
-import { stripMarkdownSectionByKeyword } from "../utils/markdownSanitizers.js";
+import {
+  stripMarkdownSectionByKeyword,
+  stripLinesWithPriceSignals,
+  hasPriceSignals,
+  hasMeaningfulInfoText
+} from "../utils/markdownSanitizers.js";
 
 // === Constants and Helpers from OfertaDetail ===
 
@@ -265,13 +270,7 @@ const cleanContent = (text, { stripItinerary = false } = {}) => {
     ? stripMarkdownSectionByKeyword(text, "itinerario")
     : text;
 
-  return sourceText
-    .split('\n')
-    .filter(line => {
-      const lower = line.toLowerCase();
-      return !(lower.includes('tarifa') || lower.includes('usd') || lower.includes('precio') || lower.includes('impuestos') || lower.includes('imp.'));
-    })
-    .join('\n');
+  return stripLinesWithPriceSignals(sourceText);
 };
 
 const getTransportType = (oferta) => {
@@ -467,14 +466,25 @@ export default function DestinoDetail() {
       (a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio)
     );
 
-    const detalleItems = (oferta.incluyeItems || []).filter((item) => item && isDetailItem(item.tipo));
+    const detalleItems = (oferta.incluyeItems || []).filter(
+      (item) =>
+        item &&
+        isDetailItem(item.tipo) &&
+        !hasPriceSignals(item.tipo) &&
+        !hasPriceSignals(item.descripcion)
+    );
 
     const itinerarioItems = (oferta.incluyeItems || [])
       .filter((item) => item && isItineraryItem(item.tipo))
       .sort((a, b) => getItineraryIndex(a.tipo) - getItineraryIndex(b.tipo));
 
     const incluyeItems = (oferta.incluyeItems || []).filter(
-      (item) => item && !isDetailItem(item.tipo) && !isItineraryItem(item.tipo)
+      (item) =>
+        item &&
+        !isDetailItem(item.tipo) &&
+        !isItineraryItem(item.tipo) &&
+        !hasPriceSignals(item.tipo) &&
+        !hasPriceSignals(item.descripcion)
     );
 
     const detalleFechas = detalleItems.find(
@@ -520,6 +530,11 @@ export default function DestinoDetail() {
         stripItinerary: hasItinerary
       }),
     [selectedPackage?.condiciones, hasItinerary]
+  );
+  const hasInfoContent = Boolean(
+    selectedPackageData &&
+    (selectedPackageData.detalleItems.length > 0 ||
+      hasMeaningfulInfoText(cleanedSelectedConditions))
   );
 
   if (loading) {
@@ -944,31 +959,33 @@ export default function DestinoDetail() {
               <h2 style={{ fontSize: '2rem', marginBottom: '16px', color: 'var(--violet-900)' }}>{selectedPackage.titulo}</h2>
 
               <div
-                className={`detail-grid detail-grid--package${hasDetailDates ? "" : " detail-grid--no-dates"}${hasItinerary ? "" : " detail-grid--no-itinerary"}`}
+                className={`detail-grid detail-grid--package${hasDetailDates ? "" : " detail-grid--no-dates"}${hasItinerary ? "" : " detail-grid--no-itinerary"}${hasInfoContent ? "" : " detail-grid--no-info"}`}
               >
                 {/* Card 1: Main Details */}
-                <article className="detail-card detail-card--info">
-                  <h3>{selectedPackageData.detalleItems.length ? "Detalle del paquete" : "Información"}</h3>
-                  <div className="info-content">
-                    {selectedPackageData.detalleItems.length > 0 ? (
-                      <div className="detail-table">
-                        {selectedPackageData.detalleItems.map((item) => (
-                          <div className="detail-table-row" key={item.id}>
-                            <span>{formatDetailLabel(item.tipo)}</span>
-                            <span>{item.descripcion}</span>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <ReactMarkdown>{cleanedSelectedConditions || "Consultanos para más información."}</ReactMarkdown>
-                    )}
-                    {selectedPackageData.detalleItems.length > 0 && cleanedSelectedConditions && (
-                      <div style={{ marginTop: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
+                {hasInfoContent && (
+                  <article className="detail-card detail-card--info">
+                    <h3>{selectedPackageData.detalleItems.length ? "Detalle del paquete" : "Información"}</h3>
+                    <div className="info-content">
+                      {selectedPackageData.detalleItems.length > 0 ? (
+                        <div className="detail-table">
+                          {selectedPackageData.detalleItems.map((item) => (
+                            <div className="detail-table-row" key={item.id}>
+                              <span>{formatDetailLabel(item.tipo)}</span>
+                              <span>{item.descripcion}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
                         <ReactMarkdown>{cleanedSelectedConditions}</ReactMarkdown>
-                      </div>
-                    )}
-                  </div>
-                </article>
+                      )}
+                      {selectedPackageData.detalleItems.length > 0 && cleanedSelectedConditions && (
+                        <div style={{ marginTop: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
+                          <ReactMarkdown>{cleanedSelectedConditions}</ReactMarkdown>
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                )}
 
                 {/* Card 2: Includes (Checklist) */}
                 <article className="detail-card detail-card--includes">

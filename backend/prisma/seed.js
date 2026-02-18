@@ -1,6 +1,158 @@
 const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
+const PAYMENT_RESERVATION_HEADING_KEYWORDS = [
+  "condiciones de reserva y formas de pago",
+  "condiciones de reserva",
+  "reserva y pagos",
+  "formas de pago",
+  "metodos de pago",
+  "medios de pago"
+];
+const MARKDOWN_HEADING_PATTERN = /^\s{0,3}(#{1,6})\s+(.*)$/;
+const PRICE_AMOUNT_PATTERN = /(?:\$|u\$s|usd|ars|r\$)\s*[\d.,]+/i;
+const PRICE_KEYWORD_PATTERN =
+  /\b(?:dbl|sgl|slg|tpl|chd|neto|iva|impuesto|impuestos|precio|precios|tarifa|tarifas|total|final)\b/i;
+const BUTACA_ADDON_PATTERN =
+  /\bbutaca\b.*\b(cama|panoramica|cafetera)\b|\b(cama|panoramica|cafetera)\b.*\bbutaca\b/i;
+
+function normalizeMarkdownText(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function stripMarkdownSectionsByKeywords(markdown, keywords) {
+  if (!markdown) return "";
+
+  const normalizedKeywords = (keywords || [])
+    .map((keyword) => normalizeMarkdownText(keyword).trim())
+    .filter(Boolean);
+
+  if (!normalizedKeywords.length) return String(markdown);
+
+  const lines = String(markdown).split("\n");
+  const output = [];
+  let skipLevel = null;
+
+  for (const line of lines) {
+    const headingMatch = line.match(MARKDOWN_HEADING_PATTERN);
+
+    if (skipLevel !== null) {
+      if (headingMatch) {
+        const currentLevel = headingMatch[1].length;
+        if (currentLevel <= skipLevel) {
+          skipLevel = null;
+        } else {
+          continue;
+        }
+      } else {
+        continue;
+      }
+    }
+
+    if (headingMatch) {
+      const headingLevel = headingMatch[1].length;
+      const headingText = normalizeMarkdownText(headingMatch[2]);
+      if (normalizedKeywords.some((keyword) => headingText.includes(keyword))) {
+        skipLevel = headingLevel;
+        continue;
+      }
+    }
+
+    output.push(line);
+  }
+
+  return output.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
+function stripEmptyMarkdownHeadings(markdown) {
+  if (!markdown) return "";
+
+  const lines = String(markdown).split("\n");
+  const headingIndexes = [];
+
+  lines.forEach((line, index) => {
+    if (MARKDOWN_HEADING_PATTERN.test(line)) headingIndexes.push(index);
+  });
+
+  const keep = new Array(lines.length).fill(true);
+
+  for (let i = 0; i < headingIndexes.length; i += 1) {
+    const start = headingIndexes[i] + 1;
+    const end = i + 1 < headingIndexes.length ? headingIndexes[i + 1] : lines.length;
+    const hasContent = lines.slice(start, end).some((line) => line.trim());
+    if (!hasContent) {
+      keep[headingIndexes[i]] = false;
+    }
+  }
+
+  return lines
+    .filter((_, index) => keep[index])
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function removePaymentReservationSections(markdown) {
+  return stripMarkdownSectionsByKeywords(
+    markdown,
+    PAYMENT_RESERVATION_HEADING_KEYWORDS
+  );
+}
+
+function hasPriceSignals(text) {
+  if (!text) return false;
+  const value = String(text);
+  const normalized = normalizeMarkdownText(value);
+
+  return (
+    PRICE_AMOUNT_PATTERN.test(value) ||
+    PRICE_AMOUNT_PATTERN.test(normalized) ||
+    PRICE_KEYWORD_PATTERN.test(normalized) ||
+    BUTACA_ADDON_PATTERN.test(normalized)
+  );
+}
+
+function stripMarkdownLinesWithPriceSignals(markdown) {
+  if (!markdown) return "";
+
+  const stripped = String(markdown)
+    .split("\n")
+    .filter((line) => !hasPriceSignals(line))
+    .join("\n");
+
+  return stripEmptyMarkdownHeadings(stripped);
+}
+
+function sanitizeOfertaText(markdown) {
+  if (!markdown) return "";
+  const withoutPaymentSections = removePaymentReservationSections(markdown);
+  return stripMarkdownLinesWithPriceSignals(withoutPaymentSections);
+}
+
+function sanitizeIncluyeItems(items) {
+  if (!Array.isArray(items)) return [];
+
+  return items
+    .map((item) => {
+      if (!item) return null;
+
+      const nextTipo = stripMarkdownLinesWithPriceSignals(item.tipo || "");
+      const nextDescripcion = stripMarkdownLinesWithPriceSignals(item.descripcion || "");
+
+      if (!nextTipo && !nextDescripcion) return null;
+      if (!nextDescripcion) return null;
+
+      return {
+        ...item,
+        tipo: nextTipo || item.tipo || "Servicio",
+        descripcion: nextDescripcion
+      };
+    })
+    .filter(Boolean);
+}
 
 async function main() {
   await prisma.ofertaActividad.deleteMany();
@@ -5871,6 +6023,13 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
     if (!oferta.destinoId) {
       console.error(`Skipping oferta ${oferta.slug} because no destination matches`);
       continue;
+    }
+
+    oferta.condiciones = sanitizeOfertaText(oferta.condiciones) || null;
+    oferta.noIncluye = stripMarkdownLinesWithPriceSignals(oferta.noIncluye) || null;
+
+    if (Array.isArray(oferta.incluyeItems?.create)) {
+      oferta.incluyeItems.create = sanitizeIncluyeItems(oferta.incluyeItems.create);
     }
 
     const existingOferta = await prisma.oferta.findUnique({
