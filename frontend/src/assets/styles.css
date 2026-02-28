@@ -1,6 +1,7 @@
 :root {
   color-scheme: light;
-  font-size: 120%;
+  font-size: 100%;
+  --page-gutter: min(8vw, 100px);
   --bg: #f6f7fb;
   --bg-alt: #ffffff;
   --accent: #2b5bff;
@@ -31,14 +32,14 @@
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 body {
   background: linear-gradient(180deg, #d9e7ff 0%, #edf2ff 55%, #f3f6ff 100%);
   color: var(--text);
   min-height: 100vh;
-  overflow-x: hidden;
+  min-width: 1280px;
 }
 
 .bg-orbs span {
@@ -401,7 +402,7 @@ body {
 main {
   position: relative;
   z-index: 1;
-  padding: 32px 8vw 120px;
+  padding: 32px var(--page-gutter) 120px;
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -818,8 +819,8 @@ section[id] {
 }
 
 .hero-search {
-  margin: -32px -8vw 0;
-  padding: 130px 8vw 96px;
+  margin: -32px calc(var(--page-gutter) * -1) 0;
+  padding: 130px var(--page-gutter) 96px;
   min-height: clamp(600px, 80vh, 780px);
   background: #0b1120;
   background-repeat: no-repeat;
@@ -1535,8 +1536,8 @@ section[id] {
 
 
 .destinations-section {
-  margin: -36px -8vw 0;
-  padding: 0 8vw 64px;
+  margin: -36px calc(var(--page-gutter) * -1) 0;
+  padding: 0 var(--page-gutter) 64px;
   background: linear-gradient(180deg, #e7eff7 0%, #f7f9fe 60%, #ffffff 100%);
   overflow: hidden;
 }
@@ -1653,8 +1654,8 @@ section[id] {
 
 .continent-landing,
 .section-landing {
-  margin: -32px -8vw 0;
-  padding: 72px 8vw 96px;
+  margin: -32px calc(var(--page-gutter) * -1) 0;
+  padding: 72px var(--page-gutter) 96px;
   min-height: calc(100vh - 160px);
   background: linear-gradient(180deg, #f2f5fb 0%, #ffffff 100%);
 }
@@ -1898,8 +1899,8 @@ section[id] {
 
 .page-hero,
 .offers-hero {
-  margin: -32px -8vw 0;
-  padding: 56px 8vw 64px;
+  margin: -32px calc(var(--page-gutter) * -1) 0;
+  padding: 56px var(--page-gutter) 64px;
   background: radial-gradient(circle at top,
       rgba(112, 0, 235, 0.12),
       transparent 60%),
@@ -1948,8 +1949,8 @@ section[id] {
 }
 
 .offers-page .offers-section {
-  margin: -36px -8vw 0;
-  padding: 0 8vw 64px;
+  margin: -36px calc(var(--page-gutter) * -1) 0;
+  padding: 0 var(--page-gutter) 64px;
   background: linear-gradient(180deg, #e7eff7 0%, #f7f9fe 60%, #ffffff 100%);
 }
 
@@ -3045,7 +3046,7 @@ section[id] {
 
 .destination-hero {
   position: relative;
-  margin: -32px -8vw 0;
+  margin: -32px calc(var(--page-gutter) * -1) 0;
   min-height: 480px;
   background-size: cover;
   background-position: center;
@@ -3820,6 +3821,8 @@ section[id] {
 
 .complaint-info p {
   color: rgba(255, 255, 255, 0.82);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .complaint-badge {
@@ -3905,6 +3908,8 @@ section[id] {
   grid-area: content;
   display: grid;
   gap: 4px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .channel-label {
@@ -3918,6 +3923,8 @@ section[id] {
   font-size: 1rem;
   font-weight: 600;
   color: #ffffff;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .channel-cta {
@@ -4032,8 +4039,8 @@ section[id] {
 
 .calendar {
   color: var(--text);
-  margin: -32px -8vw 0;
-  padding: 64px 8vw 100px;
+  margin: -32px calc(var(--page-gutter) * -1) 0;
+  padding: 64px var(--page-gutter) 100px;
   background: linear-gradient(180deg, #eef2f7 0%, #f8fafc 100%);
   border-radius: 28px;
   min-height: 100vh;
@@ -5060,6 +5067,48 @@ section[id] {
   }
 }
 
+/* Nav compacto para pantallas medianas (entre 981px y 1400px) */
+@media (min-width: 981px) and (max-width: 1400px) {
+  .nav-container {
+    padding: 14px 16px;
+    gap: 8px;
+  }
+
+  .nav-main {
+    gap: 4px;
+  }
+
+  .nav-item {
+    padding: 7px 8px;
+    font-size: 0.93rem;
+    gap: 6px;
+  }
+
+  .nav-ico {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-ico svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-cta .cta-button {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .brand-name {
+    font-size: 1.12rem;
+  }
+
+  .nav-logo img {
+    width: 42px;
+    height: 42px;
+  }
+}
+
 @media (max-width: 980px) {
   .nav-container {
     flex-wrap: wrap;
@@ -5203,9 +5252,25 @@ section[id] {
   }
 }
 
+/* Tablets y móviles: sin min-width forzado */
+@media (max-width: 1024px) {
+  body {
+    min-width: 0;
+  }
+}
+
 @media (max-width: 720px) {
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
   .hero-search {
     padding: 64px 6vw 60px;
+    margin: -32px -6vw 0;
   }
 
   main {
@@ -8333,7 +8398,7 @@ html {
       transparent 60%),
     linear-gradient(180deg, #eef2f7 0%, #f8fafc 100%);
   color: inherit;
-  padding: 56px 8vw 64px;
+  padding: 56px var(--page-gutter) 64px;
 }
 
 .offers-hero h1 {
@@ -8904,5 +8969,173 @@ html {
 
   .search-results-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   MOBILE FIXES — GLOBAL
+   Texto, padding y layout para celulares
+   =============================== */
+
+/* Protección contra overflow de texto en toda la app */
+.detail-list-text,
+.detail-list-text strong,
+.detail-table-row span,
+.detail-card p,
+.detail-card h3 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* En mobile, el min-width de la columna de tabla no debe ser rígido */
+@media (max-width: 640px) {
+  .detail-table-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .detail-table-row span:first-child {
+    min-width: 0;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .detail-table-row span:last-child {
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  /* Cards con menos padding en mobile para aprovechar el espacio */
+  .detail-card {
+    padding: 16px;
+  }
+
+  .detail-list--fancy li {
+    padding: 10px 12px;
+  }
+
+  /* Centrar el botón de WhatsApp */
+  .detail-cta {
+    text-align: center;
+  }
+
+  .detail-whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Complaint channels en pantallas muy pequeñas */
+  .complaint-channel {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "icon content"
+      "cta cta";
+  }
+
+  .channel-cta {
+    justify-self: start;
+    margin-left: 56px;
+  }
+
+  /* El grid de reclamos en una sola columna */
+  .complaint-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Centra el encabezado de secciones */
+  .section-header {
+    text-align: center;
+  }
+
+  .section-header-row {
+    justify-content: center;
+  }
+
+  /* Hero título centrado */
+  .hero-text {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Filter bar en mobile: reduce padding interno */
+  .filter-card {
+    padding: 0 12px;
+  }
+
+  .filter-card-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .filter-card-input {
+    font-size: 1.15rem;
+  }
+}
+
+/* Tablets landscape y mobile grande (641px–900px): el detail-grid siempre en 1 columna */
+@media (max-width: 900px) {
+  .detail-card {
+    padding: 18px;
+  }
+
+  /* Quita el hover de transform en tactil */
+  .detail-list--fancy li:hover {
+    transform: none;
+  }
+}
+
+/* Asegurar que la tabla de detalles sea legible en todos los móviles */
+@media (max-width: 720px) {
+  .detail-icon {
+    flex-shrink: 0;
+  }
+
+  .detail-list-text {
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* El highlight section (datos del paquete) se apila */
+  .highlight {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  /* El complaint-info no se desborda */
+  .complaint-info {
+    overflow: hidden;
+  }
+
+  .complaint-info h3 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Canales rápidos: ancho completo en cada canal */
+  .complaint-channels {
+    gap: 8px;
+  }
+
+  /* Datos de contacto: texto más pequeño para que quepa */
+  .channel-value {
+    font-size: 0.92rem;
+  }
+
+  /* Hero filter: altura reducida en mobile */
+  .premium-filter {
+    --filter-height: 90px;
+  }
+
+  .filter-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+  }
+
+  .filter-card-icon svg {
+    width: 22px;
+    height: 22px;
   }
 }

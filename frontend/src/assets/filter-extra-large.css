@@ -43,7 +43,7 @@
 /* Forzar que el contenido del hero ocupe el máximo ancho posible */
 .hero-search .hero-content {
     width: 100%;
-    max-width: 100%;
+    max-width: 1700px;
     margin: 0 auto;
     padding-left: 15px;
     /* Margen chiquito como pidió el usuario */
@@ -346,18 +346,49 @@
 
 @media (max-width: 640px) {
     .premium-filter {
+        --filter-height: 72px;
         --filter-item-min: 100%;
         --filter-button-min: 100%;
         flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        border-radius: 24px;
     }
 
     .filter-card {
         width: 100%;
         min-width: 100%;
+        height: var(--filter-height);
+        min-height: var(--filter-height);
+        border-radius: 18px;
+        padding: 0 14px;
+    }
+
+    .filter-card-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+    }
+
+    .filter-card-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .filter-card-label {
+        font-size: 0.68rem;
     }
 
     .filter-card-input {
-        font-size: 1.3rem;
+        font-size: 1.05rem;
+    }
+
+    .filter-button {
+        height: var(--filter-height);
+        min-height: var(--filter-height);
+        border-radius: 18px;
+        font-size: 0.95rem;
+        justify-content: center;
     }
 }
 

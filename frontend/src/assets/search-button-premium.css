@@ -144,3 +144,16 @@
         padding: 16px 28px;
     }
 }
+
+@media (max-width: 640px) {
+    .filter-button {
+        font-size: 0.95rem;
+        padding: 0 20px;
+        letter-spacing: 0.06em;
+    }
+
+    .filter-button svg {
+        width: 20px;
+        height: 20px;
+    }
+}
