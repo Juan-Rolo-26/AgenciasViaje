@@ -58,12 +58,6 @@
     margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-    .continents-track {
-        padding: 0 20px;
-    }
-}
-
 /* CARDS MÁS GRANDES */
 .continent-card {
     position: relative;
@@ -183,4 +177,126 @@
 .continent-cta svg {
     width: 20px;
     height: 20px;
+}
+
+@media (max-width: 768px) {
+    .continents-track {
+        width: 100%;
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 14px;
+        gap: 12px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .continents-scroll-container {
+        overflow-x: visible;
+        overflow-y: visible;
+        padding: 10px 0 8px;
+    }
+
+    .continent-card {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        height: 190px;
+        border-radius: 16px;
+    }
+
+    .continent-card:hover {
+        transform: none;
+    }
+
+    .continent-card:hover .continent-image {
+        transform: none;
+    }
+
+    .continent-overlay {
+        padding: 16px;
+        justify-content: flex-end;
+        align-items: flex-start;
+        background: linear-gradient(90deg,
+                rgba(0, 0, 0, 0.78) 0%,
+                rgba(0, 0, 0, 0.5) 46%,
+                rgba(0, 0, 0, 0.15) 100%);
+    }
+
+    .continent-name,
+    .continent-description,
+    .continent-cta {
+        max-width: 74%;
+    }
+
+    .continent-name {
+        font-size: 1.7rem;
+        margin-bottom: 4px;
+    }
+
+    .continent-description {
+        max-height: 56px;
+        opacity: 1;
+        transform: none;
+        font-size: 0.92rem;
+        line-height: 1.35;
+        margin-bottom: 10px;
+    }
+
+    .continent-card:hover .continent-description {
+        max-height: 56px;
+        opacity: 1;
+        transform: none;
+        margin-bottom: 10px;
+    }
+
+    .continent-cta {
+        opacity: 1;
+        transform: none;
+        font-size: 0.92rem;
+    }
+
+    .continent-card:hover .continent-cta {
+        opacity: 1;
+        transform: none;
+    }
+
+    .continent-badge {
+        top: 12px;
+        right: 12px;
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        border-radius: 999px;
+    }
+
+    .continent-cta svg {
+        width: 17px;
+        height: 17px;
+    }
+}
+
+@media (max-width: 480px) {
+    .continent-card {
+        width: 100%;
+        max-width: 100%;
+        height: 172px;
+    }
+
+    .continent-name {
+        font-size: 1.45rem;
+    }
+
+    .continent-description {
+        font-size: 0.84rem;
+        max-height: 46px;
+        margin-bottom: 8px;
+    }
+
+    .continent-card:hover .continent-description {
+        max-height: 46px;
+        margin-bottom: 8px;
+    }
+
+    .continent-cta {
+        font-size: 0.82rem;
+    }
 }
