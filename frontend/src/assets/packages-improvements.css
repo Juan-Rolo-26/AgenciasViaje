@@ -415,20 +415,10 @@
     line-height: 1.2 !important;
 }
 
-.detail-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 28px;
-    margin-top: 32px;
-}
 
-.detail-card {
-    background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
-    border-radius: 16px;
-    padding: 32px;
-    border: 1px solid rgba(203, 215, 244, 0.5);
-    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
-}
+/* detail-grid layout is controlled by detail-premium.css */
+
+
 
 .detail-card h3 {
     font-size: 1.75rem !important;
@@ -709,6 +699,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .packages-grid-premium .package-card-premium,
     .package-dates-row {
         animation: none !important;

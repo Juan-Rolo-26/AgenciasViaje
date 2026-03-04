@@ -6,8 +6,7 @@
     width: 100%;
     padding: 60px 0 100px;
     background-color: transparent;
-    /* Fondo transparente */
-    overflow: hidden;
+    /* NO overflow: hidden — dejar que el contenido respire */
 }
 
 .explore-header {
@@ -22,49 +21,40 @@
     font-weight: 700;
     text-transform: uppercase;
     color: #7c3aed;
-    /* Violeta */
     letter-spacing: 1.5px;
     margin-bottom: 12px;
 }
 
 .explore-header h2 {
     font-size: 3rem;
-    /* Título más grande */
     font-weight: 800;
     color: #1a1a1a;
     margin: 0;
 }
 
-/* Contenedor del scroll */
+/* ── Contenedor único: padding lateral + wrap automático ── */
 .continents-scroll-container {
     width: 100%;
-    overflow-x: auto;
-    padding: 20px 0;
-    /* Ocultar barra de scroll pero permitir funcionalidad */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    padding: 20px 40px;
+    box-sizing: border-box;
 }
 
-.continents-scroll-container::-webkit-scrollbar {
-    display: none;
-}
-
+/* Track como grid de 4 columnas que se reducen según espacio */
 .continents-track {
-    display: flex;
+    display: grid;
+    /* Cada columna tiene mínimo 220px, pero comparte el espacio disponible */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px;
-    padding: 0 40px;
-    /* Margen lateral */
-    width: max-content;
+    width: 100%;
     margin: 0 auto;
 }
 
-/* CARDS MÁS GRANDES */
+/* CARDS — sin ancho fijo, ocupan su celda del grid */
 .continent-card {
     position: relative;
-    width: 340px;
-    /* Antes: 280px */
+    width: 100%;
+    /* ocupa la celda completa */
     height: 480px;
-    /* Antes: 380px */
     border-radius: 24px;
     overflow: hidden;
     cursor: pointer;
@@ -72,7 +62,6 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
     text-decoration: none;
-    /* Por si es link */
 }
 
 .continent-card:hover {
@@ -152,7 +141,6 @@
     opacity: 1;
     transform: translateY(0);
     margin-bottom: 15px;
-    /* Espacio para el botón */
 }
 
 /* Botón fantasma animado */
@@ -166,7 +154,6 @@
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.4s ease 0.1s;
-    /* Delay pequeño */
 }
 
 .continent-card:hover .continent-cta {
@@ -179,27 +166,34 @@
     height: 20px;
 }
 
-@media (max-width: 768px) {
-    .continents-track {
-        width: 100%;
-        max-width: 640px;
-        margin: 0 auto;
-        padding: 0 14px;
-        gap: 12px;
-        flex-direction: column;
-        align-items: stretch;
+/* ── Zoom medio / pantallas medianas: 2 columnas ── */
+@media (max-width: 900px) {
+    .continents-scroll-container {
+        padding: 10px 20px;
     }
 
-    .continents-scroll-container {
-        overflow-x: visible;
-        overflow-y: visible;
-        padding: 10px 0 8px;
+    .continents-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
     }
 
     .continent-card {
-        flex: 0 0 100%;
-        width: 100%;
-        max-width: 100%;
+        height: 300px;
+    }
+}
+
+/* ── Móvil: 1 columna ── */
+@media (max-width: 560px) {
+    .continents-scroll-container {
+        padding: 10px 14px;
+    }
+
+    .continents-track {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .continent-card {
         height: 190px;
         border-radius: 16px;
     }
@@ -274,10 +268,8 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 380px) {
     .continent-card {
-        width: 100%;
-        max-width: 100%;
         height: 172px;
     }
 

@@ -262,6 +262,29 @@
     grid-template-areas: "info includes";
 }
 
+/* Clean 2-column layout for paquetes/salidas that only show info + services */
+.detail-grid.detail-grid--clean {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-areas: none !important;
+    gap: 28px;
+    align-items: start;
+    width: 100%;
+}
+
+.detail-grid.detail-grid--clean .detail-card--info,
+.detail-grid.detail-grid--clean .detail-card--includes {
+    grid-area: auto !important;
+    width: 100% !important;
+}
+
+@media (max-width: 860px) {
+    .detail-grid.detail-grid--clean {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
 .detail-card--info {
     grid-area: info;
 }

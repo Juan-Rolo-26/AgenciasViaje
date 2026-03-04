@@ -15,12 +15,22 @@ import {
 
 // === Constants and Helpers from OfertaDetail ===
 
+const TIPO_LABELS = {
+  "aereo": "Vuelos", "aéreo": "Vuelos",
+  "transporte": "Transporte", "traslados": "Traslados",
+  "alojamiento": "Alojamiento", "desayuno": "Desayuno incluido",
+  "comidas": "Comidas", "régimen": "Régimen alimentario", "regimen": "Régimen alimentario",
+  "equipaje": "Equipaje", "asistencia": "Asistencia al viajero",
+  "seguro": "Seguro de viaje", "excursión": "Excursiones", "excursion": "Excursiones",
+  "salidas": "Fechas de salida", "notas": "Notas importantes", "otros": "Servicios adicionales",
+};
+
 function formatIncluyeTipo(tipo) {
-  if (!tipo) {
-    return "Incluye";
-  }
-  return tipo.charAt(0).toUpperCase() + tipo.slice(1);
+  if (!tipo) return "Incluye";
+  const key = tipo.toLowerCase().trim();
+  return TIPO_LABELS[key] || (tipo.charAt(0).toUpperCase() + tipo.slice(1));
 }
+
 
 const DETAIL_PREFIX = "detalle-";
 const ITINERARY_PREFIX = "itinerario-";
@@ -958,38 +968,48 @@ export default function DestinoDetail() {
 
               <h2 style={{ fontSize: '2rem', marginBottom: '16px', color: 'var(--violet-900)' }}>{selectedPackage.titulo}</h2>
 
-              <div
-                className={`detail-grid detail-grid--package${hasDetailDates ? "" : " detail-grid--no-dates"}${hasItinerary ? "" : " detail-grid--no-itinerary"}${hasInfoContent ? "" : " detail-grid--no-info"}`}
-              >
-                {/* Card 1: Main Details */}
-                {hasInfoContent && (
-                  <article className="detail-card detail-card--info">
-                    <h3>{selectedPackageData.detalleItems.length ? "Detalle del paquete" : "Información"}</h3>
-                    <div className="info-content">
-                      {selectedPackageData.detalleItems.length > 0 ? (
-                        <div className="detail-table">
-                          {selectedPackageData.detalleItems.map((item) => (
-                            <div className="detail-table-row" key={item.id}>
-                              <span>{formatDetailLabel(item.tipo)}</span>
-                              <span>{item.descripcion}</span>
+              <div className="detail-grid detail-grid--clean">
+                {/* Card 1: Resumen del Paquete */}
+                <article className="detail-card detail-card--info">
+                  <h3>Resumen del Paquete</h3>
+                  <div className="detail-table">
+                    <div className="detail-table-row">
+                      <span>Destino principal</span>
+                      <span>{selectedPackage.destino?.nombre || destino.nombre}</span>
+                    </div>
+                    {(selectedPackage.destino?.paisRegion || destino.paisRegion) && (
+                      <div className="detail-table-row">
+                        <span>País/Región</span>
+                        <span>{selectedPackage.destino?.paisRegion || destino.paisRegion}</span>
+                      </div>
+                    )}
+                    <div className="detail-table-row">
+                      <span>Noches</span>
+                      <span>{selectedPackage.noches}</span>
+                    </div>
+                    {selectedPackageData.preciosOrdenados.length > 0 ? (
+                      <div className="detail-table-row">
+                        <span>Fechas de salida</span>
+                        <span>
+                          {selectedPackageData.preciosOrdenados.map((precio) => (
+                            <div key={precio.id}>
+                              {formatDateRangeLabel(precio.fechaInicio, precio.fechaFin)}
                             </div>
                           ))}
-                        </div>
-                      ) : (
-                        <ReactMarkdown>{cleanedSelectedConditions}</ReactMarkdown>
-                      )}
-                      {selectedPackageData.detalleItems.length > 0 && cleanedSelectedConditions && (
-                        <div style={{ marginTop: '2rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.5rem' }}>
-                          <ReactMarkdown>{cleanedSelectedConditions}</ReactMarkdown>
-                        </div>
-                      )}
-                    </div>
-                  </article>
-                )}
+                        </span>
+                      </div>
+                    ) : selectedPackageData.detalleFechas?.descripcion ? (
+                      <div className="detail-table-row">
+                        <span>Fechas de salida</span>
+                        <span>{selectedPackageData.detalleFechas.descripcion}</span>
+                      </div>
+                    ) : null}
+                  </div>
+                </article>
 
                 {/* Card 2: Includes (Checklist) */}
                 <article className="detail-card detail-card--includes">
-                  <h3>Qué incluye</h3>
+                  <h3>Servicios Incluidos</h3>
                   {selectedPackageData.incluyeItems.length ? (
                     <ul className="detail-list detail-list--icons detail-list--fancy">
                       {selectedPackageData.incluyeItems.map((item) => (
@@ -1003,44 +1023,9 @@ export default function DestinoDetail() {
                       ))}
                     </ul>
                   ) : (
-                    <p>Consultanos para conocer el detalle del paquete.</p>
+                    <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
                   )}
                 </article>
-
-                {hasDetailDates && (
-                  <article className="detail-card detail-card--dates">
-                    <h3>Fechas de salida</h3>
-                    {salidaDetalleLabels.length ? (
-                      <div className="detail-table">
-                        <div className="detail-table-row">
-                          <span>Salidas</span>
-                          <span style={{ whiteSpace: "pre-line", textAlign: "left" }}>
-                            {salidaDetalleLabels.join("\n")}
-                          </span>
-                        </div>
-                      </div>
-                    ) : selectedPackageData.detalleFechas?.descripcion ? (
-                      <p>{selectedPackageData.detalleFechas.descripcion}</p>
-                    ) : (
-                      <p>Fechas a confirmar. Te asesoramos por WhatsApp.</p>
-                    )}
-                  </article>
-                )}
-                {/* Itinerary if exists */}
-                {hasItinerary && (
-                  <article className="detail-card detail-card--itinerary">
-                    <h3>Itinerario</h3>
-                    <ul className="detail-list detail-list--timeline">
-                      {selectedPackageData.itinerarioItems.map((item, index) => (
-                        <li key={item.id} data-step={index + 1}>
-                          <span className="detail-list-text">
-                            {renderItineraryText(item.descripcion)}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </article>
-                )}
               </div>
 
               <div className="detail-cta" style={{ marginTop: '32px', textAlign: 'center' }}>

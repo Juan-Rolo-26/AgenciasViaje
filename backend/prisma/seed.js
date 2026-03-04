@@ -5700,6 +5700,55 @@ Con el fin de preservar el Santuario Histórico de Machu Picchu, el Ministerio d
   ]);
 
   for (const oferta of uniqueSalidas) {
+    let hasFebrero = false;
+    let hasMarzo = false;
+    let skipOferta = false;
+
+    if (oferta.incluyeItems && Array.isArray(oferta.incluyeItems.create)) {
+      const salidasItem = oferta.incluyeItems.create.find(item => {
+        const t = (item.tipo || "").toLowerCase();
+        return t.includes("salida") || t.includes("fecha");
+      });
+
+      if (salidasItem && salidasItem.descripcion) {
+        const descLower = salidasItem.descripcion.toLowerCase();
+        hasFebrero = descLower.includes("febrero") || descLower.includes("feb");
+        hasMarzo = descLower.includes("marzo") || descLower.includes("mar");
+
+        if (hasFebrero && !hasMarzo) {
+          skipOferta = true;
+        }
+
+        if (hasFebrero && hasMarzo) {
+          let newDesc = salidasItem.descripcion.replace(/(?:\d{1,2}(?:,\s*\d{1,2})*(?:\s*y\s*\d{1,2})*\s*(?:de\s*)?)?(febrero|feb\b)(?:\s*(?:de\s*)?\d{4})?(?:\s*\([^)]*\))?/gi, "");
+          newDesc = newDesc.replace(/\s+/g, ' ');
+          newDesc = newDesc.replace(/^[,\s;iy.\-]+|[,\s;iy.\-]+$/g, '');
+          newDesc = newDesc.replace(/\s*[;,](\s*[;,])+\s*/g, ', ');
+          newDesc = newDesc.replace(/\s*,\s*y\s*/gi, ' y ');
+          salidasItem.descripcion = newDesc.trim();
+        }
+      }
+    }
+
+    if (skipOferta) continue;
+
+    // Limpieza de información no deseada
+    oferta.condiciones = "";
+    oferta.noIncluye = "";
+
+    const allowedKeywords = [
+      "transporte", "equipaje", "excursion", "alojamiento",
+      "regimen", "comida", "desayuno", "cena", "pension",
+      "traslado", "hotel", "aereo", "vuelo", "salida", "fecha", "asistencia", "seguro"
+    ];
+
+    if (oferta.incluyeItems && Array.isArray(oferta.incluyeItems.create)) {
+      oferta.incluyeItems.create = oferta.incluyeItems.create.filter(item => {
+        const typeAndDesc = ((item.tipo || "") + " " + (item.descripcion || "")).toLowerCase();
+        return allowedKeywords.some(kw => typeAndDesc.includes(kw)) && !typeAndDesc.includes("itinerario");
+      });
+    }
+
     const shouldBeGrupal = salidasGrupalesWhitelist.has(oferta.slug);
     oferta.tipo = shouldBeGrupal ? "grupal" : "individual";
     if (oferta.slug === "mexico-a-su-tiempo-2026" && mexico) {

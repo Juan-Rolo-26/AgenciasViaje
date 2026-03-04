@@ -1,0 +1,227 @@
+const express = require("express");
+const adminAuth = require("../../middleware/adminAuth");
+const prisma = require("../../lib/prisma");
+
+const router = express.Router();
+router.use(adminAuth);
+
+/* ── AUTH CHECK ── */
+router.get("/me", (_req, res) => res.json({ ok: true, role: "admin" }));
+
+/* ── STATS ── */
+router.get("/stats", async (_req, res, next) => {
+    try {
+        const [totalDestinos, totalOfertas, totalPaquetes, totalGrupales, totalActividades] =
+            await Promise.all([
+                prisma.destino.count(),
+                prisma.oferta.count(),
+                prisma.oferta.count({ where: { tipo: "individual" } }),
+                prisma.oferta.count({ where: { tipo: "grupal" } }),
+                prisma.actividad.count(),
+            ]);
+        res.json({ totalDestinos, totalOfertas, totalPaquetes, totalGrupales, totalActividades });
+    } catch (e) { next(e); }
+});
+
+/* ── DESTINOS ── */
+router.get("/destinos", async (_req, res, next) => {
+    try {
+        const list = await prisma.destino.findMany({
+            orderBy: [{ orden: "asc" }, { nombre: "asc" }],
+            include: { galeria: { orderBy: { orden: "asc" } } },
+        });
+        res.json(list);
+    } catch (e) { next(e); }
+});
+
+router.get("/destinos/:id", async (req, res, next) => {
+    try {
+        const d = await prisma.destino.findUnique({ where: { id: +req.params.id }, include: { galeria: true } });
+        if (!d) return res.status(404).json({ error: "No encontrado" });
+        res.json(d);
+    } catch (e) { next(e); }
+});
+
+router.post("/destinos", async (req, res, next) => {
+    try {
+        const { galeria, ...data } = req.body;
+        const d = await prisma.destino.create({
+            data: {
+                ...data,
+                galeria: galeria?.length
+                    ? { create: galeria.map((g, i) => ({ imagen: g.imagen, epigrafe: g.epigrafe || null, orden: i })) }
+                    : undefined,
+            },
+            include: { galeria: true },
+        });
+        res.status(201).json(d);
+    } catch (e) { next(e); }
+});
+
+router.put("/destinos/:id", async (req, res, next) => {
+    try {
+        const id = +req.params.id;
+        const { galeria, ...data } = req.body;
+        await prisma.$transaction(async (tx) => {
+            await tx.destino.update({ where: { id }, data });
+            if (galeria !== undefined) {
+                await tx.imagenDestino.deleteMany({ where: { destinoId: id } });
+                if (galeria.length) {
+                    await tx.imagenDestino.createMany({
+                        data: galeria.map((g, i) => ({ destinoId: id, imagen: g.imagen, epigrafe: g.epigrafe || null, orden: i })),
+                    });
+                }
+            }
+        });
+        const updated = await prisma.destino.findUnique({ where: { id }, include: { galeria: true } });
+        res.json(updated);
+    } catch (e) { next(e); }
+});
+
+router.delete("/destinos/:id", async (req, res, next) => {
+    try {
+        await prisma.destino.delete({ where: { id: +req.params.id } });
+        res.status(204).send();
+    } catch (e) { next(e); }
+});
+
+/* ── OFERTAS ── */
+router.get("/ofertas", async (req, res, next) => {
+    try {
+        const { tipo } = req.query;
+        const ofertas = await prisma.oferta.findMany({
+            where: tipo ? { tipo } : undefined,
+            orderBy: [{ orden: "asc" }, { creadaEn: "desc" }],
+            include: {
+                destino: { select: { id: true, nombre: true, slug: true, paisRegion: true } },
+                incluyeItems: true,
+                precios: true,
+                destinos: { include: { destino: { select: { id: true, nombre: true } } } },
+            },
+        });
+        res.json(ofertas);
+    } catch (e) { next(e); }
+});
+
+router.get("/ofertas/:id", async (req, res, next) => {
+    try {
+        const o = await prisma.oferta.findUnique({
+            where: { id: +req.params.id },
+            include: { destino: true, incluyeItems: true, precios: true, destinos: { include: { destino: true } } },
+        });
+        if (!o) return res.status(404).json({ error: "No encontrada" });
+        res.json(o);
+    } catch (e) { next(e); }
+});
+
+router.post("/ofertas", async (req, res, next) => {
+    try {
+        const { incluyeItems, precios, destinosIds, ...data } = req.body;
+        const o = await prisma.oferta.create({
+            data: {
+                ...data,
+                destinoId: Number(data.destinoId),
+                incluyeItems: incluyeItems?.length ? { create: incluyeItems } : undefined,
+                precios: precios?.length ? { create: precios } : undefined,
+                destinos: destinosIds?.length
+                    ? { create: destinosIds.map((did) => ({ destinoId: Number(did) })) }
+                    : undefined,
+            },
+            include: { destino: true, incluyeItems: true, precios: true },
+        });
+        res.status(201).json(o);
+    } catch (e) { next(e); }
+});
+
+router.put("/ofertas/:id", async (req, res, next) => {
+    try {
+        const id = +req.params.id;
+        const { incluyeItems, precios, destinosIds, ...data } = req.body;
+        await prisma.$transaction(async (tx) => {
+            const updateData = { ...data };
+            if (updateData.destinoId) updateData.destinoId = Number(updateData.destinoId);
+            await tx.oferta.update({ where: { id }, data: updateData });
+            if (incluyeItems !== undefined) {
+                await tx.incluyeOferta.deleteMany({ where: { ofertaId: id } });
+                if (incluyeItems.length)
+                    await tx.incluyeOferta.createMany({ data: incluyeItems.map((i) => ({ ...i, id: undefined, ofertaId: id })) });
+            }
+            if (precios !== undefined) {
+                await tx.precioOferta.deleteMany({ where: { ofertaId: id } });
+                if (precios.length)
+                    await tx.precioOferta.createMany({ data: precios.map((p) => ({ ...p, id: undefined, ofertaId: id, precio: p.precio || 0, moneda: p.moneda || "ARS" })) });
+            }
+            if (destinosIds !== undefined) {
+                await tx.ofertaDestino.deleteMany({ where: { ofertaId: id } });
+                if (destinosIds.length)
+                    await tx.ofertaDestino.createMany({ data: destinosIds.map((did) => ({ ofertaId: id, destinoId: Number(did) })) });
+            }
+        });
+        const updated = await prisma.oferta.findUnique({
+            where: { id },
+            include: { destino: true, incluyeItems: true, precios: true, destinos: { include: { destino: true } } },
+        });
+        res.json(updated);
+    } catch (e) { next(e); }
+});
+
+router.delete("/ofertas/:id", async (req, res, next) => {
+    try {
+        await prisma.oferta.delete({ where: { id: +req.params.id } });
+        res.status(204).send();
+    } catch (e) { next(e); }
+});
+
+/* ── EXCURSIONES / ACTIVIDADES ── */
+router.get("/excursiones", async (req, res, next) => {
+    try {
+        const list = await prisma.actividad.findMany({
+            orderBy: [{ orden: "asc" }, { nombre: "asc" }],
+            include: { destino: { select: { id: true, nombre: true } } },
+        });
+        res.json(list);
+    } catch (e) { next(e); }
+});
+
+router.get("/excursiones/:id", async (req, res, next) => {
+    try {
+        const a = await prisma.actividad.findUnique({
+            where: { id: +req.params.id },
+            include: { destino: true },
+        });
+        if (!a) return res.status(404).json({ error: "No encontrada" });
+        res.json(a);
+    } catch (e) { next(e); }
+});
+
+router.post("/excursiones", async (req, res, next) => {
+    try {
+        const data = { ...req.body };
+        if (data.destinoId) data.destinoId = Number(data.destinoId);
+        if (data.precio !== undefined) data.precio = Number(data.precio);
+        if (data.cupos !== undefined) data.cupos = Number(data.cupos);
+        const a = await prisma.actividad.create({ data, include: { destino: true } });
+        res.status(201).json(a);
+    } catch (e) { next(e); }
+});
+
+router.put("/excursiones/:id", async (req, res, next) => {
+    try {
+        const id = +req.params.id;
+        const data = { ...req.body };
+        if (data.destinoId) data.destinoId = Number(data.destinoId);
+        if (data.precio !== undefined) data.precio = Number(data.precio);
+        if (data.cupos !== undefined) data.cupos = Number(data.cupos);
+        const a = await prisma.actividad.update({ where: { id }, data, include: { destino: true } });
+        res.json(a);
+    } catch (e) { next(e); }
+});
+
+router.delete("/excursiones/:id", async (req, res, next) => {
+    try {
+        await prisma.actividad.delete({ where: { id: +req.params.id } });
+        res.status(204).send();
+    } catch (e) { next(e); }
+});
+
+module.exports = router;

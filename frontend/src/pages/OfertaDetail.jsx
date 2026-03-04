@@ -13,12 +13,32 @@ import {
   hasMeaningfulInfoText
 } from "../utils/markdownSanitizers.js";
 
+const TIPO_LABELS = {
+  "aereo": "Vuelos",
+  "aéreo": "Vuelos",
+  "transporte": "Transporte",
+  "traslados": "Traslados",
+  "alojamiento": "Alojamiento",
+  "desayuno": "Desayuno incluido",
+  "comidas": "Comidas",
+  "régimen": "Régimen alimentario",
+  "regimen": "Régimen alimentario",
+  "equipaje": "Equipaje",
+  "asistencia": "Asistencia al viajero",
+  "seguro": "Seguro de viaje",
+  "excursión": "Excursiones",
+  "excursion": "Excursiones",
+  "salidas": "Fechas de salida",
+  "notas": "Notas importantes",
+  "otros": "Servicios adicionales",
+};
+
 function formatIncluyeTipo(tipo) {
-  if (!tipo) {
-    return "Incluye";
-  }
-  return tipo.charAt(0).toUpperCase() + tipo.slice(1);
+  if (!tipo) return "Incluye";
+  const key = tipo.toLowerCase().trim();
+  return TIPO_LABELS[key] || (tipo.charAt(0).toUpperCase() + tipo.slice(1));
 }
+
 
 const DETAIL_PREFIX = "detalle-";
 const ITINERARY_PREFIX = "itinerario-";
@@ -238,8 +258,8 @@ export default function OfertaDetail() {
   }, [oferta?.condiciones, hasItinerary]);
   const hasInfoContent = Boolean(
     detalleItems.length ||
-      hasMeaningfulInfoText(cleanedCondiciones) ||
-      cleanedNoIncluye
+    hasMeaningfulInfoText(cleanedCondiciones) ||
+    cleanedNoIncluye
   );
 
   const actividadesIncluidas = useMemo(() => {
@@ -322,34 +342,48 @@ export default function OfertaDetail() {
       </section>
 
       <section className="detail-section">
-        <div
-          className={`detail-grid detail-grid--offer${hasItinerary ? "" : " detail-grid--no-itinerary"}${hasInfoContent ? "" : " detail-grid--no-info"}`}
-        >
-          {hasInfoContent ? (
-            <article className="detail-card detail-card--info">
-              <h3>{detalleItems.length ? "Detalle del producto" : "Información del viaje"}</h3>
-              {detalleItems.length ? (
-                <div className="detail-table">
-                  {detalleItems.map((item) => (
-                    <div className="detail-table-row" key={item.id}>
-                      <span>{formatDetailLabel(item.tipo)}</span>
-                      <span>{item.descripcion}</span>
-                    </div>
-                  ))}
+        <div className="detail-grid detail-grid--clean">
+          {/* Card: Resumen del viaje */}
+          <article className="detail-card detail-card--info">
+            <h3>Resumen del Paquete</h3>
+            <div className="detail-table">
+              <div className="detail-table-row">
+                <span>Destino principal</span>
+                <span>{destinoPrincipal}</span>
+              </div>
+              {oferta.destino?.paisRegion && (
+                <div className="detail-table-row">
+                  <span>País/Región</span>
+                  <span>{oferta.destino.paisRegion}</span>
+                </div>
+              )}
+              <div className="detail-table-row">
+                <span>Noches</span>
+                <span>{oferta.noches}</span>
+              </div>
+              {preciosOrdenados.length > 0 ? (
+                <div className="detail-table-row">
+                  <span>Fechas de salida</span>
+                  <span>
+                    {preciosOrdenados.map((precio, i) => (
+                      <div key={precio.id}>
+                        {formatDateRangeLabel(precio.fechaInicio, precio.fechaFin)}
+                      </div>
+                    ))}
+                  </span>
+                </div>
+              ) : detalleFechas?.descripcion ? (
+                <div className="detail-table-row">
+                  <span>Fechas de salida</span>
+                  <span>{detalleFechas.descripcion}</span>
                 </div>
               ) : null}
+            </div>
+          </article>
 
-              {hasMeaningfulInfoText(cleanedCondiciones) ? (
-                <div className="detail-info-block">
-                  {formatRawContent(cleanedCondiciones)}
-                </div>
-              ) : null}
-
-              {cleanedNoIncluye ? <p>No incluye: {cleanedNoIncluye}</p> : null}
-            </article>
-          ) : null}
+          {/* Card: Servicios Incluidos */}
           <article className="detail-card detail-card--includes">
-            <h3>Qué incluye</h3>
+            <h3>Servicios Incluidos</h3>
             {incluyeItems.length ? (
               <ul className="detail-list detail-list--icons detail-list--fancy">
                 {incluyeItems.map((item) => (
@@ -363,44 +397,9 @@ export default function OfertaDetail() {
                 ))}
               </ul>
             ) : (
-              <p>Consultanos para conocer el detalle del paquete.</p>
+              <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
             )}
           </article>
-          <article className="detail-card detail-card--dates">
-            <h3>Fechas disponibles</h3>
-            {preciosOrdenados.length ? (
-              <div className="detail-table">
-                {preciosOrdenados.map((precio) => (
-                  <div className="detail-table-row" key={precio.id}>
-                    <span>
-                      {formatDateRangeLabel(
-                        precio.fechaInicio,
-                        precio.fechaFin
-                      )}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ) : detalleFechas?.descripcion ? (
-              <p>{detalleFechas.descripcion}</p>
-            ) : (
-              <p>Fechas a confirmar. Te asesoramos por WhatsApp.</p>
-            )}
-          </article>
-          {hasItinerary ? (
-            <article className="detail-card detail-card--itinerary">
-              <h3>Itinerario</h3>
-              <ul className="detail-list detail-list--timeline">
-                {itinerarioItems.map((item, index) => (
-                  <li key={item.id} data-step={index + 1}>
-                    <span className="detail-list-text">
-                      {renderItineraryText(item.descripcion)}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ) : null}
         </div>
       </section>
 

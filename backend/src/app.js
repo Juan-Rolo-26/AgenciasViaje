@@ -10,6 +10,7 @@ const aboutRoutes = require("./api/about/aboutRoutes");
 const complaintRoutes = require("./api/complaints/complaintRoutes");
 const subscriptionRoutes = require("./api/subscriptions/subscriptionRoutes");
 const assistantRoutes = require("./api/assistant/assistantRoutes");
+const adminRoutes = require("./api/admin/adminRoutes");
 const { API_PREFIX } = require("./config/serverConfig");
 const errorHandler = require("./middleware/errorHandler");
 
@@ -28,6 +29,7 @@ app.use(`${API_PREFIX}/nosotros`, aboutRoutes);
 app.use(`${API_PREFIX}/quejas`, complaintRoutes);
 app.use(`${API_PREFIX}/suscripciones`, subscriptionRoutes);
 app.use(`${API_PREFIX}/assistant`, assistantRoutes);
+app.use(`${API_PREFIX}/admin`, adminRoutes);
 
 const frontendDist = path.resolve(__dirname, "..", "public");
 app.use(
@@ -49,7 +51,12 @@ app.get("*", (req, res, next) => {
   if (req.path.startsWith(API_PREFIX)) {
     return next();
   }
+
   res.set("Cache-Control", "no-cache");
+  if (req.path.startsWith("/admin")) {
+    return res.sendFile(path.join(frontendDist, "admin", "index.html"));
+  }
+
   res.sendFile(path.join(frontendDist, "index.html"));
 });
 
