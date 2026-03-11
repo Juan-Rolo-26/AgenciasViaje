@@ -9139,3 +9139,455 @@ html {
     height: 22px;
   }
 }
+
+/* =============================================
+   SECCIÓN ASOCIARSE A LA MUTUAL
+   ============================================= */
+
+.mutual-cta-section {
+  margin: 0 calc(var(--page-gutter) * -1);
+  padding: 0 var(--page-gutter);
+  background: #ffffff;
+  border-top: 1px solid #e8ecf4;
+  border-bottom: 1px solid #e8ecf4;
+  position: relative;
+  overflow: hidden;
+}
+
+.mutual-cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 80% at 85% 50%, rgba(43,91,255,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 5% 80%, rgba(43,91,255,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.mutual-cta-section::after {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(43,91,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.mutual-cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+.mutual-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(43,91,255,0.08);
+  border: 1px solid rgba(43,91,255,0.2);
+  color: #2b5bff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 36px;
+}
+
+.mutual-cta-badge svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.mutual-cta-content {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ---- Texto izquierda ---- */
+
+.mutual-cta-title {
+  font-size: clamp(28px, 3.2vw, 46px);
+  font-weight: 800;
+  color: #1f2a44;
+  line-height: 1.15;
+  margin: 0 0 18px;
+  letter-spacing: -0.02em;
+}
+
+.mutual-highlight {
+  color: #2b5bff;
+  position: relative;
+}
+
+.mutual-cta-subtitle {
+  font-size: 1.08rem;
+  color: #6b7a99;
+  line-height: 1.7;
+  margin: 0 0 36px;
+  max-width: 540px;
+}
+
+.mutual-benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mutual-benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.mutual-benefit-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(43,91,255,0.08);
+  border: 1px solid rgba(43,91,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #2b5bff;
+}
+
+.mutual-benefit-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mutual-benefit-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 4px;
+}
+
+.mutual-benefit-item strong {
+  color: #1f2a44;
+  font-weight: 700;
+  font-size: 0.97rem;
+  line-height: 1.3;
+}
+
+.mutual-benefit-item span {
+  color: #6b7a99;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.mutual-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.mutual-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2b5bff;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 16px 32px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 8px 32px rgba(43,91,255,0.28);
+  letter-spacing: -0.01em;
+}
+
+.mutual-btn-primary:hover {
+  background: #1a4ae8;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(43,91,255,0.38);
+}
+
+.mutual-btn-primary svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s;
+}
+
+.mutual-btn-primary:hover svg {
+  transform: translateX(3px);
+}
+
+.mutual-cta-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #6b7a99;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.mutual-cta-note svg {
+  width: 16px;
+  height: 16px;
+  color: #4ade80;
+  flex-shrink: 0;
+}
+
+/* ---- Visual derecha ---- */
+
+.mutual-cta-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Tarjeta de socio */
+.mutual-card {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1.586;
+  background: linear-gradient(135deg, #1e3a7a 0%, #2b5bff 50%, #3d7fff 100%);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.mutual-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+}
+
+.mutual-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255,200,61,0.1);
+}
+
+.mutual-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.mutual-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.mutual-card-logo {
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffc83d;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.mutual-card-logo svg {
+  width: 24px;
+  height: 24px;
+}
+
+.mutual-card-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mutual-card-name {
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.mutual-card-tagline {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mutual-card-member {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.mutual-card-label {
+  color: rgba(255,255,255,0.45);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mutual-card-value {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.mutual-card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.mutual-card-chip {
+  width: 42px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffc83d, #f5a623);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a6200;
+}
+
+.mutual-card-chip svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Stats debajo de la tarjeta */
+.mutual-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #f6f7fb;
+  border: 1px solid #e8ecf4;
+  border-radius: 16px;
+  padding: 18px 24px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.mutual-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.mutual-stat-number {
+  color: #2b5bff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.mutual-stat-label {
+  color: #6b7a99;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.mutual-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: #e8ecf4;
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1100px) {
+  .mutual-cta-content {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .mutual-cta-visual {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .mutual-card {
+    max-width: 320px;
+  }
+
+  .mutual-stats {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .mutual-cta-inner {
+    padding: 56px 0;
+  }
+
+  .mutual-cta-title {
+    font-size: clamp(24px, 6vw, 34px);
+  }
+
+  .mutual-cta-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .mutual-cta-visual {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mutual-card {
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 1.586;
+  }
+
+  .mutual-stats {
+    max-width: 100%;
+    width: 100%;
+  }
+}
