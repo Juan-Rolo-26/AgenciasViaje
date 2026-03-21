@@ -60,6 +60,24 @@ const normalizeOferta = (oferta) => {
   };
 };
 
+const filterPastOfertas = (ofertas) => {
+  if (!Array.isArray(ofertas)) return [];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return ofertas.filter((oferta) => {
+    if (!oferta) return false;
+    if (!Array.isArray(oferta.precios) || oferta.precios.length === 0) {
+      return true; // No dates specified, consider it available
+    }
+    const hasFutureOrCurrent = oferta.precios.some((p) => {
+      const fFin = p.fechaFin ? new Date(p.fechaFin) : new Date(p.fechaInicio);
+      return fFin >= today;
+    });
+    return hasFutureOrCurrent;
+  });
+};
+
 const isFresh = (cacheEntry) =>
   cacheEntry.data &&
   Date.now() - cacheEntry.timestamp < CACHE_TTL_MS;
@@ -75,7 +93,10 @@ async function fetchDataset(key, url, normalizeFn) {
 
   cacheEntry.promise = apiRequest(url)
     .then((data) => {
-      const normalized = Array.isArray(data) ? data.map(normalizeFn) : [];
+      let normalized = Array.isArray(data) ? data.map(normalizeFn) : [];
+      if (key === "ofertas") {
+        normalized = filterPastOfertas(normalized);
+      }
       cacheEntry.data = normalized;
       cacheEntry.timestamp = Date.now();
       return normalized;

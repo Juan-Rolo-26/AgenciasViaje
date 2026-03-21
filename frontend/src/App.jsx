@@ -19,7 +19,7 @@ import ModoFanaticoDetail from "./pages/ModoFanaticoDetail.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import WebEnDesarrollo from "./pages/WebEnDesarrollo.jsx";
 
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 export default function App() {
   if (MAINTENANCE_MODE) {

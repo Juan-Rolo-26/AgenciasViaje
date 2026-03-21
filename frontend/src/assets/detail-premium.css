@@ -264,11 +264,16 @@
 
 /* Clean 2-column layout for paquetes/salidas that only show info + services */
 .detail-grid.detail-grid--clean {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    grid-template-areas: none !important;
-    gap: 28px;
-    align-items: start;
+    display: block !important;
+    column-count: 2;
+    column-gap: 28px;
+    width: 100%;
+}
+
+.detail-grid.detail-grid--clean>.detail-card {
+    break-inside: avoid;
+    margin-bottom: 28px;
+    display: inline-block;
     width: 100%;
 }
 
@@ -280,7 +285,7 @@
 
 @media (max-width: 860px) {
     .detail-grid.detail-grid--clean {
-        grid-template-columns: 1fr !important;
+        column-count: 1;
     }
 }
 

@@ -114,6 +114,12 @@ const incluyeIconos = {
       <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
       <path d="M12 8v8M8 12h8" fill="none" stroke="currentColor" strokeWidth="2" />
     </svg>
+  ),
+  noIncluidoDefault: (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M15 9l-6 6M9 9l6 6" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
   )
 };
 
@@ -175,5 +181,12 @@ export const getIncluyeIcon = (tipo) => {
   const normalized = normalizeText(tipo);
   const key = matchIconKey(normalized);
   return incluyeIconos[key] || incluyeIconos.default;
+};
+
+export const getNoIncluyeIcon = (tipo) => {
+  const normalized = normalizeText(tipo);
+  const key = matchIconKey(normalized);
+  if (key === "default") return incluyeIconos.noIncluidoDefault;
+  return incluyeIconos[key] || incluyeIconos.noIncluidoDefault;
 };
 

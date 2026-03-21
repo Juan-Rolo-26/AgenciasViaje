@@ -5,7 +5,7 @@ import fallbackDeal from "../assets/inicio.jpg";
 import { useTravelData } from "../hooks/useTravelData.js";
 import { formatDate, getPrecioVigente } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
-import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
+import { getIncluyeIcon, getNoIncluyeIcon } from "../utils/incluyeIcons.jsx";
 import {
   stripMarkdownSectionByKeyword,
   stripLinesWithPriceSignals,
@@ -362,11 +362,24 @@ function renderItineraryText(text) {
 }
 
 function formatDateRangeLabel(startValue, endValue) {
+  if (!startValue) return "";
+  const sDate = new Date(startValue);
+  const eDate = endValue ? new Date(endValue) : null;
+  if (eDate) {
+    const isFirstDay = sDate.getUTCDate() === 1;
+    const lastDayOfMonth = new Date(Date.UTC(sDate.getUTCFullYear(), sDate.getUTCMonth() + 1, 0)).getUTCDate();
+    const isLastDay = eDate.getUTCDate() === lastDayOfMonth;
+    const sameYearMonth = sDate.getUTCFullYear() === eDate.getUTCFullYear() && sDate.getUTCMonth() === eDate.getUTCMonth();
+    if (isFirstDay && isLastDay && sameYearMonth) {
+      const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      const monthName = monthNames[sDate.getUTCMonth()];
+      const year = sDate.getUTCFullYear();
+      return `Todo el mes de ${monthName} ${year}`;
+    }
+  }
+
   const start = formatDate(startValue);
   const end = formatDate(endValue);
-  if (!start) {
-    return "";
-  }
   if (!end || start === end) {
     return start;
   }
@@ -503,13 +516,26 @@ export default function DestinoDetail() {
         normalizeTipo(item.tipo) === "detalle-fechas"
     );
 
+    let noIncluyeParsed = [];
+    if (oferta?.noIncluye && oferta.noIncluye.trim()) {
+      try {
+        noIncluyeParsed = JSON.parse(oferta.noIncluye);
+      } catch {
+        noIncluyeParsed = oferta.noIncluye.split('\n').filter(line => line.trim()).map(item => ({
+          tipo: 'General',
+          descripcion: item.replace(/^-/, '').replace(/^•/, '').trim()
+        }));
+      }
+    }
+
     return {
       oferta,
       preciosOrdenados,
       detalleItems,
       itinerarioItems,
       incluyeItems,
-      detalleFechas
+      detalleFechas,
+      noIncluyeParsed
     };
   }, [selectedPackage]);
 
@@ -1026,6 +1052,27 @@ export default function DestinoDetail() {
                     <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
                   )}
                 </article>
+
+                {/* Card 3: Servicios NO Incluidos */}
+                {selectedPackageData.noIncluyeParsed.length > 0 && (
+                  <article className="detail-card detail-card--includes">
+                    <h3>Servicios no incluidos</h3>
+                    <ul className="detail-list detail-list--icons detail-list--fancy">
+                      {selectedPackageData.noIncluyeParsed.map((item, idx) => (
+                        <li key={`noinc-${idx}`}>
+                          <span className="detail-icon" style={{ opacity: 0.6 }}>{getNoIncluyeIcon(item.tipo)}</span>
+                          <span className="detail-list-text">
+                            {item.tipo && item.tipo !== 'General' ? (
+                              <><strong>{formatIncluyeTipo(item.tipo)}:</strong> {item.descripcion}</>
+                            ) : (
+                              <>{item.descripcion}</>
+                            )}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                )}
               </div>
 
               <div className="detail-cta" style={{ marginTop: '32px', textAlign: 'center' }}>

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState, useCallback } from "react";
+import { Fragment, useEffect, useState, useCallback, useMemo } from "react";
 import { useAdmin } from "../context/AdminContext.jsx";
 import Modal from "./Modal.jsx";
 
@@ -9,7 +9,7 @@ const TIPOS_SERVICIO = [
 
 const EMPTY_OFERTA = {
     titulo: "", slug: "", destinoId: "",
-    noches: 7, cupos: 0, destacada: false, activa: true, orden: 0,
+    noches: 7, cupos: 0, destacada: false, activa: true, orden: 0, noIncluye: "",
 };
 
 function toSlug(s) {
@@ -33,8 +33,22 @@ export default function OfertasView({ tipo, titulo }) {
     const [editItem, setEditItem] = useState(null);
     const [form, setForm] = useState({ ...EMPTY_OFERTA, tipo });
     const [servicios, setServicios] = useState([]);
+    const [noServicios, setNoServicios] = useState([]);
     const [fechas, setFechas] = useState([]);
     const [saving, setSaving] = useState(false);
+
+    const customNoIncluidosTipos = useMemo(() => {
+        const tipos = new Set(["Propinas", "Seguro de cancelación", "Bebidas", "Gastos personales"]);
+        list.forEach(o => {
+            if (o.noIncluye) {
+                try {
+                    const parsed = JSON.parse(o.noIncluye);
+                    if (Array.isArray(parsed)) parsed.forEach(p => p.tipo && tipos.add(p.tipo));
+                } catch { }
+            }
+        });
+        return Array.from(tipos).sort();
+    }, [list]);
     // expand row
     const [expanded, setExpanded] = useState(null);
     // delete
@@ -58,6 +72,7 @@ export default function OfertasView({ tipo, titulo }) {
         setEditItem(null);
         setForm({ ...EMPTY_OFERTA, tipo });
         setServicios([{ tipo: "Aéreo", descripcion: "" }]);
+        setNoServicios([]);
         setFechas([{ fechaInicio: "", fechaFin: "" }]);
         setShowForm(true);
     }
@@ -68,8 +83,18 @@ export default function OfertasView({ tipo, titulo }) {
             titulo: o.titulo || "", slug: o.slug || "", destinoId: String(o.destinoId || ""),
             noches: o.noches || 7, cupos: o.cupos || 0,
             destacada: !!o.destacada, activa: o.activa !== false, orden: o.orden || 0, tipo,
+            noIncluye: o.noIncluye || "",
         });
         setServicios((o.incluyeItems || []).map(i => ({ id: i.id, tipo: i.tipo, descripcion: i.descripcion })));
+        let parsedNoIncluye = [];
+        if (o.noIncluye) {
+            try {
+                parsedNoIncluye = JSON.parse(o.noIncluye);
+            } catch {
+                parsedNoIncluye = o.noIncluye.split('\n').filter(Boolean).map(x => ({ tipo: "General", descripcion: x }));
+            }
+        }
+        setNoServicios(parsedNoIncluye);
         setFechas((o.precios || [])
             .sort((a, b) => new Date(a.fechaInicio) - new Date(b.fechaInicio))
             .map(p => ({
@@ -89,6 +114,7 @@ export default function OfertasView({ tipo, titulo }) {
         try {
             const body = {
                 ...form,
+                noIncluye: JSON.stringify(noServicios.filter(s => s.tipo)),
                 destinoId: Number(form.destinoId),
                 incluyeItems: servicios.filter(s => s.tipo && s.descripcion),
                 precios: fechas.filter(f => f.fechaInicio).map(f => ({
@@ -305,6 +331,30 @@ export default function OfertasView({ tipo, titulo }) {
                         </div>
                     </div>
 
+                    <div className="form-section">
+                        <div className="section-row">
+                            <h4>Servicios NO incluidos</h4>
+                            <button className="btn-secondary sm" onClick={() => setNoServicios(s => [...s, { tipo: "", descripcion: "" }])}>
+                                + Agregar no incluido
+                            </button>
+                        </div>
+                        <div className="items-list">
+                            {noServicios.map((s, i) => (
+                                <div className="item-row" key={'noinc' + i}>
+                                    <input list="no-incluidos-tipos" placeholder="Tipo (ej: Propinas...)" value={s.tipo}
+                                        onChange={e => setNoServicios(ss => ss.map((x, j) => j === i ? { ...x, tipo: e.target.value } : x))} style={{ width: '180px' }} />
+                                    <input placeholder="Descripción (opcional)..." value={s.descripcion}
+                                        onChange={e => setNoServicios(ss => ss.map((x, j) => j === i ? { ...x, descripcion: e.target.value } : x))} />
+                                    <button className="btn-del sm" onClick={() => setNoServicios(ss => ss.filter((_, j) => j !== i))}>✕</button>
+                                </div>
+                            ))}
+                            {noServicios.length === 0 && <p className="hint">Sin servicios no incluidos aclarados.</p>}
+                            <datalist id="no-incluidos-tipos">
+                                {customNoIncluidosTipos.map(t => <option key={t} value={t} />)}
+                            </datalist>
+                        </div>
+                    </div>
+
                     {/* Sección 2: Servicios incluidos */}
                     <div className="form-section">
                         <div className="section-row">
@@ -332,9 +382,27 @@ export default function OfertasView({ tipo, titulo }) {
                     <div className="form-section">
                         <div className="section-row">
                             <h4>Fechas de salida</h4>
-                            <button className="btn-secondary sm" onClick={() => setFechas(ff => [...ff, { fechaInicio: "", fechaFin: "" }])}>
-                                + Agregar fecha
-                            </button>
+                            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+                                <div style={{ display: "flex", alignItems: "center", gap: "6px", background: "#f5f5f5", padding: "4px 8px", borderRadius: "6px" }}>
+                                    <label style={{ fontSize: "12px", margin: 0, fontWeight: 500 }}>Mes entero:</label>
+                                    <input type="month" onChange={e => {
+                                        const mes = e.target.value;
+                                        if (mes) {
+                                            const [y, m] = mes.split("-");
+                                            if (y && m) {
+                                                const start = `${y}-${m}-01`;
+                                                const endDay = new Date(y, m, 0).getDate();
+                                                const end = `${y}-${m}-${endDay}`;
+                                                setFechas(ff => [...ff, { fechaInicio: start, fechaFin: end }]);
+                                                e.target.value = "";
+                                            }
+                                        }
+                                    }} style={{ padding: "4px 8px", border: "1px solid #ccc", borderRadius: "4px", background: "white", fontSize: "14px" }} />
+                                </div>
+                                <button className="btn-secondary sm" onClick={() => setFechas(ff => [...ff, { fechaInicio: "", fechaFin: "" }])}>
+                                    + Fechas exactas
+                                </button>
+                            </div>
                         </div>
                         <div className="items-list">
                             {fechas.map((f, i) => (

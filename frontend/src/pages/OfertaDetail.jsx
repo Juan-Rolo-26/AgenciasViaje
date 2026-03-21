@@ -5,7 +5,7 @@ import { useOfertas } from "../hooks/useTravelData.js";
 import { formatDate } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getOfferImages } from "../utils/offerImages.js";
-import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
+import { getIncluyeIcon, getNoIncluyeIcon } from "../utils/incluyeIcons.jsx";
 import {
   stripMarkdownSectionByKeyword,
   stripLinesWithPriceSignals,
@@ -96,11 +96,24 @@ function renderItineraryText(text) {
 }
 
 function formatDateRangeLabel(startValue, endValue) {
+  if (!startValue) return "";
+  const sDate = new Date(startValue);
+  const eDate = endValue ? new Date(endValue) : null;
+  if (eDate) {
+    const isFirstDay = sDate.getUTCDate() === 1;
+    const lastDayOfMonth = new Date(Date.UTC(sDate.getUTCFullYear(), sDate.getUTCMonth() + 1, 0)).getUTCDate();
+    const isLastDay = eDate.getUTCDate() === lastDayOfMonth;
+    const sameYearMonth = sDate.getUTCFullYear() === eDate.getUTCFullYear() && sDate.getUTCMonth() === eDate.getUTCMonth();
+    if (isFirstDay && isLastDay && sameYearMonth) {
+      const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      const monthName = monthNames[sDate.getUTCMonth()];
+      const year = sDate.getUTCFullYear();
+      return `Todo el mes de ${monthName} ${year}`;
+    }
+  }
+
   const start = formatDate(startValue);
   const end = formatDate(endValue);
-  if (!start) {
-    return "";
-  }
   if (!end || start === end) {
     return start;
   }
@@ -246,10 +259,24 @@ export default function OfertaDetail() {
   }, [detalleItems]);
 
   const hasItinerary = itinerarioItems.length > 0;
-  const cleanedNoIncluye = useMemo(
-    () => stripLinesWithPriceSignals(oferta?.noIncluye || ""),
-    [oferta?.noIncluye]
-  );
+
+  // New logic for parsing custom NO incluidos
+  const noIncluyeParsed = useMemo(() => {
+    let result = [];
+    if (oferta?.noIncluye && oferta.noIncluye.trim()) {
+      try {
+        result = JSON.parse(oferta.noIncluye);
+      } catch {
+        // Fallback for old plaintext values
+        result = oferta.noIncluye.split('\n').filter(line => line.trim()).map(item => ({
+          tipo: 'General',
+          descripcion: item.replace(/^-/, '').replace(/^•/, '').trim()
+        }));
+      }
+    }
+    return result;
+  }, [oferta?.noIncluye]);
+
   const cleanedCondiciones = useMemo(() => {
     const source = hasItinerary
       ? stripMarkdownSectionByKeyword(oferta?.condiciones || "", "itinerario")
@@ -259,7 +286,7 @@ export default function OfertaDetail() {
   const hasInfoContent = Boolean(
     detalleItems.length ||
     hasMeaningfulInfoText(cleanedCondiciones) ||
-    cleanedNoIncluye
+    noIncluyeParsed.length > 0
   );
 
   const actividadesIncluidas = useMemo(() => {
@@ -400,6 +427,27 @@ export default function OfertaDetail() {
               <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
             )}
           </article>
+
+          {/* Card: Servicios NO Incluidos */}
+          {noIncluyeParsed.length > 0 && (
+            <article className="detail-card detail-card--includes">
+              <h3>Servicios no incluidos</h3>
+              <ul className="detail-list detail-list--icons detail-list--fancy">
+                {noIncluyeParsed.map((item, idx) => (
+                  <li key={`noinc-${idx}`}>
+                    <span className="detail-icon" style={{ opacity: 0.6 }}>{getNoIncluyeIcon(item.tipo)}</span>
+                    <span className="detail-list-text">
+                      {item.tipo && item.tipo !== 'General' ? (
+                        <><strong>{formatIncluyeTipo(item.tipo)}:</strong> {item.descripcion}</>
+                      ) : (
+                        <>{item.descripcion}</>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          )}
         </div>
       </section>
 
