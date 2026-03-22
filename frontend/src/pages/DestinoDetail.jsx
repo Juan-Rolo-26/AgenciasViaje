@@ -994,100 +994,109 @@ export default function DestinoDetail() {
 
               <h2 style={{ fontSize: '2rem', marginBottom: '16px', color: 'var(--violet-900)' }}>{selectedPackage.titulo}</h2>
 
-              <div className="detail-grid detail-grid--clean">
-                {/* Card 1: Resumen del Paquete */}
-                <article className="detail-card detail-card--info">
-                  <h3>Resumen del Paquete</h3>
-                  <div className="detail-table">
-                    <div className="detail-table-row">
-                      <span>Destino principal</span>
-                      <span>{selectedPackage.destino?.nombre || destino.nombre}</span>
-                    </div>
-                    {(selectedPackage.destino?.paisRegion || destino.paisRegion) && (
-                      <div className="detail-table-row">
-                        <span>País/Región</span>
-                        <span>{selectedPackage.destino?.paisRegion || destino.paisRegion}</span>
-                      </div>
-                    )}
-                    <div className="detail-table-row">
-                      <span>Noches</span>
-                      <span>{selectedPackage.noches}</span>
-                    </div>
-                    {selectedPackageData.preciosOrdenados.length > 0 ? (
-                      <div className="detail-table-row">
-                        <span>Fechas de salida</span>
-                        <span>
-                          {selectedPackageData.preciosOrdenados.map((precio) => (
-                            <div key={precio.id}>
-                              {formatDateRangeLabel(precio.fechaInicio, precio.fechaFin)}
-                            </div>
-                          ))}
-                        </span>
-                      </div>
-                    ) : selectedPackageData.detalleFechas?.descripcion ? (
-                      <div className="detail-table-row">
-                        <span>Fechas de salida</span>
-                        <span>{selectedPackageData.detalleFechas.descripcion}</span>
-                      </div>
-                    ) : null}
-                  </div>
-                </article>
-
-                {/* Card 2: Includes (Checklist) */}
-                <article className="detail-card detail-card--includes">
-                  <h3>Servicios Incluidos</h3>
-                  {selectedPackageData.incluyeItems.length ? (
-                    <ul className="detail-list detail-list--icons detail-list--fancy">
-                      {selectedPackageData.incluyeItems.map((item) => (
-                        <li key={item.id}>
-                          <span className="detail-icon">{getIncluyeIcon(item.tipo)}</span>
-                          <span className="detail-list-text">
-                            <strong>{formatIncluyeTipo(item.tipo)}:</strong>{" "}
-                            {item.descripcion}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
-                  )}
-                </article>
-
-                {/* Card 3: Servicios NO Incluidos */}
-                {selectedPackageData.noIncluyeParsed.length > 0 && (
+              <div className="pkg-layout">
+                {/* Columna principal */}
+                <div className="pkg-layout-main">
+                  {/* Servicios Incluidos */}
                   <article className="detail-card detail-card--includes">
-                    <h3>Servicios no incluidos</h3>
-                    <ul className="detail-list detail-list--icons detail-list--fancy">
-                      {selectedPackageData.noIncluyeParsed.map((item, idx) => (
-                        <li key={`noinc-${idx}`}>
-                          <span className="detail-icon" style={{ opacity: 0.6 }}>{getNoIncluyeIcon(item.tipo)}</span>
-                          <span className="detail-list-text">
-                            {item.tipo && item.tipo !== 'General' ? (
-                              <><strong>{formatIncluyeTipo(item.tipo)}:</strong> {item.descripcion}</>
-                            ) : (
-                              <>{item.descripcion}</>
-                            )}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                    <h3>Servicios Incluidos</h3>
+                    {selectedPackageData.incluyeItems.length ? (
+                      <ul className="detail-list detail-list--icons detail-list--fancy">
+                        {selectedPackageData.incluyeItems.map((item) => (
+                          <li key={item.id}>
+                            <span className="detail-icon">{getIncluyeIcon(item.tipo)}</span>
+                            <span className="detail-list-text">
+                              <strong>{formatIncluyeTipo(item.tipo)}:</strong>{" "}
+                              {item.descripcion}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
+                    )}
                   </article>
-                )}
-              </div>
 
-              <div className="detail-cta" style={{ marginTop: '32px', textAlign: 'center' }}>
-                <a
-                  className="detail-whatsapp"
-                  href={getWhatsappLink(`Hola! Quiero reservar el paquete ${selectedPackage.titulo} en ${destino.nombre}.`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ maxWidth: '400px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                  </svg>
-                  Consultar por WhatsApp
-                </a>
+                  {/* Servicios NO Incluidos */}
+                  {selectedPackageData.noIncluyeParsed.length > 0 && (
+                    <article className="detail-card detail-card--includes">
+                      <h3>Servicios no incluidos</h3>
+                      <ul className="detail-list detail-list--icons detail-list--fancy">
+                        {selectedPackageData.noIncluyeParsed.map((item, idx) => (
+                          <li key={`noinc-${idx}`}>
+                            <span className="detail-icon" style={{ opacity: 0.6 }}>{getNoIncluyeIcon(item.tipo)}</span>
+                            <span className="detail-list-text">
+                              {item.tipo && item.tipo !== 'General' ? (
+                                <><strong>{formatIncluyeTipo(item.tipo)}:</strong> {item.descripcion}</>
+                              ) : (
+                                <>{item.descripcion}</>
+                              )}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  )}
+                </div>
+
+                {/* Sidebar */}
+                <aside className="pkg-layout-sidebar">
+                  <article className="detail-card detail-card--info">
+                    <h3 className="pkg-summary-title">Resumen del Paquete</h3>
+                    <div className="pkg-summary-list">
+                      <div className="pkg-summary-item">
+                        <span className="pkg-summary-label">Destino principal</span>
+                        <span className="pkg-summary-value">{selectedPackage.destino?.nombre || destino.nombre}</span>
+                      </div>
+                      {(selectedPackage.destino?.paisRegion || destino.paisRegion) && (
+                        <div className="pkg-summary-item">
+                          <span className="pkg-summary-label">País / Región</span>
+                          <span className="pkg-summary-value">{selectedPackage.destino?.paisRegion || destino.paisRegion}</span>
+                        </div>
+                      )}
+                      {selectedPackage.noches && (
+                        <div className="pkg-summary-item">
+                          <span className="pkg-summary-label">Noches</span>
+                          <span className="pkg-summary-value">{selectedPackage.noches}</span>
+                        </div>
+                      )}
+                      {(() => {
+                        const uniqueDates = [...new Map(
+                          selectedPackageData.preciosOrdenados.map(p => [formatDateRangeLabel(p.fechaInicio, p.fechaFin), p])
+                        ).values()];
+                        if (uniqueDates.length > 0) return (
+                          <div className="pkg-summary-item">
+                            <span className="pkg-summary-label">Fechas de salida</span>
+                            {uniqueDates.map((precio) => (
+                              <span key={precio.id} className="pkg-summary-date">
+                                {formatDateRangeLabel(precio.fechaInicio, precio.fechaFin)}
+                              </span>
+                            ))}
+                          </div>
+                        );
+                        if (selectedPackageData.detalleFechas?.descripcion) return (
+                          <div className="pkg-summary-item">
+                            <span className="pkg-summary-label">Fechas de salida</span>
+                            <span className="pkg-summary-date">{selectedPackageData.detalleFechas.descripcion}</span>
+                          </div>
+                        );
+                        return null;
+                      })()}
+                    </div>
+                  </article>
+
+                  <a
+                    className="detail-whatsapp pkg-sidebar-cta"
+                    href={getWhatsappLink(`Hola! Quiero reservar el paquete ${selectedPackage.titulo} en ${destino.nombre}.`)}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                    Consultar por WhatsApp
+                  </a>
+                </aside>
               </div>
             </div>
           )}

@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /home/juampi26/AgenciasViaje/frontend/src/assets/*.css)"
+    ]
+  }
+}

@@ -357,97 +357,107 @@ export default function OfertaDetail() {
         </div>
       </section>
 
-      <section className="detail-cta">
-        <a
-          className="detail-whatsapp"
-          href={whatsappLink}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Consultar por WhatsApp
-        </a>
-      </section>
-
       <section className="detail-section">
-        <div className="detail-grid detail-grid--clean">
-          {/* Card: Resumen del viaje */}
-          <article className="detail-card detail-card--info">
-            <h3>Resumen del Paquete</h3>
-            <div className="detail-table">
-              <div className="detail-table-row">
-                <span>Destino principal</span>
-                <span>{destinoPrincipal}</span>
-              </div>
-              {oferta.destino?.paisRegion && (
-                <div className="detail-table-row">
-                  <span>País/Región</span>
-                  <span>{oferta.destino.paisRegion}</span>
-                </div>
-              )}
-              <div className="detail-table-row">
-                <span>Noches</span>
-                <span>{oferta.noches}</span>
-              </div>
-              {preciosOrdenados.length > 0 ? (
-                <div className="detail-table-row">
-                  <span>Fechas de salida</span>
-                  <span>
-                    {preciosOrdenados.map((precio, i) => (
-                      <div key={precio.id}>
-                        {formatDateRangeLabel(precio.fechaInicio, precio.fechaFin)}
-                      </div>
-                    ))}
-                  </span>
-                </div>
-              ) : detalleFechas?.descripcion ? (
-                <div className="detail-table-row">
-                  <span>Fechas de salida</span>
-                  <span>{detalleFechas.descripcion}</span>
-                </div>
-              ) : null}
-            </div>
-          </article>
-
-          {/* Card: Servicios Incluidos */}
-          <article className="detail-card detail-card--includes">
-            <h3>Servicios Incluidos</h3>
-            {incluyeItems.length ? (
-              <ul className="detail-list detail-list--icons detail-list--fancy">
-                {incluyeItems.map((item) => (
-                  <li key={item.id}>
-                    <span className="detail-icon">{getIncluyeIcon(item.tipo)}</span>
-                    <span className="detail-list-text">
-                      <strong>{formatIncluyeTipo(item.tipo)}:</strong>{" "}
-                      {item.descripcion}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
-            )}
-          </article>
-
-          {/* Card: Servicios NO Incluidos */}
-          {noIncluyeParsed.length > 0 && (
+        <div className="pkg-layout">
+          {/* Columna principal */}
+          <div className="pkg-layout-main">
+            {/* Servicios Incluidos */}
             <article className="detail-card detail-card--includes">
-              <h3>Servicios no incluidos</h3>
-              <ul className="detail-list detail-list--icons detail-list--fancy">
-                {noIncluyeParsed.map((item, idx) => (
-                  <li key={`noinc-${idx}`}>
-                    <span className="detail-icon" style={{ opacity: 0.6 }}>{getNoIncluyeIcon(item.tipo)}</span>
-                    <span className="detail-list-text">
-                      {item.tipo && item.tipo !== 'General' ? (
-                        <><strong>{formatIncluyeTipo(item.tipo)}:</strong> {item.descripcion}</>
-                      ) : (
-                        <>{item.descripcion}</>
-                      )}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <h3>Servicios Incluidos</h3>
+              {incluyeItems.length ? (
+                <ul className="detail-list detail-list--icons detail-list--fancy">
+                  {incluyeItems.map((item) => (
+                    <li key={item.id}>
+                      <span className="detail-icon">{getIncluyeIcon(item.tipo)}</span>
+                      <span className="detail-list-text">
+                        <strong>{formatIncluyeTipo(item.tipo)}:</strong>{" "}
+                        {item.descripcion}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>Consultanos para conocer el detalle de los servicios incluidos en este paquete.</p>
+              )}
             </article>
-          )}
+
+            {/* Servicios NO Incluidos */}
+            {noIncluyeParsed.length > 0 && (
+              <article className="detail-card detail-card--includes">
+                <h3>Servicios no incluidos</h3>
+                <ul className="detail-list detail-list--icons detail-list--fancy">
+                  {noIncluyeParsed.map((item, idx) => (
+                    <li key={`noinc-${idx}`}>
+                      <span className="detail-icon" style={{ opacity: 0.6 }}>{getNoIncluyeIcon(item.tipo)}</span>
+                      <span className="detail-list-text">
+                        {item.tipo && item.tipo !== 'General' ? (
+                          <><strong>{formatIncluyeTipo(item.tipo)}:</strong> {item.descripcion}</>
+                        ) : (
+                          <>{item.descripcion}</>
+                        )}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <aside className="pkg-layout-sidebar">
+            <article className="detail-card detail-card--info">
+              <h3 className="pkg-summary-title">Resumen del Paquete</h3>
+              <div className="pkg-summary-list">
+                <div className="pkg-summary-item">
+                  <span className="pkg-summary-label">Destino principal</span>
+                  <span className="pkg-summary-value">{destinoPrincipal}</span>
+                </div>
+                {oferta.destino?.paisRegion && (
+                  <div className="pkg-summary-item">
+                    <span className="pkg-summary-label">País / Región</span>
+                    <span className="pkg-summary-value">{oferta.destino.paisRegion}</span>
+                  </div>
+                )}
+                {oferta.noches && (
+                  <div className="pkg-summary-item">
+                    <span className="pkg-summary-label">Noches</span>
+                    <span className="pkg-summary-value">{oferta.noches}</span>
+                  </div>
+                )}
+                {(() => {
+                  const uniqueDates = [...new Map(
+                    preciosOrdenados.map(p => [formatDateRangeLabel(p.fechaInicio, p.fechaFin), p])
+                  ).values()];
+                  if (uniqueDates.length > 0) return (
+                    <div className="pkg-summary-item">
+                      <span className="pkg-summary-label">Fechas de salida</span>
+                      {uniqueDates.map((precio) => (
+                        <span key={precio.id} className="pkg-summary-date">
+                          {formatDateRangeLabel(precio.fechaInicio, precio.fechaFin)}
+                        </span>
+                      ))}
+                    </div>
+                  );
+                  if (detalleFechas?.descripcion) return (
+                    <div className="pkg-summary-item">
+                      <span className="pkg-summary-label">Fechas de salida</span>
+                      <span className="pkg-summary-date">{detalleFechas.descripcion}</span>
+                    </div>
+                  );
+                  return null;
+                })()}
+              </div>
+            </article>
+
+            <a
+              className="detail-whatsapp pkg-sidebar-cta"
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Consultar por WhatsApp
+            </a>
+          </aside>
         </div>
       </section>
 

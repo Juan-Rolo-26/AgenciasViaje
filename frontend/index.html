@@ -18,6 +18,22 @@
 
 <body>
   <div id="root"></div>
+
+  <!-- Zoom inicial según navegador (solo desktop) -->
+  <script>
+    (function () {
+      var ua = navigator.userAgent;
+      var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      if (isMobile) return;
+
+      // Edge Chromium se identifica con "Edg/" en el UA
+      var isEdge = /Edg\//i.test(ua);
+
+      // Chrome (sin Edge): 75% — Edge: 100% — resto (Firefox, Safari, Opera): 75%
+      document.body.style.zoom = isEdge ? '1' : '0.75';
+    })();
+  </script>
+
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
