@@ -1,7 +1,14 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls -la /home/juampi26/AgenciasViaje/frontend/src/assets/*.css)"
+      "Bash(ls -la /home/juampi26/AgenciasViaje/frontend/src/assets/*.css)",
+      "Bash(ls -la /home/juampi26/AgenciasViaje/backend/public/assets/index-*.js)",
+      "Bash(grep -o \"MAINTENANCE_MODE=[^,;]*\" /home/juampi26/AgenciasViaje/backend/public/assets/index-*.js)",
+      "Bash(git -C /home/juampi26/AgenciasViaje log --oneline -5 -- backend/public/assets/)",
+      "Bash(git -C /home/juampi26/AgenciasViaje log --oneline -3 -- backend/public/assets/index-Bh4ETHSC.js)",
+      "Bash(git -C /home/juampi26/AgenciasViaje log --oneline origin/main..HEAD)",
+      "Bash(git -C /home/juampi26/AgenciasViaje log --oneline -5)",
+      "Bash(git -C /home/juampi26/AgenciasViaje remote -v)"
     ]
   }
 }
