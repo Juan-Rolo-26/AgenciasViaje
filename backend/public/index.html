@@ -14,12 +14,28 @@
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet" />
 
-  <script type="module" crossorigin src="/assets/index-J_I4Gael.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-D4MTTMBb.css">
+  <script type="module" crossorigin src="/assets/index-Bh4ETHSC.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-LNfe84xZ.css">
 </head>
 
 <body>
   <div id="root"></div>
+
+  <!-- Zoom inicial según navegador (solo desktop) -->
+  <script>
+    (function () {
+      var ua = navigator.userAgent;
+      var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+      if (isMobile) return;
+
+      // Edge Chromium se identifica con "Edg/" en el UA
+      var isEdge = /Edg\//i.test(ua);
+
+      // Chrome (sin Edge): 75% — Edge: 100% — resto (Firefox, Safari, Opera): 75%
+      document.body.style.zoom = isEdge ? '1' : '0.75';
+    })();
+  </script>
+
 </body>
 
 </html>
