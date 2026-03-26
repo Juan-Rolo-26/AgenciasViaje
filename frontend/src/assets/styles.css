@@ -1652,20 +1652,34 @@ section[id] {
 }
 
 
+/* Cuando main tiene landing de continentes/secciones, ocupa exactamente el viewport */
+main:has(.continent-landing),
+main:has(.section-landing) {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 86px); /* 50px logo + 18px*2 padding nav */
+}
+
 .continent-landing,
 .section-landing {
-  margin: -32px calc(var(--page-gutter) * -1) 0;
-  padding: 72px var(--page-gutter) 96px;
-  min-height: calc(100vh - 160px);
+  margin: 0;
+  padding: 8px;
+  flex: 1;
   background: linear-gradient(180deg, #f2f5fb 0%, #ffffff 100%);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .continent-grid,
 .section-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-  min-height: min(78vh, 900px);
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  flex: 1;
 }
 
 .continent-tile,
@@ -1680,7 +1694,6 @@ section[id] {
   color: #ffffff;
   background-size: cover;
   background-position: center;
-  box-shadow: 0 24px 48px rgba(8, 16, 32, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(20px);
@@ -2281,10 +2294,17 @@ section[id] {
     justify-content: flex-start;
   }
 
+  .continent-landing,
+  .section-landing {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .continent-grid,
   .section-grid {
     grid-template-columns: 1fr;
-    min-height: auto;
+    height: auto;
+    flex: none;
   }
 
   .continent-tile,
@@ -5295,7 +5315,7 @@ section[id] {
 
   .continent-landing,
   .section-landing {
-    padding: 56px 6vw 72px;
+    padding: 0;
   }
 
   .continent-tile,

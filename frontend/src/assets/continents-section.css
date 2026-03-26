@@ -4,9 +4,12 @@
 
 .explore-continents-section {
     width: 100%;
-    padding: 60px 0 100px;
+    padding: 60px 0 20px;
     background-color: transparent;
-    /* NO overflow: hidden — dejar que el contenido respire */
+    /* Romper el page-gutter del main para ocupar todo el ancho */
+    margin-left: calc(var(--page-gutter) * -1);
+    margin-right: calc(var(--page-gutter) * -1);
+    width: calc(100% + var(--page-gutter) * 2);
 }
 
 .explore-header {
@@ -35,7 +38,7 @@
 /* ── Contenedor único: padding lateral + wrap automático ── */
 .continents-scroll-container {
     width: 100%;
-    padding: 20px 40px;
+    padding: 24px calc(var(--page-gutter) + 60px);
     box-sizing: border-box;
 }
 
@@ -44,7 +47,7 @@
     display: grid;
     /* Cada columna tiene mínimo 220px, pero comparte el espacio disponible */
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
+    gap: 80px;
     width: 100%;
     margin: 0 auto;
 }
@@ -55,7 +58,7 @@
     width: 100%;
     /* ocupa la celda completa */
     height: 480px;
-    border-radius: 24px;
+    border-radius: 36px;
     overflow: hidden;
     cursor: pointer;
     background-color: #f0f0f0;
@@ -195,7 +198,7 @@
 
     .continent-card {
         height: 190px;
-        border-radius: 16px;
+        border-radius: 24px;
     }
 
     .continent-card:hover {
