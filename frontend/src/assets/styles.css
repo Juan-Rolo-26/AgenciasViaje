@@ -1658,7 +1658,8 @@ main:has(.section-landing) {
   padding: 0;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 86px); /* 50px logo + 18px*2 padding nav */
+  height: calc(100dvh - 87px); /* 50px logo + 18px*2 padding + 1px border */
+  max-height: calc(100dvh - 87px);
 }
 
 .continent-landing,
@@ -1676,6 +1677,7 @@ main:has(.section-landing) {
 .section-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
   gap: 8px;
   width: 100%;
   height: 100%;

@@ -4,7 +4,8 @@
 
 .explore-continents-section {
     width: 100%;
-    padding: 60px 0 20px;
+    padding: 60px 0 0;
+    margin-bottom: -120px;
     background-color: transparent;
     /* Romper el page-gutter del main para ocupar todo el ancho */
     margin-left: calc(var(--page-gutter) * -1);
@@ -57,7 +58,7 @@
     position: relative;
     width: 100%;
     /* ocupa la celda completa */
-    height: 480px;
+    height: 42vh;
     border-radius: 36px;
     overflow: hidden;
     cursor: pointer;
