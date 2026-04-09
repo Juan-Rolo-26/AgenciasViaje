@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
+    "start": "prisma db push --skip-generate && node src/index.js",
     "build:frontend": "npm --prefix ../frontend install --include=dev && npm --prefix ../frontend run build",
     "build:crm": "npm --prefix ../crm install --include=dev && npm --prefix ../crm run build",
     "build": "npm run build:frontend && npm run build:crm",

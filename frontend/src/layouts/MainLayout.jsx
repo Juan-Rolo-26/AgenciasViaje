@@ -551,11 +551,11 @@ export default function MainLayout() {
             >
               <span className="nav-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 10.189V14" />
-                  <path d="M12 2v3" />
-                  <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
-                  <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76" />
-                  <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                  <circle cx="12" cy="5" r="3" />
+                  <line x1="12" y1="8" x2="12" y2="22" />
+                  <path d="M5 15a7 7 0 0 0 14 0" />
+                  <line x1="5" y1="22" x2="12" y2="22" />
+                  <line x1="19" y1="22" x2="12" y2="22" />
                 </svg>
               </span>
               Cruceros
