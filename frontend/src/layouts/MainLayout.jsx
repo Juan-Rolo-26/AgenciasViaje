@@ -550,11 +550,8 @@ export default function MainLayout() {
               onClick={closeNav}
             >
               <span className="nav-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="5" r="2.5" />
-                  <line x1="12" y1="7.5" x2="12" y2="19" />
-                  <line x1="7" y1="11" x2="17" y2="11" />
-                  <path d="M5 19a7 7 0 0 0 14 0" />
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2a3 3 0 0 1 3 3 3 3 0 0 1-2 2.82V10h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-1a7 7 0 0 1-6 6.93V21a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1.07A7 7 0 0 1 5 13H4a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1h4V7.82a3 3 0 0 1-2-2.82 3 3 0 0 1 6 0 3 3 0 0 1-1.06 2.29l-.94.71zM10 5a2 2 0 1 0 4 0 2 2 0 0 0-4 0zm-3 8a5 5 0 0 0 10 0H7z" />
                 </svg>
               </span>
               Cruceros
