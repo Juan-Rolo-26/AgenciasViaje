@@ -27,6 +27,7 @@ model Destino {
   ofertasPrincipales Oferta[]         @relation("DestinoPrincipal")
   ofertasSecundarias OfertaDestino[]
   actividades       Actividad[]
+  cruceros          Crucero[]
 }
 
 model ImagenDestino {
@@ -125,6 +126,43 @@ model OfertaActividad {
   actividad   Actividad  @relation(fields: [actividadId], references: [id], onDelete: Cascade)
 
   @@id([ofertaId, actividadId])
+}
+
+model Crucero {
+  id             Int             @id @default(autoincrement())
+  nombre         String
+  slug           String          @unique
+  destinoId      Int
+  naviera        String?
+  barco          String?
+  tipoCrucero    String?
+  fechaSalida    DateTime
+  horaSalida     String?
+  duracionNoches Int             @default(0)
+  precio         Decimal
+  cupos          Int             @default(0)
+  puertoSalida   String
+  descripcion    String
+  imagenPortada  String
+  destacada      Boolean         @default(false)
+  activa         Boolean         @default(true)
+  orden          Int             @default(0)
+  tituloSeo      String?
+  descripcionSeo String?
+  creadoEn       DateTime        @default(now())
+
+  destino        Destino         @relation(fields: [destinoId], references: [id])
+  galeria        ImagenCrucero[]
+}
+
+model ImagenCrucero {
+  id         Int      @id @default(autoincrement())
+  cruceroId  Int
+  imagen     String
+  epigrafe   String?
+  orden      Int      @default(0)
+
+  crucero    Crucero  @relation(fields: [cruceroId], references: [id], onDelete: Cascade)
 }
 
 model SeccionNosotros {

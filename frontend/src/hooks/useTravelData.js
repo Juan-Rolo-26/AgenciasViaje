@@ -7,7 +7,8 @@ const CACHE_TTL_MS = 0;
 const datasetCache = {
   destinos: { data: null, timestamp: 0, promise: null },
   ofertas: { data: null, timestamp: 0, promise: null },
-  actividades: { data: null, timestamp: 0, promise: null }
+  actividades: { data: null, timestamp: 0, promise: null },
+  cruceros: { data: null, timestamp: 0, promise: null }
 };
 
 const normalizeDestino = (destino) => {
@@ -33,6 +34,23 @@ const normalizeActividad = (actividad) => {
   return {
     ...actividad,
     imagenPortada: resolveAssetUrl(actividad.imagenPortada)
+  };
+};
+
+const normalizeCrucero = (crucero) => {
+  if (!crucero) {
+    return crucero;
+  }
+  return {
+    ...crucero,
+    destino: crucero.destino ? normalizeDestino(crucero.destino) : crucero.destino,
+    imagenPortada: resolveAssetUrl(crucero.imagenPortada),
+    galeria: Array.isArray(crucero.galeria)
+      ? crucero.galeria.map((item) => ({
+        ...item,
+        imagen: resolveAssetUrl(item.imagen)
+      }))
+      : crucero.galeria
   };
 };
 
@@ -182,10 +200,21 @@ export function useActividades() {
   return { actividades: data, loading, error };
 }
 
+export function useCruceros() {
+  const { data, loading, error } = useDataset(
+    "cruceros",
+    "/api/cruceros?lite=1",
+    normalizeCrucero
+  );
+
+  return { cruceros: data, loading, error };
+}
+
 export function useTravelData() {
   const [destinos, setDestinos] = useState([]);
   const [ofertas, setOfertas] = useState([]);
   const [actividades, setActividades] = useState([]);
+  const [cruceros, setCruceros] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -194,7 +223,7 @@ export function useTravelData() {
 
     async function loadData() {
       try {
-        const [destinosData, ofertasData, actividadesData] =
+        const [destinosData, ofertasData, actividadesData, crucerosData] =
           await Promise.all([
             fetchDataset("destinos", "/api/destinos?lite=1", normalizeDestino),
             fetchDataset("ofertas", "/api/ofertas?lite=1", normalizeOferta),
@@ -202,7 +231,8 @@ export function useTravelData() {
               "actividades",
               "/api/actividades?lite=1",
               normalizeActividad
-            )
+            ),
+            fetchDataset("cruceros", "/api/cruceros?lite=1", normalizeCrucero)
           ]);
 
         if (!isMounted) {
@@ -211,6 +241,7 @@ export function useTravelData() {
         setDestinos(destinosData);
         setOfertas(ofertasData);
         setActividades(actividadesData);
+        setCruceros(crucerosData);
         setError("");
       } catch (err) {
         if (!isMounted) {
@@ -235,6 +266,7 @@ export function useTravelData() {
     destinos,
     ofertas,
     actividades,
+    cruceros,
     loading,
     error
   };

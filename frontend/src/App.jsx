@@ -7,6 +7,8 @@ import Calendario from "./pages/Calendario.jsx";
 import Destinos from "./pages/Destinos.jsx";
 import DestinoDetail from "./pages/DestinoDetail.jsx";
 import Cordoba from "./pages/Cordoba.jsx";
+import Cruceros from "./pages/Cruceros.jsx";
+import CruceroDetail from "./pages/CruceroDetail.jsx";
 import Excursiones from "./pages/Excursiones.jsx";
 import ExcursionDetail from "./pages/ExcursionDetail.jsx";
 import Home from "./pages/Home.jsx";
@@ -36,6 +38,8 @@ export default function App() {
         <Route path="destinos/:slug" element={<><ScrollToTop /><DestinoDetail /></>} />
         <Route path="ofertas" element={<><ScrollToTop /><Ofertas /></>} />
         <Route path="ofertas/:slug" element={<><ScrollToTop /><OfertaDetail /></>} />
+        <Route path="cruceros" element={<><ScrollToTop /><Cruceros /></>} />
+        <Route path="cruceros/:slug" element={<><ScrollToTop /><CruceroDetail /></>} />
         <Route path="excursiones" element={<><ScrollToTop /><Excursiones /></>} />
         <Route path="excursiones/:slug" element={<><ScrollToTop /><ExcursionDetail /></>} />
         <Route path="modo-fanatico" element={<><ScrollToTop /><ModoFanatico /></>} />

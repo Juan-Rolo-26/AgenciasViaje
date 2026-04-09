@@ -384,20 +384,35 @@ export default function OfertasView({ tipo, titulo }) {
                             <h4>Fechas de salida</h4>
                             <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
                                 <div style={{ display: "flex", alignItems: "center", gap: "6px", background: "#f5f5f5", padding: "4px 8px", borderRadius: "6px" }}>
-                                    <label style={{ fontSize: "12px", margin: 0, fontWeight: 500 }}>Mes entero:</label>
-                                    <input type="month" onChange={e => {
-                                        const mes = e.target.value;
-                                        if (mes) {
-                                            const [y, m] = mes.split("-");
-                                            if (y && m) {
-                                                const start = `${y}-${m}-01`;
-                                                const endDay = new Date(y, m, 0).getDate();
-                                                const end = `${y}-${m}-${endDay}`;
-                                                setFechas(ff => [...ff, { fechaInicio: start, fechaFin: end }]);
-                                                e.target.value = "";
+                                    <label style={{ fontSize: "12px", margin: 0, fontWeight: 500 }}>Mes:</label>
+                                    <select
+                                        defaultValue=""
+                                        onChange={e => {
+                                            const val = e.target.value;
+                                            if (!val) return;
+                                            const [y, m] = val.split("-");
+                                            const start = `${y}-${m}-01`;
+                                            const endDay = new Date(Number(y), Number(m), 0).getDate();
+                                            const end = `${y}-${m}-${String(endDay).padStart(2, "0")}`;
+                                            setFechas(ff => [...ff, { fechaInicio: start, fechaFin: end }]);
+                                            e.target.value = "";
+                                        }}
+                                        style={{ padding: "4px 8px", border: "1px solid #ccc", borderRadius: "4px", background: "white", fontSize: "14px" }}
+                                    >
+                                        <option value="">Elegir mes...</option>
+                                        {(() => {
+                                            const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+                                            const hoy = new Date();
+                                            const options = [];
+                                            for (let i = 0; i < 18; i++) {
+                                                const d = new Date(hoy.getFullYear(), hoy.getMonth() + i, 1);
+                                                const y = d.getFullYear();
+                                                const m = String(d.getMonth() + 1).padStart(2, "0");
+                                                options.push(<option key={`${y}-${m}`} value={`${y}-${m}`}>{meses[d.getMonth()]} {y}</option>);
                                             }
-                                        }
-                                    }} style={{ padding: "4px 8px", border: "1px solid #ccc", borderRadius: "4px", background: "white", fontSize: "14px" }} />
+                                            return options;
+                                        })()}
+                                    </select>
                                 </div>
                                 <button className="btn-secondary sm" onClick={() => setFechas(ff => [...ff, { fechaInicio: "", fechaFin: "" }])}>
                                     + Fechas exactas

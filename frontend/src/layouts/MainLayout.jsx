@@ -546,6 +546,28 @@ export default function MainLayout() {
 
             <NavLink
               className={navLinkClass}
+              to="/cruceros"
+              onClick={closeNav}
+            >
+              <span className="nav-ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  {/* Real-style Cruise Ship Silhouette */}
+                  <path d="M15 2h2.5a.5.5 0 0 1 .5.5V5h-3V2.5a.5.5 0 0 1 .5-.5z" />
+                  <path d="M8 5h8a1 1 0 0 1 1 1v2H7V6a1 1 0 0 1 1-1z" />
+                  <path d="M5 8h14a1 1 0 0 1 1 1v2H4V9a1 1 0 0 1 1-1z" />
+                  <path d="M2.5 11h19a.5.5 0 0 1 .5.5v2.5H2v-2.5a.5.5 0 0 1 .5-.5z" />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M1 14h22l-1.5 4c-.8 2.2-4 3.8-9.5 3.8S3.3 20.2 2.5 18L1 14zm6 4.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm5 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm5 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                  />
+                </svg>
+              </span>
+              Cruceros
+            </NavLink>
+
+            <NavLink
+              className={navLinkClass}
               to="/modo-fanatico"
               onClick={closeNav}
             >
@@ -739,6 +761,9 @@ export default function MainLayout() {
                 <Link to="/ofertas?seccion=salidas-grupales">
                   Salidas grupales
                 </Link>
+              </li>
+              <li>
+                <Link to="/cruceros">Cruceros</Link>
               </li>
               <li>
                 <Link to="/argentina">Argentina</Link>

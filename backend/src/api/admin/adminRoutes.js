@@ -11,15 +11,16 @@ router.get("/me", (_req, res) => res.json({ ok: true, role: "admin" }));
 /* ── STATS ── */
 router.get("/stats", async (_req, res, next) => {
     try {
-        const [totalDestinos, totalOfertas, totalPaquetes, totalGrupales, totalActividades] =
+        const [totalDestinos, totalOfertas, totalPaquetes, totalGrupales, totalActividades, totalCruceros] =
             await Promise.all([
                 prisma.destino.count(),
                 prisma.oferta.count(),
                 prisma.oferta.count({ where: { tipo: "individual" } }),
                 prisma.oferta.count({ where: { tipo: "grupal" } }),
                 prisma.actividad.count(),
+                prisma.crucero.count(),
             ]);
-        res.json({ totalDestinos, totalOfertas, totalPaquetes, totalGrupales, totalActividades });
+        res.json({ totalDestinos, totalOfertas, totalPaquetes, totalGrupales, totalActividades, totalCruceros });
     } catch (e) { next(e); }
 });
 
@@ -220,6 +221,111 @@ router.put("/excursiones/:id", async (req, res, next) => {
 router.delete("/excursiones/:id", async (req, res, next) => {
     try {
         await prisma.actividad.delete({ where: { id: +req.params.id } });
+        res.status(204).send();
+    } catch (e) { next(e); }
+});
+
+/* ── CRUCEROS ── */
+router.get("/cruceros", async (req, res, next) => {
+    try {
+        const list = await prisma.crucero.findMany({
+            orderBy: [{ orden: "asc" }, { fechaSalida: "asc" }],
+            include: {
+                destino: { select: { id: true, nombre: true, slug: true } },
+                galeria: { orderBy: { orden: "asc" } },
+            },
+        });
+        res.json(list);
+    } catch (e) { next(e); }
+});
+
+router.get("/cruceros/:id", async (req, res, next) => {
+    try {
+        const crucero = await prisma.crucero.findUnique({
+            where: { id: +req.params.id },
+            include: {
+                destino: true,
+                galeria: { orderBy: { orden: "asc" } },
+            },
+        });
+        if (!crucero) return res.status(404).json({ error: "No encontrado" });
+        res.json(crucero);
+    } catch (e) { next(e); }
+});
+
+router.post("/cruceros", async (req, res, next) => {
+    try {
+        const { galeria, ...rawData } = req.body;
+        const data = { ...rawData };
+        if (data.destinoId) data.destinoId = Number(data.destinoId);
+        if (data.duracionNoches !== undefined) data.duracionNoches = Number(data.duracionNoches);
+        if (data.precio !== undefined) data.precio = Number(data.precio);
+        if (data.cupos !== undefined) data.cupos = Number(data.cupos);
+        if (data.orden !== undefined) data.orden = Number(data.orden);
+        const crucero = await prisma.crucero.create({
+            data: {
+                ...data,
+                galeria: galeria?.length
+                    ? {
+                        create: galeria.map((item, index) => ({
+                            imagen: item.imagen,
+                            epigrafe: item.epigrafe || null,
+                            orden: index,
+                        })),
+                    }
+                    : undefined,
+            },
+            include: {
+                destino: true,
+                galeria: { orderBy: { orden: "asc" } },
+            },
+        });
+        res.status(201).json(crucero);
+    } catch (e) { next(e); }
+});
+
+router.put("/cruceros/:id", async (req, res, next) => {
+    try {
+        const id = +req.params.id;
+        const { galeria, ...rawData } = req.body;
+        const data = { ...rawData };
+        if (data.destinoId) data.destinoId = Number(data.destinoId);
+        if (data.duracionNoches !== undefined) data.duracionNoches = Number(data.duracionNoches);
+        if (data.precio !== undefined) data.precio = Number(data.precio);
+        if (data.cupos !== undefined) data.cupos = Number(data.cupos);
+        if (data.orden !== undefined) data.orden = Number(data.orden);
+
+        await prisma.$transaction(async (tx) => {
+            await tx.crucero.update({ where: { id }, data });
+            if (galeria !== undefined) {
+                await tx.imagenCrucero.deleteMany({ where: { cruceroId: id } });
+                if (galeria.length) {
+                    await tx.imagenCrucero.createMany({
+                        data: galeria.map((item, index) => ({
+                            cruceroId: id,
+                            imagen: item.imagen,
+                            epigrafe: item.epigrafe || null,
+                            orden: index,
+                        })),
+                    });
+                }
+            }
+        });
+
+        const updated = await prisma.crucero.findUnique({
+            where: { id },
+            include: {
+                destino: true,
+                galeria: { orderBy: { orden: "asc" } },
+            },
+        });
+        res.json(updated);
+    } catch (e) { next(e); }
+});
+
+router.delete("/cruceros/:id", async (req, res, next) => {
+    try {
+        await prisma.crucero.delete({ where: { id: +req.params.id } });
         res.status(204).send();
     } catch (e) { next(e); }
 });

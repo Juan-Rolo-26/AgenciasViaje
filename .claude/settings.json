@@ -9,7 +9,11 @@
       "Bash(git -C /home/juampi26/AgenciasViaje log --oneline origin/main..HEAD)",
       "Bash(git -C /home/juampi26/AgenciasViaje log --oneline -5)",
       "Bash(git -C /home/juampi26/AgenciasViaje remote -v)",
-      "Bash(grep -rn \"Mes entero\\\\|Fechas exactas\\\\|month.*input\\\\|type.*month\" /home/juampi26/AgenciasViaje/ --include=*.jsx --include=*.tsx --include=*.js --exclude-dir=node_modules --exclude-dir=.vite)"
+      "Bash(grep -rn \"Mes entero\\\\|Fechas exactas\\\\|month.*input\\\\|type.*month\" /home/juampi26/AgenciasViaje/ --include=*.jsx --include=*.tsx --include=*.js --exclude-dir=node_modules --exclude-dir=.vite)",
+      "Bash(find /home/juampi26/AgenciasViaje/backend/src -name \"*.js\" -exec grep -l \"crucero\" {} \\\\;)",
+      "Bash(ls -la /home/juampi26/AgenciasViaje/.env* /home/juampi26/AgenciasViaje/backend/.env*)",
+      "Bash(node -e ':*)",
+      "Bash(git rm:*)"
     ]
   }
 }

@@ -3,3 +3,9 @@ backend/.env
 backend/node_modules
 frontend/node_modules
 frontend/.env
+
+# Base de datos SQLite — no subir para no pisar datos del servidor
+backend/prisma/dev.db
+backend/prisma/dev.db-journal
+backend/prisma/*.db-shm
+backend/prisma/*.db-wal

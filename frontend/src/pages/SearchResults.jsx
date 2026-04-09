@@ -74,7 +74,7 @@ export default function SearchResults() {
     const [searchDate, setSearchDate] = useState(initialDate);
     const [searchTransporte, setSearchTransporte] = useState(initialTransporte);
 
-    const { destinos, ofertas, actividades, loading, error } = useTravelData();
+    const { destinos, ofertas, actividades, cruceros, loading, error } = useTravelData();
 
     const destinosNoArgentina = useMemo(
         () => destinos.filter((destino) => destino.paisRegion !== "Argentina"),
@@ -309,6 +309,17 @@ export default function SearchResults() {
             });
         }
 
+        if (searchType === "crucero") {
+            return cruceros.filter((crucero) => {
+                const matchesText =
+                    !textQuery ||
+                    crucero.nombre.toLowerCase().includes(textQuery) ||
+                    (crucero.destino?.nombre || "").toLowerCase().includes(textQuery) ||
+                    (crucero.descripcion || "").toLowerCase().includes(textQuery);
+                return matchesText;
+            });
+        }
+
         return excursionesDestacadas.filter((actividad) => {
             const destinoNombre = actividad.destino?.nombre || "";
             const matchesCordoba = (() => {
@@ -329,6 +340,7 @@ export default function SearchResults() {
         });
     }, [
         destinosNoArgentina,
+        cruceros,
         salidasDisponibles,
         paquetesDisponibles,
         excursionesDestacadas,
@@ -371,7 +383,9 @@ export default function SearchResults() {
                 ? "Salidas grupales"
                 : searchType === "paquete"
                     ? "Paquetes"
-                    : "Excursiones";
+                    : searchType === "crucero"
+                        ? "Cruceros"
+                        : "Excursiones";
 
     return (
         <main className="search-results-page-new">
@@ -410,6 +424,7 @@ export default function SearchResults() {
                             <option value="destino">Destinos</option>
                             <option value="paquete">Paquetes</option>
                             <option value="oferta">Salidas grupales</option>
+                            <option value="crucero">Cruceros</option>
                             <option value="excursion">Excursiones (Córdoba)</option>
                         </select>
                     </div>
@@ -548,6 +563,19 @@ export default function SearchResults() {
                         </>
                     )}
 
+                    {searchType === "crucero" && (
+                        <div className="filter-field">
+                            <label htmlFor="crucero-h">Crucero</label>
+                            <input
+                                id="crucero-h"
+                                type="text"
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                                placeholder="Buscar crucero..."
+                            />
+                        </div>
+                    )}
+
                     {searchType === "excursion" && (
                         <div className="filter-field">
                             <label htmlFor="excursion-h">Excursión</label>
@@ -632,6 +660,36 @@ export default function SearchResults() {
                                                 {item.descripcionCorta || item.descripcion}
                                             </p>
                                             <span className="card-cta">Explorar destino</span>
+                                        </div>
+                                    </Link>
+                                );
+                            }
+
+                            if (searchType === "crucero") {
+                                const cruceroSlug = item.slug || item.id;
+                                return (
+                                    <Link
+                                        className="tile destination-card"
+                                        key={item.id}
+                                        to={`/cruceros/${cruceroSlug}`}
+                                    >
+                                        <div
+                                            className="tile-image"
+                                            style={{
+                                                backgroundImage: item.imagenPortada
+                                                    ? `url("${item.imagenPortada}")`
+                                                    : `url("${fallbackDeal}")`
+                                            }}
+                                        ></div>
+                                        <div className="tile-content">
+                                            <span className="destination-meta">
+                                                {item.destino?.nombre || "Crucero"}
+                                            </span>
+                                            <h4>{item.nombre}</h4>
+                                            <p className="destination-description">
+                                                {item.descripcion}
+                                            </p>
+                                            <span className="card-cta">Ver crucero</span>
                                         </div>
                                     </Link>
                                 );

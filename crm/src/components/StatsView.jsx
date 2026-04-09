@@ -14,7 +14,8 @@ export default function StatsView() {
         { label: "Paquetes", value: stats.totalPaquetes, icon: "🧳", color: "#0ea5e9" },
         { label: "Salidas Grupales", value: stats.totalGrupales, icon: "👥", color: "#10b981" },
         { label: "Total Ofertas", value: stats.totalOfertas, icon: "📦", color: "#f59e0b" },
-        { label: "Actividades", value: stats.totalActividades, icon: "🏄", color: "#ef4444" },
+        { label: "Excursiones", value: stats.totalActividades, icon: "🏄", color: "#ef4444" },
+        { label: "Cruceros", value: stats.totalCruceros, icon: "🚢", color: "#0f766e" },
     ] : [];
 
     return (
@@ -46,6 +47,7 @@ export default function StatsView() {
                     <li>✅ Administrá <strong>Destinos</strong> con imágenes y galería</li>
                     <li>✅ Gestioná <strong>Paquetes individuales</strong> con servicios y fechas</li>
                     <li>✅ Administrá <strong>Salidas Grupales</strong> con sus fechas de partida</li>
+                    <li>✅ Publicá <strong>Cruceros</strong> con portada, galería y datos de salida</li>
                     <li>✅ Activá / desactivá cualquier oferta con un solo click</li>
                 </ul>
             </div>

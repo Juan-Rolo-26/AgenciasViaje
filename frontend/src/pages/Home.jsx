@@ -114,7 +114,8 @@ const CONTINENT_BY_COUNTRY = {
 
 export default function Home() {
   const navigate = useNavigate();
-  const { destinos, ofertas, actividades, loading, error } = useTravelData();
+  const { destinos, ofertas, actividades, cruceros, loading, error } =
+    useTravelData();
   const destinosNoArgentina = useMemo(
     () => destinos.filter((destino) => destino.paisRegion !== "Argentina"),
     [destinos]
@@ -166,6 +167,8 @@ export default function Home() {
   const destinosTrackRef = useRef(null);
   const salidasCarouselRef = useRef(null);
   const salidasTrackRef = useRef(null);
+  const crucerosCarouselRef = useRef(null);
+  const crucerosTrackRef = useRef(null);
   const excursionesCarouselRef = useRef(null);
   const excursionesTrackRef = useRef(null);
   const [searchType, setSearchType] = useState("destino");
@@ -308,6 +311,11 @@ export default function Home() {
     return (destacadas.length ? destacadas : actividades).slice(0, 6);
   }, [actividades]);
 
+  const crucerosDestacados = useMemo(() => {
+    const destacadas = cruceros.filter((crucero) => crucero.destacada);
+    return (destacadas.length ? destacadas : cruceros).slice(0, 6);
+  }, [cruceros]);
+
   const excursionesDisponibles = useMemo(() => {
     const names = new Set();
     actividades.forEach((actividad) => {
@@ -449,6 +457,17 @@ export default function Home() {
       });
     }
 
+    if (searchType === "crucero") {
+      return cruceros.filter((crucero) => {
+        const matchesText =
+          !textQuery ||
+          crucero.nombre.toLowerCase().includes(textQuery) ||
+          (crucero.destino?.nombre || "").toLowerCase().includes(textQuery) ||
+          (crucero.descripcion || "").toLowerCase().includes(textQuery);
+        return matchesText;
+      });
+    }
+
     return actividades.filter((actividad) => {
       const destinoNombre = actividad.destino?.nombre || "";
       const matchesCordoba = (() => {
@@ -469,6 +488,7 @@ export default function Home() {
     });
   }, [
     actividades,
+    cruceros,
     destinosNoArgentina,
     salidasDisponibles,
     paquetesDisponibles,
@@ -505,10 +525,23 @@ export default function Home() {
     return [...trimmed, ...trimmed];
   }, [excursionesDestacadas]);
 
+  const loopCruceros = useMemo(() => {
+    if (!crucerosDestacados.length) {
+      return [];
+    }
+    const base = [];
+    while (base.length < 6) {
+      base.push(...crucerosDestacados);
+    }
+    const trimmed = base.slice(0, 6);
+    return [...trimmed, ...trimmed];
+  }, [crucerosDestacados]);
+
   useEffect(() => {
     const pairs = [
       { container: destinosCarouselRef.current, track: destinosTrackRef.current },
       { container: salidasCarouselRef.current, track: salidasTrackRef.current },
+      { container: crucerosCarouselRef.current, track: crucerosTrackRef.current },
       {
         container: excursionesCarouselRef.current,
         track: excursionesTrackRef.current
@@ -548,7 +581,12 @@ export default function Home() {
       }
       window.removeEventListener("resize", updateAll);
     };
-  }, [loopDestinos.length, loopOfertas.length, loopExcursiones.length]);
+  }, [
+    loopDestinos.length,
+    loopOfertas.length,
+    loopCruceros.length,
+    loopExcursiones.length
+  ]);
 
   const hasSearchFilters =
     searchDestino.trim() ||
@@ -564,7 +602,9 @@ export default function Home() {
         ? "Salidas grupales"
         : searchType === "paquete"
           ? "Paquetes"
-          : "Excursiones Córdoba";
+          : searchType === "crucero"
+            ? "Cruceros"
+            : "Excursiones Córdoba";
   const searchButtonLabel =
     searchType === "destino"
       ? "Buscar destinos"
@@ -572,7 +612,9 @@ export default function Home() {
         ? "Buscar salidas grupales"
         : searchType === "paquete"
           ? "Buscar paquetes"
-          : "Buscar excursiones";
+          : searchType === "crucero"
+            ? "Buscar cruceros"
+            : "Buscar excursiones";
   const searchLink =
     searchType === "destino"
       ? "/destinos"
@@ -580,7 +622,9 @@ export default function Home() {
         ? "/ofertas?seccion=salidas-grupales"
         : searchType === "paquete"
           ? "/ofertas"
-          : "/cordoba";
+          : searchType === "crucero"
+            ? "/cruceros"
+            : "/cordoba";
   const searchSubtitle = "Resultados según tu búsqueda.";
   const totalResults = searchResults.length;
   const currentResult = totalResults
@@ -607,19 +651,6 @@ export default function Home() {
       setSearchPais("");
     }
   }, [paisesDisponibles, searchPais]);
-
-  useEffect(() => {
-    setSearchIndex(0);
-  }, [
-    searchType,
-    searchDestino,
-    searchRegion,
-    searchPais,
-    searchDate,
-    searchText,
-    searchTransporte,
-    totalResults
-  ]);
 
   const goPrevResult = () => {
     if (!totalResults) {
@@ -777,6 +808,7 @@ export default function Home() {
                     { value: "destino", label: "Destinos" },
                     { value: "paquete", label: "Paquetes" },
                     { value: "oferta", label: "Salidas grupales" },
+                    { value: "crucero", label: "Cruceros" },
                     { value: "excursion", label: "Excursiones (Córdoba)" },
                   ]}
                   icon={
@@ -810,7 +842,9 @@ export default function Home() {
                       ? "Salidas grupales"
                       : searchType === "paquete"
                         ? "Paquetes"
-                        : "Excursión Córdoba"
+                        : searchType === "crucero"
+                          ? "Cruceros"
+                          : "Excursión Córdoba"
                   }
                   value={searchText}
                   onChange={(event) => setSearchText(event.target.value)}
@@ -818,7 +852,9 @@ export default function Home() {
                     ? ofertasDisponibles
                     : searchType === "paquete"
                       ? paquetesTitles
-                      : excursionesDisponibles
+                      : searchType === "crucero"
+                        ? cruceros.map((c) => c.nombre).filter(Boolean).sort((a, b) => a.localeCompare(b))
+                        : excursionesDisponibles
                   ).map((item) => ({
                     value: item,
                     label: item,
@@ -847,7 +883,9 @@ export default function Home() {
                       ? "Todas las salidas grupales"
                       : searchType === "paquete"
                         ? "Todos los paquetes"
-                        : "Todas las excursiones"
+                        : searchType === "crucero"
+                          ? "Todos los cruceros"
+                          : "Todas las excursiones"
                   }
                 />
                 <div className="filter-card">
@@ -945,6 +983,7 @@ export default function Home() {
                     { value: "destino", label: "Destinos" },
                     { value: "paquete", label: "Paquetes" },
                     { value: "oferta", label: "Salidas grupales" },
+                    { value: "crucero", label: "Cruceros" },
                     { value: "excursion", label: "Excursiones (Córdoba)" },
                   ]}
                   icon={
@@ -1132,6 +1171,91 @@ export default function Home() {
       <section className="grid-section">
         <div className="section-header section-header-row">
           <div>
+            <h2>Cruceros</h2>
+            <p>Viajá por el mundo a bordo. Salidas con navieras de primer nivel.</p>
+          </div>
+          <Link className="secondary" to="/cruceros">
+            Ver mas
+          </Link>
+        </div>
+        {loading ? (
+          <p className="section-state">Cargando cruceros...</p>
+        ) : error ? (
+          <p className="section-state error">{error}</p>
+        ) : loopCruceros.length === 0 ? (
+          <p className="section-state">No hay cruceros disponibles.</p>
+        ) : (
+          <div
+            className="offer-carousel destination-carousel"
+            ref={crucerosCarouselRef}
+          >
+            <div className="offer-track" ref={crucerosTrackRef}>
+              {loopCruceros.map((crucero, index) => {
+                const cruceroSlug = crucero.slug || crucero.id;
+                const galleryImages = (crucero.galeria || [])
+                  .map((item) => item.imagen)
+                  .filter(Boolean);
+                const coverImage =
+                  crucero.imagenPortada ||
+                  galleryImages[0] ||
+                  fallbackDeal;
+                const extraImages = galleryImages
+                  .filter((image) => image !== coverImage)
+                  .slice(0, 2);
+                return (
+                  <Link
+                    className="offer-card offer-card-feature offer-link"
+                    key={`${crucero.id}-${index}`}
+                    to={`/cruceros/${cruceroSlug}`}
+                  >
+                    <div className="offer-image">
+                      <img
+                        className="offer-image-main"
+                        src={coverImage}
+                        alt={crucero.nombre}
+                      />
+                      {extraImages.length ? (
+                        <div className="offer-image-stack">
+                          {extraImages.map((image, imageIndex) => (
+                            <img
+                              key={`${crucero.id}-home-${imageIndex}`}
+                              src={image}
+                              alt={`${crucero.nombre} ${imageIndex + 2}`}
+                            />
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="offer-body">
+                      <div className="offer-header">
+                        <span className="offer-tag">
+                          {crucero.destino?.nombre || "Crucero"}
+                        </span>
+                        <h3>{crucero.nombre}</h3>
+                        <p className="destination-meta">
+                          {[
+                            crucero.duracionNoches
+                              ? `${crucero.duracionNoches} noches`
+                              : null,
+                            crucero.naviera || crucero.barco || null
+                          ]
+                            .filter(Boolean)
+                            .join(" • ") || "Salida disponible"}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </section>
+
+
+      <section className="grid-section">
+        <div className="section-header section-header-row">
+          <div>
             <h2>Excursiones</h2>
             <p>Sumale experiencias y recorridos locales a tu viaje.</p>
           </div>
@@ -1223,8 +1347,16 @@ export default function Home() {
                 <div
                   key={continent.id}
                   className="continent-card"
+                  role="button"
+                  tabIndex={0}
                   onClick={() => {
                     navigate(`/busqueda?region=${continent.id}`);
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      navigate(`/busqueda?region=${continent.id}`);
+                    }
                   }}
                 >
                   <img
