@@ -550,17 +550,12 @@ export default function MainLayout() {
               onClick={closeNav}
             >
               <span className="nav-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  {/* Real-style Cruise Ship Silhouette */}
-                  <path d="M15 2h2.5a.5.5 0 0 1 .5.5V5h-3V2.5a.5.5 0 0 1 .5-.5z" />
-                  <path d="M8 5h8a1 1 0 0 1 1 1v2H7V6a1 1 0 0 1 1-1z" />
-                  <path d="M5 8h14a1 1 0 0 1 1 1v2H4V9a1 1 0 0 1 1-1z" />
-                  <path d="M2.5 11h19a.5.5 0 0 1 .5.5v2.5H2v-2.5a.5.5 0 0 1 .5-.5z" />
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M1 14h22l-1.5 4c-.8 2.2-4 3.8-9.5 3.8S3.3 20.2 2.5 18L1 14zm6 4.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm5 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm5 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-                  />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 10.189V14" />
+                  <path d="M12 2v3" />
+                  <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
+                  <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76" />
+                  <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
                 </svg>
               </span>
               Cruceros
