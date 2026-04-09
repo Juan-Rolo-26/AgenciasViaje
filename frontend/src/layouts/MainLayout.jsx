@@ -552,7 +552,6 @@ export default function MainLayout() {
               <span className="nav-ico" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="5" r="3" />
-                  <line x1="12" y1="8" x2="12" y2="22" />
                   <path d="M5 15a7 7 0 0 0 14 0" />
                   <line x1="5" y1="22" x2="12" y2="22" />
                   <line x1="19" y1="22" x2="12" y2="22" />
