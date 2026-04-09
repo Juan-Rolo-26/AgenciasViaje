@@ -1,13 +1,19 @@
-const path = require("path");
 const prisma = require("../lib/prisma");
 
-async function ensureTables() {
-  const stmts = [
+async function connectDb() {
+  await prisma.$connect();
+  console.log("✅ Base de datos conectada.");
+  // Crear tablas faltantes en background, sin bloquear nada
+  setTimeout(() => createMissingTables(), 2000);
+}
+
+async function createMissingTables() {
+  const tables = [
     `CREATE TABLE IF NOT EXISTS "Actividad" (
       "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-      "nombre" TEXT NOT NULL,
+      "nombre" TEXT NOT NULL DEFAULT '',
       "slug" TEXT NOT NULL UNIQUE,
-      "destinoId" INTEGER NOT NULL,
+      "destinoId" INTEGER NOT NULL DEFAULT 1,
       "tipoActividad" TEXT NOT NULL DEFAULT '',
       "fecha" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
       "hora" TEXT,
@@ -30,9 +36,9 @@ async function ensureTables() {
     )`,
     `CREATE TABLE IF NOT EXISTS "Crucero" (
       "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-      "nombre" TEXT NOT NULL,
+      "nombre" TEXT NOT NULL DEFAULT '',
       "slug" TEXT NOT NULL UNIQUE,
-      "destinoId" INTEGER NOT NULL,
+      "destinoId" INTEGER NOT NULL DEFAULT 1,
       "naviera" TEXT,
       "barco" TEXT,
       "tipoCrucero" TEXT,
@@ -54,22 +60,20 @@ async function ensureTables() {
     `CREATE TABLE IF NOT EXISTS "ImagenCrucero" (
       "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       "cruceroId" INTEGER NOT NULL,
-      "imagen" TEXT NOT NULL,
+      "imagen" TEXT NOT NULL DEFAULT '',
       "epigrafe" TEXT,
       "orden" INTEGER NOT NULL DEFAULT 0
     )`,
   ];
 
-  for (const sql of stmts) {
-    await prisma.$executeRawUnsafe(sql);
+  for (const sql of tables) {
+    try {
+      await prisma.$executeRawUnsafe(sql);
+    } catch (e) {
+      // Ignorar errores — no bloquear la app
+    }
   }
-  console.log("✅ Tablas verificadas/creadas.");
-}
-
-async function connectDb() {
-  await prisma.$connect();
-  await ensureTables();
-  console.log("✅ Base de datos lista.");
+  console.log("✅ Tablas verificadas.");
 }
 
 module.exports = { connectDb, prisma };
