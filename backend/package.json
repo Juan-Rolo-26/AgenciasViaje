@@ -8,7 +8,7 @@
     "build:frontend": "npm --prefix ../frontend install --include=dev && npm --prefix ../frontend run build",
     "build:crm": "npm --prefix ../crm install --include=dev && npm --prefix ../crm run build",
     "build": "npm run build:frontend && npm run build:crm",
-    "postinstall": "prisma generate && prisma db push",
+    "postinstall": "prisma generate",
     "migrate": "prisma db push",
     "studio": "prisma studio",
     "seed": "prisma db seed"
