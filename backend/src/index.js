@@ -47,12 +47,19 @@ async function bootstrap() {
     console.log(`🚀 Servidor escuchando en el puerto ${PORT}`);
     connectDb()
       .then(() => {
-        console.log("✅ Base de datos lista y conectada.");
+        console.log("✅ Base de datos lista.");
       })
       .catch((error) => {
-        console.error("❌ Error en el inicio de la base de datos:", error);
+        console.error("❌ Error inicializando DB:", error.message);
       });
+  }).on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`❌ El puerto ${PORT} ya está en uso. Intenta cerrando otros procesos de Node.`);
+    } else {
+      console.error(`❌ Error al iniciar servidor: ${err.message}`);
+    }
   });
+
 
   process.on("SIGTERM", () => {
     console.log("SIGTERM received. Closing server...");
