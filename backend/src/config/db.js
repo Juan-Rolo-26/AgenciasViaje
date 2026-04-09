@@ -1,7 +1,5 @@
 const prisma = require("../lib/prisma");
 
-// Prisma conecta lazily en la primera query — no forzar $connect()
-// Crear tablas faltantes 3s después del arranque, sin bloquear nada
 function connectDb() {
   setTimeout(createMissingTables, 3000);
   return Promise.resolve();
@@ -9,10 +7,52 @@ function connectDb() {
 
 async function createMissingTables() {
   const tables = [
+    `CREATE TABLE IF NOT EXISTS "Destino" (
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "nombre" TEXT NOT NULL, "slug" TEXT NOT NULL UNIQUE,
+      "paisRegion" TEXT, "descripcionCorta" TEXT,
+      "descripcion" TEXT NOT NULL DEFAULT '',
+      "imagenPortada" TEXT NOT NULL DEFAULT '',
+      "destacado" BOOLEAN NOT NULL DEFAULT 0,
+      "activo" BOOLEAN NOT NULL DEFAULT 1,
+      "orden" INTEGER NOT NULL DEFAULT 0,
+      "tituloSeo" TEXT, "descripcionSeo" TEXT,
+      "creadoEn" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    `CREATE TABLE IF NOT EXISTS "ImagenDestino" (
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "destinoId" INTEGER NOT NULL, "imagen" TEXT NOT NULL,
+      "epigrafe" TEXT, "orden" INTEGER NOT NULL DEFAULT 0)`,
+    `CREATE TABLE IF NOT EXISTS "Oferta" (
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "titulo" TEXT NOT NULL, "slug" TEXT NOT NULL UNIQUE,
+      "destinoId" INTEGER NOT NULL,
+      "noches" INTEGER NOT NULL DEFAULT 1,
+      "cupos" INTEGER NOT NULL DEFAULT 0,
+      "noIncluye" TEXT, "condiciones" TEXT,
+      "destacada" BOOLEAN NOT NULL DEFAULT 0,
+      "activa" BOOLEAN NOT NULL DEFAULT 1,
+      "tipo" TEXT NOT NULL DEFAULT 'individual',
+      "orden" INTEGER NOT NULL DEFAULT 0,
+      "tituloSeo" TEXT, "descripcionSeo" TEXT,
+      "creadaEn" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    `CREATE TABLE IF NOT EXISTS "OfertaDestino" (
+      "ofertaId" INTEGER NOT NULL, "destinoId" INTEGER NOT NULL,
+      PRIMARY KEY ("ofertaId","destinoId"))`,
+    `CREATE TABLE IF NOT EXISTS "PrecioOferta" (
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "ofertaId" INTEGER NOT NULL,
+      "precio" DECIMAL NOT NULL DEFAULT 0,
+      "moneda" TEXT NOT NULL DEFAULT 'ARS',
+      "fechaInicio" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      "fechaFin" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
+    `CREATE TABLE IF NOT EXISTS "IncluyeOferta" (
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "ofertaId" INTEGER NOT NULL,
+      "tipo" TEXT NOT NULL DEFAULT '',
+      "descripcion" TEXT NOT NULL DEFAULT '')`,
     `CREATE TABLE IF NOT EXISTS "Actividad" (
       "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-      "nombre" TEXT NOT NULL DEFAULT '',
-      "slug" TEXT NOT NULL UNIQUE,
+      "nombre" TEXT NOT NULL DEFAULT '', "slug" TEXT NOT NULL UNIQUE,
       "destinoId" INTEGER NOT NULL DEFAULT 1,
       "tipoActividad" TEXT NOT NULL DEFAULT '',
       "fecha" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -27,13 +67,11 @@ async function createMissingTables() {
       "tituloSeo" TEXT, "descripcionSeo" TEXT,
       "creadaEn" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)`,
     `CREATE TABLE IF NOT EXISTS "OfertaActividad" (
-      "ofertaId" INTEGER NOT NULL,
-      "actividadId" INTEGER NOT NULL,
+      "ofertaId" INTEGER NOT NULL, "actividadId" INTEGER NOT NULL,
       PRIMARY KEY ("ofertaId","actividadId"))`,
     `CREATE TABLE IF NOT EXISTS "Crucero" (
       "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-      "nombre" TEXT NOT NULL DEFAULT '',
-      "slug" TEXT NOT NULL UNIQUE,
+      "nombre" TEXT NOT NULL DEFAULT '', "slug" TEXT NOT NULL UNIQUE,
       "destinoId" INTEGER NOT NULL DEFAULT 1,
       "naviera" TEXT, "barco" TEXT, "tipoCrucero" TEXT,
       "fechaSalida" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -53,13 +91,24 @@ async function createMissingTables() {
       "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       "cruceroId" INTEGER NOT NULL,
       "imagen" TEXT NOT NULL DEFAULT '',
-      "epigrafe" TEXT,
-      "orden" INTEGER NOT NULL DEFAULT 0)`,
+      "epigrafe" TEXT, "orden" INTEGER NOT NULL DEFAULT 0)`,
+    `CREATE TABLE IF NOT EXISTS "SeccionNosotros" (
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "titulo" TEXT NOT NULL DEFAULT '',
+      "contenido" TEXT NOT NULL DEFAULT '',
+      "imagen" TEXT, "tituloSeo" TEXT, "descripcionSeo" TEXT)`,
+    `CREATE TABLE IF NOT EXISTS "Valor" (
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "seccionId" INTEGER NOT NULL,
+      "titulo" TEXT NOT NULL DEFAULT '',
+      "descripcion" TEXT NOT NULL DEFAULT '',
+      "icono" TEXT, "orden" INTEGER NOT NULL DEFAULT 0)`,
   ];
+
   for (const sql of tables) {
     try { await prisma.$executeRawUnsafe(sql); } catch (_) {}
   }
-  console.log("✅ Tablas OK.");
+  console.log("✅ Tablas verificadas.");
 }
 
 module.exports = { connectDb, prisma };
