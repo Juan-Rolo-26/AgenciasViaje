@@ -77,7 +77,7 @@ export default function Excursiones({
               const actividadSlug = actividad.slug || actividad.id;
               return (
                 <Link
-                  className="tile destination-card"
+                  className="tile destination-card premium-card"
                   key={actividad.id}
                   style={{ "--delay": `${index * 70}ms` }}
                   to={`/excursiones/${actividadSlug}`}

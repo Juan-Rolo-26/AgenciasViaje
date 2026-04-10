@@ -39,7 +39,7 @@ export default function Cruceros() {
 
               return (
                 <Link
-                  className="tile destination-card crucero-card-new"
+                  className="tile destination-card crucero-card-new premium-card"
                   key={crucero.id}
                   style={{ "--delay": `${index * 70}ms` }}
                   to={`/cruceros/${cruceroSlug}`}

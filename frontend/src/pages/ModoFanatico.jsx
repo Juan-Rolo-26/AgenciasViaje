@@ -29,7 +29,7 @@ export default function ModoFanatico() {
             const heroImage = resolveAssetUrl(item.imagenPortada) || fallbackDeal;
             return (
               <Link
-                className="tile destination-card"
+                className="tile destination-card premium-card salidas-card"
                 key={item.slug}
                 to={`/modo-fanatico/${item.slug}`}
               >

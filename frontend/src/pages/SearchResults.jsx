@@ -639,7 +639,7 @@ export default function SearchResults() {
                                 const destinoSlug = item.slug || item.id;
                                 return (
                                     <Link
-                                        className="tile destination-card"
+                                        className="tile destination-card premium-card"
                                         key={item.id}
                                         to={`/destinos/${destinoSlug}`}
                                     >
@@ -669,7 +669,7 @@ export default function SearchResults() {
                                 const cruceroSlug = item.slug || item.id;
                                 return (
                                     <Link
-                                        className="tile destination-card"
+                                        className="tile destination-card crucero-card-new premium-card"
                                         key={item.id}
                                         to={`/cruceros/${cruceroSlug}`}
                                     >
@@ -703,7 +703,7 @@ export default function SearchResults() {
 
                                 return (
                                     <Link
-                                        className="tile destination-card salidas-card"
+                                        className={`tile destination-card salidas-card ${searchType === 'oferta' ? 'premium-card' : ''}`}
                                         key={item.id}
                                         to={targetDestino ? `/destinos/${targetDestino.slug}?oferta=${ofertaSlug}` : `/ofertas/${ofertaSlug}`}
                                     >
@@ -731,7 +731,7 @@ export default function SearchResults() {
                             const actividadSlug = item.slug || item.id;
                             return (
                                 <Link
-                                    className="tile destination-card"
+                                    className="tile destination-card premium-card"
                                     key={item.id}
                                     to={`/excursiones/${actividadSlug}`}
                                 >

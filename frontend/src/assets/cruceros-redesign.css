@@ -1,10 +1,12 @@
 /* ============================================================ 
    SISTEMA DE DISEÑO PREMIUM PARA CARDS (DESTINOS, PAQUETES, CRUCEROS)
-   Asegura un look moderno y consistente en toda la plataforma
+   Versión Dark Content (Letras Blancas con Contraste)
    ============================================================ */
 
 /* Estilo base para todas las tarjetas de destino/paquete */
-.destination-card {
+.destination-card,
+.offer-card,
+.salidas-card-compact {
     background: #ffffff !important;
     border-radius: 26px !important;
     padding: 0 !important;
@@ -18,7 +20,6 @@
     height: auto !important;
     text-decoration: none !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    color: #1f2a44 !important;
 }
 
 /* Indicador superior animado */
@@ -29,7 +30,7 @@
     left: 0 !important;
     right: 0 !important;
     height: 4px !important;
-    background: linear-gradient(90deg, var(--violet-700, #484c9e), var(--violet-400, #7100eb)) !important;
+    background: linear-gradient(90deg, #484c9e, #7100eb) !important;
     transform: scaleX(0) !important;
     transform-origin: left !important;
     transition: transform 0.4s ease !important;
@@ -37,18 +38,24 @@
     display: block !important;
 }
 
-.destination-card:hover {
+.destination-card:hover,
+.offer-card:hover,
+.salidas-card-compact:hover {
     transform: translateY(-8px) !important;
     box-shadow: 0 26px 56px rgba(15, 23, 42, 0.18) !important;
     border-color: rgba(112, 0, 235, 0.28) !important;
 }
 
-.destination-card:hover::after {
+.destination-card:hover::after,
+.offer-card:hover::after,
+.salidas-card-compact:hover::after {
     transform: scaleX(1) !important;
 }
 
 /* Imagen principal */
-.destination-card .tile-image {
+.destination-card .tile-image,
+.offer-card .offer-image,
+.salidas-card-compact .salidas-card-image {
     height: 380px !important;
     width: 100% !important;
     border-radius: 26px 26px 0 0 !important;
@@ -73,18 +80,23 @@
     display: block !important;
 }
 
-.destination-card:hover .tile-image {
+.destination-card:hover .tile-image,
+.offer-card:hover .offer-image,
+.salidas-card-compact:hover .salidas-card-image {
     transform: scale(1.05) !important;
 }
 
-/* Contenido de texto */
-.destination-card .tile-content {
+/* Contenido de texto - FONDO OSCURO PARA CONTRASTE CON LETRAS BLANCAS */
+.destination-card .tile-content,
+.offer-card .offer-body,
+.salidas-card-compact .salidas-card-body {
     padding: 24px 26px 28px !important;
     gap: 10px !important;
     display: flex !important;
     flex-direction: column !important;
     flex: 1 !important;
-    background: #ffffff !important;
+    background: #1e1e2d !important;
+    /* Gris muy oscuro / Indigo profundo */
     position: relative !important;
     z-index: 2 !important;
     text-align: left !important;
@@ -92,59 +104,88 @@
 }
 
 /* Badge / Meta data */
-.destination-card .destination-meta {
+.destination-card .destination-meta,
+.offer-card .offer-tag,
+.salidas-card-compact .salidas-card-destino {
     font-size: 0.72rem !important;
     font-weight: 700 !important;
     letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
-    color: #7c3aed !important;
-    /* var(--violet-600) */
-    background: rgba(124, 58, 237, 0.08) !important;
+    color: #a78bfa !important;
+    /* Violeta claro para que se vea sobre oscuro */
+    background: rgba(167, 139, 250, 0.15) !important;
     padding: 6px 14px !important;
     border-radius: 999px !important;
-    box-shadow: inset 0 0 0 1px rgba(124, 58, 237, 0.12) !important;
+    box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.3) !important;
     align-self: flex-start !important;
     margin-bottom: 4px !important;
     display: inline-block !important;
+}
+
+/* Títulos y textos SIEMPRE BLANCOS */
+.destination-card h4,
+.offer-card h3,
+.salidas-card-compact h4,
+.destination-card .destination-description,
+.offer-card .offer-description,
+.offer-card-description,
+.destination-card p,
+.destination-card span:not(.card-cta) {
+    color: #ffffff !important;
     text-shadow: none !important;
 }
 
-/* Título */
 .destination-card h4 {
     font-size: 1.4rem !important;
     font-weight: 800 !important;
-    color: #1f2a44 !important;
-    /* var(--violet-900) */
-    margin: 0 !important;
     line-height: 1.2 !important;
-    text-shadow: none !important;
 }
 
-/* Botón de acción (CTA) */
+.destination-card .destination-description,
+.destination-card .offer-card-description,
+.destination-card p {
+    color: #cbd5e1 !important;
+    /* Gris claro para descripción para jerarquía */
+}
+
+/* Botón de acción (CTA) - TEXTO BLANCO Y FLECHA */
 .destination-card .card-cta {
     margin-top: auto !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 8px !important;
+    gap: 12px !important;
     width: 100% !important;
     padding: 14px 20px !important;
     border-radius: 14px !important;
-    background: linear-gradient(135deg, #484c9e, #7100eb) !important;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
     color: #ffffff !important;
     font-weight: 700 !important;
     font-size: 0.95rem !important;
     text-decoration: none !important;
-    box-shadow: 0 10px 24px rgba(112, 0, 235, 0.22) !important;
+    box-shadow: 0 10px 24px rgba(79, 70, 229, 0.3) !important;
     transition: all 0.3s ease !important;
     margin-top: 16px !important;
+    position: relative !important;
+}
+
+/* Flecha elegante al estilo crucero */
+.destination-card .card-cta::after {
+    content: "→" !important;
+    font-size: 1.2rem !important;
+    transition: transform 0.3s ease !important;
+    display: inline-block !important;
 }
 
 .destination-card:hover .card-cta {
     transform: translateY(-2px) !important;
-    box-shadow: 0 14px 30px rgba(112, 0, 235, 0.32) !important;
-    filter: brightness(1.05) !important;
+    box-shadow: 0 14px 30px rgba(124, 58, 237, 0.4) !important;
+    filter: brightness(1.1) !important;
     color: #ffffff !important;
+}
+
+.destination-card:hover .card-cta::after {
+    transform: translateX(4px) !important;
 }
 
 /* Centrar la caja de WhatsApp en el detalle */

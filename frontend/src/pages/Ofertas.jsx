@@ -496,7 +496,7 @@ export default function Ofertas() {
 
                   return (
                     <Link
-                      className="tile destination-card salidas-card"
+                      className={`tile destination-card salidas-card ${selectedSection === 'salidas-grupales' ? 'premium-card' : ''}`}
                       key={oferta.id}
                       to={targetDestino ? `/destinos/${targetDestino.slug}?oferta=${ofertaSlug}` : `/ofertas/${ofertaSlug}`}
                     >

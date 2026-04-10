@@ -1070,7 +1070,7 @@ export default function Home() {
                   : [];
                 return (
                   <Link
-                    className="offer-card offer-card-feature offer-link"
+                    className="offer-card offer-card-feature offer-link premium-card"
                     key={`${destino.id}-${index}`}
                     to={`/destinos/${destinoSlug}`}
                     aria-label={`Ver destino ${destino.nombre}`}
@@ -1142,7 +1142,7 @@ export default function Home() {
                   : `/ofertas/${ofertaSlug}`;
                 return (
                   <Link
-                    className="salidas-card-compact"
+                    className="salidas-card-compact premium-card salidas-card"
                     key={`${oferta.id}-${index}`}
                     to={targetLink}
                   >
@@ -1204,7 +1204,7 @@ export default function Home() {
                   .slice(0, 2);
                 return (
                   <Link
-                    className="offer-card offer-card-feature offer-link"
+                    className="offer-card offer-card-feature offer-link premium-card"
                     key={`${crucero.id}-${index}`}
                     to={`/cruceros/${cruceroSlug}`}
                   >
@@ -1287,7 +1287,7 @@ export default function Home() {
                   .slice(0, 2);
                 return (
                   <Link
-                    className="offer-card offer-card-feature offer-link"
+                    className="offer-card offer-card-feature offer-link premium-card"
                     key={`${actividad.id}-${index}`}
                     to={`/excursiones/${actividadSlug}`}
                   >
@@ -1374,19 +1374,6 @@ export default function Home() {
                     </p>
                     <div className="continent-cta">
                       Explorar destino
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2.5}
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                        />
-                      </svg>
                     </div>
                   </div>
                 </div>

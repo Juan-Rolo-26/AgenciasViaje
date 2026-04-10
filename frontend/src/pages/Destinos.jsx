@@ -321,7 +321,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
                   const destinoSlug = destino.slug || destino.id;
                   return (
                     <Link
-                      className="tile destination-card"
+                      className="tile destination-card premium-card"
                       key={destino.id}
                       style={{ "--delay": `${index * 70}ms` }}
                       to={`/destinos/${destinoSlug}`}

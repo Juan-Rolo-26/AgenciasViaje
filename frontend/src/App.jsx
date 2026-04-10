@@ -20,6 +20,7 @@ import ModoFanatico from "./pages/ModoFanatico.jsx";
 import ModoFanaticoDetail from "./pages/ModoFanaticoDetail.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import WebEnDesarrollo from "./pages/WebEnDesarrollo.jsx";
+import "./assets/premium-cards.css";
 
 const MAINTENANCE_MODE = false;
 
