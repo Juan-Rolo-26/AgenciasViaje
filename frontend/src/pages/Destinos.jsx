@@ -179,7 +179,7 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
 
   const destinosFiltrados = useMemo(() => {
     const query = filters.query.trim().toLowerCase();
-    return destinosBase.filter((destino) => {
+    const filtered = destinosBase.filter((destino) => {
       const matchesPais =
         !filters.pais || destino.paisRegion === filters.pais;
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion] || "";
@@ -198,6 +198,11 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
         matchesContinent &&
         matchesQuery
       );
+    });
+    // Destinos con paquetes primero, luego el resto
+    return [...filtered].sort((a, b) => {
+      if (a.hasOfertas === b.hasOfertas) return 0;
+      return a.hasOfertas ? -1 : 1;
     });
   }, [destinosBase, filters]);
 

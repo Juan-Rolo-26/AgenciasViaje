@@ -176,7 +176,7 @@ export default function CruceroDetail() {
       </section>
 
       <section className="excursion-cta-premium">
-        <div className="cta-container">
+        <div className="cta-container centered-cta">
           <div className="cta-content">
             <h3>¿Listo para subir a bordo?</h3>
             <p>Te ayudamos a reservar el crucero ideal con asesoramiento personalizado.</p>
@@ -338,34 +338,6 @@ export default function CruceroDetail() {
               </div>
             </article>
           </div>
-
-          {destinoSlug ? (
-            <aside className="details-sidebar">
-              <article className="detail-card-premium related-card">
-                <div className="card-header">
-                  <div className="card-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                  </div>
-                  <h3>Destino Relacionado</h3>
-                </div>
-                <div className="card-content">
-                  <p className="related-description">
-                    Descubrí más sobre {crucero.destino?.nombre} y combiná tu crucero con otras experiencias en destino.
-                  </p>
-                  <Link className="related-link" to={`/destinos/${destinoSlug}`}>
-                    <span>Ver destino {crucero.destino?.nombre}</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  </Link>
-                </div>
-              </article>
-            </aside>
-          ) : null}
         </div>
       </section>
     </main>

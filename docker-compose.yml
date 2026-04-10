@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: topotours-app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=file:./prisma/dev.db
+      - PORT=3000
+    volumes:
+      - ./backend/prisma:/app/backend/prisma
+    restart: always

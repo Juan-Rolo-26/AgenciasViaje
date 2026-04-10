@@ -22,6 +22,69 @@ function fmtDate(iso) {
     return new Date(iso).toLocaleDateString("es-AR", { day: "numeric", month: "short", year: "numeric" });
 }
 
+const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+
+function MesRapido({ onAdd }) {
+    const hoy = new Date();
+    const [anio, setAnio] = useState(hoy.getFullYear());
+
+    function agregarMes(mesIdx) {
+        const m = String(mesIdx + 1).padStart(2, "0");
+        const y = String(anio);
+        const start = `${y}-${m}-01`;
+        const lastDay = new Date(anio, mesIdx + 1, 0).getDate();
+        const end = `${y}-${m}-${String(lastDay).padStart(2, "0")}`;
+        onAdd(start, end);
+    }
+
+    return (
+        <div style={{
+            display: "flex", flexDirection: "column", gap: "10px",
+            background: "linear-gradient(135deg, #f0f4ff, #e8edff)",
+            border: "1px solid #c7d2f8",
+            padding: "14px 16px", borderRadius: "12px",
+            boxShadow: "0 2px 8px rgba(99,102,241,0.08)"
+        }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <span style={{ fontSize: "13px", fontWeight: 700, color: "#4338ca", letterSpacing: "0.01em" }}>
+                    + Agregar mes entero
+                </span>
+                <div style={{ display: "flex", alignItems: "center", gap: "4px", marginLeft: "auto", background: "white", borderRadius: "8px", padding: "4px 8px", border: "1px solid #c7d2f8" }}>
+                    <button type="button" onClick={() => setAnio(a => a - 1)}
+                        style={{ background: "none", border: "none", cursor: "pointer", fontSize: "18px", color: "#4338ca", padding: "0 4px", lineHeight: 1 }}>‹</button>
+                    <span style={{ fontSize: "15px", fontWeight: 700, color: "#1e1b4b", minWidth: "44px", textAlign: "center" }}>{anio}</span>
+                    <button type="button" onClick={() => setAnio(a => a + 1)}
+                        style={{ background: "none", border: "none", cursor: "pointer", fontSize: "18px", color: "#4338ca", padding: "0 4px", lineHeight: 1 }}>›</button>
+                </div>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+                {MESES.map((mes, i) => (
+                    <button
+                        key={mes}
+                        type="button"
+                        onClick={() => agregarMes(i)}
+                        style={{
+                            padding: "8px 4px",
+                            fontSize: "13px",
+                            fontWeight: 600,
+                            border: "1px solid #c7d2f8",
+                            borderRadius: "8px",
+                            background: "white",
+                            color: "#3730a3",
+                            cursor: "pointer",
+                            transition: "all 0.15s",
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.background = "#4338ca"; e.currentTarget.style.color = "white"; e.currentTarget.style.borderColor = "#4338ca"; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = "white"; e.currentTarget.style.color = "#3730a3"; e.currentTarget.style.borderColor = "#c7d2f8"; }}
+                    >
+                        {mes}
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export default function OfertasView({ tipo, titulo }) {
     const { apiFetch, showToast } = useAdmin();
     const [list, setList] = useState([]);
@@ -382,40 +445,10 @@ export default function OfertasView({ tipo, titulo }) {
                     <div className="form-section">
                         <div className="section-row">
                             <h4>Fechas de salida</h4>
-                            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-                                <div style={{ display: "flex", alignItems: "center", gap: "6px", background: "#f5f5f5", padding: "4px 8px", borderRadius: "6px" }}>
-                                    <label style={{ fontSize: "12px", margin: 0, fontWeight: 500 }}>Mes:</label>
-                                    <select
-                                        defaultValue=""
-                                        onChange={e => {
-                                            const val = e.target.value;
-                                            if (!val) return;
-                                            const [y, m] = val.split("-");
-                                            const start = `${y}-${m}-01`;
-                                            const endDay = new Date(Number(y), Number(m), 0).getDate();
-                                            const end = `${y}-${m}-${String(endDay).padStart(2, "0")}`;
-                                            setFechas(ff => [...ff, { fechaInicio: start, fechaFin: end }]);
-                                            e.target.value = "";
-                                        }}
-                                        style={{ padding: "4px 8px", border: "1px solid #ccc", borderRadius: "4px", background: "white", fontSize: "14px" }}
-                                    >
-                                        <option value="">Elegir mes...</option>
-                                        {(() => {
-                                            const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-                                            const hoy = new Date();
-                                            const options = [];
-                                            for (let i = 0; i < 18; i++) {
-                                                const d = new Date(hoy.getFullYear(), hoy.getMonth() + i, 1);
-                                                const y = d.getFullYear();
-                                                const m = String(d.getMonth() + 1).padStart(2, "0");
-                                                options.push(<option key={`${y}-${m}`} value={`${y}-${m}`}>{meses[d.getMonth()]} {y}</option>);
-                                            }
-                                            return options;
-                                        })()}
-                                    </select>
-                                </div>
+                            <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
+                                <MesRapido onAdd={(start, end) => setFechas(ff => [...ff, { fechaInicio: start, fechaFin: end }])} />
                                 <button className="btn-secondary sm" onClick={() => setFechas(ff => [...ff, { fechaInicio: "", fechaFin: "" }])}>
-                                    + Fechas exactas
+                                    + Fecha exacta
                                 </button>
                             </div>
                         </div>

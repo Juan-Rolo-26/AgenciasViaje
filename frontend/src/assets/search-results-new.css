@@ -251,16 +251,22 @@
 }
 
 .results-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 32px;
     padding: 10px;
-    /* Para que la sombra no se corte al hover */
+}
+
+.results-grid>* {
+    width: 380px;
+    max-width: 100%;
+    flex-shrink: 0;
 }
 
 @media (max-width: 1100px) {
-    .results-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .results-grid>* {
+        width: 45%;
     }
 }
 
@@ -356,14 +362,6 @@
     transition: opacity 0.3s ease;
 }
 
-.search-results-page-new .tile:hover .tile-image {
-    /* No aplicamos transform a la imagen si es background-image, pero si fuera img tag si.
-       Como es background-image, usaremos un pseudo-elemento si quisieramos zoom, pero
-       por simplicidad, dejaremos el card lift.
-       Si quieres animar el background-size es costoso, mejor el lift de la card.
-    */
-}
-
 /* CONTENIDO */
 .search-results-page-new .tile-content {
     padding: 24px 28px;
@@ -413,6 +411,7 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    line-clamp: 3;
     flex: 1;
     /* Empuja el botón hacia abajo */
 }

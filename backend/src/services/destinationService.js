@@ -7,7 +7,7 @@ async function listDestinos({ activos = true, lite = false } = {}) {
   };
 
   if (lite) {
-    return prisma.destino.findMany({
+    const rows = await prisma.destino.findMany({
       ...baseQuery,
       select: {
         id: true,
@@ -27,8 +27,22 @@ async function listDestinos({ activos = true, lite = false } = {}) {
           },
           orderBy: { orden: "asc" },
           take: 3
+        },
+        _count: {
+          select: {
+            ofertasPrincipales: true,
+            ofertasSecundarias: true
+          }
         }
       }
+    });
+    return rows.map((d) => {
+      const { _count, ...rest } = d;
+      return {
+        ...rest,
+        hasOfertas:
+          (_count.ofertasPrincipales || 0) + (_count.ofertasSecundarias || 0) > 0
+      };
     });
   }
 

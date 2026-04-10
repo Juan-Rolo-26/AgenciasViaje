@@ -1658,7 +1658,8 @@ main:has(.section-landing) {
   padding: 0;
   display: flex;
   flex-direction: column;
-  height: calc(100dvh - 87px); /* 50px logo + 18px*2 padding + 1px border */
+  height: calc(100dvh - 87px);
+  /* 50px logo + 18px*2 padding + 1px border */
   max-height: calc(100dvh - 87px);
 }
 
@@ -2412,15 +2413,8 @@ main:has(.section-landing) {
   height: 190px;
 }
 
-.grid.grid-3x3 .destination-card {
-  padding: 0;
-  background: transparent;
-}
 
-.grid.grid-3x3 .destination-card .tile-image {
-  height: 100%;
-  border-radius: 0;
-}
+/* Estilos del grid 3x3 simplificados para usar el diseño premium base */
 
 .section-header.section-header-centered {
   text-align: center;
@@ -5261,6 +5255,15 @@ main:has(.section-landing) {
     grid-template-columns: 1fr;
   }
 
+  .grid.grid-3x3 .destination-card {
+    height: 380px;
+  }
+
+  .grid.grid-3x3 .destination-card .tile-image {
+    height: 240px;
+    flex-shrink: 0;
+  }
+
   .offer-card-feature .offer-image {
     height: 220px;
   }
@@ -5666,7 +5669,7 @@ html {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
@@ -5677,6 +5680,7 @@ html {
   overflow: hidden;
   border-radius: 20px;
   aspect-ratio: 4 / 3;
+  min-height: 220px;
 }
 
 .gallery-image-wrapper {
@@ -5992,10 +5996,12 @@ html {
 }
 
 .related-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
   padding: 16px 24px;
   background: linear-gradient(135deg, var(--violet-700), var(--violet-400));
   color: white;
@@ -6011,7 +6017,8 @@ html {
 .related-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(112, 0, 235, 0.35);
-  background: linear-gradient(135deg, var(--violet-900), var(--violet-400));
+  background: linear-gradient(135deg, var(--violet-600), var(--violet-500));
+  color: white;
 }
 
 .related-link svg {
@@ -6063,7 +6070,18 @@ html {
 
   .gallery-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+  }
+
+  .gallery-item {
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
+  }
+
+  .gallery-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .excursion-cta-premium {
@@ -9181,8 +9199,8 @@ html {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 80% at 85% 50%, rgba(43,91,255,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 5% 80%, rgba(43,91,255,0.04) 0%, transparent 50%);
+    radial-gradient(ellipse 50% 80% at 85% 50%, rgba(43, 91, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 5% 80%, rgba(43, 91, 255, 0.04) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -9193,7 +9211,7 @@ html {
   right: -120px;
   width: 480px;
   height: 480px;
-  background: radial-gradient(circle, rgba(43,91,255,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(43, 91, 255, 0.04) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -9209,8 +9227,8 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: rgba(43,91,255,0.08);
-  border: 1px solid rgba(43,91,255,0.2);
+  background: rgba(43, 91, 255, 0.08);
+  border: 1px solid rgba(43, 91, 255, 0.2);
   color: #2b5bff;
   font-size: 0.82rem;
   font-weight: 700;
@@ -9277,8 +9295,8 @@ html {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background: rgba(43,91,255,0.08);
-  border: 1px solid rgba(43,91,255,0.15);
+  background: rgba(43, 91, 255, 0.08);
+  border: 1px solid rgba(43, 91, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9330,14 +9348,14 @@ html {
   border-radius: 14px;
   text-decoration: none;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 8px 32px rgba(43,91,255,0.28);
+  box-shadow: 0 8px 32px rgba(43, 91, 255, 0.28);
   letter-spacing: -0.01em;
 }
 
 .mutual-btn-primary:hover {
   background: #1a4ae8;
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(43,91,255,0.38);
+  box-shadow: 0 12px 40px rgba(43, 91, 255, 0.38);
 }
 
 .mutual-btn-primary svg {
@@ -9388,8 +9406,8 @@ html {
   justify-content: space-between;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.2);
-  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .mutual-card::before {
@@ -9400,7 +9418,7 @@ html {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .mutual-card::after {
@@ -9411,13 +9429,13 @@ html {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: rgba(255,200,61,0.1);
+  background: rgba(255, 200, 61, 0.1);
 }
 
 .mutual-card-shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
   border-radius: 20px;
   pointer-events: none;
 }
@@ -9433,13 +9451,13 @@ html {
 .mutual-card-logo {
   width: 44px;
   height: 44px;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffc83d;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .mutual-card-logo svg {
@@ -9461,7 +9479,7 @@ html {
 }
 
 .mutual-card-tagline {
-  color: rgba(255,255,255,0.55);
+  color: rgba(255, 255, 255, 0.55);
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -9477,7 +9495,7 @@ html {
 }
 
 .mutual-card-label {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.45);
   font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.1em;

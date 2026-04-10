@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
+import "../assets/cruceros-redesign.css";
 import { useCruceros } from "../hooks/useTravelData.js";
 
 export default function Cruceros() {
@@ -38,7 +39,7 @@ export default function Cruceros() {
 
               return (
                 <Link
-                  className="tile destination-card"
+                  className="tile destination-card crucero-card-new"
                   key={crucero.id}
                   style={{ "--delay": `${index * 70}ms` }}
                   to={`/cruceros/${cruceroSlug}`}
