@@ -132,18 +132,18 @@ model Crucero {
   id             Int             @id @default(autoincrement())
   nombre         String
   slug           String          @unique
-  destinoId      Int
+  destinoId      Int?
   naviera        String?
   barco          String?
   tipoCrucero    String?
-  fechaSalida    DateTime
+  fechaSalida    DateTime?
   horaSalida     String?
   duracionNoches Int             @default(0)
-  precio         Decimal
+  precio         Decimal         @default(0)
   cupos          Int             @default(0)
-  puertoSalida   String
-  descripcion    String
-  imagenPortada  String
+  puertoSalida   String?
+  descripcion    String?
+  imagenPortada  String?
   destacada      Boolean         @default(false)
   activa         Boolean         @default(true)
   orden          Int             @default(0)
@@ -151,7 +151,7 @@ model Crucero {
   descripcionSeo String?
   creadoEn       DateTime        @default(now())
 
-  destino        Destino         @relation(fields: [destinoId], references: [id])
+  destino        Destino?         @relation(fields: [destinoId], references: [id])
   galeria        ImagenCrucero[]
 }
 

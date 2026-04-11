@@ -113,19 +113,8 @@ export default function CrucerosView() {
   }
 
   async function save() {
-    if (
-      !form.nombre ||
-      !form.slug ||
-      !form.destinoId ||
-      !form.fechaSalida ||
-      !form.puertoSalida ||
-      !form.descripcion ||
-      !form.imagenPortada
-    ) {
-      showToast(
-        "error",
-        "Nombre, slug, destino, fecha, puerto, descripción e imagen son requeridos"
-      );
+    if (!form.nombre || !form.slug) {
+      showToast("error", "Nombre y slug son requeridos");
       return;
     }
 
@@ -133,12 +122,14 @@ export default function CrucerosView() {
     try {
       const body = {
         ...form,
-        destinoId: Number(form.destinoId),
-        duracionNoches: Number(form.duracionNoches),
-        precio: Number(form.precio),
-        cupos: Number(form.cupos),
-        orden: Number(form.orden),
-        fechaSalida: new Date(form.fechaSalida).toISOString(),
+        destinoId: form.destinoId ? Number(form.destinoId) : null,
+        duracionNoches: Number(form.duracionNoches || 0),
+        precio: Number(form.precio || 0),
+        cupos: Number(form.cupos || 0),
+        orden: Number(form.orden || 0),
+        fechaSalida: form.fechaSalida
+          ? new Date(form.fechaSalida).toISOString()
+          : null,
         galeria: galeria.filter((item) => item.imagen),
       };
 
@@ -274,9 +265,8 @@ export default function CrucerosView() {
                   </td>
                   <td>
                     <button
-                      className={`badge badge-toggle ${
-                        crucero.activa ? "badge-green" : "badge-gray"
-                      }`}
+                      className={`badge badge-toggle ${crucero.activa ? "badge-green" : "badge-gray"
+                        }`}
                       onClick={() => toggleActiva(crucero)}
                     >
                       {crucero.activa ? "✅ Activo" : "⏸ Inactivo"}
@@ -337,7 +327,7 @@ export default function CrucerosView() {
                 <input value={form.slug} onChange={set("slug")} />
               </div>
               <div className="field">
-                <label>Destino *</label>
+                <label>Destino</label>
                 <select value={form.destinoId} onChange={set("destinoId")}>
                   <option value="">Seleccioná un destino...</option>
                   {destinos.map((destino) => (
@@ -364,7 +354,7 @@ export default function CrucerosView() {
                 />
               </div>
               <div className="field">
-                <label>Fecha de salida *</label>
+                <label>Fecha de salida</label>
                 <input type="date" value={form.fechaSalida} onChange={set("fechaSalida")} />
               </div>
               <div className="field">
@@ -389,7 +379,7 @@ export default function CrucerosView() {
                 <input type="number" min="0" value={form.cupos} onChange={set("cupos")} />
               </div>
               <div className="field span2">
-                <label>Puerto de salida *</label>
+                <label>Puerto de salida</label>
                 <input
                   value={form.puertoSalida}
                   onChange={set("puertoSalida")}
@@ -397,7 +387,7 @@ export default function CrucerosView() {
                 />
               </div>
               <div className="field span2">
-                <label>URL imagen de portada *</label>
+                <label>URL imagen de portada</label>
                 <input
                   value={form.imagenPortada}
                   onChange={set("imagenPortada")}
@@ -408,7 +398,7 @@ export default function CrucerosView() {
                 ) : null}
               </div>
               <div className="field span2">
-                <label>Descripción *</label>
+                <label>Descripción</label>
                 <textarea
                   rows={5}
                   value={form.descripcion}

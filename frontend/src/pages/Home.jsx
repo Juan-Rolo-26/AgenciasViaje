@@ -249,22 +249,22 @@ export default function Home() {
   }, [destinosNoArgentina]);
 
   const paisesDisponibles = useMemo(() => {
-    const countries = new Set();
-    destinosNoArgentina.forEach((destino) => {
-      if (!destino.paisRegion) {
-        return;
-      }
-      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
-      if (searchRegion && continent !== searchRegion) {
-        return;
-      }
-      countries.add(destino.paisRegion);
-    });
-    return Array.from(countries).sort((a, b) => a.localeCompare(b));
-  }, [destinosNoArgentina, searchRegion]);
+    const countries = Object.keys(CONTINENT_BY_COUNTRY);
+    let filteredCountries = searchRegion
+      ? countries.filter((pais) => CONTINENT_BY_COUNTRY[pais] === searchRegion)
+      : countries;
+
+    const sorted = filteredCountries.sort((a, b) => a.localeCompare(b));
+    const argentina = sorted.find((c) => c.toLowerCase() === "argentina");
+
+    if (argentina) {
+      return [argentina, ...sorted.filter((c) => c !== argentina)];
+    }
+    return sorted;
+  }, [searchRegion]);
 
   const destinosDisponibles = useMemo(() => {
-    return destinosNoArgentina.filter((destino) => {
+    return destinos.filter((destino) => {
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
       if (searchRegion && continent !== searchRegion) {
         return false;
@@ -274,7 +274,7 @@ export default function Home() {
       }
       return true;
     });
-  }, [destinosNoArgentina, searchRegion, searchPais]);
+  }, [destinos, searchRegion, searchPais]);
 
   useEffect(() => {
     if (searchPais && !paisesDisponibles.includes(searchPais)) {
@@ -375,7 +375,7 @@ export default function Home() {
       !paisQuery || (region || "").toLowerCase() === paisQuery;
 
     if (searchType === "destino") {
-      return destinosNoArgentina.filter((destino) => {
+      return destinos.filter((destino) => {
         const matchesName = matchesDestino(destino.nombre);
         const matchesRegionValue = matchesRegion(destino.paisRegion);
         const matchesPaisValue = matchesPais(destino.paisRegion);

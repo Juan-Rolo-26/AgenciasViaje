@@ -74,11 +74,8 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   const { destinos, loading, error } = useDestinos();
   const lockedPaisValue = (lockedPais || "").trim();
   const destinosBase = useMemo(() => {
-    if (lockedPaisValue) {
-      return destinos;
-    }
-    return destinos.filter((destino) => destino.paisRegion !== "Argentina");
-  }, [destinos, lockedPaisValue]);
+    return destinos;
+  }, [destinos]);
   const continentCards = useMemo(
     () =>
       CONTINENTS.map((item) => ({
@@ -156,9 +153,15 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   }, [destinosBase, draftFilters.continente, draftFilters.pais]);
 
   const paises = useMemo(() => {
-    return Array.from(
-      new Set(destinosParaOpciones.map((destino) => destino.paisRegion).filter(Boolean))
+    const list = Array.from(
+      new Set(
+        destinosParaOpciones.map((destino) => destino.paisRegion).filter(Boolean)
+      )
     ).sort((a, b) => a.localeCompare(b));
+    if (list.includes("Argentina")) {
+      return ["Argentina", ...list.filter((p) => p !== "Argentina")];
+    }
+    return list;
   }, [destinosParaOpciones]);
 
   const destinosDisponibles = useMemo(() => {

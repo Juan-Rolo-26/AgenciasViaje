@@ -110,16 +110,20 @@ export default function SearchResults() {
     const regionesDisponibles = useMemo(() => CONTINENTS, []);
 
     const paisesDisponibles = useMemo(() => {
-        if (!searchRegion) {
-            return Object.keys(CONTINENT_BY_COUNTRY).sort();
+        const countries = Object.keys(CONTINENT_BY_COUNTRY);
+        let filteredCountries = searchRegion
+            ? countries.filter((pais) => CONTINENT_BY_COUNTRY[pais] === searchRegion)
+            : countries;
+
+        const sorted = filteredCountries.sort((a, b) => a.localeCompare(b));
+        if (filteredCountries.includes("Argentina")) {
+            return ["Argentina", ...sorted.filter(c => c !== "Argentina")];
         }
-        return Object.keys(CONTINENT_BY_COUNTRY)
-            .filter((pais) => CONTINENT_BY_COUNTRY[pais] === searchRegion)
-            .sort();
+        return sorted;
     }, [searchRegion]);
 
     const destinosDisponibles = useMemo(() => {
-        let filtered = destinosNoArgentina;
+        let filtered = destinos;
         if (searchRegion) {
             filtered = filtered.filter(
                 (destino) =>
@@ -133,7 +137,7 @@ export default function SearchResults() {
             );
         }
         return filtered.sort((a, b) => a.nombre.localeCompare(b.nombre));
-    }, [destinosNoArgentina, searchRegion, searchPais]);
+    }, [destinos, searchRegion, searchPais]);
 
     const ofertasDisponibles = useMemo(() => {
         return salidasDisponibles
@@ -214,7 +218,7 @@ export default function SearchResults() {
             !paisQuery || (region || "").toLowerCase() === paisQuery;
 
         if (searchType === "destino") {
-            return destinosNoArgentina.filter((destino) => {
+            return destinos.filter((destino) => {
                 const matchesName = matchesDestino(destino.nombre);
                 const matchesRegionValue = matchesRegion(destino.paisRegion);
                 const matchesPaisValue = matchesPais(destino.paisRegion);
@@ -339,7 +343,7 @@ export default function SearchResults() {
             return matchesCordoba && matchesName && matchesText && matchesDate;
         });
     }, [
-        destinosNoArgentina,
+        destinos,
         cruceros,
         salidasDisponibles,
         paquetesDisponibles,

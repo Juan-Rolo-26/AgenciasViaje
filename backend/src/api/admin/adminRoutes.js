@@ -257,11 +257,26 @@ router.post("/cruceros", async (req, res, next) => {
     try {
         const { galeria, ...rawData } = req.body;
         const data = { ...rawData };
-        if (data.destinoId) data.destinoId = Number(data.destinoId);
-        if (data.duracionNoches !== undefined) data.duracionNoches = Number(data.duracionNoches);
-        if (data.precio !== undefined) data.precio = Number(data.precio);
-        if (data.cupos !== undefined) data.cupos = Number(data.cupos);
-        if (data.orden !== undefined) data.orden = Number(data.orden);
+
+        // Handle optional numeric fields
+        if (data.destinoId) {
+            data.destinoId = Number(data.destinoId);
+        } else {
+            delete data.destinoId;
+        }
+
+        data.duracionNoches = data.duracionNoches !== undefined ? Number(data.duracionNoches) : 0;
+        data.precio = data.precio !== undefined ? Number(data.precio) : 0;
+        data.cupos = data.cupos !== undefined ? Number(data.cupos) : 0;
+        data.orden = data.orden !== undefined ? Number(data.orden) : 0;
+
+        // Limpiar campos vacíos para que Prisma use null o el default correctamente
+        Object.keys(data).forEach(key => {
+            if (data[key] === "" || data[key] === null) {
+                delete data[key];
+            }
+        });
+
         const crucero = await prisma.crucero.create({
             data: {
                 ...data,
@@ -289,7 +304,9 @@ router.put("/cruceros/:id", async (req, res, next) => {
         const id = +req.params.id;
         const { galeria, ...rawData } = req.body;
         const data = { ...rawData };
-        if (data.destinoId) data.destinoId = Number(data.destinoId);
+
+        // Handle optional numeric fields
+        data.destinoId = data.destinoId ? Number(data.destinoId) : null;
         if (data.duracionNoches !== undefined) data.duracionNoches = Number(data.duracionNoches);
         if (data.precio !== undefined) data.precio = Number(data.precio);
         if (data.cupos !== undefined) data.cupos = Number(data.cupos);
