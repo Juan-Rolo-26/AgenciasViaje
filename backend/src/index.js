@@ -39,7 +39,7 @@ if (loadedEnvPath) {
 const PORT = process.env.PORT || 3000;
 
 async function bootstrap() {
-  const app = require("./app");
+  const app = require("./createApp");
   const { connectDb } = require("./config/db");
 
   // Escuchar primero para pasar health checks del deploy.

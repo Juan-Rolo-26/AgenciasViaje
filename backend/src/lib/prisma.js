@@ -3,6 +3,13 @@ const fs = require("fs");
 const { PrismaClient } = require("@prisma/client");
 const DEFAULT_DATABASE_URL = "file:./prisma/dev.db";
 const SQLITE_PROTOCOL = "file:";
+const SQLITE_SNAPSHOT_PATH = path.resolve(
+  __dirname,
+  "..",
+  "..",
+  "prisma",
+  "bootstrap.sqlite"
+);
 
 function normalizeDatabaseUrl(rawValue) {
   if (typeof rawValue !== "string") {
@@ -50,24 +57,59 @@ function normalizeSqlitePath(value) {
   return `file:${resolvedPath}`;
 }
 
+function resolveSqliteFilePath(value) {
+  if (!value.startsWith(SQLITE_PROTOCOL)) {
+    return "";
+  }
+
+  const rawPath = value.slice(SQLITE_PROTOCOL.length).trim();
+  if (!rawPath) {
+    return "";
+  }
+
+  return rawPath.startsWith("/")
+    ? rawPath
+    : path.resolve(__dirname, "..", "..", rawPath);
+}
+
+function restoreSqliteSnapshotIfNeeded(dbPath) {
+  if (!dbPath || fs.existsSync(dbPath)) {
+    return false;
+  }
+
+  if (!fs.existsSync(SQLITE_SNAPSHOT_PATH)) {
+    return false;
+  }
+
+  fs.copyFileSync(SQLITE_SNAPSHOT_PATH, dbPath);
+  console.log(
+    `SQLite restaurada desde snapshot versionada: ${path.relative(
+      path.resolve(__dirname, "..", ".."),
+      SQLITE_SNAPSHOT_PATH
+    )}`
+  );
+  return true;
+}
+
 function ensureSqliteDatabaseFile(value) {
   if (!value.startsWith(SQLITE_PROTOCOL)) {
     return;
   }
 
-  const rawPath = value.slice(SQLITE_PROTOCOL.length).trim();
-  if (!rawPath) {
+  const dbPath = resolveSqliteFilePath(value);
+  if (!dbPath) {
     return;
   }
-
-  const dbPath = rawPath.startsWith("/")
-    ? rawPath
-    : path.resolve(__dirname, "..", "..", rawPath);
   const dbDir = path.dirname(dbPath);
 
   if (!fs.existsSync(dbDir)) {
     fs.mkdirSync(dbDir, { recursive: true });
   }
+
+  if (restoreSqliteSnapshotIfNeeded(dbPath)) {
+    return;
+  }
+
   if (!fs.existsSync(dbPath)) {
     fs.closeSync(fs.openSync(dbPath, "w"));
   }
