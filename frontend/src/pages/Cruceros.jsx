@@ -57,6 +57,19 @@ export default function Cruceros() {
                     <span className="destination-meta">
                       {metaParts.join(" • ") || "Crucero disponible"}
                     </span>
+
+                    <div className="card-prices">
+                      <span className="price-label">Desde</span>
+                      <div className="prices-wrapper">
+                        <span className="price-ars">
+                          {crucero.precioPesos ? `ARS $${Number(crucero.precioPesos).toLocaleString('es-AR')}` : (crucero.precio ? `ARS $${Number(crucero.precio).toLocaleString('es-AR')}` : 'Consultar')}
+                        </span>
+                        <span className="price-usd">
+                          {crucero.precioDolares ? ` USD $${Number(crucero.precioDolares).toLocaleString('es-AR')}` : ''}
+                        </span>
+                      </div>
+                    </div>
+
                     <span className="card-cta">Ver crucero</span>
                   </div>
                 </Link>

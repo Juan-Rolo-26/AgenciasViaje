@@ -95,6 +95,19 @@ export default function Excursiones({
                     <span className="destination-meta">
                       {actividad.destino?.nombre || "Destino"}
                     </span>
+
+                    <div className="card-prices">
+                      <span className="price-label">Desde</span>
+                      <div className="prices-wrapper">
+                        <span className="price-ars">
+                          {actividad.precioPesos ? `ARS $${Number(actividad.precioPesos).toLocaleString('es-AR')}` : (actividad.precio ? `ARS $${Number(actividad.precio).toLocaleString('es-AR')}` : 'Consultar')}
+                        </span>
+                        <span className="price-usd">
+                          {actividad.precioDolares ? ` USD $${Number(actividad.precioDolares).toLocaleString('es-AR')}` : ''}
+                        </span>
+                      </div>
+                    </div>
+
                     <span className="card-cta">Ver excursión</span>
                   </div>
                 </Link>

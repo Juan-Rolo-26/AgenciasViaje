@@ -236,8 +236,17 @@ export default function CruceroDetail() {
                       </svg>
                     </div>
                     <div className="info-content">
-                      <span className="info-label">Tarifa desde</span>
-                      <span className="info-value">{precioLabel}</span>
+                      <div className="card-prices" style={{ marginTop: 0, gap: '4px' }}>
+                        <span className="price-label">Tarifa desde</span>
+                        <div className="prices-wrapper">
+                          <span className="price-ars">
+                            {crucero.precioPesos ? `ARS $${Number(crucero.precioPesos).toLocaleString('es-AR')}` : (crucero.precio ? `ARS $${Number(crucero.precio).toLocaleString('es-AR')}` : 'Consultar')}
+                          </span>
+                          <span className="price-usd">
+                            {crucero.precioDolares ? ` USD $${Number(crucero.precioDolares).toLocaleString('es-AR')}` : ''}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </li>
                   <li className="info-item">

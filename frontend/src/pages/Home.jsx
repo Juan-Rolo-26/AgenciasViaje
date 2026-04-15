@@ -1101,6 +1101,24 @@ export default function Home() {
                         <h3>{destino.nombre}</h3>
                       </div>
                       <p className="offer-description">{descripcion}</p>
+                      <div className="card-prices">
+                        <span className="price-label">Paquetes desde</span>
+                        <div className="prices-wrapper">
+                          {(destino.precioPesos || destino.minPrecioPesos) ? (
+                            <span className="price-ars">
+                              {`ARS $${Number(destino.precioPesos || destino.minPrecioPesos).toLocaleString("es-AR")}`}
+                            </span>
+                          ) : null}
+                          {(destino.precioDolares || destino.minPrecioDolares) ? (
+                            <span className="price-usd">
+                              {`USD $${Number(destino.precioDolares || destino.minPrecioDolares).toLocaleString("es-AR")}`}
+                            </span>
+                          ) : null}
+                          {!destino.precioPesos && !destino.minPrecioPesos && !destino.precioDolares && !destino.minPrecioDolares ? (
+                            <span className="price-ars">Consultar</span>
+                          ) : null}
+                        </div>
+                      </div>
                     </div>
                   </Link>
                 );
@@ -1157,6 +1175,18 @@ export default function Home() {
                         {oferta.destino?.nombre || "Destino"}
                       </span>
                       <h4 className="salidas-card-titulo">{oferta.titulo}</h4>
+
+                      <div className="card-prices">
+                        <span className="price-label">Desde</span>
+                        <div className="prices-wrapper">
+                          <span className="price-ars">
+                            {oferta.precioPesos ? `ARS $${Number(oferta.precioPesos).toLocaleString('es-AR')}` : ((oferta.precios?.[0]?.precio || 0) ? `ARS $${Number((oferta.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
+                          </span>
+                          <span className="price-usd">
+                            {oferta.precioDolares ? ` USD $${Number(oferta.precioDolares).toLocaleString('es-AR')}` : ''}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </Link>
                 );
@@ -1242,6 +1272,18 @@ export default function Home() {
                             .filter(Boolean)
                             .join(" • ") || "Salida disponible"}
                         </p>
+
+                        <div className="card-prices">
+                          <span className="price-label">Desde</span>
+                          <div className="prices-wrapper">
+                            <span className="price-ars">
+                              {crucero.precioPesos ? `ARS $${Number(crucero.precioPesos).toLocaleString('es-AR')}` : (crucero.precio ? `ARS $${Number(crucero.precio).toLocaleString('es-AR')}` : 'Consultar')}
+                            </span>
+                            <span className="price-usd">
+                              {crucero.precioDolares ? ` USD $${Number(crucero.precioDolares).toLocaleString('es-AR')}` : ''}
+                            </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </Link>
@@ -1315,6 +1357,18 @@ export default function Home() {
                           {actividad.destino?.nombre || "Córdoba"}
                         </span>
                         <h3>{actividad.nombre}</h3>
+                      </div>
+
+                      <div className="card-prices">
+                        <span className="price-label">Desde</span>
+                        <div className="prices-wrapper">
+                          <span className="price-ars">
+                            {actividad.precioPesos ? `ARS $${Number(actividad.precioPesos).toLocaleString('es-AR')}` : (actividad.precio ? `ARS $${Number(actividad.precio).toLocaleString('es-AR')}` : 'Consultar')}
+                          </span>
+                          <span className="price-usd">
+                            {actividad.precioDolares ? ` USD $${Number(actividad.precioDolares).toLocaleString('es-AR')}` : ''}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </Link>

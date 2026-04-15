@@ -771,6 +771,17 @@ export default function DestinoDetail() {
                                   <h3 className="package-title">{oferta.titulo}</h3>
                                 </div>
                                 <div className="package-card-body">
+                                  <div className="card-prices" style={{ marginBottom: "16px" }}>
+                                    <span className="price-label">Desde</span>
+                                    <div className="prices-wrapper">
+                                      <span className="price-ars">
+                                        {oferta.precioPesos ? `ARS $${Number(oferta.precioPesos).toLocaleString('es-AR')}` : ((oferta.precios?.[0]?.precio || 0) ? `ARS $${Number((oferta.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
+                                      </span>
+                                      <span className="price-usd">
+                                        {oferta.precioDolares ? ` USD $${Number(oferta.precioDolares).toLocaleString('es-AR')}` : ''}
+                                      </span>
+                                    </div>
+                                  </div>
                                   <div className="package-info-preview">
                                     <div className="package-info-item">
                                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -912,6 +923,17 @@ export default function DestinoDetail() {
                                   <h3 className="package-title">{oferta.titulo}</h3>
                                 </div>
                                 <div className="package-card-body">
+                                  <div className="card-prices" style={{ marginBottom: "16px" }}>
+                                    <span className="price-label">Desde</span>
+                                    <div className="prices-wrapper">
+                                      <span className="price-ars">
+                                        {oferta.precioPesos ? `ARS $${Number(oferta.precioPesos).toLocaleString('es-AR')}` : ((oferta.precios?.[0]?.precio || 0) ? `ARS $${Number((oferta.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
+                                      </span>
+                                      <span className="price-usd">
+                                        {oferta.precioDolares ? ` USD $${Number(oferta.precioDolares).toLocaleString('es-AR')}` : ''}
+                                      </span>
+                                    </div>
+                                  </div>
                                   <div className="package-info-preview">
                                     <div className="package-info-item">
                                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -1044,6 +1066,23 @@ export default function DestinoDetail() {
                   <article className="detail-card detail-card--info">
                     <h3 className="pkg-summary-title">Resumen del Paquete</h3>
                     <div className="pkg-summary-list">
+                      <div className="pkg-summary-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderBottom: '1px solid #e5e7eb', paddingBottom: '16px', marginBottom: '16px' }}>
+                        <span className="pkg-summary-label">Precio desde</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', marginTop: '6px' }}>
+                          <span style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1e293b', lineHeight: 1.2 }}>
+                            {selectedPackage.precioPesos
+                              ? `ARS $${Number(selectedPackage.precioPesos).toLocaleString('es-AR')}`
+                              : ((selectedPackage.precios?.[0]?.precio || 0)
+                                ? `ARS $${Number(selectedPackage.precios?.[0]?.precio).toLocaleString('es-AR')}`
+                                : 'Consultar')}
+                          </span>
+                          {selectedPackage.precioDolares ? (
+                            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#7c3aed', lineHeight: 1.2 }}>
+                              {`USD $${Number(selectedPackage.precioDolares).toLocaleString('es-AR')}`}
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
                       <div className="pkg-summary-item">
                         <span className="pkg-summary-label">Destino principal</span>
                         <span className="pkg-summary-value">{selectedPackage.destino?.nombre || destino.nombre}</span>

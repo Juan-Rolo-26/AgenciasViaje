@@ -514,6 +514,19 @@ export default function Ofertas() {
                         <p className="offer-card-description">
                           {oferta.descripcion || "Salida grupal confirmada. Consultanos para conocer el itinerario completo."}
                         </p>
+
+                        <div className="card-prices">
+                          <span className="price-label">Desde</span>
+                          <div className="prices-wrapper">
+                            <span className="price-ars">
+                              {oferta.precioPesos ? `ARS $${Number(oferta.precioPesos).toLocaleString('es-AR')}` : ((oferta.precios?.[0]?.precio || 0) ? `ARS $${Number((oferta.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
+                            </span>
+                            <span className="price-usd">
+                              {oferta.precioDolares ? ` USD $${Number(oferta.precioDolares).toLocaleString('es-AR')}` : ''}
+                            </span>
+                          </div>
+                        </div>
+
                         <span className="card-cta">Explorar destino</span>
                       </div>
                     </Link>

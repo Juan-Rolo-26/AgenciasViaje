@@ -1,6 +1,5 @@
-/* ============================================================ 
+/* ============================================================
    SISTEMA DE DISEÑO PREMIUM PARA CARDS (DESTINOS, EXCURSIONES, CRUCEROS, SALIDAS)
-   Versión "Light Elegance" - Fondo blanco con contraste premium
    ============================================================ */
 
 /* Estilo base para todas las tarjetas premium */
@@ -17,11 +16,15 @@ body .premium-card {
     text-decoration: none !important;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
     transform: translateZ(0);
+    /* Altura determinada únicamente por el contenido */
+    height: fit-content !important;
+    min-height: 0 !important;
+    align-self: flex-start !important;
 }
 
 /* Hover effect: Elevación elegante */
 body .premium-card:hover {
-    transform: translateY(-10px) !important;
+    transform: translateY(-8px) !important;
     box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15) !important;
     border-color: rgba(112, 0, 235, 0.15) !important;
 }
@@ -30,7 +33,7 @@ body .premium-card:hover {
 body .premium-card .tile-image,
 body .premium-card .offer-image,
 body .premium-card .salidas-card-image {
-    height: 280px !important;
+    height: 270px !important;
     width: 100% !important;
     border-radius: 20px 20px 0 0 !important;
     position: relative !important;
@@ -42,57 +45,99 @@ body .premium-card .salidas-card-image {
     display: block !important;
 }
 
-/* Contenido de texto - FONDO BLANCO */
+/* Contenido de texto — compacto, sin crecimiento */
 body .premium-card .tile-content,
 body .premium-card .offer-body,
 body .premium-card .salidas-card-body,
 body .premium-card .card-body {
-    padding: 24px 28px 30px !important;
-    gap: 12px !important;
+    padding: 18px 20px 20px !important;
+    gap: 8px !important;
     display: flex !important;
     flex-direction: column !important;
-    flex: 1 !important;
+    flex: 0 0 auto !important;
+    min-height: 0 !important;
     background: #ffffff !important;
     position: relative !important;
     z-index: 2 !important;
-    text-align: left !important;
+    text-align: center !important;
+    align-items: center !important;
 }
 
-/* Badge / Meta data - COLOR NEGRO SOLICITADO */
+/* offer-card-feature + premium-card: forzar centrado (override de styles.css display:grid) */
+body .premium-card.offer-card-feature .offer-body {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+body .premium-card.offer-card-feature .offer-body .offer-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    gap: 8px !important;
+}
+
+body .premium-card.offer-card-feature .offer-body h3,
+body .premium-card.offer-card-feature .offer-body h4 {
+    text-align: center !important;
+    width: 100% !important;
+}
+
+body .premium-card.offer-card-feature .offer-body .offer-tag {
+    align-self: center !important;
+}
+
+body .premium-card.offer-card-feature .offer-body p.destination-meta,
+body .premium-card.offer-card-feature .offer-body .destination-meta {
+    align-self: center !important;
+    text-align: center !important;
+    width: fit-content !important;
+}
+
+/* Ocultar descripción en cards del home (para que no agreguen espacio) */
+body .offer-carousel .premium-card .offer-description,
+body .offer-track .premium-card p.offer-description,
+body .destination-carousel .premium-card .offer-description {
+    display: none !important;
+}
+
+/* Badge / Meta data */
 body .premium-card .destination-meta,
 body .premium-card .offer-tag,
 body .premium-card .salidas-card-destino,
 body .premium-card .tile-content span.destination-meta,
 body .premium-card .offer-body .offer-tag,
 body .premium-card .salidas-card-body .salidas-card-destino {
-    font-size: 0.75rem !important;
+    font-size: 0.78rem !important;
     font-weight: 900 !important;
-    /* Más grueso para visibilidad */
-    letter-spacing: 0.15em !important;
+    letter-spacing: 0.13em !important;
     text-transform: uppercase !important;
     color: #000000 !important;
-    /* NEGRO PURO */
     background: #f3f4f6 !important;
-    /* Gris claro neutro */
-    padding: 7px 16px !important;
+    padding: 4px 12px !important;
     border-radius: 999px !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    align-self: flex-start !important;
-    margin-bottom: 6px !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    align-self: center !important;
+    margin-bottom: 0 !important;
     display: inline-flex !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
-/* Títulos - Negro profundo */
+/* Títulos */
 body .premium-card h3,
 body .premium-card h4 {
     color: #111827 !important;
-    font-size: 1.45rem !important;
+    font-size: 1.2rem !important;
     font-weight: 800 !important;
-    line-height: 1.3 !important;
+    line-height: 1.2 !important;
     margin: 0 !important;
     transition: color 0.3s ease !important;
+    text-align: center !important;
+    width: 100% !important;
 }
 
 body .premium-card:hover h4,
@@ -100,39 +145,40 @@ body .premium-card:hover h3 {
     color: #7c3aed !important;
 }
 
-/* Descripciones */
+/* Descripciones (en grillas como Destinos.jsx, Excursiones.jsx, etc.) */
 body .premium-card p,
 body .premium-card .destination-description,
 body .premium-card .offer-card-description {
     color: #374151 !important;
     font-size: 0.95rem !important;
-    line-height: 1.6 !important;
+    line-height: 1.4 !important;
     margin: 0 !important;
     display: -webkit-box !important;
-    -webkit-line-clamp: 3 !important;
-    line-clamp: 3 !important;
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
     -webkit-box-orient: vertical !important;
     overflow: hidden !important;
+    text-align: center !important;
+    width: 100% !important;
 }
 
-/* Botón de acción (CTA) - SIN FLECHAS */
+/* Botón de acción (CTA) */
 body .premium-card .card-cta {
-    margin-top: auto !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     gap: 0 !important;
     width: 100% !important;
-    padding: 14px 20px !important;
-    border-radius: 14px !important;
+    padding: 10px 16px !important;
+    border-radius: 12px !important;
     background: linear-gradient(135deg, #6366f1, #a855f7) !important;
     color: #ffffff !important;
     font-weight: 700 !important;
-    font-size: 1rem !important;
+    font-size: 0.98rem !important;
     text-decoration: none !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     border: none !important;
-    margin-top: 18px !important;
+    margin-top: 6px !important;
 }
 
 body .premium-card:hover .card-cta {
@@ -158,15 +204,8 @@ body .premium-card.salidas-card .destination-meta {
 
 /* Animación de entrada */
 @keyframes cardReveal {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 body .premium-card {
@@ -176,14 +215,112 @@ body .premium-card {
 
 /* Responsivo */
 @media (max-width: 768px) {
-
     body .premium-card .tile-image,
     body .premium-card .offer-image,
     body .premium-card .salidas-card-image {
-        height: 220px !important;
+        height: 180px !important;
     }
 
-    body .premium-card .tile-content {
-        padding: 20px !important;
+    body .premium-card .tile-content,
+    body .premium-card .offer-body,
+    body .premium-card .salidas-card-body {
+        padding: 10px 12px 12px !important;
     }
+
+    .offer-track .premium-card {
+        flex: 0 0 270px !important;
+        width: 270px !important;
+    }
+}
+
+/* Precios en cards */
+.card-prices {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+    margin-top: 4px !important;
+    margin-bottom: 0 !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.price-label {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    color: #6b7280 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 1px !important;
+}
+
+.prices-wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.price-ars {
+    font-size: 1.15rem !important;
+    font-weight: 900 !important;
+    color: #111827 !important;
+}
+
+.price-usd {
+    font-size: 1rem !important;
+    font-weight: 800 !important;
+    color: #059669 !important;
+}
+
+/* Ancho uniforme para todas las cards del home carousel */
+.offer-track .premium-card {
+    flex: 0 0 320px !important;
+    width: 320px !important;
+}
+
+/* ============================================================
+   OVERRIDES para destination-card + premium-card (cruceros, excursiones)
+   Neutraliza el tema oscuro de cruceros-redesign.css
+   ============================================================ */
+body .premium-card.destination-card,
+body .premium-card.crucero-card-new {
+    min-height: 0 !important;
+    height: fit-content !important;
+    background: #ffffff !important;
+}
+
+body .premium-card.destination-card .tile-content,
+body .premium-card.crucero-card-new .tile-content {
+    text-align: center !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+}
+
+body .premium-card.destination-card h4,
+body .premium-card.destination-card h3,
+body .premium-card.crucero-card-new h4,
+body .premium-card.crucero-card-new h3 {
+    color: #111827 !important;
+    text-align: center !important;
+}
+
+body .premium-card.destination-card .destination-meta,
+body .premium-card.crucero-card-new .destination-meta {
+    align-self: center !important;
+    color: #000000 !important;
+    background: #f3f4f6 !important;
+}
+
+body .premium-card.destination-card span:not(.card-cta):not(.destination-meta):not(.price-ars):not(.price-usd):not(.price-label),
+body .premium-card.crucero-card-new span:not(.card-cta):not(.destination-meta):not(.price-ars):not(.price-usd):not(.price-label) {
+    color: #374151 !important;
+}
+
+body .premium-card.destination-card .card-cta,
+body .premium-card.crucero-card-new .card-cta {
+    margin-top: 6px !important;
+    align-self: stretch !important;
 }

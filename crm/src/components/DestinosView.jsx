@@ -4,6 +4,7 @@ import Modal from "./Modal.jsx";
 
 const EMPTY = {
     nombre: "", slug: "", paisRegion: "", descripcionCorta: "",
+    precioPesos: 0, precioDolares: 0,
     descripcion: "", imagenPortada: "", destacado: false, activo: true, orden: 0,
 };
 
@@ -42,6 +43,7 @@ export default function DestinosView() {
         setForm({
             nombre: d.nombre || "", slug: d.slug || "", paisRegion: d.paisRegion || "",
             descripcionCorta: d.descripcionCorta || "", descripcion: d.descripcion || "",
+            precioPesos: d.precioPesos || 0, precioDolares: d.precioDolares || 0,
             imagenPortada: d.imagenPortada || "",
             destacado: !!d.destacado, activo: d.activo !== false, orden: d.orden || 0,
         });
@@ -55,7 +57,12 @@ export default function DestinosView() {
         }
         setSaving(true);
         try {
-            const body = { ...form, galeria: galeria.filter(g => g.imagen) };
+            const body = {
+                ...form,
+                galeria: galeria.filter(g => g.imagen),
+                precioPesos: Number(form.precioPesos || 0),
+                precioDolares: Number(form.precioDolares || 0)
+            };
             if (editId) {
                 await apiFetch(`/api/admin/destinos/${editId}`, { method: "PUT", body });
                 showToast("success", "Destino actualizado ✓");
@@ -160,6 +167,14 @@ export default function DestinosView() {
                         <div className="field">
                             <label>Orden</label>
                             <input type="number" value={form.orden} onChange={e => setForm(f => ({ ...f, orden: +e.target.value }))} />
+                        </div>
+                        <div className="field">
+                            <label>Precio desde (ARS) Muestra referencial portada</label>
+                            <input type="number" value={form.precioPesos} onChange={e => setForm(f => ({ ...f, precioPesos: +e.target.value }))} />
+                        </div>
+                        <div className="field">
+                            <label>Precio desde (USD) Muestra referencial portada</label>
+                            <input type="number" value={form.precioDolares} onChange={e => setForm(f => ({ ...f, precioDolares: +e.target.value }))} />
                         </div>
                         <div className="field span2">
                             <label>URL imagen de portada *</label>

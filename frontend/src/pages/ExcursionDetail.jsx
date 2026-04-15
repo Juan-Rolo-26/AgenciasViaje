@@ -231,6 +231,27 @@ export default function ExcursionDetail() {
                   <li className="info-item">
                     <div className="info-icon">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M12 2v20" />
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14.5a3.5 3.5 0 0 1 0 7H6" />
+                      </svg>
+                    </div>
+                    <div className="info-content">
+                      <div className="card-prices" style={{ marginTop: 0, gap: '4px' }}>
+                        <span className="price-label">Tarifa por persona</span>
+                        <div className="prices-wrapper">
+                          <span className="price-ars">
+                            {actividad.precioPesos ? `ARS $${Number(actividad.precioPesos).toLocaleString('es-AR')}` : (actividad.precio ? `ARS $${Number(actividad.precio).toLocaleString('es-AR')}` : 'Consultar')}
+                          </span>
+                          <span className="price-usd">
+                            {actividad.precioDolares ? ` USD $${Number(actividad.precioDolares).toLocaleString('es-AR')}` : ''}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li className="info-item">
+                    <div className="info-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                         <circle cx="12" cy="7" r="4" />
                       </svg>

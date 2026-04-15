@@ -10,6 +10,7 @@ const TIPOS_SERVICIO = [
 const EMPTY_OFERTA = {
     titulo: "", slug: "", destinoId: "",
     noches: 7, cupos: 0, destacada: false, activa: true, orden: 0, noIncluye: "",
+    precioPesos: 0, precioDolares: 0,
 };
 
 function toSlug(s) {
@@ -22,7 +23,7 @@ function fmtDate(iso) {
     return new Date(iso).toLocaleDateString("es-AR", { day: "numeric", month: "short", year: "numeric" });
 }
 
-const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
 function MesRapido({ onAdd }) {
     const hoy = new Date();
@@ -147,6 +148,7 @@ export default function OfertasView({ tipo, titulo }) {
             noches: o.noches || 7, cupos: o.cupos || 0,
             destacada: !!o.destacada, activa: o.activa !== false, orden: o.orden || 0, tipo,
             noIncluye: o.noIncluye || "",
+            precioPesos: o.precioPesos || 0, precioDolares: o.precioDolares || 0,
         });
         setServicios((o.incluyeItems || []).map(i => ({ id: i.id, tipo: i.tipo, descripcion: i.descripcion })));
         let parsedNoIncluye = [];
@@ -177,6 +179,8 @@ export default function OfertasView({ tipo, titulo }) {
         try {
             const body = {
                 ...form,
+                precioPesos: Number(form.precioPesos || 0),
+                precioDolares: Number(form.precioDolares || 0),
                 noIncluye: JSON.stringify(noServicios.filter(s => s.tipo)),
                 destinoId: Number(form.destinoId),
                 incluyeItems: servicios.filter(s => s.tipo && s.descripcion),
@@ -366,6 +370,14 @@ export default function OfertasView({ tipo, titulo }) {
                                         <option key={d.id} value={d.id}>{d.nombre} — {d.paisRegion}</option>
                                     ))}
                                 </select>
+                            </div>
+                            <div className="field">
+                                <label>Precio desde (ARS)</label>
+                                <input type="number" min="0" value={form.precioPesos} onChange={e => setForm(f => ({ ...f, precioPesos: +e.target.value }))} />
+                            </div>
+                            <div className="field">
+                                <label>Precio desde (USD)</label>
+                                <input type="number" min="0" value={form.precioDolares} onChange={e => setForm(f => ({ ...f, precioDolares: +e.target.value }))} />
                             </div>
                             <div className="field">
                                 <label>Noches</label>

@@ -11,7 +11,7 @@ const EMPTY = {
     nombre: "", slug: "", destinoId: "", descripcion: "",
     tipoActividad: "City Tour", imagenPortada: "",
     fecha: "", hora: "09:00", puntoEncuentro: "",
-    precio: 0, cupos: 0, activa: true, destacada: false, orden: 0,
+    precio: 0, precioPesos: 0, precioDolares: 0, cupos: 0, activa: true, destacada: false, orden: 0,
 };
 
 function toSlug(s) {
@@ -66,6 +66,8 @@ export default function ExcursionesView() {
             hora: a.hora || "09:00",
             puntoEncuentro: a.puntoEncuentro || "",
             precio: a.precio || 0,
+            precioPesos: a.precioPesos || 0,
+            precioDolares: a.precioDolares || 0,
             cupos: a.cupos || 0,
             activa: a.activa !== false,
             destacada: !!a.destacada,
@@ -84,7 +86,9 @@ export default function ExcursionesView() {
             const body = {
                 ...form,
                 destinoId: Number(form.destinoId),
-                precio: Number(form.precio),
+                precio: Number(form.precioPesos || form.precio || 0),
+                precioPesos: Number(form.precioPesos || 0),
+                precioDolares: Number(form.precioDolares || 0),
                 cupos: Number(form.cupos),
                 fecha: new Date(form.fecha).toISOString(),
             };
@@ -234,8 +238,12 @@ export default function ExcursionesView() {
                                 <input type="time" value={form.hora} onChange={set("hora")} />
                             </div>
                             <div className="field">
-                                <label>Precio (ARS)</label>
-                                <input type="number" min="0" value={form.precio} onChange={set("precio")} />
+                                <label>Precio desde (ARS)</label>
+                                <input type="number" min="0" value={form.precioPesos} onChange={set("precioPesos")} />
+                            </div>
+                            <div className="field">
+                                <label>Precio desde (USD)</label>
+                                <input type="number" min="0" value={form.precioDolares} onChange={set("precioDolares")} />
                             </div>
                             <div className="field">
                                 <label>Cupos disponibles</label>

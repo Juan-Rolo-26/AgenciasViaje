@@ -1,9 +1,10 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import fallbackDeal from "../assets/inicio.jpg";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
 import { FANATIC_ITEMS } from "../utils/modoFanaticoData.js";
+import { apiRequest } from "../api/api.js";
 import { useOfertas } from "../hooks/useTravelData.js";
 import { formatDate } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
@@ -186,11 +187,24 @@ export default function ModoFanaticoDetail() {
   const { slug } = useParams();
   const { ofertas, loading } = useOfertas();
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const [apiItem, setApiItem] = useState(null);
+  const [apiLoading, setApiLoading] = useState(true);
 
-  const item = useMemo(
+  // Fetch the item from the API; fallback to static data if not found
+  useEffect(() => {
+    setApiLoading(true);
+    apiRequest(`/api/modo-fanatico/${slug}`)
+      .then((data) => { if (data && data.slug) setApiItem(data); })
+      .catch(() => {})
+      .finally(() => setApiLoading(false));
+  }, [slug]);
+
+  // Merge: prefer API data, fallback to static FANATIC_ITEMS
+  const staticItem = useMemo(
     () => FANATIC_ITEMS.find((entry) => entry.slug === slug),
     [slug]
   );
+  const item = apiItem || staticItem;
 
   const heroImage = useMemo(() => {
     if (!item) return fallbackDeal;
@@ -200,18 +214,30 @@ export default function ModoFanaticoDetail() {
   const galleryImages = useMemo(() => {
     if (!item) return [];
 
-    const images = [item.imagenPortada, ...(item.imagenes || [])]
+    const apiImages = (apiItem?.imagenes || []).map((img) =>
+      resolveAssetUrl(typeof img === "string" ? img : img?.imagen)
+    ).filter(Boolean);
+
+    const staticImages = [item.imagenPortada, ...(staticItem?.imagenes || [])]
       .map((image) => resolveAssetUrl(image))
       .filter(Boolean);
 
+    const images = apiImages.length ? apiImages : staticImages;
     return images.slice(0, 6);
-  }, [item]);
+  }, [item, apiItem, staticItem]);
 
   const ofertasRelacionadas = useMemo(() => {
-    const slugs = RELATED_OFFERS_MAP[item?.slug] || [];
+    // Use API-managed slugs if available, fallback to hardcoded map
+    let slugs;
+    if (apiItem?.ofertasSlugs) {
+      try { slugs = JSON.parse(apiItem.ofertasSlugs); } catch { slugs = []; }
+    }
+    if (!slugs || !slugs.length) {
+      slugs = RELATED_OFFERS_MAP[item?.slug] || [];
+    }
     if (!slugs.length) return [];
     return (ofertas || []).filter((o) => slugs.includes(o.slug));
-  }, [item?.slug, ofertas]);
+  }, [item?.slug, apiItem, ofertas]);
 
   // Derived data for the selected package (same logic as in DestinoDetail)
   const selectedPackageData = useMemo(() => {
@@ -310,6 +336,10 @@ export default function ModoFanaticoDetail() {
     selectedPackageData?.shortDesc,
     selectedPackageData?.itinerarioItems?.length
   ]);
+
+  if (apiLoading && !staticItem) {
+    return <main><p className="section-state">Cargando...</p></main>;
+  }
 
   if (!item) {
     return (
@@ -455,6 +485,17 @@ export default function ModoFanaticoDetail() {
 
                     {/* Body con información */}
                     <div className="package-card-body">
+                      <div className="card-prices" style={{ marginBottom: "16px" }}>
+                        <span className="price-label">Desde</span>
+                        <div className="prices-wrapper">
+                          <span className="price-ars">
+                            {pkg.precioPesos ? `ARS $${Number(pkg.precioPesos).toLocaleString('es-AR')}` : ((pkg.precios?.[0]?.precio || 0) ? `ARS $${Number((pkg.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
+                          </span>
+                          <span className="price-usd">
+                            {pkg.precioDolares ? ` USD $${Number(pkg.precioDolares).toLocaleString('es-AR')}` : ''}
+                          </span>
+                        </div>
+                      </div>
                       <div className="package-info-preview">
                         <div className="package-info-item">
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -527,212 +568,223 @@ export default function ModoFanaticoDetail() {
               <span>Ver otros paquetes</span>
             </button>
 
-          <div className="excursion-details-premium" style={{ padding: 0, background: 'transparent' }}>
-            <div className="details-container" style={{ margin: 0, width: '100%', maxWidth: '100%' }}>
-              <div className="fanatico-detail-grid">
-                <div className="fanatico-detail-main">
-                  {/* Header Card */}
-                  <article className="detail-card-premium description-card">
-                    <div className="card-header">
-                      <div className="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                          <polyline points="14 2 14 8 20 8" />
-                          <line x1="16" y1="13" x2="8" y2="13" />
-                          <line x1="16" y1="17" x2="8" y2="17" />
-                          <polyline points="10 9 9 9 8 9" />
-                        </svg>
-                      </div>
-                      <h3>{selectedPackage.titulo}</h3>
-                    </div>
-                    <div className="card-content fanatico-markdown">
-                      <ReactMarkdown>
-                        {cleanedSelectedConditions}
-                      </ReactMarkdown>
-                    </div>
-                  </article>
-
-                  {/* Info List Card */}
-                  <article className="detail-card-premium info-card">
-                    <div className="card-header">
-                      <div className="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="10" />
-                          <path d="M12 16v-4M12 8h.01" />
-                        </svg>
-                      </div>
-                      <h3>Qué incluye el paquete</h3>
-                    </div>
-                    <div className="card-content">
-                      {selectedPackageData.incluyeItems.length ? (
-                        <ul className="info-list-premium">
-                          {selectedPackageData.incluyeItems.map((item) => (
-                            <li className="info-item" key={item.id}>
-                              <div className="info-icon">
-                                {getIncluyeIcon(item.tipo)}
-                              </div>
-                              <div className="info-content">
-                                <span className="info-label">{formatIncluyeTipo(item.tipo)}</span>
-                                <span className="info-value" style={{ textTransform: 'none' }}>{item.descripcion}</span>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="description-text">Consultanos para conocer el detalle de servicios incluidos.</p>
-                      )}
-                    </div>
-                  </article>
-
-                  {/* Detail Items */}
-                  {selectedPackageData.detalleItems.length > 0 && (
+            <div className="excursion-details-premium" style={{ padding: 0, background: 'transparent' }}>
+              <div className="details-container" style={{ margin: 0, width: '100%', maxWidth: '100%' }}>
+                <div className="fanatico-detail-grid">
+                  <div className="fanatico-detail-main">
+                    {/* Header Card */}
                     <article className="detail-card-premium description-card">
                       <div className="card-header">
                         <div className="card-icon">
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M3 6h18M7 6v12M17 6v12M5 18h14" />
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
                           </svg>
                         </div>
-                        <h3>Detalles del programa</h3>
+                        <h3>{selectedPackage.titulo}</h3>
                       </div>
-                      <div className="card-content">
-                        <ul className="detail-list detail-list--icons">
-                          {selectedPackageData.detalleItems.map((item) => (
-                            <li key={item.id}>
-                              <span className="detail-list-text">{item.descripcion}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="card-content fanatico-markdown">
+                        <ReactMarkdown>
+                          {cleanedSelectedConditions}
+                        </ReactMarkdown>
                       </div>
                     </article>
-                  )}
 
-                  {/* Itinerary Card */}
-                  {selectedPackageData.itinerarioItems.length > 0 && (
-                    <article className="detail-card-premium description-card">
-                      <div className="card-header">
-                        <div className="card-icon">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
-                          </svg>
-                        </div>
-                        <h3>Itinerario</h3>
-                      </div>
-                      <div className="card-content">
-                        <ul className="detail-list detail-list--timeline">
-                          {selectedPackageData.itinerarioItems.map((item, index) => (
-                            <li key={item.id} data-step={index + 1}>
-                              <span className="detail-list-text">
-                                {renderItineraryText(item.descripcion)}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </article>
-                  )}
-
-                  {/* No Incluye */}
-                  {selectedPackageData.noIncluyeItems.length > 0 && (
-                    <article className="detail-card-premium description-card">
+                    {/* Info List Card */}
+                    <article className="detail-card-premium info-card">
                       <div className="card-header">
                         <div className="card-icon">
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <circle cx="12" cy="12" r="10" />
-                            <line x1="8" y1="12" x2="16" y2="12" />
+                            <path d="M12 16v-4M12 8h.01" />
                           </svg>
                         </div>
-                        <h3>No incluye</h3>
+                        <h3>Qué incluye el paquete</h3>
                       </div>
                       <div className="card-content">
-                        <ul className="fanatico-excludes-list">
-                          {selectedPackageData.noIncluyeItems.map((item, index) => (
-                            <li key={`${item}-${index}`}>{item}</li>
-                          ))}
-                        </ul>
+                        {selectedPackageData.incluyeItems.length ? (
+                          <ul className="info-list-premium">
+                            {selectedPackageData.incluyeItems.map((item) => (
+                              <li className="info-item" key={item.id}>
+                                <div className="info-icon">
+                                  {getIncluyeIcon(item.tipo)}
+                                </div>
+                                <div className="info-content">
+                                  <span className="info-label">{formatIncluyeTipo(item.tipo)}</span>
+                                  <span className="info-value" style={{ textTransform: 'none' }}>{item.descripcion}</span>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="description-text">Consultanos para conocer el detalle de servicios incluidos.</p>
+                        )}
                       </div>
                     </article>
-                  )}
-                </div>
 
-                <aside className="fanatico-detail-sidebar">
-                  <article className="detail-card-premium summary-card">
-                    <div className="card-header">
-                      <div className="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M4 4h16v16H4z" />
-                          <path d="M8 8h8M8 12h8M8 16h5" />
-                        </svg>
-                      </div>
-                      <h3>Resumen rápido</h3>
-                    </div>
-                    <div className="card-content">
-                      <div className="fanatico-summary-grid">
-                        {selectedPackageData.summaryItems.map((item, index) => (
-                          <div className="fanatico-summary-item" key={`${item.label}-${index}`}>
-                            <span className="fanatico-summary-label">{item.label}</span>
-                            <span className="fanatico-summary-value">{item.value}</span>
+                    {/* Detail Items */}
+                    {selectedPackageData.detalleItems.length > 0 && (
+                      <article className="detail-card-premium description-card">
+                        <div className="card-header">
+                          <div className="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M3 6h18M7 6v12M17 6v12M5 18h14" />
+                            </svg>
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  </article>
+                          <h3>Detalles del programa</h3>
+                        </div>
+                        <div className="card-content">
+                          <ul className="detail-list detail-list--icons">
+                            {selectedPackageData.detalleItems.map((item) => (
+                              <li key={item.id}>
+                                <span className="detail-list-text">{item.descripcion}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </article>
+                    )}
 
-                  <article className="detail-card-premium prices-card">
-                    <div className="card-header">
-                      <div className="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M3 7h18M6 7V5h12v2M6 11h12M6 15h8" />
-                        </svg>
+                    {/* Itinerary Card */}
+                    {selectedPackageData.itinerarioItems.length > 0 && (
+                      <article className="detail-card-premium description-card">
+                        <div className="card-header">
+                          <div className="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                              <line x1="16" y1="2" x2="16" y2="6" />
+                              <line x1="8" y1="2" x2="8" y2="6" />
+                              <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                          </div>
+                          <h3>Itinerario</h3>
+                        </div>
+                        <div className="card-content">
+                          <ul className="detail-list detail-list--timeline">
+                            {selectedPackageData.itinerarioItems.map((item, index) => (
+                              <li key={item.id} data-step={index + 1}>
+                                <span className="detail-list-text">
+                                  {renderItineraryText(item.descripcion)}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </article>
+                    )}
+
+                    {/* No Incluye */}
+                    {selectedPackageData.noIncluyeItems.length > 0 && (
+                      <article className="detail-card-premium description-card">
+                        <div className="card-header">
+                          <div className="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <circle cx="12" cy="12" r="10" />
+                              <line x1="8" y1="12" x2="16" y2="12" />
+                            </svg>
+                          </div>
+                          <h3>No incluye</h3>
+                        </div>
+                        <div className="card-content">
+                          <ul className="fanatico-excludes-list">
+                            {selectedPackageData.noIncluyeItems.map((item, index) => (
+                              <li key={`${item}-${index}`}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </article>
+                    )}
+                  </div>
+
+                  <aside className="fanatico-detail-sidebar">
+                    <article className="detail-card-premium summary-card">
+                      <div className="card-header">
+                        <div className="card-icon">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M4 4h16v16H4z" />
+                            <path d="M8 8h8M8 12h8M8 16h5" />
+                          </svg>
+                        </div>
+                        <h3>Resumen rápido</h3>
                       </div>
-                      <h3>Fechas disponibles</h3>
-                    </div>
-                    <div className="card-content">
-                      {selectedPackageData.priceRows.length ? (
-                        <div className="fanatico-price-list">
-                          {selectedPackageData.priceRows.map((row) => (
-                            <div className="fanatico-price-row" key={row.id}>
-                              <div className="fanatico-price-date">{row.dateLabel}</div>
+                      <div className="card-content">
+                        <div className="card-prices" style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                          <span className="price-label">Precio desde</span>
+                          <div className="prices-wrapper">
+                            <span className="price-ars" style={{ fontSize: '1.5rem' }}>
+                              {selectedPackage.precioPesos ? `ARS $${Number(selectedPackage.precioPesos).toLocaleString('es-AR')}` : ((selectedPackage.precios?.[0]?.precio || 0) ? `ARS $${Number((selectedPackage.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
+                            </span>
+                            <span className="price-usd" style={{ fontSize: '1.25rem' }}>
+                              {selectedPackage.precioDolares ? ` USD $${Number(selectedPackage.precioDolares).toLocaleString('es-AR')}` : ''}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="fanatico-summary-grid">
+                          {selectedPackageData.summaryItems.map((item, index) => (
+                            <div className="fanatico-summary-item" key={`${item.label}-${index}`}>
+                              <span className="fanatico-summary-label">{item.label}</span>
+                              <span className="fanatico-summary-value">{item.value}</span>
                             </div>
                           ))}
                         </div>
-                      ) : (
-                        <p className="description-text">Consultanos para fechas disponibles.</p>
-                      )}
-                      {selectedPackageData.detalleFechas?.descripcion && (
-                        <p className="fanatico-price-note">{selectedPackageData.detalleFechas.descripcion}</p>
-                      )}
-                    </div>
-                  </article>
-                </aside>
-              </div>
+                      </div>
+                    </article>
 
-              {/* CTA Area */}
-              <div className="fanatico-cta">
-                <div style={{ textAlign: 'center' }}>
-                  <h3 style={{ fontSize: '1.5rem', color: 'var(--violet-900)', marginBottom: '8px' }}>¿Te interesa este paquete?</h3>
-                  <p style={{ color: '#64748b' }}>Reservá tu lugar ahora y asegurá tu experiencia en {item.nombre}</p>
+                    <article className="detail-card-premium prices-card">
+                      <div className="card-header">
+                        <div className="card-icon">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M3 7h18M6 7V5h12v2M6 11h12M6 15h8" />
+                          </svg>
+                        </div>
+                        <h3>Fechas disponibles</h3>
+                      </div>
+                      <div className="card-content">
+                        {selectedPackageData.priceRows.length ? (
+                          <div className="fanatico-price-list">
+                            {selectedPackageData.priceRows.map((row) => (
+                              <div className="fanatico-price-row" key={row.id}>
+                                <div className="fanatico-price-date">{row.dateLabel}</div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="description-text">Consultanos para fechas disponibles.</p>
+                        )}
+                        {selectedPackageData.detalleFechas?.descripcion && (
+                          <p className="fanatico-price-note">{selectedPackageData.detalleFechas.descripcion}</p>
+                        )}
+                      </div>
+                    </article>
+                  </aside>
                 </div>
-                <a
-                  className="excursion-whatsapp-button"
-                  href={getWhatsappLink(`Hola! Quiero reservar el paquete ${selectedPackage.titulo} para el evento ${item.nombre}.`)}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ maxWidth: '400px', margin: '0', width: '100%' }}
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                  </svg>
-                  <span>Reservar por WhatsApp</span>
-                </a>
+
+                {/* CTA Area */}
+                <div className="fanatico-cta">
+                  <div style={{ textAlign: 'center' }}>
+                    <h3 style={{ fontSize: '1.5rem', color: 'var(--violet-900)', marginBottom: '8px' }}>¿Te interesa este paquete?</h3>
+                    <p style={{ color: '#64748b' }}>Reservá tu lugar ahora y asegurá tu experiencia en {item.nombre}</p>
+                  </div>
+                  <a
+                    className="excursion-whatsapp-button"
+                    href={getWhatsappLink(`Hola! Quiero reservar el paquete ${selectedPackage.titulo} para el evento ${item.nombre}.`)}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ maxWidth: '400px', margin: '0', width: '100%' }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                    <span>Reservar por WhatsApp</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </section>
 
     </main>

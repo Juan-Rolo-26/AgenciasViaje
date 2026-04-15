@@ -29,6 +29,8 @@ async function listOfertas({ activas = true, lite = false } = {}) {
         activa: true,
         tipo: true,
         orden: true,
+        precioPesos: true,
+        precioDolares: true,
         destino: {
           select: {
             id: true,
@@ -67,6 +69,8 @@ async function listOfertas({ activas = true, lite = false } = {}) {
         precios: {
           select: {
             id: true,
+            precio: true,
+            moneda: true,
             fechaInicio: true,
             fechaFin: true
           }
@@ -140,6 +144,8 @@ async function createOferta(payload) {
       orden: payload.orden ?? 0,
       tituloSeo: payload.tituloSeo || null,
       descripcionSeo: payload.descripcionSeo || null,
+      precioPesos: payload.precioPesos ? Number(payload.precioPesos) : null,
+      precioDolares: payload.precioDolares ? Number(payload.precioDolares) : null,
       destinos: destinosIds.length
         ? {
             create: destinosIds.map((destinoId) => ({
@@ -188,7 +194,9 @@ async function updateOferta(id, payload) {
         activa: payload.activa,
         orden: payload.orden,
         tituloSeo: payload.tituloSeo,
-        descripcionSeo: payload.descripcionSeo
+        descripcionSeo: payload.descripcionSeo,
+        precioPesos: payload.precioPesos !== undefined ? (payload.precioPesos ? Number(payload.precioPesos) : null) : undefined,
+        precioDolares: payload.precioDolares !== undefined ? (payload.precioDolares ? Number(payload.precioDolares) : null) : undefined
       }
     });
 

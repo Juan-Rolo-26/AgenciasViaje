@@ -46,6 +46,8 @@ router.get("/destinos/:id", async (req, res, next) => {
 router.post("/destinos", async (req, res, next) => {
     try {
         const { galeria, ...data } = req.body;
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
         const d = await prisma.destino.create({
             data: {
                 ...data,
@@ -63,6 +65,8 @@ router.put("/destinos/:id", async (req, res, next) => {
     try {
         const id = +req.params.id;
         const { galeria, ...data } = req.body;
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
         await prisma.$transaction(async (tx) => {
             await tx.destino.update({ where: { id }, data });
             if (galeria !== undefined) {
@@ -118,6 +122,8 @@ router.get("/ofertas/:id", async (req, res, next) => {
 router.post("/ofertas", async (req, res, next) => {
     try {
         const { incluyeItems, precios, destinosIds, ...data } = req.body;
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
         const o = await prisma.oferta.create({
             data: {
                 ...data,
@@ -138,6 +144,8 @@ router.put("/ofertas/:id", async (req, res, next) => {
     try {
         const id = +req.params.id;
         const { incluyeItems, precios, destinosIds, ...data } = req.body;
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
         await prisma.$transaction(async (tx) => {
             const updateData = { ...data };
             if (updateData.destinoId) updateData.destinoId = Number(updateData.destinoId);
@@ -200,6 +208,8 @@ router.post("/excursiones", async (req, res, next) => {
         const data = { ...req.body };
         if (data.destinoId) data.destinoId = Number(data.destinoId);
         if (data.precio !== undefined) data.precio = Number(data.precio);
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
         if (data.cupos !== undefined) data.cupos = Number(data.cupos);
         const a = await prisma.actividad.create({ data, include: { destino: true } });
         res.status(201).json(a);
@@ -212,6 +222,8 @@ router.put("/excursiones/:id", async (req, res, next) => {
         const data = { ...req.body };
         if (data.destinoId) data.destinoId = Number(data.destinoId);
         if (data.precio !== undefined) data.precio = Number(data.precio);
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
         if (data.cupos !== undefined) data.cupos = Number(data.cupos);
         const a = await prisma.actividad.update({ where: { id }, data, include: { destino: true } });
         res.json(a);
@@ -267,6 +279,8 @@ router.post("/cruceros", async (req, res, next) => {
 
         data.duracionNoches = data.duracionNoches !== undefined ? Number(data.duracionNoches) : 0;
         data.precio = data.precio !== undefined ? Number(data.precio) : 0;
+        data.precioPesos = data.precioPesos !== undefined ? Number(data.precioPesos) : 0;
+        data.precioDolares = data.precioDolares !== undefined ? Number(data.precioDolares) : 0;
         data.cupos = data.cupos !== undefined ? Number(data.cupos) : 0;
         data.orden = data.orden !== undefined ? Number(data.orden) : 0;
 
@@ -309,6 +323,8 @@ router.put("/cruceros/:id", async (req, res, next) => {
         data.destinoId = data.destinoId ? Number(data.destinoId) : null;
         if (data.duracionNoches !== undefined) data.duracionNoches = Number(data.duracionNoches);
         if (data.precio !== undefined) data.precio = Number(data.precio);
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
         if (data.cupos !== undefined) data.cupos = Number(data.cupos);
         if (data.orden !== undefined) data.orden = Number(data.orden);
 
@@ -343,6 +359,78 @@ router.put("/cruceros/:id", async (req, res, next) => {
 router.delete("/cruceros/:id", async (req, res, next) => {
     try {
         await prisma.crucero.delete({ where: { id: +req.params.id } });
+        res.status(204).send();
+    } catch (e) { next(e); }
+});
+
+/* ── MODO FANÁTICO ── */
+router.get("/modo-fanatico", async (_req, res, next) => {
+    try {
+        const list = await prisma.modoFanatico.findMany({
+            orderBy: [{ orden: "asc" }, { nombre: "asc" }],
+            include: { imagenes: { orderBy: { orden: "asc" } } },
+        });
+        res.json(list);
+    } catch (e) { next(e); }
+});
+
+router.get("/modo-fanatico/:id", async (req, res, next) => {
+    try {
+        const item = await prisma.modoFanatico.findUnique({
+            where: { id: +req.params.id },
+            include: { imagenes: { orderBy: { orden: "asc" } } },
+        });
+        if (!item) return res.status(404).json({ error: "No encontrado" });
+        res.json(item);
+    } catch (e) { next(e); }
+});
+
+router.post("/modo-fanatico", async (req, res, next) => {
+    try {
+        const { imagenes, ...data } = req.body;
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
+        const item = await prisma.modoFanatico.create({
+            data: {
+                ...data,
+                imagenes: imagenes?.length
+                    ? { create: imagenes.map((img, i) => ({ imagen: img.imagen, epigrafe: img.epigrafe || null, orden: i })) }
+                    : undefined,
+            },
+            include: { imagenes: { orderBy: { orden: "asc" } } },
+        });
+        res.status(201).json(item);
+    } catch (e) { next(e); }
+});
+
+router.put("/modo-fanatico/:id", async (req, res, next) => {
+    try {
+        const id = +req.params.id;
+        const { imagenes, ...data } = req.body;
+        if (data.precioPesos !== undefined) data.precioPesos = Number(data.precioPesos);
+        if (data.precioDolares !== undefined) data.precioDolares = Number(data.precioDolares);
+        await prisma.$transaction(async (tx) => {
+            await tx.modoFanatico.update({ where: { id }, data });
+            if (imagenes !== undefined) {
+                await tx.imagenFanatico.deleteMany({ where: { modoFanaticoId: id } });
+                if (imagenes.length) {
+                    await tx.imagenFanatico.createMany({
+                        data: imagenes.map((img, i) => ({ modoFanaticoId: id, imagen: img.imagen, epigrafe: img.epigrafe || null, orden: i })),
+                    });
+                }
+            }
+        });
+        const updated = await prisma.modoFanatico.findUnique({
+            where: { id },
+            include: { imagenes: { orderBy: { orden: "asc" } } },
+        });
+        res.json(updated);
+    } catch (e) { next(e); }
+});
+
+router.delete("/modo-fanatico/:id", async (req, res, next) => {
+    try {
+        await prisma.modoFanatico.delete({ where: { id: +req.params.id } });
         res.status(204).send();
     } catch (e) { next(e); }
 });

@@ -21,6 +21,8 @@ model Destino {
   orden             Int               @default(0)
   tituloSeo         String?
   descripcionSeo    String?
+  precioPesos       Decimal?
+  precioDolares     Decimal?
   creadoEn          DateTime          @default(now())
 
   galeria           ImagenDestino[]
@@ -55,6 +57,8 @@ model Oferta {
   orden           Int              @default(0)
   tituloSeo       String?
   descripcionSeo  String?
+  precioPesos     Decimal?
+  precioDolares   Decimal?
   creadaEn        DateTime         @default(now())
 
   destino          Destino          @relation("DestinoPrincipal", fields: [destinoId], references: [id])
@@ -112,6 +116,8 @@ model Actividad {
   orden          Int              @default(0)
   tituloSeo      String?
   descripcionSeo String?
+  precioPesos    Decimal?
+  precioDolares  Decimal?
   creadaEn       DateTime         @default(now())
 
   destino        Destino          @relation(fields: [destinoId], references: [id])
@@ -149,6 +155,8 @@ model Crucero {
   orden          Int             @default(0)
   tituloSeo      String?
   descripcionSeo String?
+  precioPesos    Decimal?
+  precioDolares  Decimal?
   creadoEn       DateTime        @default(now())
 
   destino        Destino?         @relation(fields: [destinoId], references: [id])
@@ -186,3 +194,34 @@ model Valor {
 
   seccion    SeccionNosotros @relation(fields: [seccionId], references: [id], onDelete: Cascade)
 }
+
+model ModoFanatico {
+  id              Int       @id @default(autoincrement())
+  nombre          String
+  slug            String    @unique
+  descripcionCorta String?
+  descripcion     String?
+  imagenPortada   String?
+  precioPesos     Decimal?
+  precioDolares   Decimal?
+  ofertasSlugs    String?   @default("[]")
+  destacado       Boolean   @default(false)
+  activo          Boolean   @default(true)
+  orden           Int       @default(0)
+  tituloSeo       String?
+  descripcionSeo  String?
+  creadoEn        DateTime  @default(now())
+
+  imagenes        ImagenFanatico[]
+}
+
+model ImagenFanatico {
+  id            Int          @id @default(autoincrement())
+  modoFanaticoId Int
+  imagen        String
+  epigrafe      String?
+  orden         Int          @default(0)
+
+  modoFanatico  ModoFanatico @relation(fields: [modoFanaticoId], references: [id], onDelete: Cascade)
+}
+

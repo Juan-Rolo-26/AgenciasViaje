@@ -342,6 +342,30 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
                         <span className="destination-meta">
                           {destino.paisRegion || "Destino"}
                         </span>
+
+                        {(() => {
+                          const ars = destino.precioPesos || destino.minPrecioPesos;
+                          const usd = destino.precioDolares || destino.minPrecioDolares;
+                          if (!ars && !usd) return null;
+                          return (
+                            <div className="card-prices">
+                              <span className="price-label">Paquetes desde</span>
+                              <div className="prices-wrapper">
+                                {ars ? (
+                                  <span className="price-ars">
+                                    {`ARS $${Number(ars).toLocaleString("es-AR")}`}
+                                  </span>
+                                ) : null}
+                                {usd ? (
+                                  <span className="price-usd">
+                                    {`USD $${Number(usd).toLocaleString("es-AR")}`}
+                                  </span>
+                                ) : null}
+                              </div>
+                            </div>
+                          );
+                        })()}
+
                         <span className="card-cta">Explorar destino</span>
                       </div>
                     </Link>

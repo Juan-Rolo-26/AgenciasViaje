@@ -7,6 +7,7 @@ import DestinosView from "../components/DestinosView.jsx";
 import OfertasView from "../components/OfertasView.jsx";
 import ExcursionesView from "../components/ExcursionesView.jsx";
 import CrucerosView from "../components/CrucerosView.jsx";
+import ModoFanaticoView from "../components/ModoFanaticoView.jsx";
 
 const MENU = [
     { id: "stats", label: "Dashboard", icon: "📊" },
@@ -15,6 +16,7 @@ const MENU = [
     { id: "grupales", label: "Salidas Grupales", icon: "👥" },
     { id: "excursiones", label: "Excursiones", icon: "🏄" },
     { id: "cruceros", label: "Cruceros", icon: "🚢" },
+    { id: "fanatico", label: "Modo Fanático", icon: "⚽" },
 ];
 
 export default function Dashboard() {
@@ -43,9 +45,11 @@ export default function Dashboard() {
             case "grupales": return <OfertasView tipo="grupal" titulo="Salidas Grupales" />;
             case "excursiones": return <ExcursionesView />;
             case "cruceros": return <CrucerosView />;
+            case "fanatico": return <ModoFanaticoView />;
             default: return <StatsView />;
         }
     }
+
 
     return (
         <div className="layout">

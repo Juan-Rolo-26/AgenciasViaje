@@ -11,6 +11,7 @@ const aboutRoutes = require("./api/about/aboutRoutes");
 const complaintRoutes = require("./api/complaints/complaintRoutes");
 const subscriptionRoutes = require("./api/subscriptions/subscriptionRoutes");
 const assistantRoutes = require("./api/assistant/assistantRoutes");
+const fanaticRoutes = require("./api/fanatic/fanaticRoutes");
 const adminRoutes = require("./api/admin/adminRoutes");
 const { API_PREFIX } = require("./config/serverConfig");
 const errorHandler = require("./middleware/errorHandler");
@@ -38,7 +39,9 @@ app.use(`${API_PREFIX}/nosotros`, aboutRoutes);
 app.use(`${API_PREFIX}/quejas`, complaintRoutes);
 app.use(`${API_PREFIX}/suscripciones`, subscriptionRoutes);
 app.use(`${API_PREFIX}/assistant`, assistantRoutes);
+app.use(`${API_PREFIX}/modo-fanatico`, fanaticRoutes);
 app.use(`${API_PREFIX}/admin`, adminRoutes);
+
 
 const frontendDist = path.resolve(__dirname, "..", "public");
 app.use(

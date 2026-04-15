@@ -838,6 +838,19 @@ export default function MainLayout() {
             <div className="footer-badge">
               <span>Agencia habilitada</span>
               <strong>Legajo N° 19929</strong>
+              <a
+                href="https://agenciasdeviajes.ar/qr/7249?utm_source=ig&utm_medium=social&utm_content=link_in_bio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-qr-link"
+                title="Ver legajo oficial en agenciasdeviajes.ar"
+              >
+                <img
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent("https://agenciasdeviajes.ar/qr/7249")}`}
+                  alt="QR Legajo N° 19929"
+                  className="footer-qr-img"
+                />
+              </a>
             </div>
           </div>
         </div>

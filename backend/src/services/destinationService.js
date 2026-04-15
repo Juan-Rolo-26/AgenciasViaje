@@ -28,6 +28,13 @@ async function listDestinos({ activos = true, lite = false } = {}) {
           orderBy: { orden: "asc" },
           take: 3
         },
+        ofertasPrincipales: {
+          where: { activa: true },
+          select: {
+            precioPesos: true,
+            precioDolares: true
+          }
+        },
         _count: {
           select: {
             ofertasPrincipales: true,
@@ -37,11 +44,22 @@ async function listDestinos({ activos = true, lite = false } = {}) {
       }
     });
     return rows.map((d) => {
-      const { _count, ...rest } = d;
+      const { _count, ofertasPrincipales, ...rest } = d;
+      // Find cheapest package price
+      const withPesos = ofertasPrincipales.filter(o => o.precioPesos && Number(o.precioPesos) > 0);
+      const withDolares = ofertasPrincipales.filter(o => o.precioDolares && Number(o.precioDolares) > 0);
+      const minPrecioPesos = withPesos.length
+        ? Math.min(...withPesos.map(o => Number(o.precioPesos)))
+        : null;
+      const minPrecioDolares = withDolares.length
+        ? Math.min(...withDolares.map(o => Number(o.precioDolares)))
+        : null;
       return {
         ...rest,
         hasOfertas:
-          (_count.ofertasPrincipales || 0) + (_count.ofertasSecundarias || 0) > 0
+          (_count.ofertasPrincipales || 0) + (_count.ofertasSecundarias || 0) > 0,
+        minPrecioPesos,
+        minPrecioDolares
       };
     });
   }
@@ -82,12 +100,12 @@ async function createDestino(payload) {
       ...data,
       galeria: galeria?.length
         ? {
-            create: galeria.map((item) => ({
-              imagen: item.imagen,
-              epigrafe: item.epigrafe || null,
-              orden: item.orden ?? 0
-            }))
-          }
+          create: galeria.map((item) => ({
+            imagen: item.imagen,
+            epigrafe: item.epigrafe || null,
+            orden: item.orden ?? 0
+          }))
+        }
         : undefined
     },
     include: {

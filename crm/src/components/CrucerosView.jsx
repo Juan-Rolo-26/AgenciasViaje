@@ -12,6 +12,8 @@ const EMPTY = {
   fechaSalida: "",
   horaSalida: "18:00",
   duracionNoches: 0,
+  precioPesos: 0,
+  precioDolares: 0,
   precio: 0,
   cupos: 0,
   puertoSalida: "",
@@ -94,6 +96,8 @@ export default function CrucerosView() {
       fechaSalida: crucero.fechaSalida ? crucero.fechaSalida.slice(0, 10) : "",
       horaSalida: crucero.horaSalida || "18:00",
       duracionNoches: crucero.duracionNoches || 0,
+      precioPesos: crucero.precioPesos || 0,
+      precioDolares: crucero.precioDolares || 0,
       precio: crucero.precio || 0,
       cupos: crucero.cupos || 0,
       puertoSalida: crucero.puertoSalida || "",
@@ -124,7 +128,9 @@ export default function CrucerosView() {
         ...form,
         destinoId: form.destinoId ? Number(form.destinoId) : null,
         duracionNoches: Number(form.duracionNoches || 0),
-        precio: Number(form.precio || 0),
+        precioPesos: Number(form.precioPesos || 0),
+        precioDolares: Number(form.precioDolares || 0),
+        precio: Number(form.precioPesos || form.precio || 0),
         cupos: Number(form.cupos || 0),
         orden: Number(form.orden || 0),
         fechaSalida: form.fechaSalida
@@ -372,7 +378,11 @@ export default function CrucerosView() {
               </div>
               <div className="field">
                 <label>Precio desde (ARS)</label>
-                <input type="number" min="0" value={form.precio} onChange={set("precio")} />
+                <input type="number" min="0" value={form.precioPesos} onChange={set("precioPesos")} />
+              </div>
+              <div className="field">
+                <label>Precio desde (USD)</label>
+                <input type="number" min="0" value={form.precioDolares} onChange={set("precioDolares")} />
               </div>
               <div className="field">
                 <label>Cupos disponibles</label>

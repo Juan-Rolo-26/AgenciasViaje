@@ -103,8 +103,8 @@ body {
 }
 
 .nav-logo img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
 
@@ -2370,12 +2370,14 @@ main:has(.section-landing) {
 
 .grid.grid-3x3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  align-items: start;
 }
 
 .tile {
@@ -2450,19 +2452,19 @@ main:has(.section-landing) {
   display: flex;
   gap: 20px;
   width: max-content;
+  align-items: flex-start;
   animation: destination-scroll var(--carousel-speed, 240s) linear infinite;
   will-change: transform;
 }
 
 .destination-track .destination-card {
-  flex: 0 0 280px;
+  flex: 0 0 320px;
 }
 
 .destination-card {
   position: relative;
   display: block;
   padding: 0;
-  min-height: 260px;
   border-radius: 22px;
   overflow: hidden;
   color: #ffffff;
@@ -2490,8 +2492,7 @@ main:has(.section-landing) {
 
 
 .destination-card.search-result-card {
-  /* Mantener altura consistente */
-  height: 480px;
+  height: auto;
 }
 
 .destination-card.search-result-card:hover .tile-image {
@@ -2499,7 +2500,7 @@ main:has(.section-landing) {
 }
 
 .destination-grid.grid-3x3 .destination-card {
-  min-height: 320px;
+  height: auto;
 }
 
 .destination-card::after {
@@ -2526,7 +2527,7 @@ main:has(.section-landing) {
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
-  height: 480px;
+  height: auto;
   border: 1px solid rgba(203, 215, 244, 0.4);
   padding: 12px;
 }
@@ -2641,20 +2642,21 @@ main:has(.section-landing) {
   display: flex;
   gap: 20px;
   width: max-content;
+  align-items: flex-start;
   animation: carousel-scroll var(--carousel-speed) linear infinite;
   will-change: transform;
 }
 
 .offer-track .offer-card {
-  flex: 0 0 280px;
+  flex: 0 0 320px;
 }
 
 .offer-track .offer-card-feature .offer-image {
-  height: 180px;
+  height: 270px;
 }
 
 .excursion-track .tile {
-  flex: 0 0 280px;
+  flex: 0 0 320px;
 }
 
 .offer-card {
@@ -2676,7 +2678,7 @@ main:has(.section-landing) {
 }
 
 .offer-grid.grid-3x3 .offer-card {
-  min-height: 320px;
+  height: auto;
 }
 
 .offer-card:hover {
@@ -4656,6 +4658,28 @@ main:has(.section-landing) {
   box-shadow: 0 12px 24px rgba(112, 0, 235, 0.25);
 }
 
+.footer-qr-link {
+  display: block;
+  margin-top: 8px;
+  align-self: center;
+}
+
+.footer-qr-img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  border: 2px solid rgba(138, 96, 219, 0.4);
+  background: #ffffff;
+  padding: 4px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-qr-link:hover .footer-qr-img {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(112, 0, 235, 0.35);
+}
+
 .footer-subscribe {
   margin-top: 24px;
   display: grid;
@@ -5120,8 +5144,8 @@ main:has(.section-landing) {
   }
 
   .nav-logo img {
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
   }
 }
 
@@ -5256,11 +5280,11 @@ main:has(.section-landing) {
   }
 
   .grid.grid-3x3 .destination-card {
-    height: 380px;
+    height: auto;
   }
 
   .grid.grid-3x3 .destination-card .tile-image {
-    height: 240px;
+    height: 200px;
     flex-shrink: 0;
   }
 
@@ -5369,7 +5393,7 @@ main:has(.section-landing) {
   .offer-track .offer-card,
   .destination-track .destination-card,
   .excursion-track .tile {
-    flex: 0 0 240px;
+    flex: 0 0 270px;
   }
 
   .assistant-panel {

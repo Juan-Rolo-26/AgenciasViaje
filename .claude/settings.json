@@ -15,7 +15,11 @@
       "Bash(node -e ':*)",
       "Bash(git rm:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m ':*)"
+      "Bash(git commit -m ':*)",
+      "Bash(npx prisma *)",
+      "Bash(cat /home/juampi26/AgenciasViaje/crm/vite.config.*)",
+      "Bash(node -e 'const { PrismaClient } = require\\('\\\\''@prisma/client'\\\\''\\); const p = new PrismaClient\\(\\); p.modoFanatico.findMany\\(\\).then\\(r => { console.log\\('\\\\''Count:'\\\\'', r.length\\); console.log\\(JSON.stringify\\(r.slice\\(0,2\\), null, 2\\)\\); p.$disconnect\\(\\); }\\).catch\\(e => { console.error\\(e.message\\); p.$disconnect\\(\\); }\\)')",
+      "Bash(node -e ' *)"
     ]
   }
 }

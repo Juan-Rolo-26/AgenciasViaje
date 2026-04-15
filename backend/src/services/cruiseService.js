@@ -20,6 +20,8 @@ async function listCruceros({ activos = true, lite = false } = {}) {
         horaSalida: true,
         duracionNoches: true,
         precio: true,
+        precioPesos: true,
+        precioDolares: true,
         cupos: true,
         puertoSalida: true,
         descripcion: true,
