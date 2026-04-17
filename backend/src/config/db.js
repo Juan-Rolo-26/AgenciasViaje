@@ -1,8 +1,7 @@
 const prisma = require("../lib/prisma");
 
 function connectDb() {
-  setTimeout(createMissingTables, 3000);
-  return Promise.resolve();
+  return createMissingTables();
 }
 
 async function createMissingTables() {
