@@ -39,6 +39,11 @@ const CONTINENT_BY_COUNTRY = {
   Uruguay: "america",
   Perú: "america",
   "Estados Unidos": "america",
+  Bolivia: "america",
+  Guatemala: "america",
+  Panamá: "america",
+  Aruba: "america",
+  Curazao: "america",
   "Emiratos Árabes": "asia",
   Japón: "asia",
   Indonesia: "asia",
@@ -47,6 +52,7 @@ const CONTINENT_BY_COUNTRY = {
   Maldivas: "asia",
   India: "asia",
   Singapur: "asia",
+  Australia: "asia",
   "Sudáfrica": "africa",
   Kenia: "africa",
   Egipto: "africa",
@@ -54,6 +60,7 @@ const CONTINENT_BY_COUNTRY = {
   Tanzania: "africa",
   Francia: "europa",
   Inglaterra: "europa",
+  "Reino Unido": "europa",
   Italia: "europa",
   Portugal: "europa",
   Grecia: "europa",
@@ -61,11 +68,7 @@ const CONTINENT_BY_COUNTRY = {
   "Países Bajos": "europa",
   "República Checa": "europa",
   España: "europa",
-  Bolivia: "america",
-  Aruba: "america",
-  Curazao: "america",
-  Panamá: "america",
-  Australia: "asia"
+  "Turquía": "europa"
 };
 
 const CONTINENT_SET = new Set(CONTINENTS.map((item) => item.id));
@@ -74,8 +77,13 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   const { destinos, loading, error } = useDestinos();
   const lockedPaisValue = (lockedPais || "").trim();
   const destinosBase = useMemo(() => {
-    return destinos;
-  }, [destinos]);
+    // Si la página está bloqueada para mostrar Argentina, mostramos ese país.
+    // De lo contrario (para destinos internacionales), excluimos Argentina.
+    if (lockedPaisValue === "Argentina") {
+      return destinos.filter((destino) => destino.paisRegion === "Argentina");
+    }
+    return destinos.filter((destino) => destino.paisRegion !== "Argentina");
+  }, [destinos, lockedPaisValue]);
   const continentCards = useMemo(
     () =>
       CONTINENTS.map((item) => ({

@@ -83,6 +83,12 @@ const CONTINENT_BY_COUNTRY = {
   "República Dominicana": "america",
   Perú: "america",
   "Estados Unidos": "america",
+  Uruguay: "america",
+  Bolivia: "america",
+  Guatemala: "america",
+  Panamá: "america",
+  Aruba: "america",
+  Curazao: "america",
   "Emiratos Árabes": "asia",
   Japón: "asia",
   Indonesia: "asia",
@@ -91,6 +97,7 @@ const CONTINENT_BY_COUNTRY = {
   Maldivas: "asia",
   India: "asia",
   Singapur: "asia",
+  Australia: "asia",
   "Sudáfrica": "africa",
   Kenia: "africa",
   Egipto: "africa",
@@ -98,6 +105,7 @@ const CONTINENT_BY_COUNTRY = {
   Tanzania: "africa",
   Francia: "europa",
   Inglaterra: "europa",
+  "Reino Unido": "europa",
   Italia: "europa",
   Portugal: "europa",
   Grecia: "europa",
@@ -105,18 +113,14 @@ const CONTINENT_BY_COUNTRY = {
   "Países Bajos": "europa",
   "República Checa": "europa",
   España: "europa",
-  Bolivia: "america",
-  Aruba: "america",
-  Curazao: "america",
-  Panamá: "america",
-  Australia: "asia"
+  "Turquía": "europa"
 };
 
 export default function Home() {
   const navigate = useNavigate();
   const { destinos, ofertas, actividades, cruceros, loading, error } =
     useTravelData();
-  const destinosNoArgentina = useMemo(
+  const destinosMostrados = useMemo(
     () => destinos.filter((destino) => destino.paisRegion !== "Argentina"),
     [destinos]
   );
@@ -239,14 +243,14 @@ export default function Home() {
 
   const regionesDisponibles = useMemo(() => {
     const continents = new Set();
-    destinosNoArgentina.forEach((destino) => {
+    destinosMostrados.forEach((destino) => {
       const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
       if (continent) {
         continents.add(continent);
       }
     });
     return CONTINENTS.filter((item) => continents.has(item.id));
-  }, [destinosNoArgentina]);
+  }, [destinosMostrados]);
 
   const paisesDisponibles = useMemo(() => {
     const countries = Object.keys(CONTINENT_BY_COUNTRY);
@@ -294,11 +298,11 @@ export default function Home() {
   }, [searchDestino, destinosDisponibles]);
 
   const loopDestinos = useMemo(() => {
-    if (!destinosNoArgentina.length) {
+    if (!destinosMostrados.length) {
       return [];
     }
-    return [...destinosNoArgentina, ...destinosNoArgentina];
-  }, [destinosNoArgentina]);
+    return [...destinosMostrados.slice(0, 12), ...destinosMostrados.slice(0, 12)];
+  }, [destinosMostrados]);
 
   const normalizeText = (value) =>
     (value || "")
@@ -489,7 +493,7 @@ export default function Home() {
   }, [
     actividades,
     cruceros,
-    destinosNoArgentina,
+    destinosMostrados,
     salidasDisponibles,
     paquetesDisponibles,
     searchDate,
@@ -1048,7 +1052,7 @@ export default function Home() {
           <p className="section-state">Cargando destinos...</p>
         ) : error ? (
           <p className="section-state error">{error}</p>
-        ) : destinosNoArgentina.length === 0 ? (
+        ) : destinosMostrados.length === 0 ? (
           <p className="section-state">No hay destinos disponibles.</p>
         ) : (
           <div

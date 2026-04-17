@@ -24,6 +24,11 @@ const CONTINENT_BY_COUNTRY = {
     Uruguay: "america",
     Perú: "america",
     "Estados Unidos": "america",
+    Bolivia: "america",
+    Guatemala: "america",
+    Panamá: "america",
+    Aruba: "america",
+    Curazao: "america",
     "Emiratos Árabes": "asia",
     Japón: "asia",
     Indonesia: "asia",
@@ -32,6 +37,7 @@ const CONTINENT_BY_COUNTRY = {
     Maldivas: "asia",
     India: "asia",
     Singapur: "asia",
+    Australia: "asia",
     "Sudáfrica": "africa",
     Kenia: "africa",
     Egipto: "africa",
@@ -39,6 +45,7 @@ const CONTINENT_BY_COUNTRY = {
     Tanzania: "africa",
     Francia: "europa",
     Inglaterra: "europa",
+    "Reino Unido": "europa",
     Italia: "europa",
     Portugal: "europa",
     Grecia: "europa",
@@ -46,11 +53,7 @@ const CONTINENT_BY_COUNTRY = {
     "Países Bajos": "europa",
     "República Checa": "europa",
     España: "europa",
-    Bolivia: "america",
-    Aruba: "america",
-    Curazao: "america",
-    Panamá: "america",
-    Australia: "asia"
+    "Turquía": "europa"
 };
 
 export default function SearchResults() {
@@ -76,10 +79,6 @@ export default function SearchResults() {
 
     const { destinos, ofertas, actividades, cruceros, loading, error } = useTravelData();
 
-    const destinosNoArgentina = useMemo(
-        () => destinos.filter((destino) => destino.paisRegion !== "Argentina"),
-        [destinos]
-    );
 
     const normalizeText = (value) =>
         (value || "")
@@ -219,6 +218,9 @@ export default function SearchResults() {
 
         if (searchType === "destino") {
             return destinos.filter((destino) => {
+                // Si hay un filtro de región/continente, excluimos Argentina para separar inventario nacional e internacional
+                if (regionQuery && destino.paisRegion === "Argentina") return false;
+
                 const matchesName = matchesDestino(destino.nombre);
                 const matchesRegionValue = matchesRegion(destino.paisRegion);
                 const matchesPaisValue = matchesPais(destino.paisRegion);
