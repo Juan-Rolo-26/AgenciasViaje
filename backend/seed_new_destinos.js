@@ -111,15 +111,6 @@ const data = [
         galeria: ["/assets/destinos/corrientes1.webp", "/assets/destinos/corrientes2.jpg", "/assets/destinos/corrientes3.jpg"]
     },
     {
-        nombre: "Crucero de La Konga",
-        slug: "crucero-la-konga",
-        paisRegion: "Cruceros",
-        descripcion: "Vive la energía del Crucero de La Konga: la fiesta más grande del cuarteto ahora en alta mar. Disfruta de un viaje exclusivo con toda la música, el ritmo y la alegría de la banda del momento mientras navegas por destinos increíbles. Una experiencia única que combina el lujo de un crucero con el calor y la pasión de un show en vivo que no te va a dejar dejar de bailar.",
-        descripcionCorta: "Vive la energía del Crucero de La Konga: la fiesta más grande del cuarteto ahora en alta mar.",
-        imagenPortada: "/assets/destinos/crucero-lakonga.jpeg",
-        galeria: ["/assets/destinos/crucero-lakonga1.webp", "/assets/destinos/crucero-lakonga2.webp", "/assets/destinos/crucero-lakonga3.webp"]
-    },
-    {
         nombre: "Guatemala",
         slug: "guatemala",
         paisRegion: "Guatemala",

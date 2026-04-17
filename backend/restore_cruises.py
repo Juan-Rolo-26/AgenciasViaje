@@ -30,6 +30,15 @@ cruceros = [
         "imagenPortada": "/assets/cruceros/costaserene.webp",
         "descripcion": "Inspirado en la mitología clásica, el Costa Serena es un barco espacioso diseñado para el bienestar y el confort absoluto.",
         "galeria": ["/assets/cruceros/costaserene1.webp", "/assets/cruceros/costaserene2.webp", "/assets/cruceros/costaserene3.jpg"]
+    },
+    {
+        "nombre": "Crucero de La Konga",
+        "slug": "crucero-la-konga",
+        "naviera": "La Konga",
+        "barco": "La Konga",
+        "imagenPortada": "/assets/destinos/crucero-lakonga.jpeg",
+        "descripcion": "Vive la energía del Crucero de La Konga: la fiesta más grande del cuarteto ahora en alta mar. Disfruta de un viaje exclusivo con toda la música, el ritmo y la alegría de la banda del momento mientras navegas por destinos increíbles. Una experiencia única que combina el lujo de un crucero con el calor y la pasión de un show en vivo que no te va a dejar dejar de bailar.",
+        "galeria": ["/assets/destinos/crucero-lakonga1.webp", "/assets/destinos/crucero-lakonga2.webp", "/assets/destinos/crucero-lakonga3.webp"]
     }
 ]
 
