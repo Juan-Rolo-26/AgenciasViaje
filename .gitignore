@@ -6,6 +6,7 @@ frontend/.env
 
 # Base de datos SQLite (ahora permitida por pedido del usuario)
 # **/*.db
+# **/*.sqlite
 **/*.db-journal
 **/*.db-shm
 **/*.db-wal

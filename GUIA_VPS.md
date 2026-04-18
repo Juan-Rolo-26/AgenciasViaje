@@ -32,7 +32,7 @@ Clona tu repositorio en la carpeta deseada (ej. `/var/www/`):
 
 ```bash
 cd /var/www
-git clone https://tu-repositorio.git topotours
+git clone https://github.com/Juan-Rolo-26/AgenciasViaje.git topotours
 cd topotours
 ```
 
@@ -65,12 +65,12 @@ Nginx funcionará como un "proxy inverso", redirigiendo el tráfico del puerto 8
 sudo nano /etc/nginx/sites-available/topotours
 ```
 
-**Pega el siguiente contenido (reemplaza `tu-dominio.com`):**
+**Pega el siguiente contenido (reemplaza `topotours.com`):**
 
 ```nginx
 server {
     listen 80;
-    server_name tu-dominio.com; # Cambia esto por tu dominio
+    server_name topotours.com; # Cambia esto por tu dominio
 
     location / {
         proxy_pass http://localhost:3000;
@@ -104,7 +104,7 @@ Es fundamental tener HTTPS para un sitio profesional.
 
 ```bash
 sudo apt install -y python3-certbot-nginx
-sudo certbot --nginx -d tu-dominio.com
+sudo certbot --nginx -d topotours.com
 ```
 *Sigue las instrucciones en pantalla para activar la redirección automática a HTTPS.*
 
@@ -124,4 +124,4 @@ sudo certbot --nginx -d tu-dominio.com
 ---
 
 ## ✅ ¡Listo!
-Tu proyecto ahora debería estar en línea en `https://tu-dominio.com`. El CRM estará disponible en `https://tu-dominio.com/admin`.
+Tu proyecto ahora debería estar en línea en `https://topotours.com`. El CRM estará disponible en `https://topotours.com/admin`.

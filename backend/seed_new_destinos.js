@@ -118,6 +118,24 @@ const data = [
         descripcionCorta: "Vive la energía de Guatemala: el corazón del mundo maya y una tierra de colores eternos.",
         imagenPortada: "/assets/destinos/guatemala.webp",
         galeria: ["/assets/destinos/guatemala1.webp", "/assets/destinos/guatemala2.webp", "/assets/destinos/guatemala3.webp"]
+    },
+    {
+        nombre: "Jamaica",
+        slug: "jamaica",
+        paisRegion: "Jamaica",
+        descripcion: "Vive la energía de Jamaica: el corazón del ritmo, el reggae y los atardeceres dorados. Déjate cautivar por las famosas Cascadas del Río Dunn, relájate en las playas de arena blanca de Negril y siente la vibrante cultura local en Montego Bay. Un destino con alma propia que combina selvas exuberantes, una gastronomía llena de especias y esa filosofía de \"One Love\" que te invita a disfrutar de la vida con alegría y libertad.",
+        descripcionCorta: "Vive la energía de Jamaica: el corazón del ritmo, el reggae y los atardeceres dorados.",
+        imagenPortada: "/assets/destinos/Jamaica.jpg",
+        galeria: ["/assets/destinos/Jamaica1.jpg", "/assets/destinos/Jamaica2.jpg", "/assets/destinos/jamaica3.jpg"]
+    },
+    {
+        nombre: "Islas Caimán",
+        slug: "islas-caiman",
+        paisRegion: "Islas Caimán",
+        descripcion: "Vive la energía de las Islas Caimán: el destino definitivo para el lujo y la exploración submarina. Sumérgete en las aguas cristalinas de la famosa Seven Mile Beach, vive la experiencia única de nadar con rayas en Stingray City y descubre algunos de los mejores arrecifes de coral del mundo. Un archipiélago sofisticado que combina servicios de primer nivel con una naturaleza virgen impresionante, ideal para quienes buscan exclusividad y tranquilidad total.",
+        descripcionCorta: "Vive la energía de las Islas Caimán: el destino definitivo para el lujo y la exploración submarina.",
+        imagenPortada: "/assets/destinos/islas-caiman.jpg",
+        galeria: ["/assets/destinos/islas-caiman1.jpg", "/assets/destinos/islas-caiman2.jpg", "/assets/destinos/islas-caiman3.jpg"]
     }
 ];
 
