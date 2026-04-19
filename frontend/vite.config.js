@@ -8,5 +8,8 @@ export default defineConfig({
     outDir: "../backend/public",
     emptyOutDir: false,
     assetsDir: "assets"
+  },
+  preview: {
+    allowedHosts: ["topotours.com", "www.topotours.com", "topotours.ar", "www.topotours.ar"]
   }
 });
