@@ -12,6 +12,7 @@ import {
   hasPriceSignals,
   hasMeaningfulInfoText
 } from "../utils/markdownSanitizers.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
 
 const TIPO_LABELS = {
   "aereo": "Vuelos",
@@ -340,7 +341,7 @@ export default function OfertaDetail() {
     <main className="detail-page">
       <section
         className="detail-hero"
-        style={{ backgroundImage: `url("${heroImage}")` }}
+        style={{ backgroundImage: `url("${resolveAssetUrl(heroImage)}")` }}
       >
         <div className="detail-hero-overlay">
           <div className="detail-hero-content">
@@ -517,8 +518,8 @@ export default function OfertaDetail() {
                     className="tile-image"
                     style={{
                       backgroundImage: actividad.imagenPortada
-                        ? `url("${actividad.imagenPortada}")`
-                        : `url("${fallbackDeal}")`
+                        ? `url("${resolveAssetUrl(actividad.imagenPortada)}")`
+                        : `url("${resolveAssetUrl(fallbackDeal)}")`
                     }}
                   ></div>
                   <div className="tile-content">

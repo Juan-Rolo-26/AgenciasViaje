@@ -4,6 +4,7 @@ import fallbackDeal from "../assets/inicio.jpg";
 import { useCruceros } from "../hooks/useTravelData.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { formatCurrency, formatDate } from "../utils/formatters.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
 
 export default function CruceroDetail() {
   const { slug } = useParams();
@@ -109,7 +110,7 @@ export default function CruceroDetail() {
     <main className="detail-page excursion-detail-page premium-excursion-detail cruise-detail-page">
       <section
         className="excursion-hero-premium"
-        style={{ backgroundImage: `url("${heroImage}")` }}
+        style={{ backgroundImage: `url("${resolveAssetUrl(heroImage)}")` }}
       >
         <div className="excursion-hero-overlay"></div>
         <div className="excursion-hero-content">
@@ -168,7 +169,7 @@ export default function CruceroDetail() {
           {galleryImages.map((image, index) => (
             <div className="gallery-item" key={`${image}-${index}`}>
               <div className="gallery-image-wrapper">
-                <img src={image} alt={`${crucero.nombre} ${index + 1}`} loading="lazy" />
+                <img src={resolveAssetUrl(image)} alt={`${crucero.nombre} ${index + 1}`} loading="lazy" />
               </div>
             </div>
           ))}

@@ -343,8 +343,8 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
                         className="tile-image"
                         style={{
                           backgroundImage: destino.imagenPortada
-                            ? `url("${destino.imagenPortada}")`
-                            : `url("${fallbackDeal}")`
+                            ? `url("${resolveAssetUrl(destino.imagenPortada)}")`
+                            : `url("${resolveAssetUrl(fallbackDeal)}")`
                         }}
                       ></div>
                       <div className="tile-content">

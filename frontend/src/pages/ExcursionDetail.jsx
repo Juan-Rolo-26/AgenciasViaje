@@ -4,6 +4,7 @@ import fallbackDeal from "../assets/inicio.jpg";
 import { useActividades } from "../hooks/useTravelData.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getExcursionGallery } from "../utils/excursionGallery.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
 
 export default function ExcursionDetail() {
   const { slug } = useParams();
@@ -110,7 +111,7 @@ export default function ExcursionDetail() {
       {/* Hero Section with Parallax Effect */}
       <section
         className="excursion-hero-premium"
-        style={{ backgroundImage: `url("${heroImage}")` }}
+        style={{ backgroundImage: `url("${resolveAssetUrl(heroImage)}")` }}
       >
         <div className="excursion-hero-overlay"></div>
         <div className="excursion-hero-content">
@@ -166,7 +167,7 @@ export default function ExcursionDetail() {
           {galleryImages.map((image, index) => (
             <div className="gallery-item" key={`${image}-${index}`}>
               <div className="gallery-image-wrapper">
-                <img src={image} alt={`${actividad.nombre} ${index + 1}`} loading="lazy" />
+                <img src={resolveAssetUrl(image)} alt={`${actividad.nombre} ${index + 1}`} loading="lazy" />
               </div>
             </div>
           ))}

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTravelData } from "../hooks/useTravelData.js";
 import { getOfferImages } from "../utils/offerImages.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
 import fallbackDeal from "../assets/inicio.jpg";
 import "../assets/search-results-new.css";
 
@@ -655,8 +656,8 @@ export default function SearchResults() {
                                             className="tile-image"
                                             style={{
                                                 backgroundImage: item.imagenPortada
-                                                    ? `url("${item.imagenPortada}")`
-                                                    : `url("${fallbackDeal}")`
+                                                    ? `url("${resolveAssetUrl(item.imagenPortada)}")`
+                                                    : `url("${resolveAssetUrl(fallbackDeal)}")`
                                             }}
                                         ></div>
                                         <div className="tile-content">
@@ -685,8 +686,8 @@ export default function SearchResults() {
                                             className="tile-image"
                                             style={{
                                                 backgroundImage: item.imagenPortada
-                                                    ? `url("${item.imagenPortada}")`
-                                                    : `url("${fallbackDeal}")`
+                                                    ? `url("${resolveAssetUrl(item.imagenPortada)}")`
+                                                    : `url("${resolveAssetUrl(fallbackDeal)}")`
                                             }}
                                         ></div>
                                         <div className="tile-content">
@@ -718,7 +719,7 @@ export default function SearchResults() {
                                         <div
                                             className="tile-image"
                                             style={{
-                                                backgroundImage: `url("${offerImage}")`
+                                                backgroundImage: `url("${resolveAssetUrl(offerImage)}")`
                                             }}
                                         ></div>
                                         <div className="tile-content">
@@ -747,8 +748,8 @@ export default function SearchResults() {
                                         className="tile-image"
                                         style={{
                                             backgroundImage: item.imagenPortada
-                                                ? `url("${item.imagenPortada}")`
-                                                : `url("${fallbackDeal}")`
+                                                ? `url("${resolveAssetUrl(item.imagenPortada)}")`
+                                                : `url("${resolveAssetUrl(fallbackDeal)}")`
                                         }}
                                     ></div>
                                     <div className="tile-content">

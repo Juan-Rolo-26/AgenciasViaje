@@ -1084,7 +1084,7 @@ export default function Home() {
                     <div className="offer-image">
                       <img
                         className="offer-image-main"
-                        src={destino.imagenPortada || fallbackDeal}
+                        src={resolveAssetUrl(destino.imagenPortada || fallbackDeal)}
                         alt={destino.nombre}
                       />
                       {galeriaImages.length ? (
@@ -1092,7 +1092,7 @@ export default function Home() {
                           {galeriaImages.map((image, imageIndex) => (
                             <img
                               key={`${destino.id}-home-${imageIndex}`}
-                              src={image}
+                              src={resolveAssetUrl(image)}
                               alt={`${destino.nombre} ${imageIndex + 2}`}
                             />
                           ))}
@@ -1247,7 +1247,7 @@ export default function Home() {
                     <div className="offer-image">
                       <img
                         className="offer-image-main"
-                        src={coverImage}
+                        src={resolveAssetUrl(coverImage)}
                         alt={crucero.nombre}
                       />
                       {extraImages.length ? (
@@ -1255,7 +1255,7 @@ export default function Home() {
                           {extraImages.map((image, imageIndex) => (
                             <img
                               key={`${crucero.id}-home-${imageIndex}`}
-                              src={image}
+                              src={resolveAssetUrl(image)}
                               alt={`${crucero.nombre} ${imageIndex + 2}`}
                             />
                           ))}
@@ -1342,7 +1342,7 @@ export default function Home() {
                     <div className="offer-image">
                       <img
                         className="offer-image-main"
-                        src={coverImage}
+                        src={resolveAssetUrl(coverImage)}
                         alt={actividad.nombre}
                       />
                       {extraImages.length ? (
@@ -1350,7 +1350,7 @@ export default function Home() {
                           {extraImages.map((image, imageIndex) => (
                             <img
                               key={`${actividad.id}-home-${imageIndex}`}
-                              src={image}
+                              src={resolveAssetUrl(image)}
                               alt={`${actividad.nombre} ${imageIndex + 2}`}
                             />
                           ))}

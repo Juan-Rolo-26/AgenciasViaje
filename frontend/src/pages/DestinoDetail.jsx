@@ -12,6 +12,7 @@ import {
   hasPriceSignals,
   hasMeaningfulInfoText
 } from "../utils/markdownSanitizers.js";
+import { resolveAssetUrl } from "../utils/assetUrl.js";
 
 // === Constants and Helpers from OfertaDetail ===
 
@@ -621,7 +622,7 @@ export default function DestinoDetail() {
     );
   }
 
-  const heroImage = destino.imagenPortada || fallbackDeal;
+  const heroImage = resolveAssetUrl(destino.imagenPortada || fallbackDeal);
   const backLink =
     destino.paisRegion === "Argentina" ? "/argentina" : "/destinos";
 
@@ -678,7 +679,7 @@ export default function DestinoDetail() {
             {galleryImages.map((image, index) => (
               <div className="destination-gallery-item" key={`${image}-${index}`}>
                 <div className="gallery-image-wrapper">
-                  <img src={image} alt={`${destino.nombre} ${index + 1}`} loading="lazy" />
+                  <img src={resolveAssetUrl(image)} alt={`${destino.nombre} ${index + 1}`} loading="lazy" />
                 </div>
               </div>
             ))}
@@ -721,7 +722,7 @@ export default function DestinoDetail() {
                         <div className="packages-grid-premium">
                           {ofertasGrupales.map((oferta) => {
                             const precio = getPrecioVigente(oferta.precios);
-                            const packageImage = oferta.destino?.imagenPortada || destino.imagenPortada || fallbackDeal;
+                            const packageImage = resolveAssetUrl(oferta.destino?.imagenPortada || destino.imagenPortada || fallbackDeal);
                             const transportType = getTransportType(oferta);
                             const transportLabel = transportType === "avion" ? "Avión" : transportType === "bus" ? "Bus" : "";
                             const formatMonthRange = (startDate, endDate) => {
@@ -866,7 +867,7 @@ export default function DestinoDetail() {
                         <div className="packages-grid-premium">
                           {ofertasPaquetes.map((oferta) => {
                             const precio = getPrecioVigente(oferta.precios);
-                            const packageImage = oferta.destino?.imagenPortada || destino.imagenPortada || fallbackDeal;
+                            const packageImage = resolveAssetUrl(oferta.destino?.imagenPortada || destino.imagenPortada || fallbackDeal);
                             const transportType = getTransportType(oferta);
                             const transportLabel = transportType === "avion" ? "Avión" : transportType === "bus" ? "Bus" : "";
                             const formatMonthRange = (startDate, endDate) => {
