@@ -1,9 +1,10 @@
 const express = require("express");
 const prisma = require("../../lib/prisma");
+const { fanaticoCache: cache } = require("../../lib/publicCaches");
 
 const router = express.Router();
 
-router.get("/", async (_req, res, next) => {
+router.get("/", cache, async (_req, res, next) => {
     try {
         const list = await prisma.modoFanatico.findMany({
             where: { activo: true },
@@ -14,7 +15,7 @@ router.get("/", async (_req, res, next) => {
     } catch (e) { next(e); }
 });
 
-router.get("/:slug", async (req, res, next) => {
+router.get("/:slug", cache, async (req, res, next) => {
     try {
         const item = await prisma.modoFanatico.findUnique({
             where: { slug: req.params.slug },

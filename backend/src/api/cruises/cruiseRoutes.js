@@ -1,5 +1,5 @@
 const express = require("express");
-const { createResponseCache } = require("../../middleware/responseCache");
+const { crucerosCache: cache } = require("../../lib/publicCaches");
 const {
   listCruceros,
   getCruceroById,
@@ -7,7 +7,6 @@ const {
 } = require("./cruiseController");
 
 const router = express.Router();
-const cache = createResponseCache();
 
 router.get("/", cache, listCruceros);
 router.get("/slug/:slug", cache, getCruceroBySlug);

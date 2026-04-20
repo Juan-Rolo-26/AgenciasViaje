@@ -1,9 +1,24 @@
 const express = require("express");
 const adminAuth = require("../../middleware/adminAuth");
 const prisma = require("../../lib/prisma");
+const { clearAllPublicCaches } = require("../../lib/publicCaches");
 
 const router = express.Router();
 router.use(adminAuth);
+
+function invalidateCache(req, res, next) {
+  if (req.method === "GET") return next();
+  const originalSend = res.send.bind(res);
+  res.send = (body) => {
+    if (res.statusCode < 400) {
+      clearAllPublicCaches();
+    }
+    return originalSend(body);
+  };
+  next();
+}
+
+router.use(invalidateCache);
 
 /* ── AUTH CHECK ── */
 router.get("/me", (_req, res) => res.json({ ok: true, role: "admin" }));

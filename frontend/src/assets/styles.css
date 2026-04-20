@@ -92,8 +92,7 @@ body {
 .nav-container {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 10px 12px;
-  /* Reduced side padding (was 24px) */
+  padding: 10px 12px 10px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -111,11 +110,10 @@ body {
 }
 
 .nav-logo img {
-  height: 110px !important;
+  height: 80px !important;
   width: auto !important;
-  min-width: 110px;
-  margin-left: -15px;
-  /* Offset whitespace in logo PNG */
+  min-width: 80px;
+  margin-left: -20px;
   object-fit: contain;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: block;
@@ -188,6 +186,7 @@ body {
   display: flex;
   flex-direction: column;
   line-height: 1.05;
+  margin-left: 20px;
 }
 
 .brand-name {

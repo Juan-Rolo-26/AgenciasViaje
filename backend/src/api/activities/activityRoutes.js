@@ -1,5 +1,5 @@
 const express = require("express");
-const { createResponseCache } = require("../../middleware/responseCache");
+const { actividadesCache: cache } = require("../../lib/publicCaches");
 const {
   listActividades,
   getActividadById,
@@ -10,7 +10,6 @@ const {
 } = require("./activityController");
 
 const router = express.Router();
-const cache = createResponseCache();
 
 router.get("/", cache, listActividades);
 router.get("/slug/:slug", cache, getActividadBySlug);

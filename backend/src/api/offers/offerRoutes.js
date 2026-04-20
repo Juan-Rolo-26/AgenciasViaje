@@ -1,5 +1,5 @@
 const express = require("express");
-const { createResponseCache } = require("../../middleware/responseCache");
+const { ofertasCache: cache } = require("../../lib/publicCaches");
 const {
   listOfertas,
   getOfertaById,
@@ -10,7 +10,6 @@ const {
 } = require("./offerController");
 
 const router = express.Router();
-const cache = createResponseCache();
 
 router.get("/", cache, listOfertas);
 router.get("/slug/:slug", cache, getOfertaBySlug);

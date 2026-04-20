@@ -53,7 +53,7 @@ function createResponseCache(options = {}) {
     lastPrune = now;
   }
 
-  return function responseCache(req, res, next) {
+  const middleware = function responseCache(req, res, next) {
     if (process.env.CACHE_DISABLED === "true") {
       return next();
     }
@@ -104,6 +104,10 @@ function createResponseCache(options = {}) {
     };
     next();
   };
+
+  middleware.clear = () => cache.clear();
+
+  return middleware;
 }
 
 module.exports = {

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
+const logo = "/assets/logo.png";
 import "../assets/cruceros-redesign.css";
 import { apiRequest } from "../api/api.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
