@@ -79,20 +79,27 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(112, 0, 235, 0.12);
-  box-shadow: 0 18px 38px rgba(31, 18, 92, 0.1);
+  border-bottom: 2px solid rgba(112, 0, 235, 0.08);
+  box-shadow: 0 10px 40px rgba(31, 18, 92, 0.08);
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  overflow: visible;
 }
 
 .nav-container {
   max-width: 1800px;
   margin: 0 auto;
-  padding: 18px 12px;
+  padding: 10px 12px;
+  /* Reduced side padding (was 24px) */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 20px;
+  width: 100%;
+  overflow: visible;
 }
 
 .nav-logo {
@@ -100,12 +107,22 @@ body {
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  overflow: visible;
 }
 
 .nav-logo img {
-  width: 60px;
-  height: 60px;
+  height: 110px !important;
+  width: auto !important;
+  min-width: 110px;
+  margin-left: -15px;
+  /* Offset whitespace in logo PNG */
   object-fit: contain;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+
+.nav-logo:hover img {
+  transform: scale(1.08) rotate(-1deg);
 }
 
 .nav-toggle {
@@ -176,14 +193,15 @@ body {
 .brand-name {
   font-family: "GORGE", "Playfair Display", serif;
   font-weight: 400;
-  font-size: 1.28rem;
+  font-size: 1.8rem;
   color: var(--violet-900);
   letter-spacing: 1px;
 }
 
 .brand-sub {
-  font-size: 0.78rem;
+  font-size: 1rem;
   color: #64748b;
+  font-weight: 500;
 }
 
 .brand-word {
@@ -4484,19 +4502,19 @@ main:has(.section-landing) {
 }
 
 .footer-logo img {
-  width: 46px;
-  height: 46px;
+  width: auto;
+  height: 80px;
   object-fit: contain;
 }
 
 .footer-logo strong {
   display: block;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #ffffff;
 }
 
 .footer-logo span {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #94a3b8;
 }
 
@@ -5139,13 +5157,13 @@ main:has(.section-landing) {
     font-size: 0.9rem;
   }
 
-  .brand-name {
-    font-size: 1.12rem;
+  .nav-logo img {
+    height: 70px;
+    width: auto;
   }
 
-  .nav-logo img {
-    width: 50px;
-    height: 50px;
+  .brand-name {
+    font-size: 1.4rem;
   }
 }
 
@@ -5154,8 +5172,20 @@ main:has(.section-landing) {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 12px 10px;
+    /* Reduced side padding on mobile */
     gap: 12px;
+  }
+
+  .nav-logo img {
+    height: 85px !important;
+    width: auto !important;
+    padding: 4px;
+    display: block;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
   }
 
   .nav-logo {
