@@ -153,11 +153,11 @@ export default function Home() {
 
   // Filtrar salidas grupales
   const salidasDisponibles = useMemo(() => {
-    return ofertas.filter((oferta) => oferta.tipo === "grupal");
+    return ofertas.filter((oferta) => oferta.tipo === "grupal" && oferta.activa !== false);
   }, [ofertas]);
 
   const paquetesDisponibles = useMemo(() => {
-    return ofertas;
+    return ofertas.filter(o => o.activa !== false);
   }, [ofertas]);
   const heroImages = useMemo(
     () => HERO_IMAGES.map((image) => resolveAssetUrl(image)),

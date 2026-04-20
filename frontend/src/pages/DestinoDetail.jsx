@@ -406,6 +406,7 @@ export default function DestinoDetail() {
       return [];
     }
     return ofertas.filter((oferta) => {
+      if (oferta.activa === false) return false;
       const principal = oferta.destino?.id === destino.id;
       const secundarios = (oferta.destinos || []).some(
         (item) =>

@@ -112,6 +112,10 @@ async function fetchDataset(key, url, normalizeFn) {
   cacheEntry.promise = apiRequest(url)
     .then((data) => {
       let normalized = Array.isArray(data) ? data.map(normalizeFn) : [];
+
+      // Filter out inactive items
+      normalized = normalized.filter(item => item.activa !== false && item.activo !== false);
+
       if (key === "ofertas") {
         normalized = filterPastOfertas(normalized);
       }

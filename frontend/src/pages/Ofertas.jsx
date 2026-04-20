@@ -17,7 +17,7 @@ const OFFER_SECTION_SET = new Set(OFFER_SECTIONS.map((section) => section.id));
 
 export default function Ofertas() {
   const { ofertas, loading, error } = useOfertas();
-  const ofertasVisibles = useMemo(() => ofertas, [ofertas]);
+  const ofertasVisibles = useMemo(() => ofertas.filter(o => o.activa !== false), [ofertas]);
   const [searchParams] = useSearchParams();
   const selectedSection = (() => {
     const value = (searchParams.get("seccion") || "").toLowerCase();
