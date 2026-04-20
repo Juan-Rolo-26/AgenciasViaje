@@ -7,8 +7,8 @@ export default defineConfig({
   server: {
     port: 5200,
     proxy: {
-      "/api": { target: "http://localhost:3008", changeOrigin: true },
-      "/assets": { target: "http://localhost:3008", changeOrigin: true }
+      "/api": { target: "http://localhost:3000", changeOrigin: true },
+      "/assets": { target: "http://localhost:3000", changeOrigin: true }
     }
   },
   build: {
