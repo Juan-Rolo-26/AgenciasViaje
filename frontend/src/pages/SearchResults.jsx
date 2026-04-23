@@ -129,7 +129,7 @@ export default function SearchResults() {
         if (searchRegion) {
             filtered = filtered.filter(
                 (destino) =>
-                    CONTINENT_BY_COUNTRY[destino.paisRegion] === searchRegion
+                    CONTINENT_BY_COUNTRY[(destino.paisRegion || "").trim()] === searchRegion
             );
         }
         if (searchPais) {
@@ -214,16 +214,17 @@ export default function SearchResults() {
 
         const matchesDestino = (nombre) =>
             !destinoQuery || nombre.toLowerCase().includes(destinoQuery);
-        const matchesRegion = (region) =>
-            !regionQuery || CONTINENT_BY_COUNTRY[region] === regionQuery;
-        const matchesPais = (region) =>
-            !paisQuery || (region || "").toLowerCase() === paisQuery;
+        const matchesRegion = (region) => {
+            const pais = (region || "").trim();
+            return !regionQuery || CONTINENT_BY_COUNTRY[pais] === regionQuery;
+        };
+        const matchesPais = (region) => {
+            const pais = (region || "").trim();
+            return !paisQuery || pais.toLowerCase() === paisQuery;
+        };
 
         if (searchType === "destino") {
             return destinos.filter((destino) => {
-                // Si hay un filtro de región/continente, excluimos Argentina para separar inventario nacional e internacional
-                if (regionQuery && destino.paisRegion === "Argentina") return false;
-
                 const matchesName = matchesDestino(destino.nombre);
                 const matchesRegionValue = matchesRegion(destino.paisRegion);
                 const matchesPaisValue = matchesPais(destino.paisRegion);

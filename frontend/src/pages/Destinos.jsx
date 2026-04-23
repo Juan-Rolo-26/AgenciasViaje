@@ -79,12 +79,12 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   const { destinos, loading, error } = useDestinos();
   const lockedPaisValue = (lockedPais || "").trim();
   const destinosBase = useMemo(() => {
-    // Si la página está bloqueada para mostrar Argentina, mostramos ese país.
-    // De lo contrario (para destinos internacionales), excluimos Argentina.
-    if (lockedPaisValue === "Argentina") {
-      return destinos.filter((destino) => destino.paisRegion === "Argentina");
+    // Si la página está bloqueada para un país (ej. Argentina), solo mostramos ese país.
+    if (lockedPaisValue) {
+      return destinos.filter((destino) => (destino.paisRegion || "").trim() === lockedPaisValue);
     }
-    return destinos.filter((destino) => destino.paisRegion !== "Argentina");
+    // De lo contrario, permitimos todos los destinos para que los filtros funcionen
+    return destinos;
   }, [destinos, lockedPaisValue]);
   const continentCards = useMemo(
     () =>
@@ -151,11 +151,12 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
 
   const destinosParaOpciones = useMemo(() => {
     return destinosBase.filter((destino) => {
-      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion] || "";
+      const pais = (destino.paisRegion || "").trim();
+      const continent = CONTINENT_BY_COUNTRY[pais] || "";
       if (draftFilters.continente && continent !== draftFilters.continente) {
         return false;
       }
-      if (draftFilters.pais && destino.paisRegion !== draftFilters.pais) {
+      if (draftFilters.pais && pais !== draftFilters.pais) {
         return false;
       }
       return true;
@@ -193,9 +194,10 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   const destinosFiltrados = useMemo(() => {
     const query = filters.query.trim().toLowerCase();
     const filtered = destinosBase.filter((destino) => {
+      const pais = (destino.paisRegion || "").trim();
       const matchesPais =
-        !filters.pais || destino.paisRegion === filters.pais;
-      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion] || "";
+        !filters.pais || pais === filters.pais;
+      const continent = CONTINENT_BY_COUNTRY[pais] || "";
       const matchesContinent =
         !filters.continente || continent === filters.continente;
       const matchesQuery =

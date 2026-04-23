@@ -245,14 +245,15 @@ export default function Home() {
 
   const regionesDisponibles = useMemo(() => {
     const continents = new Set();
-    destinosMostrados.forEach((destino) => {
-      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
+    destinos.forEach((destino) => {
+      const pais = (destino.paisRegion || "").trim();
+      const continent = CONTINENT_BY_COUNTRY[pais];
       if (continent) {
         continents.add(continent);
       }
     });
     return CONTINENTS.filter((item) => continents.has(item.id));
-  }, [destinosMostrados]);
+  }, [destinos]);
 
   const paisesDisponibles = useMemo(() => {
     const countries = Object.keys(CONTINENT_BY_COUNTRY);
@@ -271,11 +272,12 @@ export default function Home() {
 
   const destinosDisponibles = useMemo(() => {
     return destinos.filter((destino) => {
-      const continent = CONTINENT_BY_COUNTRY[destino.paisRegion];
+      const pais = (destino.paisRegion || "").trim();
+      const continent = CONTINENT_BY_COUNTRY[pais];
       if (searchRegion && continent !== searchRegion) {
         return false;
       }
-      if (searchPais && destino.paisRegion !== searchPais) {
+      if (searchPais && pais !== searchPais) {
         return false;
       }
       return true;
@@ -375,10 +377,14 @@ export default function Home() {
 
     const matchesDestino = (nombre) =>
       !destinoQuery || nombre.toLowerCase().includes(destinoQuery);
-    const matchesRegion = (region) =>
-      !regionQuery || CONTINENT_BY_COUNTRY[region] === regionQuery;
-    const matchesPais = (region) =>
-      !paisQuery || (region || "").toLowerCase() === paisQuery;
+    const matchesRegion = (region) => {
+      const pais = (region || "").trim();
+      return !regionQuery || CONTINENT_BY_COUNTRY[pais] === regionQuery;
+    };
+    const matchesPais = (region) => {
+      const pais = (region || "").trim();
+      return !paisQuery || pais.toLowerCase() === paisQuery;
+    };
 
     if (searchType === "destino") {
       return destinos.filter((destino) => {
@@ -1400,7 +1406,7 @@ export default function Home() {
             {CONTINENT_DATA.map((continent) => {
               // Contar destinos disponibles para este continente
               const count = destinos.filter(
-                (d) => CONTINENT_BY_COUNTRY[d.paisRegion] === continent.id
+                (d) => CONTINENT_BY_COUNTRY[(d.paisRegion || "").trim()] === continent.id
               ).length;
 
               return (
