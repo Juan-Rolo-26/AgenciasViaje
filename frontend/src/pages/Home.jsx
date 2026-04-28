@@ -7,8 +7,15 @@ import CustomSelect from "../components/CustomSelect.jsx";
 import SearchLoadingAnimation from "../components/SearchLoadingAnimation.jsx";
 import { useTravelData } from "../hooks/useTravelData.js";
 import { getExcursionGallery } from "../utils/excursionGallery.js";
+import { getCardPriceDisplay } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
+import {
+  isArgentinaDestination,
+  matchesDestinationContinent,
+  matchesDestinationPais,
+  shouldShowCountryInContinent
+} from "../utils/destinationGeo.js";
 import "../assets/search-button-premium.css";
 import "../assets/filter-extra-large.css";
 import "../assets/salidas-compact.css";
@@ -123,7 +130,10 @@ export default function Home() {
   const { destinos, ofertas, actividades, cruceros, loading, error } =
     useTravelData();
   const destinosMostrados = useMemo(
-    () => destinos.filter((destino) => destino.paisRegion !== "Argentina"),
+    () =>
+      destinos.filter(
+        (destino) => !isArgentinaDestination(destino.paisRegion)
+      ),
     [destinos]
   );
   const [isSearching, setIsSearching] = useState(false);
@@ -258,7 +268,13 @@ export default function Home() {
   const paisesDisponibles = useMemo(() => {
     const countries = Object.keys(CONTINENT_BY_COUNTRY);
     let filteredCountries = searchRegion
-      ? countries.filter((pais) => CONTINENT_BY_COUNTRY[pais] === searchRegion)
+      ? countries.filter((pais) =>
+        shouldShowCountryInContinent(
+          pais,
+          CONTINENT_BY_COUNTRY,
+          searchRegion
+        )
+      )
       : countries;
 
     const sorted = filteredCountries.sort((a, b) => a.localeCompare(b));
@@ -273,11 +289,16 @@ export default function Home() {
   const destinosDisponibles = useMemo(() => {
     return destinos.filter((destino) => {
       const pais = (destino.paisRegion || "").trim();
-      const continent = CONTINENT_BY_COUNTRY[pais];
-      if (searchRegion && continent !== searchRegion) {
+      if (
+        !matchesDestinationContinent(
+          pais,
+          CONTINENT_BY_COUNTRY,
+          searchRegion
+        )
+      ) {
         return false;
       }
-      if (searchPais && pais !== searchPais) {
+      if (!matchesDestinationPais(pais, searchPais)) {
         return false;
       }
       return true;
@@ -378,13 +399,13 @@ export default function Home() {
     const matchesDestino = (nombre) =>
       !destinoQuery || nombre.toLowerCase().includes(destinoQuery);
     const matchesRegion = (region) => {
-      const pais = (region || "").trim();
-      return !regionQuery || CONTINENT_BY_COUNTRY[pais] === regionQuery;
+      return matchesDestinationContinent(
+        region,
+        CONTINENT_BY_COUNTRY,
+        regionQuery
+      );
     };
-    const matchesPais = (region) => {
-      const pais = (region || "").trim();
-      return !paisQuery || pais.toLowerCase() === paisQuery;
-    };
+    const matchesPais = (region) => matchesDestinationPais(region, paisQuery);
 
     if (searchType === "destino") {
       return destinos.filter((destino) => {
@@ -1070,6 +1091,10 @@ export default function Home() {
             <div className="offer-track" ref={destinosTrackRef}>
               {loopDestinos.map((destino, index) => {
                 const destinoSlug = destino.slug || destino.id;
+                const destinationPrice = getCardPriceDisplay({
+                  ars: destino.minPrecioPesos,
+                  usd: destino.minPrecioDolares
+                });
                 const descripcion =
                   destino.descripcionCorta || "Descubrí este destino.";
                 const galeriaImages = Array.isArray(destino.galeria)
@@ -1116,18 +1141,20 @@ export default function Home() {
                       <div className="card-prices">
                         <span className="price-label">Paquetes desde</span>
                         <div className="prices-wrapper">
-                          {(destino.precioPesos || destino.minPrecioPesos) ? (
+                          {destinationPrice.arsLabel ? (
                             <span className="price-ars">
-                              {`ARS $${Number(destino.precioPesos || destino.minPrecioPesos).toLocaleString("es-AR")}`}
+                              {destinationPrice.arsLabel}
                             </span>
                           ) : null}
-                          {(destino.precioDolares || destino.minPrecioDolares) ? (
+                          {destinationPrice.usdLabel ? (
                             <span className="price-usd">
-                              {`USD $${Number(destino.precioDolares || destino.minPrecioDolares).toLocaleString("es-AR")}`}
+                              {destinationPrice.usdLabel}
                             </span>
                           ) : null}
-                          {!destino.precioPesos && !destino.minPrecioPesos && !destino.precioDolares && !destino.minPrecioDolares ? (
-                            <span className="price-ars">Consultar</span>
+                          {!destinationPrice.hasPrices ? (
+                            <span className="price-ars">
+                              {destinationPrice.emptyLabel}
+                            </span>
                           ) : null}
                         </div>
                       </div>
@@ -1164,6 +1191,10 @@ export default function Home() {
             <div className="offer-track" ref={salidasTrackRef}>
               {loopOfertas.map((oferta, index) => {
                 const ofertaSlug = oferta.slug || oferta.id;
+                const offerPrice = getCardPriceDisplay({
+                  ars: oferta.precioPesos,
+                  usd: oferta.precioDolares
+                });
                 const offerImages = getOfferImages(oferta);
                 const offerImage = offerImages[0] || fallbackDeal;
                 const targetDestino = oferta.destino;
@@ -1191,12 +1222,21 @@ export default function Home() {
                       <div className="card-prices">
                         <span className="price-label">Desde</span>
                         <div className="prices-wrapper">
-                          <span className="price-ars">
-                            {oferta.precioPesos ? `ARS $${Number(oferta.precioPesos).toLocaleString('es-AR')}` : ((oferta.precios?.[0]?.precio || 0) ? `ARS $${Number((oferta.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
-                          </span>
-                          <span className="price-usd">
-                            {oferta.precioDolares ? ` USD $${Number(oferta.precioDolares).toLocaleString('es-AR')}` : ''}
-                          </span>
+                          {offerPrice.arsLabel ? (
+                            <span className="price-ars">
+                              {offerPrice.arsLabel}
+                            </span>
+                          ) : null}
+                          {offerPrice.usdLabel ? (
+                            <span className="price-usd">
+                              {offerPrice.usdLabel}
+                            </span>
+                          ) : null}
+                          {!offerPrice.hasPrices ? (
+                            <span className="price-ars">
+                              {offerPrice.emptyLabel}
+                            </span>
+                          ) : null}
                         </div>
                       </div>
                     </div>
@@ -1288,12 +1328,17 @@ export default function Home() {
                         <div className="card-prices">
                           <span className="price-label">Desde</span>
                           <div className="prices-wrapper">
-                            <span className="price-ars">
-                              {crucero.precioPesos ? `ARS $${Number(crucero.precioPesos).toLocaleString('es-AR')}` : (crucero.precio ? `ARS $${Number(crucero.precio).toLocaleString('es-AR')}` : 'Consultar')}
-                            </span>
-                            <span className="price-usd">
-                              {crucero.precioDolares ? ` USD $${Number(crucero.precioDolares).toLocaleString('es-AR')}` : ''}
-                            </span>
+                            {(() => {
+                              const p = getCardPriceDisplay({ ars: crucero.precioPesos, usd: crucero.precioDolares, emptyLabel: "Consultar" });
+                              return p.hasPrices ? (
+                                <>
+                                  {p.arsLabel && <span className="price-ars">{p.arsLabel}</span>}
+                                  {p.usdLabel && <span className="price-usd">{p.usdLabel}</span>}
+                                </>
+                              ) : (
+                                <span className="price-ars">{p.emptyLabel}</span>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
@@ -1374,12 +1419,17 @@ export default function Home() {
                       <div className="card-prices">
                         <span className="price-label">Desde</span>
                         <div className="prices-wrapper">
-                          <span className="price-ars">
-                            {actividad.precioPesos ? `ARS $${Number(actividad.precioPesos).toLocaleString('es-AR')}` : (actividad.precio ? `ARS $${Number(actividad.precio).toLocaleString('es-AR')}` : 'Consultar')}
-                          </span>
-                          <span className="price-usd">
-                            {actividad.precioDolares ? ` USD $${Number(actividad.precioDolares).toLocaleString('es-AR')}` : ''}
-                          </span>
+                          {(() => {
+                            const p = getCardPriceDisplay({ ars: actividad.precioPesos, usd: actividad.precioDolares, emptyLabel: "Consultar" });
+                            return p.hasPrices ? (
+                              <>
+                                {p.arsLabel && <span className="price-ars">{p.arsLabel}</span>}
+                                {p.usdLabel && <span className="price-usd">{p.usdLabel}</span>}
+                              </>
+                            ) : (
+                              <span className="price-ars">{p.emptyLabel}</span>
+                            );
+                          })()}
                         </div>
                       </div>
                     </div>

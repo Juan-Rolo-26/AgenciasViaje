@@ -2,8 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useOfertas } from "../hooks/useTravelData.js";
+import { getCardPriceDisplay } from "../utils/formatters.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
+import {
+  isArgentinaDestination,
+  matchesDestinationPais
+} from "../utils/destinationGeo.js";
 
 const OFFER_SECTIONS = [
   {
@@ -81,7 +86,7 @@ export default function Ofertas() {
       ...(oferta.destinos || []).map((item) => item.destino)
     ].filter(Boolean);
     const isNational = destinosAsociados.some(
-      (destino) => destino.paisRegion === "Argentina"
+      (destino) => isArgentinaDestination(destino.paisRegion)
     );
     const textBlock = normalizeText(
       `${oferta.titulo || ""} ${oferta.condiciones || ""} ${oferta.noIncluye || ""
@@ -129,7 +134,7 @@ export default function Ofertas() {
         ...(oferta.destinos || []).map((item) => item.destino)
       ].filter(Boolean);
       return destinosAsociados.some(
-        (destino) => (destino.paisRegion || "").toLowerCase() === paisQuery
+        (destino) => matchesDestinationPais(destino.paisRegion, paisQuery)
       );
     });
   }, [ofertasBase, draftFilters.pais]);
@@ -197,7 +202,7 @@ export default function Ofertas() {
       const matchesPais =
         !paisQuery ||
         destinosAsociados.some(
-          (destino) => (destino.paisRegion || "").toLowerCase() === paisQuery
+          (destino) => matchesDestinationPais(destino.paisRegion, paisQuery)
         );
       if (matchesDestino && matchesPais && oferta.titulo) {
         titles.add(oferta.titulo);
@@ -256,8 +261,7 @@ export default function Ofertas() {
       const matchesPais =
         !paisQuery ||
         destinosAsociados.some(
-          (destino) =>
-            (destino.paisRegion || "").toLowerCase() === paisQuery
+          (destino) => matchesDestinationPais(destino.paisRegion, paisQuery)
         );
 
       if (!matchesSection(oferta, sectionFilter)) {
@@ -490,6 +494,10 @@ export default function Ofertas() {
               <div className="grid grid-3x3">
                 {ofertasFiltradas.map((oferta) => {
                   const ofertaSlug = oferta.slug || oferta.id;
+                  const offerPrice = getCardPriceDisplay({
+                    ars: oferta.precioPesos,
+                    usd: oferta.precioDolares
+                  });
                   const offerImages = getOfferImages(oferta);
                   const offerImage = offerImages[0] || fallbackDeal;
                   const targetDestino = oferta.destino;
@@ -518,12 +526,21 @@ export default function Ofertas() {
                         <div className="card-prices">
                           <span className="price-label">Desde</span>
                           <div className="prices-wrapper">
-                            <span className="price-ars">
-                              {oferta.precioPesos ? `ARS $${Number(oferta.precioPesos).toLocaleString('es-AR')}` : ((oferta.precios?.[0]?.precio || 0) ? `ARS $${Number((oferta.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
-                            </span>
-                            <span className="price-usd">
-                              {oferta.precioDolares ? ` USD $${Number(oferta.precioDolares).toLocaleString('es-AR')}` : ''}
-                            </span>
+                            {offerPrice.arsLabel ? (
+                              <span className="price-ars">
+                                {offerPrice.arsLabel}
+                              </span>
+                            ) : null}
+                            {offerPrice.usdLabel ? (
+                              <span className="price-usd">
+                                {offerPrice.usdLabel}
+                              </span>
+                            ) : null}
+                            {!offerPrice.hasPrices ? (
+                              <span className="price-ars">
+                                {offerPrice.emptyLabel}
+                              </span>
+                            ) : null}
                           </div>
                         </div>
 

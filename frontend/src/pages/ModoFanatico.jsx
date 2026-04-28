@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
 import { FANATIC_ITEMS } from "../utils/modoFanaticoData.js";
+import { getCardPriceDisplay } from "../utils/formatters.js";
 import { apiRequest } from "../api/api.js";
 
 export default function ModoFanatico() {
@@ -66,18 +67,17 @@ export default function ModoFanatico() {
                     <div className="card-prices">
                       <span className="price-label">Desde</span>
                       <div className="prices-wrapper">
-                        <span className="price-ars">
-                          {item.precioPesos
-                            ? `ARS $${Number(item.precioPesos).toLocaleString("es-AR")}`
-                            : (item.precio
-                              ? `ARS $${Number(item.precio).toLocaleString("es-AR")}`
-                              : "Consultar")}
-                        </span>
-                        {item.precioDolares ? (
-                          <span className="price-usd">
-                            {`USD $${Number(item.precioDolares).toLocaleString("es-AR")}`}
-                          </span>
-                        ) : null}
+                        {(() => {
+                          const p = getCardPriceDisplay({ ars: item.precioPesos, usd: item.precioDolares, emptyLabel: "Consultar" });
+                          return p.hasPrices ? (
+                            <>
+                              {p.arsLabel && <span className="price-ars">{p.arsLabel}</span>}
+                              {p.usdLabel && <span className="price-usd">{p.usdLabel}</span>}
+                            </>
+                          ) : (
+                            <span className="price-ars">{p.emptyLabel}</span>
+                          );
+                        })()}
                       </div>
                     </div>
 

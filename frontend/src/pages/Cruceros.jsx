@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import "../assets/cruceros-redesign.css";
 import { useCruceros } from "../hooks/useTravelData.js";
+import { getCardPriceDisplay } from "../utils/formatters.js";
 
 export default function Cruceros() {
   const { cruceros, loading, error } = useCruceros();
@@ -61,12 +62,17 @@ export default function Cruceros() {
                     <div className="card-prices">
                       <span className="price-label">Desde</span>
                       <div className="prices-wrapper">
-                        <span className="price-ars">
-                          {crucero.precioPesos ? `ARS $${Number(crucero.precioPesos).toLocaleString('es-AR')}` : (crucero.precio ? `ARS $${Number(crucero.precio).toLocaleString('es-AR')}` : 'Consultar')}
-                        </span>
-                        <span className="price-usd">
-                          {crucero.precioDolares ? ` USD $${Number(crucero.precioDolares).toLocaleString('es-AR')}` : ''}
-                        </span>
+                        {(() => {
+                          const p = getCardPriceDisplay({ ars: crucero.precioPesos, usd: crucero.precioDolares, emptyLabel: "Consultar" });
+                          return p.hasPrices ? (
+                            <>
+                              {p.arsLabel && <span className="price-ars">{p.arsLabel}</span>}
+                              {p.usdLabel && <span className="price-usd">{p.usdLabel}</span>}
+                            </>
+                          ) : (
+                            <span className="price-ars">{p.emptyLabel}</span>
+                          );
+                        })()}
                       </div>
                     </div>
 

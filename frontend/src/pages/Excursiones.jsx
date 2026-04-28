@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useActividades } from "../hooks/useTravelData.js";
+import { isArgentinaDestination } from "../utils/destinationGeo.js";
+import { getCardPriceDisplay } from "../utils/formatters.js";
 
 export default function Excursiones({
   forcedSection = "",
@@ -50,7 +52,7 @@ export default function Excursiones({
       if (!pais) {
         return false;
       }
-      const isArgentina = pais === "Argentina";
+      const isArgentina = isArgentinaDestination(pais);
       return wantNational ? isArgentina : !isArgentina;
     });
   }, [excursionesDestacadas, selectedSection]);
@@ -99,12 +101,17 @@ export default function Excursiones({
                     <div className="card-prices">
                       <span className="price-label">Desde</span>
                       <div className="prices-wrapper">
-                        <span className="price-ars">
-                          {actividad.precioPesos ? `ARS $${Number(actividad.precioPesos).toLocaleString('es-AR')}` : (actividad.precio ? `ARS $${Number(actividad.precio).toLocaleString('es-AR')}` : 'Consultar')}
-                        </span>
-                        <span className="price-usd">
-                          {actividad.precioDolares ? ` USD $${Number(actividad.precioDolares).toLocaleString('es-AR')}` : ''}
-                        </span>
+                        {(() => {
+                          const p = getCardPriceDisplay({ ars: actividad.precioPesos, usd: actividad.precioDolares, emptyLabel: "Consultar" });
+                          return p.hasPrices ? (
+                            <>
+                              {p.arsLabel && <span className="price-ars">{p.arsLabel}</span>}
+                              {p.usdLabel && <span className="price-usd">{p.usdLabel}</span>}
+                            </>
+                          ) : (
+                            <span className="price-ars">{p.emptyLabel}</span>
+                          );
+                        })()}
                       </div>
                     </div>
 

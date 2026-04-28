@@ -3,6 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTravelData } from "../hooks/useTravelData.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
+import {
+    matchesDestinationContinent,
+    matchesDestinationPais,
+    shouldShowCountryInContinent
+} from "../utils/destinationGeo.js";
 import fallbackDeal from "../assets/inicio.jpg";
 import "../assets/search-results-new.css";
 
@@ -114,7 +119,13 @@ export default function SearchResults() {
     const paisesDisponibles = useMemo(() => {
         const countries = Object.keys(CONTINENT_BY_COUNTRY);
         let filteredCountries = searchRegion
-            ? countries.filter((pais) => CONTINENT_BY_COUNTRY[pais] === searchRegion)
+            ? countries.filter((pais) =>
+                shouldShowCountryInContinent(
+                    pais,
+                    CONTINENT_BY_COUNTRY,
+                    searchRegion
+                )
+            )
             : countries;
 
         const sorted = filteredCountries.sort((a, b) => a.localeCompare(b));
@@ -129,13 +140,17 @@ export default function SearchResults() {
         if (searchRegion) {
             filtered = filtered.filter(
                 (destino) =>
-                    CONTINENT_BY_COUNTRY[(destino.paisRegion || "").trim()] === searchRegion
+                    matchesDestinationContinent(
+                        destino.paisRegion,
+                        CONTINENT_BY_COUNTRY,
+                        searchRegion
+                    )
             );
         }
         if (searchPais) {
             filtered = filtered.filter(
                 (destino) =>
-                    destino.paisRegion.toLowerCase() === searchPais.toLowerCase()
+                    matchesDestinationPais(destino.paisRegion, searchPais)
             );
         }
         return filtered.sort((a, b) => a.nombre.localeCompare(b.nombre));
@@ -214,14 +229,14 @@ export default function SearchResults() {
 
         const matchesDestino = (nombre) =>
             !destinoQuery || nombre.toLowerCase().includes(destinoQuery);
-        const matchesRegion = (region) => {
-            const pais = (region || "").trim();
-            return !regionQuery || CONTINENT_BY_COUNTRY[pais] === regionQuery;
-        };
-        const matchesPais = (region) => {
-            const pais = (region || "").trim();
-            return !paisQuery || pais.toLowerCase() === paisQuery;
-        };
+        const matchesRegion = (region) =>
+            matchesDestinationContinent(
+                region,
+                CONTINENT_BY_COUNTRY,
+                regionQuery
+            );
+        const matchesPais = (region) =>
+            matchesDestinationPais(region, paisQuery);
 
         if (searchType === "destino") {
             return destinos.filter((destino) => {

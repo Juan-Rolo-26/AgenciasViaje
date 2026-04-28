@@ -718,6 +718,23 @@ async function main() {
       destacado: true,
       orden: 23
     },
+    {
+      nombre: "Orlando",
+      slug: "orlando",
+      paisRegion: "Estados Unidos",
+      descripcionCorta:
+        "Orlando, ciudad en el centro de Florida, alberga más de una decena de parques temáticos. Su lugar más famoso es Walt Disney World, que se compone de parques, como Magic Kingdom y Epcot, como también de parques acuáticos.",
+      descripcion:
+        "La ciudad de Orlando es la sede del condado de Orange y es ciudad central de la zona metropolitana del mismo nombre, así como también cabecera de la región conocida como Florida Central, en el estado de Florida, del sudeste de Estados Unidos. La ciudad es principalmente conocida por sus hoteles y sus muchas atracciones turísticas de interés infantil y juvenil, particularmente Walt Disney World Resort y Universal Orlando Resort. Otra atracción incluye SeaWorld.",
+      imagenPortada: "/assets/destinos/orlando.jpg",
+      imagenes: [
+        "/assets/destinos/orlando1.jpg",
+        "/assets/destinos/orlando2.jpg",
+        "/assets/destinos/orlando3.jpg"
+      ],
+      destacado: false,
+      orden: 24
+    },
 
     // ================= AFRICA =================
     {
@@ -1513,6 +1530,23 @@ async function main() {
       ],
       destacado: true,
       orden: 76
+    },
+    {
+      nombre: "Villa De Merlo",
+      slug: "villa-de-merlo",
+      paisRegion: "Argentina",
+      descripcionCorta:
+        "Villa de Merlo es una ciudad de la provincia de San Luis, en la zona central de Argentina. Se ubica a los pies de las montañas Comechingones.",
+      descripcion:
+        "En el centro de la ciudad se encuentra la Iglesia de Nuestra Señora del Rosario, construida en el siglo XVIII con adobe. El Museo del Poeta Antonio Esteban Agüero está ubicado en la antigua casa del poeta y documenta su vida y su obra. Un camino al este de la ciudad sube al Mirador del Sol, con vistas panorámicas de las montañas.",
+      imagenPortada: "/assets/destinos/merlo.jpg",
+      imagenes: [
+        "/assets/destinos/merlo.webp",
+        "/assets/destinos/merlo1.jpg",
+        "/assets/destinos/merlo2.webp"
+      ],
+      destacado: false,
+      orden: 79
     },
     {
       nombre: "Catamarca",

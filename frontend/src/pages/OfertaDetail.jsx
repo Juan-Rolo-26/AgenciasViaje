@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useOfertas } from "../hooks/useTravelData.js";
-import { formatDate } from "../utils/formatters.js";
+import { formatDate, getCardPriceDisplay } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getOfferImages } from "../utils/offerImages.js";
 import { getIncluyeIcon, getNoIncluyeIcon } from "../utils/incluyeIcons.jsx";
@@ -411,20 +411,24 @@ export default function OfertaDetail() {
               <div className="pkg-summary-list">
                 <div className="pkg-summary-item" style={{ flexDirection: 'column', alignItems: 'center', textAlign: 'center', borderBottom: '1px solid rgba(0,0,0,0.05)', paddingBottom: '16px', marginBottom: '16px' }}>
                   <span className="pkg-summary-label">Precio desde</span>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', marginTop: '6px' }}>
-                    <span style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1e293b', lineHeight: 1.2 }}>
-                      {oferta.precioPesos
-                        ? `ARS $${Number(oferta.precioPesos).toLocaleString('es-AR')}`
-                        : ((oferta.precios?.[0]?.precio || 0)
-                          ? `ARS $${Number(oferta.precios?.[0]?.precio).toLocaleString('es-AR')}`
-                          : 'Consultar')}
-                    </span>
-                    {oferta.precioDolares ? (
-                      <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#7c3aed', lineHeight: 1.2 }}>
-                        {`USD $${Number(oferta.precioDolares).toLocaleString('es-AR')}`}
-                      </span>
-                    ) : null}
-                  </div>
+                  {(() => {
+                    const priceDisplay = getCardPriceDisplay({
+                      ars: oferta.precioPesos,
+                      usd: oferta.precioDolares
+                    });
+                    return (
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', marginTop: '6px' }}>
+                        <span style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1e293b', lineHeight: 1.2 }}>
+                          {priceDisplay.arsLabel || priceDisplay.emptyLabel}
+                        </span>
+                        {priceDisplay.usdLabel ? (
+                          <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#7c3aed', lineHeight: 1.2 }}>
+                            {priceDisplay.usdLabel}
+                          </span>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
                 </div>
                 <div className="pkg-summary-item">
                   <span className="pkg-summary-label">Destino principal</span>

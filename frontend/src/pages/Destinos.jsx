@@ -3,6 +3,11 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import fallbackDeal from "../assets/inicio.jpg";
 import { useDestinos } from "../hooks/useTravelData.js";
 import { resolveAssetUrl } from "../utils/assetUrl.js";
+import { getCardPriceDisplay } from "../utils/formatters.js";
+import {
+  matchesDestinationContinent,
+  matchesDestinationPais
+} from "../utils/destinationGeo.js";
 
 const CONTINENTS = [
   {
@@ -79,11 +84,11 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   const { destinos, loading, error } = useDestinos();
   const lockedPaisValue = (lockedPais || "").trim();
   const destinosBase = useMemo(() => {
-    // Si la página está bloqueada para un país (ej. Argentina), solo mostramos ese país.
     if (lockedPaisValue) {
-      return destinos.filter((destino) => (destino.paisRegion || "").trim() === lockedPaisValue);
+      return destinos.filter((destino) =>
+        matchesDestinationPais(destino.paisRegion, lockedPaisValue)
+      );
     }
-    // De lo contrario, permitimos todos los destinos para que los filtros funcionen
     return destinos;
   }, [destinos, lockedPaisValue]);
   const continentCards = useMemo(
@@ -152,11 +157,16 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
   const destinosParaOpciones = useMemo(() => {
     return destinosBase.filter((destino) => {
       const pais = (destino.paisRegion || "").trim();
-      const continent = CONTINENT_BY_COUNTRY[pais] || "";
-      if (draftFilters.continente && continent !== draftFilters.continente) {
+      if (
+        !matchesDestinationContinent(
+          pais,
+          CONTINENT_BY_COUNTRY,
+          draftFilters.continente
+        )
+      ) {
         return false;
       }
-      if (draftFilters.pais && pais !== draftFilters.pais) {
+      if (!matchesDestinationPais(pais, draftFilters.pais)) {
         return false;
       }
       return true;
@@ -195,11 +205,12 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
     const query = filters.query.trim().toLowerCase();
     const filtered = destinosBase.filter((destino) => {
       const pais = (destino.paisRegion || "").trim();
-      const matchesPais =
-        !filters.pais || pais === filters.pais;
-      const continent = CONTINENT_BY_COUNTRY[pais] || "";
-      const matchesContinent =
-        !filters.continente || continent === filters.continente;
+      const matchesPais = matchesDestinationPais(pais, filters.pais);
+      const matchesContinent = matchesDestinationContinent(
+        pais,
+        CONTINENT_BY_COUNTRY,
+        filters.continente
+      );
       const matchesQuery =
         !query ||
         destino.nombre.toLowerCase().includes(query) ||
@@ -334,6 +345,10 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
               <div className="grid destination-grid grid-3x3">
                 {destinosFiltrados.map((destino, index) => {
                   const destinoSlug = destino.slug || destino.id;
+                  const priceDisplay = getCardPriceDisplay({
+                    ars: destino.minPrecioPesos,
+                    usd: destino.minPrecioDolares
+                  });
                   return (
                     <Link
                       className="tile destination-card premium-card"
@@ -355,28 +370,26 @@ export default function Destinos({ lockedPais = "", heroOverrides = {} } = {}) {
                           {destino.paisRegion || "Destino"}
                         </span>
 
-                        {(() => {
-                          const ars = destino.precioPesos || destino.minPrecioPesos;
-                          const usd = destino.precioDolares || destino.minPrecioDolares;
-                          if (!ars && !usd) return null;
-                          return (
-                            <div className="card-prices">
-                              <span className="price-label">Paquetes desde</span>
-                              <div className="prices-wrapper">
-                                {ars ? (
-                                  <span className="price-ars">
-                                    {`ARS $${Number(ars).toLocaleString("es-AR")}`}
-                                  </span>
-                                ) : null}
-                                {usd ? (
-                                  <span className="price-usd">
-                                    {`USD $${Number(usd).toLocaleString("es-AR")}`}
-                                  </span>
-                                ) : null}
-                              </div>
-                            </div>
-                          );
-                        })()}
+                        <div className="card-prices">
+                          <span className="price-label">Paquetes desde</span>
+                          <div className="prices-wrapper">
+                            {priceDisplay.arsLabel ? (
+                              <span className="price-ars">
+                                {priceDisplay.arsLabel}
+                              </span>
+                            ) : null}
+                            {priceDisplay.usdLabel ? (
+                              <span className="price-usd">
+                                {priceDisplay.usdLabel}
+                              </span>
+                            ) : null}
+                            {!priceDisplay.hasPrices ? (
+                              <span className="price-ars">
+                                {priceDisplay.emptyLabel}
+                              </span>
+                            ) : null}
+                          </div>
+                        </div>
 
                         <span className="card-cta">Explorar destino</span>
                       </div>

@@ -28,6 +28,35 @@ export function formatCurrency(value, currency) {
   return currencyFormatter.format(amount);
 }
 
+export function getPositiveAmount(value) {
+  const amount = parseAmount(value);
+  return amount !== null && amount > 0 ? amount : null;
+}
+
+export function getCardPriceDisplay({
+  ars = null,
+  usd = null,
+  arsFallback = null,
+  usdFallback = null,
+  emptyLabel = "A consultar"
+} = {}) {
+  const arsAmount = getPositiveAmount(ars) ?? getPositiveAmount(arsFallback);
+  const usdAmount = getPositiveAmount(usd) ?? getPositiveAmount(usdFallback);
+
+  return {
+    arsAmount,
+    usdAmount,
+    arsLabel: arsAmount
+      ? `ARS $${arsAmount.toLocaleString("es-AR")}`
+      : "",
+    usdLabel: usdAmount
+      ? `USD $${usdAmount.toLocaleString("es-AR")}`
+      : "",
+    hasPrices: Boolean(arsAmount || usdAmount),
+    emptyLabel
+  };
+}
+
 export function formatDate(value) {
   if (!value) {
     return "";

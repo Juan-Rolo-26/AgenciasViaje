@@ -6,7 +6,7 @@ import { resolveAssetUrl } from "../utils/assetUrl.js";
 import { FANATIC_ITEMS } from "../utils/modoFanaticoData.js";
 import { apiRequest } from "../api/api.js";
 import { useOfertas } from "../hooks/useTravelData.js";
-import { formatDate } from "../utils/formatters.js";
+import { formatDate, getCardPriceDisplay } from "../utils/formatters.js";
 import { getWhatsappLink } from "../utils/contactLinks.js";
 import { getIncluyeIcon } from "../utils/incluyeIcons.jsx";
 import {
@@ -487,14 +487,31 @@ export default function ModoFanaticoDetail() {
                     <div className="package-card-body">
                       <div className="card-prices" style={{ marginBottom: "16px" }}>
                         <span className="price-label">Desde</span>
-                        <div className="prices-wrapper">
-                          <span className="price-ars">
-                            {pkg.precioPesos ? `ARS $${Number(pkg.precioPesos).toLocaleString('es-AR')}` : ((pkg.precios?.[0]?.precio || 0) ? `ARS $${Number((pkg.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
-                          </span>
-                          <span className="price-usd">
-                            {pkg.precioDolares ? ` USD $${Number(pkg.precioDolares).toLocaleString('es-AR')}` : ''}
-                          </span>
-                        </div>
+                        {(() => {
+                          const priceDisplay = getCardPriceDisplay({
+                            ars: pkg.precioPesos,
+                            usd: pkg.precioDolares
+                          });
+                          return (
+                            <div className="prices-wrapper">
+                              {priceDisplay.arsLabel ? (
+                                <span className="price-ars">
+                                  {priceDisplay.arsLabel}
+                                </span>
+                              ) : null}
+                              {priceDisplay.usdLabel ? (
+                                <span className="price-usd">
+                                  {priceDisplay.usdLabel}
+                                </span>
+                              ) : null}
+                              {!priceDisplay.hasPrices ? (
+                                <span className="price-ars">
+                                  {priceDisplay.emptyLabel}
+                                </span>
+                              ) : null}
+                            </div>
+                          );
+                        })()}
                       </div>
                       <div className="package-info-preview">
                         <div className="package-info-item">
@@ -713,14 +730,24 @@ export default function ModoFanaticoDetail() {
                       <div className="card-content">
                         <div className="card-prices" style={{ marginBottom: '16px', paddingBottom: '16px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
                           <span className="price-label">Precio desde</span>
-                          <div className="prices-wrapper">
-                            <span className="price-ars" style={{ fontSize: '1.5rem' }}>
-                              {selectedPackage.precioPesos ? `ARS $${Number(selectedPackage.precioPesos).toLocaleString('es-AR')}` : ((selectedPackage.precios?.[0]?.precio || 0) ? `ARS $${Number((selectedPackage.precios?.[0]?.precio || 0)).toLocaleString('es-AR')}` : 'Consultar')}
-                            </span>
-                            <span className="price-usd" style={{ fontSize: '1.25rem' }}>
-                              {selectedPackage.precioDolares ? ` USD $${Number(selectedPackage.precioDolares).toLocaleString('es-AR')}` : ''}
-                            </span>
-                          </div>
+                          {(() => {
+                            const priceDisplay = getCardPriceDisplay({
+                              ars: selectedPackage.precioPesos,
+                              usd: selectedPackage.precioDolares
+                            });
+                            return (
+                              <div className="prices-wrapper">
+                                <span className="price-ars" style={{ fontSize: '1.5rem' }}>
+                                  {priceDisplay.arsLabel || priceDisplay.emptyLabel}
+                                </span>
+                                {priceDisplay.usdLabel ? (
+                                  <span className="price-usd" style={{ fontSize: '1.25rem' }}>
+                                    {priceDisplay.usdLabel}
+                                  </span>
+                                ) : null}
+                              </div>
+                            );
+                          })()}
                         </div>
                         <div className="fanatico-summary-grid">
                           {selectedPackageData.summaryItems.map((item, index) => (
