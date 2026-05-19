@@ -25,19 +25,7 @@ export const FANATIC_ITEMS = [
       "/assets/destinos/mundia2.jpg"
     ]
   },
-  {
-    slug: "finalisima",
-    nombre: "La Finalisima",
-    descripcionCorta: "El duelo definitivo entre campeones.",
-    descripcion:
-      "Vive la energía de La Finalisima: el duelo definitivo entre los dueños del fútbol. Sé testigo del choque histórico entre el Campeón de América y el Campeón de Europa en una batalla épica por la supremacía mundial. Un evento único, cargado de mística y estrellas internacionales, donde la pasión de las hinchadas y el prestigio continental se encuentran en un solo partido para coronar al mejor de los mejores. ¡Una oportunidad irrepetible para vivir la historia del fútbol desde la tribuna!",
-    imagenPortada: "/assets/destinos/finalisima.png",
-    imagenes: [
-      "/assets/destinos/finalisima2.png",
-      "/assets/destinos/finalisima3.png",
-      "/assets/destinos/finalisima4.png"
-    ]
-  },
+
   {
     slug: "f1-sao-paulo",
     nombre: "F1 Sao Paulo",
