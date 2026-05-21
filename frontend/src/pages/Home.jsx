@@ -60,6 +60,8 @@ const CONTINENT_DATA = [
 ];
 
 const HERO_IMAGES = [
+  "/assets/destinos/mundia2.jpg",
+  "/assets/destinos/mundial.jpg",
   "/assets/destinos/berlin1.jpg",
   "/assets/destinos/roma.jpg",
   "/assets/destinos/madrid3.jpg",
@@ -1067,7 +1069,7 @@ export default function Home() {
 
       {isSearching && <SearchLoadingAnimation searchType={searchType} />}
 
-      <section className="grid-section">
+<section className="grid-section">
         <div className="section-header section-header-row">
           <div>
             <h2>Destinos</h2>

@@ -1,0 +1,121 @@
+/* ===== MUNDIAL 2026 - DECORACIONES ===== */
+
+/* Strip animado debajo del nav */
+.wc2026-topstrip {
+  background: linear-gradient(90deg, #1a6b1a, #1b3a6e, #c8a000, #1b3a6e, #1a6b1a);
+  background-size: 300% 100%;
+  height: 3px;
+  animation: wc-strip-move 4s linear infinite;
+}
+@keyframes wc-strip-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* ===== GIRLANDA DE PELOTITAS ===== */
+.wc-garland-wrapper {
+  position: fixed;
+  top: 120px;   /* justo debajo del header */
+  left: 0;
+  right: 0;
+  height: 72px;
+  pointer-events: none;
+  z-index: 200;
+  overflow: visible;
+}
+
+/* Hilo/cuerda de la girlanda */
+.wc-garland-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(60, 30, 0, 0.30) 4%,
+    rgba(60, 30, 0, 0.30) 96%,
+    transparent 100%
+  );
+}
+
+/* Cada ítem de la girlanda */
+.wc-garland-item {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: 50% 0;
+  animation: wc-swing var(--swing-dur, 3s) ease-in-out infinite;
+  animation-delay: var(--swing-delay, 0s);
+}
+
+/* Hilo individual de cada pelota */
+.wc-garland-string {
+  width: 1.5px;
+  height: var(--string-h, 32px);
+  background: linear-gradient(to bottom, rgba(60,30,0,0.35), rgba(60,30,0,0.15));
+}
+
+/* Pelota de fútbol */
+.wc-garland-ball {
+  width: var(--ball-size, 22px);
+  height: var(--ball-size, 22px);
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.28));
+  animation: wc-ball-spin var(--swing-dur, 3s) ease-in-out infinite;
+  animation-delay: var(--swing-delay, 0s);
+}
+
+/* El balanceo */
+@keyframes wc-swing {
+  0%   { transform: rotate(-9deg); }
+  50%  { transform: rotate(9deg); }
+  100% { transform: rotate(-9deg); }
+}
+
+/* Rotación contraria de la pelota para que gire sobre sí misma */
+@keyframes wc-ball-spin {
+  0%   { transform: rotate(9deg); }
+  50%  { transform: rotate(-9deg); }
+  100% { transform: rotate(9deg); }
+}
+
+/* ===== PELOTITAS FLOTANTES EN LOS BORDES ===== */
+.wc-float-ball {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.55;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.25));
+  animation: wc-float-updown var(--float-dur, 5s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes wc-float-updown {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(20deg); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 980px) {
+  .wc-garland-wrapper {
+    top: 108px;
+  }
+  /* Ocultar algunas pelotitas en tablet */
+  .wc-garland-item.hide-md {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .wc-garland-wrapper {
+    top: 96px;
+    height: 56px;
+  }
+  .wc-garland-item.hide-sm {
+    display: none;
+  }
+  .wc-float-ball {
+    opacity: 0.35;
+  }
+}
