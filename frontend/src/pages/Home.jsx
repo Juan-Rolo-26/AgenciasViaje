@@ -59,23 +59,45 @@ const CONTINENT_DATA = [
   }
 ];
 
-const HERO_IMAGES = [
-  "/assets/destinos/mundia2.jpg",
-  "/assets/destinos/mundial.jpg",
-  "/assets/destinos/berlin1.jpg",
-  "/assets/destinos/roma.jpg",
-  "/assets/destinos/madrid3.jpg",
-  "/assets/destinos/sudafrica2.jpg",
-  "/assets/destinos/Buzios.webp",
-  "/assets/destinos/maldivas1.webp",
-  "/assets/destinos/singapur1.webp",
-  "/assets/destinos/africa1.jpg",
-  "/assets/destinos/tai3.webp",
-  "/assets/destinos/santiago4.webp",
-  "/assets/destinos/Paris1.webp",
-  "/assets/destinos/dubai3.webp",
-  "/assets/destinos/costarica1.jpg"
+const POOL_HERO_IMAGES = [
+  // Playas Paradisíacas
+  "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1920&q=80",
+  "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=80",
+  "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=1920&q=80",
+  "https://images.unsplash.com/photo-1515542718151-14c1cdcd26b1?w=1920&q=80",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80",
+
+  // Europa y Ciudades Increíbles
+  "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1920&q=80", // Roma
+  "https://images.unsplash.com/photo-1501594907296-3398c8c2ec10?w=1920&q=80", // Santorini
+  "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&q=80", // Paris
+  "https://images.unsplash.com/photo-1534008897995-281b3793f0b2?w=1920&q=80", // Venecia
+  "https://images.unsplash.com/photo-1505832018823-50331d70d237?w=1920&q=80", // Costa Amalfitana
+  "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80", // Alpes / Naturaleza
+
+  // Sus propias imágenes de mayor calidad local que tienen alta resolución
+  "/assets/destinos/orlando.jpg",
+  "/assets/destinos/italia3.jpg",
+  "/assets/destinos/merlo1.jpg",
+  "/assets/destinos/Jamaica.jpg"
 ];
+
+// Get 10 images, changing every 10 days
+const getDynamicHeroImages = () => {
+  const MS_IN_10_DAYS = 10 * 24 * 60 * 60 * 1000;
+  const currentPeriod = Math.floor(Date.now() / MS_IN_10_DAYS);
+  const imagesPerPeriod = 10;
+  const startIndex = (currentPeriod * imagesPerPeriod) % POOL_HERO_IMAGES.length;
+
+  const selectedImages = [];
+  for (let i = 0; i < imagesPerPeriod; i++) {
+    selectedImages.push(POOL_HERO_IMAGES[(startIndex + i) % POOL_HERO_IMAGES.length]);
+  }
+
+  return selectedImages;
+};
+
+const HERO_IMAGES = getDynamicHeroImages();
 
 const HERO_ROTATION_MS = 5000;
 const HERO_FADE_MS = 3000;
@@ -1069,7 +1091,7 @@ export default function Home() {
 
       {isSearching && <SearchLoadingAnimation searchType={searchType} />}
 
-<section className="grid-section">
+      <section className="grid-section">
         <div className="section-header section-header-row">
           <div>
             <h2>Destinos</h2>
