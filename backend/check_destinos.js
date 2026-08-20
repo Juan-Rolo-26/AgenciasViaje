@@ -1,25 +1,14 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-async function main() {
+async function check() {
     const destinos = await prisma.destino.findMany({
-        where: {
-            OR: [
-                { nombre: { contains: 'Jamaica' } },
-                { nombre: { contains: 'Caimán' } },
-                { nombre: { contains: 'Caiman' } }
-            ]
-        }
+        orderBy: { creadoEn: 'desc' },
+        take: 10
     });
-    console.log('Found destinos:', JSON.stringify(destinos, null, 2));
-
-    const regions = await prisma.destino.findMany({
-        select: { paisRegion: true },
-        distinct: ['paisRegion']
-    });
-    console.log('Available regions:', regions.map(r => r.paisRegion));
+    console.log(JSON.stringify(destinos.map(d => ({ id: d.id, nombre: d.nombre })), null, 2));
 }
 
-main()
-    .catch(e => console.error(e))
-    .finally(async () => await prisma.$disconnect());
+check()
+    .catch(console.error)
+    .finally(() => prisma.$disconnect());
