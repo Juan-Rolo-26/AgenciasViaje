@@ -13,7 +13,7 @@ export default defineConfig({
   },
   build: {
     outDir: "../backend/public/admin",
-    emptyOutDir: false,
+    emptyOutDir: true,
   },
   preview: {
     allowedHosts: ["admin.topotours.com", "admin.topotours.ar"]

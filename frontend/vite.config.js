@@ -6,7 +6,7 @@ export default defineConfig({
   publicDir: "public",
   build: {
     outDir: "../backend/public",
-    emptyOutDir: false,
+    emptyOutDir: true,
     assetsDir: "assets"
   },
   preview: {

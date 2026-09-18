@@ -1,26 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Salir en caso de error
-set -e
+set -Eeuo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT_DIR"
 
 echo "🚀 Iniciando despliegue de Topotours..."
 
 # 1. Asegurar estructura de carpetas
-mkdir -p backend/public
+command -v node >/dev/null || { echo "❌ Falta Node.js"; exit 1; }
+command -v npm >/dev/null || { echo "❌ Falta npm"; exit 1; }
+command -v pm2 >/dev/null || { echo "❌ Falta PM2: npm install -g pm2"; exit 1; }
+
+if [ ! -f backend/.env ]; then
+    echo "❌ Falta backend/.env; no se crea automáticamente."
+    exit 1
+fi
 
 # 2. Preparar Backend
 echo "📦 Instalando dependencias del Backend..."
 cd backend
 npm install
-npx prisma generate
-npx prisma db push --accept-data-loss
-
-# Copiar .env de ejemplo si no existe
-if [ ! -f .env ]; then
-    echo "⚠️ .env no encontrado en backend. Creando uno por defecto..."
-    echo 'DATABASE_URL="file:./prisma/dev.db"' > .env
-    echo 'PORT=3000' >> .env
-fi
+npm exec prisma generate
 
 # 3. Preparar Frontend y CRM
 echo "📦 Construyendo Frontend..."
@@ -37,13 +39,14 @@ npm run build
 echo "🔄 Reiniciando aplicación con PM2..."
 cd ..
 
-# Verificar si PM2 está instalado, si no lanzar con node directo o avisar
-if command -v pm2 &> /dev/null; then
-    pm2 restart ecosystem.config.js || pm2 start ecosystem.config.js
-    pm2 save
-else
-    echo "⚠️ PM2 no encontrado. Iniciando servidor con Node (no recomendado para producción)..."
-    cd backend && npm start &
-fi
+test -f backend/public/index.html
+test -f backend/public/admin/index.html
+
+pm2 restart ecosystem.config.js --update-env || pm2 start ecosystem.config.js
+pm2 save
+
+sleep 2
+curl --fail --silent http://127.0.0.1:3000/health >/dev/null
+curl --fail --silent http://127.0.0.1:3000/admin/ >/dev/null
 
 echo "✅ Despliegue completado con éxito!"
