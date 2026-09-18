@@ -31,9 +31,15 @@ npm install
 npm exec prisma generate
 npm exec prisma db push
 
+echo "🗂️ Restaurando assets versionados del catálogo..."
+cd ..
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    git restore -- backend/public/assets
+fi
+
 # 3. Preparar Frontend y CRM
 echo "📦 Construyendo Frontend..."
-cd ../frontend
+cd frontend
 npm install
 npm run build
 
