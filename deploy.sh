@@ -37,6 +37,12 @@ cd ../frontend
 npm install
 npm run build
 
+echo "🖼️ Sincronizando imágenes públicas..."
+mkdir -p ../backend/public/assets
+if [ -d public/assets ]; then
+    cp -a public/assets/. ../backend/public/assets/
+fi
+
 echo "📦 Construyendo CRM..."
 cd ../crm
 npm install
@@ -48,6 +54,7 @@ cd ..
 
 test -f backend/public/index.html
 test -f backend/public/admin/index.html
+test -f backend/public/assets/logo.png || test -f backend/public/assets/logo-COoolgsY.png
 
 echo "🌐 Configurando Nginx..."
 if command -v nginx >/dev/null && [ -d /etc/nginx ]; then
