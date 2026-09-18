@@ -6,7 +6,9 @@ export default defineConfig({
   publicDir: "public",
   build: {
     outDir: "../backend/public",
-    emptyOutDir: true,
+    // backend/public contiene imágenes del catálogo que no forman parte del
+    // publicDir de Vite. No vaciarlo durante el build.
+    emptyOutDir: false,
     assetsDir: "assets"
   },
   preview: {
