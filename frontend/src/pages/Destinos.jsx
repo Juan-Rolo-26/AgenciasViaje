@@ -51,6 +51,7 @@ const CONTINENT_BY_COUNTRY = {
   Curazao: "america",
   Jamaica: "america",
   "Islas Caimán": "america",
+  Venezuela: "america",
   "Emiratos Árabes": "asia",
   Japón: "asia",
   Indonesia: "asia",

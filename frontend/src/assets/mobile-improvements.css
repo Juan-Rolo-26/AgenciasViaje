@@ -260,7 +260,7 @@
 
   html,
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   img,
@@ -276,9 +276,12 @@
   }
 
   .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 200;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
   }
 
   .nav-main {

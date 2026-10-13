@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 const logo = "/assets/logo.png";
 import "../assets/cruceros-redesign.css";
@@ -167,6 +167,34 @@ export default function MainLayout() {
     "Hola! Quiero hablar con un asesor. Me pueden ayudar?"
   );
   const [navOpen, setNavOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+
+    const updateNavHeight = () => {
+      if (headerRef.current && window.scrollY <= 15) {
+        const height = headerRef.current.offsetHeight;
+        if (height > 40) {
+          document.documentElement.style.setProperty("--nav-height", `${height}px`);
+        }
+      }
+    };
+
+    handleScroll();
+    updateNavHeight();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateNavHeight);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateNavHeight);
+    };
+  }, []);
   const [navSectionsOpen, setNavSectionsOpen] = useState({
     destinos: false
   });
@@ -444,7 +472,10 @@ export default function MainLayout() {
 
   return (
     <>
-      <header className="site-header">
+      <header
+        ref={headerRef}
+        className={`site-header${isScrolled ? " is-scrolled" : ""}`}
+      >
         <div className="nav-container">
           <Link className="nav-logo" to="/" aria-label="Ir al inicio">
             <img src={logo} alt="Topotours" />
@@ -622,6 +653,8 @@ export default function MainLayout() {
           </div>
         </div>
       </header>
+
+      <div className="site-header-spacer" aria-hidden="true" />
 
       <Outlet />
 
