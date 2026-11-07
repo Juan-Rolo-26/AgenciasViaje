@@ -473,9 +473,12 @@ router.delete("/modo-fanatico/:id", async (req, res, next) => {
 });
 
 /* ── BANNERS ── */
-router.post("/banners/upload", uploadBanner.single("imagen"), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "Sin archivo" });
-  res.json({ url: `/assets/banners/${req.file.filename}` });
+router.post("/banners/upload", (req, res) => {
+  uploadBanner.single("imagen")(req, res, (err) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!req.file) return res.status(400).json({ error: "Sin archivo" });
+    res.json({ url: `/assets/banners/${req.file.filename}` });
+  });
 });
 
 router.get("/banners", async (_req, res, next) => {
