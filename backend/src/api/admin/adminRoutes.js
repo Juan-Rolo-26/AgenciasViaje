@@ -495,6 +495,7 @@ router.post("/banners", async (req, res, next) => {
         const data = req.body;
         if (data.orden !== undefined) data.orden = Number(data.orden);
         const item = await prisma.banner.create({ data });
+        clearAllPublicCaches();
         res.status(201).json(item);
     } catch (e) { next(e); }
 });
@@ -504,6 +505,7 @@ router.put("/banners/:id", async (req, res, next) => {
         const data = { ...req.body };
         if (data.orden !== undefined) data.orden = Number(data.orden);
         const item = await prisma.banner.update({ where: { id: +req.params.id }, data });
+        clearAllPublicCaches();
         res.json(item);
     } catch (e) { next(e); }
 });
@@ -511,6 +513,7 @@ router.put("/banners/:id", async (req, res, next) => {
 router.delete("/banners/:id", async (req, res, next) => {
     try {
         await prisma.banner.delete({ where: { id: +req.params.id } });
+        clearAllPublicCaches();
         res.status(204).send();
     } catch (e) { next(e); }
 });
