@@ -9726,3 +9726,149 @@ html {
     width: 100%;
   }
 }
+
+/* ── HERO BANNER STRIP ── */
+.hero-banner-strip {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(var(--page-gutter) * -1);
+  margin-right: calc(var(--page-gutter) * -1);
+  margin-top: -80px; /* cancela el gap:80px del flex de main */
+  overflow: hidden;
+  background: #111;
+  line-height: 0;
+}
+
+.hero-banner-slide {
+  width: 100%;
+  transition: opacity 0.35s ease;
+}
+
+.hero-banner-slide.hero-banner-fade {
+  opacity: 0;
+}
+
+.hero-banner-link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-banner-link--clickable {
+  cursor: pointer;
+}
+
+.hero-banner-img {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  max-height: none;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-banner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px clamp(24px, 6vw, 80px);
+  background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-banner-title {
+  font-size: clamp(18px, 3vw, 32px);
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.2;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.hero-banner-sub {
+  font-size: clamp(13px, 1.5vw, 18px);
+  margin: 0 0 12px;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.hero-banner-cta {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 6px;
+  background: var(--color-primary, #e64c1e);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  pointer-events: auto;
+}
+
+.hero-banner-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+.hero-banner-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.8);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.hero-banner-dot.active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+.hero-banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.hero-banner-arrow:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+.hero-banner-arrow-prev { left: 16px; }
+.hero-banner-arrow-next { right: 16px; }
+
+@media (max-width: 640px) {
+  .hero-banner-img {
+    max-height: 180px;
+  }
+
+  .hero-banner-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+}

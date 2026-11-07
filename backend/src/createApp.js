@@ -12,6 +12,7 @@ const complaintRoutes = require("./api/complaints/complaintRoutes");
 const subscriptionRoutes = require("./api/subscriptions/subscriptionRoutes");
 const assistantRoutes = require("./api/assistant/assistantRoutes");
 const fanaticRoutes = require("./api/fanatic/fanaticRoutes");
+const bannerRoutes = require("./api/banners/bannerRoutes");
 const adminRoutes = require("./api/admin/adminRoutes");
 const { API_PREFIX } = require("./config/serverConfig");
 const errorHandler = require("./middleware/errorHandler");
@@ -40,6 +41,7 @@ app.use(`${API_PREFIX}/quejas`, complaintRoutes);
 app.use(`${API_PREFIX}/suscripciones`, subscriptionRoutes);
 app.use(`${API_PREFIX}/assistant`, assistantRoutes);
 app.use(`${API_PREFIX}/modo-fanatico`, fanaticRoutes);
+app.use(`${API_PREFIX}/banners`, bannerRoutes);
 app.use(`${API_PREFIX}/admin`, adminRoutes);
 
 

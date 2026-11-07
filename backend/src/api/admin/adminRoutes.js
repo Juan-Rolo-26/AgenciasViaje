@@ -1,7 +1,25 @@
+const path = require("path");
+const crypto = require("crypto");
 const express = require("express");
+const multer = require("multer");
 const adminAuth = require("../../middleware/adminAuth");
 const prisma = require("../../lib/prisma");
 const { clearAllPublicCaches } = require("../../lib/publicCaches");
+
+const bannerStorage = multer.diskStorage({
+  destination: path.resolve(__dirname, "../../../public/assets/banners"),
+  filename(_req, file, cb) {
+    const ext = path.extname(file.originalname).toLowerCase() || ".jpg";
+    cb(null, `banner-${Date.now()}-${crypto.randomBytes(4).toString("hex")}${ext}`);
+  },
+});
+const uploadBanner = multer({
+  storage: bannerStorage,
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter(_req, file, cb) {
+    cb(null, /^image\//.test(file.mimetype));
+  },
+});
 
 const router = express.Router();
 router.use(adminAuth);
@@ -446,6 +464,46 @@ router.put("/modo-fanatico/:id", async (req, res, next) => {
 router.delete("/modo-fanatico/:id", async (req, res, next) => {
     try {
         await prisma.modoFanatico.delete({ where: { id: +req.params.id } });
+        res.status(204).send();
+    } catch (e) { next(e); }
+});
+
+/* ── BANNERS ── */
+router.post("/banners/upload", uploadBanner.single("imagen"), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: "Sin archivo" });
+  res.json({ url: `/assets/banners/${req.file.filename}` });
+});
+
+router.get("/banners", async (_req, res, next) => {
+    try {
+        const list = await prisma.banner.findMany({
+            orderBy: [{ orden: "asc" }, { creadoEn: "asc" }],
+        });
+        res.json(list);
+    } catch (e) { next(e); }
+});
+
+router.post("/banners", async (req, res, next) => {
+    try {
+        const data = req.body;
+        if (data.orden !== undefined) data.orden = Number(data.orden);
+        const item = await prisma.banner.create({ data });
+        res.status(201).json(item);
+    } catch (e) { next(e); }
+});
+
+router.put("/banners/:id", async (req, res, next) => {
+    try {
+        const data = { ...req.body };
+        if (data.orden !== undefined) data.orden = Number(data.orden);
+        const item = await prisma.banner.update({ where: { id: +req.params.id }, data });
+        res.json(item);
+    } catch (e) { next(e); }
+});
+
+router.delete("/banners/:id", async (req, res, next) => {
+    try {
+        await prisma.banner.delete({ where: { id: +req.params.id } });
         res.status(204).send();
     } catch (e) { next(e); }
 });

@@ -8,6 +8,7 @@ import OfertasView from "../components/OfertasView.jsx";
 import ExcursionesView from "../components/ExcursionesView.jsx";
 import CrucerosView from "../components/CrucerosView.jsx";
 import ModoFanaticoView from "../components/ModoFanaticoView.jsx";
+import BannersView from "../components/BannersView.jsx";
 
 const MENU = [
     { id: "stats", label: "Dashboard", icon: "📊" },
@@ -17,6 +18,7 @@ const MENU = [
     { id: "excursiones", label: "Excursiones", icon: "🏄" },
     { id: "cruceros", label: "Cruceros", icon: "🚢" },
     { id: "fanatico", label: "Modo Fanático", icon: "⚽" },
+    { id: "banners", label: "Banners", icon: "🖼️" },
 ];
 
 export default function Dashboard() {
@@ -46,6 +48,7 @@ export default function Dashboard() {
             case "excursiones": return <ExcursionesView />;
             case "cruceros": return <CrucerosView />;
             case "fanatico": return <ModoFanaticoView />;
+            case "banners": return <BannersView />;
             default: return <StatsView />;
         }
     }

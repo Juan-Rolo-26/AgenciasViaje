@@ -16,6 +16,7 @@ import {
   matchesDestinationPais,
   shouldShowCountryInContinent
 } from "../utils/destinationGeo.js";
+import HeroBanner from "../components/HeroBanner.jsx";
 import "../assets/search-button-premium.css";
 import "../assets/filter-extra-large.css";
 import "../assets/salidas-compact.css";
@@ -1089,6 +1090,8 @@ export default function Home() {
           </form>
         </div>
       </section>
+
+      <HeroBanner />
 
       {isSearching && <SearchLoadingAnimation searchType={searchType} />}
 

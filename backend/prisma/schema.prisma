@@ -225,3 +225,16 @@ model ImagenFanatico {
   modoFanatico  ModoFanatico @relation(fields: [modoFanaticoId], references: [id], onDelete: Cascade)
 }
 
+model Banner {
+  id          Int      @id @default(autoincrement())
+  titulo      String?
+  subtitulo   String?
+  imagen      String
+  linkUrl     String?
+  linkTexto   String?
+  colorTexto  String?  @default("#ffffff")
+  alturaPx    Int      @default(300)
+  activo      Boolean  @default(true)
+  orden       Int      @default(0)
+  creadoEn    DateTime @default(now())
+}
