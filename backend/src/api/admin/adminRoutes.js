@@ -1,13 +1,17 @@
 const path = require("path");
 const crypto = require("crypto");
+const fs = require("fs");
 const express = require("express");
 const multer = require("multer");
 const adminAuth = require("../../middleware/adminAuth");
 const prisma = require("../../lib/prisma");
 const { clearAllPublicCaches } = require("../../lib/publicCaches");
 
+const BANNERS_DIR = path.resolve(__dirname, "../../../public/assets/banners");
+fs.mkdirSync(BANNERS_DIR, { recursive: true });
+
 const bannerStorage = multer.diskStorage({
-  destination: path.resolve(__dirname, "../../../public/assets/banners"),
+  destination: BANNERS_DIR,
   filename(_req, file, cb) {
     const ext = path.extname(file.originalname).toLowerCase() || ".jpg";
     cb(null, `banner-${Date.now()}-${crypto.randomBytes(4).toString("hex")}${ext}`);
